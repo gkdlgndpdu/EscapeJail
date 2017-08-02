@@ -149,8 +149,12 @@ public class GridEditor : Editor
             if (prefab)
             {
                 Undo.IncrementCurrentGroup();
-                gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
                 Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f,0f);
+               
+                //중복 방지
+                if (GetTransformFromPosition(aligned) != null) return;     
+                      
+                gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
                 gameObject.transform.position = aligned;
                 gameObject.transform.parent = grid.transform;
                 Undo.RegisterCreatedObjectUndo(gameObject, "Create" + gameObject.name);
