@@ -23,20 +23,20 @@ public class GridEditor : Editor
     {
         var asset = ScriptableObject.CreateInstance<TileSet>();
         var path = AssetDatabase.GetAssetPath(Selection.activeObject);
-        Debug.Log(path);
 
-        if (string.IsNullOrEmpty(path))
-        {
-            path = "Assets";
-        }
-        else if (Path.GetExtension(path) != "")
-        {
-            path = path.Replace(Path.GetFileName(path), "");
-        }
-        else
-        {
-            path += "/";
-        }
+        path = "Assets/08.Maptool/";
+        Debug.Log(path);
+        //if (string.IsNullOrEmpty(path))
+        //{
+        //}
+        //else if (Path.GetExtension(path) != "")
+        //{
+        //    path = path.Replace(Path.GetFileName(path), "");
+        //}
+        //else
+        //{
+        //    path += "/";
+        //}
 
         var assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "TileSet.asset");
         AssetDatabase.CreateAsset(asset, assetPathAndName);
@@ -51,9 +51,10 @@ public class GridEditor : Editor
     public override void OnInspectorGUI()
     {
         //base.OnInspectorGUI();
-
+     
         grid.width = createSlider("Width", grid.width);
         grid.height = createSlider("Height", grid.height);
+        grid.isRenderGrid = createToggle("RenderGrid", grid.isRenderGrid);
 
         //버튼이 눌렸을때
         if (GUILayout.Button("Open Grid Window"))
@@ -126,6 +127,16 @@ public class GridEditor : Editor
         GUILayout.EndHorizontal();
 
         return sliderPosition;
+    }
+
+    private bool createToggle(string labelName,bool isCheck)
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(labelName);
+        isCheck = EditorGUILayout.Toggle(isCheck);
+        GUILayout.EndHorizontal();
+
+        return isCheck;
     }
 
     //에디터 모드에서 액션에 반응
