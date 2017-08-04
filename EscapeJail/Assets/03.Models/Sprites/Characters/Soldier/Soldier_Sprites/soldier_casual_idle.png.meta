@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 4ae213fcff00ad343a12852d3f47a127
-timeCreated: 1501667702
+guid: b05dae91c87764046b5e09bfd157066b
+timeCreated: 1501830683
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: soldier_casual_walk_0
-    21300002: soldier_casual_walk_1
-    21300004: soldier_casual_walk_2
+    21300000: soldier_casual_idle_0
+    21300002: soldier_casual_idle_1
+    21300004: soldier_casual_idle_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -90,7 +90,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: soldier_casual_walk_0
+      name: soldier_casual_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -104,7 +104,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: soldier_casual_walk_1
+      name: soldier_casual_idle_1
       rect:
         serializedVersion: 2
         x: 256
@@ -118,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: soldier_casual_walk_2
+      name: soldier_casual_idle_2
       rect:
         serializedVersion: 2
         x: 512
