@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 668fbc403f9d65345977e6e5cbc2e90b
-timeCreated: 1502097516
+guid: 8d8247b2d05292643b9fe396811127cc
+timeCreated: 1502104810
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,6 +31,13 @@ TextureImporter:
     21300048: soldier_walk_all_24
     21300050: soldier_walk_all_25
     21300052: soldier_walk_all_26
+    21300054: soldier_walk_all_27
+    21300056: soldier_walk_all_28
+    21300058: soldier_walk_all_29
+    21300060: soldier_walk_all_30
+    21300062: soldier_walk_all_31
+    21300064: soldier_walk_all_32
+    21300066: soldier_walk_all_33
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -118,11 +125,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 256
-        height: 256
+        y: 2986
+        width: 377
+        height: 271
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,12 +138,12 @@ TextureImporter:
       name: soldier_walk_all_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 2048
-        width: 256
-        height: 256
+        x: 376
+        y: 2985.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +152,12 @@ TextureImporter:
       name: soldier_walk_all_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 2048
-        width: 256
-        height: 256
+        x: 752
+        y: 2985.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,11 +167,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
-        width: 256
-        height: 256
+        y: 2714.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,12 +180,12 @@ TextureImporter:
       name: soldier_walk_all_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1792
-        width: 256
-        height: 256
+        x: 376
+        y: 2714.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,12 +194,12 @@ TextureImporter:
       name: soldier_walk_all_5
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1792
-        width: 256
-        height: 256
+        x: 752
+        y: 2714.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,11 +209,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
-        width: 256
-        height: 256
+        y: 2443.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,12 +222,12 @@ TextureImporter:
       name: soldier_walk_all_7
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1536
-        width: 256
-        height: 256
+        x: 376
+        y: 2443.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +236,12 @@ TextureImporter:
       name: soldier_walk_all_8
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1536
-        width: 256
-        height: 256
+        x: 752
+        y: 2443.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,11 +251,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
-        width: 256
-        height: 256
+        y: 2172.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,12 +264,12 @@ TextureImporter:
       name: soldier_walk_all_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1280
-        width: 256
-        height: 256
+        x: 376
+        y: 2172.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +278,12 @@ TextureImporter:
       name: soldier_walk_all_11
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 256
-        height: 256
+        x: 752
+        y: 2172.5833
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,11 +293,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 256
-        height: 256
+        y: 1901.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -299,12 +306,12 @@ TextureImporter:
       name: soldier_walk_all_13
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 256
-        height: 256
+        x: 376
+        y: 1901.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -313,12 +320,12 @@ TextureImporter:
       name: soldier_walk_all_14
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 256
-        height: 256
+        x: 752
+        y: 1901.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,11 +335,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 1630.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,12 +348,12 @@ TextureImporter:
       name: soldier_walk_all_16
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
+        x: 376
+        y: 1630.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,12 +362,12 @@ TextureImporter:
       name: soldier_walk_all_17
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 752
+        y: 1630.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -370,11 +377,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 1359.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,12 +390,12 @@ TextureImporter:
       name: soldier_walk_all_19
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 376
+        y: 1359.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -397,12 +404,12 @@ TextureImporter:
       name: soldier_walk_all_20
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 752
+        y: 1359.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -412,11 +419,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 256
-        height: 256
+        y: 1088.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,12 +432,12 @@ TextureImporter:
       name: soldier_walk_all_22
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 376
+        y: 1088.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -439,12 +446,12 @@ TextureImporter:
       name: soldier_walk_all_23
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 752
+        y: 1088.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -454,11 +461,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 256
-        height: 256
+        y: 817.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,12 +474,12 @@ TextureImporter:
       name: soldier_walk_all_25
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
+        x: 376
+        y: 817.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -481,12 +488,110 @@ TextureImporter:
       name: soldier_walk_all_26
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
+        x: 752
+        y: 817.5834
+        width: 376.66666
+        height: 271.41666
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546.5834
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_28
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 546.5834
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_29
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 546.5834
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 275.58334
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_31
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 275.58334
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_32
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 275.58334
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: soldier_walk_all_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4.5833435
+        width: 376.66666
+        height: 271.41666
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
