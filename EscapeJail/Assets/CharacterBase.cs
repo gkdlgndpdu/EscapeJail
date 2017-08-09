@@ -6,37 +6,36 @@ using UnityEngine;
 public class CharacterBase : MonoBehaviour
 {
     //컴포넌트    
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     [SerializeField]
     Animator animController;
 
     //값변수
     [SerializeField]
-    private float moveSpeed=10f;
+    protected float moveSpeed=10f;
 
 
 
-    private void Awake()
+    protected void Awake()
     {
         Initialize();
     }
-    void Initialize()
+    protected void Initialize()
     {
         rb = GetComponent<Rigidbody2D>();
         
     }
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    protected void Start ()
     {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    protected void Update ()
     {
         MoveInPc();
-
     }
 
     protected void MoveInPc()
