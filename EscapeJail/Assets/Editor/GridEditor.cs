@@ -107,11 +107,11 @@ public class GridEditor : Editor
                     oldIndex = index;
                     grid.tilePrefab = grid.tileSet.prefabs[index];
 
-                    float width = grid.tilePrefab.GetComponent<Renderer>().bounds.size.x;
-                    float height = grid.tilePrefab.GetComponent<Renderer>().bounds.size.y;
+                    //float width = grid.tilePrefab.GetComponent<Renderer>().bounds.size.x;
+                    //float height = grid.tilePrefab.GetComponent<Renderer>().bounds.size.y;
 
-                    grid.width = width;
-                    grid.height = height;
+                    //grid.width = width;
+                    //grid.height = height;
 
                 }
             }
@@ -162,9 +162,9 @@ public class GridEditor : Editor
         Vector3 mousePos = ray.origin;
 
 
-        //설치                                                //0번 왼클릭
-        if (e.isMouse && e.type == EventType.MouseDown&&e.button==0)
+        if (e.isMouse&&e.type == EventType.MouseDrag && e.button == 0)
         {
+          //  Event.current.Use();
             GUIUtility.hotControl = controlId;
             e.Use();
 
@@ -174,11 +174,11 @@ public class GridEditor : Editor
             if (prefab)
             {
                 Undo.IncrementCurrentGroup();
-                Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f,0f);
-               
+                Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f, 0f);
+
                 //중복 방지
-                if (GetTransformFromPosition(aligned) != null) return;     
-                      
+                if (GetTransformFromPosition(aligned) != null) return;
+
                 gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
                 gameObject.transform.position = aligned;
                 gameObject.transform.parent = grid.transform;
@@ -191,8 +191,36 @@ public class GridEditor : Editor
             }
         }
 
-        //삭제                                                //1번 오른클릭
-        if (e.isMouse & e.type == EventType.MouseDown && e.button == 1)
+        ////설치                                                //0번 왼클릭
+        //if (e.isMouse && e.type == EventType.MouseDown&&e.button==0)
+        //{
+        //    GUIUtility.hotControl = controlId;
+        //    e.Use();
+
+        //    GameObject gameObject;
+        //    Transform prefab = grid.tilePrefab;
+
+        //    if (prefab)
+        //    {
+        //        Undo.IncrementCurrentGroup();
+        //        Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f,0f);
+
+        //        //중복 방지
+        //        if (GetTransformFromPosition(aligned) != null) return;     
+
+        //        gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
+        //        gameObject.transform.position = aligned;
+        //        gameObject.transform.parent = grid.transform;
+        //        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+        //        if (renderer != null)
+        //        {
+        //            renderer.sortingOrder = grid.nowLayerNumber;
+        //        }
+        //        Undo.RegisterCreatedObjectUndo(gameObject, "Create" + gameObject.name);
+        //    }
+        //}
+
+        if (e.isMouse && e.type == EventType.MouseDrag && e.button == 1)
         {
             GUIUtility.hotControl = controlId;
             e.Use();
@@ -202,13 +230,29 @@ public class GridEditor : Editor
             {
                 DestroyImmediate(transform.gameObject);
             }
+
         }
+
+            //삭제                                                //1번 오른클릭
+        //    if (e.isMouse & e.type == EventType.MouseDown && e.button == 1)
+        //{
+        //    GUIUtility.hotControl = controlId;
+        //    e.Use();
+        //    Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f, 0f);
+        //    Transform transform = GetTransformFromPosition(aligned);
+        //    if (transform != null)
+        //    {
+        //        DestroyImmediate(transform.gameObject);
+        //    }
+        //}
 
         if (e.isMouse&&e.type == EventType.MouseUp)
         {
             GUIUtility.hotControl = 0;
         }
     }
+
+
 
 
     Transform GetTransformFromPosition(Vector3 aligned)
