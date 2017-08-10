@@ -52,9 +52,10 @@ public class GridEditor : Editor
     {
         //base.OnInspectorGUI();
      
-        grid.width = createSlider("Width", grid.width);
-        grid.height = createSlider("Height", grid.height);
+        grid.width = createFloatSlider("Width", grid.width);
+        grid.height = createFloatSlider("Height", grid.height);
         grid.isRenderGrid = createToggle("RenderGrid", grid.isRenderGrid);
+        grid.nowLayerNumber = createIntSlider("RenderLayer", grid.nowLayerNumber);
 
         //버튼이 눌렸을때
         if (GUILayout.Button("Open Grid Window"))
@@ -116,10 +117,13 @@ public class GridEditor : Editor
             }
         }
 
+
+
+
     }
 
 
-    private float createSlider(string labelName, float sliderPosition)
+    private float createFloatSlider(string labelName, float sliderPosition)
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Grid " + labelName);
@@ -127,6 +131,16 @@ public class GridEditor : Editor
         GUILayout.EndHorizontal();
 
         return sliderPosition;
+    }
+
+    private int createIntSlider(string labelName, float sliderPosition)
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Grid " + labelName);
+        sliderPosition = EditorGUILayout.Slider(sliderPosition, 0f, 100f, null);
+        GUILayout.EndHorizontal();
+
+        return (int)sliderPosition;
     }
 
     private bool createToggle(string labelName,bool isCheck)
@@ -168,6 +182,11 @@ public class GridEditor : Editor
                 gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
                 gameObject.transform.position = aligned;
                 gameObject.transform.parent = grid.transform;
+                SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+                if (renderer != null)
+                {
+                    renderer.sortingOrder = grid.nowLayerNumber;
+                }
                 Undo.RegisterCreatedObjectUndo(gameObject, "Create" + gameObject.name);
             }
         }
