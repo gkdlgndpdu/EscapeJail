@@ -21,6 +21,8 @@ public class Custom_Grid : MonoBehaviour
 
     public bool isRenderGrid = true;
 
+    public int nowLayerNumber=0;
+
     private void OnDrawGizmos()
     {
          
