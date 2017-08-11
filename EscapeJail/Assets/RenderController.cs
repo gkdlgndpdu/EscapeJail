@@ -42,7 +42,8 @@ public class RenderController : MonoBehaviour
 
         for(int i = 0; i < renderObjects.Count; i++)
         {
-            renderObjects[i].SetOrder(i);
+            int layer = GameConstants.PlayerLayerMin;
+            renderObjects[i].SetOrder(layer+i);
         }
     }
 

@@ -14,6 +14,16 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     protected float moveSpeed=10f;
 
+    //무기
+    [SerializeField]
+    protected WeaponBase nowWeapon;
+
+    //무기 장착 위치
+    [SerializeField]
+    protected Transform weaponPosit1;
+    [SerializeField]
+    protected Transform weaponPosit2;
+
 
 
     protected void Awake()
@@ -36,6 +46,16 @@ public class CharacterBase : MonoBehaviour
     protected void Update ()
     {
         MoveInPc();
+        HandleNowWeapon();
+    }
+
+    protected void HandleNowWeapon()
+    {     
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (nowWeapon == null) return;
+            nowWeapon.FireBullet();
+        }
     }
 
     protected void MoveInPc()

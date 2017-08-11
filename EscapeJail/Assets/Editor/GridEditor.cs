@@ -176,8 +176,15 @@ public class GridEditor : Editor
                 Undo.IncrementCurrentGroup();
                 Vector3 aligned = new Vector3(Mathf.Floor(mousePos.x / grid.width) * grid.width + grid.width / 2.0f, Mathf.Floor(mousePos.y / grid.height) * grid.height + grid.height / 2.0f, 0f);
 
-                //중복 방지
-                if (GetTransformFromPosition(aligned) != null) return;
+                //중복은 덮어씌움
+                if (GetTransformFromPosition(aligned) != null)
+                {
+                    Transform transform = GetTransformFromPosition(aligned);
+                    if (transform != null)
+                    {
+                        DestroyImmediate(transform.gameObject);
+                    }
+                }
 
                 gameObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab.gameObject);
                 gameObject.transform.position = aligned;
