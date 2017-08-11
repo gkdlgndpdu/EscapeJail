@@ -31,16 +31,18 @@ public class RenderController : MonoBehaviour
     public void SortingRenderer()
     {
         if (renderObjects != null)
-        {
-            renderObjects.Sort(delegate (RenderOrder A, RenderOrder B)
+        {      
+            renderObjects.Sort((a, b) =>
             {
-                if (A.transform.position.y > B.transform.position.y) return -1;
-                else if (A.transform.position.y < B.transform.position.y) return 1;
-                return 0;
+                if (a.transform.position.y > b.transform.position.y)
+                    return -1;
+                else if (a.transform.position.y < b.transform.position.y)
+                    return 1;
+                else return 0;
             });
         }
 
-        for(int i = 0; i < renderObjects.Count; i++)
+        for (int i = 0; i < renderObjects.Count; i++)
         {
             int layer = GameConstants.PlayerLayerMin;
             renderObjects[i].SetOrder(layer+i);

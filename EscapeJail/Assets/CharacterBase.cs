@@ -51,11 +51,22 @@ public class CharacterBase : MonoBehaviour
 
     protected void HandleNowWeapon()
     {     
+        //발사
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (nowWeapon == null) return;
             nowWeapon.FireBullet();
         }
+
+        //회전
+        RotateWeapon();
+    }
+
+    protected void RotateWeapon()
+    {
+        Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+        float angle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
+        weaponPosit1.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     protected void MoveInPc()

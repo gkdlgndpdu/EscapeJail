@@ -18,9 +18,11 @@ public class WeaponBase : MonoBehaviour
         {
             PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
             if (playerBullet != null)
-            {
-                //Vector3 fireDIr = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;     
-                Vector3 fireDIr = MonsterManager.Instance.GetNeariestMonsterPos(this.transform.position) - this.transform.position;
+            {             
+                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+                Vector3 fireDIr = nearestEnemyPos - this.transform.position;
+
+               
 
                 playerBullet.Initialize(this.transform.position, fireDIr.normalized, 10f);
             }

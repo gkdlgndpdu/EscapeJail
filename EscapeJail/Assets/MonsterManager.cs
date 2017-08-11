@@ -27,18 +27,23 @@ public class MonsterManager : MonoBehaviour
         monsterList.Remove(monster);
     }
 
-    public Vector3 GetNeariestMonsterPos(Vector3 playerPosit)
+    //인자 현재 플레이어 위치
+    public Vector3 GetNearestMonsterPos(Vector3 playerPosit)
     {
-        if (monsterList == null)
+        if (monsterList == null) return Vector3.zero;
+        if (monsterList.Count == 0) return Vector3.zero;
+        if (monsterList.Count == 1)
         {
-            Debug.Log("적이 없음");
-            return Vector3.zero;
-        }
-        else
-        {
-            monsterList.Sort((a, b) => { return Vector3.Distance(a.transform.position, playerPosit).CompareTo(Vector3.Distance(b.transform.position, playerPosit)); });
             return monsterList[0].transform.position;
         }
+
+        //
+        //벽에 막혀있을때의 예외처리 필요
+        //
+
+        monsterList.Sort((a, b) => { return Vector3.Distance(a.transform.position, playerPosit).CompareTo(Vector3.Distance(b.transform.position, playerPosit)); });
+        return monsterList[0].transform.position;
+
 
     }
 
