@@ -12,7 +12,7 @@ public class CharacterBase : MonoBehaviour
 
     //값변수
     [SerializeField]
-    protected float moveSpeed=10f;
+    protected float moveSpeed = 10f;
 
     //무기
     [SerializeField]
@@ -20,9 +20,8 @@ public class CharacterBase : MonoBehaviour
 
     //무기 장착 위치
     [SerializeField]
-    protected Transform weaponPosit1;
-    [SerializeField]
-    protected Transform weaponPosit2;
+    protected Transform weaponPosit;
+
 
 
 
@@ -33,24 +32,24 @@ public class CharacterBase : MonoBehaviour
     protected void Initialize()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
     }
 
     // Use this for initialization
-    protected void Start ()
+    protected void Start()
     {
-		
-	}
+
+    }
 
     // Update is called once per frame
-    protected void Update ()
+    protected void Update()
     {
         MoveInPc();
         HandleNowWeapon();
     }
 
     protected void HandleNowWeapon()
-    {     
+    {
         //발사
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -66,7 +65,27 @@ public class CharacterBase : MonoBehaviour
     {
         Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         float angle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
-        weaponPosit1.rotation = Quaternion.Euler(0f, 0f, angle);
+        if (weaponPosit != null)
+            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
+
+
+        //flip
+        if ((angle >= 0f && angle <= 90) ||
+              angle >= 270f && angle <= 360)
+        {
+            if (nowWeapon != null)
+                nowWeapon.FlipWeapon(false);
+           
+        }
+        else
+        {
+            if (nowWeapon != null)
+                nowWeapon.FlipWeapon(true);
+        }
+
+
+
+
     }
 
     protected void MoveInPc()
@@ -75,11 +94,11 @@ public class CharacterBase : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
-       // moveDir.Normalize();
-         
+        // moveDir.Normalize();
+
         //이동
-        if(rb!=null)
-        rb.velocity = moveDir * moveSpeed * Time.deltaTime;
+        if (rb != null)
+            rb.velocity = moveDir * moveSpeed * Time.deltaTime;
 
         //애니메이션
         AnimControl(moveDir);
@@ -99,9 +118,9 @@ public class CharacterBase : MonoBehaviour
         }
         else
         {
-            animController.Play("Walk", -1,0f);
+            animController.Play("Walk", -1, 0f);
             animController.speed = 0f;
         }
-  
+
     }
 }

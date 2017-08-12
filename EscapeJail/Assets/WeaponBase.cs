@@ -5,9 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class WeaponBase : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     public void ChangeWeapon()
     {
 
+    }
+
+    public void FlipWeapon(bool value)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.flipY = value;
     }
 
     public void FireBullet()

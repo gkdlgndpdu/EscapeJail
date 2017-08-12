@@ -8,6 +8,11 @@ public class MyUtils
     {
         Vector3 v = vEnd - vStart;
 
-        return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+        float returnvalue = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+        if (returnvalue < 0f)
+        {
+            returnvalue =returnvalue + 360f;
+        }
+        return returnvalue;
     }
 }
