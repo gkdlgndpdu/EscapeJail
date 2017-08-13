@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class WeaponBase : MonoBehaviour
 {
+    //컴포넌트
     private SpriteRenderer spriteRenderer;
+    private Animator animController;
+    private Weapon nowWeapon;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animController = GetComponent<Animator>();
+
     }
     public void ChangeWeapon()
     {
@@ -21,22 +27,15 @@ public class WeaponBase : MonoBehaviour
             spriteRenderer.flipY = value;
     }
 
-    public void FireBullet()
+    public void SetWeapon(Weapon weapon)
     {
-        GameObject bullet = Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
+        nowWeapon = weapon;
+    }
 
-        if (bullet != null)
-        {
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            if (playerBullet != null)
-            {             
-                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-                Vector3 fireDIr = nearestEnemyPos - this.transform.position;
+    public void FireBullet(Vector3 firePos)
+    {
+        if (nowWeapon != null)
+            nowWeapon.FireBullet(firePos);
 
-               
-
-                playerBullet.Initialize(this.transform.position, fireDIr.normalized, 10f);
-            }
-        }
     }
 }
