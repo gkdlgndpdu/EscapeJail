@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShotGun : Weapon
 {
+    public ShotGun()
+    {
+        weaponName = "Shotgun";
+    }
 
     public override void FireBullet(Vector3 firePos)
     {

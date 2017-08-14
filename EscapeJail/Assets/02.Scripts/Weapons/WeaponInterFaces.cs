@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface WeaponFire
+public interface iWeaponFire
 {
 
      void FireBullet(Vector3 firePos); 

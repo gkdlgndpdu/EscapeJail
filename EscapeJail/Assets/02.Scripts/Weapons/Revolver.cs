@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Revolver : Weapon
-{    public override void FireBullet(Vector3 firePos)
+{
+    public Revolver()
+    {
+        weaponName = "Revolver";
+    }
+    public override void FireBullet(Vector3 firePos)
     {
         GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
 
@@ -19,7 +24,8 @@ public class Revolver : Weapon
             }
         }
 
-    
-        
+
+
     }
 }
+

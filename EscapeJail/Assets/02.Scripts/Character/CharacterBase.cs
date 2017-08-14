@@ -8,7 +8,7 @@ public class CharacterBase : MonoBehaviour
     //컴포넌트    
     protected Rigidbody2D rb;
     [SerializeField]
-    Animator animController;
+    Animator animator;
 
     //값변수
     [SerializeField]
@@ -36,6 +36,8 @@ public class CharacterBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         nowHaveItem = new List<Weapon>();
 
+        //Revolver revolver = new Revolver();
+        //revolver.Initialize(this.animator);
         //임시로 총기 넣어줌
         nowHaveItem.Add(new Revolver());
         nowHaveItem.Add(new ShotGun());
@@ -135,20 +137,20 @@ public class CharacterBase : MonoBehaviour
 
     protected void AnimControl(Vector3 MoveDir)
     {
-        if (animController == null) return;
+        if (animator == null) return;
 
         float SpeedValue = Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y);
-        animController.SetFloat("Speed", SpeedValue);
+        animator.SetFloat("Speed", SpeedValue);
         if (SpeedValue > 0.2f)
         {
-            animController.speed = 1f;
-            animController.SetFloat("DirectionX", MoveDir.x);
-            animController.SetFloat("DirectionY", MoveDir.y);
+            animator.speed = 1f;
+            animator.SetFloat("DirectionX", MoveDir.x);
+            animator.SetFloat("DirectionY", MoveDir.y);
         }
         else
         {
-            animController.Play("Walk", -1, 0f);
-            animController.speed = 0f;
+            animator.Play("Walk", -1, 0f);
+            animator.speed = 0f;
         }
 
     }
