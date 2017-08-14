@@ -22,7 +22,7 @@ public class ShotGun : Weapon
             {
                 Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
                 Vector3 fireDIr = nearestEnemyPos - firePos;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 10f);
+                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
             }
         }
 
@@ -36,7 +36,7 @@ public class ShotGun : Weapon
                 Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
                 Vector3 fireDIr = nearestEnemyPos - firePos;
                 fireDIr = Quaternion.Euler(0f, 0f, 15f)* fireDIr;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 10f);
+                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
             }
         }
 
@@ -50,7 +50,7 @@ public class ShotGun : Weapon
                 Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
                 Vector3 fireDIr = nearestEnemyPos - firePos;
                 fireDIr = Quaternion.Euler(0f, 0f, -15f) * fireDIr;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 10f);
+                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
             }
         }
 
