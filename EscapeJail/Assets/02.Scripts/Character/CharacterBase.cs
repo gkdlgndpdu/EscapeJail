@@ -7,8 +7,8 @@ public class CharacterBase : MonoBehaviour
 {
     //컴포넌트    
     protected Rigidbody2D rb;
-    [SerializeField]
-    Animator animator;
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
 
     //값변수
     [SerializeField]
@@ -36,12 +36,14 @@ public class CharacterBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         nowHaveItem = new List<Weapon>();
 
-        //Revolver revolver = new Revolver();
-        //revolver.Initialize(this.animator);
         //임시로 총기 넣어줌
         nowHaveItem.Add(new Revolver());
         nowHaveItem.Add(new ShotGun());
         nowWeapon.SetWeapon(nowHaveItem[0]);
+
+        //컴포넌트
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
 
     }
@@ -121,8 +123,9 @@ public class CharacterBase : MonoBehaviour
 
     protected void MoveInPc()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        rb.velocity = Vector2.zero;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");       
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
         // moveDir.Normalize();
@@ -137,21 +140,44 @@ public class CharacterBase : MonoBehaviour
 
     protected void AnimControl(Vector3 MoveDir)
     {
+        ChangeAnimation(MoveDir);
+        FlipCharacter(MoveDir);
+
+        //if (SpeedValue > 0.2f)
+        //{
+        //    animator.speed = 1f;
+        //    animator.SetFloat("DirectionX", MoveDir.x);
+        //    animator.SetFloat("DirectionY", MoveDir.y);
+        //}
+        //else
+        //{
+        //    animator.Play("Walk", -1, 0f);
+        //    animator.speed = 0f;
+        //}
+
+    }
+
+    protected void ChangeAnimation(Vector3 MoveDir)
+    {
         if (animator == null) return;
 
         float SpeedValue = Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y);
         animator.SetFloat("Speed", SpeedValue);
-        if (SpeedValue > 0.2f)
-        {
-            animator.speed = 1f;
-            animator.SetFloat("DirectionX", MoveDir.x);
-            animator.SetFloat("DirectionY", MoveDir.y);
-        }
-        else
-        {
-            animator.Play("Walk", -1, 0f);
-            animator.speed = 0f;
-        }
 
+        FlipCharacter(MoveDir);
+
+    }
+
+    protected void FlipCharacter(Vector3 MoveDir)
+    {
+        if (spriteRenderer == null) return;
+        if (MoveDir.x < 0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (MoveDir.x > 0f)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
