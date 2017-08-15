@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d344381844c568b4b9fb58c8e54261f2
-timeCreated: 1502713458
+guid: 583b4d34d44933e4f97a6d595616ca72
+timeCreated: 1502809812
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: revolver2_0
-    21300002: revolver2_1
+    21300000: revolver_0
+    21300002: revolver_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -89,13 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: revolver2_0
+      name: revolver_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 74.5
-        height: 76
+        width: 35.5
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,13 +103,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: revolver2_1
+      name: revolver_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 35
         y: 0
-        width: 74.5
-        height: 76
+        width: 35.5
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
