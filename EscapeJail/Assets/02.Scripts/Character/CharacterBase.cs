@@ -101,7 +101,6 @@ public class CharacterBase : MonoBehaviour
         if (weaponPosit != null)
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
 
-
         //flip
         if ((angle >= 0f && angle <= 90) ||
               angle >= 270f && angle <= 360)

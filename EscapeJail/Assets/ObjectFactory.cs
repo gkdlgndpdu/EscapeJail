@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFactory : MonoBehaviour {
+public class ObjectFactory : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -11,18 +11,14 @@ public class Revolver : Weapon
     }
     public override void FireBullet(Vector3 firePos)
     {
-        GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
-
+        Bullet bullet = ObjectManager.Instance.GetUsableBullet();
         if (bullet != null)
         {
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            if (playerBullet != null)
-            {
-                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
-                Vector3 fireDIr = nearestEnemyPos - firePos;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 10f);
-            }
-        }
+            bullet.gameObject.SetActive(true);
+            Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
+            Vector3 fireDIr = nearestEnemyPos - firePos;
+            bullet.Initialize(firePos, fireDIr.normalized, 10f, BulletType.Player);
+        }     
 
 
 

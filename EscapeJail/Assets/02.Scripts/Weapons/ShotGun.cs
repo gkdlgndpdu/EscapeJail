@@ -7,52 +7,47 @@ public class ShotGun : Weapon
     public ShotGun()
     {
         weaponName = "Shotgun";
+        bulletSpeed = 30f;
     }
 
     public override void FireBullet(Vector3 firePos)
     {
 
-        //임시코드
-        GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
+        Bullet bullet = ObjectManager.Instance.GetUsableBullet();
+
+        Vector3 fireDIr = Vector3.zero;
+        Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
 
         if (bullet != null)
         {
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            if (playerBullet != null)
-            {
-                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
-                Vector3 fireDIr = nearestEnemyPos - firePos;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
-            }
+            bullet.gameObject.SetActive(true);
+            
+            fireDIr = nearestEnemyPos - firePos;
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
         }
 
-        bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
-
+        bullet = ObjectManager.Instance.GetUsableBullet();
         if (bullet != null)
         {
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            if (playerBullet != null)
-            {
-                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
-                Vector3 fireDIr = nearestEnemyPos - firePos;
-                fireDIr = Quaternion.Euler(0f, 0f, 15f)* fireDIr;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
-            }
+            bullet.gameObject.SetActive(true);
+            fireDIr = Quaternion.Euler(0f, 0f, -15f) * fireDIr;
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
         }
 
-        bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"));
-
+        bullet = ObjectManager.Instance.GetUsableBullet();
         if (bullet != null)
         {
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            if (playerBullet != null)
-            {
-                Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
-                Vector3 fireDIr = nearestEnemyPos - firePos;
-                fireDIr = Quaternion.Euler(0f, 0f, -15f) * fireDIr;
-                playerBullet.Initialize(firePos, fireDIr.normalized, 30f);
-            }
+            bullet.gameObject.SetActive(true);
+            fireDIr = Quaternion.Euler(0f, 0f, 30f) * fireDIr;
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
+
         }
+
+
 
     }
+
+
+
+
 }

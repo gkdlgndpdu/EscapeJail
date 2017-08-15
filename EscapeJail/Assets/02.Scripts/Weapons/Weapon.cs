@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class Weapon : iWeaponFire
 {
-   
+    protected Animator animator;
+
+    public string weaponName;
+
+    protected float bulletSpeed = 0f;
+
     public virtual void Initialize(Animator animator)
     {
         this.animator = animator;
@@ -16,8 +21,6 @@ public class Weapon : iWeaponFire
         throw new NotImplementedException();
     }
 
-    protected Animator animator;
-
-    public string weaponName;
+ 
  
 }
