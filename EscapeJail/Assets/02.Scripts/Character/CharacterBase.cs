@@ -29,7 +29,14 @@ public class CharacterBase : MonoBehaviour
 
     protected void Awake()
     {
+        SetLayerAndTag();
         Initialize();
+    }
+
+    private void SetLayerAndTag()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Player");
+        this.gameObject.tag = "Player";
     }
     protected void Initialize()
     {

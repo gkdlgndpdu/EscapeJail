@@ -17,6 +17,7 @@ public class Mouse : MonsterBase
     private new void Awake()
     {
         base.Awake();
+        SetHp(10);
     }
 	
 	// Update is called once per frame

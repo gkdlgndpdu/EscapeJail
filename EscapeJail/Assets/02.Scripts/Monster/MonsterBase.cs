@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -16,12 +17,25 @@ public class MonsterBase : MonoBehaviour
     protected Animator animator;
 
     //속성값 (속도,hp,mp etc...)
-    [SerializeField]
-    protected float activeDistance = 10;
+    protected int hp =1;
+    protected int hpMax = 1;
+    protected int attackPower =1;
     protected float moveSpeed = 1f;
-    protected float reactionDistance = 10f;
+
+    //사정거리 확인용
+    protected float activeDistance = 10;
     private bool isActionStart = false;
 
+    //Hud
+    protected Image hudImage;
+
+    protected void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        this.gameObject.layer = LayerMask.NameToLayer("Enemy");
+        this.gameObject.tag = "Enemy";
+        hudImage = GetComponentInChildren<Image>();
+    }
     // Use this for initialization
     protected void Start ()
     {
@@ -33,11 +47,28 @@ public class MonsterBase : MonoBehaviour
         AddToList();
     }
 
-    protected void Awake()
+    protected void SetHp(int hpMax)
     {
-        rb = GetComponent<Rigidbody2D>();
+        this.hp = hpMax;
+        this.hpMax = hpMax;
     }
 
+    public void GetDamage(int damage)
+    {
+        this.hp -= damage;
+        UpdateHud();
+        if (hp <= 0)
+        {
+            SetDie();
+        }
+        
+    }
+
+    protected void SetDie()
+    {
+        //임시코드
+        Destroy(this.gameObject);
+    }
 
     protected void AddToList()
     {
@@ -88,6 +119,13 @@ public class MonsterBase : MonoBehaviour
             rb.velocity = moveDir* moveSpeed;
         }
                 
+
+    }
+
+    protected void UpdateHud()
+    {
+        if (hudImage != null)
+        hudImage.fillAmount = (float)hp / (float)hpMax;
 
     }
 }

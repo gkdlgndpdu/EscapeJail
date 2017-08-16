@@ -16,6 +16,11 @@ public class RenderOrder : MonoBehaviour
         RenderController.Instance.AddToRenderList(this);
     }
 
+    private void OnDisable()
+    {
+        RenderController.Instance.RemoveInRenderList(this);
+    }
+
     public void SetOrder(int orderNum)
     {
         if (renderer != null)
