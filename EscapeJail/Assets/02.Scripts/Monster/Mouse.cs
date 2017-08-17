@@ -36,18 +36,19 @@ public class Mouse : MonsterBase
     private void SetMoveAnimation()
     {
         if (animator == null) return;
-        animator.SetFloat("DirectionX", moveDir.x);
-        //animator.SetFloat("Speed",)
+        //animator.SetFloat("DirectionX", moveDir.x);
+        float SpeedValue = Mathf.Abs(moveDir.x) + Mathf.Abs(moveDir.y);
+        animator.SetFloat("Speed", SpeedValue);       
 
         //임시
         if (spriteRenderer == null) return;
         if (moveDir.x > 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
         
             

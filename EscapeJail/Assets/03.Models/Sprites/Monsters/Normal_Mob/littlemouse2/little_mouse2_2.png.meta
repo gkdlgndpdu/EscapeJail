@@ -1,16 +1,20 @@
 fileFormatVersion: 2
-guid: d86e42a09b3bd504c8cb66735ea09cfe
-timeCreated: 1502118440
+guid: 027df7df0332fd34289f2d40b257ab27
+timeCreated: 1502986880
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: little_mouse1_walk_0
-    21300002: little_mouse1_walk_1
-    21300004: little_mouse1_walk_2
-    21300006: little_mouse1_walk_3
-    21300008: little_mouse1_walk_4
-    21300010: little_mouse1_walk_5
-    21300012: little_mouse1_walk_6
+    21300000: little_mouse2_2_0
+    21300002: little_mouse2_2_1
+    21300004: little_mouse2_2_2
+    21300006: little_mouse2_2_3
+    21300008: little_mouse2_2_4
+    21300010: little_mouse2_2_5
+    21300012: little_mouse2_2_6
+    21300014: little_mouse2_2_7
+    21300016: little_mouse2_2_8
+    21300018: little_mouse2_2_9
+    21300020: little_mouse2_2_10
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -38,7 +42,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -94,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: little_mouse1_walk_0
+      name: little_mouse2_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,13 +112,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_1
+      name: little_mouse2_2_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 265
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,13 +126,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_2
+      name: little_mouse2_2_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 530
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,13 +140,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_3
+      name: little_mouse2_2_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 795
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,13 +154,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_4
+      name: little_mouse2_2_4
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1060
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,13 +168,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_5
+      name: little_mouse2_2_5
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1325
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,13 +182,69 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_walk_6
+      name: little_mouse2_2_6
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1590
         y: 0
-        width: 256
-        height: 256
+        width: 265.27274
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse2_2_7
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 0
+        width: 265.27274
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse2_2_8
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 0
+        width: 265.27274
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse2_2_9
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 0
+        width: 265.27274
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse2_2_10
+      rect:
+        serializedVersion: 2
+        x: 2650
+        y: 0
+        width: 265.27274
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drawOutside: 0
   CustomOutlineMaterial: {fileID: 0}
-  _glowColor: {r: 1.7794118, g: 1.6566937, b: 0, a: 1}
+  _glowColor: {r: 1.7794118, g: 0, b: 0, a: 1}
   _outlineWidth: 4
   _alphaThreshold: 0
 --- !u!212 &212919410805469958

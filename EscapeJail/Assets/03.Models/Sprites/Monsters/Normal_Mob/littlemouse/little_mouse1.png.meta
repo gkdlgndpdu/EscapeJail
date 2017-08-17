@@ -1,16 +1,24 @@
 fileFormatVersion: 2
-guid: 823e09a2ceab02b419a119b8fe0308b7
-timeCreated: 1502883664
+guid: 3c60f233a26c2fa408badaf8fc5d4a3d
+timeCreated: 1502988304
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: little_mouse2_0
-    21300002: little_mouse2_1
-    21300004: little_mouse2_2
-    21300006: little_mouse2_3
-    21300008: little_mouse2_4
-    21300010: little_mouse2_5
-    21300012: little_mouse2_6
+    21300000: little_mouse1_0
+    21300002: little_mouse1_1
+    21300004: little_mouse1_2
+    21300006: little_mouse1_3
+    21300008: little_mouse1_4
+    21300010: little_mouse1_5
+    21300012: little_mouse1_6
+    21300014: little_mouse1_7
+    21300016: little_mouse1_8
+    21300018: little_mouse1_9
+    21300020: little_mouse1_10
+    21300022: little_mouse1_11
+    21300024: little_mouse1_12
+    21300026: little_mouse1_13
+    21300028: little_mouse1_14
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -94,12 +102,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: little_mouse2_0
+      name: little_mouse1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -108,12 +116,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_1
+      name: little_mouse1_1
       rect:
         serializedVersion: 2
         x: 265
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -122,12 +130,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_2
+      name: little_mouse1_2
       rect:
         serializedVersion: 2
         x: 530
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -136,12 +144,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_3
+      name: little_mouse1_3
       rect:
         serializedVersion: 2
         x: 795
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,12 +158,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_4
+      name: little_mouse1_4
       rect:
         serializedVersion: 2
         x: 1060
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,12 +172,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_5
+      name: little_mouse1_5
       rect:
         serializedVersion: 2
         x: 1325
         y: 0
-        width: 265.42856
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,12 +186,124 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse2_6
+      name: little_mouse1_6
       rect:
         serializedVersion: 2
         x: 1590
         y: 0
-        width: 265.42856
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_7
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_8
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_9
+      rect:
+        serializedVersion: 2
+        x: 2385
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_10
+      rect:
+        serializedVersion: 2
+        x: 2650
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_11
+      rect:
+        serializedVersion: 2
+        x: 2915
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_12
+      rect:
+        serializedVersion: 2
+        x: 3180
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_13
+      rect:
+        serializedVersion: 2
+        x: 3445
+        y: 0
+        width: 265.2
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: little_mouse1_14
+      rect:
+        serializedVersion: 2
+        x: 3710
+        y: 0
+        width: 265.2
         height: 268
       alignment: 0
       pivot: {x: 0, y: 0}

@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 91490a7ba905d38498cc614ed81bd7e8
-timeCreated: 1502093650
+guid: fe114eccb49edef42b1e5e62ca16d964
+timeCreated: 1502987271
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: little_mouse1_down_0
-    21300002: little_mouse1_down_1
-    21300004: little_mouse1_down_2
+    21300000: revolver3_0
+    21300002: revolver3_1
+    21300004: revolver3_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -90,13 +90,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: little_mouse1_down_0
+      name: revolver3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 232
+        width: 43.333332
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,13 +104,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_down_1
+      name: revolver3_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 43
         y: 0
-        width: 256
-        height: 232
+        width: 43.333332
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,13 +118,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: little_mouse1_down_2
+      name: revolver3_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 86
         y: 0
-        width: 256
-        height: 232
+        width: 43.333332
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
