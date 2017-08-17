@@ -13,8 +13,11 @@ public class GamePlayerManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-            Instance = this;
+            Instance = this;  
+    }
 
+    private void Start()
+    {
         player = FindPlayer();
     }
 

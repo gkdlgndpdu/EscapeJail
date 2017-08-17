@@ -1,29 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mouse : MonsterBase
 {
-    //임시
-    [SerializeField]
-    SpriteRenderer spriteRenderer;
-    
-	// Use this for initialization
-	private new void Start ()
+    public new void SetUpMonsterAttribute()
+    {
+        SetHp(10);
+        nearestAcessDistance = 1f;
+    }
+
+    // Use this for initialization
+    private new void Start ()
     {
         base.Start();
 	}
 
     private new void Awake()
     {
-        base.Awake();
-        SetHp(10);
+        base.Awake();      
     }
 	
 	// Update is called once per frame
-	private new void Update ()
+	private void Update ()
     {
-        base.Update();
+        ActionCheck();
+        if (isActionStart == false) return;
+
+        MoveToTarget();
         SetMoveAnimation();
 
     }
@@ -47,4 +52,6 @@ public class Mouse : MonsterBase
         
             
     }
+
+
 }

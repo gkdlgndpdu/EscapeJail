@@ -18,8 +18,8 @@ TagManager:
   - PostProcess
   - Player
   - Enemy
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 

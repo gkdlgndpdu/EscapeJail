@@ -19,7 +19,7 @@ public class Revolver : Weapon
             Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
             Vector3 fireDIr = nearestEnemyPos - firePos;
             fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, 10f, BulletType.Player);
+            bullet.Initialize(firePos, fireDIr.normalized, 10f, BulletType.PlayerBullet);
         }     
 
 

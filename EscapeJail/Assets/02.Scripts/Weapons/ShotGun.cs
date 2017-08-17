@@ -23,7 +23,7 @@ public class ShotGun : Weapon
             bullet.gameObject.SetActive(true);
             
             fireDIr = nearestEnemyPos - firePos;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
         }
 
         bullet = ObjectManager.Instance.GetUsableBullet();
@@ -31,7 +31,7 @@ public class ShotGun : Weapon
         {
             bullet.gameObject.SetActive(true);
             fireDIr = Quaternion.Euler(0f, 0f, -15f) * fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
         }
 
         bullet = ObjectManager.Instance.GetUsableBullet();
@@ -39,7 +39,7 @@ public class ShotGun : Weapon
         {
             bullet.gameObject.SetActive(true);
             fireDIr = Quaternion.Euler(0f, 0f, 30f) * fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.Player);
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
 
         }
 

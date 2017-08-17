@@ -13,6 +13,8 @@ public class CharacterBase : MonoBehaviour
     //값변수
     [SerializeField]
     protected float moveSpeed = 10f;
+    protected int hp = 0;
+    protected int maxHp = 0;
 
     //무기
     [SerializeField]
@@ -22,7 +24,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     protected Transform weaponPosit;
 
-    protected List<Weapon> nowHaveItem;
+    protected List<Weapon> nowHaveWeapons = new List<Weapon>();
 
 
 
@@ -41,18 +43,31 @@ public class CharacterBase : MonoBehaviour
     protected void Initialize()
     {
         rb = GetComponent<Rigidbody2D>();
-        nowHaveItem = new List<Weapon>();
 
         //임시로 총기 넣어줌
-        nowHaveItem.Add(new Revolver());
-        nowHaveItem.Add(new ShotGun());
-        nowWeapon.SetWeapon(nowHaveItem[0]);
+        nowHaveWeapons.Add(new Revolver());
+        nowHaveWeapons.Add(new ShotGun());
+        nowWeapon.SetWeapon(nowHaveWeapons[0]);
 
+
+        SetUpComponent();
+
+    }
+
+    private void OnDestroy()
+    {
+        for(int i = 0; i < nowHaveWeapons.Count; i++)
+        {
+            nowHaveWeapons[i] = null;
+        }
+        nowHaveWeapons = null;
+    }
+
+    protected void SetUpComponent()
+    {
         //컴포넌트
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-
     }
 
     // Use this for initialization
@@ -93,11 +108,11 @@ public class CharacterBase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            nowWeapon.SetWeapon(nowHaveItem[0]);
+            nowWeapon.SetWeapon(nowHaveWeapons[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            nowWeapon.SetWeapon(nowHaveItem[1]);
+            nowWeapon.SetWeapon(nowHaveWeapons[1]);
         }
     }
 
@@ -122,9 +137,6 @@ public class CharacterBase : MonoBehaviour
                 nowWeapon.FlipWeapon(true);
         }
 
-
-
-
     }
 
     protected void MoveInPc()
@@ -148,19 +160,6 @@ public class CharacterBase : MonoBehaviour
     {
         ChangeAnimation(MoveDir);
         FlipCharacter(MoveDir);
-
-        //if (SpeedValue > 0.2f)
-        //{
-        //    animator.speed = 1f;
-        //    animator.SetFloat("DirectionX", MoveDir.x);
-        //    animator.SetFloat("DirectionY", MoveDir.y);
-        //}
-        //else
-        //{
-        //    animator.Play("Walk", -1, 0f);
-        //    animator.speed = 0f;
-        //}
-
     }
 
     protected void ChangeAnimation(Vector3 MoveDir)
@@ -185,5 +184,19 @@ public class CharacterBase : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    public void GetDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            DieAction();
+        }
+    }
+
+    protected void DieAction()
+    {
+        Debug.Log("CharacterDie");
     }
 }

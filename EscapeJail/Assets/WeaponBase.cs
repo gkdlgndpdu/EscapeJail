@@ -31,6 +31,7 @@ public class WeaponBase : MonoBehaviour
     {
         nowWeapon = weapon;
     
+        if(animator!=null)
         animator.runtimeAnimatorController = Resources.Load(string.Format("Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
     
     }
@@ -43,5 +44,10 @@ public class WeaponBase : MonoBehaviour
         if (animator != null)
             animator.SetTrigger("FireTrigger");
 
+    }
+
+    private void OnDestroy()
+    {
+        nowWeapon = null;
     }
 }
