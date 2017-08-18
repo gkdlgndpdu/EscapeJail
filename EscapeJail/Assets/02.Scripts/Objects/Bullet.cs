@@ -8,25 +8,64 @@ public enum BulletType
     EnemyBullet
 }
 
+//public struct bulletOption
+//{
+//    public Vector3 startPos;
+//    public Vector3 moveDir;
+//    public float moveSpeed;
+//    public BulletType bulletType;
+//    public int bulletPower;
+//    public float bulletSize;
+//    public bulletOption(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, int bulletPower ,float bulletSize)
+//    {
+//        this.startPos = startPos;
+//        this.moveDir = moveDir;
+//        this.moveSpeed = moveSpeed;
+//        this.bulletType = bulletType;
+//        this.bulletPower = bulletPower;
+//        this.bulletSize = bulletSize;
+//    }
+//}
+
 public class Bullet : MonoBehaviour
 {
     private int power = 0;
     private BulletType bulletType;
     private Rigidbody2D rb;
+    private SpriteGlow spriteGlow;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteGlow = GetComponent<SpriteGlow>();
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, int power = 1)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1)
     {
-        SetLayer(bulletType);
-        this.bulletType = bulletType;
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
-        this.power = power;
+
         if (rb != null)
             rb.velocity = moveDir.normalized * moveSpeed;
 
+        this.bulletType = bulletType;
+        SetLayer(bulletType);
+
+        this.transform.localScale = Vector3.one * bulletScale;
+
+        this.power = power;
+
+
+    }
+
+    public void SetBulletColor(Color color)
+    {
+        if (spriteGlow != null)
+            spriteGlow.GlowColor = color;
+    }
+
+    public void SetBulletLifeTime(float lifeTime)
+    {
+        Invoke("BulletDestroy", lifeTime);
     }
 
     private void SetLayer(BulletType bulletType)
@@ -59,11 +98,16 @@ public class Bullet : MonoBehaviour
                 }
                 break;
         }
-   
+
 
         //이펙트 호출
 
         //이펙트 호출
+        BulletDestroy();
+    }
+
+    private void BulletDestroy()
+    {
         this.gameObject.SetActive(false);
     }
 

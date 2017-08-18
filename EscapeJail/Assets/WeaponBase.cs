@@ -32,7 +32,7 @@ public class WeaponBase : MonoBehaviour
         nowWeapon = weapon;
     
         if(animator!=null)
-        animator.runtimeAnimatorController = Resources.Load(string.Format("Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
+        animator.runtimeAnimatorController = Resources.Load(string.Format("Animators/Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
     
     }
 

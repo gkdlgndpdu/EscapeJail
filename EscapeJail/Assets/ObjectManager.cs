@@ -6,57 +6,82 @@ public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager Instance;
 
-    private List<Bullet> bulletPool = new List<Bullet>();
-    private List<MonsterBase> monsterPool = new List<MonsterBase>();
+    //private List<Bullet> bulletPool = new List<Bullet>();
+    //private List<MonsterBase> monsterPool = new List<MonsterBase>();
+    //private List<ExplosionEffect> effectPool = new List<ExplosionEffect>();
+
+    [HideInInspector]
+    public ObjectPool<Bullet> bulletPool;
+    [HideInInspector]
+    public ObjectPool<MonsterBase> monsterPool;
+    [HideInInspector]
+    public ObjectPool<ExplosionEffect> effectPool;
+
 
     [SerializeField]
     private Transform bulletParent;
+    [SerializeField]
+    private Transform EffectParent;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
-        MakeBullets();
+
+        GameObject bullet =(GameObject)Resources.Load("Prefabs/Objects/Bullet");
+        bulletPool = new ObjectPool<Bullet>(null, bullet, 100);
+
+
     }
 
-    private void MakeBullets()
-    {
-        if (bulletPool == null) return;
+    //private void MakeBullets()
+    //{
+    //    if (bulletPool == null) return;
 
-        for(int i = 0; i < 100; i++)
-        {
-            GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"), bulletParent);
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"), bulletParent);
 
-            if (bullet != null)
-            {
-                Bullet playerBullet = bullet.GetComponent<Bullet>();
-                playerBullet.gameObject.SetActive(false);
-                bulletPool.Add(playerBullet);
-            }
-        }
-       
-    }
+    //        if (bullet != null)
+    //        {
+    //            Bullet playerBullet = bullet.GetComponent<Bullet>();
+    //            playerBullet.gameObject.SetActive(false);
+    //            bulletPool.Add(playerBullet);
+    //        }
+    //    }
 
-    public Bullet GetUsableBullet()
-    {
-        for(int i = 0; i < bulletPool.Count; i++)
-        {
-            if (bulletPool[i].gameObject.activeSelf == true) continue;
-            return bulletPool[i];
-        }
+    //}
 
-        Debug.Log("BulletEmpty");
-        return null;
-    }
+    //private void MakeEffects()
+    //{
+    //    if (effectPool == null) return;
+
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        GameObject effect = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect"), bulletParent);
+
+    //        if (effect != null)
+    //        {
+    //            ExplosionEffect Expeffect = effect.GetComponent<ExplosionEffect>();
+    //            Expeffect.gameObject.SetActive(false);
+    //            effectPool.Add(playerBullet);
+    //        }
+    //    }
+    //}
+
+    //public Bullet GetUsableBullet()
+    //{
+    //    for (int i = 0; i < bulletPool.Count; i++)
+    //    {
+    //        if (bulletPool[i].gameObject.activeSelf == true) continue;
+    //        return bulletPool[i];
+    //    }
+
+    //    Debug.Log("BulletEmpty");
+    //    return null;
+    //}
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
