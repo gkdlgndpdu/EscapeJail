@@ -8,17 +8,19 @@ public class MouseGun : Weapon
     public MouseGun()
     {
         weaponName = "MouseGun";
+        bulletSpeed = 5f;
     }
     public override void FireBullet(Vector3 firePos)
     {
-        Bullet bullet = ObjectManager.Instance.GetUsableBullet();
+        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)
         {
             bullet.gameObject.SetActive(true);
             Vector3 PlayerPos =GamePlayerManager.Instance.player.transform.position;
             Vector3 fireDIr = PlayerPos - firePos;
             fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, 10f, BulletType.EnemyBullet);
+            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
+            bullet.SetBulletColor(Color.red);
         }
 
 

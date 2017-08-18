@@ -10,12 +10,10 @@ public class SmoothFollowCam : MonoBehaviour
     private float followSpeed =2;
 
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (target != null)
-            this.transform.position = Vector3.Lerp(this.transform.position,target.position,Time.deltaTime* followSpeed);
-
-
+            this.transform.position = Vector3.Lerp(this.transform.position,target.position,Time.fixedDeltaTime* followSpeed);
     }
 
 }

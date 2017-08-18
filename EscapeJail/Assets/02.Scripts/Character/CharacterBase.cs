@@ -26,6 +26,9 @@ public class CharacterBase : MonoBehaviour
 
     protected List<Weapon> nowHaveWeapons = new List<Weapon>();
 
+    [SerializeField]
+    protected Transform FirePos;
+
 
 
 
@@ -79,7 +82,6 @@ public class CharacterBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-
         HandleNowWeapon();
     }
 
@@ -94,7 +96,7 @@ public class CharacterBase : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (nowWeapon == null) return;
-            nowWeapon.FireBullet(this.transform.position);
+            nowWeapon.FireBullet(this.FirePos.position);
         }
 
         //회전

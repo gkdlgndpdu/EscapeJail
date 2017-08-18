@@ -11,6 +11,8 @@ public class Weapon : iWeaponFire
 
     protected float bulletSpeed = 0f;
 
+    protected Color BulletColor = Color.yellow;
+
     public virtual void Initialize(Animator animator)
     {
         this.animator = animator;
