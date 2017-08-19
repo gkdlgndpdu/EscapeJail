@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : iWeaponFire
+public class Weapon
 {
     protected Animator animator;
 
@@ -13,16 +13,72 @@ public class Weapon : iWeaponFire
 
     protected Color BulletColor = Color.yellow;
 
-    public virtual void Initialize(Animator animator)
+    protected float fireDelay = 0f;
+    protected float fireCount = 0f;
+    protected bool isFireDelayFinish = true;
+
+    public int maxAmmo = 10;
+    public int nowAmmo = 10;
+    public int needBulletToFire = 1;
+
+
+    public void Initialize(Animator animator)
     {
         this.animator = animator;
     }
 
-    public virtual void FireBullet(Vector3 firePos)
+    public bool canFire()
     {
-        throw new NotImplementedException();
+        if (nowAmmo <= 0)
+            return false;
+        else if (isFireDelayFinish == false)
+            return false;
+        else
+            return true;
     }
 
- 
- 
+    protected void useBullet()
+    {
+        nowAmmo -= needBulletToFire;
+        if (nowAmmo <= 0)
+        {
+            nowAmmo = 0;
+        }
+    }
+
+    public virtual void FireBullet(Vector3 firePos)
+    {
+        Debug.Log("발사 미구현");
+    }
+
+    public void WeaponUpdate()
+    {
+        if (isFireDelayFinish == true) return;
+
+        fireCount += Time.deltaTime;
+        if (fireCount >= fireDelay)
+        {
+            isFireDelayFinish = true;
+        }
+
+    }
+
+    public void FireDelayOn()
+    {
+        fireCount = 0f;
+        isFireDelayFinish = false;
+    }
+
+    protected void PlayFireAnim()
+    {
+        if (animator != null)
+            animator.SetTrigger("FireTrigger");
+    }
+
+
+
+
+
+
+
 }

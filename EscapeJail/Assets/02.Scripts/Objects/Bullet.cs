@@ -101,7 +101,8 @@ public class Bullet : MonoBehaviour
 
 
         //이펙트 호출
-
+        ExplosionEffect effect =  ObjectManager.Instance.effectPool.GetItem();
+        effect.Initilaize(this.transform.position, null,0.5f);
         //이펙트 호출
         BulletDestroy();
     }

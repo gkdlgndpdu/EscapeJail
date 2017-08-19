@@ -29,11 +29,73 @@ public class ObjectManager : MonoBehaviour
             Instance = this;
 
 
-        GameObject bullet =(GameObject)Resources.Load("Prefabs/Objects/Bullet");
-        bulletPool = new ObjectPool<Bullet>(null, bullet, 10);
+        MakePool();
+
 
     }
 
-   
+    private void MakePool()
+    {
+        GameObject bullet = (GameObject)Resources.Load("Prefabs/Objects/Bullet");
+        bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
+
+        GameObject effect = (GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect");
+        effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
+
+
+
+
+    }
+
+
+
+    //private void MakeBullets()
+    //{
+    //    if (bulletPool == null) return;
+
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        GameObject bullet = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/Bullet"), bulletParent);
+
+    //        if (bullet != null)
+    //        {
+    //            Bullet playerBullet = bullet.GetComponent<Bullet>();
+    //            playerBullet.gameObject.SetActive(false);
+    //            bulletPool.Add(playerBullet);
+    //        }
+    //    }
+
+    //}
+
+    //private void MakeEffects()
+    //{
+    //    if (effectPool == null) return;
+
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        GameObject effect = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect"), bulletParent);
+
+    //        if (effect != null)
+    //        {
+    //            ExplosionEffect Expeffect = effect.GetComponent<ExplosionEffect>();
+    //            Expeffect.gameObject.SetActive(false);
+    //            effectPool.Add(playerBullet);
+    //        }
+    //    }
+    //}
+
+    //public Bullet GetUsableBullet()
+    //{
+    //    for (int i = 0; i < bulletPool.Count; i++)
+    //    {
+    //        if (bulletPool[i].gameObject.activeSelf == true) continue;
+    //        return bulletPool[i];
+    //    }
+
+    //    Debug.Log("BulletEmpty");
+    //    return null;
+    //}
+
+    // Use this for initialization
 
 }

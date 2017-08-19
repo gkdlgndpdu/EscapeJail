@@ -25,6 +25,7 @@ public class ObjectPool<T> where T : Component
         GameObject item = GameObject.Instantiate(prefab, objectParent);
         if (item != null)
         {
+            item.SetActive(false);
             T obj = item.GetComponent<T>();
             if (obj != null)
             {
@@ -37,14 +38,6 @@ public class ObjectPool<T> where T : Component
         }
     }
 
-    public void AddToList(T item)
-    {
-        if (objectPool != null)
-        {
-            item.gameObject.SetActive(false);
-            objectPool.Add(item);
-        }
-    }
 
     /// <summary>
     /// 리턴값 null체크 필요

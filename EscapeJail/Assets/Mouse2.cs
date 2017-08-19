@@ -9,7 +9,7 @@ public class Mouse2 : MonsterBase
 
     public new void SetUpMonsterAttribute()
     {
-        SetHp(30);
+        SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
