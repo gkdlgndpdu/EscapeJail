@@ -29,11 +29,25 @@ public class ObjectManager : MonoBehaviour
             Instance = this;
 
 
-        GameObject bullet =(GameObject)Resources.Load("Prefabs/Objects/Bullet");
-        bulletPool = new ObjectPool<Bullet>(null, bullet, 100);
+        MakePool();
 
 
     }
+
+    private void MakePool()
+    {
+        GameObject bullet = (GameObject)Resources.Load("Prefabs/Objects/Bullet");
+        bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
+
+        GameObject effect = (GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect");
+        effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
+
+
+
+
+    }
+
+
 
     //private void MakeBullets()
     //{

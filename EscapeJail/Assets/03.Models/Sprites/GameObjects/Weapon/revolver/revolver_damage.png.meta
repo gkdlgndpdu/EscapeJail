@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 47d30c7d0e3ab63498e284e7a383239f
-timeCreated: 1503005876
+timeCreated: 1503104682
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,7 @@ TextureImporter:
     21300002: revolver_damage_1
     21300004: revolver_damage_2
     21300006: revolver_damage_3
+    21300008: revolver_damage_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -99,7 +100,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,7 +114,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,7 +128,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,6 +140,20 @@ TextureImporter:
         x: 192
         y: 0
         width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: revolver_damage_4
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 62
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}

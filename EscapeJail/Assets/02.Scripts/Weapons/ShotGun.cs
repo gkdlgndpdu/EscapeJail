@@ -8,11 +8,22 @@ public class ShotGun : Weapon
     {
         weaponName = "Shotgun";
         bulletSpeed = 5f;
+        fireDelay = 1f;
+        maxAmmo = 100;
+        nowAmmo = 100;
+        needBulletToFire = 3;
+        
     }
 
     public override void FireBullet(Vector3 firePos)
     {
+        if (canFire() == false) return;
+  
+        useBullet();
+        FireDelayOn();
+        PlayFireAnim();
 
+ 
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
 
         Vector3 fireDIr = Vector3.zero;
