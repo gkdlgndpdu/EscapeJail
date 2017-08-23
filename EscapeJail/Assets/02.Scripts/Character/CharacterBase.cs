@@ -29,6 +29,10 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     protected Transform FirePos;
 
+    //UI
+    [SerializeField]
+    protected PlayerUI playerUI;
+
 
 
 
@@ -76,7 +80,7 @@ public class CharacterBase : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
-
+        UIUpdate();
     }
 
     // Update is called once per frame
@@ -163,7 +167,7 @@ public class CharacterBase : MonoBehaviour
         ChangeAnimation(MoveDir);
         FlipCharacter(MoveDir);
     }
-
+    
     protected void ChangeAnimation(Vector3 MoveDir)
     {
         if (animator == null) return;
@@ -191,10 +195,19 @@ public class CharacterBase : MonoBehaviour
     public void GetDamage(int damage)
     {
         hp -= damage;
+
+        UIUpdate();
+
         if (hp <= 0)
         {
             DieAction();
         }
+    }
+
+    protected void UIUpdate()
+    {
+        if (playerUI != null)
+            playerUI.SetHpBar(hp, maxHp);
     }
 
     protected void DieAction()

@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-
+public enum MonsterState
+{
+    Idle,
+    Walk,
+    Attack,
+    Dead
+}
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MonsterBase : MonoBehaviour
@@ -24,6 +30,7 @@ public class MonsterBase : MonoBehaviour
     protected int attackPower = 1;
     protected float moveSpeed = 1f;
     protected float nearestAcessDistance = 1f;
+    protected bool nowAttack = false;
 
     //사정거리 확인용
     protected float activeDistance = 10;
@@ -83,6 +90,11 @@ public class MonsterBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         AddToList();
+    }
+
+    protected void InitiailzeMonster()
+    {
+
     }
 
     protected void SetUpMonsterAttribute()
@@ -151,18 +163,21 @@ public class MonsterBase : MonoBehaviour
     {
         if (isActionStart == false) return;
         if (rb == null) return;
-        if (target == null) return;
+        if (target == null) return;     
+
 
         if (IsInAcessArea(nearestAcessDistance) == true)
         {
             //flipx를 위해서 방향계산만 해줌
             CalculateMoveDIr();
+            SetAnimation(MonsterState.Idle);
             rb.velocity = Vector3.zero;
             return;
         }
 
         CalculateMoveDIr();
         rb.velocity = moveDir.normalized * moveSpeed;
+        SetAnimation(MonsterState.Walk);
 
 
     }
@@ -177,6 +192,48 @@ public class MonsterBase : MonoBehaviour
         if (hudImage != null)
             hudImage.fillAmount = (float)hp / (float)hpMax;
 
+    }
+
+    protected void SetAnimation(MonsterState state)
+    {
+        if (animator == null) return;
+
+        FlipCharacterByMoveDir();
+
+        switch (state)
+        {
+            case MonsterState.Idle:
+                {
+                    animator.SetFloat("Speed", 0f);
+                } break;
+            case MonsterState.Walk:
+                {
+                    animator.SetFloat("Speed", 1f);
+                } break;
+            case MonsterState.Attack:
+                {
+                    animator.SetTrigger("AttackTrigger");
+                } break;
+            case MonsterState.Dead:
+                {
+                    animator.SetTrigger("DeadTrigger");
+                } break;
+        }
+     
+    }
+    
+    protected void FlipCharacterByMoveDir()
+    {
+        //임시
+        if (spriteRenderer == null) return;
+        if (moveDir.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
 }

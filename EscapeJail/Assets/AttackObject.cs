@@ -4,29 +4,41 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    private int power = 1;
+    private Animator animator;
 
-    private int Initialize(int power)
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+    private int power = 1;
+    //공격 2번 들어가는 예외사항 제외
+    private bool isAttackFinished = false;
+
+    private void Initialize(int power,string effectName)
     {
         this.power = power;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&&
+            isAttackFinished==false)
         {
             CharacterBase characterBase = collision.gameObject.GetComponent<CharacterBase>();
             if (characterBase != null)
+            {
                 characterBase.GetDamage(this.power);
+                isAttackFinished = true;
+            }
+
         }
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void OnDisable()
+    {
+        isAttackFinished = false;
+    }
+
+   
+
 }

@@ -37,12 +37,10 @@ public class Mouse2 : MonsterBase
     private void Update()
     {
         ActionCheck();
-        if (isActionStart == false) return;
- 
+        if (isActionStart == false) return; 
         MoveToTarget();
-
         RotateWeapon();
-        SetMoveAnimation();     
+   
     }
 
     IEnumerator TempFireRoutine()
@@ -52,27 +50,6 @@ public class Mouse2 : MonsterBase
             FireWeapon();
             yield return new WaitForSeconds(0.3f);
         }
-    }
-
-    private void SetMoveAnimation()
-    {
-        if (animator == null) return;
-
-        float SpeedValue = Mathf.Abs(moveDir.x) + Mathf.Abs(moveDir.y);
-        animator.SetFloat("Speed", SpeedValue);
-
-        //임시
-        if (spriteRenderer == null) return;
-        if (moveDir.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else
-        {
-            spriteRenderer.flipX = true;
-        }
-
-
     }
 
     protected void RotateWeapon()
