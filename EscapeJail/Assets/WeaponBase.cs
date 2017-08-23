@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Text;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
@@ -11,21 +13,14 @@ public class WeaponBase : MonoBehaviour
     private Animator animator;
     private Weapon nowWeapon;
 
-    //임시UI
     [SerializeField]
-    private bool UiOn = false;
-    private void OnGUI()
-    {
-        if (UiOn == false) return;
-        if (nowWeapon != null)
-            GUI.Label(new Rect(0, 0, 500, 500), string.Format("{0}/{1}", nowWeapon.nowAmmo, nowWeapon.maxAmmo));
-        // GUI.Label(new Rect(0, 0, 500, 500), "??????????????????????????");
-    }
+    private WeaponUI weaponUI;
 
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
 
     }
     public void ChangeWeapon()
@@ -52,17 +47,22 @@ public class WeaponBase : MonoBehaviour
                 nowWeapon.Initialize(animator);
         }
 
+        UpdateWeaponUI();
+
     }
 
     public void FireBullet(Vector3 firePos)
     {
         if (nowWeapon == null) return;
-
         nowWeapon.FireBullet(firePos);
-  
-        //if (animator != null&& nowWeapon.canFire()==true)
-        //    animator.SetTrigger("FireTrigger");
 
+        UpdateWeaponUI();
+    }
+
+    private void UpdateWeaponUI()
+    {
+        if (weaponUI != null&& nowWeapon!=null)
+            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weaponName);
     }
 
     private void OnDestroy()
