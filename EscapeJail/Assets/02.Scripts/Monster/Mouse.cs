@@ -8,14 +8,32 @@ public class Mouse : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         SetHp(10);
-        nearestAcessDistance = 1f;
+        nearestAcessDistance = 0.5f;
+        weaponPosit.gameObject.SetActive(false);
     }
 
     // Use this for initialization
     private new void Start ()
     {
-        base.Start();
-	}
+        base.Start();  
+        SetUpMonsterAttribute();
+    }
+
+    private void AttackOn()
+    {
+        if(weaponPosit!=null)
+            weaponPosit.gameObject.SetActive(true);
+    }
+
+    private void AttackOff()
+    {
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(false);
+    }
+
+
+
+
 
     private new void Awake()
     {
@@ -29,29 +47,37 @@ public class Mouse : MonsterBase
         if (isActionStart == false) return;
 
         MoveToTarget();
-        SetMoveAnimation();
+        NearAttackLogic();
+        RotateWeapon();
 
     }
 
-    private void SetMoveAnimation()
+    private void NearAttackLogic()
     {
-        if (animator == null) return;
-        //animator.SetFloat("DirectionX", moveDir.x);
-        float SpeedValue = Mathf.Abs(moveDir.x) + Mathf.Abs(moveDir.y);
-        animator.SetFloat("Speed", SpeedValue);       
+        if (IsInAcessArea(nearestAcessDistance) == true&& nowAttack==false)
+        {
+            StartCoroutine(AttackRoutine());
+        }
+    }
 
-        //임시
-        if (spriteRenderer == null) return;
-        if (moveDir.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else
-        {
-            spriteRenderer.flipX = true;
-        }
-        
-            
+    private IEnumerator AttackRoutine()
+    {
+        nowAttack = true;
+        SetAnimation(MonsterState.Attack);
+        AttackOn();
+        yield return new WaitForSeconds(0.5f);
+        nowAttack = false;
+        AttackOff();
+    }
+
+
+    protected void RotateWeapon()
+    {
+        if (weaponPosit.gameObject.activeSelf == false) return;
+        float angle = MyUtils.GetAngle(target.position,this.transform.position);
+        if (weaponPosit != null)
+            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);   
+
     }
 
 

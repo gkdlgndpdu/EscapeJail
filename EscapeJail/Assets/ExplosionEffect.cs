@@ -16,7 +16,7 @@ public class ExplosionEffect : MonoBehaviour
     {
         this.gameObject.transform.position = startPos;
 
-        if (effectName != null)
+        if (effectName != null&& animator!=null)
         animator.runtimeAnimatorController = Resources.Load(string.Format("Animators/Weapon/{0}", effectName)) as RuntimeAnimatorController;
        
         Invoke("EffectOff", lifeTime);        
