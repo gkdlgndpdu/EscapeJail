@@ -13,4 +13,15 @@ public enum TileType
 public class Tile : MonoBehaviour
 {    
     public TileType tileType;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    public void ChangeColor(Color color)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.color = color;
+    }
 }

@@ -141,7 +141,6 @@ public class CharacterBase : MonoBehaviour
                 nowWeapon.FlipWeapon(false);
                 FlipCharacter(true);
             }
-
         }
         else
         {

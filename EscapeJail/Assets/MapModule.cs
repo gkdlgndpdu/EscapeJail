@@ -14,14 +14,16 @@ public class MapModule : MonoBehaviour
     public List<GameObject> doorList = new List<GameObject>();
     public List<Tile> tileList = new List<Tile>();
 
+ 
+
     private void Start()
     {
-        StartCoroutine(SpawnMonster());
+       
     }
 
     private void Awake()
     {
-        LinkTile();
+       
     }
 
     private void LinkTile()
