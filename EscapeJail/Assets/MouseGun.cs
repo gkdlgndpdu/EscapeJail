@@ -10,7 +10,7 @@ public class MouseGun : Weapon
         weaponName = "MouseGun";
         bulletSpeed = 5f;
     }
-    public override void FireBullet(Vector3 firePos)
+    public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)

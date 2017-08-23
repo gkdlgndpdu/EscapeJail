@@ -19,7 +19,7 @@ public class ShotGun : Weapon
         
     }
 
-    public override void FireBullet(Vector3 firePos)
+    public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         if (canFire() == false) return;
   
@@ -30,15 +30,15 @@ public class ShotGun : Weapon
  
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
 
-        Vector3 fireDIr = Vector3.zero;
-        Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
+        Vector3 fireDir = Vector3.zero;
+      
 
         if (bullet != null)
         {
             bullet.gameObject.SetActive(true);
-            
-            fireDIr = nearestEnemyPos - firePos;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
+
+            fireDir = fireDirection;
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
             bullet.SetBulletColor(Color.yellow);
         }
 
@@ -46,8 +46,8 @@ public class ShotGun : Weapon
         if (bullet != null)
         {
             bullet.gameObject.SetActive(true);
-            fireDIr = Quaternion.Euler(0f, 0f, -15f) * fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
+            fireDir = Quaternion.Euler(0f, 0f, -15f) * fireDir;
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
             bullet.SetBulletColor(Color.yellow);
         
         }
@@ -56,8 +56,8 @@ public class ShotGun : Weapon
         if (bullet != null)
         {
             bullet.gameObject.SetActive(true);
-            fireDIr = Quaternion.Euler(0f, 0f, 30f) * fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
+            fireDir = Quaternion.Euler(0f, 0f, 30f) * fireDir;
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
             bullet.SetBulletColor(Color.yellow);
         }
 

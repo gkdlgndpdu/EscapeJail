@@ -99,8 +99,11 @@ public class CharacterBase : MonoBehaviour
         //발사
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            Vector3 nearEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+            Vector3 fireDir = nearEnemyPos - this.transform.position;      
+
             if (nowWeapon == null) return;
-            nowWeapon.FireBullet(this.FirePos.position);
+            nowWeapon.FireBullet(this.FirePos.position, fireDir);
         }
 
         //회전
@@ -134,13 +137,19 @@ public class CharacterBase : MonoBehaviour
               angle >= 270f && angle <= 360)
         {
             if (nowWeapon != null)
+            {
                 nowWeapon.FlipWeapon(false);
+                FlipCharacter(true);
+            }
 
         }
         else
         {
             if (nowWeapon != null)
+            {
                 nowWeapon.FlipWeapon(true);
+                FlipCharacter(false);
+            }
         }
 
     }
@@ -165,7 +174,6 @@ public class CharacterBase : MonoBehaviour
     protected void AnimControl(Vector3 MoveDir)
     {
         ChangeAnimation(MoveDir);
-        FlipCharacter(MoveDir);
     }
     
     protected void ChangeAnimation(Vector3 MoveDir)
@@ -175,21 +183,18 @@ public class CharacterBase : MonoBehaviour
         float SpeedValue = Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y);
         animator.SetFloat("Speed", SpeedValue);
 
-        FlipCharacter(MoveDir);
+       // FlipCharacter(MoveDir);
 
     }
 
-    protected void FlipCharacter(Vector3 MoveDir)
+    protected void FlipCharacter(bool flip)
     {
-        if (spriteRenderer == null) return;
-        if (MoveDir.x < 0f)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (MoveDir.x > 0f)
-        {
-            spriteRenderer.flipX = false;
-        }
+        if (spriteRenderer == null) return;     
+    
+            spriteRenderer.flipX = flip;
+       
+       
+        
     }
 
     public void GetDamage(int damage)

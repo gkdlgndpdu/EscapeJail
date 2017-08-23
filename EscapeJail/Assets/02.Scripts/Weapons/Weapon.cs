@@ -46,9 +46,9 @@ public class Weapon
         }
     }
 
-    public virtual void FireBullet(Vector3 firePos)
+    public virtual void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
-        Debug.Log("발사 미구현");
+        Debug.Log("자식에서 구현");
     }
 
     public void WeaponUpdate()

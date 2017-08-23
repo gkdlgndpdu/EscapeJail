@@ -78,7 +78,7 @@ public class Mouse2 : MonsterBase
     private void FireWeapon()
     {
         if (nowWeapon != null)
-            nowWeapon.FireBullet(this.transform.position);
+            nowWeapon.FireBullet(this.transform.position,Vector3.zero);
     }
 
 

@@ -51,10 +51,10 @@ public class WeaponBase : MonoBehaviour
 
     }
 
-    public void FireBullet(Vector3 firePos)
+    public void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         if (nowWeapon == null) return;
-        nowWeapon.FireBullet(firePos);
+        nowWeapon.FireBullet(firePos, fireDirection);
 
         UpdateWeaponUI();
     }

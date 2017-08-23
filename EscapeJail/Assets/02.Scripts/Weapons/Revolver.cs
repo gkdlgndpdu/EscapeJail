@@ -17,7 +17,7 @@ public class Revolver : Weapon
         needBulletToFire = 1;
     }
 
-    public override void FireBullet(Vector3 firePos)
+    public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         if (canFire()==false) return;
 
@@ -30,9 +30,9 @@ public class Revolver : Weapon
         {
             bullet.gameObject.SetActive(true);
             Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
-            Vector3 fireDIr = nearestEnemyPos - firePos;
-            fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDIr;
-            bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.PlayerBullet);
+            Vector3 fireDir = fireDirection;
+            fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDir;
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
             bullet.SetBulletColor(Color.yellow);
         }
 
