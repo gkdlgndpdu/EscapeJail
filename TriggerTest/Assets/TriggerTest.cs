@@ -19,4 +19,9 @@ public class TriggerTest : MonoBehaviour
     {
         check = false;
     }
+
+    private void OnDisable()
+    {
+        Debug.Log("dest");
+    }
 }

@@ -9,6 +9,7 @@ public class Mouse2 : MonsterBase
 
     public new void SetUpMonsterAttribute()
     {
+        monsterName = MonsterName.Mouse2;
         SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
@@ -25,12 +26,13 @@ public class Mouse2 : MonsterBase
     {
         base.Start();
         StartCoroutine(TempFireRoutine());
+        SetUpMonsterAttribute();
     }
 
     private new void Awake()
     {
         base.Awake();      
-        SetUpMonsterAttribute();
+   
     }
 
     // Update is called once per frame

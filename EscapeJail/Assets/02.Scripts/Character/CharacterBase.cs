@@ -80,7 +80,7 @@ public class CharacterBase : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
-        UIUpdate();
+ 
     }
 
     // Update is called once per frame

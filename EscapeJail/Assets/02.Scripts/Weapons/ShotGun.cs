@@ -9,8 +9,12 @@ public class ShotGun : Weapon
         weaponName = "Shotgun";
         bulletSpeed = 5f;
         fireDelay = 1f;
-        maxAmmo = 100;
-        nowAmmo = 100;
+
+        //임시
+        fireDelay = 0f;
+
+        maxAmmo = 10000;
+        nowAmmo = 10000;
         needBulletToFire = 3;
         
     }

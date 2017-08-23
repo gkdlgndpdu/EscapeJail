@@ -46,4 +46,12 @@ public class MonsterManager : MonoBehaviour
 
 
     }
+
+    public void SpawnMonster(MonsterName monsterName,Vector3 SpawnPosit)
+    {
+       MonsterBase monster =  ObjectManager.Instance.monsterPool.GetItem();
+        monster.ResetMonster();
+        monster.transform.position = SpawnPosit;
+    }
+ 
 }

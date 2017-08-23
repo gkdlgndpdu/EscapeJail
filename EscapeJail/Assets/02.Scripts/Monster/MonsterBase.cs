@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+public enum MonsterName
+{
+    Mouse1,
+    Mouse2
+}
+
 public enum MonsterState
 {
     Idle,
@@ -25,6 +31,7 @@ public class MonsterBase : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
 
     //속성값 (속도,hp,mp etc...)
+    protected MonsterName monsterName;
     protected int hp = 1;
     protected int hpMax = 1;
     protected int attackPower = 1;
@@ -44,18 +51,34 @@ public class MonsterBase : MonoBehaviour
     [SerializeField]
     protected Transform weaponPosit;
 
-    //protected List<Weapon> nowHaveWeapons = new List<Weapon>();
+    public void ResetMonster()
+    {
+        hp = hpMax;            
+        nowAttack = false;
+        UpdateHud();
+    }
+
 
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
+    protected void AddToList()
+    {
+        MonsterManager.Instance.AddToList(this);
+    }
+
     protected void DeleteInList()
     {
         MonsterManager.Instance.DeleteInList(this);
     }
 
-    protected void OnDestroy()
+    protected void OnDisable()
     {
         DeleteInList();
+    }
+
+    protected void OnEnable()
+    {
+        AddToList();    
     }
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -89,7 +112,7 @@ public class MonsterBase : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-        AddToList();
+     
     }
 
     protected void InitiailzeMonster()
@@ -122,14 +145,11 @@ public class MonsterBase : MonoBehaviour
     protected void SetDie()
     {
         //임시코드
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
 
-    protected void AddToList()
-    {
-        MonsterManager.Instance.AddToList(this);
-    }
+ 
 
 
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 플레이어,적들간의 그려주는 순서를 컨트롤 해줍니다
+/// 플레이어,적들간의 그려주는 순서를 컨트롤
 /// 컨트롤할 오브젝트의 spriteRender가 붙어있는 오브젝트에 RenderOrder스크립트를 
-/// 붙여주면 알아서 작동합니다
+/// 붙여주면 알아서 작동
 /// </summary>
 public class RenderController : MonoBehaviour
 {

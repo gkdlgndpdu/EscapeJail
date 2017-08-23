@@ -40,7 +40,7 @@ public class ObjectPool<T> where T : Component
 
 
     /// <summary>
-    /// 리턴값 null체크 필요
+    /// 리턴값 null체크 필요,SetActive(true)로 반환
     /// </summary>
     /// <returns></returns>
     public T GetItem()
@@ -58,6 +58,7 @@ public class ObjectPool<T> where T : Component
 
         //여기 내려오면 풀이 부족해서 못만들어준 경우.
         MakePoolObject();
+        objectPool[objectPool.Count - 1].gameObject.SetActive(true);
         return objectPool[objectPool.Count - 1];
   
     }

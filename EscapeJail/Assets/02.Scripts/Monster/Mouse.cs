@@ -7,6 +7,7 @@ public class Mouse : MonsterBase
 {
     public new void SetUpMonsterAttribute()
     {
+        monsterName = MonsterName.Mouse1;
         SetHp(10);
         nearestAcessDistance = 0.5f;
         weaponPosit.gameObject.SetActive(false);

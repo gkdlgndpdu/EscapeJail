@@ -9,9 +9,9 @@ public class RenderOrder : MonoBehaviour
     private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
-    }
+    } 
 
-    private void Start()
+    private void OnEnable()
     {
         RenderController.Instance.AddToRenderList(this);
     }

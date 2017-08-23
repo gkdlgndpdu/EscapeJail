@@ -12,11 +12,13 @@ public class Soldier : CharacterBase
 
         hp = 200;
         maxHp = 200;
+
+    
     }
     // Use this for initialization
     private new void Start()
     {
-
+        UIUpdate();
     }
 
     // Update is called once per frame

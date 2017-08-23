@@ -5,21 +5,33 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class ExplosionEffect : MonoBehaviour
 {
-    
+
     private Animator animator;
     /// <summary>
     /// effectName인자에 null을 넣으면 기본이펙트가 나옴
     /// </summary>
     /// <param name="effectName"></param>
     /// <param name="lifeTime"></param>
-    public void Initilaize(Vector3 startPos,string effectName,float lifeTime=1)
+    public void Initilaize(Vector3 startPos, string effectName, float lifeTime = 1)
     {
         this.gameObject.transform.position = startPos;
 
-        if (effectName != null&& animator!=null)
-        animator.runtimeAnimatorController = Resources.Load(string.Format("Animators/Weapon/{0}", effectName)) as RuntimeAnimatorController;
-       
-        Invoke("EffectOff", lifeTime);        
+        if (effectName != null && animator != null)
+        {
+            Object obj = Resources.Load(string.Format("Animators/Weapon/{0}", effectName));
+            if (obj != null)
+            {
+                RuntimeAnimatorController effectAnim = obj as RuntimeAnimatorController;
+                if (effectAnim != null)
+                {
+                    animator.runtimeAnimatorController = effectAnim;
+
+                }
+            }
+        }
+
+
+        Invoke("EffectOff", lifeTime);
     }
 
     void EffectOff()
@@ -27,13 +39,15 @@ public class ExplosionEffect : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
