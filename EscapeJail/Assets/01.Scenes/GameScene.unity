@@ -112,20 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &29831774
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4834433139125038, guid: 1daa5e6e101a5ff4998984955fb0a0ed,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2075330221}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 190897764}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163455005
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +148,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 190897764}
+  - component: {fileID: 190897761}
+  - component: {fileID: 190897762}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -169,6 +157,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &190897761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 190897760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34952af72e1c8c4e95bf633aebf41da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalTile: {fileID: 1781347957173398, guid: 40d9c4d3672c5d4469b46fdb76cac29d, type: 2}
+  moduleObject: {fileID: 1938917900452680, guid: 830dd14aa3a23374196654914266c81e,
+    type: 2}
+  RandomColor:
+  - {r: 0.11724138, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0.75172424, b: 1, a: 1}
+  - {r: 0.8206897, g: 1, b: 0, a: 1}
+--- !u!114 &190897762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 190897760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd085ed8ae5c2447a848ed4320da064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &190897764
 Transform:
   m_ObjectHideFlags: 0
@@ -178,8 +195,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 29831774}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1485,55 +1501,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2075330221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1045248853737528, guid: 1daa5e6e101a5ff4998984955fb0a0ed,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 29831774}
-  - component: {fileID: 2075330222}
-  - component: {fileID: 2075330223}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2075330222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114148518693760528, guid: 1daa5e6e101a5ff4998984955fb0a0ed,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2075330221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd085ed8ae5c2447a848ed4320da064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorList: []
-  tileList: []
---- !u!114 &2075330223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2075330221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34952af72e1c8c4e95bf633aebf41da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalTile: {fileID: 1781347957173398, guid: 40d9c4d3672c5d4469b46fdb76cac29d, type: 2}
-  wallTile: {fileID: 1378064799202454, guid: 22a56307439f746409da34803ec7e93f, type: 2}
-  RandomColor:
-  - {r: 0, g: 1, b: 0.048275948, a: 1}
-  - {r: 0, g: 0.66896534, b: 1, a: 1}
-  - {r: 0.65517235, g: 1, b: 0, a: 1}
 --- !u!1 &2088036647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,7 +1768,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.04827571, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.02398591, g: 0, b: 0.31617647, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1812,7 +1779,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.85
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

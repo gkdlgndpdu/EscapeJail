@@ -5,5 +5,6 @@ using UnityEngine;
 public class GameConstants : MonoBehaviour
 {
     public static int PlayerLayerMin = 20;
+    public static int TileLayerMin = 0;
 
 }

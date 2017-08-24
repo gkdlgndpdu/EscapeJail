@@ -42,7 +42,8 @@ public class WeaponBase : MonoBehaviour
 
         if (animator != null)
         {
-            animator.runtimeAnimatorController = Resources.Load(string.Format("Animators/Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
+            animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
+      
             if (nowWeapon != null)
                 nowWeapon.Initialize(animator);
         }

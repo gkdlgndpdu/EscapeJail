@@ -8,24 +8,6 @@ public enum BulletType
     EnemyBullet
 }
 
-//public struct bulletOption
-//{
-//    public Vector3 startPos;
-//    public Vector3 moveDir;
-//    public float moveSpeed;
-//    public BulletType bulletType;
-//    public int bulletPower;
-//    public float bulletSize;
-//    public bulletOption(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, int bulletPower ,float bulletSize)
-//    {
-//        this.startPos = startPos;
-//        this.moveDir = moveDir;
-//        this.moveSpeed = moveSpeed;
-//        this.bulletType = bulletType;
-//        this.bulletPower = bulletPower;
-//        this.bulletSize = bulletSize;
-//    }
-//}
 
 public class Bullet : MonoBehaviour
 {

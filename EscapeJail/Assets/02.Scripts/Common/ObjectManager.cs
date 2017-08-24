@@ -6,10 +6,6 @@ public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager Instance;
 
-    //private List<Bullet> bulletPool = new List<Bullet>();
-    //private List<MonsterBase> monsterPool = new List<MonsterBase>();
-    //private List<ExplosionEffect> effectPool = new List<ExplosionEffect>();
-
     [HideInInspector]
     public ObjectPool<Bullet> bulletPool;
     [HideInInspector]
@@ -29,11 +25,7 @@ public class ObjectManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-
-
         MakePool();
-
-
     }
 
     private void MakePool()
@@ -48,6 +40,11 @@ public class ObjectManager : MonoBehaviour
         monsterPool = new ObjectPool<MonsterBase>(MonsterParent, mouse1, 1);
 
         
+    }
+
+    public static Object LoadGameObject(string name)
+    {
+        return Resources.Load(name) ;
     }
 
 
