@@ -14,6 +14,14 @@ public class Tile : MonoBehaviour
 {    
     public TileType tileType;
     private SpriteRenderer spriteRenderer;
+    public int x;
+    public int y;
+
+    public void SetIndex(int x,int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
 
     private void Awake()
     {

@@ -1530,6 +1530,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalTile: {fileID: 1781347957173398, guid: 40d9c4d3672c5d4469b46fdb76cac29d, type: 2}
   wallTile: {fileID: 1378064799202454, guid: 22a56307439f746409da34803ec7e93f, type: 2}
+  RandomColor:
+  - {r: 0, g: 1, b: 0.048275948, a: 1}
+  - {r: 0, g: 0.66896534, b: 1, a: 1}
+  - {r: 0.65517235, g: 1, b: 0, a: 1}
 --- !u!1 &2088036647
 GameObject:
   m_ObjectHideFlags: 0
