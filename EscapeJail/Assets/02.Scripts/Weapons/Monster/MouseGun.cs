@@ -23,6 +23,7 @@ public class MouseGun : Weapon
   
         }
 
+        PlayFireAnim();
 
 
     }

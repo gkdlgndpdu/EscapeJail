@@ -24,9 +24,20 @@ public class Mouse2 : MonsterBase
     // Use this for initialization
     private new void Start()
     {
-        base.Start();
-        StartCoroutine(TempFireRoutine());
+        base.Start();   
         SetUpMonsterAttribute();
+    }
+
+    protected new void OnDisable()
+    {
+        base.OnDisable();
+        StopCoroutine(TempFireRoutine());
+    }
+
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        StartCoroutine(TempFireRoutine());
     }
 
     private new void Awake()
