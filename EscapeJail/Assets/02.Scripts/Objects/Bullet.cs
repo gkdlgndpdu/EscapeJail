@@ -14,12 +14,12 @@ public class Bullet : MonoBehaviour
     private int power = 0;
     private BulletType bulletType;
     private Rigidbody2D rb;
-    private SpriteGlow spriteGlow;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteGlow = GetComponent<SpriteGlow>();
+ 
     }
 
     public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1)
@@ -37,12 +37,6 @@ public class Bullet : MonoBehaviour
         this.power = power;
 
 
-    }
-
-    public void SetBulletColor(Color color)
-    {
-        if (spriteGlow != null)
-            spriteGlow.GlowColor = color;
     }
 
     public void SetBulletLifeTime(float lifeTime)

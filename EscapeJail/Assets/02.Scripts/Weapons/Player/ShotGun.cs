@@ -39,7 +39,7 @@ public class ShotGun : Weapon
 
             fireDir = fireDirection;
             bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-            bullet.SetBulletColor(Color.yellow);
+          
         }
 
         bullet = ObjectManager.Instance.bulletPool.GetItem();
@@ -48,7 +48,7 @@ public class ShotGun : Weapon
             bullet.gameObject.SetActive(true);
             fireDir = Quaternion.Euler(0f, 0f, -15f) * fireDir;
             bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-            bullet.SetBulletColor(Color.yellow);
+     
         
         }
 
@@ -58,7 +58,7 @@ public class ShotGun : Weapon
             bullet.gameObject.SetActive(true);
             fireDir = Quaternion.Euler(0f, 0f, 30f) * fireDir;
             bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-            bullet.SetBulletColor(Color.yellow);
+    
         }
 
 
