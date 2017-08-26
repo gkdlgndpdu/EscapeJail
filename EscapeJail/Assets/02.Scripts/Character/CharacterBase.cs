@@ -63,7 +63,7 @@ public class CharacterBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        for(int i = 0; i < nowHaveWeapons.Count; i++)
+        for (int i = 0; i < nowHaveWeapons.Count; i++)
         {
             nowHaveWeapons[i] = null;
         }
@@ -80,7 +80,7 @@ public class CharacterBase : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
- 
+
     }
 
     // Update is called once per frame
@@ -96,18 +96,27 @@ public class CharacterBase : MonoBehaviour
 
     protected void HandleNowWeapon()
     {
+        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         //발사
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Vector3 nearEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-            Vector3 fireDir = nearEnemyPos - this.transform.position;      
+            if (nearEnemy != null && nowWeapon != null)
+            {
+                Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
+                nowWeapon.FireBullet(this.FirePos.position, fireDir);
 
-            if (nowWeapon == null) return;
-            nowWeapon.FireBullet(this.FirePos.position, fireDir);
+                //회전
+            }
+
+
+
         }
-
-        //회전
-        RotateWeapon();
+        if (nearEnemy != null)
+            RotateWeapon(nearEnemy.transform.position);
+        else
+        {
+            RotateWeapon(this.transform.position +Vector3.right);
+        }
 
         //무기 변경
         ChangeWeapon();
@@ -125,9 +134,9 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    protected void RotateWeapon()
+    protected void RotateWeapon(Vector3 enemyPos)
     {
-        Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+        Vector3 nearestEnemyPos = enemyPos;
         float angle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
         if (weaponPosit != null)
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -157,7 +166,7 @@ public class CharacterBase : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");       
+        float v = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
         // moveDir.Normalize();
@@ -174,7 +183,7 @@ public class CharacterBase : MonoBehaviour
     {
         ChangeAnimation(MoveDir);
     }
-    
+
     protected void ChangeAnimation(Vector3 MoveDir)
     {
         if (animator == null) return;
@@ -182,18 +191,18 @@ public class CharacterBase : MonoBehaviour
         float SpeedValue = Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y);
         animator.SetFloat("Speed", SpeedValue);
 
-       // FlipCharacter(MoveDir);
+        // FlipCharacter(MoveDir);
 
     }
 
     protected void FlipCharacter(bool flip)
     {
-        if (spriteRenderer == null) return;     
-    
-            spriteRenderer.flipX = flip;
-       
-       
-        
+        if (spriteRenderer == null) return;
+
+        spriteRenderer.flipX = flip;
+
+
+
     }
 
     public void GetDamage(int damage)

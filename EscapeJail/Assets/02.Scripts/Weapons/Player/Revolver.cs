@@ -29,7 +29,6 @@ public class Revolver : Weapon
         if (bullet != null)
         {
             bullet.gameObject.SetActive(true);
-            Vector3 nearestEnemyPos = MonsterManager.Instance.GetNearestMonsterPos(firePos);
             Vector3 fireDir = fireDirection;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDir;
             bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);

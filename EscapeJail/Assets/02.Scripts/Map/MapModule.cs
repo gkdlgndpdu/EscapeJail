@@ -8,6 +8,7 @@ public enum MapState
     UnLock,
 }
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class MapModule : MonoBehaviour
 {
     //상태
@@ -22,14 +23,39 @@ public class MapModule : MonoBehaviour
 
     //속성
     private int SpawnMonsterNum = 5;
+    private int widthNum;
+    private int heightNum;
+    private float widthDistance;
+    private float heightDistance;
+    private bool isStartModule;
 
+    //컴포넌트
+    public BoxCollider2D boxcollider2D;
 
-
-
-    private void Awake()
+    void Awake()
     {
-        
+        boxcollider2D = GetComponent<BoxCollider2D>();
     }
+
+    public void Initialize(int widthNum, int heightNum,float widthDistance, float heightDistance,bool isStartModule )
+    {
+        this.widthNum = widthNum;
+        this.heightNum = heightNum;
+        this.widthDistance = widthDistance;
+        this.heightDistance = heightDistance;
+        this.isStartModule = isStartModule;
+
+        if (boxcollider2D != null)
+        {
+            boxcollider2D.size = new Vector2((widthNum-2)*widthDistance ,(heightNum-2)* heightDistance)-Vector2.one*0.1f;
+            boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
+        }
+    }
+
+
+
+
+
 
     private bool IsWaveEnd()
     {
@@ -121,6 +147,17 @@ public class MapModule : MonoBehaviour
                 yield break;
             }
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+   void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (mapState == MapState.UnLock&& isClear==false&& isStartModule==false)
+            {
+                StartWave();
+            }
         }
     }
 }

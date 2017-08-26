@@ -55,6 +55,7 @@ public class Bullet : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
     }
 
+    //다른 물체와의 충돌은 layer로 막아놓음
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (bulletType)

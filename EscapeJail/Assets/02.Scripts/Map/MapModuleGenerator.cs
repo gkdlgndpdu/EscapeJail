@@ -95,6 +95,8 @@ public class MapModuleGenerator : MonoBehaviour
             module = obj.GetComponent<MapModule>();
 
         if (module == null) return;
+        module.Initialize(widthNum, heightNum, widthDistance, heightDistance, isStartModule);
+
         #endregion
 
         #region TileMaking
@@ -115,25 +117,25 @@ public class MapModuleGenerator : MonoBehaviour
                     //위쪽문
                     if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == heightNum - 1)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, isStartModule, module);
+                        tile = MakeTile(TileType.Door, posit, module.transform, module);
                         tile.OpenDoor();             
                     }
                     //아래쪽문
                     else if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == 0)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, isStartModule, module);
+                        tile = MakeTile(TileType.Door, posit, module.transform, module);
                         tile.OpenDoor();
                     }
                     //왼쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == 0)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, isStartModule, module);
+                        tile = MakeTile(TileType.Door, posit, module.transform, module);
                         tile.OpenDoor();
                     }
                     //오쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, isStartModule, module);
+                        tile = MakeTile(TileType.Door, posit, module.transform, module);
                         tile.OpenDoor();
                     }
                     //일반벽
@@ -173,7 +175,7 @@ public class MapModuleGenerator : MonoBehaviour
 
     }
 
-    private Tile MakeTile(TileType type, Vector3 posit, Transform parent, bool isStartModule = false,MapModule parentModule =null)
+    private Tile MakeTile(TileType type, Vector3 posit, Transform parent, MapModule parentModule =null)
     {
         GameObject obj = Instantiate(normalTile, parent);
         obj.transform.position = posit;
@@ -181,7 +183,7 @@ public class MapModuleGenerator : MonoBehaviour
 
         Tile tile = null;
         tile = obj.GetComponent<Tile>();
-        tile.Initialize(type,parentModule, isStartModule);
+        tile.Initialize(type,parentModule);
         switch (type)
         {
             case TileType.Normal:

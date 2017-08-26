@@ -10,6 +10,15 @@ public enum TileType
     Object
 }
 
+public enum DoorDirection
+{
+    Default,
+    Up,
+    Down,
+    Left,
+    Right
+}
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class Tile : MonoBehaviour
 {
@@ -17,9 +26,6 @@ public class Tile : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
     private MapModule parentModule=null;
-
-    //첫번째 모듈에서는 문이 안닫히도록
-    private bool isStartModule = false;
 
     public int x;
     public int y;
@@ -29,30 +35,29 @@ public class Tile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Initialize(TileType tileType,MapModule parentModule =null, bool isStartModule = false)
+    public void Initialize(TileType tileType,MapModule parentModule =null)
     {
         if (tileType == TileType.Wall)
         {
             collider = this.gameObject.AddComponent<BoxCollider2D>();
+            
         }
 
         if(tileType == TileType.Door)
         {
             this.parentModule = parentModule;
             collider = this.gameObject.AddComponent<BoxCollider2D>();
+           
             OpenDoor();
-        }
-
-        this.isStartModule = isStartModule;
+        }    
         this.tileType = tileType;
-        this.x = x;
-        this.y = y;
+
     }
 
     public void OpenDoor()
     {
         if (collider == null) return; 
-        collider.isTrigger = true;
+        collider.enabled = false;
 
         //열리는 애니메이션
         ChangeColor(Color.green);
@@ -61,20 +66,11 @@ public class Tile : MonoBehaviour
     public void CloseDoor()
     {
         if (collider == null) return;
-        collider.isTrigger = false;
+        collider.enabled = true;
 
         //닫히는 애니메이션 
         ChangeColor(Color.red);
  
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (parentModule != null&& isStartModule == false)
-                parentModule.StartWave();
-        }
     }
 
     public void ChangeColor(Color color)
