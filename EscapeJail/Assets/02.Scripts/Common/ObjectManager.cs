@@ -36,7 +36,7 @@ public class ObjectManager : MonoBehaviour
         GameObject effect = (GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect");
         effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
 
-        GameObject mouse1 = (GameObject)Resources.Load("Prefabs/Monsters/Mouse1");
+        GameObject mouse1 = (GameObject)Resources.Load("Prefabs/Monsters/Mouse2");
         monsterPool = new ObjectPool<MonsterBase>(MonsterParent, mouse1, 1);
 
         
