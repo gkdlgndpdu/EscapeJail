@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - MapModule
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - MapModule
-  - 
-  - 
+  - BackGround
+  - MiniMapMask
   - 
   - 
   - 

@@ -27,7 +27,8 @@ public class MapModule : MonoBehaviour
     private int heightNum;
     private float widthDistance;
     private float heightDistance;
-    private bool isStartModule;
+    private bool isStartModule = false;
+    private bool isPositioningComplete = false;
 
     //컴포넌트
     public BoxCollider2D boxcollider2D;
@@ -37,7 +38,7 @@ public class MapModule : MonoBehaviour
         boxcollider2D = GetComponent<BoxCollider2D>();
     }
 
-    public void Initialize(int widthNum, int heightNum,float widthDistance, float heightDistance,bool isStartModule )
+    public void Initialize(int widthNum, int heightNum, float widthDistance, float heightDistance, bool isStartModule)
     {
         this.widthNum = widthNum;
         this.heightNum = heightNum;
@@ -47,9 +48,11 @@ public class MapModule : MonoBehaviour
 
         if (boxcollider2D != null)
         {
-            boxcollider2D.size = new Vector2((widthNum-2)*widthDistance ,(heightNum-2)* heightDistance)-Vector2.one*0.1f;
+            boxcollider2D.size = new Vector2((widthNum+2) * widthDistance, (heightNum+2) * heightDistance) - Vector2.one * 0.1f;
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
         }
+
+       MapManager.Instance.AddToModuleList(this);
     }
 
 
@@ -61,13 +64,13 @@ public class MapModule : MonoBehaviour
     {
         if (monsterList == null) return true;
 
-        for(int i=0;i< monsterList.Count; i++)
+        for (int i = 0; i < monsterList.Count; i++)
         {
             //살아있는적이 하나라도 있으면 
             if (monsterList[i].gameObject.activeSelf == true)
                 return false;
         }
-        return true;        
+        return true;
     }
 
     public void LinkTile(List<Tile> normalTileList, List<Tile> wallTileList, List<Tile> doorTileList)
@@ -98,7 +101,7 @@ public class MapModule : MonoBehaviour
     public void StartWave()
     {
         //중복진입 방지
-        if (mapState == MapState.Lock|| isClear==true) return;
+        if (mapState == MapState.Lock || isClear == true) return;
 
         mapState = MapState.Lock;
         StartCoroutine(SpawnMonster());
@@ -125,7 +128,7 @@ public class MapModule : MonoBehaviour
 
 
         //몬스터 스폰
-        for(int i=0;i< SpawnMonsterNum; i++)
+        for (int i = 0; i < SpawnMonsterNum; i++)
         {
             int RandomIndex = Random.Range(0, normalTileList.Count - 1);
             Vector3 RandomSpawnPosit = normalTileList[RandomIndex].transform.position;
@@ -150,14 +153,60 @@ public class MapModule : MonoBehaviour
         }
     }
 
-   void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (mapState == MapState.UnLock&& isClear==false&& isStartModule==false)
+            if (mapState == MapState.UnLock         //문이 열려있어야함
+                && isClear == false                 //클리어된 모듈이 아니어야함
+                && isStartModule == false           //처음 생성모듈이 아니어야함
+                && isPositioningComplete == true)   //배치가 끝난 모듈이어야 함
             {
+                Debug.Log("진입");
                 StartWave();
             }
         }
     }
+
+    public void PositioningComplete()
+    {
+        isPositioningComplete = true;
+
+        if (boxcollider2D != null) ;
+        boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.1f;
+
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isStartModule == true) return;
+        if (collision.CompareTag("MapModule"))
+        {
+            MapModule anotherModule = collision.gameObject.GetComponent<MapModule>();
+            if (anotherModule != null)
+            {
+                MapManager.Instance.ResetMakeCount();
+                Debug.Log("들어옴");
+                if (this.transform.position.x < collision.bounds.center.x)
+                {
+                    this.transform.position -= Vector3.right;
+                }
+                else if (this.transform.position.x >= collision.bounds.center.x)
+                {
+                    this.transform.position += Vector3.right;
+                }
+
+                if (this.transform.position.y < collision.bounds.center.y)
+                {
+                    this.transform.position -= Vector3.up;
+                }
+                else if (this.transform.position.y >= collision.bounds.center.y)
+                {
+                    this.transform.position += Vector3.up;
+                }
+            }
+        }
+    }
+
+ 
 }

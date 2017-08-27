@@ -38,23 +38,20 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void Start()
     {
-        MakeSampleMap();
+        MakeMap(10);
     }
 
 
-    private void MakeSampleMap()
+
+
+    private void MakeMap(int RoomNum)
     {
-        float distance = 13f;
+        GenerateBaseMap(10, 10, Vector3.zero, true);
 
-        GenerateBaseMap(10, 10, Vector3.zero,true);
-
-        GenerateBaseMap(20, 30, new Vector3(distance, 0f, 0f));
-
-        GenerateBaseMap(20, 15, new Vector3(-distance, 0f, 0f));
-
-        GenerateBaseMap(5, 20, new Vector3(0f, distance, 0f));
-
-        GenerateBaseMap(15, 20, new Vector3(0f, -distance, 0f));
+        for (int i = 0; i < RoomNum; i++)
+        {
+            GenerateBaseMap(Random.Range(10,20), Random.Range(10, 20), Vector3.zero + new Vector3(Random.Range(5, 15), Random.Range(5, 15), 0));
+        }
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit,bool isStartModule =false)
