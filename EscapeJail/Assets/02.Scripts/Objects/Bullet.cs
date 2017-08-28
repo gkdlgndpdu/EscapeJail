@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     private int power = 0;
     private BulletType bulletType;
     private Rigidbody2D rb;
-    private string effectName;
+    private string effectName = "revolver";
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Sprite defaultSprite;
@@ -27,13 +27,13 @@ public class Bullet : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if(spriteRenderer!=null)
-        defaultSprite = spriteRenderer.sprite;
+        if (spriteRenderer != null)
+            defaultSprite = spriteRenderer.sprite;
 
 
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, string effectName = "revolver")
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1)
     {
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
 
@@ -47,15 +47,19 @@ public class Bullet : MonoBehaviour
 
         this.power = power;
 
-        this.effectName = effectName;
 
-       if(animator!=null)
-       animator.runtimeAnimatorController = null;
+        if (animator != null)
+            animator.runtimeAnimatorController = null;
+    }
+
+    public void SetEffectName(string effectName)
+    {
+        this.effectName = effectName;
     }
 
     public void InitializeImage(string bulletImageName, bool isAnimBullet)
     {
-        if (isAnimBullet == true&&animator !=null)
+        if (isAnimBullet == true && animator != null)
         {
             RuntimeAnimatorController animController = ObjectManager.LoadGameObject(string.Format("Animators/Bullet/{0}", bulletImageName)) as RuntimeAnimatorController;
             if (animController != null)
@@ -63,12 +67,12 @@ public class Bullet : MonoBehaviour
                 animator.runtimeAnimatorController = animController;
             }
         }
-        else if (isAnimBullet == false&&spriteRenderer!=null)
+        else if (isAnimBullet == false && spriteRenderer != null)
         {
             Sprite sprite = ObjectManager.LoadGameObject(string.Format("Sprites/Bullet/{0}", bulletImageName)) as Sprite;
             if (sprite != null)
                 spriteRenderer.sprite = sprite;
-            else if(sprite==null)
+            else if (sprite == null)
                 spriteRenderer.sprite = defaultSprite;
 
         }

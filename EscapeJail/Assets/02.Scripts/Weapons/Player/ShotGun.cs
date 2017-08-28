@@ -10,12 +10,11 @@ public class ShotGun : Weapon
         bulletSpeed = 5f;
         fireDelay = 1f;
 
-        //임시
-        fireDelay = 0f;
-
         maxAmmo = 10000;
-        nowAmmo = 10000;
+        nowAmmo = maxAmmo;
         needBulletToFire = 3;
+        weaponScale = Vector3.one*3;
+         
 
     }
 
@@ -42,6 +41,7 @@ public class ShotGun : Weapon
                 fireDir =Quaternion.Euler(0f, 0f, -15f + 15f * i)*fireDirection;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1,1);
                 bullet.InitializeImage("white", false);
+                bullet.SetEffectName("revolver");
 
             }
         }

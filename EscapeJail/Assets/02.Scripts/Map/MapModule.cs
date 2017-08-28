@@ -22,7 +22,7 @@ public class MapModule : MonoBehaviour
     private List<MonsterBase> monsterList = new List<MonsterBase>();
 
     //속성
-    private int SpawnMonsterNum = 5;
+    private int SpawnMonsterNum = 1;
     private int widthNum;
     private int heightNum;
     private float widthDistance;

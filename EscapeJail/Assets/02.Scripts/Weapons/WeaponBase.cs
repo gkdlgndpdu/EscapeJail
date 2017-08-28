@@ -21,6 +21,11 @@ public class WeaponBase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
+        
+ 
+  
+
+
 
     }
     public void ChangeWeapon()
@@ -43,13 +48,22 @@ public class WeaponBase : MonoBehaviour
         if (animator != null)
         {
             animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
-      
+
             if (nowWeapon != null)
+            {
                 nowWeapon.Initialize(animator);
+                SetScale(nowWeapon.weaponScale);
+
+            }
         }
 
         UpdateWeaponUI();
 
+    }
+
+    private void SetScale(Vector3 size)
+    {
+        this.transform.localScale = size;
     }
 
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)

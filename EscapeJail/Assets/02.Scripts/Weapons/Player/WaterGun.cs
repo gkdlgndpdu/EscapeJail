@@ -13,7 +13,7 @@ public class WaterGun : Weapon
         maxAmmo = 50;
         nowAmmo = 30;
         needBulletToFire = 2;
-
+        weaponScale = Vector3.one;
 
     }
 
@@ -30,9 +30,9 @@ public class WaterGun : Weapon
         {
             bullet.gameObject.SetActive(true);
             Vector3 fireDir = fireDirection;     
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1, 1, weaponName);
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1, 1);
             bullet.InitializeImage("watergun", true);
-
+            bullet.SetEffectName("watergun");
 
         }
 

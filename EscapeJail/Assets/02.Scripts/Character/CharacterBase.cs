@@ -55,6 +55,7 @@ public class CharacterBase : MonoBehaviour
         nowHaveWeapons.Add(new Revolver());
         nowHaveWeapons.Add(new ShotGun());
         nowHaveWeapons.Add(new WaterGun());
+        nowHaveWeapons.Add(new AssaultRifle());
         nowWeapon.SetWeapon(nowHaveWeapons[0]);
 
 
@@ -99,7 +100,7 @@ public class CharacterBase : MonoBehaviour
     {
         MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         //발사
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (nearEnemy != null && nowWeapon != null)
             {
@@ -141,6 +142,10 @@ public class CharacterBase : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             nowWeapon.SetWeapon(nowHaveWeapons[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            nowWeapon.SetWeapon(nowHaveWeapons[3]);
         }
     }
 

@@ -20,6 +20,8 @@ public class Weapon
     public int maxAmmo = 10;
     public int nowAmmo = 10;
     public int needBulletToFire = 1;
+    public Vector3 weaponScale= Vector3.one;
+    public Vector3 relativePosition = Vector3.zero;
 
 
     public void Initialize(Animator animator)

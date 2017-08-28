@@ -16,6 +16,11 @@ public class Revolver : Weapon
         maxAmmo =100;
         nowAmmo =100;
         needBulletToFire = 1;
+        weaponScale = Vector3.one * 3;
+
+
+
+        
     }
 
     public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -29,11 +34,12 @@ public class Revolver : Weapon
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)
         {
-            bullet.gameObject.SetActive(true);
+       
             Vector3 fireDir = fireDirection;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1,1, weaponName);
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1,1);
             bullet.InitializeImage("white", false);
+            bullet.SetEffectName("revolver");
 
 
         }
