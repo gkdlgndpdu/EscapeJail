@@ -56,7 +56,7 @@ public class CharacterBase : MonoBehaviour
         nowHaveWeapons.Add(new ShotGun());
         nowHaveWeapons.Add(new WaterGun());
         nowHaveWeapons.Add(new AssaultRifle());
-        nowWeapon.SetWeapon(nowHaveWeapons[0]);
+        nowWeapon.SetWeapon(nowHaveWeapons[1]);
 
 
         SetUpComponent();
