@@ -42,7 +42,7 @@ public class MapManager : MonoBehaviour
             }
             yield return null;
         }
-        d
+        
         
 
         PositioningComplete();
