@@ -16,50 +16,39 @@ public class ShotGun : Weapon
         maxAmmo = 10000;
         nowAmmo = 10000;
         needBulletToFire = 3;
-        
+
     }
 
     public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         if (canFire() == false) return;
-  
+
         useBullet();
         FireDelayOn();
         PlayFireAnim();
 
- 
-        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
 
-        Vector3 fireDir = Vector3.zero;
-      
 
-        if (bullet != null)
+
+        Vector3 fireDir = fireDirection;
+
+
+        for (int i = 0; i < 3; i++)
         {
-            bullet.gameObject.SetActive(true);
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                bullet.gameObject.SetActive(true);
+                fireDir =Quaternion.Euler(0f, 0f, -15f + 15f * i)*fireDirection;
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1,1);
+                bullet.InitializeImage("white", false);
 
-            fireDir = fireDirection;
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-          
+            }
         }
 
-        bullet = ObjectManager.Instance.bulletPool.GetItem();
-        if (bullet != null)
-        {
-            bullet.gameObject.SetActive(true);
-            fireDir = Quaternion.Euler(0f, 0f, -15f) * fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-     
-        
-        }
 
-        bullet = ObjectManager.Instance.bulletPool.GetItem();
-        if (bullet != null)
-        {
-            bullet.gameObject.SetActive(true);
-            fireDir = Quaternion.Euler(0f, 0f, 30f) * fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-    
-        }
+
+
 
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Revolver : Weapon
 {
+    //리볼버 반동
     private float reBoundValue = 5f;
 
     public Revolver()
@@ -31,8 +32,10 @@ public class Revolver : Weapon
             bullet.gameObject.SetActive(true);
             Vector3 fireDir = fireDirection;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet);
-       
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1,1, weaponName);
+            bullet.InitializeImage("white", false);
+
+
         }
 
 

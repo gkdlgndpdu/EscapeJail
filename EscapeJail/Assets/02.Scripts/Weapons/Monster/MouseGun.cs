@@ -20,7 +20,7 @@ public class MouseGun : Weapon
             Vector3 fireDIr = PlayerPos - firePos;
             fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
             bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
-  
+            bullet.InitializeImage("white", false);
         }
 
         PlayFireAnim();

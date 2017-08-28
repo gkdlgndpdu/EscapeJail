@@ -54,6 +54,7 @@ public class CharacterBase : MonoBehaviour
         //임시로 총기 넣어줌
         nowHaveWeapons.Add(new Revolver());
         nowHaveWeapons.Add(new ShotGun());
+        nowHaveWeapons.Add(new WaterGun());
         nowWeapon.SetWeapon(nowHaveWeapons[0]);
 
 
@@ -107,6 +108,11 @@ public class CharacterBase : MonoBehaviour
 
                 //회전
             }
+            else if (nearEnemy == null)
+            {
+                Vector3 fireDir = Vector3.right;
+                nowWeapon.FireBullet(this.FirePos.position, fireDir);
+            }
 
 
 
@@ -131,6 +137,10 @@ public class CharacterBase : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             nowWeapon.SetWeapon(nowHaveWeapons[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            nowWeapon.SetWeapon(nowHaveWeapons[2]);
         }
     }
 

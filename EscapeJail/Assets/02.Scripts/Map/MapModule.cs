@@ -29,6 +29,7 @@ public class MapModule : MonoBehaviour
     private float heightDistance;
     private bool isStartModule = false;
     private bool isPositioningComplete = false;
+    private float eachModuleDistance = 2f;
 
     //컴포넌트
     public BoxCollider2D boxcollider2D;
@@ -186,23 +187,23 @@ public class MapModule : MonoBehaviour
             if (anotherModule != null)
             {
                 MapManager.Instance.ResetMakeCount();
-                Debug.Log("들어옴");
+            
                 if (this.transform.position.x < collision.bounds.center.x)
                 {
-                    this.transform.position -= Vector3.right;
+                    this.transform.position -= Vector3.right* eachModuleDistance;
                 }
                 else if (this.transform.position.x >= collision.bounds.center.x)
                 {
-                    this.transform.position += Vector3.right;
+                    this.transform.position += Vector3.right * eachModuleDistance;
                 }
 
                 if (this.transform.position.y < collision.bounds.center.y)
                 {
-                    this.transform.position -= Vector3.up;
+                    this.transform.position -= Vector3.up * eachModuleDistance;
                 }
                 else if (this.transform.position.y >= collision.bounds.center.y)
                 {
-                    this.transform.position += Vector3.up;
+                    this.transform.position += Vector3.up * eachModuleDistance;
                 }
             }
         }

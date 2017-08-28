@@ -9,20 +9,31 @@ public enum BulletType
 }
 
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Bullet : MonoBehaviour
 {
     private int power = 0;
     private BulletType bulletType;
     private Rigidbody2D rb;
-
+    private string effectName;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Sprite defaultSprite;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
- 
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if(spriteRenderer!=null)
+        defaultSprite = spriteRenderer.sprite;
+
+
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, string effectName = "revolver")
     {
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
 
@@ -35,6 +46,32 @@ public class Bullet : MonoBehaviour
         this.transform.localScale = Vector3.one * bulletScale;
 
         this.power = power;
+
+        this.effectName = effectName;
+
+       if(animator!=null)
+       animator.runtimeAnimatorController = null;
+    }
+
+    public void InitializeImage(string bulletImageName, bool isAnimBullet)
+    {
+        if (isAnimBullet == true&&animator !=null)
+        {
+            RuntimeAnimatorController animController = ObjectManager.LoadGameObject(string.Format("Animators/Bullet/{0}", bulletImageName)) as RuntimeAnimatorController;
+            if (animController != null)
+            {
+                animator.runtimeAnimatorController = animController;
+            }
+        }
+        else if (isAnimBullet == false&&spriteRenderer!=null)
+        {
+            Sprite sprite = ObjectManager.LoadGameObject(string.Format("Sprites/Bullet/{0}", bulletImageName)) as Sprite;
+            if (sprite != null)
+                spriteRenderer.sprite = sprite;
+            else if(sprite==null)
+                spriteRenderer.sprite = defaultSprite;
+
+        }
 
 
     }
@@ -78,8 +115,8 @@ public class Bullet : MonoBehaviour
 
 
         //이펙트 호출
-        ExplosionEffect effect =  ObjectManager.Instance.effectPool.GetItem();
-        effect.Initilaize(this.transform.position, null,0.5f);
+        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+        effect.Initilaize(this.transform.position, effectName, 0.5f);
         //이펙트 호출
         BulletDestroy();
     }
