@@ -13,7 +13,8 @@ public class WaterGun : Weapon
         maxAmmo = 50;
         nowAmmo = 30;
         needBulletToFire = 2;
-        weaponScale = Vector3.one;
+        weaponScale = Vector3.one*0.8f;
+        relativePosition = new Vector3(-0.23f, 0f, 0f);
 
     }
 

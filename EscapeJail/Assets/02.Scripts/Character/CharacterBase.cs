@@ -51,12 +51,13 @@ public class CharacterBase : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        if (nowWeapon == null) return;   
         //임시로 총기 넣어줌
         nowHaveWeapons.Add(new Revolver());
         nowHaveWeapons.Add(new ShotGun());
         nowHaveWeapons.Add(new WaterGun());
         nowHaveWeapons.Add(new AssaultRifle());
-        nowWeapon.SetWeapon(nowHaveWeapons[1]);
+        nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
 
 
         SetUpComponent();
@@ -133,19 +134,19 @@ public class CharacterBase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            nowWeapon.SetWeapon(nowHaveWeapons[0]);
+            nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            nowWeapon.SetWeapon(nowHaveWeapons[1]);
+            nowWeapon.ChangeWeapon(nowHaveWeapons[1]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            nowWeapon.SetWeapon(nowHaveWeapons[2]);
+            nowWeapon.ChangeWeapon(nowHaveWeapons[2]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            nowWeapon.SetWeapon(nowHaveWeapons[3]);
+            nowWeapon.ChangeWeapon(nowHaveWeapons[3]);
         }
     }
 

@@ -17,7 +17,7 @@ public class Revolver : Weapon
         nowAmmo =100;
         needBulletToFire = 1;
         weaponScale = Vector3.one * 3;
-
+     
 
 
         

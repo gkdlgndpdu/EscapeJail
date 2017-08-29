@@ -14,7 +14,7 @@ public class ShotGun : Weapon
         nowAmmo = maxAmmo;
         needBulletToFire = 3;
         weaponScale = Vector3.one*3;
-         
+        relativePosition = new Vector3(-0.65f, 0f, 0f);
 
     }
 

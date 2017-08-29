@@ -17,7 +17,7 @@ public class AssaultRifle : Weapon
         nowAmmo = maxAmmo;
         needBulletToFire = 1;
         weaponScale = Vector3.one * 3;
-
+        relativePosition = new Vector3(-0.56f, 0f, 0f);
 
     }
 

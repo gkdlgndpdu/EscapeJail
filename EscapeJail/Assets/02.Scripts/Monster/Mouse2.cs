@@ -17,7 +17,7 @@ public class Mouse2 : MonsterBase
 
     private void SetWeapon()
     {
-        nowWeapon.SetWeapon(new MouseGun());
+        nowWeapon.ChangeWeapon(new MouseGun());
 
     }
 

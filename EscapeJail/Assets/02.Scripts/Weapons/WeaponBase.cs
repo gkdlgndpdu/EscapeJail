@@ -16,22 +16,14 @@ public class WeaponBase : MonoBehaviour
     [SerializeField]
     private WeaponUI weaponUI;
 
+
+ 
+
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();    }
 
-        
- 
-  
-
-
-
-    }
-    public void ChangeWeapon()
-    {
-
-    }
 
     public void FlipWeapon(bool value)
     {
@@ -41,7 +33,7 @@ public class WeaponBase : MonoBehaviour
 
 
 
-    public void SetWeapon(Weapon weapon)
+    public void ChangeWeapon(Weapon weapon)
     {
         nowWeapon = weapon;
 
@@ -53,6 +45,7 @@ public class WeaponBase : MonoBehaviour
             {
                 nowWeapon.Initialize(animator);
                 SetScale(nowWeapon.weaponScale);
+                SetPostion(nowWeapon.relativePosition);
 
             }
         }
@@ -64,6 +57,11 @@ public class WeaponBase : MonoBehaviour
     private void SetScale(Vector3 size)
     {
         this.transform.localScale = size;
+    }
+
+    private void SetPostion(Vector3 posit)
+    {     
+        this.transform.localPosition = posit;
     }
 
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)
