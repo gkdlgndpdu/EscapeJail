@@ -53,10 +53,7 @@ public class CharacterBase : MonoBehaviour
 
         if (nowWeapon == null) return;   
         //임시로 총기 넣어줌
-        nowHaveWeapons.Add(new Revolver());
-        nowHaveWeapons.Add(new ShotGun());
-        nowHaveWeapons.Add(new WaterGun());
-        nowHaveWeapons.Add(new AssaultRifle());
+        nowHaveWeapons.Add(new Revolver());       
         nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
 
 
@@ -136,18 +133,7 @@ public class CharacterBase : MonoBehaviour
         {
             nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            nowWeapon.ChangeWeapon(nowHaveWeapons[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            nowWeapon.ChangeWeapon(nowHaveWeapons[2]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            nowWeapon.ChangeWeapon(nowHaveWeapons[3]);
-        }
+      
     }
 
     protected void RotateWeapon(Vector3 enemyPos)
@@ -242,5 +228,12 @@ public class CharacterBase : MonoBehaviour
     protected void DieAction()
     {
         Debug.Log("CharacterDie");
+    }
+
+    public void HandleItem()
+    {
+        
+    
+
     }
 }

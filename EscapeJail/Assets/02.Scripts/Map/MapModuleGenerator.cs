@@ -38,7 +38,7 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void Start()
     {
-        MakeMap(10);
+        MakeMap(1);
     }
 
 
@@ -46,7 +46,7 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void MakeMap(int RoomNum)
     {
-        GenerateBaseMap(10, 10, Vector3.zero, true);
+        GenerateBaseMap(30, 30, Vector3.zero, true);
 
         for (int i = 0; i < RoomNum; i++)
         {

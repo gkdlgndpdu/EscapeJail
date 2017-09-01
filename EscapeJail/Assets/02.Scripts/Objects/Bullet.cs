@@ -20,6 +20,8 @@ public class Bullet : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Sprite defaultSprite;
+    private float lifeTime = 1.0f;
+  
 
     private void Awake()
     {
@@ -33,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1,float lifeTime = 999f)
     {
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
 
@@ -50,6 +52,11 @@ public class Bullet : MonoBehaviour
 
         if (animator != null)
             animator.runtimeAnimatorController = null;
+
+        if (lifeTime != 999)
+        {
+            Invoke("BulletDestroy", lifeTime);
+        }              
     }
 
     public void SetEffectName(string effectName)
@@ -118,16 +125,24 @@ public class Bullet : MonoBehaviour
         }
 
 
-        //이펙트 호출
-        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
-        effect.Initilaize(this.transform.position, effectName, 0.5f);
+   
         //이펙트 호출
         BulletDestroy();
     }
 
+  
+
     private void BulletDestroy()
     {
+        ShowEffect();
         this.gameObject.SetActive(false);
+    }
+
+    private void ShowEffect()
+    {
+        //이펙트 호출
+        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+        effect.Initilaize(this.transform.position, effectName, 0.5f);
     }
 
 }
