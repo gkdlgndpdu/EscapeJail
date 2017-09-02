@@ -32,10 +32,18 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();      
     }
 
-    public void Initialize(TileType tileType,MapModule parentModule =null)
+    public void SetSprite(Sprite sprite)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = sprite;
+
+       
+    }
+
+    public void Initialize(TileType tileType, Sprite sprite=null,MapModule parentModule =null)
     {
         if (tileType == TileType.Wall)
         {
@@ -43,7 +51,10 @@ public class Tile : MonoBehaviour
             
         }
 
-        if(tileType == TileType.Door)
+        if (sprite != null)
+            SetSprite(sprite);
+
+        if (tileType == TileType.Door)
         {
             this.parentModule = parentModule;
             collider = this.gameObject.AddComponent<BoxCollider2D>();

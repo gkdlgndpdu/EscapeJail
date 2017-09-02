@@ -22,10 +22,17 @@ public class MapModuleGenerator : MonoBehaviour
     //특성별 타일 저장
     private List<Tile> normalTileList;
     private List<Tile> wallTileList;
-    private List<Tile> doorTileList;       
+    private List<Tile> doorTileList;
+
+    //타일 이미지 풀
+    private List<Sprite> tileSpriteList;
+
+    //
+    private int mapModuleNum = 10;
 
     private void ResetLists()
     {
+        //새로 할당해줘야 중복안됨
         normalTileList = new List<Tile>();
         wallTileList = new List<Tile>();
         doorTileList = new List<Tile>();
@@ -33,12 +40,38 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void Awake()
     {
+        normalTileList = new List<Tile>();
+        wallTileList = new List<Tile>();
+        doorTileList = new List<Tile>();
+        tileSpriteList = new List<Sprite>();
 
+        LoadTileSprites();
+
+    }
+
+    private void LoadTileSprites()
+    {
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Tiles");
+        if (tileSpriteList != null)
+        {
+            for(int i = 0; i < sprites.Length; i++)
+            {
+                tileSpriteList.Add(sprites[i]);
+            }
+        }
+    }
+
+    private Sprite GetRandomTileSprite()
+    {
+        if (tileSpriteList == null) return null;
+        if (tileSpriteList.Count == 0) return null;
+
+        return tileSpriteList[Random.Range(0, tileSpriteList.Count)];
     }
 
     private void Start()
     {
-        MakeMap(1);
+        MakeMap(50);
     }
 
 
@@ -46,11 +79,12 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void MakeMap(int RoomNum)
     {
-        GenerateBaseMap(30, 30, Vector3.zero, true);
+        //센터
+        GenerateBaseMap(10, 10, Vector3.zero, true);
 
         for (int i = 0; i < RoomNum; i++)
         {
-            GenerateBaseMap(Random.Range(10,20), Random.Range(10, 20), Vector3.zero + new Vector3(Random.Range(5, 15), Random.Range(5, 15), 0));
+            GenerateBaseMap(Random.Range(10,20), Random.Range(10, 20), new Vector3(Random.Range(1f, mapModuleNum*2), Random.Range(1f, 5f), 0));
         }
     }
 
@@ -180,7 +214,9 @@ public class MapModuleGenerator : MonoBehaviour
 
         Tile tile = null;
         tile = obj.GetComponent<Tile>();
-        tile.Initialize(type,parentModule);
+        if (tile == null) return null;
+        tile.Initialize(type, GetRandomTileSprite(), parentModule);
+        
         switch (type)
         {
             case TileType.Normal:

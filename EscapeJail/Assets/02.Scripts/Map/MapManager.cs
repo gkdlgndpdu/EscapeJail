@@ -11,12 +11,39 @@ public class MapManager : MonoBehaviour
     float alphaValue = 255f;
 
     public static MapManager Instance;
-    public List<MapModule> moduleList = new List<MapModule>();
+    private List<MapModule> moduleList = new List<MapModule>();
+    private List<GameObject> objectList = new List<GameObject>();
     private float mapMakeCount = 0;
     void Awake()
     {
         if (Instance == null)
             Instance = this;
+
+        LoadObject();
+    }
+
+    private void LoadObject()
+    {
+        if (objectList == null) return;
+        GameObject[] objects = Resources.LoadAll<GameObject>("Prefabs/Articles/");
+        
+        if (objects != null)
+        {
+            if (objects.Length != 0)
+            {
+                for(int i = 0; i < objects.Length; i++)
+                {
+                    objectList.Add(objects[i]);
+                }
+            }
+        }
+    }
+
+    public GameObject GetRandomObject()
+    {
+        if (objectList == null) return null;
+        if (objectList.Count == 0) return null;
+        return objectList[(Random.Range(0, objectList.Count))];
     }
 
     void Start()
@@ -27,15 +54,16 @@ public class MapManager : MonoBehaviour
     //맵이 아직 생성중일때
     public void ResetMakeCount()
     {
-        mapMakeCount = 0f;
+        mapMakeCount = 0f;   
     }
 
     IEnumerator MapPositioningRoutine()
     {
         while (true)
         {
-            mapMakeCount += Time.unscaledDeltaTime;
-            if (mapMakeCount > 1.0f)
+            mapMakeCount += Time.deltaTime;
+     
+            if (mapMakeCount > 3.0f)
             {
                 Debug.Log("Positioning Complete");
                 break;
@@ -46,6 +74,16 @@ public class MapManager : MonoBehaviour
         
 
         PositioningComplete();
+        CreateObjects();
+    }
+
+    private void CreateObjects()
+    {
+        if (moduleList == null) return;
+        for(int i =0; i < moduleList.Count; i++)
+        {
+            moduleList[i].MakeObjects();
+        }
     }
 
 

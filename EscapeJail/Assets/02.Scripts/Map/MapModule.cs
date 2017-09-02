@@ -29,7 +29,7 @@ public class MapModule : MonoBehaviour
     private float heightDistance;
     private bool isStartModule = false;
     private bool isPositioningComplete = false;
-    private float eachModuleDistance = 2f;
+    private float eachModuleDistance =1.5f;
 
     //컴포넌트
     public BoxCollider2D boxcollider2D;
@@ -49,12 +49,14 @@ public class MapModule : MonoBehaviour
 
         if (boxcollider2D != null)
         {
-            boxcollider2D.size = new Vector2((widthNum+2) * widthDistance, (heightNum+2) * heightDistance) - Vector2.one * 0.1f;
+            boxcollider2D.size = new Vector2((widthNum+2) * widthDistance, (heightNum+2) * heightDistance);
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
         }
 
        MapManager.Instance.AddToModuleList(this);
     }
+
+  
 
 
 
@@ -172,10 +174,36 @@ public class MapModule : MonoBehaviour
     public void PositioningComplete()
     {
         isPositioningComplete = true;
+   
 
-        if (boxcollider2D != null) ;
-        boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.1f;
+        if (boxcollider2D != null) 
+        boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.2f;
 
+    }
+
+    public void MakeObjects()
+    {
+        float makeNum = (float)(widthNum * heightNum) *0.01f;
+        
+        for(int i = 0; i < (int)makeNum; i++)
+        {
+            MakeEachObject();
+        }
+
+    }
+
+    private void MakeEachObject()
+    {
+        if (isPositioningComplete == false) return;
+        if (normalTileList == null) return;
+
+        GameObject obj = MapManager.Instance.GetRandomObject();
+        if (obj == null) return;
+
+        Tile targetTile = normalTileList[Random.Range(0, normalTileList.Count)];
+        if (targetTile == null) return;
+
+        GameObject.Instantiate(obj, targetTile.transform);
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -184,13 +212,20 @@ public class MapModule : MonoBehaviour
         if (collision.CompareTag("MapModule"))
         {
             MapModule anotherModule = collision.gameObject.GetComponent<MapModule>();
+
+            //겹치는거 예외처리
+            if (eachModuleDistance <= widthDistance * 2f)
+            {
+                eachModuleDistance = widthDistance * 2f+0.1f;            
+            }
+
             if (anotherModule != null)
             {
                 MapManager.Instance.ResetMakeCount();
-            
+
                 if (this.transform.position.x < collision.bounds.center.x)
                 {
-                    this.transform.position -= Vector3.right* eachModuleDistance;
+                    this.transform.position -= Vector3.right * eachModuleDistance;
                 }
                 else if (this.transform.position.x >= collision.bounds.center.x)
                 {
