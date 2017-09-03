@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using weapon;
 public class Mouse2 : MonsterBase
 {
 

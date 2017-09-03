@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using weapon;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterBase : MonoBehaviour
@@ -18,13 +19,11 @@ public class CharacterBase : MonoBehaviour
 
     //무기
     [SerializeField]
-    protected WeaponBase nowWeapon;
+    protected WeaponHandler weaponHandler;
 
     //무기 장착 위치
     [SerializeField]
     protected Transform weaponPosit;
-
-    protected List<Weapon> nowHaveWeapons = new List<Weapon>();
 
     [SerializeField]
     protected Transform FirePos;
@@ -33,6 +32,9 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     protected PlayerUI playerUI;
 
+    //인벤토리
+    protected Inventory inventory;
+    
 
 
 
@@ -49,32 +51,40 @@ public class CharacterBase : MonoBehaviour
     }
     protected void Initialize()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //컴포넌트
+        SetupComponent();
 
-        if (nowWeapon == null) return;   
-        //임시로 총기 넣어줌
-        nowHaveWeapons.Add(new Revolver());       
-        nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
+        //스크립트
+        inventory = new Inventory();
 
 
-        SetUpComponent();
+        //임시로 총기 넣어줌      
+        AddWeapon(new Revolver());
+        AddWeapon(new ShotGun());
+        AddWeapon(new AssaultRifle());
+
+        if (weaponHandler != null&& inventory!=null)
+            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+
+
+  
 
     }
 
-    private void OnDestroy()
+    public void AddWeapon(Weapon weapon)
     {
-        for (int i = 0; i < nowHaveWeapons.Count; i++)
-        {
-            nowHaveWeapons[i] = null;
-        }
-        nowHaveWeapons = null;
+        if (inventory != null && weapon != null)
+            inventory.AddWeapon(weapon);
     }
 
-    protected void SetUpComponent()
+
+
+    protected void SetupComponent()
     {
         //컴포넌트
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Use this for initialization
@@ -100,17 +110,17 @@ public class CharacterBase : MonoBehaviour
         //발사
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (nearEnemy != null && nowWeapon != null)
+            if (nearEnemy != null && weaponHandler != null)
             {
                 Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
-                nowWeapon.FireBullet(this.FirePos.position, fireDir);
+                weaponHandler.FireBullet(this.FirePos.position, fireDir);
 
                 //회전
             }
             else if (nearEnemy == null)
             {
                 Vector3 fireDir = Vector3.right;
-                nowWeapon.FireBullet(this.FirePos.position, fireDir);
+                weaponHandler.FireBullet(this.FirePos.position, fireDir);
             }
 
 
@@ -129,11 +139,12 @@ public class CharacterBase : MonoBehaviour
 
     protected void ChangeWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            nowWeapon.ChangeWeapon(nowHaveWeapons[0]);
+            weaponHandler.ChangeWeapon(inventory.GetWeapon());
         }
-      
+       
+
     }
 
     protected void RotateWeapon(Vector3 enemyPos)
@@ -147,17 +158,17 @@ public class CharacterBase : MonoBehaviour
         if ((angle >= 0f && angle <= 90) ||
               angle >= 270f && angle <= 360)
         {
-            if (nowWeapon != null)
+            if (weaponHandler != null)
             {
-                nowWeapon.FlipWeapon(false);
+                weaponHandler.FlipWeapon(false);
                 FlipCharacter(true);
             }
         }
         else
         {
-            if (nowWeapon != null)
+            if (weaponHandler != null)
             {
-                nowWeapon.FlipWeapon(true);
+                weaponHandler.FlipWeapon(true);
                 FlipCharacter(false);
             }
         }

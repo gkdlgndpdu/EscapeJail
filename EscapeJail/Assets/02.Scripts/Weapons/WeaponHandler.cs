@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
+using weapon;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
-public class WeaponBase : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     //컴포넌트
     private SpriteRenderer spriteRenderer;
@@ -15,14 +16,13 @@ public class WeaponBase : MonoBehaviour
 
     [SerializeField]
     private WeaponUI weaponUI;
-
-
  
 
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();    }
+        animator = GetComponent<Animator>();
+    }
 
 
     public void FlipWeapon(bool value)
@@ -71,11 +71,11 @@ public class WeaponBase : MonoBehaviour
 
         UpdateWeaponUI();
     }
-
+    
     private void UpdateWeaponUI()
     {
         if (weaponUI != null&& nowWeapon!=null)
-            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weaponName);
+            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.ToString());
     }
 
     private void OnDestroy()

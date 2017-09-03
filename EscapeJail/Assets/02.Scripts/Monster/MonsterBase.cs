@@ -47,7 +47,7 @@ public class MonsterBase : MonoBehaviour
     protected Image hudImage;
 
     //무기
-    protected WeaponBase nowWeapon;
+    protected WeaponHandler nowWeapon;
     [SerializeField]
     protected Transform weaponPosit;
 
@@ -102,7 +102,7 @@ public class MonsterBase : MonoBehaviour
 
     protected void SetUpCustomScript()
     {
-        nowWeapon = GetComponentInChildren<WeaponBase>();
+        nowWeapon = GetComponentInChildren<WeaponHandler>();
     }
     // Use this for initialization
     protected void Start()
