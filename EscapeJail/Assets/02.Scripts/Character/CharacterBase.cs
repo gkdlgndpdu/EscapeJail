@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using weapon;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -34,7 +35,7 @@ public class CharacterBase : MonoBehaviour
 
     //인벤토리
     protected Inventory inventory;
-    
+
 
 
 
@@ -58,24 +59,20 @@ public class CharacterBase : MonoBehaviour
         inventory = new Inventory();
 
 
-        //임시로 총기 넣어줌      
-        AddWeapon(new Revolver());
-        AddWeapon(new ShotGun());
-        AddWeapon(new AssaultRifle());
+        ////임시로 총기 넣어줌      
+        //AddWeapon(new Revolver());
+        //AddWeapon(new ShotGun());
+        //AddWeapon(new AssaultRifle());
 
-        if (weaponHandler != null&& inventory!=null)
-            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+        //if (weaponHandler != null&& inventory!=null)
+        //    weaponHandler.ChangeWeapon(inventory.GetWeapon());
 
 
-  
+
 
     }
 
-    public void AddWeapon(Weapon weapon)
-    {
-        if (inventory != null && weapon != null)
-            inventory.AddWeapon(weapon);
-    }
+
 
 
 
@@ -97,11 +94,21 @@ public class CharacterBase : MonoBehaviour
     protected void Update()
     {
         HandleNowWeapon();
+        InputOnPc();
+
+    }
+
+    protected void InputOnPc()
+    {
+        MoveInPc();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ReactiveButtonClick();
+        }
     }
 
     protected void FixedUpdate()
     {
-        MoveInPc();
     }
 
     protected void HandleNowWeapon()
@@ -130,7 +137,7 @@ public class CharacterBase : MonoBehaviour
             RotateWeapon(nearEnemy.transform.position);
         else
         {
-            RotateWeapon(this.transform.position +Vector3.right);
+            RotateWeapon(this.transform.position + Vector3.right);
         }
 
         //무기 변경
@@ -143,7 +150,7 @@ public class CharacterBase : MonoBehaviour
         {
             weaponHandler.ChangeWeapon(inventory.GetWeapon());
         }
-       
+
 
     }
 
@@ -182,7 +189,6 @@ public class CharacterBase : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
-        // moveDir.Normalize();
 
         //이동
         if (rb != null)
@@ -204,7 +210,6 @@ public class CharacterBase : MonoBehaviour
         float SpeedValue = Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y);
         animator.SetFloat("Speed", SpeedValue);
 
-        // FlipCharacter(MoveDir);
 
     }
 
@@ -243,8 +248,61 @@ public class CharacterBase : MonoBehaviour
 
     public void HandleItem()
     {
-        
-    
+
+
 
     }
+
+    public void AddWeapon(Weapon weapon)
+    {
+        if (inventory != null && weapon != null)
+        {
+            inventory.AddWeapon(weapon);
+            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+        }
+    }
+
+
+
+    //반응키 눌렸을때
+    public void ReactiveButtonClick()
+    {
+
+        int activeLayer = MyUtils.GetLayerMaskByString("DropItem");
+        Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, 0.5f, activeLayer);
+
+        if (colls == null) return;
+        if (colls.Length == 0) return;
+
+        if (colls.Length == 1)
+        {
+            iReactiveAction action = colls[0].gameObject.GetComponent<iReactiveAction>();
+            if (action != null)
+                action.ClickAction();
+        }
+        else if(colls.Length>1)
+        {
+            Array.Sort(colls, (a, b) =>
+            {
+                if (Vector3.Distance(this.transform.position, a.transform.position) >
+                Vector3.Distance(this.transform.position, b.transform.position))
+                    return 1;
+                else return -1;
+
+            });
+
+            iReactiveAction action = colls[0].gameObject.GetComponent<iReactiveAction>();
+            if (action != null)
+                action.ClickAction();
+
+        }
+
+
+
+    }
+
+
+
+
+
 }

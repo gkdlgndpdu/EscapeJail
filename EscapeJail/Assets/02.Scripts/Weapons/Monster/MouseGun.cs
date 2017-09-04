@@ -8,7 +8,7 @@ namespace weapon
         private float reBoundValue = 5f;
         public MouseGun()
         {
-            weaponName = WeaponName.MouseGun;
+            weaponName = WeaponType.MouseGun;
             bulletSpeed = 5f;
             weaponScale = Vector3.one * 3;
         }

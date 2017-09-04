@@ -8,7 +8,7 @@ namespace weapon
     {
         public ShotGun()
         {
-            weaponName = WeaponName.Shotgun;
+            weaponName = WeaponType.ShotGun;
             bulletSpeed = 10f;
             fireDelay = 1f;
 

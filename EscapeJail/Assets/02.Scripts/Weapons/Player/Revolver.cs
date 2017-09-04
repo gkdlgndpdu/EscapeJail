@@ -12,13 +12,14 @@ namespace weapon
 
         public Revolver()
         {
-            weaponName = WeaponName.Revolver;
+            weaponName = WeaponType.Revolver;
             bulletSpeed = 10f;
             fireDelay = 0.3f;
             maxAmmo = 100;
             nowAmmo = 100;
             needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
+            relativePosition = new Vector3(-0.3f, 0f, 0f);
 
 
 

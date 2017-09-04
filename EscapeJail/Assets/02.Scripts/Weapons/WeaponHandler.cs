@@ -35,6 +35,11 @@ public class WeaponHandler : MonoBehaviour
 
     public void ChangeWeapon(Weapon weapon)
     {
+        if (weapon == null) return;
+
+        if (animator != null)
+            animator.speed = 0f;
+
         nowWeapon = weapon;
 
         if (animator != null)
@@ -67,6 +72,10 @@ public class WeaponHandler : MonoBehaviour
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
         if (nowWeapon == null) return;
+
+        if (animator != null)
+            animator.speed = 1f;
+
         nowWeapon.FireBullet(firePos, fireDirection);
 
         UpdateWeaponUI();
@@ -75,7 +84,7 @@ public class WeaponHandler : MonoBehaviour
     private void UpdateWeaponUI()
     {
         if (weaponUI != null&& nowWeapon!=null)
-            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.ToString());
+            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weaponName.ToString());
     }
 
     private void OnDestroy()

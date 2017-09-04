@@ -15,4 +15,11 @@ public class MyUtils
         }
         return returnvalue;
     }
+
+    public static int GetLayerMaskByString(string maskName)
+    {
+        int layerMask = 1 << LayerMask.NameToLayer(maskName);
+
+        return layerMask;
+    }
 }

@@ -52,6 +52,7 @@ public class MapModuleGenerator : MonoBehaviour
     private void LoadTileSprites()
     {
         Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Tiles");
+        if (sprites == null) return;
         if (tileSpriteList != null)
         {
             for(int i = 0; i < sprites.Length; i++)

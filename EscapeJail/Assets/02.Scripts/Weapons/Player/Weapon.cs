@@ -5,20 +5,22 @@ using UnityEngine;
 
 namespace weapon
 {
-    public enum WeaponName
+    public enum WeaponType
     {
+        PlayerWeaponStart,
         Revolver,
-        MouseGun,
-        Shotgun,
+        ShotGun,
         WaterGun,
-        AssaultRifle
+        AssaultRifle,
+        PlayerWeaponEnd,
+        MouseGun
     }
 
     public class Weapon
     {
         protected Animator animator;
 
-        public WeaponName weaponName;
+        public WeaponType weaponName;
 
         protected float bulletSpeed = 0f;
 

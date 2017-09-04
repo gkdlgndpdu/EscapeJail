@@ -8,7 +8,7 @@ namespace weapon
 
         public WaterGun()
         {
-            weaponName = WeaponName.WaterGun;
+            weaponName = WeaponType.WaterGun;
             bulletSpeed = 5f;
             fireDelay = 0.3f;
             maxAmmo = 50;
