@@ -9,5 +9,11 @@ public class ItemSpawnPosit : MonoBehaviour
     private List<Transform> SpawnPosit;
 
 
+    private void Start()
+    {
+        if (SpawnPosit != null)
+            ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+    }
+
 
 }
