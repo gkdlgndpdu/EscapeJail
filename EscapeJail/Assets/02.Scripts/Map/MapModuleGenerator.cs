@@ -72,7 +72,7 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void Start()
     {
-        MakeMap(50);
+        MakeMap(5);
     }
 
 

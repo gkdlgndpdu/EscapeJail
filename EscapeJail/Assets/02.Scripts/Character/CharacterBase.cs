@@ -57,19 +57,6 @@ public class CharacterBase : MonoBehaviour
 
         //스크립트
         inventory = new Inventory();
-
-
-        ////임시로 총기 넣어줌      
-        //AddWeapon(new Revolver());
-        //AddWeapon(new ShotGun());
-        //AddWeapon(new AssaultRifle());
-
-        //if (weaponHandler != null&& inventory!=null)
-        //    weaponHandler.ChangeWeapon(inventory.GetWeapon());
-
-
-
-
     }
 
 
@@ -94,7 +81,12 @@ public class CharacterBase : MonoBehaviour
     protected void Update()
     {
         HandleNowWeapon();
+
+#if UNITY_EDITOR
         InputOnPc();
+#else
+        MoveInMobie();
+#endif
 
     }
 
@@ -107,51 +99,60 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    protected void FixedUpdate()
-    {
-    }
-
-    protected void HandleNowWeapon()
+    public void FireWeapon()
     {
         MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-        //발사
-        if (Input.GetKey(KeyCode.Mouse0))
+
+        if (nearEnemy != null && weaponHandler != null)
         {
-            if (nearEnemy != null && weaponHandler != null)
-            {
-                Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
-                weaponHandler.FireBullet(this.FirePos.position, fireDir);
+            Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
+            weaponHandler.FireBullet(this.FirePos.position, fireDir);
 
-                //회전
-            }
-            else if (nearEnemy == null)
-            {
-                Vector3 fireDir = Vector3.right;
-                weaponHandler.FireBullet(this.FirePos.position, fireDir);
-            }
-
-
-
+            //회전
         }
+        else if (nearEnemy == null)
+        {
+            Vector3 fireDir = Vector3.right;
+            weaponHandler.FireBullet(this.FirePos.position, fireDir);
+        }
+    }
+
+
+    private void RotateWeapon()
+    {
+        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         if (nearEnemy != null)
             RotateWeapon(nearEnemy.transform.position);
         else
         {
             RotateWeapon(this.transform.position + Vector3.right);
         }
-
-        //무기 변경
-        ChangeWeapon();
     }
 
-    protected void ChangeWeapon()
+    protected void HandleNowWeapon()
     {
+        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+
+#if UNITY_EDITOR
+        //발사
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            FireWeapon();
+        }
+        //무기 변경
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+            ChangeWeapon();
         }
+#endif
 
+        RotateWeapon();
 
+    }
+
+    public void ChangeWeapon()
+    {      
+       weaponHandler.ChangeWeapon(inventory.GetWeapon());
     }
 
     protected void RotateWeapon(Vector3 enemyPos)
@@ -184,11 +185,14 @@ public class CharacterBase : MonoBehaviour
 
     protected void MoveInPc()
     {
-        rb.velocity = Vector2.zero;
+        if (rb != null)
+            rb.velocity = Vector2.zero;
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
+        // moveDir.Normalize();
 
         //이동
         if (rb != null)
@@ -196,7 +200,25 @@ public class CharacterBase : MonoBehaviour
 
         //애니메이션
         AnimControl(moveDir);
+
     }
+
+    protected void MoveInMobie()
+    {
+        if (rb != null)
+            rb.velocity = Vector2.zero;
+
+        Vector3 moveDir = JoyStick.Instance.MoveDir;
+        //이동
+        if (rb != null)
+            rb.velocity = moveDir * moveSpeed * Time.deltaTime;
+        //애니메이션
+        AnimControl(moveDir);
+    }
+
+
+
+
 
     protected void AnimControl(Vector3 MoveDir)
     {
@@ -280,7 +302,7 @@ public class CharacterBase : MonoBehaviour
             if (action != null)
                 action.ClickAction();
         }
-        else if(colls.Length>1)
+        else if (colls.Length > 1)
         {
             Array.Sort(colls, (a, b) =>
             {

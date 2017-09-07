@@ -29,7 +29,7 @@ public class MapModule : MonoBehaviour
     private float heightDistance;
     private bool isStartModule = false;
     private bool isPositioningComplete = false;
-    private float eachModuleDistance =1.5f;
+    private float eachModuleDistance = 1.5f;
 
     //컴포넌트
     public BoxCollider2D boxcollider2D;
@@ -49,19 +49,12 @@ public class MapModule : MonoBehaviour
 
         if (boxcollider2D != null)
         {
-            boxcollider2D.size = new Vector2((widthNum+2) * widthDistance, (heightNum+2) * heightDistance);
+            boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
         }
 
-       MapManager.Instance.AddToModuleList(this);
+        MapManager.Instance.AddToModuleList(this);
     }
-
-  
-
-
-
-
-
 
     private bool IsWaveEnd()
     {
@@ -174,18 +167,18 @@ public class MapModule : MonoBehaviour
     public void PositioningComplete()
     {
         isPositioningComplete = true;
-   
 
-        if (boxcollider2D != null) 
-        boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.2f;
+
+        if (boxcollider2D != null)
+            boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.2f;
 
     }
 
     public void MakeObjects()
     {
-        float makeNum = (float)(widthNum * heightNum) *0.01f;
-        
-        for(int i = 0; i < (int)makeNum; i++)
+        float makeNum = (float)(widthNum * heightNum) * 0.01f;
+
+        for (int i = 0; i < (int)makeNum; i++)
         {
             MakeEachObject();
         }
@@ -200,10 +193,25 @@ public class MapModule : MonoBehaviour
         GameObject obj = MapManager.Instance.GetRandomObject();
         if (obj == null) return;
 
-        Tile targetTile = normalTileList[Random.Range(0, normalTileList.Count)];
-        if (targetTile == null) return;
+        for (int i = 0; i < 10; i++)
+        {
+            Tile targetTile = normalTileList[Random.Range(0, normalTileList.Count)];
 
-        GameObject.Instantiate(obj, targetTile.transform);
+            //중복생성 체크
+            if (targetTile.canSpawned == false)
+            {
+                continue;
+            }
+            else
+            {
+                targetTile.canSpawned = true;
+                GameObject.Instantiate(obj, targetTile.transform);
+                return;
+            }
+        }
+
+
+
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -216,7 +224,7 @@ public class MapModule : MonoBehaviour
             //겹치는거 예외처리
             if (eachModuleDistance <= widthDistance * 2f)
             {
-                eachModuleDistance = widthDistance * 2f+0.1f;            
+                eachModuleDistance = widthDistance * 2f + 0.1f;
             }
 
             if (anotherModule != null)
@@ -244,5 +252,5 @@ public class MapModule : MonoBehaviour
         }
     }
 
- 
+
 }

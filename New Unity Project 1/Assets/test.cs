@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+public class test : MonoBehaviour {
 
-public class MapGenerator : MonoBehaviour
-{
-    
-	// Use this for initialization
-	void Start ()
-    {
+
+    public UnityEvent myEvent;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

@@ -28,9 +28,5 @@ public class Soldier : CharacterBase
       
     }
 
-    private new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
    
 }
