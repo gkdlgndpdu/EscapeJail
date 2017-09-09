@@ -16,7 +16,9 @@ public class WeaponHandler : MonoBehaviour
 
     [SerializeField]
     private WeaponUI weaponUI;
- 
+
+    private Vector3 originPosit;
+    private bool isShake = false;
 
     private void Awake()
     {        
@@ -65,8 +67,14 @@ public class WeaponHandler : MonoBehaviour
     }
 
     private void SetPostion(Vector3 posit)
-    {     
+    {
+        originPosit = posit;
         this.transform.localPosition = posit;
+    }
+
+    private void WeaponShake()
+    {
+        iTween.mo
     }
 
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)

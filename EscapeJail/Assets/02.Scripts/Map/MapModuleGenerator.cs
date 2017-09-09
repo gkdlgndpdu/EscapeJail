@@ -26,6 +26,8 @@ public class MapModuleGenerator : MonoBehaviour
 
     //타일 이미지 풀
     private List<Sprite> tileSpriteList;
+    private Sprite wallSprite;
+    private Sprite doorSprite;
 
     //
     private int mapModuleNum = 10;
@@ -51,15 +53,28 @@ public class MapModuleGenerator : MonoBehaviour
 
     private void LoadTileSprites()
     {
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Tiles");
-        if (sprites == null) return;
+        StageData nowStageData = GameOption.Instance.StageData;
+        if (nowStageData == null) return;
+
+        //일반타일 로드
         if (tileSpriteList != null)
         {
-            for(int i = 0; i < sprites.Length; i++)
+            List<Sprite> normalTileList = nowStageData.GetNormalTileList();
+            if (normalTileList != null)
             {
-                tileSpriteList.Add(sprites[i]);
+                for (int i = 0; i < normalTileList.Count; i++)
+                {
+                    tileSpriteList.Add(normalTileList[i]);
+                }
             }
         }
+
+        //벽타일 로드
+        wallSprite = nowStageData.GetWallTile();
+
+        //문타일 로드
+        doorSprite = nowStageData.GetDoorTile();
+
     }
 
     private Sprite GetRandomTileSprite()
@@ -85,11 +100,11 @@ public class MapModuleGenerator : MonoBehaviour
 
         for (int i = 0; i < RoomNum; i++)
         {
-            GenerateBaseMap(Random.Range(10,20), Random.Range(10, 20), new Vector3(Random.Range(1f, mapModuleNum*2), Random.Range(1f, 5f), 0));
+            GenerateBaseMap(Random.Range(10, 20), Random.Range(10, 20), new Vector3(Random.Range(1f, mapModuleNum * 2), Random.Range(1f, 5f), 0));
         }
     }
 
-    private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit,bool isStartModule =false)
+    private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)
     {
         ResetLists();
 
@@ -144,13 +159,13 @@ public class MapModuleGenerator : MonoBehaviour
                 //벽 (네방향 테두리부분)
                 if (y == 0 || y == heightNum - 1 || x == 0 || x == widthNum - 1)
                 {
-                    Tile tile;                    
+                    Tile tile;
 
                     //위쪽문
                     if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == heightNum - 1)
                     {
                         tile = MakeTile(TileType.Door, posit, module.transform, module);
-                        tile.OpenDoor();             
+                        tile.OpenDoor();
                     }
                     //아래쪽문
                     else if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == 0)
@@ -167,15 +182,20 @@ public class MapModuleGenerator : MonoBehaviour
                     //오쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, module);
+                        tile = MakeTile(TileType.Door, posit, module.transform, module);                        
                         tile.OpenDoor();
                     }
                     //일반벽
                     else
                     {
                         tile = MakeTile(TileType.Wall, posit, module.transform);
-                        SetTileColor(tile, Color.black);                     
-                    }            
+
+                        if(wallSprite!=null)
+                        tile.SetSprite(wallSprite);
+
+                        SetTileColor(tile, Color.white);
+                    }
+
 
 
                     // 벽중에서도 도어 리스트
@@ -187,7 +207,7 @@ public class MapModuleGenerator : MonoBehaviour
                     Tile tile = MakeTile(TileType.Normal, posit, module.transform);
                     SetTileColor(tile, RandomColor[Random.Range(0, RandomColor.Count)]);
 
-               
+
                 }
 
 
@@ -207,7 +227,7 @@ public class MapModuleGenerator : MonoBehaviour
 
     }
 
-    private Tile MakeTile(TileType type, Vector3 posit, Transform parent, MapModule parentModule =null)
+    private Tile MakeTile(TileType type, Vector3 posit, Transform parent, MapModule parentModule = null)
     {
         GameObject obj = Instantiate(normalTile, parent);
         obj.transform.position = posit;
@@ -217,24 +237,27 @@ public class MapModuleGenerator : MonoBehaviour
         tile = obj.GetComponent<Tile>();
         if (tile == null) return null;
         tile.Initialize(type, GetRandomTileSprite(), parentModule);
-        
+
         switch (type)
         {
             case TileType.Normal:
                 {
-                    if(normalTileList!=null)
-                    normalTileList.Add(tile);
-                } break;
+                    if (normalTileList != null)
+                        normalTileList.Add(tile);
+                }
+                break;
             case TileType.Wall:
                 {
                     if (wallTileList != null)
                         wallTileList.Add(tile);
-                } break;
+                }
+                break;
             case TileType.Door:
                 {
                     if (doorTileList != null)
                         doorTileList.Add(tile);
-                } break;
+                }
+                break;
         }
 
         return tile;

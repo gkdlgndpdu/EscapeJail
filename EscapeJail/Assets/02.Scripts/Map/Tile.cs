@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
 
     public bool canSpawned = true;
         
-
+ 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();      

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager Instance;
@@ -42,10 +42,11 @@ public class ObjectManager : MonoBehaviour
         
     }
 
-    public static Object LoadGameObject(string name)
+    public static UnityEngine.Object LoadGameObject(string name)
     {
         return Resources.Load(name) ;
     }
+
 
 
 
