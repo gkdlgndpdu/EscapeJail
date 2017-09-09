@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class StageData : ScriptableObject
 {
-    //몬스터 관련
-    [SerializeField]
-    private List<GameObject> spawnEnemyList;
-    public List<GameObject> SpawnEnemyList
-    {
-        get
-        {
-            if(spawnEnemyList!=null)
-            return spawnEnemyList;
-
-            return null;
-        }
-    }
-
+    #region Monster
+    //몬스터 관련 
+    public List<MonsterName> spawnEnemyList;
+ 
+    #endregion
+    #region Tile
     //타일 관련
     [SerializeField]
     private List<Sprite> normalTileList;
@@ -48,4 +40,5 @@ public class StageData : ScriptableObject
         if (spriteDoor == null) return null;
         return spriteDoor;
     }
+    #endregion
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+
 public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager Instance;
@@ -9,10 +11,9 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector]
     public ObjectPool<Bullet> bulletPool;
     [HideInInspector]
-    public ObjectPool<MonsterBase> monsterPool;
-    [HideInInspector]
     public ObjectPool<ExplosionEffect> effectPool;
 
+    public MonsterPool monsterPool;
 
     [SerializeField]
     private Transform bulletParent;
@@ -25,31 +26,45 @@ public class ObjectManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+
         MakePool();
     }
 
     private void MakePool()
     {
         GameObject bullet = (GameObject)Resources.Load("Prefabs/Objects/Bullet");
-        bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
+        if (bullet != null)
+            bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
 
         GameObject effect = (GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect");
-        effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
-
-        GameObject mouse1 = (GameObject)Resources.Load("Prefabs/Monsters/Mouse2");
-        monsterPool = new ObjectPool<MonsterBase>(MonsterParent, mouse1, 1);
-
+        if (effect != null)
+            effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
         
+        MakeMonsterPool();
+
+    }
+
+    private void MakeMonsterPool()
+    {
+        StageData nowStageData = GameOption.Instance.StageData;
+        monsterPool = new MonsterPool(MonsterParent, nowStageData);
+    }
+
+    public MonsterBase GetRandomMonster()
+    {
+        if (monsterPool == null) return null;
+
+        return monsterPool.GetRandomMonster();
     }
 
     public static UnityEngine.Object LoadGameObject(string name)
     {
-        return Resources.Load(name) ;
+        return Resources.Load(name);
     }
 
 
 
 
-   
+
 
 }

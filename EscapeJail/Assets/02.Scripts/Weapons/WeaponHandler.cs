@@ -72,10 +72,7 @@ public class WeaponHandler : MonoBehaviour
         this.transform.localPosition = posit;
     }
 
-    private void WeaponShake()
-    {
-        iTween.mo
-    }
+ 
 
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {

@@ -6,7 +6,8 @@ using UnityEngine;
 public enum MonsterName
 {
     Mouse1,
-    Mouse2
+    Mouse2,
+    EndMonster
 }
 
 public enum MonsterState

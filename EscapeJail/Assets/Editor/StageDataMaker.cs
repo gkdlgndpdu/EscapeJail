@@ -6,7 +6,7 @@ using UnityEditor;
 public class StageDataMaker : MonoBehaviour
 {
 
-    // [MenuItem("GameObject/CreateCustomData")]
+    [MenuItem("GameObject/CreateCustomData")]
     static void CreateCustomData()
     {
         StageData newData = ScriptableObject.CreateInstance<StageData>();

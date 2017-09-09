@@ -49,7 +49,8 @@ public class MonsterManager : MonoBehaviour
 
     public MonsterBase SpawnMonster(MonsterName monsterName,Vector3 SpawnPosit)
     {
-       MonsterBase monster =  ObjectManager.Instance.monsterPool.GetItem();
+        MonsterBase monster =  ObjectManager.Instance.GetRandomMonster();
+      
         if (monster == null) return null;
 
        monster.ResetMonster();
