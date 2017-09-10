@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using weapon;
 public class Soldier : CharacterBase
 {
 
@@ -18,6 +18,7 @@ public class Soldier : CharacterBase
     // Use this for initialization
     private new void Start()
     {
+        AddWeapon(new Revolver());
         UIUpdate();
     }
 

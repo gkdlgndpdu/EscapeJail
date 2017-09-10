@@ -142,6 +142,7 @@ public class Bullet : MonoBehaviour
     {
         //이펙트 호출
         ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+        if(effect!=null)
         effect.Initilaize(this.transform.position, effectName, 0.5f);
     }
 

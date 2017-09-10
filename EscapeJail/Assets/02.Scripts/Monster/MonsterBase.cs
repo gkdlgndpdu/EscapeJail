@@ -7,6 +7,8 @@ public enum MonsterName
 {
     Mouse1,
     Mouse2,
+    Mouse3,
+    Mouse4,
     EndMonster
 }
 
@@ -27,7 +29,7 @@ public class MonsterBase : MonoBehaviour
 
     //컴포넌트   
     protected Vector3 moveDir;
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
@@ -39,6 +41,7 @@ public class MonsterBase : MonoBehaviour
     protected float moveSpeed = 1f;
     protected float nearestAcessDistance = 1f;
     protected bool nowAttack = false;
+    protected float attackDelay =0f;
 
     //사정거리 확인용
     protected float activeDistance = 10;
@@ -51,6 +54,9 @@ public class MonsterBase : MonoBehaviour
     protected WeaponHandler nowWeapon;
     [SerializeField]
     protected Transform weaponPosit;
+
+    [SerializeField]
+    protected AttackObject attackObject;
 
     public void ResetMonster()
     {
@@ -79,7 +85,9 @@ public class MonsterBase : MonoBehaviour
 
     protected void OnEnable()
     {
-        AddToList();    
+        AddToList();
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(false);
     }
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -111,9 +119,13 @@ public class MonsterBase : MonoBehaviour
         if (target == null)
             target = GamePlayerManager.Instance.player.transform;
 
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();     
+    }
 
-     
+    protected void SetAttackPower(int power)
+    {
+        if (attackObject != null)
+            attackObject.Initialize(power);
     }
 
     protected void InitiailzeMonster()
@@ -150,7 +162,22 @@ public class MonsterBase : MonoBehaviour
     }
 
 
- 
+
+    protected void AttackOn()
+    {
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(true);
+
+     
+    }
+
+    protected void AttackOff()
+    {
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(false);
+
+       
+    }
 
 
 
@@ -182,17 +209,21 @@ public class MonsterBase : MonoBehaviour
 
     protected void MoveToTarget()
     {
-        if (isActionStart == false) return;
         if (rb == null) return;
-        if (target == null) return;     
 
+        if(nowAttack==false)
+        rb.velocity = Vector3.zero;
 
+        if (isActionStart == false) return;
+        if (target == null) return;
+        if (nowAttack == true) return;       
+      
         if (IsInAcessArea(nearestAcessDistance) == true)
         {
             //flipx를 위해서 방향계산만 해줌
             CalculateMoveDIr();
             SetAnimation(MonsterState.Idle);
-            rb.velocity = Vector3.zero;
+            
             return;
         }
 
@@ -213,6 +244,19 @@ public class MonsterBase : MonoBehaviour
         if (hudImage != null)
             hudImage.fillAmount = (float)hp / (float)hpMax;
 
+    }
+
+    protected virtual IEnumerator AttackRoutine()
+    {
+        yield break;
+    }
+
+    protected void NearAttackLogic()
+    {
+        if (IsInAcessArea(nearestAcessDistance) == true && nowAttack == false)
+        {
+            StartCoroutine(AttackRoutine());
+        }
     }
 
     protected void SetAnimation(MonsterState state)

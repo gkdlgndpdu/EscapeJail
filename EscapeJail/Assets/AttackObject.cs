@@ -14,7 +14,7 @@ public class AttackObject : MonoBehaviour
     //공격 2번 들어가는 예외사항 제외
     private bool isAttackFinished = false;
 
-    private void Initialize(int power,string effectName)
+    public void Initialize(int power)
     {
         this.power = power;
     }

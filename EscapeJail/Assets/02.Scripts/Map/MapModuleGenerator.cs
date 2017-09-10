@@ -29,8 +29,7 @@ public class MapModuleGenerator : MonoBehaviour
     private Sprite wallSprite;
     private Sprite doorSprite;
 
-    //
-    private int mapModuleNum = 10;
+
 
     private void ResetLists()
     {
@@ -100,7 +99,9 @@ public class MapModuleGenerator : MonoBehaviour
 
         for (int i = 0; i < RoomNum; i++)
         {
-            GenerateBaseMap(Random.Range(10, 20), Random.Range(10, 20), new Vector3(Random.Range(1f, mapModuleNum * 2), Random.Range(1f, 5f), 0));
+            //     GenerateBaseMap(Random.Range(10, 20), Random.Range(10, 20), new Vector3((float)Random.Range(1, 30)*0.64f, (float)Random.Range(1, 30) * 0.64f, 0));
+            GenerateBaseMap(25,25, new Vector3((float)Random.Range(1, 30) * 0.64f, (float)Random.Range(1, 30) * 0.64f, 0));
+
         }
     }
 

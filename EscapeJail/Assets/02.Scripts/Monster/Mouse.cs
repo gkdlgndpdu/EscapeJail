@@ -11,6 +11,7 @@ public class Mouse : MonsterBase
         SetHp(10);
         nearestAcessDistance = 0.5f;
         weaponPosit.gameObject.SetActive(false);
+        attackDelay = 1f;
     }
 
     // Use this for initialization
@@ -20,17 +21,6 @@ public class Mouse : MonsterBase
         SetUpMonsterAttribute();
     }
 
-    private void AttackOn()
-    {
-        if(weaponPosit!=null)
-            weaponPosit.gameObject.SetActive(true);
-    }
-
-    private void AttackOff()
-    {
-        if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(false);
-    }
 
 
 
@@ -53,22 +43,17 @@ public class Mouse : MonsterBase
 
     }
 
-    private void NearAttackLogic()
-    {
-        if (IsInAcessArea(nearestAcessDistance) == true&& nowAttack==false)
-        {
-            StartCoroutine(AttackRoutine());
-        }
-    }
+ 
 
-    private IEnumerator AttackRoutine()
+    protected override IEnumerator AttackRoutine()
     {
         nowAttack = true;
         SetAnimation(MonsterState.Attack);
         AttackOn();
-        yield return new WaitForSeconds(0.5f);
-        nowAttack = false;
+        yield return new WaitForSeconds(1.0f); //애니메이션 재생시간
         AttackOff();
+        yield return new WaitForSeconds(attackDelay- 1.0f);
+        nowAttack = false;
     }
 
 

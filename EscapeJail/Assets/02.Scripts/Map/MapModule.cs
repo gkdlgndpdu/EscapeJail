@@ -29,7 +29,7 @@ public class MapModule : MonoBehaviour
     private float heightDistance;
     private bool isStartModule = false;
     private bool isPositioningComplete = false;
-    private float eachModuleDistance = 1.5f;
+    private float eachModuleDistance = 1.28f;
 
     //컴포넌트
     public BoxCollider2D boxcollider2D;
@@ -133,7 +133,7 @@ public class MapModule : MonoBehaviour
             if (spawnMonster != null && monsterList != null)
                 monsterList.Add(spawnMonster);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
         }
 
 
@@ -224,7 +224,7 @@ public class MapModule : MonoBehaviour
             //겹치는거 예외처리
             if (eachModuleDistance <= widthDistance * 2f)
             {
-                eachModuleDistance = widthDistance * 2f + 0.1f;
+                eachModuleDistance = widthDistance * 2f;
             }
 
             if (anotherModule != null)

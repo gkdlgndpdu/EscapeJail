@@ -13,7 +13,8 @@ namespace weapon
         WaterGun,
         AssaultRifle,
         PlayerWeaponEnd,
-        MouseGun
+        MouseGun,
+        AroundGun
     }
 
     public class Weapon
