@@ -170,7 +170,7 @@ public class MapModule : MonoBehaviour
 
 
         if (boxcollider2D != null)
-            boxcollider2D.size = new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance) - Vector2.one * 0.2f;
+            boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
     }
 

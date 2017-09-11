@@ -51,7 +51,9 @@ public class Tile : MonoBehaviour
         if (tileType == TileType.Wall)
         {
             collider = this.gameObject.AddComponent<BoxCollider2D>();
-            
+            collider.size = new Vector2(0.64f, 0.64f);
+
+
         }
 
         if (sprite != null)

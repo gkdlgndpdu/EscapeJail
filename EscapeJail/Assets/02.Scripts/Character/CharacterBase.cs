@@ -13,8 +13,7 @@ public class CharacterBase : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
 
     //값변수
-    [SerializeField]
-    protected float moveSpeed = 10f;
+    protected float moveSpeed = 5f;
     protected int hp = 0;
     protected int maxHp = 0;
 
@@ -68,7 +67,7 @@ public class CharacterBase : MonoBehaviour
         //컴포넌트
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();  
     }
 
     // Use this for initialization
@@ -192,11 +191,11 @@ public class CharacterBase : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = Vector3.right * h + Vector3.up * v;
-        // moveDir.Normalize();
+        moveDir.Normalize();
 
         //이동
         if (rb != null)
-            rb.velocity = moveDir * moveSpeed * Time.deltaTime;
+            rb.velocity = moveDir * moveSpeed;
 
         //애니메이션
         AnimControl(moveDir);
@@ -211,7 +210,7 @@ public class CharacterBase : MonoBehaviour
         Vector3 moveDir = JoyStick.Instance.MoveDir;
         //이동
         if (rb != null)
-            rb.velocity = moveDir * moveSpeed * Time.deltaTime;
+            rb.velocity = moveDir * moveSpeed;
         //애니메이션
         AnimControl(moveDir);
     }

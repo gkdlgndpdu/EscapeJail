@@ -50,17 +50,7 @@ public class Custom_Grid : MonoBehaviour
                 , new Vector3(gridMaxSize, (float)height * (float)(y - tileSize / 2), 0f));
         }
 
-        //for (float y = pos.y - 800.0f; y < pos.y + 800.0f; y += this.height)
-        //{
-        //    Gizmos.DrawLine(new Vector3(-10000f, Mathf.Floor(y / this.height) * height, 0f),
-        //        new Vector3(10000f, Mathf.Floor(y / this.height) * height, 0f));
-        //}
-
-        //for (float x = pos.x - 1200.0f; x < pos.x + 1200.0f; x += this.width)
-        //{
-        //    Gizmos.DrawLine(new Vector3(Mathf.Floor(x / this.width) * this.width, -10000f, 0.0f),
-        //        new Vector3(Mathf.Floor(x / this.width) * this.width, 10000f, 0.0f));
-        //}
+       
     }
 
     // Use this for initialization

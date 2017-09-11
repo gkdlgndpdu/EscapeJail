@@ -10,7 +10,7 @@ public class JoyStick : MonoBehaviour
     //
     public Image stickImage;
     public Image backImage;
-    public Image middleImage;
+   // public Image middleImage;
 
     private Vector3 originPos = Vector3.zero;
     //초기 위치
@@ -51,8 +51,8 @@ public class JoyStick : MonoBehaviour
 
         if(backImage!=null)
         stickRadius = backImage.rectTransform.sizeDelta.x;
-        if(middleImage!=null)
-        middleRadius = middleImage.rectTransform.sizeDelta.x;
+        //if(middleImage!=null)
+        //middleRadius = middleImage.rectTransform.sizeDelta.x;
 
     }
 
@@ -96,12 +96,12 @@ public class JoyStick : MonoBehaviour
                 {
                     stickImage.rectTransform.position = originPos + (moveDir * stickRadius);
                 }
-                else if (touchAreaRadius < middleRadius)
-                {
-                    stickImage.rectTransform.position = touch.position;
-                    moveDir = Vector3.zero;
-                    break;
-                }
+                //else if (touchAreaRadius < middleRadius)
+                //{
+                //    stickImage.rectTransform.position = touch.position;
+                //    moveDir = Vector3.zero;
+                //    break;
+                //}
                 else
                 {
                     stickImage.rectTransform.position = touch.position;
