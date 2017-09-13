@@ -4,14 +4,13 @@ using UnityEngine;
 using weapon;
 public class Soldier : CharacterBase
 {
-
-
+    
     private new void Awake()
     {
         base.Awake();
 
         hp = 200;
-        maxHp = 200;
+        hpMax = 200;
 
     
     }

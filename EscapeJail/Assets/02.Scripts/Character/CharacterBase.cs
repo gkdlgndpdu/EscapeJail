@@ -5,7 +5,7 @@ using System;
 using weapon;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : CharacterInfo
 {
     //컴포넌트    
     protected Rigidbody2D rb;
@@ -14,8 +14,8 @@ public class CharacterBase : MonoBehaviour
 
     //값변수
     protected float moveSpeed = 5f;
-    protected int hp = 0;
-    protected int maxHp = 0;
+    //protected int hp = 0;
+    //protected int maxHp = 0;
 
     //무기
     [SerializeField]
@@ -244,7 +244,7 @@ public class CharacterBase : MonoBehaviour
 
     }
 
-    public void GetDamage(int damage)
+    public override void GetDamage(int damage)
     {
         hp -= damage;
 
@@ -259,7 +259,7 @@ public class CharacterBase : MonoBehaviour
     protected void UIUpdate()
     {
         if (playerUI != null)
-            playerUI.SetHpBar(hp, maxHp);
+            playerUI.SetHpBar(hp, hpMax);
     }
 
     protected void DieAction()

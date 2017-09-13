@@ -43,6 +43,7 @@ public class Bazooka : Weapon
             bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1,damage);
             bullet.InitializeImage("white", false);
             bullet.SetEffectName("bazooka",3f);
+            bullet.SetExplosion(1f);
 
 
         }

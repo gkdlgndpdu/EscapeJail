@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/CoOpTankGame/Scenes/Menu.unity
-  isLoaded: 0
-  isActive: 0

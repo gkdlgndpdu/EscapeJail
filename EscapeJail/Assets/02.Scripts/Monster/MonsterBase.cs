@@ -21,7 +21,7 @@ public enum MonsterState
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : CharacterInfo
 
 {
     //대상 타겟
@@ -35,8 +35,8 @@ public class MonsterBase : MonoBehaviour
 
     //속성값 (속도,hp,mp etc...)
     protected MonsterName monsterName;
-    protected int hp = 1;
-    protected int hpMax = 1;
+    //protected int hp = 1;
+    //protected int hpMax = 1;
     protected int attackPower = 1;
     protected float moveSpeed = 1f;
     protected float nearestAcessDistance = 1f;
@@ -98,7 +98,8 @@ public class MonsterBase : MonoBehaviour
         SetUpCustomScript();
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
         this.gameObject.tag = "Enemy";
-  
+
+      
     }
 
     protected void SetUpComponent()
@@ -119,7 +120,8 @@ public class MonsterBase : MonoBehaviour
         if (target == null)
             target = GamePlayerManager.Instance.player.transform;
 
-        rb = GetComponent<Rigidbody2D>();     
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     protected void SetAttackPower(int power)
@@ -142,9 +144,10 @@ public class MonsterBase : MonoBehaviour
     {
         this.hp = hpMax;
         this.hpMax = hpMax;
+        UpdateHud();
     }
 
-    public void GetDamage(int damage)
+    public override void GetDamage(int damage)
     {
         this.hp -= damage;
         UpdateHud();

@@ -12,6 +12,7 @@ public class Mouse : MonsterBase
         nearestAcessDistance = 0.5f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
+
     }
 
     // Use this for initialization

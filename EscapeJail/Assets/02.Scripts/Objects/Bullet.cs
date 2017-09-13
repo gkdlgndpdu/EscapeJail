@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
         explosionType = ExplosionType.single;
     }
 
-    public void SetExplosion(int radius)
+    public void SetExplosion(float radius)
     {
         explosionType = ExplosionType.multiple;
         explosionRadius = radius;
@@ -121,42 +121,50 @@ public class Bullet : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
     }
 
-    private void Explosion()
+ 
+
+    private void SingleTargetDamage(Collider2D collision)
     {
+        //충돌여부는 layer collision matrix로 분리해놓음
+        if (collision.gameObject.CompareTag("Enemy") == true || collision.gameObject.CompareTag("Player"))
+        {
+            CharacterInfo characterInfo = collision.gameObject.GetComponent<CharacterInfo>();
+
+            if (characterInfo != null)
+                characterInfo.GetDamage(this.power);
+        }
+    }
+    
+    private void MultiTargetDamage()
+    {
+        int layerMask = MyUtils.GetLayerMaskByString("Enemy");
+        Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, explosionRadius, layerMask);
+        if (colls == null) return;
+
+        for(int i=0;i< colls.Length; i++)
+        {
+            CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
+            if (characterInfo != null)
+                characterInfo.GetDamage(power);
+        }
 
     }
 
     //다른 물체와의 충돌은 layer로 막아놓음
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
-        switch (bulletType)
+        switch (explosionType)
         {
-            case BulletType.PlayerBullet:
+            case ExplosionType.single:
                 {
-                    if (collision.gameObject.CompareTag("Enemy"))
-                    {
-                        MonsterBase monsterBase = collision.gameObject.GetComponent<MonsterBase>();
-                        if (monsterBase != null)
-                            monsterBase.GetDamage(this.power);
-                    }
-                }
-                break;
-            case BulletType.EnemyBullet:
+                    SingleTargetDamage(collision);
+                  
+                } break;
+            case ExplosionType.multiple:
                 {
-                    if (collision.gameObject.CompareTag("Player"))
-                    {
-                        CharacterBase characterBase = collision.gameObject.GetComponent<CharacterBase>();
-                        if (characterBase != null)
-                            characterBase.GetDamage(this.power);
-                    }
-                }
-                break;
+                    MultiTargetDamage();
+                } break;
         }
-
-
-   
         //이펙트 호출
         BulletDestroy();
     }
