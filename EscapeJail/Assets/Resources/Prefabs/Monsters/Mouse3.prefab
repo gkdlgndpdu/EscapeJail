@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 114686536396726246}
   - component: {fileID: 95365559807575154}
   - component: {fileID: 61020291091592466}
-  m_Layer: 10
+  m_Layer: 17
   m_Name: AttackObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

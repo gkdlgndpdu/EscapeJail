@@ -19,7 +19,7 @@ public class ExplosionEffect : MonoBehaviour
     /// </summary>
     /// <param name="effectName"></param>
     /// <param name="lifeTime"></param>
-    public void Initilaize(Vector3 startPos, string effectName, float lifeTime = 1,int size =1)
+    public void Initilaize(Vector3 startPos, string effectName, float lifeTime = 1,float size =1)
     {
         isEffectOff = false;
 

@@ -5,14 +5,14 @@ using UnityEngine;
 public class AttackObject : MonoBehaviour
 {
     private Animator animator;
+    private int power = 1;
+    //공격 2번 들어가는 예외사항 제외
+    private bool isAttackFinished = false;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
-    private int power = 1;
-    //공격 2번 들어가는 예외사항 제외
-    private bool isAttackFinished = false;
 
     public void Initialize(int power)
     {

@@ -98,7 +98,7 @@ public class MonsterBase : MonoBehaviour
         SetUpCustomScript();
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
         this.gameObject.tag = "Enemy";
-
+  
     }
 
     protected void SetUpComponent()
