@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c0b7f8e91843f9a4b95d13dc9de2b02d
-timeCreated: 1502115020
+timeCreated: 1505336543
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -97,7 +97,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -111,7 +111,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -125,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -139,7 +139,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -152,8 +152,8 @@ TextureImporter:
       name: mouse_idle_4
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
+        x: 0
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -166,8 +166,8 @@ TextureImporter:
       name: mouse_idle_5
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
+        x: 256
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -180,8 +180,8 @@ TextureImporter:
       name: mouse_idle_6
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 0
+        x: 512
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -194,8 +194,8 @@ TextureImporter:
       name: mouse_idle_7
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 0
+        x: 768
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -208,8 +208,8 @@ TextureImporter:
       name: mouse_idle_8
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 0
+        x: 0
+        y: 256
         width: 256
         height: 256
       alignment: 0
@@ -222,8 +222,8 @@ TextureImporter:
       name: mouse_idle_9
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 0
+        x: 256
+        y: 256
         width: 256
         height: 256
       alignment: 0

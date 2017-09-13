@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 61a501894146d0f409da60ec19e2c1f7
-timeCreated: 1505335243
+timeCreated: 1505336671
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -112,9 +112,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1788
-        width: 260
-        height: 260
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,10 +125,10 @@ TextureImporter:
       name: mouse_digging_1
       rect:
         serializedVersion: 2
-        x: 260
-        y: 1788
-        width: 260
-        height: 260
+        x: 256
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,10 +139,10 @@ TextureImporter:
       name: mouse_digging_2
       rect:
         serializedVersion: 2
-        x: 520
-        y: 1788
-        width: 260
-        height: 260
+        x: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: mouse_digging_3
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1788
-        width: 260
-        height: 260
+        x: 768
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,10 +167,10 @@ TextureImporter:
       name: mouse_digging_4
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 1788
-        width: 260
-        height: 260
+        x: 1024
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +181,10 @@ TextureImporter:
       name: mouse_digging_5
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 1788
-        width: 260
-        height: 260
+        x: 1280
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +195,10 @@ TextureImporter:
       name: mouse_digging_6
       rect:
         serializedVersion: 2
-        x: 1560
-        y: 1788
-        width: 260
-        height: 260
+        x: 1536
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +209,10 @@ TextureImporter:
       name: mouse_digging_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1528
-        width: 260
-        height: 260
+        x: 1792
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,10 +223,10 @@ TextureImporter:
       name: mouse_digging_8
       rect:
         serializedVersion: 2
-        x: 260
-        y: 1528
-        width: 260
-        height: 260
+        x: 0
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: mouse_digging_9
       rect:
         serializedVersion: 2
-        x: 520
-        y: 1528
-        width: 260
-        height: 260
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: mouse_digging_10
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1528
-        width: 260
-        height: 260
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,10 +265,10 @@ TextureImporter:
       name: mouse_digging_11
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 1528
-        width: 260
-        height: 260
+        x: 768
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,10 +279,10 @@ TextureImporter:
       name: mouse_digging_12
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 1528
-        width: 260
-        height: 260
+        x: 1024
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,10 +293,10 @@ TextureImporter:
       name: mouse_digging_13
       rect:
         serializedVersion: 2
-        x: 1560
-        y: 1528
-        width: 260
-        height: 260
+        x: 1280
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: mouse_digging_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1268
-        width: 260
-        height: 260
+        x: 1536
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +321,10 @@ TextureImporter:
       name: mouse_digging_15
       rect:
         serializedVersion: 2
-        x: 260
-        y: 1268
-        width: 260
-        height: 260
+        x: 1792
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,10 +335,10 @@ TextureImporter:
       name: mouse_digging_16
       rect:
         serializedVersion: 2
-        x: 520
-        y: 1268
-        width: 260
-        height: 260
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +349,10 @@ TextureImporter:
       name: mouse_digging_17
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1268
-        width: 260
-        height: 260
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,10 +363,10 @@ TextureImporter:
       name: mouse_digging_18
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 1268
-        width: 260
-        height: 260
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,10 +377,10 @@ TextureImporter:
       name: mouse_digging_19
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 1268
-        width: 260
-        height: 260
+        x: 768
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,10 +391,10 @@ TextureImporter:
       name: mouse_digging_20
       rect:
         serializedVersion: 2
-        x: 1560
-        y: 1268
-        width: 260
-        height: 260
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,10 +405,10 @@ TextureImporter:
       name: mouse_digging_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1008
-        width: 260
-        height: 260
+        x: 1280
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,10 +419,10 @@ TextureImporter:
       name: mouse_digging_22
       rect:
         serializedVersion: 2
-        x: 260
-        y: 1008
-        width: 260
-        height: 260
+        x: 1536
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,10 +433,10 @@ TextureImporter:
       name: mouse_digging_23
       rect:
         serializedVersion: 2
-        x: 520
-        y: 1008
-        width: 260
-        height: 260
+        x: 1792
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,10 +447,10 @@ TextureImporter:
       name: mouse_digging_24
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1008
-        width: 260
-        height: 260
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
