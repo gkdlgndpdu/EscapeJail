@@ -8,31 +8,21 @@ public enum MapState
     UnLock,
 }
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class MapModule : MonoBehaviour
-{
-    //상태
-    private MapState mapState = MapState.UnLock;
-    private bool isClear = false;
 
-    //저장소
-    public List<Tile> normalTileList;
-    public List<Tile> wallTileList;
-    public List<Tile> doorTileList;
+public class MapModule : MapModuleBase
+{
+    
+
     private List<MonsterBase> monsterList = new List<MonsterBase>();
 
     //속성
     private int SpawnMonsterNum =10;
     private int widthNum;
     private int heightNum;
-    private float widthDistance;
-    private float heightDistance;
-    private bool isStartModule = false;
-    private bool isPositioningComplete = false;
-    private float eachModuleDistance = 1.28f;
 
-    //컴포넌트
-    public BoxCollider2D boxcollider2D;
+    private bool isPositioningComplete = false;
+
+   
 
     void Awake()
     {
@@ -74,25 +64,10 @@ public class MapModule : MonoBehaviour
         this.normalTileList = normalTileList;
         this.wallTileList = wallTileList;
         this.doorTileList = doorTileList;
+   
     }
 
-    private void OpenDoor()
-    {
-        if (doorTileList == null) return;
-        for (int i = 0; i < doorTileList.Count; i++)
-        {
-            doorTileList[i].OpenDoor();
-        }
-    }
 
-    private void CloseDoor()
-    {
-        if (doorTileList == null) return;
-        for (int i = 0; i < doorTileList.Count; i++)
-        {
-            doorTileList[i].CloseDoor();
-        }
-    }
 
     public void StartWave()
     {
@@ -145,7 +120,7 @@ public class MapModule : MonoBehaviour
                 EndWave();
                 yield break;
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
     }
 
@@ -189,6 +164,7 @@ public class MapModule : MonoBehaviour
     {
         if (isPositioningComplete == false) return;
         if (normalTileList == null) return;
+        if (normalTileList.Count == 0) return;
 
         GameObject obj = MapManager.Instance.GetRandomObject();
         if (obj == null) return;
@@ -214,43 +190,7 @@ public class MapModule : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (isStartModule == true) return;
-        if (collision.CompareTag("MapModule"))
-        {
-            MapModule anotherModule = collision.gameObject.GetComponent<MapModule>();
-
-            //겹치는거 예외처리
-            if (eachModuleDistance <= widthDistance * 2f)
-            {
-                eachModuleDistance = widthDistance * 2f;
-            }
-
-            if (anotherModule != null)
-            {
-                MapManager.Instance.ResetMakeCount();
-
-                if (this.transform.position.x < collision.bounds.center.x)
-                {
-                    this.transform.position -= Vector3.right * eachModuleDistance;
-                }
-                else if (this.transform.position.x >= collision.bounds.center.x)
-                {
-                    this.transform.position += Vector3.right * eachModuleDistance;
-                }
-
-                if (this.transform.position.y < collision.bounds.center.y)
-                {
-                    this.transform.position -= Vector3.up * eachModuleDistance;
-                }
-                else if (this.transform.position.y >= collision.bounds.center.y)
-                {
-                    this.transform.position += Vector3.up * eachModuleDistance;
-                }
-            }
-        }
-    }
+ 
 
 
 }

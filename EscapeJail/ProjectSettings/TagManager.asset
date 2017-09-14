@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Enemy
   - MapModule
+  - Tile
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - MiniMapMask
   - DropItem
   - EnemyAttackObject
-  - 
+  - Tile
   - 
   - 
   - 

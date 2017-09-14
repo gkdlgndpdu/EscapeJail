@@ -32,10 +32,22 @@ public class Tile : MonoBehaviour
 
     public bool canSpawned = true;
         
+    public void SetIndex(int x,int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
  
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();      
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        SetLayerAndTag();
+    }
+
+    private void SetLayerAndTag()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Tile");
+        this.gameObject.tag = "Tile";
     }
 
     public void SetSprite(Sprite sprite)

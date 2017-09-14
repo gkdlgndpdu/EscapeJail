@@ -6,20 +6,32 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+    //싱글턴
+    public static MapManager Instance;
+
     [SerializeField]
     private Image maskImage;
     float alphaValue = 255f;
 
-    public static MapManager Instance;
     private List<MapModule> moduleList = new List<MapModule>();
     private List<GameObject> objectList = new List<GameObject>();
+
+
     private float mapMakeCount = 0;
+
+    //맵 생성기
+    private MapModuleGenerator mapModuleGenerator;
+
+    public Transform wallParent;
+
+
     void Awake()
     {
         if (Instance == null)
             Instance = this;
 
         LoadObject();
+        mapModuleGenerator = new MapModuleGenerator(this.transform);
     }
 
     private void LoadObject()
@@ -30,6 +42,7 @@ public class MapManager : MonoBehaviour
         if (objects != null)
         {
             if (objects.Length != 0)
+
             {
                 for(int i = 0; i < objects.Length; i++)
                 {
@@ -48,7 +61,16 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+
+        MakeMap(50);
+
         StartCoroutine(MapPositioningRoutine());
+    }
+
+    public void MakeMap(int roomNum)
+    {
+        if (mapModuleGenerator != null)
+            mapModuleGenerator.MakeMap(roomNum);
     }
 
     //맵이 아직 생성중일때
@@ -59,6 +81,7 @@ public class MapManager : MonoBehaviour
 
     IEnumerator MapPositioningRoutine()
     {
+        //맵 포지셔닝
         while (true)
         {
             mapMakeCount += Time.deltaTime;
@@ -70,12 +93,15 @@ public class MapManager : MonoBehaviour
             }
             yield return null;
         }
-        
-        
+
+        //벽 생성
+        if (mapModuleGenerator != null)
+            mapModuleGenerator.MakeWall(wallParent);
 
         PositioningComplete();
         CreateObjects();
     }
+
 
     private void CreateObjects()
     {

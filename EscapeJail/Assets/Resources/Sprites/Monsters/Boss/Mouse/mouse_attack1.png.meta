@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: db91e5addd3b92146a279a0118f749bf
-timeCreated: 1505331926
+timeCreated: 1505381044
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,7 +98,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -112,7 +112,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -126,7 +126,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -153,8 +153,8 @@ TextureImporter:
       name: mouse_attack1_4
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
+        x: 0
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -167,8 +167,8 @@ TextureImporter:
       name: mouse_attack1_5
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 0
+        x: 256
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -181,8 +181,8 @@ TextureImporter:
       name: mouse_attack1_6
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 0
+        x: 512
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -195,8 +195,8 @@ TextureImporter:
       name: mouse_attack1_7
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 0
+        x: 768
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -209,8 +209,8 @@ TextureImporter:
       name: mouse_attack1_8
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 0
+        x: 0
+        y: 256
         width: 256
         height: 256
       alignment: 0
@@ -223,8 +223,8 @@ TextureImporter:
       name: mouse_attack1_9
       rect:
         serializedVersion: 2
-        x: 2304
-        y: 0
+        x: 256
+        y: 256
         width: 256
         height: 256
       alignment: 0
@@ -237,8 +237,8 @@ TextureImporter:
       name: mouse_attack1_10
       rect:
         serializedVersion: 2
-        x: 2560
-        y: 0
+        x: 512
+        y: 256
         width: 256
         height: 256
       alignment: 0

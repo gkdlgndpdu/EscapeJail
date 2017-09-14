@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapModuleGenerator : MonoBehaviour
+public class MapModuleGenerator
 {
-    //임시
-    [SerializeField]
+    private Transform moduleParent;
+
     private GameObject normalTile;
-    [SerializeField]
     private GameObject moduleObject;
 
     //타일 사이즈
     private float widthDistance = 0.64f;
     private float heightDistance = 0.64f;
 
-    public List<Color> RandomColor;
+    private List<Color> RandomColor;
 
     private int doorSize = 4;
 
@@ -30,6 +29,18 @@ public class MapModuleGenerator : MonoBehaviour
     private Sprite doorSprite;
 
 
+    //벽만들때 필요
+    public List<Tile> everyWallList;
+
+    public MapModuleGenerator(Transform moduleParent)
+    {
+        normalTile = Resources.Load("Prefabs/Maps/MapObjects/tile") as GameObject;
+        moduleObject = Resources.Load("Prefabs/Maps/MapObjects/MapModule") as GameObject;
+        this.moduleParent = moduleParent;
+     
+
+        Initialize();
+    }
 
     private void ResetLists()
     {
@@ -39,16 +50,78 @@ public class MapModuleGenerator : MonoBehaviour
         doorTileList = new List<Tile>();
     }
 
-    private void Awake()
+    private void Initialize()
     {
         normalTileList = new List<Tile>();
         wallTileList = new List<Tile>();
         doorTileList = new List<Tile>();
         tileSpriteList = new List<Sprite>();
+        everyWallList = new List<Tile>();
+
+        //임시
+        RandomColor = new List<Color>();
+        RandomColor.Add(Color.red);
+        RandomColor.Add(Color.yellow);
+        RandomColor.Add(Color.green);
+
 
         LoadTileSprites();
 
     }
+
+    public void MakeWall(Transform parent=null)
+    {
+        if (everyWallList == null) return;    
+        
+        everyWallList.Sort((a, b) =>
+        {
+            return (a.transform.position.x.CompareTo(b.transform.position.x));               
+        });
+
+        float minX = everyWallList[0].transform.position.x;      
+        float maxX = everyWallList[everyWallList.Count-1].transform.position.x;
+
+        everyWallList.Sort((a, b) =>
+        {
+            return (a.transform.position.y.CompareTo(b.transform.position.y));          
+        });
+
+        float minY = everyWallList[0].transform.position.y;
+        float maxY = everyWallList[everyWallList.Count - 1].transform.position.y;
+
+        float width = maxX - minX;
+        float height = maxY - minY;
+
+        float offSetX = minX +width/2;
+        float offSetY = minY +height/2;
+
+        int widthNum = (int)(width / widthDistance) +8;
+        int heightNum = (int)(height / heightDistance) +8;
+
+
+        for (int x = 0; x < widthNum; x++)
+        {
+            for (int y = 0; y < heightNum; y++)
+            {
+                if (y == 0 || y == heightNum - 1 || x == 0 || x == widthNum - 1)
+                {
+                    Vector3 posit = new Vector3((float)(-widthNum / 2 + x) * widthDistance+offSetX,
+                                          (float)(-heightNum / 2 + y) * heightDistance+offSetY,
+                                          0f);
+                    //일반벽   
+                    Tile tile;
+                    tile = MakeTile(TileType.Wall, posit, x, y, parent);
+                    if (wallSprite != null)
+                        tile.SetSprite(wallSprite);
+                    SetTileColor(tile, Color.white);
+                }
+            }
+        }
+
+
+
+    }
+
 
     private void LoadTileSprites()
     {
@@ -84,23 +157,23 @@ public class MapModuleGenerator : MonoBehaviour
         return tileSpriteList[Random.Range(0, tileSpriteList.Count)];
     }
 
-    private void Start()
-    {
-        MakeMap(5);
-    }
 
-
-
-
-    private void MakeMap(int RoomNum)
+    public void MakeMap(int RoomNum)
     {
         //센터
         GenerateBaseMap(10, 10, Vector3.zero, true);
 
+        int minsize = GameConstants.MinMapModuleSize;
+        int maxSize = GameConstants.MaxMapModuleSize;
+
         for (int i = 0; i < RoomNum; i++)
         {
-            //     GenerateBaseMap(Random.Range(10, 20), Random.Range(10, 20), new Vector3((float)Random.Range(1, 30)*0.64f, (float)Random.Range(1, 30) * 0.64f, 0));
-            GenerateBaseMap(25,25, new Vector3((float)Random.Range(1, 30) * 0.64f, (float)Random.Range(1, 30) * 0.64f, 0));
+            GenerateBaseMap
+                (
+                Random.Range(minsize, maxSize),  //x크기
+                Random.Range(minsize, maxSize),  //y크기
+                new Vector3((float)Random.Range(-15, 15) * 0.64f, (float)Random.Range(-15, 15) * 0.64f, 0) //초기 생성 좌표
+                );
 
         }
     }
@@ -137,7 +210,7 @@ public class MapModuleGenerator : MonoBehaviour
 
         #region MakeModule
         //모듈 생성
-        GameObject obj = Instantiate(moduleObject, modulePosit, Quaternion.identity, this.transform);
+        GameObject obj = GameObject.Instantiate(moduleObject, modulePosit, Quaternion.identity, moduleParent);
         MapModule module = null;
         if (obj != null)
             module = obj.GetComponent<MapModule>();
@@ -165,47 +238,58 @@ public class MapModuleGenerator : MonoBehaviour
                     //위쪽문
                     if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == heightNum - 1)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, module);
+                        tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
                         tile.OpenDoor();
                     }
                     //아래쪽문
                     else if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == 0)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, module);
+                        tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
                         tile.OpenDoor();
                     }
                     //왼쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == 0)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, module);
+                        tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
                         tile.OpenDoor();
                     }
                     //오쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     {
-                        tile = MakeTile(TileType.Door, posit, module.transform, module);                        
+                        tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
                         tile.OpenDoor();
                     }
                     //일반벽
                     else
                     {
-                        tile = MakeTile(TileType.Wall, posit, module.transform);
+                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform);
 
-                        if(wallSprite!=null)
-                        tile.SetSprite(wallSprite);
+                        if (wallSprite != null)
+                            tile.SetSprite(wallSprite);
+                        
+                        //LeftTop
+                        if(x==0&&y==heightNum-1)
+                            everyWallList.Add(tile);
+                        //RightTop
+                        else if (x == widthNum-1 && y == heightNum - 1)
+                            everyWallList.Add(tile);
+                        //LeftBottom
+                        else if(x==0&&y==0)
+                            everyWallList.Add(tile);
+                        //RightBottom
+                        else if (x == widthNum - 1 && y == 0)
+                            everyWallList.Add(tile);
+
 
                         SetTileColor(tile, Color.white);
                     }
 
 
-
-                    // 벽중에서도 도어 리스트
-
                 }
                 //노말타일
                 else
                 {
-                    Tile tile = MakeTile(TileType.Normal, posit, module.transform);
+                    Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform);
                     SetTileColor(tile, RandomColor[Random.Range(0, RandomColor.Count)]);
 
 
@@ -228,9 +312,9 @@ public class MapModuleGenerator : MonoBehaviour
 
     }
 
-    private Tile MakeTile(TileType type, Vector3 posit, Transform parent, MapModule parentModule = null)
+    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null)
     {
-        GameObject obj = Instantiate(normalTile, parent);
+        GameObject obj = GameObject.Instantiate(normalTile, parent);
         obj.transform.position = posit;
         if (obj == null) return null;
 
@@ -238,7 +322,7 @@ public class MapModuleGenerator : MonoBehaviour
         tile = obj.GetComponent<Tile>();
         if (tile == null) return null;
         tile.Initialize(type, GetRandomTileSprite(), parentModule);
-
+        tile.SetIndex(x, y);
         switch (type)
         {
             case TileType.Normal:
