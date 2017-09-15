@@ -14,9 +14,9 @@ public class MapModuleBase : MonoBehaviour
 
 
     //저장소
-    public List<Tile> normalTileList;
-    public List<Tile> wallTileList;
-    public List<Tile> doorTileList;
+    protected List<Tile> normalTileList;
+    protected List<Tile> wallTileList;
+    protected List<Tile> doorTileList;
 
     protected bool isStartModule = false;
     protected float widthDistance;

@@ -17,3 +17,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7f8ebbc213d19448a5cca5746390371, type: 3}
   spriteWall: {fileID: 21300000, guid: eee22e7ec2d08f548b750019d4d86c98, type: 3}
   spriteDoor: {fileID: 0}
+  BossModule: {fileID: 1217453920022170, guid: c7b4a442083650c4aa83a25fb1360169, type: 2}
+  RoomNum: 10
+  RoomMaxSize: 20
+  RoomMinSize: 30

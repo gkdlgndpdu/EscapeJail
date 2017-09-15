@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DoorDirection
+{
+    Default,
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+
 public class BossModule : MapModuleBase
 {
-  
+    public DoorDirection doorDirection;
+
+    public BossBase bossBase;
 
     private void Awake()
     {
@@ -19,5 +31,12 @@ public class BossModule : MapModuleBase
                 tiles[i].transform.gameObject.AddComponent<BoxCollider2D>();
                 
         }
+
+        bossBase = GetComponentInChildren<BossBase>();
+    }
+
+    protected new void OnTriggerStay2D(Collider2D collision)
+    {
+
     }
 }

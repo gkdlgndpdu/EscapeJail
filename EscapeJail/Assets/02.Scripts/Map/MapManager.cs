@@ -24,6 +24,8 @@ public class MapManager : MonoBehaviour
 
     public Transform wallParent;
 
+    //생성정보
+    private StageData stageData;
 
     void Awake()
     {
@@ -32,6 +34,8 @@ public class MapManager : MonoBehaviour
 
         LoadObject();
         mapModuleGenerator = new MapModuleGenerator(this.transform);
+
+        stageData = GameOption.Instance.StageData;
     }
 
     private void LoadObject()
@@ -61,16 +65,16 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-
-        MakeMap(50);
+    
+        MakeMap(stageData);
 
         StartCoroutine(MapPositioningRoutine());
     }
 
-    public void MakeMap(int roomNum)
+    public void MakeMap(StageData stageData)
     {
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeMap(roomNum);
+            mapModuleGenerator.MakeMap(stageData);
     }
 
     //맵이 아직 생성중일때

@@ -73,6 +73,8 @@ public class MapModuleGenerator
     {
         if (everyWallList == null) return;    
         
+
+        //X최대 최소
         everyWallList.Sort((a, b) =>
         {
             return (a.transform.position.x.CompareTo(b.transform.position.x));               
@@ -81,6 +83,8 @@ public class MapModuleGenerator
         float minX = everyWallList[0].transform.position.x;      
         float maxX = everyWallList[everyWallList.Count-1].transform.position.x;
 
+
+        //Y최대 최소
         everyWallList.Sort((a, b) =>
         {
             return (a.transform.position.y.CompareTo(b.transform.position.y));          
@@ -158,15 +162,17 @@ public class MapModuleGenerator
     }
 
 
-    public void MakeMap(int RoomNum)
+    public void MakeMap(StageData stageData)
     {
+        if (stageData == null) return;
+
         //센터
         GenerateBaseMap(10, 10, Vector3.zero, true);
 
-        int minsize = GameConstants.MinMapModuleSize;
-        int maxSize = GameConstants.MaxMapModuleSize;
+        int minsize = stageData.RoomMinSize;
+        int maxSize = stageData.RoomMaxSize;
 
-        for (int i = 0; i < RoomNum; i++)
+        for (int i = 0; i < stageData.RoomNum; i++)
         {
             GenerateBaseMap
                 (

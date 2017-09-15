@@ -5,5 +5,9 @@ using UnityEngine;
 public class BossBase : CharacterInfo
 {
 
+    public void StartBossPattern()
+    {
+
+    }
 	
 }

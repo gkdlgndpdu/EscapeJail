@@ -6,8 +6,7 @@ public class StageData : ScriptableObject
 {
     #region Monster
     //몬스터 관련 
-    public List<MonsterName> spawnEnemyList;
- 
+    public List<MonsterName> spawnEnemyList; 
     #endregion
     #region Tile
     //타일 관련
@@ -41,4 +40,11 @@ public class StageData : ScriptableObject
         return spriteDoor;
     }
     #endregion
+    #region Map
+    public GameObject BossModule;
+    public int RoomNum;
+    public int RoomMaxSize;
+    public int RoomMinSize;
+    #endregion
+
 }

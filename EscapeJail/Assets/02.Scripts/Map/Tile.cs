@@ -10,14 +10,6 @@ public enum TileType
     Object
 }
 
-public enum DoorDirection
-{
-    Default,
-    Up,
-    Down,
-    Left,
-    Right
-}
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Tile : MonoBehaviour
