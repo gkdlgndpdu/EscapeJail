@@ -70,12 +70,12 @@ public class MonsterBase : CharacterInfo
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     protected void AddToList()
     {
-        MonsterManager.Instance.AddToList(this);
+        MonsterManager.Instance.AddToList(this.gameObject);
     }
 
     protected void DeleteInList()
     {
-        MonsterManager.Instance.DeleteInList(this);
+        MonsterManager.Instance.DeleteInList(this.gameObject);
     }
 
     protected void OnDisable()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager Instance;
-    private List<MonsterBase> monsterList;
+    private List<GameObject> monsterList;
 
 
     private void Awake()
@@ -13,22 +13,22 @@ public class MonsterManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
 
-        monsterList = new List<MonsterBase>();
+        monsterList = new List<GameObject>();
     }
 
-    public void AddToList(MonsterBase monster)
+    public void AddToList(GameObject monster)
     {
         if (monsterList == null) return;
         monsterList.Add(monster);
     }
-    public void DeleteInList(MonsterBase monster)
+    public void DeleteInList(GameObject monster)
     {
         if (monsterList == null) return;
         monsterList.Remove(monster);
     }
 
     //인자 현재 플레이어 위치 , null체크 필요
-    public MonsterBase GetNearestMonsterPos(Vector3 playerPosit)
+    public GameObject GetNearestMonsterPos(Vector3 playerPosit)
     {
         if (monsterList == null) return null;
         if (monsterList.Count == 0) return null;

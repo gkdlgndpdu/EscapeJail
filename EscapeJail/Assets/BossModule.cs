@@ -35,6 +35,15 @@ public class BossModule : MapModuleBase
         bossBase = GetComponentInChildren<BossBase>();
     }
 
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (bossBase != null)
+                bossBase.StartBossPattern();
+        }
+    }
+
     protected new void OnTriggerStay2D(Collider2D collision)
     {
 

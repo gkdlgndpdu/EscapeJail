@@ -100,7 +100,7 @@ public class CharacterBase : CharacterInfo
 
     public void FireWeapon()
     {
-        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+        GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
         if (nearEnemy != null && weaponHandler != null)
         {
@@ -119,7 +119,7 @@ public class CharacterBase : CharacterInfo
 
     private void RotateWeapon()
     {
-        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+        GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         if (nearEnemy != null)
             RotateWeapon(nearEnemy.transform.position);
         else
@@ -130,7 +130,7 @@ public class CharacterBase : CharacterInfo
 
     protected void HandleNowWeapon()
     {
-        MonsterBase nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+        GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
 #if UNITY_EDITOR
         //발사
