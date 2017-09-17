@@ -247,7 +247,7 @@ public class CharacterBase : CharacterInfo
     public override void GetDamage(int damage)
     {
         hp -= damage;
-
+        Debug.Log(hp);
         UIUpdate();
 
         if (hp <= 0)
