@@ -19,6 +19,9 @@ public class MouseBoss : BossBase
     private float digPatternLastTime = 5f;
     private float digPatternAttackSpeed = 0.5f;
     private float idleLastTime = 3f;
+
+    //인스펙터에서 할당
+    public List<Transform> moveList;
     private enum Actions
     {
         Dig,
@@ -31,8 +34,7 @@ public class MouseBoss : BossBase
     public enum Pattern
     {
         Idle,
-        DigPattern,
-        RushPattern,
+        DigPattern, 
         FirePattern
     }
 
@@ -94,10 +96,8 @@ public class MouseBoss : BossBase
 
         Debug.Log("BossPatternStart");
 
-          Action(Actions.Dig);
-       // StartFirePattern();
-
-
+         Action(Actions.Dig);
+        // StartFirePattern();
     }
 
     //애니메이션에 호출 연결되어있음
@@ -110,7 +110,7 @@ public class MouseBoss : BossBase
     public void StartFirePattern()
     {
         StartCoroutine(BossPattern(Pattern.FirePattern));
-    }
+    } 
 
     private void HideOn()
     {
@@ -120,7 +120,6 @@ public class MouseBoss : BossBase
         if (spriteRenderer != null)
             spriteRenderer.enabled = false;
 
-
     }
     private void HideOff()
     {
@@ -129,9 +128,18 @@ public class MouseBoss : BossBase
 
         if (spriteRenderer != null)
             spriteRenderer.enabled = true;
+
+        TeleportToRandomPosit();
     }
 
- 
+    private void TeleportToRandomPosit()
+    {
+        if (moveList == null) return;
+        if (moveList.Count == 0) return;
+        this.transform.position = moveList[Random.Range(0, moveList.Count)].position;
+    }
+
+
     public IEnumerator BossPattern(Pattern pattern)
     {
         float patternCount = 0f;
@@ -157,6 +165,13 @@ public class MouseBoss : BossBase
                                 MouseHand mouseHand = mouseHandPool.GetItem();
                                 mouseHand.transform.position = RandomTile.transform.position + Vector3.up * 0.35f;
                             }
+
+                            if (mouseHandPool != null)
+                            {
+                                MouseHand mouseHand = mouseHandPool.GetItem();
+                                Vector3 playerPosit = GamePlayerManager.Instance.player.transform.position;
+                                mouseHand.transform.position = new Vector3(Random.Range(-0.7f, 0.7f), Random.Range(-0.7f, 0.7f), 0f) + playerPosit + Vector3.up * 0.35f;
+                            }
                         }
                         patternCount += digPatternAttackSpeed;
 
@@ -173,8 +188,12 @@ public class MouseBoss : BossBase
                 }
                 break;
             #endregion
+            #region FirePattern
             case Pattern.FirePattern:
                 {
+                    //잠시 딜레이
+                    yield return new WaitForSeconds(1.5f);
+
                     for (int i = 0; i < 10; i++)
                     {
                         for (int j = 0; j < 36; j++)
@@ -196,18 +215,13 @@ public class MouseBoss : BossBase
                                 bullet.SetEffectName("revolver");
                             }
                         }
-                       yield return new WaitForSeconds(0.7f);
+                        yield return new WaitForSeconds(0.7f);
                     }
 
                     Action(Actions.Dig);
                 }
                 break;
-            case Pattern.RushPattern:
-                {
-
-                }
-                break;
-
+            #endregion
         }
 
         //랜덤패턴 실행

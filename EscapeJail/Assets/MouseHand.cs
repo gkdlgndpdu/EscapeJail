@@ -10,7 +10,9 @@ public class MouseHand : MonoBehaviour
     private Animator animator;
     private BoxCollider2D boxCollider;
     private float originAnimSpeed;
-    private float delay = 1f;
+    private float delay = 0.7f;
+
+    private bool isFirstCreate = true;
 
     public void Awake()
     {
@@ -21,8 +23,7 @@ public class MouseHand : MonoBehaviour
         {
             originAnimSpeed = animator.speed;   
         }
-
-        HandOff();
+      
     }
 
     private void HandOn()
@@ -45,7 +46,10 @@ public class MouseHand : MonoBehaviour
 
     public void OnEnable()
     {
+        if(isFirstCreate==false)
         Invoke("HandOn", delay);
+
+        isFirstCreate = false;
     }
 
     public void OnDisable()
@@ -53,6 +57,7 @@ public class MouseHand : MonoBehaviour
         HandOff();
     }
 
+    //애니메이션에 연결됨
     public void HandAnimationEnd()
     {
         this.gameObject.SetActive(false);
