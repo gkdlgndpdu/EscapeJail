@@ -9,10 +9,6 @@ public class MapManager : MonoBehaviour
     //싱글턴
     public static MapManager Instance;
 
-    [SerializeField]
-    private Image maskImage;
-    float alphaValue = 255f;
-
     private List<MapModule> moduleList = new List<MapModule>();
     private List<GameObject> objectList = new List<GameObject>();
 
@@ -101,6 +97,11 @@ public class MapManager : MonoBehaviour
         //벽 생성
         if (mapModuleGenerator != null)
             mapModuleGenerator.MakeWall(wallParent);
+
+        //보스 모듈 생성
+
+        if (mapModuleGenerator != null)
+            mapModuleGenerator.MakeBossModule(wallParent);
 
         PositioningComplete();
         CreateObjects();

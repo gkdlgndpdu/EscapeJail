@@ -17,10 +17,13 @@ public class BossModule : MapModuleBase
     public DoorDirection doorDirection;
 
     public BossBase bossBase;
+    public int widthNum;
+    public int heightNum;
 
     private void Awake()
     {
         normalTileList = new List<Tile>();
+        doorTileList = new List<Tile>();
 
         Tile[] tiles = GetComponentsInChildren<Tile>();
         for(int i = 0; i < tiles.Length; i++)
@@ -29,7 +32,8 @@ public class BossModule : MapModuleBase
                 normalTileList.Add(tiles[i]);
             else if (tiles[i].tileType == TileType.Wall)
                 tiles[i].transform.gameObject.AddComponent<BoxCollider2D>();
-                
+            else if (tiles[i].tileType == TileType.Door)
+                doorTileList.Add(tiles[i]);
         }
 
         bossBase = GetComponentInChildren<BossBase>();
@@ -41,11 +45,11 @@ public class BossModule : MapModuleBase
         {
             if (bossBase != null)
                 bossBase.StartBossPattern();
+
+            CloseDoor();
         }
-    }
+    }     
 
-    protected new void OnTriggerStay2D(Collider2D collision)
-    {
-
-    }
+  
 }
+

@@ -5,8 +5,6 @@ using UnityEngine;
 using weapon;
 public class Mouse2 : MonsterBase
 {
-
-
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;
@@ -37,6 +35,8 @@ public class Mouse2 : MonsterBase
     protected new void OnEnable()
     {
         base.OnEnable();
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(true);
         StartCoroutine(TempFireRoutine());
     }
 

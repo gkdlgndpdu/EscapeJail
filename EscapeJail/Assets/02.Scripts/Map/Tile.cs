@@ -17,23 +17,29 @@ public class Tile : MonoBehaviour
     public TileType tileType;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
-    private MapModule parentModule=null;
+    private MapModule parentModule = null;
 
     public int x;
     public int y;
 
     public bool canSpawned = true;
-        
-    public void SetIndex(int x,int y)
+
+    public void SetIndex(int x, int y)
     {
         this.x = x;
         this.y = y;
     }
- 
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetLayerAndTag();
+
+    }
+
+    private void Start()
+    {
+        OpenDoor();
     }
 
     private void SetLayerAndTag()
@@ -47,17 +53,15 @@ public class Tile : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.sprite = sprite;
 
-       
+
     }
 
-    public void Initialize(TileType tileType, Sprite sprite=null,MapModule parentModule =null)
+    public void Initialize(TileType tileType, Sprite sprite = null, MapModule parentModule = null)
     {
         if (tileType == TileType.Wall)
         {
             collider = this.gameObject.AddComponent<BoxCollider2D>();
             collider.size = new Vector2(0.64f, 0.64f);
-
-
         }
 
         if (sprite != null)
@@ -67,30 +71,46 @@ public class Tile : MonoBehaviour
         {
             this.parentModule = parentModule;
             collider = this.gameObject.AddComponent<BoxCollider2D>();
-           
+
             OpenDoor();
-        }    
+        }
         this.tileType = tileType;
 
     }
 
+
     public void OpenDoor()
     {
-        if (collider == null) return; 
-        collider.enabled = false;
+        if (tileType != TileType.Door) return;
+        if (collider == null)
+            collider = GetComponent<BoxCollider2D>();
 
-        //열리는 애니메이션
-        ChangeColor(Color.green);
+
+        if (collider != null)
+        {
+            collider.enabled = false;
+
+            //열리는 애니메이션
+            ChangeColor(Color.green);
+        }
+
     }
 
     public void CloseDoor()
     {
-        if (collider == null) return;
-        collider.enabled = true;
+        if (tileType != TileType.Door) return;
+        if (collider == null)
+            collider = GetComponent<BoxCollider2D>();
 
-        //닫히는 애니메이션 
-        ChangeColor(Color.red);
- 
+
+        if (collider != null)
+        {
+            collider.enabled = true;
+
+            //닫히는 애니메이션 
+            ChangeColor(Color.red);
+        }
+
     }
 
     public void ChangeColor(Color color)

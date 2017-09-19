@@ -6,7 +6,8 @@ public class StageData : ScriptableObject
 {
     #region Monster
     //몬스터 관련 
-    public List<MonsterName> spawnEnemyList; 
+    public List<MonsterName> spawnEnemyList;
+    public GameObject bossModule;
     #endregion
     #region Tile
     //타일 관련

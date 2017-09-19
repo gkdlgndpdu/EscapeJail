@@ -22,7 +22,7 @@ public class MapModuleBase : MonoBehaviour
             return normalTileList;
         }
     }
-    protected List<Tile> wallTileList;
+    protected List<Tile> wallTileList; 
     protected List<Tile> doorTileList;
 
     protected bool isStartModule = false;

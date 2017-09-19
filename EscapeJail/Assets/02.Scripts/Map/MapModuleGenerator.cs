@@ -8,7 +8,7 @@ public class MapModuleGenerator
 
     private GameObject normalTile;
     private GameObject moduleObject;
-
+    
     //타일 사이즈
     private float widthDistance = 0.64f;
     private float heightDistance = 0.64f;
@@ -22,6 +22,7 @@ public class MapModuleGenerator
     private List<Tile> normalTileList;
     private List<Tile> wallTileList;
     private List<Tile> doorTileList;
+    private List<Tile> bossMakableList;
 
     //타일 이미지 풀
     private List<Sprite> tileSpriteList;
@@ -37,7 +38,7 @@ public class MapModuleGenerator
         normalTile = Resources.Load("Prefabs/Maps/MapObjects/tile") as GameObject;
         moduleObject = Resources.Load("Prefabs/Maps/MapObjects/MapModule") as GameObject;
         this.moduleParent = moduleParent;
-     
+   
 
         Initialize();
     }
@@ -57,7 +58,7 @@ public class MapModuleGenerator
         doorTileList = new List<Tile>();
         tileSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
-
+        bossMakableList = new List<Tile>();
         //임시
         RandomColor = new List<Color>();
         RandomColor.Add(Color.red);
@@ -96,8 +97,8 @@ public class MapModuleGenerator
         float width = maxX - minX;
         float height = maxY - minY;
 
-        float offSetX = minX +width/2;
-        float offSetY = minY +height/2;
+        float offSetX = minX +width/2f;
+        float offSetY = minY +height/2f;
 
         int widthNum = (int)(width / widthDistance) +8;
         int heightNum = (int)(height / heightDistance) +8;
@@ -118,12 +119,56 @@ public class MapModuleGenerator
                     if (wallSprite != null)
                         tile.SetSprite(wallSprite);
                     SetTileColor(tile, Color.white);
+
+                    //위쪽문
+                    if (x >= widthNum / 2  && y == heightNum -1)
+                    {
+                        bossMakableList.Add(tile);
+                    }
+                    ////아래쪽문
+                    //else if (x >= widthNum / 2  / 2 && x < widthNum / 2  / 2 && y == 0)
+                    //{
+                   
+                    //}
+                    ////왼쪽문
+                    //else if (y >= heightNum / 2 / 2 && y < heightNum / 2  / 2 && x == 0)
+                    //{
+            
+                    //}
+                    ////오쪽문
+                    //else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
+                    //{
+                      
+                    //}
+
+
+            
+
+
+
                 }
             }
         }
 
 
 
+    }
+
+    public void MakeBossModule(Transform moduleParent)
+    {
+        if (bossMakableList == null) return;
+        if (bossMakableList.Count == 0) return;
+
+        BossModule bossModuleObject = GameOption.Instance.StageData.bossModule.GetComponent<BossModule>();
+        if (bossModuleObject == null) return;
+
+
+        //보스 문방향이 down
+        Vector3 SpawnPosit = bossMakableList[0].transform.position+Vector3.right*0.64f/2f+Vector3.up*0.64f/2f+ Vector3.up*(bossModuleObject.heightNum/2-1)*0.64f;
+
+        GameObject.Instantiate(bossModuleObject, SpawnPosit,Quaternion.identity);
+            
+        Debug.Log("wd");
     }
 
 
@@ -245,25 +290,21 @@ public class MapModuleGenerator
                     if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == heightNum - 1)
                     {
                         tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
-                        tile.OpenDoor();
                     }
                     //아래쪽문
                     else if (x >= widthNum / 2 - doorSize / 2 && x < widthNum / 2 + doorSize / 2 && y == 0)
                     {
                         tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
-                        tile.OpenDoor();
                     }
                     //왼쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == 0)
                     {
                         tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
-                        tile.OpenDoor();
                     }
                     //오쪽문
                     else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     {
                         tile = MakeTile(TileType.Door, posit, x, y, module.transform, module);
-                        tile.OpenDoor();
                     }
                     //일반벽
                     else
