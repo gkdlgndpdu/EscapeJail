@@ -38,6 +38,17 @@ public class MouseBoss : BossBase
         FirePattern
     }
 
+    public override void GetDamage(int damage)
+    {
+        hp -= damage;
+        Debug.Log(hp);
+        //자식에서 구현!
+        if (bosshpBar != null)
+            bosshpBar.UpdateBar(hp, hpMax);
+
+    }
+
+
     private void Action(Actions action)
     {
         switch (action)
@@ -76,7 +87,11 @@ public class MouseBoss : BossBase
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        SetHp(100);
     }
+   
+    
 
     private void LoadPrefab()
     {
@@ -91,6 +106,7 @@ public class MouseBoss : BossBase
 
     public override void StartBossPattern()
     {
+        base.StartBossPattern();
         if (isPatternStart == true) return;
         isPatternStart = true;
 

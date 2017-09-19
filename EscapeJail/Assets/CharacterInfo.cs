@@ -12,6 +12,12 @@ public class CharacterInfo : MonoBehaviour
     {
         //자식에서 구현!
     }
+
+    protected void SetHp(int hp)
+    {
+        this.hp = hp;
+        hpMax = hp;
+    }
   
 
 }

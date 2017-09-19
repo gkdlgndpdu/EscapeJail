@@ -7,10 +7,13 @@ public class BossBase : CharacterInfo
     protected bool isPatternStart = false;
     [SerializeField]
     protected BossModule bossModule;
-    public virtual  void StartBossPattern()
+    [SerializeField]
+    protected BossHpBar bosshpBar;
+
+    //나머지는 자식에서 구현
+    public virtual void StartBossPattern()
     {
-      
-   
+        SetUiOnOff(true);
     }
 
     protected void AddToList()
@@ -30,7 +33,16 @@ public class BossBase : CharacterInfo
 
     protected void Start()
     {
-        AddToList();   
+        AddToList();
+        SetUiOnOff(false);
+
+
+    }
+
+    protected void SetUiOnOff(bool OnOff)
+    {
+        if (bosshpBar != null)
+            bosshpBar.gameObject.SetActive(OnOff);
     }
 
     protected void Awake()
