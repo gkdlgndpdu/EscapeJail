@@ -81,6 +81,7 @@ public class MonsterBase : CharacterInfo
     protected void OnDisable()
     {
         DeleteInList();
+        StopAllCoroutines();
     }
 
     protected void OnEnable()
