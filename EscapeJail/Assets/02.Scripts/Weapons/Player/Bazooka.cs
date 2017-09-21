@@ -21,9 +21,6 @@ public class Bazooka : Weapon
         weaponScale = Vector3.one * 3;
         relativePosition = new Vector3(-0.3f, 0f, 0f);
 
-
-
-
     }
 
     public override void FireBullet(Vector3 firePos, Vector3 fireDirection)

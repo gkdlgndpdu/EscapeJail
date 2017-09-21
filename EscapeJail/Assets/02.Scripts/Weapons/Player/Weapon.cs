@@ -13,6 +13,7 @@ namespace weapon
         WaterGun,
         AssaultRifle,
         Bazooka,
+        LightSaber,
         PlayerWeaponEnd,
         MouseGun,
         AroundGun

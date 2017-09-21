@@ -29,6 +29,9 @@ public class MapModuleGenerator
     private Sprite wallSprite;
     private Sprite doorSprite;
 
+    //모듈 리스트
+    private List<MapModuleBase> moduleList;
+
 
     //벽만들때 필요
     public List<Tile> everyWallList;
@@ -59,6 +62,7 @@ public class MapModuleGenerator
         tileSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
+        moduleList = new List<MapModuleBase>();
         //임시
         RandomColor = new List<Color>();
         RandomColor.Add(Color.red);
@@ -150,8 +154,6 @@ public class MapModuleGenerator
             }
         }
 
-
-
     }
 
     public void MakeBossModule(Transform moduleParent)
@@ -162,6 +164,8 @@ public class MapModuleGenerator
         BossModule bossModuleObject = GameOption.Instance.StageData.bossModule.GetComponent<BossModule>();
         if (bossModuleObject == null) return;
 
+        if (moduleList != null)
+            moduleList.Add(bossModuleObject);
 
         //보스 문방향이 down
         Vector3 SpawnPosit = bossMakableList[0].transform.position+Vector3.right*0.64f/2f+Vector3.up*0.64f/2f+ Vector3.up*(bossModuleObject.heightNum/2-1)*0.64f;
@@ -169,6 +173,17 @@ public class MapModuleGenerator
         GameObject.Instantiate(bossModuleObject, SpawnPosit,Quaternion.identity);
             
         Debug.Log("wd");
+    }
+
+    public void DeleteNowMap()
+    {
+        if (moduleList == null) return;
+
+        for(int i=0;i< moduleList.Count; i++)
+        {
+            GameObject.Destroy(moduleList[i].gameObject);
+        }
+        moduleList.Clear();
     }
 
 
@@ -269,6 +284,8 @@ public class MapModuleGenerator
         if (module == null) return;
         module.Initialize(widthNum, heightNum, widthDistance, heightDistance, isStartModule);
 
+        if(moduleList!=null)
+        moduleList.Add(module);
         #endregion
 
         #region TileMaking

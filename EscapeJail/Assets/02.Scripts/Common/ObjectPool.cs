@@ -38,6 +38,19 @@ public class ObjectPool<T> where T : Component
         }
     }
 
+    public void ReleasePool()
+    {
+        if (objectPool == null) return;
+
+        for(int i=0;i< objectPool.Count; i++)
+        {
+            GameObject.Destroy(objectPool[i]);
+        }
+
+        objectPool.Clear();
+        objectPool = null;
+    }
+
     /// <summary>
     /// 리턴값 null체크 필요,SetActive(true)로 반환
     /// </summary>

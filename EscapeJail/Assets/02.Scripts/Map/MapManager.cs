@@ -105,6 +105,11 @@ public class MapManager : MonoBehaviour
 
         PositioningComplete();
         CreateObjects();
+
+
+
+        if (mapModuleGenerator != null)
+            mapModuleGenerator.DeleteNowMap();
     }
 
 

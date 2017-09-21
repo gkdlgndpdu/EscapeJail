@@ -18,9 +18,16 @@ public class MonsterPool
         Initialize();
     }
 
-    ~MonsterPool()
+    public void ReleaseMonsterPool()
     {
+        if (pool == null) return;
 
+        foreach(KeyValuePair<MonsterName,ObjectPool<MonsterBase>> data in pool)
+        {
+            data.Value.ReleasePool();
+        }
+        pool.Clear();
+        pool = null;
     }
 
     public void Initialize()
