@@ -79,6 +79,7 @@ public class CharacterBase : CharacterInfo
     // Update is called once per frame
     protected void Update()
     {
+
         HandleNowWeapon();
 
 #if UNITY_EDITOR

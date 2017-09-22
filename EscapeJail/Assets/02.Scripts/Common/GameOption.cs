@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//모든 클래스중 가장먼저 호출(awake)
 public class GameOption : MonoBehaviour
 {
     public static GameOption Instance;
@@ -40,8 +42,5 @@ public class GameOption : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+	
 }

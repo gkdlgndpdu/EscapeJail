@@ -17,8 +17,8 @@ public class Soldier : CharacterBase
     // Use this for initialization
     private new void Start()
     {
-         AddWeapon(new AssaultRifle());
-        //AddWeapon(new LightSaber());
+      //  AddWeapon(new Bazooka());
+        AddWeapon(new Revolver());
 
         UIUpdate();
     }

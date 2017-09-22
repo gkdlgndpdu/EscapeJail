@@ -9,7 +9,7 @@ public class ItemSpawner : MonoBehaviour
     private GameObject dropItemPrefab;
 
     private List<WeaponType> spawnedWeaponList;
-
+    private List<GameObject> spawnedObjectList;
     private void Awake()
     {
         if (Instance == null)
@@ -19,6 +19,7 @@ public class ItemSpawner : MonoBehaviour
         LoadPrefab();
 
         spawnedWeaponList = new List<WeaponType>();
+        spawnedObjectList = new List<GameObject>();
     }
     private void LoadPrefab()
     {
@@ -27,6 +28,7 @@ public class ItemSpawner : MonoBehaviour
             dropItemPrefab = obj;
     }
 
+    //무기 중복생성 방지
     private bool isWeaponSpawned(WeaponType weaponType)
     {
         if (spawnedWeaponList == null) return true;
@@ -48,41 +50,27 @@ public class ItemSpawner : MonoBehaviour
         //중복체크 및 중복아니면 리스트에 추가
         if (isWeaponSpawned(RandomWeapon) == true) return;
 
-
-
         if (dropItemPrefab == null) return;
         GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
         if (obj == null) return;
         DropItem item = obj.GetComponent<DropItem>();
         if (item == null) return;
 
-
-
-
-
         item.SetItemToWeapon(RandomWeapon);
+
+        if (spawnedObjectList != null)
+            spawnedObjectList.Add(item.gameObject);
     }
 
-    public void Update()
+    public void DestroyAllItems()
     {
+        if (spawnedObjectList == null) return;
 
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    SpawnWeapon(GamePlayerManager.Instance.player.transform.position, WeaponType.Revolver);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    SpawnWeapon(GamePlayerManager.Instance.player.transform.position, WeaponType.ShotGun);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    SpawnWeapon(GamePlayerManager.Instance.player.transform.position, WeaponType.AssaultRifle);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    SpawnWeapon(GamePlayerManager.Instance.player.transform.position, WeaponType.WaterGun);
-        //}
+        for(int i=0;i< spawnedObjectList.Count; i++)
+        {
+            GameObject.Destroy(spawnedObjectList[i].gameObject);
+        }
     }
+
+ 
 }

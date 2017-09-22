@@ -6,45 +6,35 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
-    //싱글턴
-    public static MapManager Instance;
-
-    private List<MapModule> moduleList = new List<MapModule>();
-    private List<GameObject> objectList = new List<GameObject>();
-
+    private List<MapModule> moduleList;
+    private List<GameObject> objectList;
 
     private float mapMakeCount = 0;
 
     //맵 생성기
     private MapModuleGenerator mapModuleGenerator;
 
-    public Transform wallParent;
 
-    //생성정보
-    private StageData stageData;
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-
         LoadObject();
-        mapModuleGenerator = new MapModuleGenerator(this.transform);
 
-        stageData = GameOption.Instance.StageData;
     }
 
     private void LoadObject()
     {
+        objectList = new List<GameObject>();
+
         if (objectList == null) return;
         GameObject[] objects = Resources.LoadAll<GameObject>("Prefabs/Articles/");
-        
+
         if (objects != null)
         {
             if (objects.Length != 0)
 
             {
-                for(int i = 0; i < objects.Length; i++)
+                for (int i = 0; i < objects.Length; i++)
                 {
                     objectList.Add(objects[i]);
                 }
@@ -59,24 +49,25 @@ public class MapManager : MonoBehaviour
         return objectList[(Random.Range(0, objectList.Count))];
     }
 
-    void Start()
-    {
-    
-        MakeMap(stageData);
-
-        StartCoroutine(MapPositioningRoutine());
-    }
 
     public void MakeMap(StageData stageData)
     {
+        mapModuleGenerator = new MapModuleGenerator(this.transform, this);
+
+        moduleList = new List<MapModule>();
+
+        ResetMakeCount();
+
         if (mapModuleGenerator != null)
             mapModuleGenerator.MakeMap(stageData);
+
+        StartCoroutine(MapPositioningRoutine());
     }
 
     //맵이 아직 생성중일때
     public void ResetMakeCount()
     {
-        mapMakeCount = 0f;   
+        mapMakeCount = 0f;
     }
 
     IEnumerator MapPositioningRoutine()
@@ -85,7 +76,7 @@ public class MapManager : MonoBehaviour
         while (true)
         {
             mapMakeCount += Time.deltaTime;
-     
+
             if (mapMakeCount > 3.0f)
             {
                 Debug.Log("Positioning Complete");
@@ -94,29 +85,51 @@ public class MapManager : MonoBehaviour
             yield return null;
         }
 
+        MakeWallAndBossModule();
+        PositioningComplete();
+        CreateObjects();
+
+    }
+
+    public void DestroyEveryMapModule()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+            Destroy(transform.GetChild(i).gameObject);
+
+        if (moduleList != null)
+        {
+            moduleList.Clear();
+            moduleList = null;
+        }
+        if (objectList != null)
+        {
+            objectList.Clear();
+            objectList = null;
+        }
+
+        mapModuleGenerator = null;
+
+        System.GC.Collect();
+
+    }
+
+    private void MakeWallAndBossModule()
+    {
         //벽 생성
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeWall(wallParent);
+            mapModuleGenerator.MakeWall(this.transform);
 
         //보스 모듈 생성
 
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeBossModule(wallParent);
-
-        PositioningComplete();
-        CreateObjects();
-
-
-
-        if (mapModuleGenerator != null)
-            mapModuleGenerator.DeleteNowMap();
+            mapModuleGenerator.MakeBossModule(this.transform);
     }
 
 
     private void CreateObjects()
     {
         if (moduleList == null) return;
-        for(int i =0; i < moduleList.Count; i++)
+        for (int i = 0; i < moduleList.Count; i++)
         {
             moduleList[i].MakeObjects();
         }

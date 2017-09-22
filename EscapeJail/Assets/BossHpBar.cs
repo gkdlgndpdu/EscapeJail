@@ -12,7 +12,7 @@ public class BossHpBar : MonoBehaviour
     {
         if (hpBar != null)
             hpBar.fillAmount = min / max;
-
+        
     }
 	
 }

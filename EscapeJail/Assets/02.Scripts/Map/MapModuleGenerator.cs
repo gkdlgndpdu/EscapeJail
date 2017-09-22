@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MapModuleGenerator
 {
+    private MapManager mapManager;
+
     private Transform moduleParent;
 
     private GameObject normalTile;
     private GameObject moduleObject;
-    
+
     //타일 사이즈
     private float widthDistance = 0.64f;
     private float heightDistance = 0.64f;
@@ -34,14 +36,15 @@ public class MapModuleGenerator
 
 
     //벽만들때 필요
+    //현재 모듈들의 모서리 벽부분(보스룸 생성에 정보가 필요함)
     public List<Tile> everyWallList;
 
-    public MapModuleGenerator(Transform moduleParent)
+    public MapModuleGenerator(Transform moduleParent, MapManager mapManager)
     {
         normalTile = Resources.Load("Prefabs/Maps/MapObjects/tile") as GameObject;
         moduleObject = Resources.Load("Prefabs/Maps/MapObjects/MapModule") as GameObject;
         this.moduleParent = moduleParent;
-   
+        this.mapManager = mapManager;
 
         Initialize();
     }
@@ -55,14 +58,12 @@ public class MapModuleGenerator
     }
 
     private void Initialize()
-    {
-        normalTileList = new List<Tile>();
-        wallTileList = new List<Tile>();
-        doorTileList = new List<Tile>();
+    {     
         tileSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
         moduleList = new List<MapModuleBase>();
+
         //임시
         RandomColor = new List<Color>();
         RandomColor.Add(Color.red);
@@ -74,25 +75,25 @@ public class MapModuleGenerator
 
     }
 
-    public void MakeWall(Transform parent=null)
+    public void MakeWall(Transform parent = null)
     {
-        if (everyWallList == null) return;    
-        
+        if (everyWallList == null) return;
+
 
         //X최대 최소
         everyWallList.Sort((a, b) =>
         {
-            return (a.transform.position.x.CompareTo(b.transform.position.x));               
+            return (a.transform.position.x.CompareTo(b.transform.position.x));
         });
 
-        float minX = everyWallList[0].transform.position.x;      
-        float maxX = everyWallList[everyWallList.Count-1].transform.position.x;
+        float minX = everyWallList[0].transform.position.x;
+        float maxX = everyWallList[everyWallList.Count - 1].transform.position.x;
 
 
         //Y최대 최소
         everyWallList.Sort((a, b) =>
         {
-            return (a.transform.position.y.CompareTo(b.transform.position.y));          
+            return (a.transform.position.y.CompareTo(b.transform.position.y));
         });
 
         float minY = everyWallList[0].transform.position.y;
@@ -101,11 +102,11 @@ public class MapModuleGenerator
         float width = maxX - minX;
         float height = maxY - minY;
 
-        float offSetX = minX +width/2f;
-        float offSetY = minY +height/2f;
+        float offSetX = minX + width / 2f;
+        float offSetY = minY + height / 2f;
 
-        int widthNum = (int)(width / widthDistance) +8;
-        int heightNum = (int)(height / heightDistance) +8;
+        int widthNum = (int)(width / widthDistance) + 8;
+        int heightNum = (int)(height / heightDistance) + 8;
 
 
         for (int x = 0; x < widthNum; x++)
@@ -114,8 +115,8 @@ public class MapModuleGenerator
             {
                 if (y == 0 || y == heightNum - 1 || x == 0 || x == widthNum - 1)
                 {
-                    Vector3 posit = new Vector3((float)(-widthNum / 2 + x) * widthDistance+offSetX,
-                                          (float)(-heightNum / 2 + y) * heightDistance+offSetY,
+                    Vector3 posit = new Vector3((float)(-widthNum / 2 + x) * widthDistance + offSetX,
+                                          (float)(-heightNum / 2 + y) * heightDistance + offSetY,
                                           0f);
                     //일반벽   
                     Tile tile;
@@ -125,31 +126,25 @@ public class MapModuleGenerator
                     SetTileColor(tile, Color.white);
 
                     //위쪽문
-                    if (x >= widthNum / 2  && y == heightNum -1)
+                    if (x >= widthNum / 2 && y == heightNum - 1)
                     {
                         bossMakableList.Add(tile);
                     }
                     ////아래쪽문
                     //else if (x >= widthNum / 2  / 2 && x < widthNum / 2  / 2 && y == 0)
                     //{
-                   
+
                     //}
                     ////왼쪽문
                     //else if (y >= heightNum / 2 / 2 && y < heightNum / 2  / 2 && x == 0)
                     //{
-            
+
                     //}
                     ////오쪽문
                     //else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     //{
-                      
-                    //}
 
-
-            
-
-
-
+                    //}              
                 }
             }
         }
@@ -164,27 +159,20 @@ public class MapModuleGenerator
         BossModule bossModuleObject = GameOption.Instance.StageData.bossModule.GetComponent<BossModule>();
         if (bossModuleObject == null) return;
 
-        if (moduleList != null)
-            moduleList.Add(bossModuleObject);
+
 
         //보스 문방향이 down
-        Vector3 SpawnPosit = bossMakableList[0].transform.position+Vector3.right*0.64f/2f+Vector3.up*0.64f/2f+ Vector3.up*(bossModuleObject.heightNum/2-1)*0.64f;
+        Vector3 SpawnPosit = bossMakableList[0].transform.position + Vector3.right * 0.64f / 2f + Vector3.up * 0.64f / 2f + Vector3.up * (bossModuleObject.heightNum / 2 - 1) * 0.64f;
 
-        GameObject.Instantiate(bossModuleObject, SpawnPosit,Quaternion.identity);
-            
+        BossModule module = GameObject.Instantiate(bossModuleObject, SpawnPosit, Quaternion.identity, moduleParent);
+
+        if (moduleList != null)
+            moduleList.Add(module);
+
         Debug.Log("wd");
     }
 
-    public void DeleteNowMap()
-    {
-        if (moduleList == null) return;
-
-        for(int i=0;i< moduleList.Count; i++)
-        {
-            GameObject.Destroy(moduleList[i].gameObject);
-        }
-        moduleList.Clear();
-    }
+   
 
 
     private void LoadTileSprites()
@@ -282,10 +270,10 @@ public class MapModuleGenerator
             module = obj.GetComponent<MapModule>();
 
         if (module == null) return;
-        module.Initialize(widthNum, heightNum, widthDistance, heightDistance, isStartModule);
+        module.Initialize(widthNum, heightNum, widthDistance, heightDistance, isStartModule, mapManager);
 
-        if(moduleList!=null)
-        moduleList.Add(module);
+        if (moduleList != null)
+            moduleList.Add(module);
         #endregion
 
         #region TileMaking
@@ -330,15 +318,15 @@ public class MapModuleGenerator
 
                         if (wallSprite != null)
                             tile.SetSprite(wallSprite);
-                        
+
                         //LeftTop
-                        if(x==0&&y==heightNum-1)
+                        if (x == 0 && y == heightNum - 1)
                             everyWallList.Add(tile);
                         //RightTop
-                        else if (x == widthNum-1 && y == heightNum - 1)
+                        else if (x == widthNum - 1 && y == heightNum - 1)
                             everyWallList.Add(tile);
                         //LeftBottom
-                        else if(x==0&&y==0)
+                        else if (x == 0 && y == 0)
                             everyWallList.Add(tile);
                         //RightBottom
                         else if (x == widthNum - 1 && y == 0)

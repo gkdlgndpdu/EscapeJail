@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MapModuleBase : MonoBehaviour
 {
+    //관리받게될 매니저
+    protected MapManager mapManager;
+
     //컴포넌트
     public BoxCollider2D boxcollider2D;
 
@@ -22,7 +25,7 @@ public class MapModuleBase : MonoBehaviour
             return normalTileList;
         }
     }
-    protected List<Tile> wallTileList; 
+    protected List<Tile> wallTileList;
     protected List<Tile> doorTileList;
 
     protected bool isStartModule = false;
@@ -64,7 +67,8 @@ public class MapModuleBase : MonoBehaviour
 
             if (anotherModule != null)
             {
-                MapManager.Instance.ResetMakeCount();
+                if (mapManager != null)
+                    mapManager.ResetMakeCount();
 
                 if (this.transform.position.x < collision.bounds.center.x)
                 {

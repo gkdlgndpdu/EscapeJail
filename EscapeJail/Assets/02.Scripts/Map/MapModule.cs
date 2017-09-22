@@ -11,25 +11,29 @@ public enum MapState
 
 public class MapModule : MapModuleBase
 {
-    
+
 
     private List<MonsterBase> monsterList = new List<MonsterBase>();
 
     //속성
-    private int SpawnMonsterNum =10;
+    private int SpawnMonsterNum = 10;
     private int widthNum;
     private int heightNum;
 
     private bool isPositioningComplete = false;
 
-   
+    public void OnDisable()
+    {
+        monsterList = null;
+    }
+
 
     void Awake()
     {
         boxcollider2D = GetComponent<BoxCollider2D>();
     }
 
-    public void Initialize(int widthNum, int heightNum, float widthDistance, float heightDistance, bool isStartModule)
+    public void Initialize(int widthNum, int heightNum, float widthDistance, float heightDistance, bool isStartModule, MapManager mapManager)
     {
         this.widthNum = widthNum;
         this.heightNum = heightNum;
@@ -43,7 +47,10 @@ public class MapModule : MapModuleBase
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
         }
 
-        MapManager.Instance.AddToModuleList(this);
+        this.mapManager = mapManager;
+
+        if (mapManager != null)
+            mapManager.AddToModuleList(this);
     }
 
     private bool IsWaveEnd()
@@ -64,7 +71,7 @@ public class MapModule : MapModuleBase
         this.normalTileList = normalTileList;
         this.wallTileList = wallTileList;
         this.doorTileList = doorTileList;
-   
+
     }
 
 
@@ -165,8 +172,11 @@ public class MapModule : MapModuleBase
         if (isPositioningComplete == false) return;
         if (normalTileList == null) return;
         if (normalTileList.Count == 0) return;
+        if (mapManager == null) return;
 
-        GameObject obj = MapManager.Instance.GetRandomObject();
+
+        GameObject obj = mapManager.GetRandomObject();
+
         if (obj == null) return;
 
         for (int i = 0; i < 10; i++)
@@ -181,7 +191,8 @@ public class MapModule : MapModuleBase
             else
             {
                 targetTile.canSpawned = true;
-                GameObject.Instantiate(obj, targetTile.transform);
+                GameObject article = GameObject.Instantiate(obj, targetTile.transform);        
+
                 return;
             }
         }
@@ -190,7 +201,7 @@ public class MapModule : MapModuleBase
 
     }
 
- 
+
 
 
 }

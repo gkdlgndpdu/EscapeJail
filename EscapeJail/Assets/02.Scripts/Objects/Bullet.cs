@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
 
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1,float lifeTime = 100f)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1,float lifeTime = 5f)
     {
         //위치
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
@@ -64,15 +64,26 @@ public class Bullet : MonoBehaviour
         //애니메이션불렛 유무
         if (animator != null)
             animator.runtimeAnimatorController = null;
-
-        //지속시간
-        if (lifeTime != 100f)
-        {
-            Invoke("BulletDestroy", lifeTime);
-        }
+       
+        this.lifeTime = lifeTime;
 
         //폭발 타입
         explosionType = ExplosionType.single;
+    }
+    private void nDisable()
+    {
+        expireCount = 0f;
+    }
+
+
+    float expireCount = 0f;
+    public void Update()
+    {
+        expireCount += Time.deltaTime;
+        if (expireCount >= lifeTime)
+        {
+            BulletDestroy();
+        }
     }
 
     public void SetExplosion(float radius)
@@ -109,11 +120,6 @@ public class Bullet : MonoBehaviour
         }
 
 
-    }
-
-    public void SetBulletLifeTime(float lifeTime)
-    {
-        Invoke("BulletDestroy", lifeTime);
     }
 
     private void SetLayer(BulletType bulletType)
@@ -173,6 +179,7 @@ public class Bullet : MonoBehaviour
 
     private void BulletDestroy()
     {
+        expireCount = 0f;
         ShowEffect();
         this.gameObject.SetActive(false);
     }
