@@ -13,9 +13,7 @@ public class MapModuleGenerator
 
     //타일 사이즈
     private float widthDistance = 0.64f;
-    private float heightDistance = 0.64f;
-
-    private List<Color> RandomColor;
+    private float heightDistance = 0.64f;   
 
     private int doorSize = 4;
 
@@ -63,12 +61,6 @@ public class MapModuleGenerator
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
         moduleList = new List<MapModuleBase>();
-
-        //임시
-        RandomColor = new List<Color>();
-        RandomColor.Add(Color.red);
-        RandomColor.Add(Color.yellow);
-        RandomColor.Add(Color.green);
 
 
         LoadTileSprites();
@@ -335,15 +327,12 @@ public class MapModuleGenerator
 
                         SetTileColor(tile, Color.white);
                     }
-
-
                 }
                 //노말타일
                 else
                 {
                     Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform);
-                    SetTileColor(tile, RandomColor[Random.Range(0, RandomColor.Count)]);
-
+                    SetTileColor(tile, GameOption.Instance.StageData.GetRandomTileColor());
 
                 }
 

@@ -14,7 +14,7 @@ public class StagerController : MonoBehaviour
 
     private void Awake()
     {
-        stageData = GameOption.Instance.StageData;
+       
     }
 
     //맵,오브젝트,몬스터풀정도 삭제
@@ -36,6 +36,7 @@ public class StagerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Insert))
         {
+            stageData = GameOption.Instance.StageData;
             mapManager.MakeMap(stageData);
         }
         if (Input.GetKeyDown(KeyCode.Delete))

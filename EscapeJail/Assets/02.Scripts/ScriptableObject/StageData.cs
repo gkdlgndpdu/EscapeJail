@@ -17,6 +17,8 @@ public class StageData : ScriptableObject
     private Sprite spriteWall;
     [SerializeField]
     private Sprite spriteDoor;
+    [SerializeField]
+    private List<Color> randomTileColor;
 
     public Sprite GetRandomNormalTile()
     {
@@ -39,6 +41,14 @@ public class StageData : ScriptableObject
     {
         if (spriteDoor == null) return null;
         return spriteDoor;
+    }
+
+    public Color GetRandomTileColor()
+    {
+        if (randomTileColor == null) return Color.white;
+
+        return randomTileColor[Random.Range(0, randomTileColor.Count)];
+
     }
     #endregion
     #region Map

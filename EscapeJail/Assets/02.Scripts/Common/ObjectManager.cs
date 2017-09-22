@@ -28,6 +28,7 @@ public class ObjectManager : MonoBehaviour
             Instance = this;
 
         MakePool();
+            
     }
 
     private void MakePool()

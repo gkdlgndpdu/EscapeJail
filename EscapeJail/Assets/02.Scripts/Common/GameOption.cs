@@ -27,20 +27,24 @@ public class GameOption : MonoBehaviour
         Application.targetFrameRate = 60;
 
         LoadstageData();
-    }
+    } 
 
-    private void LoadstageData()
+    public void LoadstageData()
     {
       Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
         if (obj != null)
             stageData = (StageData)obj;
+
+        nowStageLevel++;
     }
-    // Use this for initialization
-    void Start ()
+
+    private void Update()
     {
-		
-	}
-	
-	// Update is called once per frame
-	
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            LoadstageData();
+        }
+    }
+
+
 }
