@@ -5,8 +5,9 @@ using UnityEngine;
 public class BossBase : CharacterInfo
 {
     protected bool isPatternStart = false;
-    [SerializeField]
+ 
     protected BossModule bossModule;
+
     [SerializeField]
     protected BossHpBar bosshpBar;
 
@@ -47,7 +48,16 @@ public class BossBase : CharacterInfo
 
     protected void Awake()
     {
+        bossModule = GetComponentInParent<BossModule>();     
 
+
+    }
+
+    protected void BossDie()
+    {
+        StagerController.Instance.DestroyThisStage();
+        StagerController.Instance.CreateNextStage();
+        GamePlayerManager.Instance.ResetPlayerPosit();
     }
 
 

@@ -77,7 +77,7 @@ public class MapManager : MonoBehaviour
         {
             mapMakeCount += Time.deltaTime;
 
-            if (mapMakeCount > 3.0f)
+            if (mapMakeCount > 1.0f)
             {
                 Debug.Log("Positioning Complete");
                 break;
@@ -99,17 +99,12 @@ public class MapManager : MonoBehaviour
         if (moduleList != null)
         {
             moduleList.Clear();
-            moduleList = null;
-        }
-        if (objectList != null)
-        {
-            objectList.Clear();
-            objectList = null;
-        }
+         
+        }   
 
         mapModuleGenerator = null;
 
-        System.GC.Collect();
+    
 
     }
 

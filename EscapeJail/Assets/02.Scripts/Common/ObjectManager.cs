@@ -44,8 +44,14 @@ public class ObjectManager : MonoBehaviour
         MakeMonsterPool();
 
     }
-    private void MakeMonsterPool()
+    public void MakeMonsterPool()
     {
+        if (monsterPool != null)
+        {
+            monsterPool.ReleaseMonsterPool();
+            monsterPool = null;
+        }
+
         StageData nowStageData = GameOption.Instance.StageData;
         monsterPool = new MonsterPool(MonsterParent, nowStageData);
     }

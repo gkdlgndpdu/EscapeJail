@@ -29,6 +29,12 @@ public class GamePlayerManager : MonoBehaviour
         return GameObject.FindGameObjectWithTag("Player");
     }
 
+    public void ResetPlayerPosit()
+    {
+        if (player != null)
+            player.transform.position = Vector3.zero;
+    }
+
 
 
 }

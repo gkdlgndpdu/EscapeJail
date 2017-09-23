@@ -1,0 +1,8 @@
+ iTween.RotateBy(gameObject, iTween.Hash
+                (
+                "z", .25,
+                "easeType", "easeInOutBack", 
+                "delay", 0f,
+                "onComplete" , "End", 
+                "loopType", "pingPong",
+                "Time",0.2f));

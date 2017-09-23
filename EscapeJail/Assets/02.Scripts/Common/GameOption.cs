@@ -26,7 +26,7 @@ public class GameOption : MonoBehaviour
 
         Application.targetFrameRate = 60;
 
-        LoadstageData();
+    
     } 
 
     public void LoadstageData()
@@ -40,10 +40,7 @@ public class GameOption : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            LoadstageData();
-        }
+     
     }
 
 

@@ -41,10 +41,14 @@ public class MouseBoss : BossBase
     public override void GetDamage(int damage)
     {
         hp -= damage;
-        Debug.Log(hp);
+        Debug.Log("boss hp : "+hp);
         //자식에서 구현!
         if (bosshpBar != null)
             bosshpBar.UpdateBar(hp, hpMax);
+        if (hp <= 0)
+        {
+            BossDie();
+        }
 
     }
 
@@ -88,7 +92,7 @@ public class MouseBoss : BossBase
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        SetHp(100);
+        SetHp(10);
     }
    
     

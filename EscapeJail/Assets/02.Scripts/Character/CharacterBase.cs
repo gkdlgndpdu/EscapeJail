@@ -35,9 +35,6 @@ public class CharacterBase : CharacterInfo
     //인벤토리
     protected Inventory inventory;
 
-
-
-
     protected void Awake()
     {
         SetLayerAndTag();
@@ -82,10 +79,10 @@ public class CharacterBase : CharacterInfo
 
         HandleNowWeapon();
 
-#if UNITY_EDITOR
-        InputOnPc();
-#else
+#if UNITY_ANDROID
         MoveInMobie();
+#else
+         InputOnPc();
 #endif
 
     }
@@ -133,7 +130,7 @@ public class CharacterBase : CharacterInfo
     {
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
-#if UNITY_EDITOR
+
         //발사
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -144,7 +141,7 @@ public class CharacterBase : CharacterInfo
         {
             ChangeWeapon();
         }
-#endif
+
 
         RotateWeapon();
 

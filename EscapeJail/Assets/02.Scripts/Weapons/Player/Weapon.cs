@@ -19,6 +19,12 @@ namespace weapon
         AroundGun
     }
 
+    public enum AttackType
+    {
+        gun,
+        near
+    }
+
     public class Weapon
     {
         protected Animator animator;
