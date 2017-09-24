@@ -5,6 +5,8 @@ using UnityEngine;
 using weapon;
 
 
+//스프라이트 명과 동일
+
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -70,6 +72,11 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     }
 
+    public void SetItemToArmor()
+    {
+
+    }
+
 
 
 
@@ -102,6 +109,10 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
                 }
                 break;
+            case ItemType.Armor:
+                {
+
+                } break;
         }
     }
 

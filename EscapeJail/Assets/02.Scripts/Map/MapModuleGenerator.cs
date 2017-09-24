@@ -161,7 +161,7 @@ public class MapModuleGenerator
         if (moduleList != null)
             moduleList.Add(module);
 
-        Debug.Log("wd");
+
     }
 
    

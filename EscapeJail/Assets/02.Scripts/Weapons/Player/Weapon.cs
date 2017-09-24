@@ -25,12 +25,20 @@ namespace weapon
         near
     }
 
-    public class Weapon
+    public class Weapon : ItemBase
     {
         protected Animator animator;
+       
+    
 
-        public WeaponType weaponName;
-
+        protected AttackType attackType = AttackType.gun;
+        public AttackType AttackType
+        {
+            get
+            {
+                return attackType;
+            }
+        }
         protected float bulletSpeed = 0f;
 
         protected Color BulletColor = Color.yellow;
@@ -47,7 +55,10 @@ namespace weapon
         public Vector3 relativePosition = Vector3.zero;
 
         protected int damage = 1;
-
+        public Weapon()
+        {
+            itemType = ItemType.Weapon;
+        }
         public void Initialize(Animator animator)
         {
             this.animator = animator;

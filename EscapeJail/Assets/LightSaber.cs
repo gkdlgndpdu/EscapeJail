@@ -15,6 +15,7 @@ public class LightSaber : Weapon
         damage = 5;
         weaponScale = Vector3.one * 3;
         relativePosition = new Vector3(-0.65f, 0f, 0f);
+        attackType = AttackType.near;
     }
 
     public override void FireBullet(Vector3 firePos, Vector3 fireDirection)

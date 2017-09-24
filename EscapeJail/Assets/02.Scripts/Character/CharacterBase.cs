@@ -12,13 +12,21 @@ public class CharacterBase : CharacterInfo
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
+    
+
     //값변수
     protected float moveSpeed = 5f;
-    //protected int hp = 0;
-    //protected int maxHp = 0;
 
-    //무기
+    //무기 회전 관련
+    protected float weaponAngle = 0f;
+    protected bool nowWeaponRotate = false;
     [SerializeField]
+    protected WeaponRotator weaponRotator;
+   //protected int hp = 0;
+   //protected int maxHp = 0;
+
+   //무기
+   [SerializeField]
     protected WeaponHandler weaponHandler;
 
     //무기 장착 위치
@@ -39,6 +47,9 @@ public class CharacterBase : CharacterInfo
     {
         SetLayerAndTag();
         Initialize();
+
+        if(weaponRotator!=null&& weaponHandler!=null)
+        weaponHandler.SetWeaponRotateFunc(weaponRotator.RotateWeapon);
     }
 
     private void SetLayerAndTag()
@@ -105,18 +116,22 @@ public class CharacterBase : CharacterInfo
             Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
             weaponHandler.FireBullet(this.FirePos.position, fireDir);
 
-            //회전
+         
         }
         else if (nearEnemy == null)
         {
             Vector3 fireDir = Vector3.right;
             weaponHandler.FireBullet(this.FirePos.position, fireDir);
         }
+
+ 
     }
 
 
     private void RotateWeapon()
     {
+        if (weaponRotator.nowRotate == true) return;
+
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         if (nearEnemy != null)
             RotateWeapon(nearEnemy.transform.position);
@@ -135,6 +150,7 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireWeapon();
+            
         }
         //무기 변경
         if (Input.GetKeyDown(KeyCode.Q))
@@ -154,14 +170,16 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
+        if (nowWeaponRotate == true) return;
+
         Vector3 nearestEnemyPos = enemyPos;
-        float angle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
+        weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
         if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
+            weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
 
         //flip
-        if ((angle >= 0f && angle <= 90) ||
-              angle >= 270f && angle <= 360)
+        if ((weaponAngle >= 0f && weaponAngle <= 90) ||
+              weaponAngle >= 270f && weaponAngle <= 360)
         {
             if (weaponHandler != null)
             {
@@ -176,8 +194,21 @@ public class CharacterBase : CharacterInfo
                 weaponHandler.FlipWeapon(true);
                 FlipCharacter(false);
             }
-        }
+        }      
 
+    }
+
+    protected void NearWeaponRotate()
+    {
+        nowWeaponRotate = true;
+       
+    }
+
+    protected void NearWeaponRotateEnd()
+    {
+        Debug.Log("들어오냐?");
+        iTween.Stop(weaponPosit.gameObject);
+        nowWeaponRotate = false;
     }
 
     protected void MoveInPc()
@@ -245,7 +276,7 @@ public class CharacterBase : CharacterInfo
     public override void GetDamage(int damage)
     {
         hp -= damage;
-        Debug.Log(hp);
+     
         UIUpdate();
 
         if (hp <= 0)

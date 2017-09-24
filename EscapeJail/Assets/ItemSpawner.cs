@@ -44,7 +44,6 @@ public class ItemSpawner : MonoBehaviour
     }
     public void SpawnWeapon(Vector3 posit)
     {
-
         WeaponType RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
 
         //중복체크 및 중복아니면 리스트에 추가
@@ -60,6 +59,11 @@ public class ItemSpawner : MonoBehaviour
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
+    }
+
+    public void SpawnArmor(Vector3 posit)
+    {
+
     }
 
     public void DestroyAllItems()

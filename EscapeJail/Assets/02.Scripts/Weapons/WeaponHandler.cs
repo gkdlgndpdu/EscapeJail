@@ -20,6 +20,13 @@ public class WeaponHandler : MonoBehaviour
     private Vector3 originPosit;
     private bool isShake = false;
 
+    private System.Action weaponRotateFunc;
+
+    public void SetWeaponRotateFunc(System.Action action)
+    {
+        weaponRotateFunc = action;
+    }
+
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -80,6 +87,9 @@ public class WeaponHandler : MonoBehaviour
 
         if (animator != null)
             animator.speed = 1f;
+
+        if (nowWeapon.AttackType == AttackType.near && weaponRotateFunc != null)
+            weaponRotateFunc();
 
         nowWeapon.FireBullet(firePos, fireDirection);
 

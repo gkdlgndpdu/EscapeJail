@@ -4,10 +4,14 @@ using UnityEngine;
 using weapon;
 public class Inventory 
 {
+    private List<ItemBase> allItemList = new List<ItemBase>();
     private List<Weapon> weaponList = new List<Weapon>();
-    private int weaponIndex = -1;
-   
+    private int weaponIndex = -1;   
 
+    public Inventory()
+    {
+        
+    }
     public Weapon GetWeapon()
     {
         if (weaponList == null) return null;
@@ -26,6 +30,9 @@ public class Inventory
     {
         if (weaponList != null && weapon != null)
             weaponList.Add(weapon);
+
+        if (weapon != null && allItemList != null)
+            allItemList.Add(weapon);
     }
 
     ~Inventory()
