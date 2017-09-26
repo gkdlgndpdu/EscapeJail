@@ -147,12 +147,14 @@ public class CharacterBase : CharacterInfo
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
 
+#if UNITY_ANDROID
         //발사
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireWeapon();
 
         }
+#endif
         //무기 변경
         if (Input.GetKeyDown(KeyCode.Q))
         {

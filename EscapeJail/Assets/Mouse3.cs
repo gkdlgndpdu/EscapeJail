@@ -63,11 +63,17 @@ public class Mouse3 : MonsterBase
         yield return new WaitForSeconds(0.5f);
         AttackOn();
 
-        Vector3 RushDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
-        RushDir.Normalize();
+        for(int i = 0; i < 30; i++)
+        {
+            Vector3 RushDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
+            RushDir.Normalize();
 
-        if (rb != null)
-            rb.velocity = RushDir * RushPower;
+            if (rb != null)
+                rb.velocity = RushDir * RushPower;
+
+            yield return null;
+        }
+
        
 
         //후딜

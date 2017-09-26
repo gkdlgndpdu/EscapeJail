@@ -214,8 +214,7 @@ public class MonsterBase : CharacterInfo
     protected void MoveToTarget()
     {
         if (rb == null) return;
-
-        if(nowAttack==false)
+        
         rb.velocity = Vector3.zero;
 
         if (isActionStart == false) return;
