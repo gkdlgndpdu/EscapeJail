@@ -10,9 +10,26 @@ public class ItemSpawnPosit : MonoBehaviour
 
 
     private void Start()
-    {
+    { 
+     
         if (SpawnPosit != null)
-            ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+        {
+            ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);
+            switch (itemType)
+            {
+                case ItemType.Weapon:
+                    {
+                        ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+                    }
+                    break;
+                case ItemType.Armor:
+                    {
+                        ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+                    }
+                    break;
+            }
+
+        }
     }
 
 

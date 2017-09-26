@@ -23,7 +23,7 @@ public class ItemSpawner : MonoBehaviour
     }
     private void LoadPrefab()
     {
-        GameObject obj = Resources.Load("Prefabs/Objects/DropItem") as GameObject;
+        GameObject obj = Resources.Load<GameObject>("Prefabs/Objects/DropItem");
         if (obj != null)
             dropItemPrefab = obj;
     }
@@ -47,12 +47,9 @@ public class ItemSpawner : MonoBehaviour
         WeaponType RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
 
         //중복체크 및 중복아니면 리스트에 추가
-        if (isWeaponSpawned(RandomWeapon) == true) return;
-
-        if (dropItemPrefab == null) return;
-        GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
-        if (obj == null) return;
-        DropItem item = obj.GetComponent<DropItem>();
+        if (isWeaponSpawned(RandomWeapon) == true) return;  
+ 
+        DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
 
         item.SetItemToWeapon(RandomWeapon);
@@ -63,7 +60,22 @@ public class ItemSpawner : MonoBehaviour
 
     public void SpawnArmor(Vector3 posit)
     {
+        DropItem item = MakeItemPrefab(posit);
+        if (item == null) return;
 
+        item.SetItemToArmor(1);
+    }
+
+    public DropItem MakeItemPrefab(Vector3 posit)
+    {
+        GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
+        DropItem item =null;
+        if (obj != null)
+        {
+            item = obj.GetComponent<DropItem>();
+        }
+
+        return item;
     }
 
     public void DestroyAllItems()

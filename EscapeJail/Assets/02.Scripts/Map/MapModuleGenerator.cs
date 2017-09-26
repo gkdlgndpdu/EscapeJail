@@ -39,8 +39,8 @@ public class MapModuleGenerator
 
     public MapModuleGenerator(Transform moduleParent, MapManager mapManager)
     {
-        normalTile = Resources.Load("Prefabs/Maps/MapObjects/tile") as GameObject;
-        moduleObject = Resources.Load("Prefabs/Maps/MapObjects/MapModule") as GameObject;
+        normalTile = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/tile") ;
+        moduleObject = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/MapModule");
         this.moduleParent = moduleParent;
         this.mapManager = mapManager;
 

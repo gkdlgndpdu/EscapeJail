@@ -33,11 +33,11 @@ public class ObjectManager : MonoBehaviour
 
     private void MakePool()
     {
-        GameObject bullet = (GameObject)Resources.Load("Prefabs/Objects/Bullet");
+        GameObject bullet = Resources.Load<GameObject>("Prefabs/Objects/Bullet");
         if (bullet != null)
             bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
 
-        GameObject effect = (GameObject)Resources.Load("Prefabs/Objects/ExplosionEffect");
+        GameObject effect = Resources.Load<GameObject>("Prefabs/Objects/ExplosionEffect");
         if (effect != null)
             effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
         

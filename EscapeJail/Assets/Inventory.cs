@@ -10,7 +10,7 @@ public class Inventory
 
     public Inventory()
     {
-        
+
     }
     public Weapon GetWeapon()
     {

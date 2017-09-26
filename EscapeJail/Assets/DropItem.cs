@@ -10,18 +10,17 @@ using weapon;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Animator))]
 public class DropItem : MonoBehaviour, iReactiveAction
 {
     //컴포넌트
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
 
     //속성
 
     private ItemType itemType = ItemType.Weapon;
     private WeaponType weapontype = WeaponType.Revolver;
+    private ItemName itemName;
 
     private CharacterBase player;
 
@@ -29,9 +28,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        if (animator != null)
-            animator.speed = 0f;
+
     }
 
     private void OnEnable()
@@ -59,44 +56,50 @@ public class DropItem : MonoBehaviour, iReactiveAction
         if (spriteRenderer != null)
             spriteRenderer.sprite = null;
 
-        if (animator != null)
+        if (spriteRenderer != null)
         {
-            RuntimeAnimatorController obj = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.ToString())) as RuntimeAnimatorController;
-            if (obj != null)
-                animator.runtimeAnimatorController = obj;
+            
+            string ItemPath = string.Format("Sprites/Weapons/{0}", weapon.ToString());
+            spriteRenderer.sprite = Resources.Load<Sprite>(ItemPath);
         }
-
-
         SetColliderSize();
 
 
     }
 
-    public void SetItemToArmor()
+    public void SetItemToArmor(int level)
     {
 
-    }
+        itemType = ItemType.Armor;
+        itemName = ItemName.Armor1;
+    
+        if (spriteRenderer != null)
+        {
+            string ItemPath = string.Format("Sprites/Items/{0}", itemName.ToString());
+            spriteRenderer.sprite = Resources.Load<Sprite>(ItemPath);
+        }
 
+        SetColliderSize();
+
+    }
 
 
 
 
     public void ClickAction()
     {
+        if (player == null) return;
+
         Destroy(this.gameObject);
         switch (itemType)
         {
             case ItemType.Weapon:
-                {
-                    if (player != null)
-                    {
+                {                   
                         Type type = Type.GetType("weapon." + weapontype.ToString());
                         if (type == null) return;
                         Weapon instance = Activator.CreateInstance(type) as Weapon;
                         if (instance == null) return;
                         player.AddWeapon(instance);
-                    }
-
                 }
                 break;
             case ItemType.Consumables:
@@ -111,7 +114,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
                 break;
             case ItemType.Armor:
                 {
-
+                    player.AddArmor();
                 } break;
         }
     }

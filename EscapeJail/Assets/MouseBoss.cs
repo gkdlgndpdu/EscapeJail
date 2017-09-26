@@ -100,7 +100,7 @@ public class MouseBoss : BossBase
     private void LoadPrefab()
     {
 
-        mouseHandPrefab = Resources.Load("Prefabs/Monsters/Boss/Mouse/MouseHand") as GameObject;
+        mouseHandPrefab = Resources.Load<GameObject>("Prefabs/Monsters/Boss/Mouse/MouseHand");
         if (mouseHandPrefab != null)
         {
             mouseHandPool = new ObjectPool<MouseHand>(bossModule.transform, mouseHandPrefab, 10);

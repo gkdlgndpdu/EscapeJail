@@ -12,7 +12,7 @@ public class CharacterBase : CharacterInfo
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
-    
+
 
     //값변수
     protected float moveSpeed = 5f;
@@ -22,11 +22,11 @@ public class CharacterBase : CharacterInfo
     protected bool nowWeaponRotate = false;
     [SerializeField]
     protected WeaponRotator weaponRotator;
-   //protected int hp = 0;
-   //protected int maxHp = 0;
+    //protected int hp = 0;
+    //protected int maxHp = 0;
 
-   //무기
-   [SerializeField]
+    //무기
+    [SerializeField]
     protected WeaponHandler weaponHandler;
 
     //무기 장착 위치
@@ -48,8 +48,8 @@ public class CharacterBase : CharacterInfo
         SetLayerAndTag();
         Initialize();
 
-        if(weaponRotator!=null&& weaponHandler!=null)
-        weaponHandler.SetWeaponRotateFunc(weaponRotator.RotateWeapon);
+        if (weaponRotator != null && weaponHandler != null)
+            weaponHandler.SetWeaponRotateFunc(weaponRotator.RotateWeapon);
     }
 
     private void SetLayerAndTag()
@@ -75,13 +75,13 @@ public class CharacterBase : CharacterInfo
         //컴포넌트
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();  
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Use this for initialization
     protected void Start()
     {
-     
+
     }
 
     // Update is called once per frame
@@ -92,8 +92,9 @@ public class CharacterBase : CharacterInfo
 
 #if UNITY_ANDROID
         MoveInMobie();
-#else
-         InputOnPc();
+#endif
+#if UNITY_EDITOR
+        InputOnPc();
 #endif
 
     }
@@ -116,7 +117,7 @@ public class CharacterBase : CharacterInfo
             Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
             weaponHandler.FireBullet(this.FirePos.position, fireDir);
 
-         
+
         }
         else if (nearEnemy == null)
         {
@@ -124,7 +125,7 @@ public class CharacterBase : CharacterInfo
             weaponHandler.FireBullet(this.FirePos.position, fireDir);
         }
 
- 
+
     }
 
 
@@ -150,7 +151,7 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireWeapon();
-            
+
         }
         //무기 변경
         if (Input.GetKeyDown(KeyCode.Q))
@@ -164,8 +165,8 @@ public class CharacterBase : CharacterInfo
     }
 
     public void ChangeWeapon()
-    {      
-       weaponHandler.ChangeWeapon(inventory.GetWeapon());
+    {
+        weaponHandler.ChangeWeapon(inventory.GetWeapon());
     }
 
     protected void RotateWeapon(Vector3 enemyPos)
@@ -194,14 +195,14 @@ public class CharacterBase : CharacterInfo
                 weaponHandler.FlipWeapon(true);
                 FlipCharacter(false);
             }
-        }      
+        }
 
     }
 
     protected void NearWeaponRotate()
     {
         nowWeaponRotate = true;
-       
+
     }
 
     protected void NearWeaponRotateEnd()
@@ -276,7 +277,7 @@ public class CharacterBase : CharacterInfo
     public override void GetDamage(int damage)
     {
         hp -= damage;
-     
+
         UIUpdate();
 
         if (hp <= 0)
@@ -311,7 +312,15 @@ public class CharacterBase : CharacterInfo
             weaponHandler.ChangeWeapon(inventory.GetWeapon());
         }
     }
+    public void AddArmor()
+    {
 
+    }
+
+    public void AddBullet()
+    {
+
+    }
 
 
     //반응키 눌렸을때
@@ -350,9 +359,6 @@ public class CharacterBase : CharacterInfo
 
 
     }
-
-
-
 
 
 }

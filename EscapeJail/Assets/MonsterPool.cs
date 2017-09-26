@@ -42,7 +42,8 @@ public class MonsterPool
             MonsterName monsterName = nowStageData.spawnEnemyList[i];
             ObjectPool<MonsterBase> monsterPool = null;
 
-            GameObject obj = (GameObject)Resources.Load("Prefabs/Monsters/" + monsterName.ToString());
+            string path = string.Format("Prefabs/Monsters/{0}", monsterName.ToString());
+            GameObject obj = Resources.Load<GameObject>(path);
 
             if (obj == null) return;
 

@@ -5,9 +5,10 @@ using weapon;
 public enum ItemType
 {
     Weapon,
+    Armor,
     Consumables,
     Bullet,
-    Armor
+    ItemTypeEnd
 }
 
 public enum ItemName
