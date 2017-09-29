@@ -13,7 +13,7 @@ namespace weapon
 
         public Bazooka()
         {
-            weaponName = WeaponType.Bazooka;
+            weapontype = WeaponType.Bazooka;
             bulletSpeed = 10f;
             fireDelay = 1.5f;
             maxAmmo = 100;

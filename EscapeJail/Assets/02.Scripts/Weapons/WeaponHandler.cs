@@ -53,7 +53,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (animator != null)
         {
-            animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weaponName)) as RuntimeAnimatorController;
+            animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weapontype)) as RuntimeAnimatorController;
 
             if (nowWeapon != null)
             {
@@ -99,7 +99,7 @@ public class WeaponHandler : MonoBehaviour
     private void UpdateWeaponUI()
     {
         if (weaponUI != null&& nowWeapon!=null)
-            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weaponName.ToString());
+            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weapontype.ToString());
     }
 
     private void OnDestroy()

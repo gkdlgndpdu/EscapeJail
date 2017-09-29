@@ -17,10 +17,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     private SpriteRenderer spriteRenderer;
 
     //속성
-
-    private ItemType itemType = ItemType.Weapon;
-    private WeaponType weapontype = WeaponType.Revolver;
-    private ItemName itemName;
+    private ItemBase itemBase;
 
     private CharacterBase player;
 
@@ -28,6 +25,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        itemBase = new ItemBase();
 
     }
 
@@ -50,8 +48,8 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     public void SetItemToWeapon(WeaponType weapon)
     {
-        itemType = ItemType.Weapon;
-        weapontype = weapon;
+        itemBase.itemType = ItemType.Weapon;
+        itemBase.weapontype = weapon;
 
         if (spriteRenderer != null)
             spriteRenderer.sprite = null;
@@ -70,12 +68,12 @@ public class DropItem : MonoBehaviour, iReactiveAction
     public void SetItemToArmor(int level)
     {
 
-        itemType = ItemType.Armor;
-        itemName = ItemName.Armor1;
+        itemBase.itemType = ItemType.Armor;
+        itemBase.itemName = ItemName.Armor1;
     
         if (spriteRenderer != null)
         {
-            string ItemPath = string.Format("Sprites/Items/{0}", itemName.ToString());
+            string ItemPath = string.Format("Sprites/Items/{0}", itemBase.itemName.ToString());
             spriteRenderer.sprite = Resources.Load<Sprite>(ItemPath);
         }
 
@@ -91,11 +89,11 @@ public class DropItem : MonoBehaviour, iReactiveAction
         if (player == null) return;
 
         Destroy(this.gameObject);
-        switch (itemType)
+        switch (itemBase.itemType)
         {
             case ItemType.Weapon:
                 {                   
-                        Type type = Type.GetType("weapon." + weapontype.ToString());
+                        Type type = Type.GetType("weapon." + itemBase.weapontype.ToString());
                         if (type == null) return;
                         Weapon instance = Activator.CreateInstance(type) as Weapon;
                         if (instance == null) return;

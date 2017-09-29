@@ -7,7 +7,7 @@ public class LightSaber : Weapon
 {
     public LightSaber()
     {
-        weaponName = WeaponType.LightSaber;   
+        weapontype = WeaponType.LightSaber;   
         fireDelay = 1.5f;
         maxAmmo = 100;
         nowAmmo = 100;

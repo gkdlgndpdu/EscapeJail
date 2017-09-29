@@ -11,7 +11,7 @@ namespace weapon
 
         public AssaultRifle()
         {
-            weaponName = WeaponType.AssaultRifle;
+            weapontype = WeaponType.AssaultRifle;
             bulletSpeed = 15f;
             fireDelay = 0.1f;
 

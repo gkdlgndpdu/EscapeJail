@@ -7,7 +7,7 @@ namespace weapon
     {
         public AroundGun()
         {
-            weaponName = WeaponType.AroundGun;
+            weapontype = WeaponType.AroundGun;
             bulletSpeed = 5f;
             weaponScale = Vector3.one * 3;
         }

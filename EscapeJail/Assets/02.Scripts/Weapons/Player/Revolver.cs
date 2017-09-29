@@ -12,7 +12,7 @@ namespace weapon
 
         public Revolver()
         {
-            weaponName = WeaponType.Revolver;
+            weapontype = WeaponType.Revolver;
             bulletSpeed = 10f;
             fireDelay = 0.3f;
             maxAmmo = 100;

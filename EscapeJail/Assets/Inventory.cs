@@ -9,13 +9,15 @@ public class Inventory
     private int weaponIndex = -1;
 
     private int inventoryLevel;
-    private int inventorySlotNum;
+    private int inventorySlotNum =15;
 
     private InventoryUi inventoryUi;
     public Inventory(InventoryUi inventoryUi) 
     {
         this.inventoryUi = inventoryUi;
+        this.inventoryUi.LinkAllItemList(allItemList);
     }
+    //무기 교체용
     public Weapon GetWeapon()
     {
         if (weaponList == null) return null;
@@ -30,13 +32,23 @@ public class Inventory
     }
     // Use this for initialization
 
+    //무기 습득용
     public void AddWeapon(Weapon weapon)
     {
         if (weaponList != null && weapon != null)
             weaponList.Add(weapon);
 
-        if (weapon != null && allItemList != null)
-            allItemList.Add(weapon);
+
+        AddToInventory(weapon);     
+    }
+
+    private void AddToInventory(ItemBase itemBase)
+    {
+        if (itemBase == null) return;
+        if (allItemList == null) return;
+        if (allItemList.Count > inventorySlotNum) return;
+
+        allItemList.Add(itemBase);
     }
 
     ~Inventory()

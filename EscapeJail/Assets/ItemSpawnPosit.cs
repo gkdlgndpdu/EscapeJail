@@ -11,7 +11,8 @@ public class ItemSpawnPosit : MonoBehaviour
 
     private void Start()
     { 
-     
+         ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+        return;
         if (SpawnPosit != null)
         {
             ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);

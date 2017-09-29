@@ -20,6 +20,6 @@ public enum ItemName
 public class ItemBase 
 {
     public ItemType itemType;
-    public WeaponType weaponName;
-    public ItemName ItemName;
+    public WeaponType weapontype;
+    public ItemName itemName;
 }
