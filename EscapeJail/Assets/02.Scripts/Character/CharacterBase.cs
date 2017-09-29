@@ -39,6 +39,8 @@ public class CharacterBase : CharacterInfo
     //UI
     [SerializeField]
     protected PlayerUI playerUI;
+    [SerializeField]
+    protected InventoryUi inventoryUi;
 
     //인벤토리
     protected Inventory inventory;
@@ -63,9 +65,21 @@ public class CharacterBase : CharacterInfo
         SetupComponent();
 
         //스크립트
-        inventory = new Inventory();
+        if(inventoryUi!=null)
+        inventory = new Inventory(inventoryUi);
     }
 
+
+    protected void OpenInventory()
+    {
+        if (inventoryUi != null)
+            inventoryUi.gameObject.SetActive(true);
+    }
+    protected void CloseInventory()
+    {
+        if (inventoryUi != null)
+            inventoryUi.gameObject.SetActive(false);
+    }
 
 
 
@@ -105,6 +119,14 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKeyDown(KeyCode.E))
         {
             ReactiveButtonClick();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryUi.gameObject.activeSelf == false)
+                OpenInventory();
+            else
+                CloseInventory();
         }
     }
 

@@ -6,11 +6,15 @@ public class Inventory
 {
     private List<ItemBase> allItemList = new List<ItemBase>();
     private List<Weapon> weaponList = new List<Weapon>();
-    private int weaponIndex = -1;   
+    private int weaponIndex = -1;
 
-    public Inventory()
+    private int inventoryLevel;
+    private int inventorySlotNum;
+
+    private InventoryUi inventoryUi;
+    public Inventory(InventoryUi inventoryUi) 
     {
-
+        this.inventoryUi = inventoryUi;
     }
     public Weapon GetWeapon()
     {

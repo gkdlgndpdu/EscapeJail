@@ -18,7 +18,6 @@ public class JoyStick : MonoBehaviour
 
     private Vector3 firstPos = Vector3.zero;
     private float stickRadius = 0.0f;
-    private float middleRadius = 0.0f;
     private int debugvalue = 0;
     //도출된 이동방향
     private Vector3 moveDir;
@@ -50,7 +49,7 @@ public class JoyStick : MonoBehaviour
         firstPos = originPos;
 
         if(backImage!=null)
-        stickRadius = backImage.rectTransform.sizeDelta.x;
+        stickRadius = backImage.rectTransform.sizeDelta.x*2f;
         //if(middleImage!=null)
         //middleRadius = middleImage.rectTransform.sizeDelta.x;
 
@@ -72,6 +71,8 @@ public class JoyStick : MonoBehaviour
                 break;
             }
         }
+
+        Drag();
 
     }
 
