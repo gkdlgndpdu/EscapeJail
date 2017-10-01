@@ -46,24 +46,29 @@ public class InventoryUi : MonoBehaviour
         if (itemSlots == null) return;
         if (allItemList == null) return;
 
-        for(int i=0;i< allItemList.Count; i++)
+
+        for(int i = 0; i < itemSlots.Count; i++)
         {
-            itemSlots[i].SetSlot(allItemList[i]);
+            if (i < allItemList.Count)
+                itemSlots[i].SetSlot(allItemList[i]);
+            else
+                itemSlots[i].ResetSlot();
+
         }
+   
     }
   
 
     // Use this for initialization
     void Start()
     {
-        SetSlotNum(10);
+        SetSlotNum(1);
 
     }
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpdateInventoryUi();
-        }
+        UpdateInventoryUi();
+
     }
+   
 }

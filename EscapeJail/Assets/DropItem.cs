@@ -25,7 +25,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        itemBase = new ItemBase();
+
 
     }
 
@@ -48,18 +48,13 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     public void SetItemToWeapon(WeaponType weapon)
     {
-        itemBase.itemType = ItemType.Weapon;
-        itemBase.weapontype = weapon;
+        itemBase = new Item_Weapon(weapon);
 
-        if (spriteRenderer != null)
-            spriteRenderer.sprite = null;
 
-        if (spriteRenderer != null)
-        {
-            
-            string ItemPath = string.Format("Sprites/Weapons/{0}", weapon.ToString());
-            spriteRenderer.sprite = Resources.Load<Sprite>(ItemPath);
-        }
+        string ItemPath = string.Format("Sprites/Weapons/{0}", weapon.ToString());
+
+
+        SetDropItemImage(ItemPath);
         SetColliderSize();
 
 
@@ -67,54 +62,84 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     public void SetItemToArmor(int level)
     {
+        itemBase = new Item_Armor();
 
-        itemBase.itemType = ItemType.Armor;
-        itemBase.itemName = ItemName.Armor1;
-    
-        if (spriteRenderer != null)
-        {
-            string ItemPath = string.Format("Sprites/Items/{0}", itemBase.itemName.ToString());
-            spriteRenderer.sprite = Resources.Load<Sprite>(ItemPath);
-        }
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
 
         SetColliderSize();
 
     }
 
+    public void SetItemToBullet()
+    {
+        itemBase = new Item_Bullet();
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+        
+        SetColliderSize();
+    }
+
+    public void SetItemToBag(int level = 1)
+    {
+
+        itemBase = new Item_Bag(level);
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+
+        SetColliderSize();
+    }
+
+    private void SetDropItemImage(string path)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = Resources.Load<Sprite>(path);
+    }
 
 
 
+
+
+    //반응키로 눌렀을때
     public void ClickAction()
     {
         if (player == null) return;
 
-        Destroy(this.gameObject);
         switch (itemBase.itemType)
         {
             case ItemType.Weapon:
-                {                   
-                        Type type = Type.GetType("weapon." + itemBase.weapontype.ToString());
-                        if (type == null) return;
-                        Weapon instance = Activator.CreateInstance(type) as Weapon;
-                        if (instance == null) return;
-                        player.AddWeapon(instance);
+                {
+                    Type type = Type.GetType("weapon." + itemBase.weapontype.ToString());
+                    if (type == null) break;
+                    Weapon instance = Activator.CreateInstance(type) as Weapon;
+                    if (instance != null) break;
+                    player.AddWeapon(instance);
                 }
                 break;
-            case ItemType.Consumables:
+            case ItemType.Bag:
                 {
+                    Item_Bag bag = itemBase as Item_Bag;
 
-                }
-                break;
-            case ItemType.Bullet:
-                {
+                    if (bag != null)
+                        player.GetBag(bag.ItemLevel);
 
-                }
-                break;
-            case ItemType.Armor:
-                {
-                    player.AddArmor();
+                    itemBase = null;
+
+
                 } break;
+            default:
+                {
+                    player. AddItem(itemBase);
+                } break;
+
         }
+                Destroy(this.gameObject);
+           
     }
 
 

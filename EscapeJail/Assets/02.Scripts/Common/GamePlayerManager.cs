@@ -10,23 +10,32 @@ public class GamePlayerManager : MonoBehaviour
     public static GamePlayerManager Instance;
 
     [HideInInspector]
-    public GameObject player;
+    public CharacterBase player;
 
 
     private void Awake()
     {
         if (Instance == null)
-            Instance = this;  
+            Instance = this;
+
+        FindPlayer();
     }
 
-    private void Start()
+    private void FindPlayer()
     {
-        player = FindPlayer();
-    }
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
 
-    private GameObject FindPlayer()
-    {
-        return GameObject.FindGameObjectWithTag("Player");
+            CharacterBase playerScript;
+            playerScript = playerObj.GetComponent<CharacterBase>();
+
+            if (playerScript != null)
+                player = playerScript;
+        }
+
+
+        return;
     }
 
     public void ResetPlayerPosit()

@@ -4,14 +4,31 @@ using UnityEngine;
 using weapon;
 public class Inventory 
 {
+    //핵심
     private List<ItemBase> allItemList = new List<ItemBase>();
+    //무기 교체용
     private List<Weapon> weaponList = new List<Weapon>();
     private int weaponIndex = -1;
 
     private int inventoryLevel;
-    private int inventorySlotNum =15;
+    private int inventorySlotNum =0;
 
+    //Ui
     private InventoryUi inventoryUi;
+
+    public void SetInventorySize(int level)
+    {
+        int bagSize = level * 5;
+        //가방이 작아질수는 없음
+        if (bagSize <= inventorySlotNum) return;
+               
+        inventorySlotNum = bagSize;
+
+        if (inventoryUi != null)
+            inventoryUi.SetSlotNum(inventorySlotNum);
+    }
+
+
     public Inventory(InventoryUi inventoryUi) 
     {
         this.inventoryUi = inventoryUi;
@@ -42,7 +59,7 @@ public class Inventory
         AddToInventory(weapon);     
     }
 
-    private void AddToInventory(ItemBase itemBase)
+    public void AddToInventory(ItemBase itemBase)
     {
         if (itemBase == null) return;
         if (allItemList == null) return;
@@ -50,7 +67,16 @@ public class Inventory
 
         allItemList.Add(itemBase);
     }
+    public void RemoveInInventory(ItemBase itemBase)
+    {
+        if (itemBase == null) return;
+        allItemList.Remove(itemBase);
 
+        if (inventoryUi != null)
+            inventoryUi.UpdateInventoryUi();
+
+        itemBase = null;
+    }
     ~Inventory()
     {
 

@@ -33,6 +33,11 @@ public class WeaponHandler : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void GetBulletItem()
+    {
+        if (nowWeapon == null) return;
+        nowWeapon.GetBullet();
+    }
 
     public void FlipWeapon(bool value)
     {

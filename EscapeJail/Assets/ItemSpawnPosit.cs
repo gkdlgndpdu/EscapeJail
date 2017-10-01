@@ -10,9 +10,11 @@ public class ItemSpawnPosit : MonoBehaviour
 
 
     private void Start()
-    { 
-         ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+    {
+
+        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,3);
         return;
+
         if (SpawnPosit != null)
         {
             ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);
@@ -28,6 +30,15 @@ public class ItemSpawnPosit : MonoBehaviour
                         ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
                     }
                     break;
+
+                case ItemType.Bullet:
+                    {
+                        ItemSpawner.Instance.SpawnBullet(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+                    } break;
+                case ItemType.Bag:
+                    {
+                        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+                    } break;
             }
 
         }

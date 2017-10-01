@@ -67,6 +67,9 @@ public class CharacterBase : CharacterInfo
         //스크립트
         if(inventoryUi!=null)
         inventory = new Inventory(inventoryUi);
+
+        if(inventory!=null)
+        inventory.SetInventorySize(1);
     }
 
 
@@ -81,6 +84,11 @@ public class CharacterBase : CharacterInfo
             inventoryUi.gameObject.SetActive(false);
     }
 
+    public void GetBag(int level)
+    {
+        if (inventory != null)
+            inventory.SetInventorySize(level);
+    }
 
 
 
@@ -169,19 +177,19 @@ public class CharacterBase : CharacterInfo
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
 
-#if UNITY_ANDROID
+#if UNITY_EDITOR
         //발사
         if (Input.GetKey(KeyCode.Mouse0))
         {
             FireWeapon();
 
         }
-#endif
         //무기 변경
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeWeapon();
         }
+#endif
 
 
         RotateWeapon();
@@ -328,6 +336,12 @@ public class CharacterBase : CharacterInfo
 
     }
 
+    public void GetBulletItem()
+    {
+        if (weaponHandler != null)
+            weaponHandler.GetBulletItem();
+    }
+
     public void AddWeapon(Weapon weapon)
     {
         if (inventory != null && weapon != null)
@@ -336,15 +350,22 @@ public class CharacterBase : CharacterInfo
             weaponHandler.ChangeWeapon(inventory.GetWeapon());
         }
     }
-    public void AddArmor()
+    public void AddItem(ItemBase item)
     {
-
+        if (inventory != null && item != null)
+        {
+            inventory.AddToInventory(item);
+        }
+    }
+    public void RemoveItem(ItemBase item)
+    {
+        if (inventory != null && item != null)
+        {
+            inventory.RemoveInInventory(item);
+        }
     }
 
-    public void AddBullet()
-    {
 
-    }
 
 
     //반응키 눌렸을때

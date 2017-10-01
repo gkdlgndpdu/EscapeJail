@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class UI_ItemSlot : MonoBehaviour
 {
     private ItemBase itemBase;
     private Text itemText;
+    [SerializeField]
     private Image image;
     private bool isEmpty = true;
+    private InventoryUi inventrotyUi;
 
     private void Awake()
     {
         itemText = GetComponentInChildren<Text>();
-        image = GetComponentInChildren<Image>();
+     
     }
 
     public void SetSlot(ItemBase itemBase)
     {
-        if (itemBase == null) return;
-        this.itemBase = itemBase;
+        if (itemBase == null)
+        {
+            this.itemBase = null;
 
-        isEmpty = false;
+            isEmpty = true;
 
-        UpdateSlotInfo();
+            UpdateSlotInfo();
+        }
+        else
+        {
+            this.itemBase = itemBase;
+
+            isEmpty = false;
+
+            UpdateSlotInfo();
+        }
+    
     }
 
     public void ClearSlot()
@@ -32,7 +46,17 @@ public class UI_ItemSlot : MonoBehaviour
         itemBase = null;
         isEmpty = true;
     }
-
+    public void OnClick()
+    {
+        Debug.Log("온클릭");
+        if (itemBase != null)
+        {
+            Debug.Log("널아님");
+            itemBase.ItemAction();
+        }
+    
+    
+    }
     public void UpdateSlotInfo()
     {
         if (itemText == null || image == null|| itemBase==null) return;
@@ -41,15 +65,44 @@ public class UI_ItemSlot : MonoBehaviour
         {
             case ItemType.Weapon:
                 {
-                    itemText.text = itemBase.weapontype.ToString();
+                    SetSlotText(itemBase.weapontype.ToString());          
+                         
+                    string path = string.Format("Sprites/Icons/{0}", itemBase.weapontype.ToString());               
+                    Sprite sprite = Resources.Load<Sprite>(path);
+
+                    SetSlotSprite(sprite);
+
                 } break;
             default:
                 {
-                    itemText.text = itemBase.itemName.ToString();
+                    SetSlotText(itemBase.itemName);
+                    string path = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+                    Sprite sprite = Resources.Load<Sprite>(path);
+                    SetSlotSprite(sprite);
+
                 } break;
         }
        
 
     }
-	
+
+    public void ResetSlot()
+    {
+        SetSlotSprite(null);
+        SetSlotText("Empty");
+    
+    }
+
+    public void SetSlotSprite(Sprite sprite)
+    {
+        if (image != null)
+            image.sprite = sprite;
+    }
+    public void SetSlotText(string text)
+    {
+        if(itemText!=null)
+        itemText.text = text;
+    }
+
 }
+

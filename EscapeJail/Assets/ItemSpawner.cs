@@ -62,13 +62,33 @@ public class ItemSpawner : MonoBehaviour
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
-
+      
         item.SetItemToArmor(1);
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
 
+    public void SpawnBullet(Vector3 posit)
+    {
+        DropItem item = MakeItemPrefab(posit);
+        if (item == null) return;
+
+        item.SetItemToBullet();
+
+        if (spawnedObjectList != null)
+            spawnedObjectList.Add(item.gameObject);
+    }
+    public void SpawnBag(Vector3 posit,int level = 1)
+    {
+        DropItem item = MakeItemPrefab(posit);
+        if (item == null) return;
+
+        item.SetItemToBag(level);
+
+        if (spawnedObjectList != null)
+            spawnedObjectList.Add(item.gameObject);
+    }
     public DropItem MakeItemPrefab(Vector3 posit)
     {
         GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
@@ -90,6 +110,6 @@ public class ItemSpawner : MonoBehaviour
             GameObject.Destroy(spawnedObjectList[i].gameObject);
         }
     }
-
+    
  
 }

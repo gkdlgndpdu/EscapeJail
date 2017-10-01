@@ -59,6 +59,11 @@ namespace weapon
         {
             itemType = ItemType.Weapon;
         }
+
+        public void GetBullet()
+        {
+            nowAmmo = maxAmmo;
+        }
         public void Initialize(Animator animator)
         {
             this.animator = animator;
