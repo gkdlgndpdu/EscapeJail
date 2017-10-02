@@ -69,7 +69,7 @@ public class CharacterBase : CharacterInfo
         inventory = new Inventory(inventoryUi);
 
         if(inventory!=null)
-        inventory.SetInventorySize(1);
+        inventory.SetInventorySize(0);
     }
 
 
@@ -339,7 +339,10 @@ public class CharacterBase : CharacterInfo
     public void GetBulletItem()
     {
         if (weaponHandler != null)
+        {
             weaponHandler.GetBulletItem();
+       
+        }
     }
 
     public void AddWeapon(Weapon weapon)
@@ -365,8 +368,12 @@ public class CharacterBase : CharacterInfo
         }
     }
 
+    public bool isInventoryFull()
+    {
+        if (inventory == null) return true;
 
-
+        return inventory.isInventoryFull();
+    }
 
     //반응키 눌렸을때
     public void ReactiveButtonClick()

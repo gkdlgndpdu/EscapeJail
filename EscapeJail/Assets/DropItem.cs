@@ -108,6 +108,8 @@ public class DropItem : MonoBehaviour, iReactiveAction
     public void ClickAction()
     {
         if (player == null) return;
+        
+        if (player.isInventoryFull() == true && itemBase.itemType!=ItemType.Bag) return;
 
         switch (itemBase.itemType)
         {
@@ -123,12 +125,12 @@ public class DropItem : MonoBehaviour, iReactiveAction
             case ItemType.Bag:
                 {
                     Item_Bag bag = itemBase as Item_Bag;
+                    if (bag == null) return;
 
                     if (bag != null)
                         player.GetBag(bag.ItemLevel);
-
+                    //해제
                     itemBase = null;
-
 
                 } break;
             default:

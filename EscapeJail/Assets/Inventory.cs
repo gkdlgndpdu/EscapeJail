@@ -8,24 +8,30 @@ public class Inventory
     private List<ItemBase> allItemList = new List<ItemBase>();
     //무기 교체용
     private List<Weapon> weaponList = new List<Weapon>();
-    private int weaponIndex = -1;
-
-    private int inventoryLevel;
-    private int inventorySlotNum =0;
-
+    private int weaponIndex = -1; 
+ 
+    private int bagSize = 0;
     //Ui
     private InventoryUi inventoryUi;
 
+
+    public bool isInventoryFull()
+    {
+        if (allItemList == null) return true;
+        if (bagSize == 0) return true;
+     
+        return allItemList.Count>=bagSize;
+    }
+ 
     public void SetInventorySize(int level)
     {
-        int bagSize = level * 5;
-        //가방이 작아질수는 없음
-        if (bagSize <= inventorySlotNum) return;
-               
-        inventorySlotNum = bagSize;
+        if (level == 0)
+            bagSize = 1;
+        else
+            bagSize = level * 5;
 
         if (inventoryUi != null)
-            inventoryUi.SetSlotNum(inventorySlotNum);
+            inventoryUi.SetSlotNum(bagSize);
     }
 
 
@@ -63,7 +69,7 @@ public class Inventory
     {
         if (itemBase == null) return;
         if (allItemList == null) return;
-        if (allItemList.Count > inventorySlotNum) return;
+        if (allItemList.Count > bagSize) return;
 
         allItemList.Add(itemBase);
     }

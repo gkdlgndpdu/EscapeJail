@@ -37,6 +37,8 @@ public class WeaponHandler : MonoBehaviour
     {
         if (nowWeapon == null) return;
         nowWeapon.GetBullet();
+
+        UpdateWeaponUI();
     }
 
     public void FlipWeapon(bool value)
