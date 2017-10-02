@@ -23,7 +23,7 @@ public class InventoryUi : MonoBehaviour
     }
     public void SetSlotNum(int num)
     {
-        for (int i = 0; i < num; i++)
+        for (int i = itemSlots.Count; i < num; i++)
         {
             MakeSlot();
         }

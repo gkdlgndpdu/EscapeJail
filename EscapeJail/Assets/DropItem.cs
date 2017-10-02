@@ -51,8 +51,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         itemBase = new Item_Weapon(weapon);
 
 
-        string ItemPath = string.Format("Sprites/Weapons/{0}", weapon.ToString());
-
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.weapontype.ToString());
 
         SetDropItemImage(ItemPath);
         SetColliderSize();
@@ -117,7 +116,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     Type type = Type.GetType("weapon." + itemBase.weapontype.ToString());
                     if (type == null) break;
                     Weapon instance = Activator.CreateInstance(type) as Weapon;
-                    if (instance != null) break;
+                    if (instance == null) break;
                     player.AddWeapon(instance);
                 }
                 break;

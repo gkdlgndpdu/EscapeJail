@@ -12,7 +12,10 @@ public class ItemSpawnPosit : MonoBehaviour
     private void Start()
     {
 
-        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,3);
+                        ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+
+      //  ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,Random.Range(1,4));
+
         return;
 
         if (SpawnPosit != null)
