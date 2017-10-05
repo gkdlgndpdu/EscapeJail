@@ -2,19 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum InventoryState
+{
+    Select,
+    Delete
+}
 public class InventoryUi : MonoBehaviour
 {
-    private List<UI_ItemSlot> itemSlots;
+    private List<UI_ItemSlot> itemSlots= new List<UI_ItemSlot>();
     private List<ItemBase> allItemList;
 
+    [SerializeField]
     private GridLayoutGroup grid;
 
     [SerializeField]
     private GameObject slotPrefab;
-    private void Awake()
+
+    public InventoryState inventoryState = InventoryState.Select;
+
+    [SerializeField]
+    private Image backGroundImage;
+
+    public void InventoryStateButtonClick()
     {
-        itemSlots = new List<UI_ItemSlot>();
-        grid = GetComponentInChildren<GridLayoutGroup>();
+        if(inventoryState == InventoryState.Select)
+        {
+            inventoryState = InventoryState.Delete;
+            ChangeBackGroundColor(Color.red);
+        }
+        else
+        {
+            inventoryState = InventoryState.Select;
+            ChangeBackGroundColor(Color.white);
+        }
+    }
+
+    private void ChangeBackGroundColor(Color color)
+    {
+        if (backGroundImage == null) return;
+        backGroundImage.color = color;
     }
 
     public void LinkAllItemList(List<ItemBase> allItemList)
@@ -23,10 +50,13 @@ public class InventoryUi : MonoBehaviour
     }
     public void SetSlotNum(int num)
     {
+        if (itemSlots == null) return;
         for (int i = itemSlots.Count; i < num; i++)
         {
             MakeSlot();
         }
+
+        UpdateInventoryUi();
     }
 
     public void MakeSlot()
@@ -37,7 +67,10 @@ public class InventoryUi : MonoBehaviour
         {
             UI_ItemSlot slot = loadObj.GetComponent<UI_ItemSlot>();
             if (slot != null)
+            {
+                slot.LinkInventoryUi(this);
                 itemSlots.Add(slot);
+            }
         }
     }
 
@@ -57,12 +90,17 @@ public class InventoryUi : MonoBehaviour
         }
    
     }
-  
+    public void InventoryOnOff()
+    {     
+        this.gameObject.SetActive(!this.gameObject.activeSelf);
+    }
+
 
     // Use this for initialization
     void Start()
     {
         SetSlotNum(1);
+        UpdateInventoryUi();
 
     }
     private void OnEnable()

@@ -183,6 +183,15 @@ public class MapModule : MapModuleBase
         {
             Tile targetTile = normalTileList[Random.Range(0, normalTileList.Count)];
 
+            //제일 외각은 생성 X
+            if (
+               targetTile.x == 1 ||
+               targetTile.x == widthNum - 2 ||
+               targetTile.y == 1 ||
+               targetTile.y == heightNum - 2
+               )
+                continue;
+
             //중복생성 체크
             if (targetTile.canSpawned == false)
             {
@@ -191,7 +200,7 @@ public class MapModule : MapModuleBase
             else
             {
                 targetTile.canSpawned = true;
-                GameObject article = GameObject.Instantiate(obj, targetTile.transform);        
+                GameObject article = GameObject.Instantiate(obj, targetTile.transform);
 
                 return;
             }

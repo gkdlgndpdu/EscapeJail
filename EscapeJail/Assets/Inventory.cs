@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Inventory 
+public class Inventory
 {
     //핵심
     private List<ItemBase> allItemList = new List<ItemBase>();
     //무기 교체용
     private List<Weapon> weaponList = new List<Weapon>();
-    private int weaponIndex = -1; 
- 
+    private int weaponIndex = -1;
+
     private int bagSize = 0;
     //Ui
     private InventoryUi inventoryUi;
@@ -19,10 +19,10 @@ public class Inventory
     {
         if (allItemList == null) return true;
         if (bagSize == 0) return true;
-     
-        return allItemList.Count>=bagSize;
+
+        return allItemList.Count >= bagSize;
     }
- 
+
     public void SetInventorySize(int level)
     {
         if (level == 0)
@@ -35,7 +35,7 @@ public class Inventory
     }
 
 
-    public Inventory(InventoryUi inventoryUi) 
+    public Inventory(InventoryUi inventoryUi)
     {
         this.inventoryUi = inventoryUi;
         this.inventoryUi.LinkAllItemList(allItemList);
@@ -48,7 +48,7 @@ public class Inventory
 
         weaponIndex++;
 
-        if (weaponIndex >= weaponList.Count)
+        if (weaponIndex >= weaponList.Count|| weaponIndex<=0)
             weaponIndex = 0;
 
         return weaponList[weaponIndex];
@@ -62,7 +62,33 @@ public class Inventory
             weaponList.Add(weapon);
 
 
-        AddToInventory(weapon);     
+        AddToInventory(weapon);
+
+    }
+
+    public void RemoveWeapon(ItemBase weapon)
+    {
+        if (weaponList != null && weapon != null)
+        {
+            for (int i = 0; i < weaponList.Count; i++)
+            {
+                if (weaponList[i].weapontype == weapon.weapontype)
+                {
+                    Weapon RemoveWeapon = weaponList[i];
+
+                    weaponList.Remove(RemoveWeapon);
+                    RemoveInInventory(RemoveWeapon);
+
+                    RemoveWeapon = null;
+
+                    weaponIndex-=2;
+                    return;
+                }
+            }         
+   
+        }
+
+
     }
 
     public void AddToInventory(ItemBase itemBase)
@@ -72,7 +98,12 @@ public class Inventory
         if (allItemList.Count > bagSize) return;
 
         allItemList.Add(itemBase);
+
+        if (inventoryUi != null)
+            inventoryUi.UpdateInventoryUi();
     }
+
+
     public void RemoveInInventory(ItemBase itemBase)
     {
         if (itemBase == null) return;

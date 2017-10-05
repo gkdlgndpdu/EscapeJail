@@ -40,10 +40,24 @@ public class ItemBase
     {
         Debug.Log("순수 itemAction 호출");
     }
+
+    public virtual void RemoveItem()
+    {
+        if (player == null) return;
+
+
+        if (itemType == ItemType.Weapon)
+            player.RemoveWeapon(this);
+        else
+            player.RemoveItem(this);
+
+
+
+
+    }
 }
 public class Item_Weapon : ItemBase
 {
-
     public Item_Weapon(WeaponType weapontype)
     {
         itemType = ItemType.Weapon;
@@ -54,6 +68,8 @@ public class Item_Weapon : ItemBase
     {
         Debug.Log("무기클릭");
     }
+
+
 }
 public class Item_Bullet : ItemBase
 {

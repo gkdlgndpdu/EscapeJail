@@ -65,23 +65,11 @@ public class CharacterBase : CharacterInfo
         SetupComponent();
 
         //스크립트
-        if(inventoryUi!=null)
-        inventory = new Inventory(inventoryUi);
-
-        if(inventory!=null)
-        inventory.SetInventorySize(0);
-    }
-
-
-    protected void OpenInventory()
-    {
         if (inventoryUi != null)
-            inventoryUi.gameObject.SetActive(true);
-    }
-    protected void CloseInventory()
-    {
-        if (inventoryUi != null)
-            inventoryUi.gameObject.SetActive(false);
+            inventory = new Inventory(inventoryUi);
+
+        if (inventory != null)
+            inventory.SetInventorySize(0);
     }
 
     public void GetBag(int level)
@@ -127,15 +115,9 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKeyDown(KeyCode.E))
         {
             ReactiveButtonClick();
-        }
+        }       
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (inventoryUi.gameObject.activeSelf == false)
-                OpenInventory();
-            else
-                CloseInventory();
-        }
+
     }
 
     public void FireWeapon()
@@ -341,7 +323,7 @@ public class CharacterBase : CharacterInfo
         if (weaponHandler != null)
         {
             weaponHandler.GetBulletItem();
-       
+
         }
     }
 
@@ -350,6 +332,15 @@ public class CharacterBase : CharacterInfo
         if (inventory != null && weapon != null)
         {
             inventory.AddWeapon(weapon);
+            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+        }
+    }
+
+    public void RemoveWeapon(ItemBase weapon)
+    {
+        if (inventory != null && weapon != null)
+        {
+            inventory.RemoveWeapon(weapon);
             weaponHandler.ChangeWeapon(inventory.GetWeapon());
         }
     }

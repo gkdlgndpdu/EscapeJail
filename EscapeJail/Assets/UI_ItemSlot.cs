@@ -11,12 +11,16 @@ public class UI_ItemSlot : MonoBehaviour
     [SerializeField]
     private Image image;
     private bool isEmpty = true;
-    private InventoryUi inventrotyUi;
+    private InventoryUi inventoryUi;
 
     private void Awake()
     {
         itemText = GetComponentInChildren<Text>();
      
+    }
+    public void LinkInventoryUi(InventoryUi inventoryUi)
+    {
+        this.inventoryUi = inventoryUi;
     }
 
     public void SetSlot(ItemBase itemBase)
@@ -48,13 +52,21 @@ public class UI_ItemSlot : MonoBehaviour
     }
     public void OnClick()
     {
-        Debug.Log("온클릭");
-        if (itemBase != null)
+        if (inventoryUi == null|| itemBase==null) return;
+
+        switch (inventoryUi.inventoryState)
         {
-            Debug.Log("널아님");
-            itemBase.ItemAction();
+            case InventoryState.Select:
+                {                  
+                  itemBase.ItemAction();                    
+                } break;
+            case InventoryState.Delete:
+                {
+                   itemBase.RemoveItem();
+                } break;
         }
-    
+
+       
     
     }
     public void UpdateSlotInfo()

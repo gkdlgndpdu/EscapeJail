@@ -51,7 +51,20 @@ public class WeaponHandler : MonoBehaviour
 
     public void ChangeWeapon(Weapon weapon)
     {
-        if (weapon == null) return;
+        //무기가 없을때 들어옴
+        if (weapon == null)
+        {
+            nowWeapon = null;
+            
+            //이미지 제거
+            if(animator!=null)
+            animator.runtimeAnimatorController = null;
+
+            if (spriteRenderer != null)
+                spriteRenderer.sprite = null;
+
+            return;
+        }
 
         if (animator != null)
             animator.speed = 0f;
