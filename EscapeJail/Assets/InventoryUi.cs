@@ -24,17 +24,46 @@ public class InventoryUi : MonoBehaviour
     [SerializeField]
     private Image backGroundImage;
 
+    [SerializeField]
+    private Image ArmorImage;
+    [SerializeField]
+    private Image ArmorBar;
+
+    public void SetArmorUi(float ratio)
+    {
+        if (ArmorImage != null&& ArmorBar!=null)
+        {           
+            ArmorImage.fillAmount =1f- ratio;            
+        }
+        
+    }
+
     public void InventoryStateButtonClick()
     {
         if(inventoryState == InventoryState.Select)
         {
-            inventoryState = InventoryState.Delete;
-            ChangeBackGroundColor(Color.red);
+            SetInventoryState(InventoryState.Delete);
         }
         else
         {
-            inventoryState = InventoryState.Select;
-            ChangeBackGroundColor(Color.white);
+            SetInventoryState(InventoryState.Select);
+        }
+    }
+
+    private void SetInventoryState(InventoryState state)
+    {
+        switch (state)
+        {
+            case InventoryState.Select:
+                {
+                    inventoryState = InventoryState.Select;
+                    ChangeBackGroundColor(Color.white);
+                } break;
+            case InventoryState.Delete:
+                {
+                    inventoryState = InventoryState.Delete;
+                    ChangeBackGroundColor(Color.red);
+                } break;
         }
     }
 
@@ -106,7 +135,14 @@ public class InventoryUi : MonoBehaviour
     private void OnEnable()
     {
         UpdateInventoryUi();
+        SetInventoryState(InventoryState.Select);
 
+        GameManager.Instance.StopTime();
     }
-   
+
+    private void OnDisable()
+    {      
+        GameManager.Instance.ResumeTime();
+    }
+
 }

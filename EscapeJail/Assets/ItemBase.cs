@@ -50,10 +50,6 @@ public class ItemBase
             player.RemoveWeapon(this);
         else
             player.RemoveItem(this);
-
-
-
-
     }
 }
 public class Item_Weapon : ItemBase
@@ -88,6 +84,12 @@ public class Item_Bullet : ItemBase
 
         Debug.Log("총알 클릭");
 
+    }
+
+    public override void RemoveItem()
+    {
+        base.RemoveItem();
+        ItemSpawner.Instance.SpawnBullet(player.transform.position);    
     }
 }
 

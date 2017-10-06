@@ -133,6 +133,10 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     itemBase = null;
 
                 } break;
+            case ItemType.Armor:
+                {
+                    player.SetArmor(itemBase.ItemLevel);
+                } break;
             default:
                 {
                     player. AddItem(itemBase);

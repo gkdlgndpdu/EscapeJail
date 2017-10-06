@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    private HpBar hpBar;
-
+    public HpBar hpBar;
+    
     public void Awake()
     {
         hpBar = GetComponentInChildren<HpBar>();

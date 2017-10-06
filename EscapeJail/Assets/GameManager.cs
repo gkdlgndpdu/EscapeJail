@@ -14,14 +14,15 @@ public class GameManager : MonoBehaviour
     }
 
 	// Use this for initialization
-	void Start ()
+
+	public void StopTime()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeTime()
     {
-		
-	}
-}
+        Time.timeScale = 1f;
+    }
+    
+}   

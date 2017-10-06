@@ -65,7 +65,6 @@ public class UI_ItemSlot : MonoBehaviour
                    itemBase.RemoveItem();
                 } break;
         }
-
        
     
     }

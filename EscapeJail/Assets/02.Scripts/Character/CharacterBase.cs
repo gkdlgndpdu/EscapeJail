@@ -38,16 +38,20 @@ public class CharacterBase : CharacterInfo
 
     //UI
     [SerializeField]
-    protected PlayerUI playerUI;
+    protected PlayerUI playerUi;
     [SerializeField]
     protected InventoryUi inventoryUi;
 
     //인벤토리
     protected Inventory inventory;
 
+    //아머
+    protected ArmorSystem armorSystem;
+
     protected void Awake()
     {
         SetLayerAndTag();
+
         Initialize();
 
         if (weaponRotator != null && weaponHandler != null)
@@ -70,6 +74,13 @@ public class CharacterBase : CharacterInfo
 
         if (inventory != null)
             inventory.SetInventorySize(0);
+
+        if (armorSystem == null)
+        {
+            armorSystem = new ArmorSystem(inventoryUi, playerUi, playerUi.hpBar);
+            //임시
+            SetArmor(0);
+        }
     }
 
     public void GetBag(int level)
@@ -79,6 +90,11 @@ public class CharacterBase : CharacterInfo
     }
 
 
+    public void SetArmor(int level)
+    {
+        if(armorSystem!=null)
+        armorSystem.SetArmor(level);
+    }
 
     protected void SetupComponent()
     {
@@ -290,6 +306,12 @@ public class CharacterBase : CharacterInfo
 
     public override void GetDamage(int damage)
     {
+        if (armorSystem.hasArmor() == true)
+        {
+            armorSystem.UseArmor(damage);
+            return;
+        }
+
         hp -= damage;
 
         UIUpdate();
@@ -302,8 +324,8 @@ public class CharacterBase : CharacterInfo
 
     protected void UIUpdate()
     {
-        if (playerUI != null)
-            playerUI.SetHpBar(hp, hpMax);
+        if (playerUi != null)
+            playerUi.SetHpBar(hp, hpMax);
     }
 
     protected void DieAction()
