@@ -109,7 +109,9 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         if (player == null) return;
         
-        if (player.isInventoryFull() == true && itemBase.itemType!=ItemType.Bag) return;
+        if (player.isInventoryFull() == true &&
+            //가방 , 아머일때는 인벤토리 크기 상관 x
+            (itemBase.itemType!=ItemType.Bag&&itemBase.itemType!=ItemType.Armor)) return;
 
         switch (itemBase.itemType)
         {
