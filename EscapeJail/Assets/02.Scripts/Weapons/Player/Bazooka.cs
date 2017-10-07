@@ -6,9 +6,7 @@ using UnityEngine;
 namespace weapon
 {
     public class Bazooka : Weapon
-    {
-
-        //리볼버 반동
+    {       
         private float reBoundValue = 5f;
 
         public Bazooka()

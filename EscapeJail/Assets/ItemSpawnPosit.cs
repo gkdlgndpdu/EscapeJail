@@ -24,7 +24,7 @@ public class ItemSpawnPosit : MonoBehaviour
                     break;
                 case ItemType.Armor:
                     {
-                        ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position);
+                        ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,Random.Range(1,4));
                     }
                     break;
 

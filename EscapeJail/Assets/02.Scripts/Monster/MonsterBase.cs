@@ -9,6 +9,9 @@ public enum MonsterName
     Mouse2,
     Mouse3,
     Mouse4,
+    Criminal1,
+    Criminal2,
+    Criminal4,
     EndMonster
 }
 

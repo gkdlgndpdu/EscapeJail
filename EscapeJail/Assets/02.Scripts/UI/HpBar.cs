@@ -12,6 +12,7 @@ public class HpBar : MonoBehaviour
     [SerializeField]
     private Image ArmorBar;
 
+
     private StringBuilder stringBuilder;
 
     private void Awake()

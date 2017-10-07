@@ -58,12 +58,12 @@ public class ItemSpawner : MonoBehaviour
             spawnedObjectList.Add(item.gameObject);
     }
 
-    public void SpawnArmor(Vector3 posit)
+    public void SpawnArmor(Vector3 posit,int level =1)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
       
-        item.SetItemToArmor(1);
+        item.SetItemToArmor(level);
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
