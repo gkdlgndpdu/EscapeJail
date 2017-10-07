@@ -8,7 +8,7 @@ public class Criminal4 : MonsterBase
     {
         monsterName = MonsterName.Criminal4;
         SetHp(10);
-        nearestAcessDistance = 7f;  
+        nearestAcessDistance = 7f;
         attackDelay = 1f;
 
     }
@@ -28,9 +28,9 @@ public class Criminal4 : MonsterBase
         {
             float reBoundValue = 5f;
             Vector3 firePos = this.transform.position;
-            Vector3 fireDir = GamePlayerManager.Instance.player.transform.position-this.transform.position;
+            Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, 2, BulletType.EnemyBullet, 1, 1,2f);
+            bullet.Initialize(firePos, fireDir.normalized, 2, BulletType.EnemyBullet, 1, 1, 2f);
             bullet.InitializeImage("white", false);
             bullet.SetEffectName("CriminalGrandeExplosion", 1.5f);
             bullet.SetExplosion(1.5f);
@@ -54,7 +54,7 @@ public class Criminal4 : MonsterBase
 
         MoveToTarget();
         NearAttackLogic();
-    
+
 
     }
 
@@ -64,15 +64,25 @@ public class Criminal4 : MonsterBase
     {
         nowAttack = true;
         SetAnimation(MonsterState.Attack);
-        FireGranade();
+        yield return null;
+        while (true)
+        {
 
-       
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")==false)
+            {
+                FireGranade();
+                break;
+            }
+            yield return null;
+        }
+
+
         yield return new WaitForSeconds(3f);
         nowAttack = false;
     }
 
 
-  
+
 
 
 

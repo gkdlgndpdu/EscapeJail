@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class CriminalGun1 : Weapon
+    public class CriminalUzi : Weapon
     {
-
         private float reBoundValue = 3f;
-        public CriminalGun1()
+        public CriminalUzi()
         {
-            weapontype = WeaponType.CriminalGun1;
-            bulletSpeed = 5f;
-            weaponScale = Vector3.one*1.5f;
-            relativePosition = new Vector3(0.45f, -0.1f, 0f);
+            weapontype = WeaponType.CriminalUzi;
+            bulletSpeed = 2.5f;
+            weaponScale = Vector3.one;
+            relativePosition = new Vector3(0.43f, 0f, 0f);
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
@@ -23,7 +22,7 @@ namespace weapon
                 Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                 Vector3 fireDIr = PlayerPos - firePos;
                 fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet,0.5f);
+                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 0.5f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
             }
@@ -32,5 +31,6 @@ namespace weapon
 
 
         }
+
     }
 }

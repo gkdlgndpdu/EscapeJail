@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CriminalGun1
+  m_Name: CriminalUzi
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: FireTrigger
@@ -43,9 +43,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75000006
+  m_TransitionDuration: 0.08595288
+  m_TransitionOffset: 0.27092424
+  m_ExitTime: 1.2259479
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -69,7 +69,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 596e515fcffad20489783ce43c76c5c9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0522c11916123d044826851b6a54c79a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Criminal1 : MonsterBase
+
+public class Criminal5 : MonsterBase
 {
+
     private bool isDisable = false;
 
 
     public new void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Criminal1;
+        monsterName = MonsterName.Criminal5;
         SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new CriminalPostol());
+        nowWeapon.ChangeWeapon(new CriminalUzi());
 
     }
 
@@ -64,7 +66,7 @@ public class Criminal1 : MonsterBase
             FireWeapon();
         }
 
-     
+
     }
 
     IEnumerator TempFireRoutine()
@@ -72,12 +74,12 @@ public class Criminal1 : MonsterBase
         while (true)
         {
             if (isDisable == true) yield return null;
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 15; i++)
             {
-            FireWeapon();
+                FireWeapon();
                 yield return new WaitForSeconds(0.1f);
             }
-       
+
 
             yield return new WaitForSeconds(1f);
         }
@@ -109,5 +111,4 @@ public class Criminal1 : MonsterBase
         if (nowWeapon != null)
             nowWeapon.FireBullet(this.transform.position, Vector3.zero);
     }
-
 }

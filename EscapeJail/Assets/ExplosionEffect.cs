@@ -59,8 +59,8 @@ public class ExplosionEffect : MonoBehaviour
 
         if (AnimatorIsPlaying() == false&& isEffectOff==false)
         {
-            EffectOff();
-            //Invoke("EffectOff", 0.5f);
+            //EffectOff();
+            Invoke("EffectOff", 0.5f);
             isEffectOff = true;
 
         }

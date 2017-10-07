@@ -12,6 +12,7 @@ public enum MonsterName
     Criminal1,
     Criminal2,
     Criminal4,
+    Criminal5,
     EndMonster
 }
 
@@ -73,12 +74,14 @@ public class MonsterBase : CharacterInfo
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     protected void AddToList()
     {
+        if(MonsterManager.Instance!=null)
         MonsterManager.Instance.AddToList(this.gameObject);
     }
 
     protected void DeleteInList()
     {
-        MonsterManager.Instance.DeleteInList(this.gameObject);
+        if (MonsterManager.Instance != null)
+            MonsterManager.Instance.DeleteInList(this.gameObject);
     }
 
     protected void OnDisable()

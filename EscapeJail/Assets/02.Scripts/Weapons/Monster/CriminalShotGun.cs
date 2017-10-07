@@ -10,7 +10,7 @@ namespace weapon
         public CriminalShotGun()
         {
             weapontype = WeaponType.CriminalShotGun;
-            bulletSpeed = 5f;
+            bulletSpeed = 4f;
             weaponScale = Vector3.one * 1.5f;
             relativePosition = new Vector3(0.45f, -0.1f, 0f);
         }
