@@ -27,15 +27,33 @@ public class InventoryUi : MonoBehaviour
     [SerializeField]
     private Image ArmorImage;
     [SerializeField]
-    private Image ArmorBar;
+    private Image ArmorRedImage;
+
 
     public void SetArmorUi(float ratio)
     {
-        if (ArmorImage != null&& ArmorBar!=null)
+        if (ArmorImage != null)
         {           
             ArmorImage.fillAmount =1f- ratio;            
         }
         
+    }
+
+    public void SetArmorImage(int level)
+    {
+        level = Mathf.Clamp(level, 1, 3);
+        string path = string.Format("Sprites/Icons/Armor{0}", level.ToString());
+
+        if (ArmorImage != null && ArmorRedImage != null)
+        {
+            Sprite loadImage = Resources.Load<Sprite>(path);
+            if (loadImage != null)
+            {
+                ArmorImage.sprite = loadImage;
+                ArmorRedImage.sprite = loadImage;
+            }
+        }
+
     }
 
     public void InventoryStateButtonClick()

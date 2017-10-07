@@ -10,6 +10,7 @@ public class ArmorSystem
     private InventoryUi inventoryUi;
     private PlayerUI playerUi;
     private HpBar hpBar;
+    private int armorLevel;
 
     public ArmorSystem(InventoryUi InventroyUi,PlayerUI playerUi,HpBar hpBar)
     {
@@ -27,7 +28,7 @@ public class ArmorSystem
     {
         remainArmor = level * 3;
         maxArmor = remainArmor;
-
+        armorLevel = level;
         UpdateArmorUi();
     }
 
@@ -44,12 +45,15 @@ public class ArmorSystem
 
     private void UpdateArmorUi()
     {
+        if (inventoryUi == null || hpBar == null) return;
+
         float ratio = (float)remainArmor / (float)maxArmor;
 
-        if (inventoryUi != null)
+
+            inventoryUi.SetArmorImage(armorLevel);
             inventoryUi.SetArmorUi(ratio);
 
-        if (hpBar != null)
+      
             hpBar.SetArmorBar(ratio);
     }
 	

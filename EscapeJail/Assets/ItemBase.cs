@@ -96,10 +96,10 @@ public class Item_Bullet : ItemBase
 public class Item_Armor : ItemBase
 {
 
-    public Item_Armor()
+    public Item_Armor(int level)
     {
         itemType = ItemType.Armor;
-        ItemLevel = 1;
+        ItemLevel = level;
 
     }
     public override void ItemAction()

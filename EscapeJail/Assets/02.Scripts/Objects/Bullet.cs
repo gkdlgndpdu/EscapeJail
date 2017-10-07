@@ -143,7 +143,13 @@ public class Bullet : MonoBehaviour
     
     private void MultiTargetDamage()
     {
-        int layerMask = MyUtils.GetLayerMaskByString("Enemy");
+        int layerMask;
+        if (bulletType==BulletType.PlayerBullet)
+          layerMask = MyUtils.GetLayerMaskByString("Enemy");
+        else
+            layerMask = MyUtils.GetLayerMaskByString("Player");
+
+
         Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, explosionRadius, layerMask);
         if (colls == null) return;
 
@@ -179,6 +185,9 @@ public class Bullet : MonoBehaviour
 
     private void BulletDestroy()
     {
+        if (explosionType == ExplosionType.multiple)
+            MultiTargetDamage();
+
         expireCount = 0f;
         ShowEffect();
         this.gameObject.SetActive(false);
