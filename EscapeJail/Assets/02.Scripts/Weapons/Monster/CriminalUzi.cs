@@ -9,7 +9,7 @@ namespace weapon
         public CriminalUzi()
         {
             weapontype = WeaponType.CriminalUzi;
-            bulletSpeed = 2.5f;
+            bulletSpeed = 4f;
             weaponScale = Vector3.one;
             relativePosition = new Vector3(0.43f, 0f, 0f);
         }

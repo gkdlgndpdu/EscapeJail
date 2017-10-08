@@ -16,7 +16,7 @@ namespace weapon
         LightSaber,
         PlayerWeaponEnd,
         MouseGun,
-        CriminalPostol,
+        CriminalPistol,
         CriminalShotGun,
         CriminalUzi,
         AroundGun

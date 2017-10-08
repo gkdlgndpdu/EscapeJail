@@ -11,6 +11,7 @@ public enum MonsterName
     Mouse4,
     Criminal1,
     Criminal2,
+    Criminal3,
     Criminal4,
     Criminal5,
     EndMonster
@@ -173,7 +174,7 @@ public class MonsterBase : CharacterInfo
 
 
 
-    protected void AttackOn()
+    public void AttackOn()
     {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(true);
@@ -181,7 +182,7 @@ public class MonsterBase : CharacterInfo
      
     }
 
-    protected void AttackOff()
+    public void AttackOff()
     {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
