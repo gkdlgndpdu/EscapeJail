@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class CriminalPostol : Weapon
+    public class CriminalPistol : Weapon
     {
 
         private float reBoundValue = 3f;
-        public CriminalPostol()
+        public CriminalPistol()
         {
-            weapontype = WeaponType.CriminalPostol;
+            weapontype = WeaponType.CriminalPistol;
             bulletSpeed = 3f;
             weaponScale = Vector3.one*1.5f;
             relativePosition = new Vector3(0.45f, -0.1f, 0f);

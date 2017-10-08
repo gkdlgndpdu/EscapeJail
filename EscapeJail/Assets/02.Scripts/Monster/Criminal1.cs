@@ -16,7 +16,7 @@ public class Criminal1 : MonsterBase
     }
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new CriminalPostol());
+        nowWeapon.ChangeWeapon(new CriminalPistol());
 
     }
 

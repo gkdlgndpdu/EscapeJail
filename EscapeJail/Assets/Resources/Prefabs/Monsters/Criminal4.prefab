@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 212576902586182044}
   - component: {fileID: 95111721957825984}
   - component: {fileID: 114600924043461994}
+  - component: {fileID: 114475807359262184}
   m_Layer: 10
   m_Name: View
   m_TagString: Untagged
@@ -269,6 +270,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114475807359262184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1562139951277270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc0e95e7d3914a47936109f9bb6b181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEvent1:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114332854776042330}
+        m_MethodName: FireGranade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  myEvent2:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114506884560010282
 MonoBehaviour:
   m_ObjectHideFlags: 1
