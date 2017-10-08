@@ -38,7 +38,7 @@ public class ItemBase
     //인벤토리에서 클릭했을때의 효과
     public virtual void ItemAction()
     {
-        Debug.Log("순수 itemAction 호출");
+        //Debug.Log("순수 itemAction 호출");
     }
 
     public virtual void RemoveItem()
@@ -62,7 +62,7 @@ public class Item_Weapon : ItemBase
 
     public override void ItemAction()
     {
-        Debug.Log("무기클릭");
+      //  Debug.Log("무기클릭");
     }
 
 
@@ -82,7 +82,7 @@ public class Item_Bullet : ItemBase
             player.RemoveItem(this);
         }
 
-        Debug.Log("총알 클릭");
+       // Debug.Log("총알 클릭");
 
     }
 
@@ -104,7 +104,7 @@ public class Item_Armor : ItemBase
     }
     public override void ItemAction()
     {
-        Debug.Log("아머 클릭");
+    //    Debug.Log("아머 클릭");
 
     }
 }
@@ -119,7 +119,7 @@ public class Item_Bag : ItemBase
 
     public override void ItemAction()
     {
-        Debug.Log("아머 클릭");
+      //  Debug.Log("아머 클릭");
 
     }
 

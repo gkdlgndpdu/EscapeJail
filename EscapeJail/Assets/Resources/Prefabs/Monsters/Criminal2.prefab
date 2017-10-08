@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224033900808270112}
   - component: {fileID: 223518358698801320}
   - component: {fileID: 114303638426823376}
-  - component: {fileID: 114653974953803580}
   m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
@@ -341,22 +340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPosit: {fileID: 4289465920703158}
   attackObject: {fileID: 0}
---- !u!114 &114653974953803580
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1169328798307846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &114857495979417538
 MonoBehaviour:
   m_ObjectHideFlags: 1
