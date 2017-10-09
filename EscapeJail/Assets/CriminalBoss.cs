@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(BossEventQueue))]
 public class CriminalBoss : BossBase
 {
     //컴포넌트
@@ -17,6 +18,20 @@ public class CriminalBoss : BossBase
     //인스펙터에서 할당
     public List<Transform> moveList;
 
+
+    private new void Awake()
+    {
+        base.Awake();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        SetHp(10);
+        RegistPatternToQueue();
+    }
+
+ 
+
     public enum Actions
     {
         FireStart,
@@ -24,6 +39,17 @@ public class CriminalBoss : BossBase
         Walk,
         WalkEnd           
     }
+
+    public override void StartBossPattern()
+    {
+        base.StartBossPattern();
+        Debug.Log("CriminalPattern Start");
+
+        if(bossEventQueue!=null)
+        bossEventQueue.StartEventQueue();
+    }
+
+ 
 
     private void Action(Actions action)
     {
@@ -71,16 +97,17 @@ public class CriminalBoss : BossBase
 
     }
 
-
-    private new void Awake()
+    private void RegistPatternToQueue()
     {
-        base.Awake();
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        bossEventQueue.Initialize(this, EventOrder.Random);
 
-        SetHp(10);
+        bossEventQueue.AddEvent("FirePattern1");
+
     }
+
+
+    #region Pattern
 
     private IEnumerator FirePattern1()
     {
@@ -131,13 +158,7 @@ public class CriminalBoss : BossBase
         Action(Actions.FireEnd);
         yield return null;
     }
+    #endregion
 
-    public override void StartBossPattern()
-    { 
-        base.StartBossPattern();
-        Debug.Log("CriminalPattern Start");
-        StartCoroutine(FirePattern1());
-    
-    }
 }
 

@@ -52,7 +52,6 @@ public class MouseBoss : BossBase
 
     }
 
-
     private void Action(Actions action)
     {
         switch (action)

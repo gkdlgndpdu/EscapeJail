@@ -8,6 +8,8 @@ public class BossBase : CharacterInfo
  
     protected BossModule bossModule;
 
+    protected BossEventQueue bossEventQueue;
+
     [SerializeField]
     protected BossHpBar bosshpBar;
 
@@ -48,8 +50,13 @@ public class BossBase : CharacterInfo
 
     protected void Awake()
     {
-        bossModule = GetComponentInParent<BossModule>();     
+        bossModule = GetComponentInParent<BossModule>();
+        bossEventQueue = GetComponent<BossEventQueue>();
 
+    }
+
+    protected void Initiaize()
+    {
 
     }
 
