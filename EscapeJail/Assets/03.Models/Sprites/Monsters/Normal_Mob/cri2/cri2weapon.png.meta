@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 56ebad045ae47df49ba16ecaed68c0ea
-timeCreated: 1507314879
+guid: 4adbc7779f8fb824aa6e0709793b18ae
+timeCreated: 1507551544
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: cri2weapon_0
     21300002: cri2weapon_1
     21300004: cri2weapon_2
-    21300006: cri2weapon_7
+    21300006: cri2weapon_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -90,12 +90,12 @@ TextureImporter:
       name: cri2weapon_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 414
-        width: 130
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 70
+        width: 81
+        height: 50
+      alignment: 9
+      pivot: {x: 0.34, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -104,12 +104,12 @@ TextureImporter:
       name: cri2weapon_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 414
-        width: 130
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 81
+        y: 70
+        width: 81
+        height: 50
+      alignment: 9
+      pivot: {x: 0.34, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,33 +118,33 @@ TextureImporter:
       name: cri2weapon_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 414
-        width: 130
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 162
+        y: 70
+        width: 81
+        height: 50
+      alignment: 9
+      pivot: {x: 0.34, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: cri2weapon_7
+      name: cri2weapon_3
       rect:
         serializedVersion: 2
-        x: 4
-        y: 280
-        width: 130
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 243
+        y: 70
+        width: 81
+        height: 50
+      alignment: 9
+      pivot: {x: 0.34, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     outline: []
     physicsShape: []
-  spritePackingTag: Weapon
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

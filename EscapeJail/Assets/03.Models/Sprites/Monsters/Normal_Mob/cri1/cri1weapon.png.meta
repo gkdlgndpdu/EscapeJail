@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c25fe0d7ff7202341b6c459e425ea788
-timeCreated: 1507311672
+guid: 027f0fd785213c7408364ec81b34aae7
+timeCreated: 1507545826
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,7 +8,6 @@ TextureImporter:
     21300002: cri1weapon_1
     21300004: cri1weapon_2
     21300006: cri1weapon_3
-    21300008: cri1weapon_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -35,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -91,10 +90,10 @@ TextureImporter:
       name: cri1weapon_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 430
-        width: 100
-        height: 48
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,10 +104,10 @@ TextureImporter:
       name: cri1weapon_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 430
-        width: 100
-        height: 48
+        x: 65
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +118,10 @@ TextureImporter:
       name: cri1weapon_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 430
-        width: 100
-        height: 48
+        x: 130
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,13 +129,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: cri1weapon_5
+      name: cri1weapon_3
       rect:
         serializedVersion: 2
-        x: 12
-        y: 296
-        width: 100
-        height: 48
+        x: 0
+        y: 127
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,7 +144,7 @@ TextureImporter:
       tessellationDetail: 0
     outline: []
     physicsShape: []
-  spritePackingTag: Weapon
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -11,8 +11,8 @@ namespace weapon
         {
             weapontype = WeaponType.CriminalPistol;
             bulletSpeed = 3f;
-            weaponScale = Vector3.one*1.5f;
-            relativePosition = new Vector3(0.45f, -0.1f, 0f);
+            weaponScale = Vector3.one*3f;
+            relativePosition = new Vector3(0.7f, 0f, 0f);
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {

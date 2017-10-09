@@ -28,8 +28,8 @@ public class BossEventQueue : MonoBehaviour
         switch (eventOrder)
         {
             case EventOrder.InOrder:
-                {
-                    //미구현
+                {                
+                    StartCoroutine(EventInOrderProcess());
                 }
                 break;
             case EventOrder.Random:
@@ -64,6 +64,24 @@ public class BossEventQueue : MonoBehaviour
             }
             else
             {            
+                yield return null;
+            }
+        }
+    }
+
+    public IEnumerator EventInOrderProcess()
+    {
+        int EventIndex =0;
+        while (true)
+        {
+            if (EventIndex < eventList.Count)
+            {
+                yield return targetGameObject.StartCoroutine(eventList[EventIndex]);
+                EventIndex++;
+            }
+            else
+            {
+                EventIndex = 0;
                 yield return null;
             }
         }

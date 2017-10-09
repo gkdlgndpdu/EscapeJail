@@ -30,7 +30,7 @@ public class Criminal4 : MonsterBase
             Vector3 firePos = this.transform.position;
             Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, 5, BulletType.EnemyBullet,0.7f, 1, 2f);
+            bullet.Initialize(firePos, fireDir.normalized, 5, BulletType.EnemyBullet,1.3f, 1, 2f);
             bullet.InitializeImage("CriminalGrande", true);
             bullet.SetEffectName("CriminalGrandeExplosion", 1.5f);
             bullet.SetExplosion(1.5f);

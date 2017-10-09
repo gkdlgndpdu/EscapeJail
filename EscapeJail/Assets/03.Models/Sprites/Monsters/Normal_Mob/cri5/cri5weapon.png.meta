@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b7a8b6955a95cb14aa8ea59bc56f8f9c
-timeCreated: 1507325934
+guid: 531be2950c03d3f4b94a0f0123ac1488
+timeCreated: 1507553268
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,7 +25,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -34,8 +34,8 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 1
+    filterMode: 0
+    aniso: -1
     mipBias: -1
     wrapU: 1
     wrapV: -1
@@ -91,11 +91,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -104,12 +104,12 @@ TextureImporter:
       name: cri5weapon_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,10 +120,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,19 +132,19 @@ TextureImporter:
       name: cri5weapon_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     outline: []
     physicsShape: []
-  spritePackingTag: Weapon
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

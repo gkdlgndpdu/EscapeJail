@@ -100,10 +100,11 @@ public class CriminalBoss : BossBase
     private void RegistPatternToQueue()
     {
         
-        bossEventQueue.Initialize(this, EventOrder.Random);
+        bossEventQueue.Initialize(this, EventOrder.InOrder);
 
+      //  bossEventQueue.AddEvent("FirePattern1");
+        bossEventQueue.AddEvent("FirePattern2");  
         bossEventQueue.AddEvent("FirePattern1");
-
     }
 
 
@@ -112,9 +113,14 @@ public class CriminalBoss : BossBase
     private IEnumerator FirePattern1()
     {
         Action(Actions.FireStart);
+
+        float eachFireDelay = 0.3f;
+        float endDelay = 1f;
+        float bulletSpeed = 4f;
+        int fireBulletNum = 20;
         yield return new WaitForSeconds(0.5f);
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < fireBulletNum; i++)
         {
             if (i % 2 == 0)
             {
@@ -123,16 +129,13 @@ public class CriminalBoss : BossBase
                     Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                     if (bullet != null)
                     {
-                        Vector3 fireDir = Quaternion.Euler(0f, 0f, -22.5f + (float)j * 45f) * Vector3.right;
-                        float bulletSpeed = 4f;
-
+                        Vector3 fireDir = Quaternion.Euler(0f, 0f, -22.5f + (float)j * 45f) * Vector3.right;  
                         bullet.gameObject.SetActive(true);
                         bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                     }
                 }
-
             }
             else
             {
@@ -142,8 +145,6 @@ public class CriminalBoss : BossBase
                     if (bullet != null)
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f,   (float)j * 45f) * Vector3.right;
-                        float bulletSpeed = 4f;
-
                         bullet.gameObject.SetActive(true);
                         bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
                         bullet.InitializeImage("white", false);
@@ -152,11 +153,44 @@ public class CriminalBoss : BossBase
                 }
             }
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(eachFireDelay);
+        }
+
+        Action(Actions.FireEnd); 
+
+        yield return new WaitForSeconds(endDelay);
+    }
+
+    private IEnumerator FirePattern2()
+    {
+        Action(Actions.FireStart);
+
+        float fireDelay = 0.2f;
+        float bulletSpeed = 8f;
+        float endDelay = 1f;
+        int fireBulletNum = 15;
+
+        yield return new WaitForSeconds(1f);
+            
+        for (int i = 0; i < fireBulletNum; i++)
+        {
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                Vector3 fireDir = GamePlayerManager.Instance.player.transform.position-this.transform.position;
+        
+
+                bullet.gameObject.SetActive(true);
+                bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
+                bullet.InitializeImage("white", false);
+                bullet.SetEffectName("revolver");
+            }
+            yield return new WaitForSeconds(fireDelay);
         }
 
         Action(Actions.FireEnd);
-        yield return null;
+
+        yield return new WaitForSeconds(endDelay);
     }
     #endregion
 
