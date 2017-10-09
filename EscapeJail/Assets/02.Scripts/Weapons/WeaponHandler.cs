@@ -18,7 +18,7 @@ public class WeaponHandler : MonoBehaviour
     private WeaponUI weaponUI;
 
     private Vector3 originPosit;
-    private bool isShake = false;
+
 
     private System.Action weaponRotateFunc;
 

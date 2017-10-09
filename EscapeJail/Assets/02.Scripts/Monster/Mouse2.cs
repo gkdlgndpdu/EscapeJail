@@ -65,7 +65,7 @@ public class Mouse2 : MonsterBase
     {
         while (true)
         {
-            if (isDisable == true) yield break; 
+            if (isDisable == true) yield return null;
             FireWeapon();
 
             yield return new WaitForSeconds(1f);

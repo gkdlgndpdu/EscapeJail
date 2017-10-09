@@ -59,11 +59,6 @@ public class Criminal1 : MonsterBase
         MoveToTarget();
         RotateWeapon();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FireWeapon();
-        }
-
      
     }
 

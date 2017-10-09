@@ -10,7 +10,7 @@ namespace weapon
         {
             weapontype = WeaponType.MouseGun;
             bulletSpeed = 5f;
-            weaponScale = Vector3.one * 3;
+            weaponScale = Vector3.one * 1.6f;
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
