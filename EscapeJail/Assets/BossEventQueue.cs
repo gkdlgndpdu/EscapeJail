@@ -53,12 +53,15 @@ public class BossEventQueue : MonoBehaviour
 	
     public IEnumerator EventRandomProcess()
     {
+        if (targetGameObject == null) yield break;
+
         AddRandomEventToQueue();
 
         while (true)
         {
             if (eventQueue.Count > 0)
             {
+                targetGameObject.StopAllCoroutines();
                 yield return targetGameObject.StartCoroutine(eventQueue.Dequeue());
                 AddRandomEventToQueue();
             }
@@ -71,11 +74,14 @@ public class BossEventQueue : MonoBehaviour
 
     public IEnumerator EventInOrderProcess()
     {
+        if (targetGameObject == null) yield break;
+
         int EventIndex =0;
         while (true)
         {
             if (EventIndex < eventList.Count)
             {
+                targetGameObject.StopAllCoroutines();
                 yield return targetGameObject.StartCoroutine(eventList[EventIndex]);
                 EventIndex++;
             }
