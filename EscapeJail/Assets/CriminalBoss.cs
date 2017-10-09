@@ -17,7 +17,45 @@ public class CriminalBoss : BossBase
     //인스펙터에서 할당
     public List<Transform> moveList;
 
-    
+    public enum Actions
+    {
+        FireStart,
+        FireEnd,
+        Walk,
+        WalkEnd           
+    }
+
+    private void Action(Actions action)
+    {
+        switch (action)
+        {
+            case Actions.FireStart:
+                {
+                    if (animator != null)
+                        animator.SetTrigger("FireTrigger");
+                        
+                } break;
+            case Actions.FireEnd:
+                {
+                    if (animator != null)
+                        animator.SetTrigger("FireEndTrigger");
+                }
+                break;
+            case Actions.Walk:
+                {
+                    if (animator != null)
+                        animator.SetFloat("Speed",1f);
+
+                }
+                break;
+            case Actions.WalkEnd:
+                {
+                    if (animator != null)
+                        animator.SetFloat("Speed", 0f);
+                } break;
+                
+        }
+    }
 
     public override void GetDamage(int damage)
     {
@@ -46,7 +84,10 @@ public class CriminalBoss : BossBase
 
     private IEnumerator FirePattern1()
     {
-        for(int i = 0; i < 30; i++)
+        Action(Actions.FireStart);
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 30; i++)
         {
             if (i % 2 == 0)
             {
@@ -86,6 +127,8 @@ public class CriminalBoss : BossBase
 
             yield return new WaitForSeconds(0.3f);
         }
+
+        Action(Actions.FireEnd);
         yield return null;
     }
 

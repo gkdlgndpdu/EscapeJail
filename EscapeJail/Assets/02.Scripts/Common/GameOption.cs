@@ -24,7 +24,7 @@ public class GameOption : MonoBehaviour
         if(Instance==null)
         Instance = this;
 
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 200;
 
     
     } 

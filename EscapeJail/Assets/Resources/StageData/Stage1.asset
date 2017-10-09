@@ -20,7 +20,7 @@ MonoBehaviour:
   spriteDoor: {fileID: 0}
   randomTileColor:
   - {r: 0, g: 1, b: 0.08965492, a: 1}
-  BossModule: {fileID: 1021102894409686, guid: 7149cd08fbbdd664d9d4afc3c4b58826, type: 2}
-  RoomNum: 10
-  RoomMaxSize: 50
-  RoomMinSize: 25
+  BossModule: {fileID: 1251367538759042, guid: 8c56eefe9431c4e49a3528c8e154d948, type: 2}
+  RoomNum: 1
+  RoomMaxSize: 10
+  RoomMinSize: 5
