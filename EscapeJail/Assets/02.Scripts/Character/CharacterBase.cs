@@ -306,6 +306,9 @@ public class CharacterBase : CharacterInfo
 
     public override void GetDamage(int damage)
     {
+        //흔들리는 효과
+        CameraController.Instance.ShakeCamera(3f, 0.4f);
+
         if (armorSystem.hasArmor() == true)
         {
             armorSystem.UseArmor(damage);
