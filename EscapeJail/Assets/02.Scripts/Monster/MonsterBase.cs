@@ -188,25 +188,33 @@ public class MonsterBase : CharacterInfo
     }
 
     private void SetDie()
-    {
-        Debug.Log("die들어옴");
-
+    {       
+        //상태
         isDead = true;
 
+        //속도
         if (rb != null)
             rb.velocity = Vector3.zero;
 
+        //충돌체
         if (capsuleCollider != null)
             capsuleCollider.enabled = false;
 
+        //애니메이션
         if (animator != null)
             animator.SetTrigger("DeadTrigger");
 
+        //다시 풀로 돌아가기
         Invoke("ObjectOff", 3f);
 
+        //근접공격대상에서 벗어나게
         DeleteInList();
 
+        //실행중인 모든 코루틴 종료
         StopAllCoroutines();
+
+        //스코어 올려줌
+        ScoreBoard.Instance.GetScore();
     }
 
     protected void ObjectOff()

@@ -51,19 +51,4 @@ public class StagerController : MonoBehaviour
         mapManager.MakeMap(stageData);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Insert))
-        {
-            CreateNextStage();
-        }
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            DestroyThisStage();
-        }
-        if (Input.GetKeyDown(KeyCode.Home))
-        {
-            System.GC.Collect();
-        }
-    }
 }
