@@ -25,6 +25,6 @@ MonoBehaviour:
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
   BossModule: {fileID: 1251367538759042, guid: 8c56eefe9431c4e49a3528c8e154d948, type: 2}
-  RoomNum: 10
+  RoomNum: 100
   RoomMaxSize: 10
   RoomMinSize: 20
