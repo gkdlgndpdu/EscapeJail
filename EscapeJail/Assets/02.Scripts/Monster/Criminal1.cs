@@ -4,9 +4,7 @@ using UnityEngine;
 using weapon;
 public class Criminal1 : MonsterBase
 {
-    private bool isDisable = false;
-
-
+ 
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal1;
@@ -27,22 +25,11 @@ public class Criminal1 : MonsterBase
         SetUpMonsterAttribute();
     }
 
-
-    protected void OnDisable()
-    {
-
-        isDisable = true;
-
-
-    }
-
     protected new void OnEnable()
     {
         base.OnEnable();
         if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-        StartCoroutine(TempFireRoutine());
-        isDisable = false;
+            weaponPosit.gameObject.SetActive(true); 
     }
 
     private new void Awake()
@@ -65,12 +52,11 @@ public class Criminal1 : MonsterBase
      
     }
 
-    IEnumerator TempFireRoutine()
+    protected override IEnumerator FireRoutine()
     {
         while (true)
-        {
-            if (isDisable == true) yield return null;
-            for(int i = 0; i < 3; i++)
+        {        
+            for (int i = 0; i < 3; i++)
             {
             FireWeapon();
                 yield return new WaitForSeconds(0.1f);

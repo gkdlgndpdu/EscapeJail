@@ -5,7 +5,6 @@ using UnityEngine;
 using weapon;
 public class Mouse2 : MonsterBase
 {
-    private bool isDisable = false;
 
     public new void SetUpMonsterAttribute()
     {
@@ -14,7 +13,7 @@ public class Mouse2 : MonsterBase
         nearestAcessDistance = 5f;
         SetWeapon();
     }
-
+ 
     private void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new MouseGun());
@@ -25,22 +24,18 @@ public class Mouse2 : MonsterBase
     private new void Start()
     {
         base.Start();   
-        SetUpMonsterAttribute();
-    }
+        SetUpMonsterAttribute();   }
 
-    protected void OnDisable()
-    {     
-        isDisable = true;
-    }
+ 
 
     protected new void OnEnable()
     {
         base.OnEnable();
         if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-        StartCoroutine(TempFireRoutine());
-        isDisable = false;
+            weaponPosit.gameObject.SetActive(true);      
     }
+
+ 
 
     private new void Awake()
     {
@@ -60,13 +55,12 @@ public class Mouse2 : MonsterBase
    
     }
 
-    IEnumerator TempFireRoutine()
+    protected override IEnumerator FireRoutine()
     {
         while (true)
         {
-            if (isDisable == true) yield return null;
+            if (isDead == true) yield break;
             FireWeapon();
-
             yield return new WaitForSeconds(1f);
         }
     }

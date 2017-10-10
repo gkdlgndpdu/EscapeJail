@@ -113,7 +113,10 @@ public class MapModule : MapModuleBase
             MonsterBase spawnMonster = MonsterManager.Instance.SpawnMonster(MonsterName.Mouse1, RandomSpawnPosit);
 
             if (spawnMonster != null && monsterList != null)
+            {
                 monsterList.Add(spawnMonster);
+                spawnMonster.StartFirstAction();
+            }
 
             yield return new WaitForSeconds(2f);
         }

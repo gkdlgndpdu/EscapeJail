@@ -24,9 +24,6 @@ public class Criminal3 : MonsterBase
 
 
 
-
-
-
     private new void Awake()
     {
         base.Awake();
@@ -57,9 +54,8 @@ public class Criminal3 : MonsterBase
     }
 
 
-    public new void OnDisable()
-    {
-        base.OnDisable();
+    public void OnDisable()
+    {     
         AttackOff();
     }
 

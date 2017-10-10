@@ -12,7 +12,7 @@ public class Criminal4 : MonsterBase
         attackDelay = 1f;
 
     }
-
+  
     // Use this for initialization
     private new void Start()
     {

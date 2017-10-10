@@ -25,22 +25,15 @@ public class Mouse4 : MonsterBase
         SetUpMonsterAttribute();
     }
 
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-        StopCoroutine(TempFireRoutine());
-    }
-
     protected new void OnEnable()
     {
-        base.OnEnable();
-        StartCoroutine(TempFireRoutine());
+        base.OnEnable();    
+    
     }
 
     private new void Awake()
     {
         base.Awake();
-
     }
 
     // Update is called once per frame
@@ -55,12 +48,12 @@ public class Mouse4 : MonsterBase
 
     }
 
-    IEnumerator TempFireRoutine()
+    protected override IEnumerator FireRoutine()
     {
         while (true)
-        {
+        {        
             FireWeapon();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f);         
         }
     }
 

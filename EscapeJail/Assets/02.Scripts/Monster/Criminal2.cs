@@ -7,8 +7,6 @@ using weapon;
 public class Criminal2 : MonsterBase
 {
 
-  
-
 
     public new void SetUpMonsterAttribute()
     {
@@ -29,22 +27,11 @@ public class Criminal2 : MonsterBase
         base.Start();
         SetUpMonsterAttribute();
     }
-
-
-    protected void OnDisable()
-    {    
-        isDisable = true;
-
-
-    }
-
     protected new void OnEnable()
     {
         base.OnEnable();
         if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-        StartCoroutine(TempFireRoutine());
-        isDisable = false;
+            weaponPosit.gameObject.SetActive(true);     
     }
 
     private new void Awake()
@@ -56,7 +43,7 @@ public class Criminal2 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        if (isDead == true) return;
+            if (isDead == true) return;
 
         ActionCheck();
         if (isActionStart == false) return;
@@ -71,15 +58,12 @@ public class Criminal2 : MonsterBase
 
     }
 
-    IEnumerator TempFireRoutine()
+    protected override IEnumerator FireRoutine()
     {
         while (true)
-        {
-            if (isDisable == true) yield return null;
-          
-                FireWeapon();
-                yield return new WaitForSeconds(1f);
-            
+        {    
+
+            FireWeapon();        
 
 
             yield return new WaitForSeconds(1f);

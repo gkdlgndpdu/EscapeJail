@@ -16,24 +16,20 @@ public class Mouse : MonsterBase
     }
 
     // Use this for initialization
-    private new void Start ()
+    private new void Start()
     {
-        base.Start();  
+        base.Start();
         SetUpMonsterAttribute();
+
     }
-
-
-
-
-
 
     private new void Awake()
     {
-        base.Awake();      
+        base.Awake();
     }
-	
-	// Update is called once per frame
-	private void Update ()
+
+    // Update is called once per frame
+    private void Update()
     {
         if (isDead == true) return;
 
@@ -46,7 +42,7 @@ public class Mouse : MonsterBase
 
     }
 
- 
+
 
     protected override IEnumerator AttackRoutine()
     {
@@ -57,7 +53,7 @@ public class Mouse : MonsterBase
         AttackOn();
         yield return new WaitForSeconds(1.0f); //애니메이션 재생시간
         AttackOff();
-        yield return new WaitForSeconds(attackDelay- 1.0f);
+        yield return new WaitForSeconds(attackDelay - 1.0f);
         nowAttack = false;
     }
 
@@ -65,9 +61,9 @@ public class Mouse : MonsterBase
     protected void RotateWeapon()
     {
         if (weaponPosit.gameObject.activeSelf == false) return;
-        float angle = MyUtils.GetAngle(target.position,this.transform.position);
+        float angle = MyUtils.GetAngle(target.position, this.transform.position);
         if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);   
+            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
 
     }
 

@@ -48,7 +48,6 @@ public class MonsterBase : CharacterInfo
     protected bool nowAttack = false;
     protected float attackDelay =0f;
     protected bool isDead = false;
-    protected bool isDisable = false;
     //사정거리 확인용
     protected float activeDistance = 10;
     protected bool isActionStart = false;
@@ -94,13 +93,19 @@ public class MonsterBase : CharacterInfo
             MonsterManager.Instance.DeleteInList(this.gameObject);
     }
 
+
+    public virtual void StartFirstAction()
+    {
+        StartCoroutine(FireRoutine());
+    }
  
 
     protected void OnEnable()
-    {
-     
+    {     
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
+
+      
     }
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -172,7 +177,17 @@ public class MonsterBase : CharacterInfo
 
     }
 
-    protected void SetDie()
+    protected virtual IEnumerator FireRoutine()
+    {
+        yield return null;
+    }
+
+    protected void OnDisable()
+    {
+        isDead = false;
+    }
+
+    private void SetDie()
     {
         Debug.Log("die들어옴");
 
@@ -338,10 +353,6 @@ public class MonsterBase : CharacterInfo
         }
     }
 
-
-    protected void OnDisable()
-    {
-        isDisable = true;
-    }
+  
 
 }

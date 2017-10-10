@@ -53,7 +53,7 @@ public class MonsterManager : MonoBehaviour
       
         if (monster == null) return null;
 
-       monster.ResetMonster();
+       monster.ResetMonster();    
        monster.transform.position = SpawnPosit;
        return monster;
     }

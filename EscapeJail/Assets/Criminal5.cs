@@ -5,10 +5,8 @@ using weapon;
 
 public class Criminal5 : MonsterBase
 {
-
-    private bool isDisable = false;
-
-
+    
+ 
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal5;
@@ -29,22 +27,13 @@ public class Criminal5 : MonsterBase
         SetUpMonsterAttribute();
     }
 
-
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-        isDisable = true;
-
-
-    }
-
+  
     protected new void OnEnable()
     {
         base.OnEnable();
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(true);
-        StartCoroutine(TempFireRoutine());
-        isDisable = false;
+     
     }
 
     private new void Awake()
@@ -71,11 +60,11 @@ public class Criminal5 : MonsterBase
 
     }
 
-    IEnumerator TempFireRoutine()
+    protected override IEnumerator FireRoutine()
     {
         while (true)
         {
-            if (isDisable == true) yield return null;
+            if (isDead == true) yield break;
             for (int i = 0; i < 15; i++)
             {
                 FireWeapon();

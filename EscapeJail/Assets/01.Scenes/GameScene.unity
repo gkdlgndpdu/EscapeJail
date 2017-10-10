@@ -1276,48 +1276,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &498514015
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564513476214324, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5876694e7672bdf4a87d7d8b67823b91, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &502177652
 GameObject:
   m_ObjectHideFlags: 0
@@ -5037,7 +4995,7 @@ Camera:
   m_GameObject: {fileID: 2108538901}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2

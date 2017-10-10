@@ -14,9 +14,7 @@ public class Mouse3 : MonsterBase
         SetHp(10);
         nearestAcessDistance = 3f;
 
-    }
-
-
+    } 
 
     // Use this for initialization
     private new void Start()
@@ -24,12 +22,7 @@ public class Mouse3 : MonsterBase
         base.Start();
         SetUpMonsterAttribute();
     }
-
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-
-    }
+    
 
     protected new void OnEnable()
     {
@@ -85,13 +78,7 @@ public class Mouse3 : MonsterBase
         if (rb != null)
             rb.velocity = Vector3.zero;
 
-        //nowAttack = true;
-        //SetAnimation(MonsterState.Attack);
-        //AttackOn();
-        //yield return new WaitForSeconds(1.0f);
-        //AttackOff();
-        //yield return new WaitForSeconds(attackDelay - 1.0f);
-        //nowAttack = false;
+    
     }
 
 
