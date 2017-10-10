@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20346bc08486b0c40ab21cb02d594a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloomSprite: {fileID: 212511500431527934}
 --- !u!212 &212381683044856512
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -212,7 +213,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 49
   m_Sprite: {fileID: 21300000, guid: 6b768078e82b0584699891c323b3c692, type: 3}
-  m_Color: {r: 0.15862082, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
