@@ -34,6 +34,7 @@ public class Criminal4 : MonsterBase
             bullet.InitializeImage("CriminalGrande", true);
             bullet.SetEffectName("CriminalGrandeExplosion", 1.5f);
             bullet.SetExplosion(1.5f);
+            bullet.SetBloom(false,Color.white);
 
 
         }

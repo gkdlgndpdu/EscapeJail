@@ -31,6 +31,10 @@ public class Bullet : MonoBehaviour
     private float effectsize = 0f;
     private float explosionRadius = 1f;
     private ExplosionType explosionType;
+
+    [SerializeField]
+    private SpriteRenderer bloomSprite;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,7 +47,7 @@ public class Bullet : MonoBehaviour
 
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1,float lifeTime = 5f)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {
         //위치
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
@@ -64,11 +68,26 @@ public class Bullet : MonoBehaviour
         //애니메이션불렛 유무
         if (animator != null)
             animator.runtimeAnimatorController = null;
-       
+
         this.lifeTime = lifeTime;
 
         //폭발 타입
         explosionType = ExplosionType.single;
+
+        switch (bulletType)
+        {
+            case BulletType.EnemyBullet:
+                {
+                    //bloom
+                    SetBloom(true, Color.red);
+                } break;
+            case BulletType.PlayerBullet:
+                {
+                    //bloom
+                    SetBloom(true, Color.green);
+                } break;
+        }
+
     }
     private void nDisable()
     {
@@ -92,7 +111,7 @@ public class Bullet : MonoBehaviour
         explosionRadius = radius;
     }
 
-    
+
     public void SetEffectName(string effectName, float effectsize = 1f)
     {
         this.effectName = effectName;
@@ -127,7 +146,7 @@ public class Bullet : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
     }
 
- 
+
 
     private void SingleTargetDamage(Collider2D collision)
     {
@@ -140,12 +159,12 @@ public class Bullet : MonoBehaviour
                 characterInfo.GetDamage(this.power);
         }
     }
-    
+
     private void MultiTargetDamage()
     {
         int layerMask;
-        if (bulletType==BulletType.PlayerBullet)
-          layerMask = MyUtils.GetLayerMaskByString("Enemy");
+        if (bulletType == BulletType.PlayerBullet)
+            layerMask = MyUtils.GetLayerMaskByString("Enemy");
         else
             layerMask = MyUtils.GetLayerMaskByString("Player");
 
@@ -153,7 +172,7 @@ public class Bullet : MonoBehaviour
         Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, explosionRadius, layerMask);
         if (colls == null) return;
 
-        for(int i=0;i< colls.Length; i++)
+        for (int i = 0; i < colls.Length; i++)
         {
             CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
             if (characterInfo != null)
@@ -170,18 +189,20 @@ public class Bullet : MonoBehaviour
             case ExplosionType.single:
                 {
                     SingleTargetDamage(collision);
-                  
-                } break;
+
+                }
+                break;
             case ExplosionType.multiple:
                 {
                     MultiTargetDamage();
-                } break;
+                }
+                break;
         }
         //이펙트 호출
         BulletDestroy();
     }
 
-  
+
 
     private void BulletDestroy()
     {
@@ -197,8 +218,17 @@ public class Bullet : MonoBehaviour
     {
         //이펙트 호출
         ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
-        if(effect!=null)
-        effect.Initilaize(this.transform.position, effectName,0.5f, effectsize);
+        if (effect != null)
+            effect.Initilaize(this.transform.position, effectName, 0.5f, effectsize);
     }
 
+
+    public void SetBloom(bool OnOff, Color color)
+    {
+        if (bloomSprite != null)
+        {
+            bloomSprite.gameObject.SetActive(OnOff);
+            bloomSprite.color = color;
+        }
+    }
 }
