@@ -106,7 +106,7 @@ public class MapModule : MapModuleBase
 
 
         //몬스터 스폰
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < SpawnMonsterNum; i++)
         {
             int RandomIndex = Random.Range(0, normalTileList.Count - 1);
             Vector3 RandomSpawnPosit = normalTileList[RandomIndex].transform.position;

@@ -174,6 +174,8 @@ public class MonsterBase : CharacterInfo
 
     protected void SetDie()
     {
+        Debug.Log("die들어옴");
+
         isDead = true;
 
         if (rb != null)
