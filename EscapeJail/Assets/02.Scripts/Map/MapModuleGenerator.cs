@@ -13,7 +13,7 @@ public class MapModuleGenerator
 
     //타일 사이즈
     private float widthDistance = 0.64f;
-    private float heightDistance = 0.64f;   
+    private float heightDistance = 0.64f;
 
     private int doorSize = 4;
 
@@ -39,7 +39,7 @@ public class MapModuleGenerator
 
     public MapModuleGenerator(Transform moduleParent, MapManager mapManager)
     {
-        normalTile = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/tile") ;
+        normalTile = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/tile");
         moduleObject = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/MapModule");
         this.moduleParent = moduleParent;
         this.mapManager = mapManager;
@@ -56,7 +56,7 @@ public class MapModuleGenerator
     }
 
     private void Initialize()
-    {     
+    {
         tileSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
@@ -94,25 +94,35 @@ public class MapModuleGenerator
         float width = maxX - minX;
         float height = maxY - minY;
 
+        int num1 = Mathf.RoundToInt(width / 0.64f);
+        int num2 = Mathf.RoundToInt(height / 0.64f);
+
         float offSetX = minX + width / 2f;
         float offSetY = minY + height / 2f;
 
         int widthNum = (int)(width / widthDistance) + 8;
         int heightNum = (int)(height / heightDistance) + 8;
 
+        //교정
+        if (num1 % 2 != 0) offSetX += 0.32f;
+        if (num2 % 2 != 0) offSetY += 0.32f;
+        
 
         for (int x = 0; x < widthNum; x++)
         {
             for (int y = 0; y < heightNum; y++)
             {
+                Vector3 posit = new Vector3((float)(-widthNum / 2 + x) * widthDistance + offSetX,
+                               (float)(-heightNum / 2 + y) * heightDistance + offSetY,
+                               0f);
+
+
                 if (y == 0 || y == heightNum - 1 || x == 0 || x == widthNum - 1)
                 {
-                    Vector3 posit = new Vector3((float)(-widthNum / 2 + x) * widthDistance + offSetX,
-                                          (float)(-heightNum / 2 + y) * heightDistance + offSetY,
-                                          0f);
+
                     //일반벽   
                     Tile tile;
-                    tile = MakeTile(TileType.Wall, posit, x, y, parent);
+                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);
                     if (wallSprite != null)
                         tile.SetSprite(wallSprite);
                     SetTileColor(tile, Color.white);
@@ -137,6 +147,16 @@ public class MapModuleGenerator
                     //{
 
                     //}              
+                }
+                else
+                {
+                    //일반벽   
+                    Tile tile;
+                    tile = MakeTile(TileType.Normal, posit, x, y, parent, null, -1);
+                    if (wallSprite != null)
+                        tile.SetSprite(GetRandomTileSprite());
+                    SetTileColor(tile, Color.white);
+
                 }
             }
         }
@@ -164,7 +184,7 @@ public class MapModuleGenerator
 
     }
 
-   
+
 
 
     private void LoadTileSprites()
@@ -211,6 +231,9 @@ public class MapModuleGenerator
 
         int minsize = stageData.RoomMinSize;
         int maxSize = stageData.RoomMaxSize;
+
+        if (minsize % 2 != 0) minsize += 1;
+        if (maxSize % 2 != 0) maxSize += 1;
 
         for (int i = 0; i < stageData.RoomNum; i++)
         {
@@ -353,7 +376,7 @@ public class MapModuleGenerator
 
     }
 
-    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null)
+    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null, int layerOrder = 0)
     {
         GameObject obj = GameObject.Instantiate(normalTile, parent);
         obj.transform.position = posit;
@@ -362,7 +385,7 @@ public class MapModuleGenerator
         Tile tile = null;
         tile = obj.GetComponent<Tile>();
         if (tile == null) return null;
-        tile.Initialize(type, GetRandomTileSprite(), parentModule);
+        tile.Initialize(type, GetRandomTileSprite(), parentModule, layerOrder);
         tile.SetIndex(x, y);
         switch (type)
         {

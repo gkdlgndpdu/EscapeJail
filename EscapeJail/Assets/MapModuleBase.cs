@@ -63,7 +63,7 @@ public class MapModuleBase : MonoBehaviour
             if (eachModuleDistance <= widthDistance * 2f)
             {
                 eachModuleDistance = widthDistance * 2f;
-            }
+            }          
 
             if (anotherModule != null)
             {

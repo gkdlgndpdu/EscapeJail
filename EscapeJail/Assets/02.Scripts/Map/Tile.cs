@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void Initialize(TileType tileType, Sprite sprite = null, MapModule parentModule = null)
+    public void Initialize(TileType tileType, Sprite sprite = null, MapModule parentModule = null,int layerOrder =0)
     {
         if (tileType == TileType.Wall)
         {
@@ -76,6 +76,14 @@ public class Tile : MonoBehaviour
         }
         this.tileType = tileType;
 
+        SetLayerOrder(layerOrder);
+
+    }
+
+    private void SetLayerOrder(int layer)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = layer;
     }
 
 

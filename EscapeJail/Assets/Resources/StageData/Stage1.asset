@@ -14,18 +14,17 @@ MonoBehaviour:
   spawnEnemyList: 0400000005000000060000000700000008000000
   bossModule: {fileID: 1021102894409686, guid: 7149cd08fbbdd664d9d4afc3c4b58826, type: 2}
   normalTileList:
-  - {fileID: 21300000, guid: 21bf5c80afee11147bbf4e8ead7cff45, type: 3}
-  - {fileID: 21300000, guid: 8741851f88fdb944cbd7fb9b04729134, type: 3}
-  - {fileID: 21300000, guid: 5ab3b1e8f2e021c4095c08b6124a7b51, type: 3}
-  - {fileID: 21300000, guid: a05a413ad485c514d94533a50c9f0499, type: 3}
-  - {fileID: 21300000, guid: a05a413ad485c514d94533a50c9f0499, type: 3}
-  - {fileID: 21300000, guid: 925de3468fcf06d4192879778333804a, type: 3}
-  - {fileID: 21300000, guid: b21d6143a6bdb0d4b898c6162976e1fb, type: 3}
+  - {fileID: 21300000, guid: 6e4c4a51bb6c74c479465d3b60f8078c, type: 3}
+  - {fileID: 21300000, guid: dea5fd74e13b55a4bbe628da35f9aa16, type: 3}
+  - {fileID: 21300000, guid: 2d5add9c8cf33ea4a90c90a3e9d3fdb1, type: 3}
+  - {fileID: 21300000, guid: 8492ed0b2fdceeb4a9d1496b7adfdd7a, type: 3}
+  - {fileID: 21300000, guid: 0c49f74ece44f0348a6b4cd9a3a4e0ae, type: 3}
+  - {fileID: 21300000, guid: e8c603266d58ba34cb83f1a97ff7b7fe, type: 3}
   spriteWall: {fileID: 21300000, guid: eee22e7ec2d08f548b750019d4d86c98, type: 3}
   spriteDoor: {fileID: 0}
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
   BossModule: {fileID: 1251367538759042, guid: 8c56eefe9431c4e49a3528c8e154d948, type: 2}
-  RoomNum: 100
+  RoomNum: 5
   RoomMaxSize: 10
   RoomMinSize: 20
