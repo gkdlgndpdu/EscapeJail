@@ -7,7 +7,7 @@ using weapon;
 public class Criminal2 : MonsterBase
 {
 
-    private bool isDisable = false;
+  
 
 
     public new void SetUpMonsterAttribute()
@@ -31,9 +31,8 @@ public class Criminal2 : MonsterBase
     }
 
 
-    protected new void OnDisable()
-    {
-        base.OnDisable();
+    protected void OnDisable()
+    {    
         isDisable = true;
 
 

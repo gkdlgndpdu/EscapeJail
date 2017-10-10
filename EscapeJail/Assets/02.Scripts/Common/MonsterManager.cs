@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager Instance;
-    private List<GameObject> monsterList;
+    public List<GameObject> monsterList;
 
 
     private void Awake()

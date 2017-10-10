@@ -35,6 +35,8 @@ public class Mouse : MonsterBase
 	// Update is called once per frame
 	private void Update ()
     {
+        if (isDead == true) return;
+
         ActionCheck();
         if (isActionStart == false) return;
 
@@ -48,7 +50,9 @@ public class Mouse : MonsterBase
 
     protected override IEnumerator AttackRoutine()
     {
+
         nowAttack = true;
+        yield return new WaitForSeconds(0.4f); //애니메이션 재생시간
         SetAnimation(MonsterState.Attack);
         AttackOn();
         yield return new WaitForSeconds(1.0f); //애니메이션 재생시간

@@ -28,12 +28,9 @@ public class Mouse2 : MonsterBase
         SetUpMonsterAttribute();
     }
 
-    protected new void OnDisable()
-    {
-        base.OnDisable();
+    protected void OnDisable()
+    {     
         isDisable = true;
-
-
     }
 
     protected new void OnEnable()

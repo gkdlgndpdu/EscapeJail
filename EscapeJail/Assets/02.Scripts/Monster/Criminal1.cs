@@ -28,9 +28,9 @@ public class Criminal1 : MonsterBase
     }
 
 
-    protected new void OnDisable()
+    protected void OnDisable()
     {
-        base.OnDisable();
+
         isDisable = true;
 
 

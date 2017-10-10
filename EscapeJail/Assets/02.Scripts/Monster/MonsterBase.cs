@@ -26,6 +26,7 @@ public enum MonsterState
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class MonsterBase : CharacterInfo
 
 {
@@ -37,17 +38,17 @@ public class MonsterBase : CharacterInfo
     protected Rigidbody2D rb;
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
+    protected CapsuleCollider2D capsuleCollider;
 
     //속성값 (속도,hp,mp etc...)
-    protected MonsterName monsterName;
-    //protected int hp = 1;
-    //protected int hpMax = 1;
+    protected MonsterName monsterName;  
     protected int attackPower = 1;
     protected float moveSpeed = 1f;
     protected float nearestAcessDistance = 1f;
     protected bool nowAttack = false;
     protected float attackDelay =0f;
-
+    protected bool isDead = false;
+    protected bool isDisable = false;
     //사정거리 확인용
     protected float activeDistance = 10;
     protected bool isActionStart = false;
@@ -67,8 +68,16 @@ public class MonsterBase : CharacterInfo
     {
         hp = hpMax;            
         nowAttack = false;
+        isDead = false;
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = true;
+
+        AddToList();
+
         UpdateHud();
     }
+
+    
 
 
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -85,15 +94,11 @@ public class MonsterBase : CharacterInfo
             MonsterManager.Instance.DeleteInList(this.gameObject);
     }
 
-    protected void OnDisable()
-    {
-        DeleteInList();
-        StopAllCoroutines();
-    }
+ 
 
     protected void OnEnable()
     {
-        AddToList();
+     
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
     }
@@ -116,6 +121,7 @@ public class MonsterBase : CharacterInfo
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         hudImage = GetComponentInChildren<Image>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     protected void SetUpCustomScript()
@@ -148,7 +154,7 @@ public class MonsterBase : CharacterInfo
 
     }
 
-    protected void SetHp(int hpMax)
+    protected new void SetHp(int hpMax)
     {
         this.hp = hpMax;
         this.hpMax = hpMax;
@@ -168,10 +174,29 @@ public class MonsterBase : CharacterInfo
 
     protected void SetDie()
     {
+        isDead = true;
+
+        if (rb != null)
+            rb.velocity = Vector3.zero;
+
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = false;
+
+        if (animator != null)
+            animator.SetTrigger("DeadTrigger");
+
+        Invoke("ObjectOff", 3f);
+
+        DeleteInList();
+
+        StopAllCoroutines();
+    }
+
+    protected void ObjectOff()
+    {
         //임시코드
         this.gameObject.SetActive(false);
     }
-
 
 
     public void AttackOn()
@@ -309,6 +334,12 @@ public class MonsterBase : CharacterInfo
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+
+    protected void OnDisable()
+    {
+        isDisable = true;
     }
 
 }
