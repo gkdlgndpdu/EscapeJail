@@ -16,6 +16,9 @@ MonoBehaviour:
   normalTileList:
   - {fileID: 21300000, guid: 7bca7511ea40a6846a00e3e7466d2c3c, type: 3}
   - {fileID: 21300000, guid: e7f8ebbc213d19448a5cca5746390371, type: 3}
+  - {fileID: 21300000, guid: e7f8ebbc213d19448a5cca5746390371, type: 3}
+  - {fileID: 21300000, guid: e7f8ebbc213d19448a5cca5746390371, type: 3}
+  - {fileID: 21300000, guid: e7f8ebbc213d19448a5cca5746390371, type: 3}
   spriteWall: {fileID: 21300000, guid: eee22e7ec2d08f548b750019d4d86c98, type: 3}
   spriteDoor: {fileID: 0}
   randomTileColor:
