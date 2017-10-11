@@ -23,12 +23,12 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - MapModule
-  - BackGround
-  - MiniMapMask
+  - 
+  - 
   - DropItem
   - EnemyAttackObject
   - Tile
-  - 
+  - ItemTable
   - 
   - 
   - 

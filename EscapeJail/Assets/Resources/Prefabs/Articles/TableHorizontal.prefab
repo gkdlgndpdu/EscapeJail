@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4828861367028662}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpanwPosit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4208803134568472}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpanwPosit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 212617437368843174}
   - component: {fileID: 114091778855737644}
   - component: {fileID: 61213398534166738}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: TableHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -164,7 +163,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
