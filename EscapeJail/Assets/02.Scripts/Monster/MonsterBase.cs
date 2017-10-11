@@ -50,8 +50,7 @@ public class MonsterBase : CharacterInfo
     protected bool isDead = false;
     protected bool isMoveRandom = false;
     //사정거리 확인용
-    protected float activeDistance = 10;
-    protected bool isActionStart = true;
+    protected float activeDistance = 10;  
 
     //Hud
     protected Image hudImage;
@@ -64,6 +63,9 @@ public class MonsterBase : CharacterInfo
     [SerializeField]
     protected AttackObject attackObject;
 
+    /// <summary>
+    /// 풀에서 나올때의 생성자
+    /// </summary>
     public virtual void ResetMonster()
     {
         hp = hpMax;
@@ -76,8 +78,15 @@ public class MonsterBase : CharacterInfo
 
         UpdateHud();
     }
+  
 
+    protected bool canMove()
+    {
+        //죽었거나             랜덤이동중이면
+        if (isDead == true || isMoveRandom==true) return false;
 
+        return true;
+    }
 
 
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -93,13 +102,6 @@ public class MonsterBase : CharacterInfo
         if (MonsterManager.Instance != null)
             MonsterManager.Instance.DeleteInList(this.gameObject);
     }
-
-
-    public virtual void StartFirstAction()
-    {
-        StartCoroutine(FireRoutine());
-    }
-
 
     protected void OnEnable()
     {
@@ -182,12 +184,7 @@ public class MonsterBase : CharacterInfo
     {
         yield return null;
     }
-
-    protected void OnDisable()
-    {
-        isDead = false;
-    }
-
+    
     private void SetDie()
     {
         //상태
@@ -216,6 +213,12 @@ public class MonsterBase : CharacterInfo
 
         //스코어 올려줌
         ScoreBoard.Instance.GetScore();
+
+        //무기꺼중
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(false);
+
+
     }
 
     protected void ObjectOff()
@@ -244,29 +247,18 @@ public class MonsterBase : CharacterInfo
 
 
 
-    protected void ActionCheck()
-    {
-        if (isActionStart == true) return;
-        if (GetDistanceToPlayer() < activeDistance)
-        {
-            ActionStart();
-        }
-
-    }
+  
 
     protected float GetDistanceToPlayer()
     {
         return Vector3.Distance(this.transform.position, GamePlayerManager.Instance.player.transform.position);
     }
 
-    void ActionStart()
-    {
-        isActionStart = true;
-    }
+  
 
-    protected bool IsInAcessArea(float AcessValue)
+    protected bool IsInAcessArea()
     {
-        return GetDistanceToPlayer() <= AcessValue;
+        return GetDistanceToPlayer() <= nearestAcessDistance;
     }
 
     protected void MoveToTarget()
@@ -274,22 +266,21 @@ public class MonsterBase : CharacterInfo
         if (rb == null) return;
 
         rb.velocity = Vector3.zero;
-
-        if (isActionStart == false) return;
+      
         if (target == null) return;
         if (nowAttack == true) return;
 
-        if (IsInAcessArea(nearestAcessDistance) == true)
+        if (IsInAcessArea() == true)
         {
             //flipx를 위해서 방향계산만 해줌
             CalculateMoveDIr();
             SetAnimation(MonsterState.Idle);
-
             return;
         }
 
         CalculateMoveDIr();
         rb.velocity = moveDir.normalized * moveSpeed;
+
         SetAnimation(MonsterState.Walk);
 
 
@@ -314,7 +305,7 @@ public class MonsterBase : CharacterInfo
 
     protected void NearAttackLogic()
     {
-        if (IsInAcessArea(nearestAcessDistance) == true && nowAttack == false)
+        if (IsInAcessArea() == true && nowAttack == false)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -385,6 +376,49 @@ public class MonsterBase : CharacterInfo
 
 
     }
+    protected IEnumerator RandomMovePattern()
+    {
+        while (true)
+        {
+            if (isMoveRandom == false)
+            {
+                nearestAcessDistance = UnityEngine.Random.Range(1f, 5f);
+                if (IsInAcessArea() == true)
+                {
+                    //백무빙
+                    isMoveRandom = true;
+                    StartCoroutine(RandomBackMove());
+                    
+                }
+            }
+            yield return new WaitForSeconds(2.0f);
+        }
+    }
 
+    protected IEnumerator RandomBackMove()
+    {
+        float moveTime = 2f;
+        float count = 0f;
+        Vector3 randomDirection = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(-90f, 90f)) * -(moveDir.normalized);
+
+        while (true)
+        {
+            if (rb != null)
+                rb.velocity = randomDirection * moveSpeed;
+
+            SetAnimation(MonsterState.Walk);
+
+            count += Time.deltaTime;
+
+            if (count > moveTime)
+            {
+                isMoveRandom = false;
+                SetAnimation(MonsterState.Idle);
+                yield break;
+            }
+            else
+                yield return null;
+        }
+    }
 
 }

@@ -13,12 +13,12 @@ public class Criminal2 : MonsterBase
         monsterName = MonsterName.Criminal2;
         SetHp(10);
         nearestAcessDistance = 5f;
+        moveSpeed = 2f;
         SetWeapon();
     }
     private void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new CriminalShotGun());
-
     }
 
     // Use this for initialization
@@ -34,6 +34,13 @@ public class Criminal2 : MonsterBase
             weaponPosit.gameObject.SetActive(true);     
     }
 
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
+
     private new void Awake()
     {
         base.Awake();
@@ -43,19 +50,9 @@ public class Criminal2 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-         if (isDead == true) return;
-
-        ActionCheck();
-        if (isActionStart == false) return;
-        if (isMoveRandom == true) return;
+        RotateWeapon();  
+        if (canMove() == false) return;
         MoveToTarget();
-        RotateWeapon();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FireWeapon();
-        }
-
 
     }
 

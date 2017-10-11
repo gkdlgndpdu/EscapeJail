@@ -9,15 +9,15 @@ public class Criminal4 : MonsterBase
         monsterName = MonsterName.Criminal4;
         SetHp(10);     
         attackDelay = 1f;
-
+        moveSpeed = 3f;
     }
 
     public override void ResetMonster()
     {
         base.ResetMonster();
-        nearestAcessDistance = Random.Range(1f, 5f);
-
-    }
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    } 
 
     // Use this for initialization
     private new void Start()
@@ -56,10 +56,7 @@ public class Criminal4 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        if (isDead == true) return;
-
-        ActionCheck();
-        if (isActionStart == false) return;
+        if (canMove() == false) return;
 
         MoveToTarget();
         NearAttackLogic();

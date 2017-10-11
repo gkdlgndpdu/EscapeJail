@@ -39,10 +39,8 @@ public class Mouse3 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        if (isDead == true) return;
+        if (canMove() == false) return;
 
-        ActionCheck();
-        if (isActionStart == false) return;
         MoveToTarget();
         NearAttackLogic();
 

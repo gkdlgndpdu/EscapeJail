@@ -5,8 +5,13 @@ using weapon;
 
 public class Criminal5 : MonsterBase
 {
-    
- 
+
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal5;
@@ -45,18 +50,10 @@ public class Criminal5 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        if (isDead == true) return;
+        RotateWeapon();      
+        if (canMove() == false) return;
 
-        ActionCheck();
-        if (isActionStart == false) return;
         MoveToTarget();
-        RotateWeapon();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FireWeapon();
-        }
-
 
     }
 

@@ -114,8 +114,7 @@ public class MapModule : MapModuleBase
 
             if (spawnMonster != null && monsterList != null)
             {
-                monsterList.Add(spawnMonster);
-                spawnMonster.StartFirstAction();
+                monsterList.Add(spawnMonster);             
             }
 
             yield return new WaitForSeconds(2f);
