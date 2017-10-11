@@ -26,5 +26,5 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   BossModule: {fileID: 1251367538759042, guid: 8c56eefe9431c4e49a3528c8e154d948, type: 2}
   RoomNum: 1
-  RoomMaxSize: 10
+  RoomMaxSize: 30
   RoomMinSize: 20
