@@ -16,6 +16,8 @@ public class CharacterBase : CharacterInfo
 
     //값변수
     protected float moveSpeed = 5f;
+    //이동
+    Vector3 moveDir;
 
     //무기 회전 관련
     protected float weaponAngle = 0f;
@@ -149,8 +151,8 @@ public class CharacterBase : CharacterInfo
         }
         else if (nearEnemy == null)
         {
-            Vector3 fireDir = Vector3.right;
-            weaponHandler.FireBullet(this.FirePos.position, fireDir);
+           
+            weaponHandler.FireBullet(this.FirePos.position, moveDir);
         }
 
 
@@ -166,7 +168,7 @@ public class CharacterBase : CharacterInfo
             RotateWeapon(nearEnemy.transform.position);
         else
         {
-            RotateWeapon(this.transform.position + Vector3.right);
+            RotateWeapon(this.transform.position + moveDir);
         }
     }
 
@@ -189,7 +191,7 @@ public class CharacterBase : CharacterInfo
         }
 #endif
 
-
+        if(moveDir!=Vector3.zero)
         RotateWeapon();
 
     }
@@ -250,7 +252,7 @@ public class CharacterBase : CharacterInfo
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDir = Vector3.right * h + Vector3.up * v;
+        moveDir = Vector3.right * h + Vector3.up * v;
         moveDir.Normalize();
 
         //이동
@@ -267,7 +269,7 @@ public class CharacterBase : CharacterInfo
         if (rb != null)
             rb.velocity = Vector2.zero;
 
-        Vector3 moveDir = JoyStick.Instance.MoveDir;
+        moveDir = JoyStick.Instance.MoveDir;
         //이동
         if (rb != null)
             rb.velocity = moveDir * moveSpeed;

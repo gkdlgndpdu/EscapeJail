@@ -17,6 +17,7 @@ public class BossBase : CharacterInfo
     public virtual void StartBossPattern()
     {
         SetUiOnOff(true);
+        AddToList();
     }
 
     protected void AddToList()
@@ -36,10 +37,7 @@ public class BossBase : CharacterInfo
 
     protected void Start()
     {
-        AddToList();
         SetUiOnOff(false);
-
-
     }
 
     protected void SetUiOnOff(bool OnOff)

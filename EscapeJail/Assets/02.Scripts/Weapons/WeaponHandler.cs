@@ -111,6 +111,8 @@ public class WeaponHandler : MonoBehaviour
         if (nowWeapon.AttackType == AttackType.near && weaponRotateFunc != null)
             weaponRotateFunc();
 
+        fireDirection.Normalize();
+
         nowWeapon.FireBullet(firePos, fireDirection);
 
         UpdateWeaponUI();
