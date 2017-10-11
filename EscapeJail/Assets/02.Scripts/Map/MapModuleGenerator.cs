@@ -71,6 +71,7 @@ public class MapModuleGenerator
     {
         if (everyWallList == null) return;
 
+        ResetLists();
 
         //X최대 최소
         everyWallList.Sort((a, b) =>

@@ -17,7 +17,7 @@ public class MapModuleBase : MonoBehaviour
 
 
     //저장소
-    protected List<Tile> normalTileList;
+    public List<Tile> normalTileList;
     public List<Tile> NormalTileList
     {
         get

@@ -58,7 +58,7 @@ public class Criminal1 : MonsterBase
         {        
             for (int i = 0; i < 3; i++)
             {
-            FireWeapon();
+                 FireWeapon();
                 yield return new WaitForSeconds(0.1f);
             }
        

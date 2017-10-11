@@ -17,7 +17,8 @@ public class CharacterBase : CharacterInfo
     //값변수
     protected float moveSpeed = 5f;
     //이동
-    Vector3 moveDir;
+    Vector3 moveDir = Vector3.zero;
+    Vector3 lastMoveDir = Vector3.zero;
 
     //무기 회전 관련
     protected float weaponAngle = 0f;
@@ -151,8 +152,10 @@ public class CharacterBase : CharacterInfo
         }
         else if (nearEnemy == null)
         {
-           
-            weaponHandler.FireBullet(this.FirePos.position, moveDir);
+            if (lastMoveDir != Vector3.zero)
+                weaponHandler.FireBullet(this.FirePos.position, lastMoveDir);
+            else
+                weaponHandler.FireBullet(this.FirePos.position, Vector3.left); 
         }
 
 
@@ -255,6 +258,9 @@ public class CharacterBase : CharacterInfo
         moveDir = Vector3.right * h + Vector3.up * v;
         moveDir.Normalize();
 
+        if (moveDir != Vector3.zero)
+            lastMoveDir = moveDir;
+
         //이동
         if (rb != null)
             rb.velocity = moveDir * moveSpeed;
@@ -270,6 +276,9 @@ public class CharacterBase : CharacterInfo
             rb.velocity = Vector2.zero;
 
         moveDir = JoyStick.Instance.MoveDir;
+
+        if (moveDir != Vector3.zero)
+            lastMoveDir = moveDir;
         //이동
         if (rb != null)
             rb.velocity = moveDir * moveSpeed;

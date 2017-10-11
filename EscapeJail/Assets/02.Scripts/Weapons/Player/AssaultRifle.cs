@@ -14,6 +14,7 @@ namespace weapon
             weapontype = WeaponType.AssaultRifle;
             bulletSpeed = 15f;
             fireDelay = 0.1f;
+            damage = 10;
 
             maxAmmo = 1000;
             nowAmmo = maxAmmo;

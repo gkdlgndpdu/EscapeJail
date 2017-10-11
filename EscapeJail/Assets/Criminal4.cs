@@ -7,12 +7,18 @@ public class Criminal4 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal4;
-        SetHp(10);
-        nearestAcessDistance = 7f;
+        SetHp(10);     
         attackDelay = 1f;
 
     }
-  
+
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        nearestAcessDistance = Random.Range(1f, 5f);
+
+    }
+
     // Use this for initialization
     private new void Start()
     {
