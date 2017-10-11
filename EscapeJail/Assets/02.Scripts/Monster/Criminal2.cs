@@ -43,10 +43,11 @@ public class Criminal2 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-            if (isDead == true) return;
+         if (isDead == true) return;
 
         ActionCheck();
         if (isActionStart == false) return;
+        if (isMoveRandom == true) return;
         MoveToTarget();
         RotateWeapon();
 

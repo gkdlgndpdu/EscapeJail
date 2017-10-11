@@ -41,16 +41,17 @@ public class MonsterBase : CharacterInfo
     protected CapsuleCollider2D capsuleCollider;
 
     //속성값 (속도,hp,mp etc...)
-    protected MonsterName monsterName;  
+    protected MonsterName monsterName;
     protected int attackPower = 1;
     protected float moveSpeed = 1f;
     protected float nearestAcessDistance = 1f;
     protected bool nowAttack = false;
-    protected float attackDelay =0f;
+    protected float attackDelay = 0f;
     protected bool isDead = false;
+    protected bool isMoveRandom = false;
     //사정거리 확인용
     protected float activeDistance = 10;
-    protected bool isActionStart = false;
+    protected bool isActionStart = true;
 
     //Hud
     protected Image hudImage;
@@ -63,9 +64,9 @@ public class MonsterBase : CharacterInfo
     [SerializeField]
     protected AttackObject attackObject;
 
-    public void ResetMonster()
+    public virtual void ResetMonster()
     {
-        hp = hpMax;            
+        hp = hpMax;
         nowAttack = false;
         isDead = false;
         if (capsuleCollider != null)
@@ -76,15 +77,15 @@ public class MonsterBase : CharacterInfo
         UpdateHud();
     }
 
-    
+
 
 
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     protected void AddToList()
     {
-        if(MonsterManager.Instance!=null)
-        MonsterManager.Instance.AddToList(this.gameObject);
+        if (MonsterManager.Instance != null)
+            MonsterManager.Instance.AddToList(this.gameObject);
     }
 
     protected void DeleteInList()
@@ -98,14 +99,14 @@ public class MonsterBase : CharacterInfo
     {
         StartCoroutine(FireRoutine());
     }
- 
+
 
     protected void OnEnable()
-    {     
+    {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
 
-      
+
     }
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     //임시코드------------------------------------------------------------------풀방식으로 수정 필요
@@ -117,7 +118,7 @@ public class MonsterBase : CharacterInfo
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
         this.gameObject.tag = "Enemy";
 
-      
+
     }
 
     protected void SetUpComponent()
@@ -188,7 +189,7 @@ public class MonsterBase : CharacterInfo
     }
 
     private void SetDie()
-    {       
+    {
         //상태
         isDead = true;
 
@@ -229,7 +230,7 @@ public class MonsterBase : CharacterInfo
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(true);
 
-     
+
     }
 
     public void AttackOff()
@@ -237,7 +238,7 @@ public class MonsterBase : CharacterInfo
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
 
-       
+
     }
 
 
@@ -271,19 +272,19 @@ public class MonsterBase : CharacterInfo
     protected void MoveToTarget()
     {
         if (rb == null) return;
-        
+
         rb.velocity = Vector3.zero;
 
         if (isActionStart == false) return;
         if (target == null) return;
-        if (nowAttack == true) return;       
-      
+        if (nowAttack == true) return;
+
         if (IsInAcessArea(nearestAcessDistance) == true)
         {
             //flipx를 위해서 방향계산만 해줌
             CalculateMoveDIr();
             SetAnimation(MonsterState.Idle);
-            
+
             return;
         }
 
@@ -330,23 +331,27 @@ public class MonsterBase : CharacterInfo
             case MonsterState.Idle:
                 {
                     animator.SetFloat("Speed", 0f);
-                } break;
+                }
+                break;
             case MonsterState.Walk:
                 {
                     animator.SetFloat("Speed", 1f);
-                } break;
+                }
+                break;
             case MonsterState.Attack:
                 {
                     animator.SetTrigger("AttackTrigger");
-                } break;
+                }
+                break;
             case MonsterState.Dead:
                 {
                     animator.SetTrigger("DeadTrigger");
-                } break;
+                }
+                break;
         }
-     
+
     }
-    
+
     protected void FlipCharacterByMoveDir()
     {
         //임시
@@ -359,8 +364,27 @@ public class MonsterBase : CharacterInfo
         {
             spriteRenderer.flipX = true;
         }
+    }   
+
+    protected IEnumerator RandomMoveRoutine(Vector3 direction,int moveDistance)
+    {
+        isMoveRandom = true;
+        Vector3 moveDirection = direction.normalized;
+        moveDirection = -moveDirection;
+        moveDirection = Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)) * moveDirection;
+
+        for (int i = 0; i < moveDistance; i++)
+        {
+            if (rb != null)
+                rb.velocity =  moveDirection;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        isMoveRandom = false;
+
+
     }
 
-  
 
 }

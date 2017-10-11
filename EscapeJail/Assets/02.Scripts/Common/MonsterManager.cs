@@ -42,8 +42,10 @@ public class MonsterManager : MonoBehaviour
         //
 
         monsterList.Sort((a, b) => { return Vector3.Distance(a.transform.position, playerPosit).CompareTo(Vector3.Distance(b.transform.position, playerPosit)); });
-        return monsterList[0];
 
+        float distance = Vector3.Distance(monsterList[0].transform.position, playerPosit);
+     
+        return monsterList[0];
 
     }
 
