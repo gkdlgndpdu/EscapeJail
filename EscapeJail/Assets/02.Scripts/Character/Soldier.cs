@@ -31,7 +31,7 @@ public class Soldier : CharacterBase
         base.Update();
 
         //임시코드
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             UseCharacterSkill();
         }

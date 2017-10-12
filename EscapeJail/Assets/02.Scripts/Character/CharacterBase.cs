@@ -15,6 +15,11 @@ public class CharacterBase : CharacterInfo
 
     //값변수
     protected float moveSpeed = 5f;
+    //단위 초 
+    protected int immuneTime = 1;
+
+    //상태
+    protected bool isImmune = false;
     //이동
     protected Vector3 moveDir = Vector3.zero;
     protected Vector3 lastMoveDir = Vector3.zero;
@@ -94,8 +99,8 @@ public class CharacterBase : CharacterInfo
 
     public void SetArmor(int level)
     {
-        if(armorSystem!=null)
-        armorSystem.SetArmor(level);
+        if (armorSystem != null)
+            armorSystem.SetArmor(level);
     }
 
     protected void SetupComponent()
@@ -134,7 +139,7 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKeyDown(KeyCode.E))
         {
             ReactiveButtonClick();
-        }       
+        }
 
 
     }
@@ -155,7 +160,7 @@ public class CharacterBase : CharacterInfo
             if (lastMoveDir != Vector3.zero)
                 weaponHandler.FireBullet(this.FirePos.position, lastMoveDir);
             else
-                weaponHandler.FireBullet(this.FirePos.position, Vector3.left); 
+                weaponHandler.FireBullet(this.FirePos.position, Vector3.left);
         }
 
 
@@ -194,8 +199,8 @@ public class CharacterBase : CharacterInfo
         }
 #endif
 
-        if(moveDir!=Vector3.zero)
-        RotateWeapon();
+        if (moveDir != Vector3.zero)
+            RotateWeapon();
 
     }
 
@@ -315,25 +320,61 @@ public class CharacterBase : CharacterInfo
 
     }
 
+    private void StartImmuine()
+    {
+        if (isImmune == true) return;
+        StartCoroutine(ImmuneRoutine());
+        //빤짝빤짝
+    }
+
+    IEnumerator ImmuneRoutine()
+    {
+        if (spriteRenderer == null) yield break;
+
+        isImmune = true;
+        GameObject target = spriteRenderer.gameObject;
+        iTween.ColorTo(target, iTween.Hash("loopType", "pingPong", "Time", 0.1f, "Color", Color.red));
+
+        yield return new WaitForSeconds(immuneTime);
+
+        iTween.Stop(this.gameObject);
+        iTween.ColorTo(target, Color.white, 0.1f);
+        isImmune = false; 
+    }
+
     public override void GetDamage(int damage)
     {
+
+        if (isImmune == true) return;
+
         //흔들리는 효과
         CameraController.Instance.ShakeCamera(3f, 0.4f);
 
+        //갑옷 적용
         if (armorSystem.hasArmor() == true)
         {
             armorSystem.UseArmor(damage);
             return;
         }
-
-        hp -= damage;
-
-        UIUpdate();
-
-        if (hp <= 0)
+        else
         {
-            DieAction();
+            hp -= damage;
+
+            UIUpdate();
+
+            if (hp <= 0)
+            {
+                DieAction();
+            }
+            else
+            {
+                StartImmuine();
+            }
         }
+
+
+
+
     }
 
     protected void UIUpdate()
