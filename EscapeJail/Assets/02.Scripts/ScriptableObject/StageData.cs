@@ -52,7 +52,6 @@ public class StageData : ScriptableObject
     }
     #endregion
     #region Map
-    public GameObject BossModule;
     public int RoomNum;
     public int RoomMaxSize;
     public int RoomMinSize;

@@ -11,14 +11,13 @@ public class CharacterBase : CharacterInfo
     protected Rigidbody2D rb;
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-
-
+    protected CapsuleCollider bodyCollider;
 
     //값변수
     protected float moveSpeed = 5f;
     //이동
-    Vector3 moveDir = Vector3.zero;
-    Vector3 lastMoveDir = Vector3.zero;
+    protected Vector3 moveDir = Vector3.zero;
+    protected Vector3 lastMoveDir = Vector3.zero;
 
     //무기 회전 관련
     protected float weaponAngle = 0f;
@@ -105,6 +104,7 @@ public class CharacterBase : CharacterInfo
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        bodyCollider = GetComponent<CapsuleCollider>();
     }
 
     // Use this for initialization
@@ -437,6 +437,11 @@ public class CharacterBase : CharacterInfo
 
 
 
+    }
+
+    public virtual void UseCharacterSkill()
+    {
+        //자식에서 구현띠
     }
 
 
