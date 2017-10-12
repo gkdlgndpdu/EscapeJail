@@ -89,7 +89,7 @@ public class Item_Bullet : ItemBase
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnBullet(player.transform.position);    
+        ItemSpawner.Instance.SpawnBullet(player.transform.position,null);    
     }
 }
 

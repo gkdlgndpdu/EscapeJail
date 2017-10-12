@@ -53,7 +53,7 @@ public class MapModuleBase : MonoBehaviour
 
 
     protected void OnTriggerStay2D(Collider2D collision)
-    {
+    {  
         if (isStartModule == true) return;
         if (collision.CompareTag("MapModule"))
         {

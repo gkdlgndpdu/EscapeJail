@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - MapModule
   - Tile
+  - ItemTable
   layers:
   - Default
   - TransparentFX

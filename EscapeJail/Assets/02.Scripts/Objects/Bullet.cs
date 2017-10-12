@@ -181,6 +181,13 @@ public class Bullet : MonoBehaviour
 
     }
 
+    private void DamegeToItemTable(Collider2D collision)
+    {
+        ItemTable table = collision.gameObject.GetComponent<ItemTable>();
+        if(table!=null)
+        table.GetDamage(power);
+    }
+
     //다른 물체와의 충돌은 layer로 막아놓음
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -198,6 +205,12 @@ public class Bullet : MonoBehaviour
                 }
                 break;
         }
+
+        if (collision.gameObject.CompareTag("ItemTable"))
+        {
+            DamegeToItemTable(collision);
+        }
+
         //이펙트 호출
         BulletDestroy();
     }

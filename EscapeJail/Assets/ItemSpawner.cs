@@ -42,7 +42,7 @@ public class ItemSpawner : MonoBehaviour
         return false;
 
     }
-    public void SpawnWeapon(Vector3 posit)
+    public void SpawnWeapon(Vector3 posit,Transform parent)
     {
         WeaponType RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
 
@@ -51,39 +51,39 @@ public class ItemSpawner : MonoBehaviour
  
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
-
+        item.transform.parent = parent;
         item.SetItemToWeapon(RandomWeapon);
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
 
-    public void SpawnArmor(Vector3 posit,int level =1)
+    public void SpawnArmor(Vector3 posit, Transform parent, int level =1 )
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
-      
+        item.transform.parent = parent;
         item.SetItemToArmor(level);
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
 
-    public void SpawnBullet(Vector3 posit)
+    public void SpawnBullet(Vector3 posit, Transform parent)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
-
+        item.transform.parent = parent;
         item.SetItemToBullet();
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
-    public void SpawnBag(Vector3 posit,int level = 1)
+    public void SpawnBag(Vector3 posit, Transform parent,int level = 1)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
-
+        item.transform.parent = parent;
         item.SetItemToBag(level);
 
         if (spawnedObjectList != null)
