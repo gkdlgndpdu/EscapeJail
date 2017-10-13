@@ -23,7 +23,7 @@ public class LightSaber : Weapon
         if (canFire() == false) return;
        
         FireDelayOn();
-        PlayFireAnim();
+        //PlayFireAnim();
      
 
     }
