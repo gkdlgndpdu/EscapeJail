@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Itween 쓰기위해 따로뺴서만듬
 public class WeaponRotator : MonoBehaviour
 {
   

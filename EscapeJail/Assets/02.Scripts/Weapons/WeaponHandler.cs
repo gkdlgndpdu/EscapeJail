@@ -13,6 +13,7 @@ public class WeaponHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Weapon nowWeapon;
+    private SlashObject slashObject;
 
     [SerializeField]
     private WeaponUI weaponUI;
@@ -25,6 +26,11 @@ public class WeaponHandler : MonoBehaviour
     public void SetWeaponRotateFunc(System.Action action)
     {
         weaponRotateFunc = action;
+    }
+
+    public void SetSlashObject(SlashObject slashObject)
+    {
+        this.slashObject = slashObject;
     }
 
     private void Awake()
@@ -51,7 +57,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void ChangeWeapon(Weapon weapon)
     {
-        //무기가 없을때 들어옴
+        //무기가 없을때 들어옴(아무것도 없을때)
         if (weapon == null)
         {
             nowWeapon = null;
@@ -65,27 +71,52 @@ public class WeaponHandler : MonoBehaviour
 
             return;
         }
-
-        if (animator != null)
-            animator.speed = 0f;
-
-        nowWeapon = weapon;
-
-        if (animator != null)
+        //무기가 있을때
+        else
         {
-            animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weapontype)) as RuntimeAnimatorController;
+            if (animator != null)
+                animator.speed = 0f;
 
-            if (nowWeapon != null)
+            nowWeapon = weapon;
+
+            if (animator != null)
             {
-                nowWeapon.Initialize(animator);
-                SetScale(nowWeapon.weaponScale);
-                SetPostion(nowWeapon.relativePosition);
+                animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weapontype)) as RuntimeAnimatorController;
 
+                if (nowWeapon != null)
+                {
+                    nowWeapon.Initialize(animator);
+                    SetScale(nowWeapon.weaponScale);
+                    SetPostion(nowWeapon.relativePosition);
+
+                }
             }
-        }
 
-        UpdateWeaponUI();
+            //바뀐 무기가 근접무기일경우 근접무기 세팅
+            if (nowWeapon.AttackType == AttackType.near)
+            {
+                if (slashObject != null)
+                {
+                    slashObject.Initialize(nowWeapon.damage, nowWeapon.slashColor, nowWeapon.slashSize);
+                }
+            }
 
+            //근접무기가 아니면 꺼줌
+            else
+            {
+                if (slashObject != null)
+                    SlashObjectOnOff(false);
+            }
+
+            UpdateWeaponUI();
+        }     
+
+    }
+
+    private void SlashObjectOnOff(bool OnOff)
+    {
+        if (slashObject != null)
+            slashObject.gameObject.SetActive(OnOff);
     }
 
     private void SetScale(Vector3 size)
@@ -108,8 +139,12 @@ public class WeaponHandler : MonoBehaviour
         if (animator != null)
             animator.speed = 1f;
 
-        if (nowWeapon.AttackType == AttackType.near && weaponRotateFunc != null)
+        //근접무기용
+        if (nowWeapon.AttackType == AttackType.near && weaponRotateFunc != null && nowWeapon.canFire() == true)
+        {
             weaponRotateFunc();
+            SlashObjectOnOff(true);
+        }
 
         fireDirection.Normalize();
 

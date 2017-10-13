@@ -57,7 +57,11 @@ namespace weapon
         public Vector3 weaponScale = Vector3.one;
         public Vector3 relativePosition = Vector3.zero;
 
-        protected int damage = 1;
+        public int damage = 1;
+
+        //근접무기용
+        public Color slashColor = Color.green;
+        public Vector3 slashSize = Vector3.one*7f;
         public Weapon()
         {
             itemType = ItemType.Weapon;
