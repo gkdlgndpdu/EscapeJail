@@ -8,15 +8,13 @@ using UnityEngine;
 
 public class SlashObject : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;    
     private Animator animator;
     private int power = 0;
-    private float slashTime = 1f;
-    private float slashCount = 0f;
-
+    
     private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+    {     
         animator = GetComponent<Animator>();
     } 
 
