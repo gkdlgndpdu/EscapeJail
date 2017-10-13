@@ -35,6 +35,9 @@ public class CharacterBase : CharacterInfo
     //무기
     [SerializeField]
     protected WeaponHandler weaponHandler;
+    [SerializeField]
+    protected SlashObject slashObject;
+    
 
     //무기 장착 위치
     [SerializeField]
@@ -63,6 +66,12 @@ public class CharacterBase : CharacterInfo
 
         if (weaponRotator != null && weaponHandler != null)
             weaponHandler.SetWeaponRotateFunc(weaponRotator.RotateWeapon);
+
+        if (weaponHandler != null && slashObject != null)
+        {
+            weaponHandler.SetSlashObject(slashObject);
+            slashObject.gameObject.SetActive(false);
+        }
     }
 
     private void SetLayerAndTag()
@@ -312,9 +321,13 @@ public class CharacterBase : CharacterInfo
 
     protected void FlipCharacter(bool flip)
     {
-        if (spriteRenderer == null) return;
-
+        if (spriteRenderer != null) 
         spriteRenderer.flipX = flip;
+
+        if (slashObject != null)
+            slashObject.FlipObject(!flip);
+
+
 
 
 

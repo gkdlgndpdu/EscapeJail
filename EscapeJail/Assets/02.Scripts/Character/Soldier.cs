@@ -19,13 +19,20 @@ public class Soldier : CharacterBase
     {
         //  AddWeapon(new Bazooka());
         // AddWeapon(new AssaultRifle());
-        AddWeapon(new Revolver());
+        AddWeapon(new LightSaber());
         UIUpdate();
+
     }
 
     // Update is called once per frame
     private new void Update()
     {
+        //임시코드
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            DodgeOff();
+
+        }
         if (isDodge == true) return;
 
         base.Update();
