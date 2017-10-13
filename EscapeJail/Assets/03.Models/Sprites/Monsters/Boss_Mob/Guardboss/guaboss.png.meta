@@ -1,0 +1,1995 @@
+fileFormatVersion: 2
+guid: 9a95cf061b36fdf4fae86cc193d261f0
+timeCreated: 1507880741
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: guaboss2_0
+    21300002: guaboss2_1
+    21300004: guaboss2_2
+    21300006: guaboss2_3
+    21300008: guaboss2_4
+    21300010: guaboss2_5
+    21300012: guaboss2_6
+    21300014: guaboss2_7
+    21300016: guaboss2_8
+    21300018: guaboss2_9
+    21300020: guaboss2_10
+    21300022: guaboss2_11
+    21300024: guaboss2_12
+    21300026: guaboss2_13
+    21300028: guaboss2_14
+    21300030: guaboss2_15
+    21300032: guaboss2_16
+    21300034: guaboss2_17
+    21300036: guaboss2_18
+    21300038: guaboss2_19
+    21300040: guaboss2_20
+    21300042: guaboss2_21
+    21300044: guaboss2_22
+    21300046: guaboss2_23
+    21300048: guaboss2_24
+    21300050: guaboss2_25
+    21300052: guaboss2_26
+    21300054: guaboss2_27
+    21300056: guaboss2_28
+    21300058: guaboss2_29
+    21300060: guaboss2_30
+    21300062: guaboss2_31
+    21300064: guaboss2_32
+    21300066: guaboss2_33
+    21300068: guaboss2_34
+    21300070: guaboss2_35
+    21300072: guaboss2_36
+    21300074: guaboss2_37
+    21300076: guaboss2_38
+    21300078: guaboss2_39
+    21300080: guaboss2_40
+    21300082: guaboss2_41
+    21300084: guaboss2_42
+    21300086: guaboss2_43
+    21300088: guaboss2_44
+    21300090: guaboss2_45
+    21300092: guaboss2_46
+    21300094: guaboss2_47
+    21300096: guaboss2_48
+    21300098: guaboss2_49
+    21300100: guaboss2_50
+    21300102: guaboss2_51
+    21300104: guaboss2_52
+    21300106: guaboss2_53
+    21300108: guaboss2_54
+    21300110: guaboss2_55
+    21300112: guaboss2_56
+    21300114: guaboss2_57
+    21300116: guaboss2_58
+    21300118: guaboss2_59
+    21300120: guaboss2_60
+    21300122: guaboss2_61
+    21300124: guaboss2_62
+    21300126: guaboss2_63
+    21300128: guaboss2_64
+    21300130: guaboss2_65
+    21300132: guaboss2_66
+    21300134: guaboss2_67
+    21300136: guaboss2_68
+    21300138: guaboss2_69
+    21300140: guaboss2_70
+    21300142: guaboss2_71
+    21300144: guaboss2_72
+    21300146: guaboss2_73
+    21300148: guaboss2_74
+    21300150: guaboss2_75
+    21300152: guaboss2_76
+    21300154: guaboss2_77
+    21300156: guaboss2_78
+    21300158: guaboss2_79
+    21300160: guaboss2_80
+    21300162: guaboss2_81
+    21300164: guaboss2_82
+    21300166: guaboss2_83
+    21300168: guaboss2_84
+    21300170: guaboss2_85
+    21300172: guaboss2_86
+    21300174: guaboss2_87
+    21300176: guaboss2_88
+    21300178: guaboss2_89
+    21300180: guaboss2_90
+    21300182: guaboss2_91
+    21300184: guaboss2_92
+    21300186: guaboss2_93
+    21300188: guaboss2_94
+    21300190: guaboss2_95
+    21300192: guaboss2_96
+    21300194: guaboss2_97
+    21300196: guaboss2_98
+    21300198: guaboss2_99
+    21300200: guaboss2_100
+    21300202: guaboss2_101
+    21300204: guaboss2_102
+    21300206: guaboss2_103
+    21300208: guaboss2_104
+    21300210: guaboss2_105
+    21300212: guaboss2_106
+    21300214: guaboss2_107
+    21300216: guaboss2_108
+    21300218: guaboss2_109
+    21300220: guaboss2_110
+    21300222: guaboss2_111
+    21300224: guaboss2_112
+    21300226: guaboss2_113
+    21300228: guaboss2_114
+    21300230: guaboss2_115
+    21300232: guaboss2_116
+    21300234: guaboss2_117
+    21300236: guaboss2_118
+    21300238: guaboss2_119
+    21300240: guaboss2_120
+    21300242: guaboss2_121
+    21300244: guaboss2_122
+    21300246: guaboss2_123
+    21300248: guaboss2_124
+    21300250: guaboss2_125
+    21300252: guaboss2_126
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: guaboss2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_4
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_7
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_8
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_9
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_11
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_13
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_14
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 521.3333
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_16
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_17
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_18
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_19
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_20
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_21
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_22
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_23
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_24
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_25
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_26
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_27
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_28
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 456.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_31
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_32
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_33
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_34
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_35
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_36
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_37
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_38
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_39
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_40
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_41
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_42
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_43
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_44
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 391.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_46
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_47
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_48
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_49
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_50
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_51
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_52
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_53
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_54
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_55
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_56
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_57
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_58
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_59
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 326.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_61
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_62
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_63
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_64
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_65
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_66
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_67
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_68
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_69
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_70
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_71
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_72
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_73
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_74
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 261.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_76
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_77
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_78
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_79
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_80
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_81
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_82
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_83
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_84
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_85
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_86
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_87
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_88
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_89
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 196.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_91
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_92
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_93
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_94
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_95
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_96
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_97
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_98
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_99
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_100
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_101
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_102
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_103
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_104
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 131.33334
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_106
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_107
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_108
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_109
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_110
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_111
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_112
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_113
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_114
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_115
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_116
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_117
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_118
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_119
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 66.333336
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_121
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_122
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_123
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_124
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_125
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: guaboss2_126
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 1.3333359
+        width: 64.933334
+        height: 64.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
