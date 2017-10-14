@@ -145,10 +145,7 @@ public class CharacterBase : CharacterInfo
     protected void InputOnPc()
     {
         MoveInPc();
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ReactiveButtonClick();
-        }
+    
 
 
     }
@@ -201,11 +198,7 @@ public class CharacterBase : CharacterInfo
             FireWeapon();
 
         }
-        //무기 변경
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangeWeapon();
-        }
+   
 #endif
 
         if (moveDir != Vector3.zero)

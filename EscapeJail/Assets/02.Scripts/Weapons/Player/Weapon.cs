@@ -14,11 +14,14 @@ namespace weapon
         AssaultRifle,
         Bazooka,
         LightSaber,
+        Hammer,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
         CriminalShotGun,
         CriminalUzi,
+        GuardPistol,
+        GuardRifle,
         AroundGun
     }
 

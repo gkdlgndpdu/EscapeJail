@@ -16,7 +16,7 @@ public class Criminal4 : MonsterBase
     {
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+        StartCoroutine(AttackRoutine());
     } 
 
     // Use this for initialization
@@ -69,9 +69,7 @@ public class Criminal4 : MonsterBase
     protected override IEnumerator AttackRoutine()
     {
         nowAttack = true;
-        SetAnimation(MonsterState.Attack);      
-
-
+        SetAnimation(MonsterState.Attack);   
         yield return new WaitForSeconds(3f);
         nowAttack = false;
     }

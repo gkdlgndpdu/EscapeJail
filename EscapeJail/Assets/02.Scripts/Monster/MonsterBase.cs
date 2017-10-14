@@ -14,6 +14,10 @@ public enum MonsterName
     Criminal3,
     Criminal4,
     Criminal5,
+    Guard1,
+    Guard2,
+    Guard3,
+    Guard4,
     EndMonster
 }
 
@@ -73,6 +77,8 @@ public class MonsterBase : CharacterInfo
         isDead = false;
         if (capsuleCollider != null)
             capsuleCollider.enabled = true;
+
+        isMoveRandom = false;
 
         AddToList();
 
@@ -185,7 +191,7 @@ public class MonsterBase : CharacterInfo
         yield return null;
     }
     
-    private void SetDie()
+    private  void SetDie()
     {
         //상태
         isDead = true;

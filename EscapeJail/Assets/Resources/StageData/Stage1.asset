@@ -11,15 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878b5866f2b16df4f92b422306fa51e9, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  spawnEnemyList: 0400000005000000060000000700000008000000
+  spawnEnemyList: 0b000000
   bossModule: {fileID: 1251367538759042, guid: 8c56eefe9431c4e49a3528c8e154d948, type: 2}
   normalTileList:
-  - {fileID: 21300000, guid: 6e4c4a51bb6c74c479465d3b60f8078c, type: 3}
-  - {fileID: 21300000, guid: dea5fd74e13b55a4bbe628da35f9aa16, type: 3}
-  - {fileID: 21300000, guid: 2d5add9c8cf33ea4a90c90a3e9d3fdb1, type: 3}
-  - {fileID: 21300000, guid: 8492ed0b2fdceeb4a9d1496b7adfdd7a, type: 3}
-  - {fileID: 21300000, guid: 0c49f74ece44f0348a6b4cd9a3a4e0ae, type: 3}
-  - {fileID: 21300000, guid: e8c603266d58ba34cb83f1a97ff7b7fe, type: 3}
+  - {fileID: 21300000, guid: 1a0843f97e9d0a940aef304af8d85ab9, type: 3}
+  - {fileID: 21300000, guid: dd5ebfd42bf2e6841986b87ffcb93161, type: 3}
+  - {fileID: 21300000, guid: d1958a2fa14226c4db2c2fe3462b8e55, type: 3}
+  - {fileID: 21300000, guid: 3baf12d82ef40de4a99d080327a75ed7, type: 3}
+  - {fileID: 21300000, guid: 7ed771dd757a94d489a2e026cdfde536, type: 3}
+  - {fileID: 21300000, guid: 4fa827c60c1c68b4086f5d496198950c, type: 3}
   spriteWall: {fileID: 21300000, guid: eee22e7ec2d08f548b750019d4d86c98, type: 3}
   spriteDoor: {fileID: 0}
   randomTileColor:

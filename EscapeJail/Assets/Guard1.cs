@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Criminal1 : MonsterBase
+public class Guard1 : MonsterBase
 {
- 
+
     public new void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Criminal1;
+        monsterName = MonsterName.Guard1;
         SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
@@ -21,7 +21,7 @@ public class Criminal1 : MonsterBase
 
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new CriminalPistol());
+        nowWeapon.ChangeWeapon(new GuardPistol());
 
     }
 
@@ -36,7 +36,7 @@ public class Criminal1 : MonsterBase
     {
         base.OnEnable();
         if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true); 
+            weaponPosit.gameObject.SetActive(true);
     }
 
     private new void Awake()
@@ -54,20 +54,15 @@ public class Criminal1 : MonsterBase
 
         MoveToTarget();
 
-     
+
     }
 
     protected override IEnumerator FireRoutine()
     {
         while (true)
-        {        
-            for (int i = 0; i < 3; i++)
-            {
-                 FireWeapon();
-                yield return new WaitForSeconds(0.3f);
-            }
-       
-
+        {
+           
+                FireWeapon();
             yield return new WaitForSeconds(1f);
         }
     }

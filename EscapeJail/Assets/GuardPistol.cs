@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class CriminalPistol : Weapon
+    public class GuardPistol : Weapon
     {
 
-        private float reBoundValue = 10f;
-        public CriminalPistol()
+        private float reBoundValue = 1f;
+        public GuardPistol()
         {
-            weapontype = WeaponType.CriminalPistol;
-            bulletSpeed = 8f;
-            weaponScale = Vector3.one*2f;
+            weapontype = WeaponType.GuardPistol;
+            bulletSpeed = 10f;
+            weaponScale = Vector3.one * 2f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -22,15 +22,16 @@ namespace weapon
                 bullet.gameObject.SetActive(true);
                 Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                 Vector3 fireDIr = PlayerPos - firePos;
+              
+                firePos += fireDIr.normalized*0.5f;
                 fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-                firePos += fireDIr.normalized * 0.5f;
-                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet,0.5f);
+                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 1f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                bullet.SetBloom(true, Color.blue);
             }
 
             PlayFireAnim();
-
 
         }
     }
