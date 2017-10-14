@@ -17,7 +17,7 @@ public class Guard3 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-       // ShieldOnOff(false);
+        ShieldEffectOff();
 
     }
 
@@ -36,7 +36,7 @@ public class Guard3 : MonsterBase
     private new void Start()
     {
         base.Start();
-        SetUpMonsterAttribute();
+        SetUpMonsterAttribute();      
     }
 
 
@@ -66,6 +66,7 @@ public class Guard3 : MonsterBase
     {
         if (isSheildOn == true)
         {
+            ShieldEffectOn();
             return;
             //파랑 빤작이
         } 
@@ -137,6 +138,21 @@ public class Guard3 : MonsterBase
         if (weaponPosit != null)
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
 
+    }
+
+    private void ShieldEffectOn()
+    {
+         GameObject target = spriteRenderer.gameObject;
+         iTween.ColorTo(target, iTween.Hash("loopType", "pingPong", "Time", 0.05f, "Color", Color.blue));
+
+        Invoke("ShieldEffectOff", 1f);     
+       
+    }
+
+    private void ShieldEffectOff()
+    {
+        GameObject target = spriteRenderer.gameObject;
+        iTween.ColorTo(target, Color.white, 0.1f);
     }
 
 }
