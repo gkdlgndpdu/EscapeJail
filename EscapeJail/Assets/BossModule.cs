@@ -19,7 +19,7 @@ public class BossModule : MapModuleBase
     public BossBase bossBase;
     public int widthNum;
     public int heightNum;
-
+    private bool isBossStart = false;
     private void Awake()
     {
         normalTileList = new List<Tile>();
@@ -41,10 +41,14 @@ public class BossModule : MapModuleBase
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isBossStart == true) return;
+
         if (collision.gameObject.CompareTag("Player"))
         {
             if (bossBase != null)
                 bossBase.StartBossPattern();
+
+            isBossStart = true;
 
             CloseDoor();
         }

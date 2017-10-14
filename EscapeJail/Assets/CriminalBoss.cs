@@ -106,8 +106,8 @@ public class CriminalBoss : BossBase
 
         //  bossEventQueue.AddEvent("FirePattern1");
         bossEventQueue.AddEvent("FirePattern3");
-        bossEventQueue.AddEvent("FirePattern2");
-        bossEventQueue.AddEvent("FirePattern1");
+        //bossEventQueue.AddEvent("FirePattern2");
+        //bossEventQueue.AddEvent("FirePattern1");
     }
 
 
