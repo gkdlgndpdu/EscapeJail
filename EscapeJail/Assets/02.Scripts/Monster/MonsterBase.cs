@@ -191,7 +191,7 @@ public class MonsterBase : CharacterInfo
         yield return null;
     }
     
-    private  void SetDie()
+    protected void SetDie()
     {
         //상태
         isDead = true;

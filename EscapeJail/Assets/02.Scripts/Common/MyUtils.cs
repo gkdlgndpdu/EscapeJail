@@ -22,6 +22,16 @@ public class MyUtils
 
         return layerMask;
     }
+
+
+    public static bool GetPercentResult(int percent)
+    {
+        percent = Mathf.Clamp(percent, 0, 100);
+
+        int randNum = Random.Range(0, 101);
+
+        return percent<randNum;
+    }
  
 
 

@@ -46,6 +46,9 @@ public class ItemSpawner : MonoBehaviour
     {
         WeaponType RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
 
+        //임시코드
+        RandomWeapon = WeaponType.Hammer;
+        //임시코드
         //중복체크 및 중복아니면 리스트에 추가
         if (isWeaponSpawned(RandomWeapon) == true) return;  
  

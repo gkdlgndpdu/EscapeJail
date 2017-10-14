@@ -64,7 +64,8 @@ public class ItemTable : MonoBehaviour
     }
 
     private void SpawnRamdomItem()
-    {
+    {      
+        //임시코드
         if (SpawnPosit != null)
         {
             ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);
