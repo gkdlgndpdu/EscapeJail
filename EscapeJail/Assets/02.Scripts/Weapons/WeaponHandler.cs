@@ -20,8 +20,16 @@ public class WeaponHandler : MonoBehaviour
 
     private Vector3 originPosit;
 
+    //
+    private Slider weaponSlider=null;
+
 
     private System.Action weaponRotateFunc;
+
+    public void SetSlider(Slider weaponSlider)
+    {
+        this.weaponSlider = weaponSlider;
+    }
 
     public void SetWeaponRotateFunc(System.Action action)
     {
@@ -167,6 +175,6 @@ public class WeaponHandler : MonoBehaviour
     private void Update()
     {
         if (nowWeapon != null)
-            nowWeapon.WeaponUpdate();
+            nowWeapon.WeaponUpdate(weaponSlider);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using weapon;
 
@@ -51,6 +52,8 @@ public class CharacterBase : CharacterInfo
     protected PlayerUI playerUi;
     [SerializeField]
     protected InventoryUi inventoryUi;
+    [SerializeField]
+    private Slider weaponSlider;
 
     //인벤토리
     protected Inventory inventory;
@@ -71,6 +74,11 @@ public class CharacterBase : CharacterInfo
         {
             weaponHandler.SetSlashObject(slashObject);
             slashObject.gameObject.SetActive(false);
+        }
+
+        if (weaponHandler != null && weaponSlider != null)
+        {
+            weaponHandler.SetSlider(weaponSlider);
         }
     }
 
@@ -150,7 +158,7 @@ public class CharacterBase : CharacterInfo
 
     }
 
-    public void FireWeapon()
+    public virtual void FireWeapon()
     {
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace weapon
 {
@@ -103,17 +104,28 @@ namespace weapon
             Debug.Log("자식에서 구현");
         }
 
-        public void WeaponUpdate()
+        public void WeaponUpdate(Slider slider=null)
         {
-            if (isFireDelayFinish == true) return;
+            if (isFireDelayFinish == true)
+            {
+                if(slider!=null)
+                    slider.value = 0f;
+                return;
+            } 
 
             fireCount += Time.deltaTime;
             if (fireCount >= fireDelay)
             {
-                isFireDelayFinish = true;
+                isFireDelayFinish = true;        
+                return;
             }
 
-        }
+            if (slider != null)
+            {
+                slider.value = fireCount / fireDelay;
+            }
+
+        }   
 
         public void FireDelayOn()
         {

@@ -76,6 +76,11 @@ public class Soldier : CharacterBase
 
     }
 
+    public override void FireWeapon()
+    {
+        if (isDodge == true) return;
+        base.FireWeapon();
+    }
 
 
 }
