@@ -17,7 +17,7 @@ public class BossEventQueue : MonoBehaviour
     private MonoBehaviour targetGameObject =null;
     private EventOrder eventOrder;  
 
-    public void Initialize(MonoBehaviour target, EventOrder eventOrder = EventOrder.Random)
+    public void Initialize(MonoBehaviour target, EventOrder eventOrder)
     {
         targetGameObject = target;
         this.eventOrder = eventOrder;

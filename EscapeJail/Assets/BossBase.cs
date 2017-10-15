@@ -10,6 +10,7 @@ public class BossBase : CharacterInfo
 
     protected BossEventQueue bossEventQueue;
 
+
     [SerializeField]
     protected BossHpBar bosshpBar;
 
@@ -50,6 +51,7 @@ public class BossBase : CharacterInfo
     {
         bossModule = GetComponentInParent<BossModule>();
         bossEventQueue = GetComponent<BossEventQueue>();
+
 
     }
 

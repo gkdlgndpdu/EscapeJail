@@ -88,8 +88,7 @@ public class CriminalBoss : BossBase
     public override void GetDamage(int damage)
     {
         hp -= damage;
-        Debug.Log("boss hp : " + hp);
-        //자식에서 구현!
+  
         if (bosshpBar != null)
             bosshpBar.UpdateBar(hp, hpMax);
         if (hp <= 0)
@@ -106,8 +105,8 @@ public class CriminalBoss : BossBase
 
         //  bossEventQueue.AddEvent("FirePattern1");
         bossEventQueue.AddEvent("FirePattern3");
-        //bossEventQueue.AddEvent("FirePattern2");
-        //bossEventQueue.AddEvent("FirePattern1");
+        bossEventQueue.AddEvent("FirePattern2");
+        bossEventQueue.AddEvent("FirePattern1");
     }
 
 

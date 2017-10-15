@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Guard3 : MonsterBase
+public class Guard4 : MonsterBase
 {
 
     private bool isSheildOn = false;
 
-    private float originMoveSpeed = 1.0f;
-    private float dashMoveSpeed = 2.5f;
+
 
     //해당 거리보다 멀리 있으면 실드킴 무조건
     private float shieldOffDistance = 3f;
@@ -23,12 +22,19 @@ public class Guard3 : MonsterBase
 
     public new void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Guard3;
+        monsterName = MonsterName.Guard4;
         SetHp(10);
         nearestAcessDistance = 1f;
-        weaponPosit.gameObject.SetActive(false);
+
         attackDelay = 1f;
         moveSpeed = 1f;
+        SetWeapon();
+
+    }
+
+    private void SetWeapon()
+    {
+        nowWeapon.ChangeWeapon(new GuardPistol());
 
     }
 
@@ -36,9 +42,15 @@ public class Guard3 : MonsterBase
     private new void Start()
     {
         base.Start();
-        SetUpMonsterAttribute();      
+        SetUpMonsterAttribute();
     }
 
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        if (weaponPosit != null)
+            weaponPosit.gameObject.SetActive(true);
+    }
 
     private void ShieldOnOff(bool OnOff)
     {
@@ -49,13 +61,18 @@ public class Guard3 : MonsterBase
         if (OnOff == true)
         {
             animator.SetTrigger("ShieldOn");
-            moveSpeed = originMoveSpeed;
+            StopCoroutine("FireRoutine");
+            if (weaponPosit != null)
+                weaponPosit.gameObject.SetActive(false);
 
         }
         else if (OnOff == false)
         {
             animator.SetTrigger("ShieldOff");
-            moveSpeed = dashMoveSpeed;
+            StartCoroutine("FireRoutine");
+            if (weaponPosit != null)
+                weaponPosit.gameObject.SetActive(true);
+
         }
     }
 
@@ -69,7 +86,7 @@ public class Guard3 : MonsterBase
             ShieldEffectOn();
             return;
             //파랑 빤작이
-        } 
+        }
 
         this.hp -= damage;
         UpdateHud();
@@ -93,8 +110,7 @@ public class Guard3 : MonsterBase
         ShieldRoutine();
         MoveToTarget();
 
-        if(isSheildOn==false)
-        NearAttackLogic();
+   
 
     }
 
@@ -103,50 +119,62 @@ public class Guard3 : MonsterBase
     {
         if (CanShieldOff() == true && isSheildOn == false)
         {
-            ShieldOnOff(true);        
+            ShieldOnOff(true);
         }
-        else if(CanShieldOff()==false&&isSheildOn==true)
+        else if (CanShieldOff() == false && isSheildOn == true)
         {
             ShieldOnOff(false);
         }
-            
+
     }
 
     protected bool CanShieldOff()
     {
-        return GetDistanceToPlayer()>=shieldOffDistance ;
+        return GetDistanceToPlayer() <= shieldOffDistance;
     }
 
-    protected override IEnumerator AttackRoutine()
+    protected override IEnumerator FireRoutine()
     {
-        nowAttack = true;
-        SetAnimation(MonsterState.Attack);
-        yield return new WaitForSeconds(attackDelay);
-        nowAttack = false;
+        while (true)
+        {
+            if(isSheildOn==false)
+            FireWeapon();
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
 
-    public void OnDisable()
-    {
-        AttackOff();
-    }
+   
 
     protected void RotateWeapon()
     {
-        if (weaponPosit.gameObject.activeSelf == false) return;
-        float angle = MyUtils.GetAngle(target.position, this.transform.position);
+        float angle = MyUtils.GetAngle(this.transform.position, target.position);
         if (weaponPosit != null)
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        //flip
+        if ((angle >= 0f && angle <= 90) ||
+              angle >= 270f && angle <= 360)
+        {
+            if (nowWeapon != null)
+                nowWeapon.FlipWeapon(false);
+        }
+        else
+        {
+            if (nowWeapon != null)
+                nowWeapon.FlipWeapon(true);
+        }
 
     }
 
     private void ShieldEffectOn()
     {
-         GameObject target = spriteRenderer.gameObject;
-         iTween.ColorTo(target, iTween.Hash("loopType", "pingPong", "Time", 0.05f, "Color", Color.blue));
+        GameObject target = spriteRenderer.gameObject;
+        iTween.ColorTo(target, iTween.Hash("loopType", "pingPong", "Time", 0.05f, "Color", Color.blue));
 
-        Invoke("ShieldEffectOff", 1f);     
-       
+        Invoke("ShieldEffectOff", 1f);
+
     }
 
     private void ShieldEffectOff()

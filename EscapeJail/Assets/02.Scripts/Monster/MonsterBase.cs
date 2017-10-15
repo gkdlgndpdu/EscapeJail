@@ -427,4 +427,10 @@ public class MonsterBase : CharacterInfo
         }
     }
 
+    protected virtual void FireWeapon()
+    {
+        if (nowWeapon != null)
+            nowWeapon.FireBullet(this.transform.position, Vector3.zero);
+    }
+
 }
