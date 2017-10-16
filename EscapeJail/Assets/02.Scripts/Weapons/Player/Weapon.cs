@@ -16,6 +16,7 @@ namespace weapon
         Bazooka,
         LightSaber,
         Hammer,
+        Flamethrower,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
@@ -108,20 +109,25 @@ namespace weapon
         {
             if (isFireDelayFinish == true)
             {
-                if(slider!=null)
-                    slider.value = 0f;
+                if (slider != null)
+                {
+                    slider.value = 0f;               
+                }
                 return;
             } 
 
-            fireCount += Time.deltaTime;
+
+            fireCount += Time.deltaTime;       
             if (fireCount >= fireDelay)
             {
-                isFireDelayFinish = true;        
+                isFireDelayFinish = true;
+                slider.gameObject.SetActive(false);
                 return;
             }
 
             if (slider != null)
             {
+                slider.gameObject.SetActive(true);
                 slider.value = fireCount / fireDelay;
             }
 

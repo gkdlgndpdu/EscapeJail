@@ -54,7 +54,7 @@ public class MonsterBase : CharacterInfo
     protected bool isDead = false;
     protected bool isMoveRandom = false;
     //사정거리 확인용
-    protected float activeDistance = 10;  
+    protected float activeDistance = 10;
 
     //Hud
     protected Image hudImage;
@@ -72,6 +72,7 @@ public class MonsterBase : CharacterInfo
     /// </summary>
     public virtual void ResetMonster()
     {
+        monsterCondition = MonsterCondition.Normal;
         hp = hpMax;
         nowAttack = false;
         isDead = false;
@@ -84,12 +85,12 @@ public class MonsterBase : CharacterInfo
 
         UpdateHud();
     }
-  
+
 
     protected bool canMove()
     {
         //죽었거나             랜덤이동중이면
-        if (isDead == true || isMoveRandom==true) return false;
+        if (isDead == true || isMoveRandom == true) return false;
 
         return true;
     }
@@ -175,22 +176,13 @@ public class MonsterBase : CharacterInfo
         UpdateHud();
     }
 
-    public override void GetDamage(int damage)
-    {
-        this.hp -= damage;
-        UpdateHud();
-        if (hp <= 0)
-        {
-            SetDie();
-        }
-
-    }
+ 
 
     protected virtual IEnumerator FireRoutine()
     {
         yield return null;
     }
-    
+
     protected void SetDie()
     {
         //상태
@@ -253,14 +245,14 @@ public class MonsterBase : CharacterInfo
 
 
 
-  
+
 
     protected float GetDistanceToPlayer()
     {
         return Vector3.Distance(this.transform.position, GamePlayerManager.Instance.player.transform.position);
     }
 
-  
+
 
     protected bool IsInAcessArea()
     {
@@ -272,7 +264,7 @@ public class MonsterBase : CharacterInfo
         if (rb == null) return;
 
         rb.velocity = Vector3.zero;
-      
+
         if (target == null) return;
         if (nowAttack == true) return;
 
@@ -361,9 +353,9 @@ public class MonsterBase : CharacterInfo
         {
             spriteRenderer.flipX = true;
         }
-    }   
+    }
 
-    protected IEnumerator RandomMoveRoutine(Vector3 direction,int moveDistance)
+    protected IEnumerator RandomMoveRoutine(Vector3 direction, int moveDistance)
     {
         isMoveRandom = true;
         Vector3 moveDirection = direction.normalized;
@@ -373,7 +365,7 @@ public class MonsterBase : CharacterInfo
         for (int i = 0; i < moveDistance; i++)
         {
             if (rb != null)
-                rb.velocity =  moveDirection;
+                rb.velocity = moveDirection;
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -394,7 +386,7 @@ public class MonsterBase : CharacterInfo
                     //백무빙
                     isMoveRandom = true;
                     StartCoroutine(RandomBackMove());
-                    
+
                 }
             }
             yield return new WaitForSeconds(2.0f);
@@ -433,4 +425,27 @@ public class MonsterBase : CharacterInfo
             nowWeapon.FireBullet(this.transform.position, Vector3.zero);
     }
 
+    public override void GetDamage(int damage)
+    {
+        this.hp -= damage;
+        UpdateHud();
+        if (hp <= 0)
+        {
+            SetDie();
+        }
+
+    }
+    protected override IEnumerator testFireRoutine()
+    {
+        monsterCondition = MonsterCondition.InFire;
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log("불피해");
+            GetDamage(2);
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        monsterCondition = MonsterCondition.Normal;
+
+    }
 }

@@ -12,6 +12,8 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<Bullet> bulletPool;
     [HideInInspector]
     public ObjectPool<ExplosionEffect> effectPool;
+    [HideInInspector]
+    public ObjectPool<SpecialBullet> specialBulletPool;
 
     public MonsterPool monsterPool;
 
@@ -40,7 +42,12 @@ public class ObjectManager : MonoBehaviour
         GameObject effect = Resources.Load<GameObject>("Prefabs/Objects/ExplosionEffect");
         if (effect != null)
             effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
-        
+
+        GameObject specialBullet = Resources.Load<GameObject>("Prefabs/Objects/SpecialBullet");
+        if (specialBullet != null)
+            specialBulletPool = new ObjectPool<SpecialBullet>(bulletParent, specialBullet, 10);
+
+
         MakeMonsterPool();
 
     }

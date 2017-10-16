@@ -44,7 +44,7 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();    
     }
 
     public void GetBulletItem()

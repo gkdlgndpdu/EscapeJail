@@ -2,23 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//레이어이름과같음
-public enum BulletType
-{
-    PlayerBullet,
-    EnemyBullet
-}
 
-public enum ExplosionType
+public enum SpecialBulletType
 {
-    single,
-    multiple
+    FrameThrower,
 }
 
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Bullet : MonoBehaviour
+public class SpecialBullet : MonoBehaviour
 {
     private int power = 0;
     private BulletType bulletType;
@@ -31,10 +24,7 @@ public class Bullet : MonoBehaviour
     private float effectsize = 0f;
     private float explosionRadius = 1f;
     private ExplosionType explosionType;
-
-    [SerializeField]
-    private SpriteRenderer bloomSprite;
-
+    private SpecialBulletType specialBulletType;
     float expireCount = 0f;
 
     private void Awake()
@@ -48,8 +38,12 @@ public class Bullet : MonoBehaviour
 
 
     }
+    private void SetLayer(BulletType bulletType)
+    {
+        this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
+    }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, SpecialBulletType specialBulletType,float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {
         //위치
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
@@ -57,6 +51,12 @@ public class Bullet : MonoBehaviour
         //이동
         if (rb != null)
             rb.velocity = moveDir.normalized * moveSpeed;
+
+        float RotateAngle = MyUtils.GetAngle(Vector3.zero,  moveDir)+180f;
+         
+        //회전
+        this.transform.rotation = Quaternion.Euler(0f, 0f, RotateAngle);
+        
 
         //피아식별
         this.bulletType = bulletType;
@@ -76,48 +76,20 @@ public class Bullet : MonoBehaviour
         //폭발 타입
         explosionType = ExplosionType.single;
 
-        switch (bulletType)
+        this.specialBulletType = specialBulletType;
+        SetBulletImage(this.specialBulletType);
+
+    }
+
+    private void SetBulletImage(SpecialBulletType specialBulletType)
+    {
+        switch (specialBulletType)
         {
-            case BulletType.EnemyBullet:
+            case SpecialBulletType.FrameThrower:
                 {
-                    //bloom
-                    SetBloom(true, Color.red);
-                } break;
-            case BulletType.PlayerBullet:
-                {
-                    //bloom
-                    SetBloom(true, Color.green);
+                    InitializeImage(specialBulletType.ToString(), true);
                 } break;
         }
-
-    }
-    private void OnDisable()
-    {
-        expireCount = 0f;
-    }
-
-
-
-    public void Update()
-    {
-        expireCount += Time.deltaTime;
-        if (expireCount >= lifeTime)
-        {
-            BulletDestroy();
-        }
-    }
-
-    public void SetExplosion(float radius)
-    {
-        explosionType = ExplosionType.multiple;
-        explosionRadius = radius;
-    }
-
-
-    public void SetEffectName(string effectName, float effectsize = 1f)
-    {
-        this.effectName = effectName;
-        this.effectsize = effectsize;
     }
 
     public void InitializeImage(string bulletImageName, bool isAnimBullet)
@@ -143,12 +115,6 @@ public class Bullet : MonoBehaviour
 
     }
 
-    private void SetLayer(BulletType bulletType)
-    {
-        this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
-    }
-
-
 
     private void SingleTargetDamage(Collider2D collision)
     {
@@ -159,6 +125,21 @@ public class Bullet : MonoBehaviour
 
             if (characterInfo != null)
                 characterInfo.GetDamage(this.power);
+        }
+    }
+
+    private void FrameThrowerDamage(Collider2D collision)
+    {
+        //충돌여부는 layer collision matrix로 분리해놓음
+        if (collision.gameObject.CompareTag("Enemy") == true || collision.gameObject.CompareTag("Player"))
+        {
+            CharacterInfo characterInfo = collision.gameObject.GetComponent<CharacterInfo>();
+
+            if (characterInfo != null)
+            {
+                characterInfo.GetDamage(this.power);
+                characterInfo.SetFire();
+            }
         }
     }
 
@@ -183,11 +164,20 @@ public class Bullet : MonoBehaviour
 
     }
 
+    public void Update()
+    {
+        expireCount += Time.deltaTime;
+        if (expireCount >= lifeTime)
+        {
+            BulletDestroy();
+        }
+    }
+
     private void DamegeToItemTable(Collider2D collision)
     {
         ItemTable table = collision.gameObject.GetComponent<ItemTable>();
-        if(table!=null)
-        table.GetDamage(power);
+        if (table != null)
+            table.GetDamage(power);
     }
 
     //다른 물체와의 충돌은 layer로 막아놓음
@@ -198,7 +188,6 @@ public class Bullet : MonoBehaviour
             case ExplosionType.single:
                 {
                     SingleTargetDamage(collision);
-
                 }
                 break;
             case ExplosionType.multiple:
@@ -208,14 +197,22 @@ public class Bullet : MonoBehaviour
                 break;
         }
 
+        if (specialBulletType == SpecialBulletType.FrameThrower)
+        {
+            FrameThrowerDamage(collision);
+        }
+
         if (collision.gameObject.CompareTag("ItemTable"))
         {
             DamegeToItemTable(collision);
         }
 
-        //이펙트 호출
-        BulletDestroy();
+        ////이펙트 호출
+        //BulletDestroy();
     }
+
+
+
 
 
 
@@ -238,12 +235,5 @@ public class Bullet : MonoBehaviour
     }
 
 
-    public void SetBloom(bool OnOff, Color color)
-    {
-        if (bloomSprite != null)
-        {
-            bloomSprite.gameObject.SetActive(OnOff);
-            bloomSprite.color = color;
-        }
-    }
+
 }
