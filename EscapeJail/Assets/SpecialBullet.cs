@@ -43,7 +43,7 @@ public class SpecialBullet : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
     }
 
-    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, SpecialBulletType specialBulletType,float bulletScale = 1f, int power = 1, float lifeTime = 5f)
+    public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, SpecialBulletType specialBulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {
         //위치
         this.transform.position = new Vector3(startPos.x, startPos.y, 0f);
@@ -52,11 +52,11 @@ public class SpecialBullet : MonoBehaviour
         if (rb != null)
             rb.velocity = moveDir.normalized * moveSpeed;
 
-        float RotateAngle = MyUtils.GetAngle(Vector3.zero,  moveDir)+180f;
-         
+        float RotateAngle = MyUtils.GetAngle(Vector3.zero, moveDir) + 180f;
+
         //회전
         this.transform.rotation = Quaternion.Euler(0f, 0f, RotateAngle);
-        
+
 
         //피아식별
         this.bulletType = bulletType;
@@ -88,7 +88,8 @@ public class SpecialBullet : MonoBehaviour
             case SpecialBulletType.FrameThrower:
                 {
                     InitializeImage(specialBulletType.ToString(), true);
-                } break;
+                }
+                break;
         }
     }
 
@@ -177,7 +178,13 @@ public class SpecialBullet : MonoBehaviour
     {
         ItemTable table = collision.gameObject.GetComponent<ItemTable>();
         if (table != null)
-            table.GetDamage(power);
+        {
+            if (specialBulletType == SpecialBulletType.FrameThrower)
+                table.GetDamage(power * 5);
+            else
+                table.GetDamage(power);
+
+        }
     }
 
     //다른 물체와의 충돌은 layer로 막아놓음
@@ -197,18 +204,23 @@ public class SpecialBullet : MonoBehaviour
                 break;
         }
 
-        if (specialBulletType == SpecialBulletType.FrameThrower)
-        {
-            FrameThrowerDamage(collision);
-        }
 
         if (collision.gameObject.CompareTag("ItemTable"))
         {
             DamegeToItemTable(collision);
         }
 
-        ////이펙트 호출
-        //BulletDestroy();
+
+        if (specialBulletType == SpecialBulletType.FrameThrower)
+        {
+            FrameThrowerDamage(collision);
+        }
+        else
+        {
+            ////총알 삭제 및 이펙트 호ㅓ출
+            BulletDestroy();
+        }
+
     }
 
 
