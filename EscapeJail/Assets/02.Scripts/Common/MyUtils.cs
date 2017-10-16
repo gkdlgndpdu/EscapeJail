@@ -23,6 +23,12 @@ public class MyUtils
         return layerMask;
     }
 
+    public static int GetLayerMaskExcludeName(string maskName)
+    {
+        int layerMask = (-1) - ((1 << LayerMask.NameToLayer(maskName)));
+        return layerMask;
+    }
+
 
     public static bool GetPercentResult(int percent)
     {

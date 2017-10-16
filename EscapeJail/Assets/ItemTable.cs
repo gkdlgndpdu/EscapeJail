@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class ItemTable : MonoBehaviour
-{
-    private int tableHp = 15;
+public class ItemTable : CharacterInfo
+{  
     private int tableAnimFrameNum = 6;
     private BoxCollider2D boxCollider;
     private Animator animator;
@@ -22,9 +21,10 @@ public class ItemTable : MonoBehaviour
         if (animator != null)
             animator.speed = 0f;
 
-
         this.transform.localPosition = Vector3.zero;
-           
+
+        hp = 15;
+
 
     }
 
@@ -34,12 +34,12 @@ public class ItemTable : MonoBehaviour
             boxCollider.enabled = false;
     }
 
-    public void GetDamage(int damage)
+    public override void GetDamage(int damage)
     {
-        tableHp -= damage;
+        hp -= damage;
 
         //  체력 10, 5 , 0 일때 깨짐
-        if (tableHp == 10 || tableHp == 5 || tableHp <= 0)
+        if (hp == 10 || hp == 5 || hp <= 0)
             DamageToTable();
 
     }

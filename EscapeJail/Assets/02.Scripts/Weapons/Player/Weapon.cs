@@ -17,6 +17,7 @@ namespace weapon
         LightSaber,
         Hammer,
         Flamethrower,
+        BasicSniper,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
