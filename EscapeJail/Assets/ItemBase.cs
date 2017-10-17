@@ -45,11 +45,10 @@ public class ItemBase
     {
         if (player == null) return;
 
-
-        if (itemType == ItemType.Weapon)
-            player.RemoveWeapon(this);
-        else
+        if (itemType != ItemType.Weapon)
             player.RemoveItem(this);
+        else
+            player.RemoveWeapon(this);
     }
 }
 public class Item_Weapon : ItemBase
@@ -62,9 +61,8 @@ public class Item_Weapon : ItemBase
 
     public override void ItemAction()
     {
-      //  Debug.Log("무기클릭");
-    }
-
+        Debug.Log("무기클릭");
+    } 
 
 }
 public class Item_Bullet : ItemBase

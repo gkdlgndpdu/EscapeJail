@@ -14,12 +14,21 @@ public class WeaponUI : MonoBehaviour
         stringBuilder = new StringBuilder();
     }
 
-    public void SetWeaponUI(float minAmmo,float maxAmmo,string weapontype)
+    public void SetWeaponUI(int minAmmo,int maxAmmo,string weapontype)
     {
         if (text == null || stringBuilder == null) return;
 
         stringBuilder.Length = 0;
         stringBuilder.AppendFormat("{0} \n {1}/{2}", weapontype, minAmmo, maxAmmo);
         text.text = stringBuilder.ToString();
+    }
+
+    public void SetWeaponUiDefault()
+    {
+        if (text == null || stringBuilder == null) return;
+        stringBuilder.Length = 0;
+        stringBuilder.AppendFormat("Hand \n {0}/{1}",  1, 1);
+        text.text = stringBuilder.ToString();
+
     }
 }

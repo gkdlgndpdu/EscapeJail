@@ -77,6 +77,7 @@ public class WeaponHandler : MonoBehaviour
             if (spriteRenderer != null)
                 spriteRenderer.sprite = null;
 
+            UpdateWeaponUI();
             return;
         }
         //무기가 있을때
@@ -163,8 +164,10 @@ public class WeaponHandler : MonoBehaviour
     
     private void UpdateWeaponUI()
     {
-        if (weaponUI != null&& nowWeapon!=null)
+        if (weaponUI != null && nowWeapon != null)
             weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weapontype.ToString());
+        else if (nowWeapon == null&& weaponUI != null)
+            weaponUI.SetWeaponUiDefault();
     }
 
     private void OnDestroy()
@@ -176,5 +179,10 @@ public class WeaponHandler : MonoBehaviour
     {
         if (nowWeapon != null)
             nowWeapon.WeaponUpdate(weaponSlider);
+        else if (nowWeapon == null)
+        {
+            if(weaponSlider!=null)
+            weaponSlider.gameObject.SetActive(false);
+        }
     }
 }

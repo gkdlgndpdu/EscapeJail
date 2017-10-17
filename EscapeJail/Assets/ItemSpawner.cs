@@ -42,16 +42,16 @@ public class ItemSpawner : MonoBehaviour
         return false;
 
     }
-    public void SpawnWeapon(Vector3 posit,Transform parent)
+    public void SpawnWeapon(Vector3 posit, Transform parent)
     {
-        WeaponType RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
+        WeaponType RandomWeapon;
 
-        //임시코드
-        RandomWeapon = WeaponType.Flamethrower;
-        //임시코드
+        RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
+
+
         //중복체크 및 중복아니면 리스트에 추가
-        if (isWeaponSpawned(RandomWeapon) == true) return;  
- 
+        if (isWeaponSpawned(RandomWeapon) == true) return;
+
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
         item.transform.parent = parent;
@@ -61,7 +61,23 @@ public class ItemSpawner : MonoBehaviour
             spawnedObjectList.Add(item.gameObject);
     }
 
-    public void SpawnArmor(Vector3 posit, Transform parent, int level =1 )
+    //중복체크 X
+    public void SpawnWeapon(Vector3 posit, Transform parent, WeaponType weaponType)
+    {
+        WeaponType RandomWeapon = weaponType;
+
+
+        DropItem item = MakeItemPrefab(posit);
+        if (item == null) return;
+        item.transform.parent = parent;
+        item.SetItemToWeapon(RandomWeapon);
+
+        if (spawnedObjectList != null)
+            spawnedObjectList.Add(item.gameObject);
+    }
+
+
+    public void SpawnArmor(Vector3 posit, Transform parent, int level = 1)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
@@ -82,7 +98,7 @@ public class ItemSpawner : MonoBehaviour
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
-    public void SpawnBag(Vector3 posit, Transform parent,int level = 1)
+    public void SpawnBag(Vector3 posit, Transform parent, int level = 1)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
@@ -95,7 +111,7 @@ public class ItemSpawner : MonoBehaviour
     public DropItem MakeItemPrefab(Vector3 posit)
     {
         GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
-        DropItem item =null;
+        DropItem item = null;
         if (obj != null)
         {
             item = obj.GetComponent<DropItem>();
@@ -108,11 +124,11 @@ public class ItemSpawner : MonoBehaviour
     {
         if (spawnedObjectList == null) return;
 
-        for(int i=0;i< spawnedObjectList.Count; i++)
+        for (int i = 0; i < spawnedObjectList.Count; i++)
         {
             GameObject.Destroy(spawnedObjectList[i].gameObject);
         }
     }
-    
- 
+
+
 }
