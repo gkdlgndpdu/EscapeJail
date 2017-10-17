@@ -18,6 +18,7 @@ namespace weapon
         Hammer,
         Flamethrower,
         BasicSniper,
+        MiniGun,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
@@ -148,7 +149,11 @@ namespace weapon
 
 
 
-
+        protected void SetAmmo(int num)
+        {
+            nowAmmo = num;
+            maxAmmo = num;
+        }
 
 
 
