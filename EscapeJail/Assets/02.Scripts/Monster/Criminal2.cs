@@ -60,10 +60,7 @@ public class Criminal2 : MonsterBase
     {
         while (true)
         {    
-
-            FireWeapon();        
-
-
+            FireWeapon();
             yield return new WaitForSeconds(1f);
         }
     }

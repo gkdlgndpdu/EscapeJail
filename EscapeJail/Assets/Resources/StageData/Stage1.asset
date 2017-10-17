@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878b5866f2b16df4f92b422306fa51e9, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  spawnEnemyList: 00000000
+  spawnEnemyList: 0400000005000000060000000700000008000000
   bossModule: {fileID: 1971285939775398, guid: a7666632adfe5454abad8068a8a0068a, type: 2}
   normalTileList:
   - {fileID: 21300000, guid: 1a0843f97e9d0a940aef304af8d85ab9, type: 3}
