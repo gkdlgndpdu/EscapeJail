@@ -64,8 +64,7 @@ public class ItemTable : CharacterInfo
     }
 
     private void SpawnRamdomItem()
-    {      
-
+    {
         if (SpawnPosit != null)
         {
             ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);

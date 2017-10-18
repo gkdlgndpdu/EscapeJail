@@ -82,12 +82,14 @@ public class Bullet : MonoBehaviour
                 {
                     //bloom
                     SetBloom(true, Color.red);
-                } break;
+                }
+                break;
             case BulletType.PlayerBullet:
                 {
                     //bloom
                     SetBloom(true, Color.green);
-                } break;
+                }
+                break;
         }
 
     }
@@ -186,8 +188,8 @@ public class Bullet : MonoBehaviour
     private void DamegeToItemTable(Collider2D collision)
     {
         ItemTable table = collision.gameObject.GetComponent<ItemTable>();
-        if(table!=null)
-        table.GetDamage(power);
+        if (table != null)
+            table.GetDamage(power);
     }
 
     //다른 물체와의 충돌은 layer로 막아놓음
@@ -243,7 +245,8 @@ public class Bullet : MonoBehaviour
         if (bloomSprite != null)
         {
             bloomSprite.gameObject.SetActive(OnOff);
-            bloomSprite.color = color;
+            if (OnOff == true)
+                bloomSprite.color = color;
         }
     }
 }

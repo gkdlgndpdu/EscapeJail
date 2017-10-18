@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 44324143c64eb864a9ded6f3e4a7c827
-timeCreated: 1507945119
+timeCreated: 1508323911
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,12 +88,12 @@ TextureImporter:
       name: hammer_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 44
+        width: 64
         height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.83767134, y: 0.50348747}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

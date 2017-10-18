@@ -12,7 +12,7 @@ namespace weapon
 
         public Minigun()
         {
-            weapontype = WeaponType.MiniGun;
+            weapontype = WeaponType.Minigun;
             bulletSpeed = 10f;
             fireDelay = 0.05f;
             SetAmmo(999);

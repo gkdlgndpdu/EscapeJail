@@ -18,7 +18,10 @@ namespace weapon
         Hammer,
         Flamethrower,
         BasicSniper,
-        MiniGun,
+        Minigun,
+        sword,
+        baseballbat,
+        shortknife,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
@@ -155,7 +158,13 @@ namespace weapon
             maxAmmo = num;
         }
 
-
+        protected void SetNearWeapon(Color slashColor,Vector3 slashSize)
+        {
+            attackType = AttackType.near;
+            this.slashColor = slashColor;
+            this.slashSize = slashSize;
+            SetAmmo(1);
+        }
 
     }
 }
