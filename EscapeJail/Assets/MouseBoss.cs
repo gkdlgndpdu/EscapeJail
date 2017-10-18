@@ -91,7 +91,7 @@ public class MouseBoss : BossBase
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        SetHp(10);
+        SetHp(30);
     }
    
     

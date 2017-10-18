@@ -18,7 +18,7 @@ public class Soldier : CharacterBase
     private new void Start()
     {
         //  AddWeapon(new Bazooka());
-        AddWeapon(new shortknife());
+        AddWeapon(new Hammer());
         //AddWeapon(new Hammer());
         UIUpdate();
 

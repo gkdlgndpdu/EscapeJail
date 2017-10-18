@@ -26,7 +26,7 @@ public class CriminalBoss : BossBase
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        SetHp(10);
+        SetHp(30);
         RegistPatternToQueue();
     }
 

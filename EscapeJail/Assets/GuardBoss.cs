@@ -32,7 +32,7 @@ public class GuardBoss : BossBase
         base.Awake();
         SetComponent();
 
-        SetHp(300);
+        SetHp(100);
         RegistPatternToQueue();
     }
 

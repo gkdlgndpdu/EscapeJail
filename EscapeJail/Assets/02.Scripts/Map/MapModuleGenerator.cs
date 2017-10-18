@@ -182,7 +182,7 @@ public class MapModuleGenerator
         if (moduleList != null)
             moduleList.Add(module);
 
-
+        bossMakableList.Clear();
     }
 
 

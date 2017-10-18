@@ -14,8 +14,6 @@ public class MapManager : MonoBehaviour
     //맵 생성기
     private MapModuleGenerator mapModuleGenerator;
 
-    [SerializeField]
-    private Transform WallParent;
 
     void Awake()
     {
@@ -73,6 +71,8 @@ public class MapManager : MonoBehaviour
 
     IEnumerator MapPositioningRoutine()
     {
+        ResetMakeCount();
+
         //맵 포지셔닝
         while (true)
         {
@@ -113,7 +113,7 @@ public class MapManager : MonoBehaviour
     {
         //벽 생성
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeWall(WallParent);
+            mapModuleGenerator.MakeWall(this.transform);
 
         //보스 모듈 생성
 

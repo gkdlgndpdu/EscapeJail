@@ -10,6 +10,8 @@ public class BossBase : CharacterInfo
 
     protected BossEventQueue bossEventQueue;
 
+    protected bool isBossDie = false;
+
 
     [SerializeField]
     protected BossHpBar bosshpBar;
@@ -62,7 +64,10 @@ public class BossBase : CharacterInfo
 
     protected void BossDie()
     {
+        if (isBossDie == true) return;
+        isBossDie = true;
         StagerController.Instance.DestroyThisStage();
+
         StagerController.Instance.CreateNextStage();
         GamePlayerManager.Instance.ResetPlayerPosit();
     }

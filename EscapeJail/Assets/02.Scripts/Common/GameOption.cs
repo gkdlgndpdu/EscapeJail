@@ -37,11 +37,7 @@ public class GameOption : MonoBehaviour
 
         nowStageLevel++;
     }
-
-    private void Update()
-    {
-     
-    }
+  
 
 
 }
