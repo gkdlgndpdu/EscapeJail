@@ -56,12 +56,12 @@ public class SlashObject : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void FlipObject(bool flip)
+    public void FlipObject(Vector3 MoveDir)
     {
-        if (flip == false)
-            this.transform.localRotation = Quaternion.identity;   
-        else
+        if(MoveDir.x>0)       
             this.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        else
+            this.transform.localRotation = Quaternion.identity;   
     }
 
 

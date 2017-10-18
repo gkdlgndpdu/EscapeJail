@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Text;
 using weapon;
 
+
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 public class WeaponHandler : MonoBehaviour
@@ -14,7 +15,7 @@ public class WeaponHandler : MonoBehaviour
     private Animator animator;
     private Weapon nowWeapon;
     private SlashObject slashObject;
-
+    public AttackType attackType = AttackType.near;
     [SerializeField]
     private WeaponUI weaponUI;
 
@@ -78,6 +79,9 @@ public class WeaponHandler : MonoBehaviour
                 spriteRenderer.sprite = null;
 
             UpdateWeaponUI();
+
+            attackType = AttackType.near;
+
             return;
         }
         //무기가 있을때
@@ -87,6 +91,8 @@ public class WeaponHandler : MonoBehaviour
                 animator.speed = 0f;
 
             nowWeapon = weapon;
+
+            attackType = nowWeapon.AttackType;
 
             if (animator != null)
             {

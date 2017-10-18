@@ -33,9 +33,10 @@ namespace weapon
     }
 
     public enum AttackType
-    {
+    {      
         gun,
         near
+        
     }
 
     public class Weapon : ItemBase

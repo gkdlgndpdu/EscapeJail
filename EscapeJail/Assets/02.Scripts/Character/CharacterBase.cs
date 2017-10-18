@@ -186,9 +186,9 @@ public class CharacterBase : CharacterInfo
         if (weaponRotator.nowRotate == true) return;
 
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-        if (nearEnemy != null)
+        if (nearEnemy != null && weaponHandler.attackType ==AttackType.gun)
             RotateWeapon(nearEnemy.transform.position);
-        else
+        else if(nearEnemy==null ||weaponHandler.attackType==AttackType.near)
         {
             RotateWeapon(this.transform.position + moveDir);
         }
@@ -326,11 +326,7 @@ public class CharacterBase : CharacterInfo
         spriteRenderer.flipX = flip;
 
         if (slashObject != null)
-            slashObject.FlipObject(!flip);
-
-
-
-
+            slashObject.FlipObject(lastMoveDir);
 
     }
 
