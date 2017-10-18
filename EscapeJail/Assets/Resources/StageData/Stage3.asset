@@ -14,12 +14,11 @@ MonoBehaviour:
   spawnEnemyList: 090000000a0000000b0000000c000000
   bossModule: {fileID: 1021102894409686, guid: 7149cd08fbbdd664d9d4afc3c4b58826, type: 2}
   normalTileList:
-  - {fileID: 21300000, guid: 1def56afb80f5d345ae84c54b7af788a, type: 3}
-  - {fileID: 21300000, guid: 73a921ca77064ff41b61904e7e1e283a, type: 3}
+  - {fileID: 21300000, guid: 2d5add9c8cf33ea4a90c90a3e9d3fdb1, type: 3}
   spriteWall: {fileID: 21300000, guid: eee22e7ec2d08f548b750019d4d86c98, type: 3}
   spriteDoor: {fileID: 0}
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
-  RoomNum: 1
+  RoomNum: 10
   RoomMaxSize: 30
   RoomMinSize: 20

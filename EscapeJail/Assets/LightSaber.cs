@@ -17,7 +17,7 @@ namespace weapon
             maxAmmo = 1;
             nowAmmo = 1;
             needBulletToFire = 1;
-            damage = 1;
+            damage = 10;
             weaponScale = Vector3.one * 4f;
             relativePosition = new Vector3(-0.65f, 0f, 0f);
         }

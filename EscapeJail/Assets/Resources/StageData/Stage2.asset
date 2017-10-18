@@ -24,6 +24,6 @@ MonoBehaviour:
   spriteDoor: {fileID: 0}
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
-  RoomNum: 1
+  RoomNum: 10
   RoomMaxSize: 30
   RoomMinSize: 20

@@ -1893,6 +1893,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1145047895 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1968215243624874, guid: ca1d532c51a0b934d9c67462d694ee80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1797106652}
+--- !u!68 &1145047897
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1145047895}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.044840414, y: -0.1696562}
+  - {x: -0.1315709, y: -0.1591489}
+  - {x: -0.1990136, y: -0.023142943}
+  - {x: -0.13383606, y: 0.12905176}
+  - {x: 0.071072586, y: 0.1288834}
+  - {x: -0.04313977, y: -0.16990423}
 --- !u!1 &1163679888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,9 +2676,12 @@ Prefab:
       objectReference: {fileID: 384047283}
     - target: {fileID: 1968215243624874, guid: ca1d532c51a0b934d9c67462d694ee80, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61970785275662122, guid: ca1d532c51a0b934d9c67462d694ee80, type: 2}
+    - {fileID: 61454020040738352, guid: ca1d532c51a0b934d9c67462d694ee80, type: 2}
+    - {fileID: 61055339579024336, guid: ca1d532c51a0b934d9c67462d694ee80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ca1d532c51a0b934d9c67462d694ee80, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1828490659
