@@ -89,7 +89,7 @@ public class ObjectManager : MonoBehaviour
     public static UnityEngine.Object LoadGameObject(string name)
     {
         return Resources.Load(name);
-    }
+    }   
 
 
 

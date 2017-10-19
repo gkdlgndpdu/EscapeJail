@@ -8,4 +8,8 @@ public static class GameConstants
     public static int TileLayerMin = 0;
     public static float tileSize = 0.64f;
 
+
+    //PlayerPref KeyValue
+    public static string CharacterKeyValue = "CharacterType";
+
 }

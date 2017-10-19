@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
-{
-    public HpBar hpBar;
-    
-    public void Awake()
-    {
-        hpBar = GetComponentInChildren<HpBar>();
-    }
+{   
 
+    public HpBar hpBar;
+    public InventoryUi inventoryUi;
+    private void Awake()
+    {
+        //player에서 GameObject.find로 찾기때문에 건들면 안됨
+         this.name = "PlayerUi";
+    }
     public void SetHpBar(float min,float max)
     {
         if (hpBar != null)
