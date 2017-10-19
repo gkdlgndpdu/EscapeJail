@@ -15,9 +15,8 @@ public class WeaponHandler : MonoBehaviour
     private Animator animator;
     private Weapon nowWeapon;
     private SlashObject slashObject;
-    public AttackType attackType = AttackType.near;
-    [SerializeField]
-    private WeaponUI weaponUI;
+    public AttackType attackType = AttackType.near;  
+    private WeaponUI weaponUi;
 
     private Vector3 originPosit;
 
@@ -27,6 +26,10 @@ public class WeaponHandler : MonoBehaviour
 
     private System.Action weaponRotateFunc;
 
+    public void SetWeaponUi(WeaponUI weaponUi)
+    {
+        this.weaponUi = weaponUi;
+    }
     public void SetSlider(Slider weaponSlider)
     {
         this.weaponSlider = weaponSlider;
@@ -170,10 +173,10 @@ public class WeaponHandler : MonoBehaviour
     
     private void UpdateWeaponUI()
     {
-        if (weaponUI != null && nowWeapon != null)
-            weaponUI.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weapontype.ToString());
-        else if (nowWeapon == null&& weaponUI != null)
-            weaponUI.SetWeaponUiDefault();
+        if (weaponUi != null && nowWeapon != null)
+            weaponUi.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weapontype.ToString());
+        else if (nowWeapon == null&& weaponUi != null)
+            weaponUi.SetWeaponUiDefault();
     }
 
     private void OnDestroy()

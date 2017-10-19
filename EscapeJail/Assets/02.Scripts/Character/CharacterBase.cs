@@ -78,6 +78,13 @@ public class CharacterBase : CharacterInfo
         {
             weaponHandler.SetSlider(weaponSlider);
         }
+
+        if (weaponHandler != null && playerUi != null)
+        {
+            weaponHandler.SetWeaponUi(playerUi.weaponUi);
+        }
+
+        
     }
 
     private void SetLayerAndTag()

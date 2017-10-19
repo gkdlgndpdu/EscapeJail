@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
 
     public HpBar hpBar;
     public InventoryUi inventoryUi;
+    public WeaponUI weaponUi;
     private void Awake()
     {
         //player에서 GameObject.find로 찾기때문에 건들면 안됨

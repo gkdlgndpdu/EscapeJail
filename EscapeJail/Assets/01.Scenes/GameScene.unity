@@ -137,8 +137,8 @@ RectTransform:
   - {fileID: 1059056846}
   - {fileID: 385120720}
   - {fileID: 1523709436}
-  m_Father: {fileID: 1621564786}
-  m_RootOrder: 6
+  m_Father: {fileID: 1203676455}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -528,6 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1998431400}
   inventoryUi: {fileID: 384047283}
+  weaponUi: {fileID: 1163679890}
 --- !u!224 &137874778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2332,6 +2333,7 @@ RectTransform:
   - {fileID: 137874778}
   - {fileID: 794366335}
   - {fileID: 1621564786}
+  - {fileID: 1374742}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2660,7 +2662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 100%
+  m_Text: '@@@@@@@@@@@@@@@@@@@@@@@@'
 --- !u!222 &1523709438
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2834,7 +2836,6 @@ RectTransform:
   - {fileID: 1288208203}
   - {fileID: 1189699075}
   - {fileID: 46773879}
-  - {fileID: 1374742}
   m_Father: {fileID: 1203676455}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
