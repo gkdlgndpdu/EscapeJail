@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(BossEventQueue))]
 public class CriminalBoss : BossBase
 {
-    //컴포넌트
-    private Animator animator;
-    private BoxCollider2D boxCollider;
-    private SpriteRenderer spriteRenderer;
-
-
     //인스펙터에서 할당
     public List<Transform> moveList;
-
 
     private new void Awake()
     {
         base.Awake();
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         SetHp(30);
         RegistPatternToQueue();
     }
@@ -85,18 +70,7 @@ public class CriminalBoss : BossBase
         }
     }
 
-    public override void GetDamage(int damage)
-    {
-        hp -= damage;
-  
-        if (bosshpBar != null)
-            bosshpBar.UpdateBar(hp, hpMax);
-        if (hp <= 0)
-        {
-            BossDie();
-        }
-
-    }
+ 
 
     private void RegistPatternToQueue()
     {

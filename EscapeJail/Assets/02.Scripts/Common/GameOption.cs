@@ -20,8 +20,7 @@ public class GameOption : MonoBehaviour
     private int nowStageLevel = 1;
 
     private void Awake()
-    {
-        if(Instance==null)
+    {       
         Instance = this;
 
         Application.targetFrameRate = 60;

@@ -1,18 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(BossEventQueue))]
-[RequireComponent(typeof(Rigidbody2D))]
+
+
 public class GuardBoss : BossBase
 {
-    //컴포넌트
-    private Animator animator;
-    private BoxCollider2D boxCollider;
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
+
 
     //발사위치
     [SerializeField]
@@ -29,20 +22,12 @@ public class GuardBoss : BossBase
 
     private new void Awake()
     {
-        base.Awake();
-        SetComponent();
+        base.Awake();    
 
-        SetHp(100);
+        SetHp(30);
         RegistPatternToQueue();
     }
-
-    private void SetComponent()
-    {
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-    }
+ 
 
     public enum Actions
     {
@@ -88,18 +73,6 @@ public class GuardBoss : BossBase
 
     }
 
-    public override void GetDamage(int damage)
-    {
-        hp -= damage;
-
-        if (bosshpBar != null)
-            bosshpBar.UpdateBar(hp, hpMax);
-        if (hp <= 0)
-        {
-            BossDie();
-        }
-
-    }
 
     private void RegistPatternToQueue()
     {

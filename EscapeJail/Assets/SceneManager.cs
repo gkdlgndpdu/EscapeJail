@@ -23,22 +23,19 @@ public class SceneManager : MonoBehaviour
         }
 
     }
-    // Use this for initialization
+ 
+    //void Update()
+    //{
+    //    //임시코드
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {        
+    //        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.LobbyScene);
+    //    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        //임시코드
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {        
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.LobbyScene);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.GameScene);
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.GameScene);
         
-        }
-    }
+    //    }
+    //}
 }

@@ -14,6 +14,8 @@ public class MapManager : MonoBehaviour
     //맵 생성기
     private MapModuleGenerator mapModuleGenerator;
 
+    
+
 
     void Awake()
     {
@@ -71,6 +73,8 @@ public class MapManager : MonoBehaviour
 
     IEnumerator MapPositioningRoutine()
     {
+      
+
         ResetMakeCount();
 
         //맵 포지셔닝
@@ -90,6 +94,8 @@ public class MapManager : MonoBehaviour
         PositioningComplete();
         CreateObjects();
 
+        LoadingBoard.Instance.LoadingEnd();
+
     }
 
     public void DestroyEveryMapModule()
@@ -104,7 +110,6 @@ public class MapManager : MonoBehaviour
         }   
 
         mapModuleGenerator = null;
-
     
 
     }

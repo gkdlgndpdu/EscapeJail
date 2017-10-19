@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class MouseBoss : BossBase
 {
     private GameObject mouseHandPrefab;
     private ObjectPool<MouseHand> mouseHandPool;
 
-    //컴포넌트
-    private Animator animator;
-    private BoxCollider2D boxCollider;
-    private SpriteRenderer spriteRenderer;
 
     //패턴 시간
     private float digPatternLastTime = 5f;
@@ -37,20 +30,7 @@ public class MouseBoss : BossBase
         DigPattern, 
         FirePattern
     }
-
-    public override void GetDamage(int damage)
-    {
-        hp -= damage;
-        Debug.Log("boss hp : "+hp);
-        //자식에서 구현!
-        if (bosshpBar != null)
-            bosshpBar.UpdateBar(hp, hpMax);
-        if (hp <= 0)
-        {
-            BossDie();
-        }
-
-    }
+   
 
     private void Action(Actions action)
     {
@@ -86,11 +66,8 @@ public class MouseBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        LoadPrefab();
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        LoadPrefab(); 
         SetHp(30);
     }
    

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BossEventQueue))]
 public class BossBase : CharacterInfo
 {
     protected bool isPatternStart = false;
@@ -13,6 +18,11 @@ public class BossBase : CharacterInfo
     protected bool isBossDie = false;
 
 
+    //컴포넌트
+    protected Animator animator;
+    protected BoxCollider2D boxCollider;
+    protected SpriteRenderer spriteRenderer;
+    protected Rigidbody2D rb;
     [SerializeField]
     protected BossHpBar bosshpBar;
 
@@ -53,7 +63,13 @@ public class BossBase : CharacterInfo
     {
         bossModule = GetComponentInParent<BossModule>();
         bossEventQueue = GetComponent<BossEventQueue>();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
+        if (rb != null)
+            rb.mass = 100f;
 
     }
 
@@ -61,15 +77,40 @@ public class BossBase : CharacterInfo
     {
 
     }
+    public override void GetDamage(int damage)
+    {
+        if (isBossDie == true) return;
+
+        hp -= damage;
+
+        if (bosshpBar != null)
+            bosshpBar.UpdateBar(hp, hpMax);
+        if (hp <= 0)
+        {
+            isBossDie = true;
+            BossDie();
+        }
+
+    }
+
 
     protected void BossDie()
     {
-        if (isBossDie == true) return;
-        isBossDie = true;
-        StagerController.Instance.DestroyThisStage();
+        StopAllCoroutines();
 
-        StagerController.Instance.CreateNextStage();
-        GamePlayerManager.Instance.ResetPlayerPosit();
+        if (animator != null)
+            animator.SetTrigger("DeadTrigger");
+        if (rb != null)
+            rb.velocity = Vector3.zero; 
+      
+
+        //할꺼 해주고~
+
+        //할꺼 해주고~
+
+
+        GameManager.Instance.ChangeStage();
+     
     }
 
 

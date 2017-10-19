@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: 486d7ff3cffb04c46b0a3d156b45d536
-timeCreated: 1508436024
+guid: 56eb0f09812e5e04eb2e7b249ce1b591
+timeCreated: 1508432702
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: assaultrifle_0
-    21300002: assaultrifle_1
-    21300004: AssaultRifle_0
-    21300006: AssaultRifle_1
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -43,7 +39,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -85,35 +81,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: AssaultRifle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 90.5
-        height: 76
-      alignment: 9
-      pivot: {x: 0.71164024, y: 0.45799696}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: AssaultRifle_1
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 90.5
-        height: 76
-      alignment: 9
-      pivot: {x: 0.7786599, y: 0.4397955}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 
