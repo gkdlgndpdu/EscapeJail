@@ -15,7 +15,7 @@ public class CharacterBase : CharacterInfo
     protected CapsuleCollider bodyCollider;
 
     //값변수
-    protected float moveSpeed = 5f;
+    protected float moveSpeed = 3f;
     //단위 초 
     protected int immuneTime = 1;
 

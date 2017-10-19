@@ -7,7 +7,7 @@ public class Scientist : CharacterBase
 {
     private bool isSkillOn = false;
     private float originMoveSpeed;
-    private float slowTimeRatio = 0.3f;
+    private float slowTimeRatio = 0.5f;
 
     private new void Awake()
     {
