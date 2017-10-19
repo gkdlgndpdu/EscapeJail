@@ -20,9 +20,7 @@ public class Scientist : CharacterBase
 
     private new void Start()
     {
-
         SetWeapon();
-
     }
 
     private new void Update()

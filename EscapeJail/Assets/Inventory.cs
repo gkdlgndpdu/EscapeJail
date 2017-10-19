@@ -27,7 +27,7 @@ public class Inventory
     public void SetInventorySize(int level)
     {
         if (level == 0)
-            bagSize = 1;
+            bagSize = 2;
         else
             bagSize = level * 5;
 

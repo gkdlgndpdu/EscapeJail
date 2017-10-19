@@ -36,6 +36,16 @@ public class Mouse4 : MonsterBase
         base.Awake();
     }
 
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+  
+
+
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -76,7 +86,7 @@ public class Mouse4 : MonsterBase
 
     }
 
-    private void FireWeapon()
+    protected override void FireWeapon()
     {
         if (nowWeapon != null)
             nowWeapon.FireBullet(this.transform.position, Vector3.zero);
