@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class MoveButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class StayButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool pressing = false;
     public UnityEvent myEvent;

@@ -6,21 +6,19 @@ public class Soldier : CharacterBase
 {
     private bool isDodge =false;
     private float dodgeSpeed = 5f;
+    private float dodgeCoolTime = 0.15f;
+    private bool isDodgeCoolTime = false;
     private new void Awake()
     {
         base.Awake();
 
-        hp = 10;
-        hpMax = hp;
+        SetHp(10);     
     
     }
     // Use this for initialization
     private new void Start()
     {
-        //  AddWeapon(new Bazooka());
-        AddWeapon(new LightSaber());
-        //AddWeapon(new Hammer());
-        UIUpdate();
+        SetWeapon();
 
     }
 
@@ -44,7 +42,11 @@ public class Soldier : CharacterBase
 
     private void DodgeOn()
     {
+        if (isDodgeCoolTime == true|| isDodge==true) return;
+
         isDodge = true;
+
+        isDodgeCoolTime = true;
 
         if (rb != null)
             rb.velocity = lastMoveDir* dodgeSpeed;
@@ -66,14 +68,22 @@ public class Soldier : CharacterBase
             rb.velocity = Vector3.zero;
 
         this.gameObject.layer = LayerMask.NameToLayer("Player");
+
+        StartCoroutine(DodgeCoolTimeRoutine());
     }
+
+    IEnumerator DodgeCoolTimeRoutine()
+    {
+        yield return new WaitForSeconds(dodgeCoolTime);
+        isDodgeCoolTime = false;
+    }
+
+    
 
 
     public override void UseCharacterSkill()
-    {
-        if(isDodge!=true)
+    {    
         DodgeOn();
-
     }
 
     public override void FireWeapon()

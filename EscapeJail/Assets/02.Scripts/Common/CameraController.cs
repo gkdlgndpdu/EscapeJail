@@ -71,16 +71,16 @@ public class CameraController : MonoBehaviour
         {
             case CameraState.FollowPlayer:
                 {
-                    this.transform.position = Vector3.Lerp(this.transform.position, target.position, Time.fixedDeltaTime * followSpeed);
+                    this.transform.position = Vector3.Lerp(this.transform.position, target.position, Time.fixedUnscaledDeltaTime * followSpeed);
                 } break;
             case CameraState.Shake:
                 {
-                    this.transform.position = Vector3.Lerp(this.transform.position, target.position, Time.fixedDeltaTime * followSpeed);
+                    this.transform.position = Vector3.Lerp(this.transform.position, target.position, Time.fixedUnscaledDeltaTime * followSpeed);
                     this.transform.position = Vector3.Lerp(this.transform.position, this.transform.position + (Vector3)Random.insideUnitCircle*shakeIntensity, Time.deltaTime);
 
                     //타이머
 
-                    shakeCount += Time.fixedDeltaTime;
+                    shakeCount += Time.fixedUnscaledDeltaTime;
                     if (shakeCount >= shakeTime)
                     {
                         ChangeCameraMode(CameraState.FollowPlayer);

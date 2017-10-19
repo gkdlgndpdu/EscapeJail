@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114000876364656538}
   - component: {fileID: 70191931570772686}
   m_Layer: 9
-  m_Name: Player
+  m_Name: Soldier
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,9 +190,7 @@ GameObject:
   - component: {fileID: 95316219326141282}
   - component: {fileID: 212279664054018586}
   - component: {fileID: 114463047429445746}
-  - component: {fileID: 61970785275662122}
-  - component: {fileID: 61454020040738352}
-  - component: {fileID: 61055339579024336}
+  - component: {fileID: 68397753904413432}
   m_Layer: 21
   m_Name: SlashObject
   m_TagString: Untagged
@@ -304,8 +302,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61055339579024336
-BoxCollider2D:
+--- !u!68 &68397753904413432
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -316,69 +314,15 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026, y: 0.125}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.34}
-    newSize: {x: 0.43, y: 0.34}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.07}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
---- !u!61 &61454020040738352
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1968215243624874}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.026, y: -0.135}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.34}
-    newSize: {x: 0.43, y: 0.34}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.05}
-  m_EdgeRadius: 0
---- !u!61 &61970785275662122
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1968215243624874}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.34}
-    newSize: {x: 0.43, y: 0.34}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.32}
-  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.044840414, y: -0.1696562}
+  - {x: -0.1315709, y: -0.1591489}
+  - {x: -0.1990136, y: -0.023142943}
+  - {x: -0.13383606, y: 0.12905176}
+  - {x: 0.071072586, y: 0.1288834}
+  - {x: -0.04313977, y: -0.16990423}
 --- !u!70 &70191931570772686
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -461,8 +405,6 @@ MonoBehaviour:
   slashObject: {fileID: 114463047429445746}
   weaponPosit: {fileID: 4436017654760842}
   FirePos: {fileID: 4821171793799636}
-  playerUi: {fileID: 0}
-  inventoryUi: {fileID: 0}
   weaponSlider: {fileID: 114120214514037672}
 --- !u!114 &114120214514037672
 MonoBehaviour:
@@ -626,6 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9799db808da6ae0499609a96941bf93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 1
   weaponUI: {fileID: 0}
 --- !u!114 &114883852033814718
 MonoBehaviour:

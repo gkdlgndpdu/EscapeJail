@@ -30,15 +30,13 @@ public class CharacterBase : CharacterInfo
     protected bool nowWeaponRotate = false;
     [SerializeField]
     protected WeaponRotator weaponRotator;
-    //protected int hp = 0;
-    //protected int maxHp = 0;
 
     //무기
     [SerializeField]
     protected WeaponHandler weaponHandler;
     [SerializeField]
     protected SlashObject slashObject;
-    
+
 
     //무기 장착 위치
     [SerializeField]
@@ -48,9 +46,9 @@ public class CharacterBase : CharacterInfo
     protected Transform FirePos;
 
     //UI
-    [SerializeField]
+    [HideInInspector]
     protected PlayerUI playerUi;
-    [SerializeField]
+
     protected InventoryUi inventoryUi;
     [SerializeField]
     private Slider weaponSlider;
@@ -87,14 +85,24 @@ public class CharacterBase : CharacterInfo
         this.gameObject.layer = LayerMask.NameToLayer("Player");
         this.gameObject.tag = "Player";
     }
+
+    private void GetUiInfo()
+    {
+        GameObject playerUiobj = GameObject.Find("PlayerUi");
+        if (playerUiobj != null)
+        {
+            playerUi = playerUiobj.GetComponent<PlayerUI>();
+        }
+
+    }
     protected void Initialize()
     {
         //컴포넌트
         SetupComponent();
-
+        GetUiInfo();
         //스크립트
-        if (inventoryUi != null)
-            inventory = new Inventory(inventoryUi);
+        if (playerUi != null)
+            inventory = new Inventory(playerUi.inventoryUi);
 
         if (inventory != null)
             inventory.SetInventorySize(0);
@@ -105,6 +113,13 @@ public class CharacterBase : CharacterInfo
             //임시
             SetArmor(0);
         }
+    }
+
+    protected void SetWeapon()
+    {
+        AddWeapon(new Revolver());
+
+        UIUpdate();
     }
 
     public void GetBag(int level)
@@ -149,13 +164,9 @@ public class CharacterBase : CharacterInfo
 #endif
 
     }
-
     protected void InputOnPc()
     {
         MoveInPc();
-    
-
-
     }
 
     public virtual void FireWeapon()
@@ -396,13 +407,6 @@ public class CharacterBase : CharacterInfo
     protected void DieAction()
     {
         Debug.Log("CharacterDie");
-    }
-
-    public void HandleItem()
-    {
-
-
-
     }
 
     public void GetBulletItem()
