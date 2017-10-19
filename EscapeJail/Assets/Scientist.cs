@@ -6,12 +6,16 @@ using weapon;
 public class Scientist : CharacterBase
 {
     private bool isSkillOn = false;
+    private float originMoveSpeed;
+    private float slowTimeRatio = 0.3f;
 
     private new void Awake()
     {
         base.Awake();
 
         SetHp(10);
+
+        originMoveSpeed = moveSpeed;
     }
 
     private new void Start()
@@ -45,8 +49,9 @@ public class Scientist : CharacterBase
         //켜기
         if (isSkillOn == false)
         {
-            Time.timeScale = 0.5f;
+            Time.timeScale = slowTimeRatio;
             isSkillOn = true;
+            moveSpeed = originMoveSpeed/slowTimeRatio;
 
         }
         //끄기
@@ -54,6 +59,9 @@ public class Scientist : CharacterBase
         {
             Time.timeScale = 1f;
             isSkillOn = false;
+            moveSpeed = originMoveSpeed;
+
+
         }
 
     }
