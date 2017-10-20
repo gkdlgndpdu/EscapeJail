@@ -1,9 +1,27 @@
 fileFormatVersion: 2
 guid: ab5cd607040c5d24e96d1b7f3495eada
-timeCreated: 1508440957
+timeCreated: 1508485032
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: sci2new_0
+    21300002: sci2new_1
+    21300004: sci2new_2
+    21300006: sci2new_3
+    21300008: sci2new_4
+    21300010: sci2new_5
+    21300012: sci2new_6
+    21300014: sci2new_7
+    21300016: sci2new_8
+    21300018: sci2new_9
+    21300020: sci2new_10
+    21300022: sci2new_11
+    21300024: sci2new_12
+    21300026: sci2new_13
+    21300028: sci2new_14
+    21300030: sci2new_15
+    21300032: sci2new_16
+    21300034: sci2new_17
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,7 +99,231 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sci2new_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_3
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_4
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 192
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 127
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_8
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 127
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_9
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 127
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_10
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 127
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_11
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 127
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_12
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 127
+        width: 62
+        height: 64
+      alignment: 9
+      pivot: {x: 0.4660162, y: 0.5047028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_13
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 127
+        width: 61
+        height: 64
+      alignment: 9
+      pivot: {x: 0.45065558, y: 0.49999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 62
+        width: 61
+        height: 64
+      alignment: 9
+      pivot: {x: 0.440787, y: 0.5047028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci2new_17
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 62
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
