@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: b2046548cdaba1449b11b70bab70aa41
-timeCreated: 1508440957
+timeCreated: 1508486072
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: sci4new_0
+    21300002: sci4new_1
+    21300004: sci4new_2
+    21300006: sci4new_3
+    21300008: sci4new_4
+    21300010: sci4new_5
+    21300012: sci4new_6
+    21300014: sci4new_7
+    21300016: sci4new_8
+    21300018: sci4new_9
+    21300020: sci4new_10
+    21300022: sci4new_11
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,7 +93,175 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sci4new_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_6
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 192
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_7
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 127
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_8
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 127
+        width: 62
+        height: 64
+      alignment: 9
+      pivot: {x: 0.46116135, y: 0.49999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 127
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.45767188, y: 0.49999976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_10
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 127
+        width: 62
+        height: 64
+      alignment: 9
+      pivot: {x: 0.45630646, y: 0.5047028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci4new_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 127
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
