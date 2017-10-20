@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class ItemTable : CharacterInfo
 {  
     private int tableAnimFrameNum = 6;
@@ -13,10 +14,20 @@ public class ItemTable : CharacterInfo
     [SerializeField]
     private List<Transform> SpawnPosit;
 
+    //그림자
+    private ObjectShadow objectShadow;
+
+    private SpriteRenderer spriteRenderer;
+
     public void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        objectShadow = GetComponentInChildren<ObjectShadow>();
+
+        SetLayerOrder();
+       
 
         if (animator != null)
             animator.speed = 0f;
@@ -26,6 +37,19 @@ public class ItemTable : CharacterInfo
         hp = 15;
 
 
+    }
+
+ 
+    private void SetLayerOrder()
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = GameConstants.ArticleLayerMin;
+    }
+
+    private void SetShadow()
+    {
+        if (objectShadow != null)
+            objectShadow.SetObjectShadow(spriteRenderer.sprite, GameConstants.ArticleLayerMin - 1);
     }
 
     private void BreakTable()
@@ -53,13 +77,14 @@ public class ItemTable : CharacterInfo
         if (animationFrameCount > 3)
         {
             animator.speed = 1f;
-            if (boxCollider != null)
-                boxCollider.enabled = false;
+
+            BreakTable();
         }
     }
 
     private void Start()
     {
+        SetShadow();
         SpawnRamdomItem();
     }
 
