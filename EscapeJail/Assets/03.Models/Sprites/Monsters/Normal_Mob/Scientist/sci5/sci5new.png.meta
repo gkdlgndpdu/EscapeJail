@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1b7a13378244c6a439e9cb780279c3e8
-timeCreated: 1508486476
+guid: 02037e5c1c45f0f48adf9ff72c796b1c
+timeCreated: 1508489698
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,11 @@ TextureImporter:
     21300012: sci5new_6
     21300014: sci5new_7
     21300016: sci5new_8
+    21300018: sci5new_9
+    21300020: sci5new_10
+    21300022: sci5new_11
+    21300024: sci5new_12
+    21300026: sci5new_13
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -96,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 198
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,9 +115,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 65
-        y: 198
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,9 +129,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 130
-        y: 198
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +142,10 @@ TextureImporter:
       name: sci5new_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 133
+        x: 195
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,10 +156,10 @@ TextureImporter:
       name: sci5new_4
       rect:
         serializedVersion: 2
-        x: 65
-        y: 133
+        x: 260
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +170,10 @@ TextureImporter:
       name: sci5new_5
       rect:
         serializedVersion: 2
-        x: 130
-        y: 133
+        x: 325
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +184,10 @@ TextureImporter:
       name: sci5new_6
       rect:
         serializedVersion: 2
-        x: 1
-        y: 68
+        x: 390
+        y: 192
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +198,10 @@ TextureImporter:
       name: sci5new_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 68
+        x: 65
+        y: 127
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,11 +213,81 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 130
-        y: 68
+        y: 127
         width: 64
-        height: 58
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci5new_9
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 127
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci5new_10
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 127
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci5new_11
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 127
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci5new_12
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 127
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sci5new_13
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 193
+        width: 58
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
