@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
     private MapModule parentModule = null;
+    private ObjectShadow objectShadow;
 
     public int x;
     public int y;
@@ -33,6 +34,7 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        objectShadow = GetComponentInChildren<ObjectShadow>();    
         SetLayerAndTag();
 
     }
@@ -56,16 +58,23 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void Initialize(TileType tileType, Sprite sprite = null, MapModule parentModule = null,int layerOrder =0)
+    public void Initialize(TileType tileType, MapModule parentModule = null,int layerOrder =0)
     {
+        SetLayerOrder(layerOrder);
+
+
         if (tileType == TileType.Wall)
         {
             collider = this.gameObject.AddComponent<BoxCollider2D>();
             collider.size = new Vector2(0.64f, 0.64f);
+
+            if (spriteRenderer != null)
+                spriteRenderer.sortingOrder = GameConstants.WallLayerMin;
+
+            if (objectShadow != null)
+                objectShadow.SetObjectShadow(spriteRenderer.sprite, GameConstants.WallLayerMin - 1);
         }
 
-        if (sprite != null)
-            SetSprite(sprite);
 
         if (tileType == TileType.Door)
         {
@@ -74,9 +83,10 @@ public class Tile : MonoBehaviour
 
             OpenDoor();
         }
+
         this.tileType = tileType;
 
-        SetLayerOrder(layerOrder);
+
 
     }
 

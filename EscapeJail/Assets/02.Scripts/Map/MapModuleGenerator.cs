@@ -123,9 +123,7 @@ public class MapModuleGenerator
 
                     //일반벽   
                     Tile tile;
-                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);
-                    if (wallSprite != null)
-                        tile.SetSprite(wallSprite);
+                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);            
                     SetTileColor(tile, Color.white);
 
                     //위쪽문
@@ -153,9 +151,8 @@ public class MapModuleGenerator
                 {
                     //일반벽   
                     Tile tile;
-                    tile = MakeTile(TileType.Normal, posit, x, y, parent, null, -1);
-                    if (wallSprite != null)
-                        tile.SetSprite(GetRandomTileSprite());
+                    tile = MakeTile(TileType.Normal, posit, x, y, parent, null, GameConstants.BackgroundLayerMin);
+               
                     SetTileColor(tile, Color.white);
 
                 }
@@ -332,8 +329,7 @@ public class MapModuleGenerator
                     {
                         tile = MakeTile(TileType.Wall, posit, x, y, module.transform);
 
-                        if (wallSprite != null)
-                            tile.SetSprite(wallSprite);
+                  
 
                         //LeftTop
                         if (x == 0 && y == heightNum - 1)
@@ -386,29 +382,40 @@ public class MapModuleGenerator
         Tile tile = null;
         tile = obj.GetComponent<Tile>();
         if (tile == null) return null;
-        tile.Initialize(type, GetRandomTileSprite(), parentModule, layerOrder);
-        tile.SetIndex(x, y);
+
         switch (type)
         {
             case TileType.Normal:
                 {
                     if (normalTileList != null)
                         normalTileList.Add(tile);
+
+                    if (wallSprite != null)
+                        tile.SetSprite(GetRandomTileSprite());
                 }
                 break;
             case TileType.Wall:
                 {
+                    if (wallSprite != null)
+                        tile.SetSprite(wallSprite);
+
                     if (wallTileList != null)
-                        wallTileList.Add(tile);
+                        wallTileList.Add(tile);                    
                 }
                 break;
             case TileType.Door:
                 {
                     if (doorTileList != null)
                         doorTileList.Add(tile);
+
+                    if (wallSprite != null)
+                        tile.SetSprite(GetRandomTileSprite());
                 }
                 break;
         }
+
+        tile.Initialize(type, parentModule, layerOrder);
+        tile.SetIndex(x, y);
 
         return tile;
 
