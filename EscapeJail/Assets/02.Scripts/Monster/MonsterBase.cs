@@ -18,6 +18,11 @@ public enum MonsterName
     Guard2,
     Guard3,
     Guard4,
+    Scientist1,
+    Scientist2,
+    Scientist3,
+    Scientist4,
+    Slime,
     EndMonster
 }
 
@@ -308,6 +313,8 @@ public class MonsterBase : CharacterInfo
             StartCoroutine(AttackRoutine());
         }
     }
+
+    
 
     protected void SetAnimation(MonsterState state)
     {

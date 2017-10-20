@@ -56,6 +56,10 @@ public class ItemTable : CharacterInfo
     {
         if (boxCollider != null)
             boxCollider.enabled = false;
+
+        if (objectShadow != null)
+            objectShadow.ShadowOff();
+
     }
 
     public override void GetDamage(int damage)
