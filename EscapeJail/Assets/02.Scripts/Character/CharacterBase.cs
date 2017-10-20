@@ -378,6 +378,9 @@ public class CharacterBase : CharacterInfo
         //흔들리는 효과
         CameraController.Instance.ShakeCamera(3f, 0.4f);
 
+        //진동? 
+        Handheld.Vibrate();
+
         //갑옷 적용
         if (armorSystem.hasArmor() == true)
         {

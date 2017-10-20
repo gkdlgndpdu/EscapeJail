@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Guard1 : MonsterBase
+
+public class Scientist2 : MonsterBase
 {
 
     public new void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Guard1;
+        monsterName = MonsterName.Scientist2;
         SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
@@ -21,7 +22,7 @@ public class Guard1 : MonsterBase
 
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new GuardPistol());
+     //   nowWeapon.ChangeWeapon(new GuardPistol());
 
     }
 
@@ -50,10 +51,7 @@ public class Guard1 : MonsterBase
     {
         RotateWeapon();
         if (canMove() == false) return;
-
-
         MoveToTarget();
-
 
     }
 
@@ -61,14 +59,22 @@ public class Guard1 : MonsterBase
     {
         while (true)
         {
-           
-                FireWeapon();
-            yield return new WaitForSeconds(1f);
+            //
+            //발사
+            SetAnimation(MonsterState.Attack);
+           //
+            yield return new WaitForSeconds(3f);
         }
     }
-
-  
-
  
+
+    public void FireGasGun()
+    {
+        Debug.Log("Bang");
+
+    }
+
+
+
 
 }
