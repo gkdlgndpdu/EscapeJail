@@ -12,6 +12,8 @@ public class Scientist1 : MonsterBase
     private Vector3 orginSize = Vector3.one;
     private Vector3 transformSize = Vector3.one * 2f;
 
+    private bool UseBullet = false;
+
 
     //도망
     private float avoidTime = 3f;
@@ -40,6 +42,7 @@ public class Scientist1 : MonsterBase
         SetAnimation(MonsterState.Idle);
         this.transform.localScale = Vector3.one;
         scientistState = ScientistState.Normal;
+        UseBullet = false;
     }
 
     // Use this for initialization
@@ -133,6 +136,24 @@ public class Scientist1 : MonsterBase
         UpdateHud();
         if (hp <= 0)
         {
+            if ((scientistState !=ScientistState.Transform)&& UseBullet==false)
+            {
+                UseBullet = true;
+                for (int i = 0; i < 12; i++)
+                {
+                    Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                    if (bullet != null)
+                    {
+                        Vector3 fireDIr = Quaternion.Euler(new Vector3(0f, 0f, i * 30)) * Vector3.right;
+                        bullet.gameObject.SetActive(true);
+                        bullet.Initialize(this.transform.position, fireDIr.normalized, 8f, BulletType.EnemyBullet,0.7f);
+                        bullet.InitializeImage("white", false);
+                        bullet.SetEffectName("revolver");
+                        bullet.SetBloom(true, Color.red);
+                    }
+                }
+            }
+
             SetDie();
         }
 
