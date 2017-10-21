@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum CharacterCondition
 {
-    Normal,
     InFire,
     InPoison
 }
@@ -16,7 +15,6 @@ public class CharacterInfo : MonoBehaviour
     protected int hp = 0;
     protected int hpMax = 0;
 
-    protected CharacterStateEffect nowStateEffect;
 
     //화상
     protected float fireSustainmentTime = 5f;
@@ -47,7 +45,7 @@ public class CharacterInfo : MonoBehaviour
 
     protected bool HasCondition(CharacterCondition condtion)
     {
-        if (conditionList == null) return false;  
+        if (conditionList == null) return false;
         return conditionList.Contains(condtion);
     }
 
@@ -75,26 +73,23 @@ public class CharacterInfo : MonoBehaviour
     {
         //중복으로 들어왔을때 처리
         fireCount = 0f;
-        if (nowStateEffect != null)
-            nowStateEffect.CountReset();        
-        if (HasCondition(CharacterCondition.InFire)==true) return;
+
+        if (HasCondition(CharacterCondition.InFire) == true) return;
 
 
         //처음이다
         AddCondition(CharacterCondition.InFire);
         StartCoroutine(FireDamage());
         //이펙트
-        if (nowStateEffect == null)
+
+        CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
+        if (effect != null)
         {
-            CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
-            if (effect != null)
-            {
-                effect.Initialize(fireSustainmentTime, 3.5f, this.transform,SpecialBulletType.Fire);
-                effect.transform.localPosition = Vector3.zero;
-                effect.transform.parent = this.transform;
-                nowStateEffect = effect;
-            }
+            effect.Initialize(fireSustainmentTime, 3.5f, this.transform, SpecialBulletType.Fire);
+            effect.transform.localPosition = Vector3.zero;
+               
         }
+
 
     }
 
@@ -102,28 +97,26 @@ public class CharacterInfo : MonoBehaviour
     {
         //중복으로 들어왔을때 처리
         poisonCount = 0f;
-        if (nowStateEffect != null)
-            nowStateEffect.CountReset();
-        if (HasCondition(CharacterCondition.InPoison)==true) return;
+
+        if (HasCondition(CharacterCondition.InPoison) == true) return;
 
         //처음이다
         AddCondition(CharacterCondition.InPoison);
         StartCoroutine(PoisonDamage());
         //이펙트
-        if (nowStateEffect == null)
+
+        CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
+        if (effect != null)
         {
-            CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
-            if (effect != null)
-            {
-                //
-                //독세팅
-                //
-                effect.Initialize(fireSustainmentTime, 3.5f, this.transform,SpecialBulletType.Poision);
-                effect.transform.localPosition = Vector3.zero;
-                effect.transform.parent = this.transform;
-                nowStateEffect = effect;
-            }
+            //
+            //독세팅
+            //
+            effect.Initialize(fireSustainmentTime, 3.5f, this.transform, SpecialBulletType.Poision);
+            effect.transform.localPosition = Vector3.zero;
+     
+
         }
+
     }
 
 
@@ -136,7 +129,7 @@ public class CharacterInfo : MonoBehaviour
             if (fireCount >= fireSustainmentTime)
             {
                 RemoveCondition(CharacterCondition.InFire);
-                nowStateEffect = null;
+            
                 yield break;
             }
 
@@ -153,8 +146,8 @@ public class CharacterInfo : MonoBehaviour
             GetDamage(GameConstants.poisonTicDamage);
             if (poisonCount >= poisonSustainmentTime)
             {
-                RemoveCondition(CharacterCondition.InPoison);
-                nowStateEffect = null;
+                RemoveCondition(CharacterCondition.InPoison);              
+           
                 yield break;
             }
 

@@ -9,7 +9,7 @@ public class Scientist2 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Scientist2;
-        SetHp(50);
+        SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
