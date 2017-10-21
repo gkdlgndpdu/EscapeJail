@@ -64,9 +64,7 @@ public class ObjectPool<T> where T : Component
             if (objectPool[i].gameObject.activeSelf == true) continue;
             objectPool[i].gameObject.SetActive(true);
             return objectPool[i];
-        }
-
-     
+        }     
 
         //여기 내려오면 풀이 부족해서 못만들어준 경우.
         MakePoolObject();

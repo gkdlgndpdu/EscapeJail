@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: 7a55f091640e4a34e86c76aa8e7fd67b
-timeCreated: 1507996385
+timeCreated: 1508558702
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: molotov cocktail_0
+    21300002: molotov cocktail_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,11 +41,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5026839, y: 0.328234}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
@@ -81,7 +83,35 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: molotov cocktail_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 8
+        width: 23
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: molotov cocktail_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 25
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class Flamethrower : Weapon
+    public class Scientist_GasGun : Weapon
     {
-        
         private float reBoundValue = 0f;
 
-        public Flamethrower()
+        public Scientist_GasGun()
         {
-            weapontype = WeaponType.Flamethrower;
-            bulletSpeed = 10f;
+            weapontype = WeaponType.Scientist_GasGun;
+            bulletSpeed = 3f;
             fireDelay = 0.3f;
             maxAmmo = 100;
             nowAmmo = 100;
@@ -19,27 +18,24 @@ namespace weapon
             weaponScale = Vector3.one * 4;
             relativePosition = new Vector3(-0.3f, 0f, 0f);
         }
-
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
-            if (canFire() == false) return;
-            PlayFireAnim();
-            useBullet();
-            FireDelayOn();
-         
 
             SpecialBullet bullet = ObjectManager.Instance.specialBulletPool.GetItem();
             if (bullet != null)
             {
-
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, SpecialBulletType.Fire, 4f, 1);
-             
-
-
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.Poision,1.5f,1,2f);
+                
             }
-
         }
+
+
+
+
+
+
+
     }
 }

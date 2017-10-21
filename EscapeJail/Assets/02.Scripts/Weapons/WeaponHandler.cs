@@ -90,7 +90,7 @@ public class WeaponHandler : MonoBehaviour
         //무기가 있을때
         else
         {
-            if (animator != null)
+            if (animator != null&&weapon.weapontype!=WeaponType.Flamethrower)
                 animator.speed = 0f;
 
             nowWeapon = weapon;

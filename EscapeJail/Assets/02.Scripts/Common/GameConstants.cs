@@ -12,6 +12,9 @@ public static class GameConstants
     public static float tileSize = 0.64f;
 
 
+    public static int fireTicDamage = 1;
+    public static int poisonTicDamage = 1;
+
     //PlayerPref KeyValue
     public static string CharacterKeyValue = "CharacterType";
 

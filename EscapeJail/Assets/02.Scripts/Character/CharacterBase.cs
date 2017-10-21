@@ -59,6 +59,8 @@ public class CharacterBase : CharacterInfo
     //아머
     protected ArmorSystem armorSystem;
 
+
+
     protected void Awake()
     {
         SetLayerAndTag();
@@ -86,6 +88,15 @@ public class CharacterBase : CharacterInfo
 
         
     }
+
+    protected void SetWeapon()
+    {
+        AddWeapon(new Flamethrower());
+
+        UIUpdate();
+    }
+
+
 
     private void SetLayerAndTag()
     {
@@ -122,12 +133,7 @@ public class CharacterBase : CharacterInfo
         }
     }
 
-    protected void SetWeapon()
-    {
-        AddWeapon(new AssaultRifle());
 
-        UIUpdate();
-    }
 
     public void GetBag(int level)
     {

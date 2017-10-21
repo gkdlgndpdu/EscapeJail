@@ -9,7 +9,7 @@ public class Scientist2 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Scientist2;
-        SetHp(10);
+        SetHp(50);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
@@ -22,7 +22,7 @@ public class Scientist2 : MonsterBase
 
     private void SetWeapon()
     {
-     //   nowWeapon.ChangeWeapon(new GuardPistol());
+        nowWeapon.ChangeWeapon(new Scientist_GasGun());
 
     }
 
@@ -70,6 +70,7 @@ public class Scientist2 : MonsterBase
 
     public void FireGasGun()
     {
+        FireWeapon();
         Debug.Log("Bang");
 
     }

@@ -7,6 +7,7 @@ namespace weapon
     {
 
         private float reBoundValue = 1f;
+
         public GuardPistol()
         {
             weapontype = WeaponType.GuardPistol;

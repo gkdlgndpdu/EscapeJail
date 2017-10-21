@@ -77,7 +77,7 @@ public class MonsterBase : CharacterInfo
     /// </summary>
     public virtual void ResetMonster()
     {
-        monsterCondition = MonsterCondition.Normal;
+        ResetCondition();
         hp = hpMax;
         nowAttack = false;
         isDead = false;
@@ -220,6 +220,13 @@ public class MonsterBase : CharacterInfo
         //무기꺼중
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
+
+        //상태이상 해제
+        ResetCondition();
+
+        nowStateEffect = null;
+
+
 
 
     }
@@ -429,7 +436,10 @@ public class MonsterBase : CharacterInfo
     protected virtual void FireWeapon()
     {
         if (nowWeapon != null)
-            nowWeapon.FireBullet(this.transform.position, Vector3.zero);
+        {
+            Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
+            nowWeapon.FireBullet(this.transform.position, fireDir.normalized);
+        }
     }
 
     public override void GetDamage(int damage)
@@ -442,19 +452,7 @@ public class MonsterBase : CharacterInfo
         }
 
     }
-    protected override IEnumerator testFireRoutine()
-    {
-        monsterCondition = MonsterCondition.InFire;
-        for (int i = 0; i < 5; i++)
-        {
-            Debug.Log("불피해");
-            GetDamage(2);
-            yield return new WaitForSeconds(1.0f);
-        }
 
-        monsterCondition = MonsterCondition.Normal;
-
-    }
 
     protected void RotateWeapon()
     {

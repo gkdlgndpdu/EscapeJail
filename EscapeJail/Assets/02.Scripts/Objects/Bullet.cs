@@ -20,24 +20,24 @@ public enum ExplosionType
 [RequireComponent(typeof(SpriteRenderer))]
 public class Bullet : MonoBehaviour
 {
-    private int power = 0;
-    private BulletType bulletType;
-    private Rigidbody2D rb;
-    private string effectName = "revolver";
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private Sprite defaultSprite;
-    private float lifeTime = 1.0f;
-    private float effectsize = 0f;
-    private float explosionRadius = 1f;
-    private ExplosionType explosionType;
+    protected int power = 0;
+    protected BulletType bulletType;
+    protected Rigidbody2D rb;
+    protected string effectName = "revolver";
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
+    protected Sprite defaultSprite;
+    protected float lifeTime = 1.0f;
+    protected float effectsize = 1f;
+    protected float explosionRadius = 1f;
+    protected ExplosionType explosionType;
 
     [SerializeField]
     private SpriteRenderer bloomSprite;
 
     float expireCount = 0f;
 
-    private void Awake()
+    protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -145,14 +145,14 @@ public class Bullet : MonoBehaviour
 
     }
 
-    private void SetLayer(BulletType bulletType)
+    protected void SetLayer(BulletType bulletType)
     {
         this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
     }
 
 
 
-    private void SingleTargetDamage(Collider2D collision)
+    protected void SingleTargetDamage(Collider2D collision)
     {
         //충돌여부는 layer collision matrix로 분리해놓음
         if (collision.gameObject.CompareTag("Enemy") == true || collision.gameObject.CompareTag("Player"))
@@ -164,7 +164,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void MultiTargetDamage()
+    protected void MultiTargetDamage()
     {
         int layerMask;
         if (bulletType == BulletType.PlayerBullet)
@@ -185,7 +185,7 @@ public class Bullet : MonoBehaviour
 
     }
 
-    private void DamegeToItemTable(Collider2D collision)
+    protected void DamegeToItemTable(Collider2D collision)
     {
         ItemTable table = collision.gameObject.GetComponent<ItemTable>();
         if (table != null)
@@ -193,7 +193,7 @@ public class Bullet : MonoBehaviour
     }
 
     //다른 물체와의 충돌은 layer로 막아놓음
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         switch (explosionType)
         {
@@ -221,7 +221,7 @@ public class Bullet : MonoBehaviour
 
 
 
-    private void BulletDestroy()
+    protected void BulletDestroy()
     {
         if (explosionType == ExplosionType.multiple)
             MultiTargetDamage();
@@ -231,7 +231,7 @@ public class Bullet : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void ShowEffect()
+    protected void ShowEffect()
     {
         //이펙트 호출
         ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();

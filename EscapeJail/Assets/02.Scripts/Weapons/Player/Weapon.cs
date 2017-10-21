@@ -29,7 +29,8 @@ namespace weapon
         CriminalUzi,
         GuardPistol,
         GuardRifle,
-        AroundGun
+        AroundGun,
+        Scientist_GasGun
     }
 
     public enum AttackType

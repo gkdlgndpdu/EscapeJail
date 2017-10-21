@@ -16,6 +16,8 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<SpecialBullet> specialBulletPool;
     [HideInInspector]
     public ObjectPool<DrawLiner> linePool;
+    [HideInInspector]
+    public ObjectPool<CharacterStateEffect> characterStatePool;
 
     public MonsterPool monsterPool;
 
@@ -52,6 +54,10 @@ public class ObjectManager : MonoBehaviour
         GameObject line = Resources.Load<GameObject>("Prefabs/Objects/LinePrefab");
         if (line != null)
             linePool = new ObjectPool<DrawLiner>(EffectParent, line, 3);
+
+        GameObject characterStateEffect = Resources.Load<GameObject>("Prefabs/Objects/CharacterStateEffect");
+        if (characterStateEffect!=null)
+            characterStatePool = new ObjectPool<CharacterStateEffect>(EffectParent, characterStateEffect,10);
 
         MakeMonsterPool();
 

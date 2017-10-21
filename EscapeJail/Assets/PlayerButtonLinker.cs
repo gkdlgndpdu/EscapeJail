@@ -61,7 +61,7 @@ public class PlayerButtonLinker : MonoBehaviour
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerEnter;
         entry.callback.AddListener((eventData) => { func(); });
-        swapButton.triggers.Add(entry);
+ 
 
 
         return entry;
