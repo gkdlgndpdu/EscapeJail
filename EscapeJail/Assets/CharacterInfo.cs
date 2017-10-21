@@ -26,6 +26,8 @@ public class CharacterInfo : MonoBehaviour
 
     protected List<CharacterCondition> conditionList = new List<CharacterCondition>();
 
+    protected Dictionary<CharacterCondition, CharacterStateEffect> effectDic = new Dictionary<CharacterCondition, CharacterStateEffect>();
+
     public virtual void GetDamage(int damage)
     {
         //자식에서 구현!
@@ -73,6 +75,11 @@ public class CharacterInfo : MonoBehaviour
     {
         //중복으로 들어왔을때 처리
         fireCount = 0f;
+        if (effectDic.ContainsKey(CharacterCondition.InFire) == true)
+        {
+            effectDic[CharacterCondition.InFire].CountReset();
+        }
+
 
         if (HasCondition(CharacterCondition.InFire) == true) return;
 
@@ -80,16 +87,9 @@ public class CharacterInfo : MonoBehaviour
         //처음이다
         AddCondition(CharacterCondition.InFire);
         StartCoroutine(FireDamage());
-        //이펙트
 
-        CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
-        if (effect != null)
-        {
-            effect.Initialize(fireSustainmentTime, 3.5f, this.transform, SpecialBulletType.Fire);
-            effect.transform.localPosition = Vector3.zero;
-               
-        }
 
+        SetEffect(fireSustainmentTime, CharacterCondition.InFire);     
 
     }
 
@@ -97,26 +97,33 @@ public class CharacterInfo : MonoBehaviour
     {
         //중복으로 들어왔을때 처리
         poisonCount = 0f;
+        if (effectDic.ContainsKey(CharacterCondition.InPoison) == true)
+        {
+            effectDic[CharacterCondition.InPoison].CountReset();
+        }
 
         if (HasCondition(CharacterCondition.InPoison) == true) return;
 
         //처음이다
         AddCondition(CharacterCondition.InPoison);
         StartCoroutine(PoisonDamage());
-        //이펙트
 
+        SetEffect(fireSustainmentTime, CharacterCondition.InPoison);
+
+
+    }
+
+    private void SetEffect(float sustatinmentTime, CharacterCondition condition,float size =3.5f)
+    {
         CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
         if (effect != null)
         {
-            //
-            //독세팅
-            //
-            effect.Initialize(fireSustainmentTime, 3.5f, this.transform, SpecialBulletType.Poision);
+            effect.Initialize(sustatinmentTime, size, this.transform, condition);
             effect.transform.localPosition = Vector3.zero;
-     
+
+            effectDic.Add(condition, effect);
 
         }
-
     }
 
 
@@ -129,8 +136,8 @@ public class CharacterInfo : MonoBehaviour
             if (fireCount >= fireSustainmentTime)
             {
                 RemoveCondition(CharacterCondition.InFire);
-            
-                yield break;
+                effectDic.Remove(CharacterCondition.InFire);
+                    yield break;
             }
 
             yield return new WaitForSeconds(1.0f);
@@ -146,8 +153,8 @@ public class CharacterInfo : MonoBehaviour
             GetDamage(GameConstants.poisonTicDamage);
             if (poisonCount >= poisonSustainmentTime)
             {
-                RemoveCondition(CharacterCondition.InPoison);              
-           
+                RemoveCondition(CharacterCondition.InPoison);
+                effectDic.Remove(CharacterCondition.InPoison);
                 yield break;
             }
 
