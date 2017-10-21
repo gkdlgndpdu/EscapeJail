@@ -391,6 +391,7 @@ public class CharacterBase : CharacterInfo
         if (armorSystem.hasArmor() == true)
         {
             armorSystem.UseArmor(damage);
+            StartImmuine();
             return;
         }
         else

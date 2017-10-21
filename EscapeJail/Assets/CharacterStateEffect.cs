@@ -3,68 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class CharacterStateEffect : MonoBehaviour
 {
 
     private float lifeTime = 0f;
     private float count = 0f;
-    private Transform target;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
     }
 
-    public void Initialize(float lifeTime, float size, Transform target, SpecialBulletType specialbulletType)
+    public void Initialize(float lifeTime, float size, Transform target, CharacterCondition characterCondition)
     {
-        this.target = target;
+        this.transform.parent = target;
         this.lifeTime = lifeTime;
         this.transform.localScale = Vector3.one * size;
 
-        SetEffect(specialbulletType);
+        SetEffect(characterCondition);
     }
 
-    private void SetEffect(SpecialBulletType specialbulletType)
+    private void SetEffect(CharacterCondition characterCondition)
     {
-        switch (specialbulletType)
+        string path = string.Format("Animators/Effect/{0}", characterCondition.ToString());
+        RuntimeAnimatorController animController=  ObjectManager.LoadGameObject(path) as RuntimeAnimatorController;
+        if (animator != null&& animController!=null)
         {
-            case SpecialBulletType.Fire:
-                {
-                    if (spriteRenderer != null)
-                        spriteRenderer.color = new Color(1f, 1f, 1f, 0.7f);
-                }
-                break;
-            case SpecialBulletType.Poision:
-                {
-                    if (spriteRenderer != null)
-                        spriteRenderer.color = new Color(0f, 1f, 0f, 0.7f);
-                }
-                break;
+            animator.runtimeAnimatorController = animController;
         }
 
 
-
     }
 
+    /// <summary>
+    /// 이펙트가 사라지는 시간을 줄여줌
+    /// </summary>
     public void CountReset()
     {
         count = 0f;
     }
 
     private void Update()
-    {
-        if (target != null)
-        {
-            if (target.gameObject.activeSelf == true)
-                this.transform.position = target.transform.position;
-            else if (target.gameObject.activeSelf == false)
-            {
-                target = null;
-                EffectOff();
-            }
-        }
+    {  
 
         count += Time.deltaTime;
         if (count >= lifeTime)
@@ -76,8 +61,7 @@ public class CharacterStateEffect : MonoBehaviour
     public void EffectOff()
     {
         CountReset();  
-        gameObject.SetActive(false);
-        target = null;
+        gameObject.SetActive(false);     
     }   
 
 

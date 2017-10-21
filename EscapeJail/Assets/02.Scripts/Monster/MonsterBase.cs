@@ -222,7 +222,16 @@ public class MonsterBase : CharacterInfo
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
 
-    
+
+        //이펙트 청소
+        foreach(KeyValuePair<CharacterCondition,CharacterStateEffect> effect in effectDic)
+        {
+            effectDic[effect.Key].EffectOff();
+        }
+
+        effectDic.Clear();
+
+
 
     }
 
