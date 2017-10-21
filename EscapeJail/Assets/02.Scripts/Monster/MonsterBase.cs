@@ -77,6 +77,7 @@ public class MonsterBase : CharacterInfo
     /// </summary>
     public virtual void ResetMonster()
     {
+
         ResetCondition();
         hp = hpMax;
         nowAttack = false;
@@ -221,13 +222,7 @@ public class MonsterBase : CharacterInfo
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
 
-        //상태이상 해제
-        ResetCondition();
-
-        nowStateEffect = null;
-
-
-
+    
 
     }
 

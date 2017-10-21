@@ -5,21 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class CharacterStateEffect : MonoBehaviour
 {
-    
+
     private float lifeTime = 0f;
     private float count = 0f;
-    private Transform originParent;
+    private Transform target;
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        originParent = this.transform.parent;
+
     }
 
-    public void Initialize(float lifeTime, float size,Transform target, SpecialBulletType specialbulletType)
+    public void Initialize(float lifeTime, float size, Transform target, SpecialBulletType specialbulletType)
     {
-        this.transform.parent = target;
+        this.target = target;
         this.lifeTime = lifeTime;
         this.transform.localScale = Vector3.one * size;
 
@@ -34,16 +34,18 @@ public class CharacterStateEffect : MonoBehaviour
                 {
                     if (spriteRenderer != null)
                         spriteRenderer.color = new Color(1f, 1f, 1f, 0.7f);
-                } break;
+                }
+                break;
             case SpecialBulletType.Poision:
                 {
                     if (spriteRenderer != null)
                         spriteRenderer.color = new Color(0f, 1f, 0f, 0.7f);
-                } break;
+                }
+                break;
         }
 
-  
-            
+
+
     }
 
     public void CountReset()
@@ -53,6 +55,17 @@ public class CharacterStateEffect : MonoBehaviour
 
     private void Update()
     {
+        if (target != null)
+        {
+            if (target.gameObject.activeSelf == true)
+                this.transform.position = target.transform.position;
+            else if (target.gameObject.activeSelf == false)
+            {
+                target = null;
+                EffectOff();
+            }
+        }
+
         count += Time.deltaTime;
         if (count >= lifeTime)
         {
@@ -60,18 +73,12 @@ public class CharacterStateEffect : MonoBehaviour
         }
     }
 
-    private void EffectOff()
+    public void EffectOff()
     {
-        this.transform.parent = originParent;
+        CountReset();  
         gameObject.SetActive(false);
-    }
-
-    private void OnDisable()
-    {
-        CountReset();
-
-
-    }
+        target = null;
+    }   
 
 
 }
