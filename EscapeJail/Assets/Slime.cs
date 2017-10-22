@@ -34,21 +34,33 @@ public class Slime : MonsterBase
     protected override void SetDie()
     {
         base.SetDie();
-
         if (parentModule != null && CanDivide == true)
         {
-            for(int i=0;i< babyNum; i++)
-            {
-                MonsterBase slime = parentModule.SpawnSpecificMonsterInModule(monsterName, this.transform.position);
-                Slime babySlime = slime as Slime;
-                if (babySlime != null)
-                {
-                    babySlime.CanDivide = false;
-                    babySlime.transform.localScale = babySlime.transform.localScale * 0.5f;
-                }
-            }
-        }    
+            if (animator != null)                
+                animator.SetTrigger("DivideTrigger");
+            
+        }
+        else
+        {
+            if (animator != null)
+                animator.SetTrigger("SlimeDeadTrigger");
+        }
 
+
+    }
+
+    public void Divide()
+    {
+        for (int i = 0; i < babyNum; i++)
+        {
+            MonsterBase slime = parentModule.SpawnSpecificMonsterInModule(monsterName, this.transform.position);
+            Slime babySlime = slime as Slime;
+            if (babySlime != null)
+            {
+                babySlime.CanDivide = false;
+                babySlime.transform.localScale = babySlime.transform.localScale * 0.5f;
+            }
+        }
     }
 
 

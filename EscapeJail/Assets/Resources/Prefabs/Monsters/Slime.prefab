@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 212133226795416622}
   - component: {fileID: 95449795187476412}
   - component: {fileID: 114187171238677358}
+  - component: {fileID: 114769624950504416}
   m_Layer: 10
   m_Name: View
   m_TagString: Untagged
@@ -151,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214132600375204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.56, y: 4.38, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4249792384686464}
@@ -341,6 +342,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badbf6c3b52d6c14b977a25bf4b654b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114769624950504416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226176944030384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc0e95e7d3914a47936109f9bb6b181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEvent1:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114866031845161750}
+        m_MethodName: Divide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  myEvent2:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  myEvent3:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114866031845161750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,6 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPosit: {fileID: 4940507889563610}
   attackObject: {fileID: 114510431349519616}
+  CanDivide: 1
 --- !u!114 &114973593487799418
 MonoBehaviour:
   m_ObjectHideFlags: 1

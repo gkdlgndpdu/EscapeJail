@@ -63,6 +63,7 @@ public class MonsterBase : CharacterInfo
 
     //Hud
     protected Image hudImage;
+    protected Canvas hudCanvas;
 
     //무기
     protected WeaponHandler nowWeapon;
@@ -96,6 +97,7 @@ public class MonsterBase : CharacterInfo
 
         AddToList();
 
+        HudOnOff(true);
         UpdateHud();
     }
 
@@ -106,6 +108,12 @@ public class MonsterBase : CharacterInfo
         if (isDead == true || isMoveRandom == true) return false;
 
         return true;
+    }
+
+    protected void HudOnOff(bool OnOff)
+    {
+        if (hudCanvas != null)
+            hudCanvas.gameObject.SetActive(OnOff);
     }
 
 
@@ -149,6 +157,7 @@ public class MonsterBase : CharacterInfo
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         hudImage = GetComponentInChildren<Image>();
+        hudCanvas = GetComponentInChildren<Canvas>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
@@ -235,8 +244,13 @@ public class MonsterBase : CharacterInfo
         {
             effectDic[effect.Key].EffectOff();
         }
-
         effectDic.Clear();
+
+        //hud꺼줌
+        HudOnOff(false);
+
+
+
 
 
 
