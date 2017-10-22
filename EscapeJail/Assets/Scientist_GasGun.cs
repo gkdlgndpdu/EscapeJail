@@ -26,8 +26,9 @@ namespace weapon
             {
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.Poision,1.5f,1,2f);
-                
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.PoisionGranade, 1.5f,1,2f);
+                bullet.SetEffectName("GasGunExplostion", 5);
+                bullet.SetExplosion(1.5f);
             }
         }
 

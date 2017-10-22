@@ -18,6 +18,8 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<DrawLiner> linePool;
     [HideInInspector]
     public ObjectPool<CharacterStateEffect> characterStatePool;
+    [HideInInspector]
+    public ObjectPool<PollutedArea> pollutedAreaPool;
 
     public MonsterPool monsterPool;
 
@@ -37,27 +39,23 @@ public class ObjectManager : MonoBehaviour
 
     }
 
+    public void MakePool<T>(ref ObjectPool<T> objectPool, string prefabPath, Transform parent, int size) where T : Component
+    {
+        GameObject LoadObj = Resources.Load<GameObject>(prefabPath);
+        if (LoadObj != null)
+            objectPool = new ObjectPool<T>(parent, LoadObj, 10);
+
+    }
+
     private void MakePool()
     {
-        GameObject bullet = Resources.Load<GameObject>("Prefabs/Objects/Bullet");
-        if (bullet != null)
-            bulletPool = new ObjectPool<Bullet>(bulletParent, bullet, 10);
+        MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", bulletParent, 10);
+        MakePool<ExplosionEffect>(ref effectPool, "Prefabs/Objects/ExplosionEffect", EffectParent, 10);
+        MakePool<SpecialBullet>(ref specialBulletPool, "Prefabs/Objects/SpecialBullet", bulletParent, 10);
+        MakePool<DrawLiner>(ref linePool, "Prefabs/Objects/LinePrefab", EffectParent, 3);
+        MakePool<CharacterStateEffect>(ref characterStatePool, "Prefabs/Objects/CharacterStateEffect", EffectParent, 10);
+        MakePool<PollutedArea>(ref pollutedAreaPool, "Prefabs/Objects/PollutedArea", EffectParent, 5);
 
-        GameObject effect = Resources.Load<GameObject>("Prefabs/Objects/ExplosionEffect");
-        if (effect != null)
-            effectPool = new ObjectPool<ExplosionEffect>(EffectParent, effect, 10);
-
-        GameObject specialBullet = Resources.Load<GameObject>("Prefabs/Objects/SpecialBullet");
-        if (specialBullet != null)
-            specialBulletPool = new ObjectPool<SpecialBullet>(bulletParent, specialBullet, 10);
-
-        GameObject line = Resources.Load<GameObject>("Prefabs/Objects/LinePrefab");
-        if (line != null)
-            linePool = new ObjectPool<DrawLiner>(EffectParent, line, 3);
-
-        GameObject characterStateEffect = Resources.Load<GameObject>("Prefabs/Objects/CharacterStateEffect");
-        if (characterStateEffect!=null)
-            characterStatePool = new ObjectPool<CharacterStateEffect>(EffectParent, characterStateEffect,10);
 
         MakeMonsterPool();
 
@@ -92,10 +90,17 @@ public class ObjectManager : MonoBehaviour
         return monsterPool.GetRandomMonster();
     }
 
+    public MonsterBase GetSpecificMonster(MonsterName name)
+    {
+        if (monsterPool == null) return null;
+
+        return monsterPool.GetSpecificMonster(name);
+    }
+
     public static UnityEngine.Object LoadGameObject(string name)
     {
         return Resources.Load(name);
-    }   
+    }
 
 
 

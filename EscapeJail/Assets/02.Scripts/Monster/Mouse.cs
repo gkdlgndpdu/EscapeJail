@@ -31,7 +31,7 @@ public class Mouse : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        RotateWeapon();
+        NearAttackRotate();
         if (canMove() == false) return;
         MoveToTarget();  
         NearAttackLogic();
@@ -53,14 +53,7 @@ public class Mouse : MonsterBase
     }
 
 
-    protected void RotateWeapon()
-    {
-        if (weaponPosit.gameObject.activeSelf == false) return;
-        float angle = MyUtils.GetAngle(target.position, this.transform.position);
-        if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
 
-    }
 
 
 }

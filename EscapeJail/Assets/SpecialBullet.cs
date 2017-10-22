@@ -6,7 +6,7 @@ using UnityEngine;
 public enum SpecialBulletType
 {
     Fire,
-    Poision
+    PoisionGranade
 }
 
 
@@ -47,7 +47,7 @@ public class SpecialBullet : Bullet
                      InitializeImage(specialBulletType.ToString(), true);              
                 }
                 break;
-            case SpecialBulletType.Poision:
+            case SpecialBulletType.PoisionGranade:
                 {
                     InitializeImage(specialBulletType.ToString(), true);
                 } break;
@@ -83,7 +83,7 @@ public class SpecialBullet : Bullet
             if (characterInfo != null)
             {
                 characterInfo.GetDamage(this.power);
-                characterInfo.SetPoision();
+                characterInfo.SetPoison();
             }
         }
     }
@@ -104,6 +104,37 @@ public class SpecialBullet : Bullet
 
         }
     }
+    protected new void MultiTargetDamage()
+    {
+        int layerMask;
+        if (bulletType == BulletType.PlayerBullet)
+            layerMask = MyUtils.GetLayerMaskByString("Enemy");
+        else
+            layerMask = MyUtils.GetLayerMaskByString("Player");
+
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, explosionRadius, layerMask);
+        if (colls == null) return;
+
+        for (int i = 0; i < colls.Length; i++)
+        {
+            CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
+            if (specialBulletType == SpecialBulletType.PoisionGranade)
+            {
+                if (characterInfo != null)
+                    characterInfo.SetPoison();
+            }
+            else
+            {
+                if (characterInfo != null)
+                    characterInfo.GetDamage(power);
+            }
+       
+   
+        }
+
+    }
+
 
     //다른 물체와의 충돌은 layer로 막아놓음
     protected new void OnTriggerEnter2D(Collider2D collision)
@@ -131,13 +162,11 @@ public class SpecialBullet : Bullet
 
         if (specialBulletType == SpecialBulletType.Fire)
         {
-            FireDamage(collision);
-        }
-        else if (specialBulletType == SpecialBulletType.Poision)
-        {
-            PoisionDamage(collision);
-            BulletDestroy();
-        }
+            if (string.Equals(collision.gameObject.name, "Wall") == false)
+                FireDamage(collision);
+            else
+                BulletDestroy();
+        }       
         else
         {
             ////총알 삭제 및 이펙트 호출

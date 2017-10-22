@@ -14,6 +14,8 @@ public class MapModule : MapModuleBase
 
 
     private List<MonsterBase> monsterList = new List<MonsterBase>();
+    [SerializeField]
+    private GameObject maskObject;
 
     //속성
     private int SpawnMonsterNum = 10;
@@ -33,6 +35,19 @@ public class MapModule : MapModuleBase
         boxcollider2D = GetComponent<BoxCollider2D>();
     }
 
+    private void SetMakeSize(Vector3 position, Vector3 scale)
+    {
+        if (maskObject == null) return;
+        maskObject.transform.localPosition = position;
+        maskObject.transform.localScale = scale;
+    }
+
+    private void MaskOff()
+    {
+        if (maskObject == null) return;
+        maskObject.SetActive(false);
+    }
+
     public void Initialize(int widthNum, int heightNum, float widthDistance, float heightDistance, bool isStartModule, MapManager mapManager)
     {
         this.widthNum = widthNum;
@@ -40,11 +55,17 @@ public class MapModule : MapModuleBase
         this.widthDistance = widthDistance;
         this.heightDistance = heightDistance;
         this.isStartModule = isStartModule;
+        if (isStartModule == true)
+        {
+            MaskOff();
+        }
 
         if (boxcollider2D != null)
         {
             boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
+            SetMakeSize(boxcollider2D.offset, new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance));
+
         }
 
         this.mapManager = mapManager;
@@ -81,8 +102,9 @@ public class MapModule : MapModuleBase
         //중복진입 방지
         if (mapState == MapState.Lock || isClear == true) return;
 
+        MaskOff();
         mapState = MapState.Lock;
-        StartCoroutine(SpawnMonster());
+        StartCoroutine(SpawnRandomMonsterRoutine());
         CloseDoor();
     }
 
@@ -100,7 +122,40 @@ public class MapModule : MapModuleBase
         OpenDoor();
     }
 
-    IEnumerator SpawnMonster()
+    public void AddtoMonsterList(MonsterBase monster)
+    {
+        if (monsterList == null) return;
+        monsterList.Add(monster);
+
+    }
+
+    public MonsterBase SpawnRandomMonsterInModule(Vector3 spawnPos)
+    {
+        MonsterBase spawnMonster = MonsterManager.Instance.SpawnRandomMonster(spawnPos);
+
+        if (spawnMonster != null && monsterList != null)
+        {
+            spawnMonster.SetMapModule(this);
+            AddtoMonsterList(spawnMonster);
+        }
+
+        return spawnMonster;
+    }
+
+    public MonsterBase SpawnSpecificMonsterInModule(MonsterName name,Vector3 spawnPos)
+    {
+        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(name,spawnPos);
+
+        if (spawnMonster != null && monsterList != null)
+        {
+            spawnMonster.SetMapModule(this);
+            AddtoMonsterList(spawnMonster);
+        }
+
+        return spawnMonster;
+    }
+
+    IEnumerator SpawnRandomMonsterRoutine()
     {
         if (normalTileList == null) yield break;
 
@@ -110,14 +165,10 @@ public class MapModule : MapModuleBase
         {
             int RandomIndex = Random.Range(0, normalTileList.Count - 1);
             Vector3 RandomSpawnPosit = normalTileList[RandomIndex].transform.position;
-            MonsterBase spawnMonster = MonsterManager.Instance.SpawnMonster(MonsterName.Mouse1, RandomSpawnPosit);
 
-            if (spawnMonster != null && monsterList != null)
-            {
-                monsterList.Add(spawnMonster);             
-            }
+            SpawnRandomMonsterInModule(RandomSpawnPosit);
 
-            yield return new WaitForSeconds(2f);
+             yield return new WaitForSeconds(2f);
         }
 
 
@@ -160,7 +211,7 @@ public class MapModule : MapModuleBase
 
     public void MakeObjects()
     {
-                                                        //계수가 생성확률
+        //계수가 생성확률
         float makeNum = (float)(widthNum * heightNum) * 0.015f;
 
         for (int i = 0; i < (int)makeNum; i++)

@@ -400,7 +400,9 @@ public class MapModuleGenerator
                         tile.SetSprite(wallSprite);
 
                     if (wallTileList != null)
-                        wallTileList.Add(tile);                    
+                        wallTileList.Add(tile);
+
+                    tile.gameObject.name = "Wall";
                 }
                 break;
             case TileType.Door:

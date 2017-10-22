@@ -6,8 +6,7 @@ public class AttackObject : MonoBehaviour
 {
     private Animator animator;
     private int power = 1;
-    //공격 2번 들어가는 예외사항 제외
-    private bool isAttackFinished = false;
+
 
     private void Awake()
     {
@@ -21,23 +20,17 @@ public class AttackObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")&&
-            isAttackFinished==false)
+        if (collision.gameObject.CompareTag("Player"))
         {
             CharacterBase characterBase = collision.gameObject.GetComponent<CharacterBase>();
             if (characterBase != null)
             {
-                characterBase.GetDamage(this.power);
-                isAttackFinished = true;
+                characterBase.GetDamage(this.power);            
             }
 
         }
     }
 
-    private void OnDisable()
-    {
-        isAttackFinished = false;
-    }
 
    
 

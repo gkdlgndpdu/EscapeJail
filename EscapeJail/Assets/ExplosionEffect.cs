@@ -46,6 +46,8 @@ public class ExplosionEffect : MonoBehaviour
        
     }
 
+    
+
     bool AnimatorIsPlaying()
     {
         return animator.GetCurrentAnimatorStateInfo(0).length >

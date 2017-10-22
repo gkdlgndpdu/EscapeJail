@@ -93,7 +93,7 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    public void SetPoision()
+    public void SetPoison()
     {
         //중복으로 들어왔을때 처리
         poisonCount = 0f;

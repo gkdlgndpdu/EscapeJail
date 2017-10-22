@@ -72,6 +72,13 @@ public class MonsterBase : CharacterInfo
     [SerializeField]
     protected AttackObject attackObject;
 
+    protected MapModule parentModule;
+
+    public void SetMapModule(MapModule mapModule)
+    {
+        parentModule = mapModule;
+    }
+
     /// <summary>
     /// 풀에서 나올때의 생성자
     /// </summary>
@@ -182,14 +189,14 @@ public class MonsterBase : CharacterInfo
         UpdateHud();
     }
 
- 
+
 
     protected virtual IEnumerator FireRoutine()
     {
         yield return null;
     }
 
-    protected void SetDie()
+    protected virtual void SetDie()
     {
         //상태
         isDead = true;
@@ -224,7 +231,7 @@ public class MonsterBase : CharacterInfo
 
 
         //이펙트 청소
-        foreach(KeyValuePair<CharacterCondition,CharacterStateEffect> effect in effectDic)
+        foreach (KeyValuePair<CharacterCondition, CharacterStateEffect> effect in effectDic)
         {
             effectDic[effect.Key].EffectOff();
         }
@@ -325,7 +332,7 @@ public class MonsterBase : CharacterInfo
         }
     }
 
-    
+
 
     protected void SetAnimation(MonsterState state)
     {
@@ -476,6 +483,17 @@ public class MonsterBase : CharacterInfo
             if (nowWeapon != null)
                 nowWeapon.FlipWeapon(true);
         }
+
+    }
+
+    protected void NearAttackRotate()
+    {
+
+        if (weaponPosit.gameObject.activeSelf == false) return;
+        float angle = MyUtils.GetAngle(target.position, this.transform.position);
+        if (weaponPosit != null)
+            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
+
 
     }
 }

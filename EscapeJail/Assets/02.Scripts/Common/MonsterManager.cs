@@ -49,7 +49,7 @@ public class MonsterManager : MonoBehaviour
 
     }
 
-    public MonsterBase SpawnMonster(MonsterName monsterName,Vector3 SpawnPosit)
+    public MonsterBase SpawnRandomMonster(Vector3 SpawnPosit)
     {
         MonsterBase monster =  ObjectManager.Instance.GetRandomMonster();
       
@@ -58,6 +58,17 @@ public class MonsterManager : MonoBehaviour
        monster.transform.position = SpawnPosit;
        monster.ResetMonster();    
        return monster;
+    }
+
+    public MonsterBase SpawnSpecificMonster(MonsterName name, Vector3 SpawnPosit)
+    {
+        MonsterBase monster = ObjectManager.Instance.GetSpecificMonster(name);
+
+        if (monster == null) return null;
+
+        monster.transform.position = SpawnPosit;
+        monster.ResetMonster();
+        return monster;
     }
  
 }

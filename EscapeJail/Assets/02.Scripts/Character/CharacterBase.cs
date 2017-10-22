@@ -91,7 +91,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Flamethrower());
+        AddWeapon(new AssaultRifle());
 
         UIUpdate();
     }

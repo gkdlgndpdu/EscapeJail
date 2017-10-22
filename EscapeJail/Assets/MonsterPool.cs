@@ -50,17 +50,26 @@ public class MonsterPool
             monsterPool = new ObjectPool<MonsterBase>(parent, obj, 1);
 
             if (monsterPool != null)
+            {
+                if(pool.ContainsKey(monsterName)==false)
                 pool.Add(monsterName, monsterPool);
+            }
         }
     }
 
     public MonsterBase GetRandomMonster()
     {
-        if (pool == null) return null;
-
+        if (pool == null) return null;        
         List<MonsterName> keyList = new List<MonsterName>(pool.Keys);
         MonsterName RandomKey = keyList[UnityEngine.Random.Range(0, keyList.Count)];
         return pool[RandomKey].GetItem();
+    }
+
+    public MonsterBase GetSpecificMonster(MonsterName name)
+    {
+        if (pool == null) return null;
+        if (pool.ContainsKey(name) == false) return null;
+        return pool[name].GetItem();
     }
 
 
