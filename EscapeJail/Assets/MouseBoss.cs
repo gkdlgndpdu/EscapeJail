@@ -69,9 +69,19 @@ public class MouseBoss : BossBase
 
         LoadPrefab(); 
         SetHp(30);
+
+        RegistPatternToQueue();
     }
-   
-    
+
+    private void RegistPatternToQueue()
+    {
+
+        bossEventQueue.Initialize(this, EventOrder.InOrder);
+     
+        bossEventQueue.AddEvent("DigPattern");
+        bossEventQueue.AddEvent("FirePattern");
+
+    }
 
     private void LoadPrefab()
     {
@@ -87,28 +97,15 @@ public class MouseBoss : BossBase
     public override void StartBossPattern()
     {
         base.StartBossPattern();
-        if (isPatternStart == true) return;
-        isPatternStart = true;
-
-        Debug.Log("BossPatternStart");
-
-         Action(Actions.Dig);
-        // StartFirePattern();
+        if (bossEventQueue != null)
+            bossEventQueue.StartEventQueue();
     }
 
-    //애니메이션에 호출 연결되어있음
-    public void StartDigPattern()
-    {
-        StartCoroutine(BossPattern(Pattern.DigPattern));
-        HideOn();
-    }
 
-    public void StartFirePattern()
-    {
-        StartCoroutine(BossPattern(Pattern.FirePattern));
-    } 
 
-    private void HideOn()
+
+
+    public void HideOn()
     {
         if (boxCollider != null)
             boxCollider.enabled = false;
@@ -117,7 +114,7 @@ public class MouseBoss : BossBase
             spriteRenderer.enabled = false;
 
     }
-    private void HideOff()
+    public void HideOff()
     {
         if (boxCollider != null)
             boxCollider.enabled = true;
@@ -135,94 +132,72 @@ public class MouseBoss : BossBase
         this.transform.position = moveList[Random.Range(0, moveList.Count)].position;
     }
 
-
-    public IEnumerator BossPattern(Pattern pattern)
+    public IEnumerator DigPattern()
     {
         float patternCount = 0f;
+        Action(Actions.Dig);
+        yield return new WaitForSeconds(3f);
 
-        switch (pattern)
+        while (true)
         {
-            case Pattern.Idle:
+            if (bossModule.NormalTileList != null)
+            {
+                Tile RandomTile = bossModule.NormalTileList[Random.Range(0, bossModule.NormalTileList.Count)];
+
+                if (mouseHandPool != null)
                 {
-                    yield return new WaitForSeconds(idleLastTime);
+                    MouseHand mouseHand = mouseHandPool.GetItem();
+                    mouseHand.transform.position = RandomTile.transform.position + Vector3.up * 0.35f;
                 }
-                break;
-            #region DigPattern
-            case Pattern.DigPattern:
+
+                if (mouseHandPool != null)
                 {
-                    while (true)
-                    {
-                        if (bossModule.NormalTileList != null)
-                        {
-                            Tile RandomTile = bossModule.NormalTileList[Random.Range(0, bossModule.NormalTileList.Count)];
-
-                            if (mouseHandPool != null)
-                            {
-                                MouseHand mouseHand = mouseHandPool.GetItem();
-                                mouseHand.transform.position = RandomTile.transform.position + Vector3.up * 0.35f;
-                            }
-
-                            if (mouseHandPool != null)
-                            {
-                                MouseHand mouseHand = mouseHandPool.GetItem();
-                                Vector3 playerPosit = GamePlayerManager.Instance.player.transform.position;
-                                mouseHand.transform.position = new Vector3(Random.Range(-0.7f, 0.7f), Random.Range(-0.7f, 0.7f), 0f) + playerPosit + Vector3.up * 0.35f;
-                            }
-                        }
-                        patternCount += digPatternAttackSpeed;
-
-                        if (patternCount >= digPatternLastTime)
-                        {
-                            HideOff();
-                            Action(Actions.DigOut);
-                            StartFirePattern();
-                            break;
-                        }
-
-                        yield return new WaitForSeconds(digPatternAttackSpeed);
-                    }
+                    MouseHand mouseHand = mouseHandPool.GetItem();
+                    Vector3 playerPosit = GamePlayerManager.Instance.player.transform.position;
+                    mouseHand.transform.position = new Vector3(Random.Range(-0.7f, 0.7f), Random.Range(-0.7f, 0.7f), 0f) + playerPosit + Vector3.up * 0.35f;
                 }
+            }
+            patternCount += digPatternAttackSpeed;
+
+            if (patternCount >= digPatternLastTime)
+            {
+                HideOff();
+                Action(Actions.DigOut);
                 break;
-            #endregion
-            #region FirePattern
-            case Pattern.FirePattern:
-                {
-                    //잠시 딜레이
-                    yield return new WaitForSeconds(1.5f);
+            }
 
-                    for (int i = 0; i < 10; i++)
-                    {
-                        for (int j = 0; j < 36; j++)
-                        {
-                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                            if (bullet != null)
-                            {
-                                bullet.gameObject.SetActive(true);
-                                Vector3 fireDIr;
-
-                                if (i % 2 == 0)
-                                    fireDIr = Vector3.right;
-                                else
-                                    fireDIr = Quaternion.Euler(0f, 0f, 5f) * Vector3.right;
-
-                                fireDIr = Quaternion.Euler(0f, 0f, j * 10f) * fireDIr;
-                                bullet.Initialize(this.transform.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
-                                bullet.InitializeImage("white", false);
-                                bullet.SetEffectName("revolver");
-                            }
-                        }
-                        yield return new WaitForSeconds(0.7f);
-                    }
-
-                    Action(Actions.Dig);
-                }
-                break;
-            #endregion
+            yield return new WaitForSeconds(digPatternAttackSpeed);
         }
-
-        //랜덤패턴 실행
-
-
-
     }
+
+    public IEnumerator FirePattern()
+    {
+        //잠시 딜레이
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 36; j++)
+            {
+                Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                if (bullet != null)
+                {
+                    bullet.gameObject.SetActive(true);
+                    Vector3 fireDIr;
+
+                    if (i % 2 == 0)
+                        fireDIr = Vector3.right;
+                    else
+                        fireDIr = Quaternion.Euler(0f, 0f, 5f) * Vector3.right;
+
+                    fireDIr = Quaternion.Euler(0f, 0f, j * 10f) * fireDIr;
+                    bullet.Initialize(this.transform.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                    bullet.InitializeImage("white", false);
+                    bullet.SetEffectName("revolver");
+                }
+            }
+            yield return new WaitForSeconds(0.7f);
+        }    
+    }
+   
 }

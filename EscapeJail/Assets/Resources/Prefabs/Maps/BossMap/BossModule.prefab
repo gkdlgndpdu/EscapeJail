@@ -3951,6 +3951,8 @@ GameObject:
   - component: {fileID: 61491770162304198}
   - component: {fileID: 114734424468107872}
   - component: {fileID: 114309578500140952}
+  - component: {fileID: 114634150308742196}
+  - component: {fileID: 114679873265797272}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Enemy
@@ -16705,6 +16707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxcollider2D: {fileID: 0}
+  normalTileList: []
   doorDirection: 2
   bossBase: {fileID: 114734424468107872}
   widthNum: 22
@@ -20374,6 +20377,17 @@ MonoBehaviour:
   x: 0
   y: 0
   canSpawned: 1
+--- !u!114 &114634150308742196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433768409203092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1d2f17405630b48a1a5f07c3eaa28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114635791777127560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20839,6 +20853,43 @@ MonoBehaviour:
   x: 0
   y: 0
   canSpawned: 1
+--- !u!114 &114679873265797272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433768409203092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc0e95e7d3914a47936109f9bb6b181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEvent1:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114734424468107872}
+        m_MethodName: HideOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  myEvent2:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  myEvent3:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114681722893754326
 MonoBehaviour:
   m_ObjectHideFlags: 1
