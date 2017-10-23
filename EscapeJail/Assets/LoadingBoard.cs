@@ -38,20 +38,7 @@ public class LoadingBoard : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            LoadingStart();
-        }
-
-            //임시코드
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            LoadingEnd();
-        }
-    }
-
+ 
     IEnumerator fadeRoutine()
     {
         float count = 0f;

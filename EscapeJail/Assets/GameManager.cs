@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StageChangeRoutine()
     {
+        MonsterManager.Instance.ClearMonsterList();
         yield return new WaitForSeconds(5.0f);
         LoadingBoard.Instance.LoadingStart();
         yield return new WaitForSeconds(0.5f);

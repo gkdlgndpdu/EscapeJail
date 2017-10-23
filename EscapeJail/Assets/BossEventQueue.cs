@@ -25,6 +25,8 @@ public class BossEventQueue : MonoBehaviour
 
     public void StartEventQueue()
     {
+        StopAllCoroutines();
+
         switch (eventOrder)
         {
             case EventOrder.InOrder:
@@ -45,6 +47,18 @@ public class BossEventQueue : MonoBehaviour
         if (eventList == null) return;
         eventList.Add(Name);
     }   
+
+    public void RemoveEvent(string Name)
+    {
+        if (eventList == null) return;
+        eventList.Remove(Name);
+    }
+
+    public void RemoveAllEvent()
+    {
+        if (eventList == null) return;
+        eventList.Clear();
+    }
     private void AddRandomEventToQueue()
     {
         if (eventList == null|| eventQueue==null) return;

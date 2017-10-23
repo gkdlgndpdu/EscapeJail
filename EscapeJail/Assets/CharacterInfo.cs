@@ -65,7 +65,7 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    protected void SetHp(int hp)
+    public void SetHp(int hp)
     {
         this.hp = hp;
         hpMax = hp;

@@ -27,6 +27,10 @@ public class BossBase : CharacterInfo
     protected BossHpBar bosshpBar;
 
     //나머지는 자식에서 구현
+
+        /// <summary>
+        /// 하는일 : 보스 UI켜주기, 몬스터매니저에 추가
+        /// </summary>
     public virtual void StartBossPattern()
     {
         SetUiOnOff(true);
@@ -53,7 +57,7 @@ public class BossBase : CharacterInfo
         SetUiOnOff(false);
     }
 
-    protected void SetUiOnOff(bool OnOff)
+    public void SetUiOnOff(bool OnOff)
     {
         if (bosshpBar != null)
             bosshpBar.gameObject.SetActive(OnOff);

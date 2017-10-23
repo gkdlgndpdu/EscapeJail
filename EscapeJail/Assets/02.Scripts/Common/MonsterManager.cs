@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 여기 추가되면 자동타겟 대상됨
+/// </summary>
 public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager Instance;
@@ -19,12 +22,19 @@ public class MonsterManager : MonoBehaviour
     public void AddToList(GameObject monster)
     {
         if (monsterList == null) return;
+        if (monsterList.Contains(monster) == true) return;
         monsterList.Add(monster);
     }
     public void DeleteInList(GameObject monster)
     {
         if (monsterList == null) return;
         monsterList.Remove(monster);
+    }
+
+    public void ClearMonsterList()
+    {
+        if (monsterList != null)
+            monsterList.Clear();
     }
 
     //인자 현재 플레이어 위치 , null체크 필요
