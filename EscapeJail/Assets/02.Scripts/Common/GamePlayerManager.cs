@@ -43,7 +43,7 @@ public class GamePlayerManager : MonoBehaviour
         if (playerPrefab != null)
         {
             GameObject playerObj = Instantiate(playerPrefab, null);
-
+            playerObj.transform.localPosition = Vector3.zero;
             CharacterBase playerScript;
             playerScript = playerObj.GetComponent<CharacterBase>();
 
