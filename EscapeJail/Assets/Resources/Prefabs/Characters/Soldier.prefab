@@ -139,7 +139,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4436017654760842}
-  - component: {fileID: 114890775535833650}
   m_Layer: 9
   m_Name: WeaponPosit
   m_TagString: Untagged
@@ -181,7 +180,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1968215243624874
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -190,7 +189,7 @@ GameObject:
   - component: {fileID: 95316219326141282}
   - component: {fileID: 212279664054018586}
   - component: {fileID: 114463047429445746}
-  - component: {fileID: 68397753904413432}
+  - component: {fileID: 61227198636126328}
   m_Layer: 21
   m_Name: SlashObject
   m_TagString: Untagged
@@ -210,7 +209,7 @@ Transform:
   m_Children:
   - {fileID: 4821171793799636}
   m_Father: {fileID: 4436017654760842}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4161885799683410
 Transform:
@@ -235,6 +234,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.16, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
+  - {fileID: 4996315308832830}
   - {fileID: 4037463835696402}
   m_Father: {fileID: 4656775933940050}
   m_RootOrder: 1
@@ -251,7 +251,6 @@ Transform:
   m_Children:
   - {fileID: 4161885799683410}
   - {fileID: 4436017654760842}
-  - {fileID: 4996315308832830}
   - {fileID: 224662338503170294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -276,11 +275,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968215243624874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.3, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 11.666667, y: 11.666667, z: 7}
   m_Children: []
-  m_Father: {fileID: 4656775933940050}
-  m_RootOrder: 2
+  m_Father: {fileID: 4436017654760842}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50841714421395574
 Rigidbody2D:
@@ -302,8 +301,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!68 &68397753904413432
-EdgeCollider2D:
+--- !u!61 &61227198636126328
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -314,15 +313,19 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01, y: 0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4, y: 0.3}
+    oldSize: {x: 0.43, y: 0.34}
+    newSize: {x: 0.43, y: 0.34}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.25}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.044840414, y: -0.1696562}
-  - {x: -0.1315709, y: -0.1591489}
-  - {x: -0.1990136, y: -0.023142943}
-  - {x: -0.13383606, y: 0.12905176}
-  - {x: 0.071072586, y: 0.1288834}
-  - {x: -0.04313977, y: -0.16990423}
 --- !u!70 &70191931570772686
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -400,7 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec9f85c41cf3b94e801923062a84a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRotator: {fileID: 114890775535833650}
   weaponHandler: {fileID: 114863026009491058}
   slashObject: {fileID: 114463047429445746}
   weaponPosit: {fileID: 4436017654760842}
@@ -601,18 +603,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114890775535833650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1873491163757140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4722f75def32a743900aab29ba6cdb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nowRotate: 0
 --- !u!212 &212210870455645516
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -840,7 +830,7 @@ RectTransform:
   m_Children:
   - {fileID: 224602854409159392}
   m_Father: {fileID: 4656775933940050}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

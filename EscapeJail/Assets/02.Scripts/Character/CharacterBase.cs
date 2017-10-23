@@ -28,8 +28,7 @@ public class CharacterBase : CharacterInfo
     //무기 회전 관련
     protected float weaponAngle = 0f;
     protected bool nowWeaponRotate = false;
-    [SerializeField]
-    protected WeaponRotator weaponRotator;
+
 
     //무기
     [SerializeField]
@@ -67,8 +66,7 @@ public class CharacterBase : CharacterInfo
 
         Initialize();
 
-        if (weaponRotator != null && weaponHandler != null)
-            weaponHandler.SetWeaponRotateFunc(weaponRotator.RotateWeapon);
+ 
 
         if (weaponHandler != null && slashObject != null)
         {
@@ -91,7 +89,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new AssaultRifle());
+        AddWeapon(new shortknife());
 
         UIUpdate();
     }
@@ -206,8 +204,7 @@ public class CharacterBase : CharacterInfo
 
 
     private void RotateWeapon()
-    {
-        if (weaponRotator.nowRotate == true) return;
+    {  
 
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
         if (nearEnemy != null && weaponHandler.attackType ==AttackType.gun)
@@ -350,7 +347,7 @@ public class CharacterBase : CharacterInfo
         spriteRenderer.flipX = flip;
 
         if (slashObject != null)
-            slashObject.FlipObject(lastMoveDir);
+            slashObject.FlipOnOff(flip);
 
     }
 

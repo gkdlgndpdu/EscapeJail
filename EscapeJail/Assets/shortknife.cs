@@ -26,7 +26,7 @@ namespace weapon
             if (canFire() == false) return;
 
             FireDelayOn();
-
+            PlayFireAnim();
         }
     }
 }

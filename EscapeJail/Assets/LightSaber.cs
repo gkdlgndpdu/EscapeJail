@@ -19,7 +19,7 @@ namespace weapon
             needBulletToFire = 1;
             damage = 10;
             weaponScale = Vector3.one * 4f;
-            relativePosition = new Vector3(-0.65f, 0f, 0f);
+       
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -27,7 +27,7 @@ namespace weapon
             if (canFire() == false) return;
 
             FireDelayOn();
-            //PlayFireAnim();
+            PlayFireAnim();
 
 
         }

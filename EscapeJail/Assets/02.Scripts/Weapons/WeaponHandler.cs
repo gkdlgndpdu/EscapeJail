@@ -24,7 +24,7 @@ public class WeaponHandler : MonoBehaviour
     private Slider weaponSlider=null;
 
 
-    private System.Action weaponRotateFunc;
+
 
     public void SetWeaponUi(WeaponUI weaponUi)
     {
@@ -34,11 +34,7 @@ public class WeaponHandler : MonoBehaviour
     {
         this.weaponSlider = weaponSlider;
     }
-
-    public void SetWeaponRotateFunc(System.Action action)
-    {
-        weaponRotateFunc = action;
-    }
+    
 
     public void SetSlashObject(SlashObject slashObject)
     {
@@ -48,7 +44,8 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        
     }
 
     public void GetBulletItem()
@@ -90,8 +87,13 @@ public class WeaponHandler : MonoBehaviour
         //무기가 있을때
         else
         {
-            if (animator != null&&weapon.weapontype!=WeaponType.Flamethrower)
+            if (animator != null && weapon.weapontype != WeaponType.Flamethrower)
+            {
                 animator.speed = 0f;
+                animator.Play(0,0);
+            }
+
+      
 
             nowWeapon = weapon;
 
@@ -158,9 +160,8 @@ public class WeaponHandler : MonoBehaviour
             animator.speed = 1f;
 
         //근접무기용
-        if (nowWeapon.AttackType == AttackType.near && weaponRotateFunc != null && nowWeapon.canFire() == true)
-        {
-            weaponRotateFunc();
+        if (nowWeapon.AttackType == AttackType.near && nowWeapon.canFire() == true)
+        {       
             SlashObjectOnOff(true);
         }
 

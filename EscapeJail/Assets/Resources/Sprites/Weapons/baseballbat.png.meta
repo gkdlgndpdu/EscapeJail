@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: 01e065e8983a70b4f99d49308adfa117
-timeCreated: 1508323134
+timeCreated: 1508761784
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: baseballbat_0
+    21300002: baseballbat_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
@@ -81,7 +83,35 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: baseballbat_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 26
+        width: 58
+        height: 12
+      alignment: 9
+      pivot: {x: 0.79278886, y: 0.4803451}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: baseballbat_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 13
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

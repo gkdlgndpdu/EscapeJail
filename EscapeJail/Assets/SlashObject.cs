@@ -56,13 +56,25 @@ public class SlashObject : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void FlipObject(Vector3 MoveDir)
+
+    public void FlipOnOff(bool OnOff)
     {
-        if(MoveDir.x>0)       
-            this.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-        else
-            this.transform.localRotation = Quaternion.identity;   
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipY = !OnOff;
+          //  spriteRenderer.flipX = OnOff;
+        }
+
+        //if (OnOff == true)
+        //{
+        //    this.transform.localRotation = Quaternion.identity;
+        //}
+        //else
+        //{
+        //    this.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+        //}
     }
+
 
 
     //충돌관련
