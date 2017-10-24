@@ -38,6 +38,31 @@ public class MyUtils
 
         return percent<randNum;
     }
+
+    //public static Vector3 AbsVector(Vector3 value)
+    //{
+    //    float x = 0f;
+    //    float y = 0f;
+    //    float z = 0f;
+
+    //    if (value.x > 0)
+    //        x = value.x;
+    //    else
+    //        x = -value.x;
+
+    //    if (value.y > 0)
+    //        y = value.y;
+    //    else
+    //        y = -value.y;
+
+    //    if (value.z > 0)
+    //        z = value.z;
+    //    else
+    //        z = -value.z;
+
+    //    return new Vector3(x, y, z);
+
+    //} 
  
 
 

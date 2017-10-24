@@ -98,12 +98,7 @@ public class ItemTable : CharacterInfo
         {
             ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);
             switch (itemType)
-            {
-                case ItemType.Weapon:
-                    {
-                        ItemSpawner.Instance.SpawnWeapon(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);
-                    }
-                    break;
+            {              
                 case ItemType.Armor:
                     {
                         ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform, Random.Range(1, 4));

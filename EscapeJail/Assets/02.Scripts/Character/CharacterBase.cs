@@ -177,6 +177,10 @@ public class CharacterBase : CharacterInfo
     }
     protected void InputOnPc()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ReactiveButtonClick();
+        }
         MoveInPc();
     }
 
@@ -489,16 +493,28 @@ public class CharacterBase : CharacterInfo
         }
         else if (colls.Length > 1)
         {
-            Array.Sort(colls, (a, b) =>
+            //Array.Sort(colls, (a, b) =>
+            //{
+            //    if (Vector2.Distance(this.transform.position, a.transform.position) >
+            //    Vector2.Distance(this.transform.position, b.transform.position))
+            //        return 1;
+            //    else return -1;
+
+            //});
+            Collider2D neariestCollider = null;
+            float neariestDistance = 999f;
+            for (int i = 0; i < colls.Length; i++)
             {
-                if (Vector3.Distance(this.transform.position, a.transform.position) >
-                Vector3.Distance(this.transform.position, b.transform.position))
-                    return 1;
-                else return -1;
+                float distance = Vector3.Distance(this.transform.position, colls[i].gameObject.transform.position);
+                if (distance < neariestDistance)
+                {
+                    neariestDistance = distance;
+                    neariestCollider = colls[i];
+                }
+            }
 
-            });
 
-            iReactiveAction action = colls[0].gameObject.GetComponent<iReactiveAction>();
+            iReactiveAction action = neariestCollider.gameObject.GetComponent<iReactiveAction>();
             if (action != null)
                 action.ClickAction();
 

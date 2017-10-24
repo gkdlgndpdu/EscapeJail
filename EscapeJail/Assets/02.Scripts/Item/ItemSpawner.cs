@@ -20,6 +20,9 @@ public class ItemSpawner : MonoBehaviour
 
         spawnedWeaponList = new List<WeaponType>();
         spawnedObjectList = new List<GameObject>();
+
+
+        SetRandomWeapon();
     }
     private void LoadPrefab()
     {
@@ -42,24 +45,7 @@ public class ItemSpawner : MonoBehaviour
         return false;
 
     }
-    public void SpawnWeapon(Vector3 posit, Transform parent)
-    {
-        WeaponType RandomWeapon;
 
-        RandomWeapon = (WeaponType)Random.Range((int)(WeaponType.PlayerWeaponStart + 1), (int)WeaponType.PlayerWeaponEnd);
-           
-
-        //중복체크 및 중복아니면 리스트에 추가
-        if (isWeaponSpawned(RandomWeapon) == true) return;
-
-        DropItem item = MakeItemPrefab(posit);
-        if (item == null) return;
-        item.transform.parent = parent;
-        item.SetItemToWeapon(RandomWeapon);
-
-        if (spawnedObjectList != null)
-            spawnedObjectList.Add(item.gameObject);
-    }
 
     //중복체크 X 아이템 삭제할때 땅에 똑같은거 버려주는 용도로 사용
     public void SpawnWeapon(Vector3 posit, Transform parent, WeaponType weaponType)
@@ -76,6 +62,49 @@ public class ItemSpawner : MonoBehaviour
             spawnedObjectList.Add(item.gameObject);
     }
 
+    ///////////////////임시코드
+
+
+    //임시코드 (아이템 확률이 생기면 삭제)
+    private List<WeaponType> shuffledWeaponList = new List<WeaponType>();
+
+    public void SpawnWeapon(Vector3 posit, Transform parent)
+    {
+        WeaponType RandomWeapon = WeaponType.Revolver;
+
+        if (shuffledWeaponList.Count > 0)
+        {
+          RandomWeapon = shuffledWeaponList[0];
+          shuffledWeaponList.RemoveAt(0);
+        }
+        else if(shuffledWeaponList.Count<=0)
+        {
+            return;
+        }
+
+
+        DropItem item = MakeItemPrefab(posit);
+        if (item == null) return;
+        item.transform.parent = parent;
+        item.SetItemToWeapon(RandomWeapon);
+
+        if (spawnedObjectList != null)
+            spawnedObjectList.Add(item.gameObject);
+    }
+    private void SetRandomWeapon()
+    {
+        for (int i = 0; i < (int)WeaponType.PlayerWeaponEnd; i++)
+        {
+            shuffledWeaponList.Add((WeaponType)i);
+        }
+
+        shuffledWeaponList.ListShuffle(100);
+    }
+
+
+
+
+    ////////////////////임시코드
 
     public void SpawnArmor(Vector3 posit, Transform parent, int level = 1)
     {

@@ -4,11 +4,11 @@ using UnityEngine;
 using weapon;
 public enum ItemType
 {
-    Weapon,
     Armor,
     Bullet,
     Bag,
     Consumables,
+    Weapon,  //Weapon은 상자에서 나오기 떄문에 위치가 여기여야 테이블에서 안나옴
     ItemTypeEnd
 }
 

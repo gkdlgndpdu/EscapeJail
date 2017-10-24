@@ -18,7 +18,7 @@ public class Main : MonoBehaviour {
 
 
         db.CloseDB();
-	}
+	}  
 
 	// Update is called once per frame
 	void Update () {
