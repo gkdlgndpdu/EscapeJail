@@ -126,7 +126,7 @@ public class Bullet : MonoBehaviour
     {
         if (isAnimBullet == true && animator != null)
         {
-            RuntimeAnimatorController animController = ObjectManager.LoadGameObject(string.Format("Animators/Bullet/{0}", bulletImageName)) as RuntimeAnimatorController;
+            RuntimeAnimatorController animController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Bullet/{0}", bulletImageName)); 
             if (animController != null)
             {
                 animator.runtimeAnimatorController = animController;
@@ -134,7 +134,7 @@ public class Bullet : MonoBehaviour
         }
         else if (isAnimBullet == false && spriteRenderer != null)
         {
-            Sprite sprite = ObjectManager.LoadGameObject(string.Format("Sprites/Bullet/{0}", bulletImageName)) as Sprite;
+            Sprite sprite = Resources.Load<Sprite>(string.Format("Sprites/Bullet/{0}", bulletImageName));
             if (sprite != null)
                 spriteRenderer.sprite = sprite;
             else if (sprite == null)

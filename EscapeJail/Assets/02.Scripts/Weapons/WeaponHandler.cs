@@ -101,7 +101,7 @@ public class WeaponHandler : MonoBehaviour
 
             if (animator != null)
             {
-                animator.runtimeAnimatorController = ObjectManager.LoadGameObject(string.Format("Animators/Weapon/{0}", weapon.weapontype)) as RuntimeAnimatorController;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Weapon/{0}", weapon.weapontype)) ;
 
                 if (nowWeapon != null)
                 {

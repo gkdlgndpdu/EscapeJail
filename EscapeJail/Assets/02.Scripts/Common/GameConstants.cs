@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameConstants 
+public static class GameConstants
 {
     public static int PlayerLayerMin = 20;
     public static int TileLayerMin = 0;
@@ -18,4 +18,7 @@ public static class GameConstants
     //PlayerPref KeyValue
     public static string CharacterKeyValue = "CharacterType";
 
+    //DB
+    public static string MonsterDBName = "MonsterDB.db";
+    public static string WeaponDBName = "WeaponDB.db";
 }

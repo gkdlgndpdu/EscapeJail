@@ -25,8 +25,8 @@ public class MapModuleGenerator
     private List<Tile> bossMakableList;
 
     //타일 이미지 풀
-    private List<Sprite> tileSpriteList;
-    private Sprite wallSprite;
+    private List<Sprite> normalSpriteList;
+    private List<Sprite> wallSpriteList;
     private Sprite doorSprite;
 
     //모듈 리스트
@@ -57,7 +57,8 @@ public class MapModuleGenerator
 
     private void Initialize()
     {
-        tileSpriteList = new List<Sprite>();
+        //tileSpriteList = new List<Sprite>();
+        //wallSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
         moduleList = new List<MapModuleBase>();
@@ -107,7 +108,7 @@ public class MapModuleGenerator
         //교정
         if (num1 % 2 != 0) offSetX += 0.32f;
         if (num2 % 2 != 0) offSetY += 0.32f;
-        
+
 
         for (int x = 0; x < widthNum; x++)
         {
@@ -123,7 +124,7 @@ public class MapModuleGenerator
 
                     //일반벽   
                     Tile tile;
-                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);            
+                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);
                     SetTileColor(tile, Color.white);
 
                     //위쪽문
@@ -152,7 +153,7 @@ public class MapModuleGenerator
                     //일반벽   
                     Tile tile;
                     tile = MakeTile(TileType.Normal, posit, x, y, parent, null, GameConstants.BackgroundLayerMin);
-               
+
                     SetTileColor(tile, Color.white);
 
                 }
@@ -191,20 +192,15 @@ public class MapModuleGenerator
         if (nowStageData == null) return;
 
         //일반타일 로드
-        if (tileSpriteList != null)
-        {
-            List<Sprite> normalTileList = nowStageData.GetNormalTileList();
-            if (normalTileList != null)
-            {
-                for (int i = 0; i < normalTileList.Count; i++)
-                {
-                    tileSpriteList.Add(normalTileList[i]);
-                }
-            }
-        }
+     
+            normalSpriteList = nowStageData.GetNormalTileList();
+        
 
-        //벽타일 로드
-        wallSprite = nowStageData.GetWallTile();
+
+       //벽타일 로드
+            wallSpriteList = nowStageData.GetWallTileList();
+        
+
 
         //문타일 로드
         doorSprite = nowStageData.GetDoorTile();
@@ -213,10 +209,18 @@ public class MapModuleGenerator
 
     private Sprite GetRandomTileSprite()
     {
-        if (tileSpriteList == null) return null;
-        if (tileSpriteList.Count == 0) return null;
+        if (normalSpriteList == null) return null;
+        if (normalSpriteList.Count == 0) return null;
 
-        return tileSpriteList[Random.Range(0, tileSpriteList.Count)];
+        return normalSpriteList[Random.Range(0, normalSpriteList.Count)];
+    }
+
+    private Sprite GetRandomWallTileList()
+    {
+        if (wallSpriteList == null) return null;
+        if (wallSpriteList.Count == 0) return null;
+
+        return wallSpriteList[Random.Range(0, wallSpriteList.Count)];
     }
 
 
@@ -329,7 +333,7 @@ public class MapModuleGenerator
                     {
                         tile = MakeTile(TileType.Wall, posit, x, y, module.transform);
 
-                  
+
 
                         //LeftTop
                         if (x == 0 && y == heightNum - 1)
@@ -390,17 +394,18 @@ public class MapModuleGenerator
                     if (normalTileList != null)
                         normalTileList.Add(tile);
 
-                    if (wallSprite != null)
+                    if (normalSpriteList != null)
                         tile.SetSprite(GetRandomTileSprite());
                 }
                 break;
             case TileType.Wall:
                 {
-                    if (wallSprite != null)
-                        tile.SetSprite(wallSprite);
 
                     if (wallTileList != null)
                         wallTileList.Add(tile);
+
+                    if (wallSpriteList != null)
+                        tile.SetSprite(GetRandomWallTileList());
 
                     tile.gameObject.name = "Wall";
                 }
@@ -410,7 +415,7 @@ public class MapModuleGenerator
                     if (doorTileList != null)
                         doorTileList.Add(tile);
 
-                    if (wallSprite != null)
+                    if (normalSpriteList != null)
                         tile.SetSprite(GetRandomTileSprite());
                 }
                 break;

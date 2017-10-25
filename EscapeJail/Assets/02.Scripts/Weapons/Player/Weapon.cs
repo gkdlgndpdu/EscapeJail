@@ -22,6 +22,7 @@ namespace weapon
         sword,
         baseballbat,
         shortknife,
+        laserpistol,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
@@ -30,14 +31,15 @@ namespace weapon
         GuardPistol,
         GuardRifle,
         AroundGun,
-        Scientist_GasGun
+        Scientist_GasGun,
+        Last1Gun,
+        MonsterWeaponEnd
     }
 
     public enum AttackType
     {      
         gun,
-        near
-        
+        near        
     }
 
     public class Weapon : ItemBase

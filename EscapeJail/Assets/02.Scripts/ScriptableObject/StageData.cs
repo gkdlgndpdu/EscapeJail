@@ -14,27 +14,21 @@ public class StageData : ScriptableObject
     [SerializeField]
     private List<Sprite> normalTileList;
     [SerializeField]
-    private Sprite spriteWall;
+    private List<Sprite> wallTileList;
     [SerializeField]
     private Sprite spriteDoor;
     [SerializeField]
     private List<Color> randomTileColor;
 
-    public Sprite GetRandomNormalTile()
-    {
-        if (normalTileList == null) return null;
-        return normalTileList[Random.Range(0, normalTileList.Count)];
-    }
-
+  
     public List<Sprite> GetNormalTileList()
     {
         return normalTileList;
     }
 
-    public Sprite GetWallTile()
+    public List<Sprite> GetWallTileList()
     {
-        if (spriteWall == null) return null;
-        return spriteWall;
+        return wallTileList;
     }
 
     public Sprite GetDoorTile()

@@ -27,11 +27,11 @@ public class CharacterStateEffect : MonoBehaviour
 
         SetEffect(characterCondition);
     }
-
+  
     private void SetEffect(CharacterCondition characterCondition)
     {
         string path = string.Format("Animators/Effect/{0}", characterCondition.ToString());
-        RuntimeAnimatorController animController=  ObjectManager.LoadGameObject(path) as RuntimeAnimatorController;
+        RuntimeAnimatorController animController= Resources.Load<RuntimeAnimatorController>(path);
         if (animator != null&& animController!=null)
         {
             animator.runtimeAnimatorController = animController;

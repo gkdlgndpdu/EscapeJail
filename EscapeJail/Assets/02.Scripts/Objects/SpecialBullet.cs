@@ -6,21 +6,42 @@ using UnityEngine;
 public enum SpecialBulletType
 {
     Fire,
-    PoisionGranade
+    PoisionGranade,
+    LaserBullet
 }
 
-
-
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class SpecialBullet : Bullet
 {
 
     private SpecialBulletType specialBulletType;
-
+    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D capsuleCollider;
 
     private new void Awake()
     {
         base.Awake();
+        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+    }
 
+    private void BoxColliderOn()
+    {
+        if (boxCollider != null)
+            boxCollider.enabled = true;
+
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = false;
+    }
+
+    private void CapsuleColliderOn()
+    {
+        if (boxCollider != null)
+            boxCollider.enabled = false;
+
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = true;
     }
 
     public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, SpecialBulletType specialBulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
@@ -35,6 +56,13 @@ public class SpecialBullet : Bullet
         this.specialBulletType = specialBulletType;
         SetBulletImage(this.specialBulletType);
 
+        SetBloom(false, Color.white);
+
+
+        if (specialBulletType == SpecialBulletType.LaserBullet)
+            CapsuleColliderOn();
+        else
+            BoxColliderOn();
     }
 
     //총알 애니메이션 설정하는곳
@@ -44,12 +72,18 @@ public class SpecialBullet : Bullet
         {
             case SpecialBulletType.Fire:
                 {
-                     InitializeImage(specialBulletType.ToString(), true);              
+                    InitializeImage(specialBulletType.ToString(), true);               
                 }
                 break;
             case SpecialBulletType.PoisionGranade:
                 {
                     InitializeImage(specialBulletType.ToString(), true);
+              
+                } break;
+            case SpecialBulletType.LaserBullet:
+                {
+                    InitializeImage(specialBulletType.ToString(), false);
+
                 } break;
         }
     }
@@ -166,7 +200,16 @@ public class SpecialBullet : Bullet
                 FireDamage(collision);
             else
                 BulletDestroy();
-        }       
+        }
+        else if (specialBulletType == SpecialBulletType.LaserBullet)
+        {
+            if (string.Equals(collision.gameObject.name, "Wall") == false)
+            {
+                //blank
+            }
+            else
+                BulletDestroy();         
+        }
         else
         {
             ////총알 삭제 및 이펙트 호출

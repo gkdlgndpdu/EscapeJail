@@ -60,9 +60,8 @@ public class Guard1 : MonsterBase
     protected override IEnumerator FireRoutine()
     {
         while (true)
-        {
-           
-                FireWeapon();
+        {           
+            FireWeapon();
             yield return new WaitForSeconds(1f);
         }
     }
