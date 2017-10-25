@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-public class Guard1 : MonsterBase
-{
 
+public class Last1 : MonsterBase
+{
     public new void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Guard1;
+        monsterName = MonsterName.Last1;
         SetHp(10);
         nearestAcessDistance = 5f;
         SetWeapon();
-    }
+    } 
     public override void ResetMonster()
     {
         base.ResetMonster();
@@ -21,7 +21,7 @@ public class Guard1 : MonsterBase
 
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new GuardPistol());
+        nowWeapon.ChangeWeapon(new Last1Gun());
 
     }
 
@@ -50,24 +50,31 @@ public class Guard1 : MonsterBase
     {
         RotateWeapon();
         if (canMove() == false) return;
-
-
         MoveToTarget();
-
 
     }
 
     protected override IEnumerator FireRoutine()
     {
         while (true)
-        {           
-            FireWeapon();
-            yield return new WaitForSeconds(1f);
+        {
+            //
+            //발사
+            SetAnimation(MonsterState.Attack);
+            if (rb != null)
+                rb.velocity = Vector3.zero;
+            //
+            yield return new WaitForSeconds(Random.Range(1f,5f));
         }
     }
 
-  
 
- 
+    public void FireGun()
+    {
+        FireWeapon();
+        Debug.Log("Bang");
+
+    }
+
 
 }

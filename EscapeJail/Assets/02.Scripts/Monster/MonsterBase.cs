@@ -23,6 +23,11 @@ public enum MonsterName
     Scientist3,
     Scientist4,
     Slime,
+    Last1,
+    Last2,
+    Last3,
+    Last4,
+    Last5,
     EndMonster
 }
 

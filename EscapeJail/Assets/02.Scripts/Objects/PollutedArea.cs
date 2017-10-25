@@ -48,7 +48,7 @@ public class PollutedArea : MonoBehaviour
     private void ChangeEffectsAnimation(CharacterCondition polluteType)
     {
         string path = string.Format("Animators/Effect/{0}", polluteType.ToString());
-        RuntimeAnimatorController animController = ObjectManager.LoadGameObject(path) as RuntimeAnimatorController;
+        RuntimeAnimatorController animController = Resources.Load<RuntimeAnimatorController>(path);
 
         if (effectList == null) return;
         for(int i = 0; i < effectList.Count; i++)

@@ -29,16 +29,14 @@ public class ExplosionEffect : MonoBehaviour
 
         if (effectName != null && animator != null)
         {
-            Object obj = ObjectManager.LoadGameObject(string.Format("Animators/Effect/{0}", effectName));
+            RuntimeAnimatorController obj = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Effect/{0}", effectName));
               
             if (obj != null)
             {
-                RuntimeAnimatorController effectAnim = obj as RuntimeAnimatorController;
-                if (effectAnim != null)
-                {
-                    animator.runtimeAnimatorController = effectAnim;
+             
+                    animator.runtimeAnimatorController = obj;
 
-                }
+                
             }
         }
 

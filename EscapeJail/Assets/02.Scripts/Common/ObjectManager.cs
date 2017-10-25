@@ -97,10 +97,7 @@ public class ObjectManager : MonoBehaviour
         return monsterPool.GetSpecificMonster(name);
     }
 
-    public static UnityEngine.Object LoadGameObject(string name)
-    {
-        return Resources.Load(name);
-    }
+ 
 
 
 
