@@ -6,12 +6,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Mono.Data.SqliteClient;
-
+using UnityEngine.UI;
+using System.Text;
 public class DatabaseLoader : MonoBehaviour
 {
     private Dictionary<MonsterName, MonsterDB> MonsterDB;
 
     public static DatabaseLoader Instance = null;
+
+    //디버그용
+    public Text debugText;
+    public StringBuilder sb = new StringBuilder();
+        
 
     public MonsterDB GetMonsterData(MonsterName key)
     {
@@ -53,16 +59,33 @@ public class DatabaseLoader : MonoBehaviour
     public void OpenDB(string fileName, ref IDbConnection dbcon)
     {
         string filepath;
-        string connection;
-
 #if UNITY_EDITOR
         filepath = Application.streamingAssetsPath + "/" + fileName;
 #else
-  string filepath = Application.persistentDataPath + "/" + fileName;
-#endif    
+       filepath = Application.persistentDataPath + "/" + fileName;
+#endif
+
+
+
+        //filepath = Application.streamingAssetsPath + "/" + fileName;
+
+
+
+        if (!File.Exists(filepath))
+        {
+            Debug.LogWarning("File \"" + filepath + "\" does not exist. Attempting to create from \"" +
+                             Application.dataPath + "!/assets/" + fileName);
+            // if it doesn't ->
+            // open StreamingAssets directory and load the db -> 
+            WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);
+            while (!loadDB.isDone) { }
+            // then save to Application.persistentDataPath
+            File.WriteAllBytes(filepath, loadDB.bytes);
+        }
+
 
         //open db connection
-        connection = "URI=file:" + filepath;
+        string connection = "URI=file:" + filepath;
 
         dbcon = new SqliteConnection(connection);
         dbcon.Open();
@@ -86,13 +109,16 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-#if UNITY_EDITOR
+
         //디버깅
         foreach (KeyValuePair<MonsterName, MonsterDB> data in MonsterDB)
         {
-            Debug.Log("키:" + data.Key.ToString() + " 체력 :" + data.Value.Hp + " 확률 :" + data.Value.Probability);
+            string debugmsg = "키:" + data.Key.ToString() + " 체력 :" + data.Value.Hp + " 확률 :" + data.Value.Probability + "\n";
+            Debug.Log(debugmsg);
+            sb.Append(debugmsg);
         }
-#endif
+
+        debugText.text = sb.ToString();
 
     }
 
