@@ -301,6 +301,7 @@ public class MonsterBase : CharacterInfo
         return GetDistanceToPlayer() <= nearestAcessDistance;
     }
 
+    //플레이어쪽으로 이동
     protected void MoveToTarget()
     {
         if (rb == null) return;
@@ -324,6 +325,30 @@ public class MonsterBase : CharacterInfo
         SetAnimation(MonsterState.Walk);
 
 
+    }
+
+    //플레이어 반대쪽으로 이동
+    protected void MoveAgainstTarget()
+    {
+        if (rb == null) return;
+
+        rb.velocity = Vector3.zero;
+
+        if (target == null) return;
+        if (nowAttack == true) return;
+
+        if (IsInAcessArea() == false)
+        {
+            //flipx를 위해서 방향계산만 해줌
+            CalculateMoveDIr();
+            SetAnimation(MonsterState.Idle);
+            return;
+        }
+
+        CalculateMoveDIr();
+        rb.velocity = Quaternion.Euler(0f,0f,Random.Range(-45f,45f))* -moveDir.normalized * moveSpeed;
+
+        SetAnimation(MonsterState.Walk);
     }
 
     protected void CalculateMoveDIr()

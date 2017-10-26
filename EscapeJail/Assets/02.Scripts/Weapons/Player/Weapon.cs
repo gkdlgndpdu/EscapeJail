@@ -33,6 +33,7 @@ namespace weapon
         AroundGun,
         Scientist_GasGun,
         Last1Gun,
+        Last2Sniper,
         MonsterWeaponEnd
     }
 

@@ -118,6 +118,7 @@ public class DatabaseLoader : MonoBehaviour
             sb.Append(debugmsg);
         }
 
+        if(debugText!=null)
         debugText.text = sb.ToString();
 
     }

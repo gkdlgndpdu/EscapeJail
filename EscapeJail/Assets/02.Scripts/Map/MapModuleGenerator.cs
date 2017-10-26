@@ -109,6 +109,8 @@ public class MapModuleGenerator
         if (num1 % 2 != 0) offSetX += 0.32f;
         if (num2 % 2 != 0) offSetY += 0.32f;
 
+        //랜덤벽스프라이트
+        Sprite randomWallSprite = GetRandomWallTileList();
 
         for (int x = 0; x < widthNum; x++)
         {
@@ -124,7 +126,7 @@ public class MapModuleGenerator
 
                     //일반벽   
                     Tile tile;
-                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1);
+                    tile = MakeTile(TileType.Wall, posit, x, y, parent, null, -1, randomWallSprite);
                     SetTileColor(tile, Color.white);
 
                     //위쪽문
@@ -294,6 +296,9 @@ public class MapModuleGenerator
         #endregion
 
         #region TileMaking
+
+        Sprite randomWallSprite = GetRandomWallTileList();
+
         //타일,벽 생성
         for (int x = 0; x < widthNum; x++)
         {
@@ -331,9 +336,11 @@ public class MapModuleGenerator
                     //일반벽
                     else
                     {
-                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform);
+                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform,null,0, randomWallSprite);
 
 
+
+                        //전체 외각 계산을 위해 필요
 
                         //LeftTop
                         if (x == 0 && y == heightNum - 1)
@@ -376,8 +383,8 @@ public class MapModuleGenerator
         tile.ChangeColor(color);
 
     }
-
-    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null, int layerOrder = 0)
+                                                                                         //벽의경우 여기에 넣어주면 해당 텍스쳐로만 생성
+    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent,MapModule parentModule = null, int layerOrder = 0, Sprite specificSprite = null)
     {
         GameObject obj = GameObject.Instantiate(normalTile, parent);
         obj.transform.position = posit;
@@ -404,8 +411,17 @@ public class MapModuleGenerator
                     if (wallTileList != null)
                         wallTileList.Add(tile);
 
-                    if (wallSpriteList != null)
-                        tile.SetSprite(GetRandomWallTileList());
+                    if (specificSprite == null)
+                    {
+                        if (wallSpriteList != null)
+                            tile.SetSprite(GetRandomWallTileList());
+                    }
+                    else
+                    {
+                        tile.SetSprite(specificSprite);
+                    }
+
+                
 
                     tile.gameObject.name = "Wall";
                 }
