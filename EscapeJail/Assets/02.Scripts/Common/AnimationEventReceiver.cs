@@ -9,7 +9,7 @@ public class AnimationEventReceiver : MonoBehaviour
     public UnityEvent myEvent1;
     public UnityEvent myEvent2;
     public UnityEvent myEvent3;
-
+    public UnityEvent myEvent4;
     public void EventAction1()
     {
         if (myEvent1 != null)
@@ -26,6 +26,11 @@ public class AnimationEventReceiver : MonoBehaviour
     {
         if (myEvent3 != null)
             myEvent3.Invoke();
+    }
+    public void EventAction4()
+    {
+        if (myEvent4 != null)
+            myEvent4.Invoke();
     }
 
 }

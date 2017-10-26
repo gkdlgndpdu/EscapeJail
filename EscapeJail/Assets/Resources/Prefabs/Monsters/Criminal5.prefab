@@ -124,8 +124,9 @@ GameObject:
   - component: {fileID: 224235579726197872}
   - component: {fileID: 223506439602953830}
   - component: {fileID: 114637112032279368}
+  - component: {fileID: 114868989910454442}
   m_Layer: 10
-  m_Name: Canvas
+  m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1792938687566244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.98, y: 3.08, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4273172853385716}
@@ -280,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9799db808da6ae0499609a96941bf93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponUI: {fileID: 0}
+  attackType: 1
 --- !u!114 &114369911780527726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +368,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114868989910454442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877397008820854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf820b0e93033348b7be5a8d26cf4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212413323975024360
 SpriteRenderer:
   m_ObjectHideFlags: 1

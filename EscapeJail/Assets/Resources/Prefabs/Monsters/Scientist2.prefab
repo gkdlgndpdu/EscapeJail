@@ -38,8 +38,9 @@ GameObject:
   - component: {fileID: 224193821120279132}
   - component: {fileID: 223298015221338158}
   - component: {fileID: 114462574200786144}
+  - component: {fileID: 114506191900179122}
   m_Layer: 10
-  m_Name: Canvas
+  m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,6 +356,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114506191900179122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034519242730784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf820b0e93033348b7be5a8d26cf4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114515150074178290
 MonoBehaviour:
   m_ObjectHideFlags: 1

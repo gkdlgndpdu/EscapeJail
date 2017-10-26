@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 224033900808270112}
   - component: {fileID: 223518358698801320}
   - component: {fileID: 114303638426823376}
+  - component: {fileID: 114660659611851156}
   m_Layer: 10
-  m_Name: Canvas
+  m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,8 +220,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09, y: -0.24}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.09, y: -0.12}
+  m_Size: {x: 0.71, y: 1}
   m_Direction: 0
 --- !u!95 &95012626693589776
 Animator:
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9799db808da6ae0499609a96941bf93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponUI: {fileID: 0}
+  attackType: 1
 --- !u!114 &114229458532016144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,6 +341,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPosit: {fileID: 4289465920703158}
   attackObject: {fileID: 0}
+--- !u!114 &114660659611851156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169328798307846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf820b0e93033348b7be5a8d26cf4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114857495979417538
 MonoBehaviour:
   m_ObjectHideFlags: 1

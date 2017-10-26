@@ -109,8 +109,9 @@ GameObject:
   - component: {fileID: 224210204751516556}
   - component: {fileID: 223561557209597912}
   - component: {fileID: 114947127106750502}
+  - component: {fileID: 114484487997162468}
   m_Layer: 10
-  m_Name: Canvas
+  m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,6 +297,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPosit: {fileID: 4380544601390726}
   attackObject: {fileID: 0}
+--- !u!114 &114484487997162468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844267658462622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf820b0e93033348b7be5a8d26cf4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114672892256426530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9799db808da6ae0499609a96941bf93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponUI: {fileID: 0}
+  attackType: 1
 --- !u!114 &114828108479242082
 MonoBehaviour:
   m_ObjectHideFlags: 1

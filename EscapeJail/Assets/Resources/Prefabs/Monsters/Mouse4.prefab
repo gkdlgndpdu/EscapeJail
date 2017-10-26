@@ -55,8 +55,9 @@ GameObject:
   - component: {fileID: 224207443655122816}
   - component: {fileID: 223921871125204738}
   - component: {fileID: 114421818051801186}
+  - component: {fileID: 114490515481765862}
   m_Layer: 10
-  m_Name: Canvas
+  m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935930038412828}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.98, y: 3.08, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4185425085692300}
@@ -317,6 +318,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114490515481765862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414501450196904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf820b0e93033348b7be5a8d26cf4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114537339996047890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,7 +341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 1
-  weaponUI: {fileID: 0}
 --- !u!114 &114718387184037196
 MonoBehaviour:
   m_ObjectHideFlags: 1

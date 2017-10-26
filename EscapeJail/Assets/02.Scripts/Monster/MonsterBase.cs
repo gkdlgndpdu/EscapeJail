@@ -67,9 +67,7 @@ public class MonsterBase : CharacterInfo
     protected float activeDistance = 10;
 
     //Hud
-    protected Image hudImage;
-    protected Canvas hudCanvas;
-
+    protected EnemyHpBar enemyHpBar;    
     //무기
     protected WeaponHandler nowWeapon;
     [SerializeField]
@@ -95,8 +93,8 @@ public class MonsterBase : CharacterInfo
         hp = hpMax;
         nowAttack = false;
         isDead = false;
-        if (capsuleCollider != null)
-            capsuleCollider.enabled = true;
+
+        ColliderOnOff(true);   
 
         isMoveRandom = false;
 
@@ -104,6 +102,8 @@ public class MonsterBase : CharacterInfo
 
         HudOnOff(true);
         UpdateHud();
+
+        AttackOff();
     }
 
 
@@ -117,20 +117,18 @@ public class MonsterBase : CharacterInfo
 
     protected void HudOnOff(bool OnOff)
     {
-        if (hudCanvas != null)
-            hudCanvas.gameObject.SetActive(OnOff);
+        if (enemyHpBar != null)
+            enemyHpBar.gameObject.SetActive(OnOff);
     }
 
 
-    //임시코드------------------------------------------------------------------풀방식으로 수정 필요
-    //임시코드------------------------------------------------------------------풀방식으로 수정 필요
     protected void AddToList()
     {
         if (MonsterManager.Instance != null)
             MonsterManager.Instance.AddToList(this.gameObject);
     }
 
-    protected void DeleteInList()
+    protected void RemoveInList()
     {
         if (MonsterManager.Instance != null)
             MonsterManager.Instance.DeleteInList(this.gameObject);
@@ -140,11 +138,7 @@ public class MonsterBase : CharacterInfo
     {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
-
-
     }
-    //임시코드------------------------------------------------------------------풀방식으로 수정 필요
-    //임시코드------------------------------------------------------------------풀방식으로 수정 필요
 
     protected void Awake()
     {
@@ -161,9 +155,8 @@ public class MonsterBase : CharacterInfo
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        hudImage = GetComponentInChildren<Image>();
-        hudCanvas = GetComponentInChildren<Canvas>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        enemyHpBar = GetComponentInChildren<EnemyHpBar>();
     }
 
     protected void SetUpCustomScript()
@@ -184,11 +177,6 @@ public class MonsterBase : CharacterInfo
     {
         if (attackObject != null)
             attackObject.Initialize(power);
-    }
-
-    protected void InitiailzeMonster()
-    {
-
     }
 
     protected void SetUpMonsterAttribute()
@@ -219,9 +207,7 @@ public class MonsterBase : CharacterInfo
         if (rb != null)
             rb.velocity = Vector3.zero;
 
-        //충돌체
-        if (capsuleCollider != null)
-            capsuleCollider.enabled = false;
+        //충돌체        ColliderOnOff(false);
 
         //애니메이션
         if (animator != null)
@@ -231,7 +217,7 @@ public class MonsterBase : CharacterInfo
         Invoke("ObjectOff", 3f);
 
         //근접공격대상에서 벗어나게
-        DeleteInList();
+        RemoveInList();
 
         //실행중인 모든 코루틴 종료
         StopAllCoroutines();
@@ -280,8 +266,6 @@ public class MonsterBase : CharacterInfo
     {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(false);
-
-
     }
 
 
@@ -357,12 +341,15 @@ public class MonsterBase : CharacterInfo
     }
 
     protected void UpdateHud()
-    {
-        if (hudImage != null)
-            hudImage.fillAmount = (float)hp / (float)hpMax;
-
+    {    
+        if (enemyHpBar != null)
+            enemyHpBar.SetHpBar((float)hp, (float)hpMax);
     }
 
+    /// <summary>
+    /// NearAttackLogic에서 실행
+    /// </summary>
+    /// <returns></returns>
     protected virtual IEnumerator AttackRoutine()
     {
         yield break;
@@ -538,6 +525,13 @@ public class MonsterBase : CharacterInfo
         if (weaponPosit != null)
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
 
+
+    }
+
+    protected void ColliderOnOff(bool OnOff)
+    {
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = OnOff;
 
     }
 }
