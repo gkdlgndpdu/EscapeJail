@@ -1,0 +1,1080 @@
+fileFormatVersion: 2
+guid: 0a18f01453d09d64fadb32507a4c09cd
+timeCreated: 1509010047
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: lastbossweapon2_0
+    21300002: lastbossweapon2_1
+    21300004: lastbossweapon2_2
+    21300006: lastbossweapon2_3
+    21300008: lastbossweapon2_4
+    21300010: lastbossweapon2_5
+    21300012: lastbossweapon2_6
+    21300014: lastbossweapon2_7
+    21300016: lastbossweapon2_8
+    21300018: lastbossweapon2_9
+    21300020: lastbossweapon2_10
+    21300022: lastbossweapon2_11
+    21300024: lastbossweapon2_12
+    21300026: lastbossweapon2_13
+    21300028: lastbossweapon2_14
+    21300030: lastbossweapon2_15
+    21300032: lastbossweapon2_16
+    21300034: lastbossweapon2_17
+    21300036: lastbossweapon2_18
+    21300038: lastbossweapon2_19
+    21300040: lastbossweapon2_20
+    21300042: lastbossweapon2_21
+    21300044: lastbossweapon2_22
+    21300046: lastbossweapon2_23
+    21300048: lastbossweapon2_24
+    21300050: lastbossweapon2_25
+    21300052: lastbossweapon2_26
+    21300054: lastbossweapon2_27
+    21300056: lastbossweapon2_28
+    21300058: lastbossweapon2_29
+    21300060: lastbossweapon2_30
+    21300062: lastbossweapon2_31
+    21300064: lastbossweapon2_32
+    21300066: lastbossweapon2_33
+    21300068: lastbossweapon2_34
+    21300070: lastbossweapon2_35
+    21300072: lastbossweapon2_36
+    21300074: lastbossweapon2_37
+    21300076: lastbossweapon2_38
+    21300078: lastbossweapon2_39
+    21300080: lastbossweapon2_40
+    21300082: lastbossweapon2_41
+    21300084: lastbossweapon2_42
+    21300086: lastbossweapon2_43
+    21300088: lastbossweapon2_44
+    21300090: lastbossweapon2_45
+    21300092: lastbossweapon2_46
+    21300094: lastbossweapon2_47
+    21300096: lastbossweapon2_48
+    21300098: lastbossweapon2_49
+    21300100: lastbossweapon2_50
+    21300102: lastbossweapon2_51
+    21300104: lastbossweapon2_52
+    21300106: lastbossweapon2_53
+    21300108: lastbossweapon2_54
+    21300110: lastbossweapon2_55
+    21300112: lastbossweapon2_56
+    21300114: lastbossweapon2_57
+    21300116: lastbossweapon2_58
+    21300118: lastbossweapon2_59
+    21300120: lastbossweapon2_60
+    21300122: lastbossweapon2_61
+    21300124: lastbossweapon2_62
+    21300126: lastbossweapon2_63
+    21300128: lastbossweapon2_64
+    21300130: lastbossweapon2_65
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lastbossweapon2_0
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_2
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_3
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_4
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_5
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_6
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_7
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_8
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 448
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_10
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_11
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_12
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_13
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_14
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_15
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_16
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_17
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 383
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_19
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_20
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_21
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_22
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_23
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_24
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_25
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_26
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_27
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_28
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 318
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_30
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_31
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_32
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_33
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_34
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_35
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_36
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_37
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_38
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 253
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_40
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_41
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_42
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_43
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_44
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_45
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_46
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_47
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_48
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_49
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 188
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_51
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_52
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_53
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_54
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_55
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_56
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_57
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_58
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_59
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_60
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 123
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_62
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 58
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_63
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 58
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_64
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 58
+        width: 90
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lastbossweapon2_65
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 385
+        width: 88
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
