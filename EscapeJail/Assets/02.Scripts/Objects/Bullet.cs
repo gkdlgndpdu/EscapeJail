@@ -15,6 +15,12 @@ public enum ExplosionType
     multiple
 }
 
+public enum BulletDestroyAction
+{
+    none,
+    aroundFire
+}
+
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -31,6 +37,8 @@ public class Bullet : MonoBehaviour
     protected float effectsize = 1f;
     protected float explosionRadius = 1f;
     protected ExplosionType explosionType;
+    protected BulletDestroyAction bulletDestroyAction = BulletDestroyAction.none;
+    private float bulletSpeed = 0f;
 
     [SerializeField]
     private SpriteRenderer bloomSprite;
@@ -56,7 +64,10 @@ public class Bullet : MonoBehaviour
 
         //이동
         if (rb != null)
+        {
+            bulletSpeed = moveSpeed;
             rb.velocity = moveDir.normalized * moveSpeed;
+        }
 
         //피아식별
         this.bulletType = bulletType;
@@ -92,10 +103,17 @@ public class Bullet : MonoBehaviour
                 break;
         }
 
+        bulletDestroyAction = BulletDestroyAction.none;
+
     }
     private void OnDisable()
     {
         expireCount = 0f;
+    }
+
+    public void SetBulletDestroyAction(BulletDestroyAction action)
+    {
+        bulletDestroyAction = action;
     }
 
 
@@ -228,7 +246,32 @@ public class Bullet : MonoBehaviour
 
         expireCount = 0f;
         ShowEffect();
+        BulletDestroyActionExcute();
         this.gameObject.SetActive(false);
+
+    }
+
+    protected void BulletDestroyActionExcute()
+    {
+        switch (bulletDestroyAction)
+        {
+            case BulletDestroyAction.none: { }break;
+            case BulletDestroyAction.aroundFire:
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                        if (bullet != null)
+                        {
+                            Vector3 fireDIr = Quaternion.Euler(new Vector3(0f, 0f, i * 30)) * Vector3.right;
+                            bullet.gameObject.SetActive(true);
+                            bullet.Initialize(this.transform.position+ fireDIr*0.1f, fireDIr.normalized, bulletSpeed, bulletType);
+                            bullet.InitializeImage("white", false);
+                            bullet.SetEffectName("revolver");
+                        }
+                    }
+                } break;
+        }
     }
 
     protected void ShowEffect()

@@ -34,6 +34,7 @@ namespace weapon
         Scientist_GasGun,
         Last1Gun,
         Last2Sniper,
+        Last5Bazooka,
         MonsterWeaponEnd
     }
 

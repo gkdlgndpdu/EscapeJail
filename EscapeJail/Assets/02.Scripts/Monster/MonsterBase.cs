@@ -207,7 +207,8 @@ public class MonsterBase : CharacterInfo
         if (rb != null)
             rb.velocity = Vector3.zero;
 
-        //충돌체        ColliderOnOff(false);
+        //충돌체       
+        ColliderOnOff(false);
 
         //애니메이션
         if (animator != null)
