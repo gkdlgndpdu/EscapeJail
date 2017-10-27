@@ -42,7 +42,6 @@ public enum MonsterState
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class MonsterBase : CharacterInfo
-
 {
     //대상 타겟
     protected Transform target;

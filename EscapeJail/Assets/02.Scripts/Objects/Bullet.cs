@@ -54,8 +54,10 @@ public class Bullet : MonoBehaviour
         if (spriteRenderer != null)
             defaultSprite = spriteRenderer.sprite;
 
-
+     
     }
+
+
 
     public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {

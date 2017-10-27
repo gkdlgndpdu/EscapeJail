@@ -89,7 +89,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new LaserPistol());
+        AddWeapon(new CardCase());
 
         UIUpdate();
     }

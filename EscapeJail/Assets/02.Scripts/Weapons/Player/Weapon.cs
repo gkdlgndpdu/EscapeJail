@@ -23,6 +23,7 @@ namespace weapon
         baseballbat,
         shortknife,
         laserpistol,
+        CardCase,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
