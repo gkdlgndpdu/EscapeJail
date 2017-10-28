@@ -15,6 +15,7 @@ public class CharacterInfo : MonoBehaviour
     protected int hp = 0;
     protected int hpMax = 0;
 
+    protected bool isImmuneAnyState = false;
 
     //화상
     protected float fireSustainmentTime = 5f;
@@ -73,6 +74,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void SetFire()
     {
+        if (isImmuneAnyState == true) return;
+
         //중복으로 들어왔을때 처리
         fireCount = 0f;
         if (effectDic.ContainsKey(CharacterCondition.InFire) == true)
@@ -95,6 +98,8 @@ public class CharacterInfo : MonoBehaviour
 
     public void SetPoison()
     {
+        if (isImmuneAnyState == true) return;
+
         //중복으로 들어왔을때 처리
         poisonCount = 0f;
         if (effectDic.ContainsKey(CharacterCondition.InPoison) == true)

@@ -60,34 +60,7 @@ public class Scientist1 : MonsterBase
         yield break;
     }
 
-    private IEnumerator AvoidRoutine()
-    {
-        float count = 0f;
-        while (true)
-        {
-            Vector3 moveDir = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)) * Vector3.right;
-
-            this.moveDir = moveDir;
-
-            if (rb != null)
-                rb.velocity = moveDir.normalized * moveSpeed;
-
-            SetAnimation(MonsterState.Walk);
-
-            FlipCharacterByMoveDir();
-
-            count += 0.5f;
-            if (count >= avoidTime)
-            {
-
-                SetTransform();
-                yield break;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-        }
-
-    }
+   
 
     private void SetTransform()
     {
@@ -159,6 +132,34 @@ public class Scientist1 : MonsterBase
 
     }
 
+    private IEnumerator AvoidRoutine()
+    {
+        float count = 0f;
+        while (true)
+        {
+            Vector3 moveDir = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)) * Vector3.right;
+
+            this.moveDir = moveDir;
+
+            if (rb != null)
+                rb.velocity = moveDir.normalized * moveSpeed;
+
+            SetAnimation(MonsterState.Walk);
+
+            FlipCharacterByMoveDir();
+
+            count += 0.5f;
+            if (count >= avoidTime)
+            {
+
+                SetTransform();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
 
 
 

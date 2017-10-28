@@ -18,7 +18,7 @@ public class MapModule : MapModuleBase
     private GameObject maskObject;
 
     //속성
-    private int SpawnMonsterNum = 10;
+    private int SpawnMonsterNum = 0;
     private int widthNum;
     private int heightNum;
 
@@ -159,7 +159,7 @@ public class MapModule : MapModuleBase
     {
         if (normalTileList == null) yield break;
 
-
+        SpawnMonsterNum = (widthNum * heightNum) /30;
 
         //몬스터 스폰
         for (int i = 0; i < SpawnMonsterNum; i++)

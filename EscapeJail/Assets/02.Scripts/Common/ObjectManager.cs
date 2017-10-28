@@ -20,6 +20,8 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<CharacterStateEffect> characterStatePool;
     [HideInInspector]
     public ObjectPool<PollutedArea> pollutedAreaPool;
+    [HideInInspector]
+    public ObjectPool<Turret> turretPool;
 
     public MonsterPool monsterPool;
 
@@ -29,6 +31,8 @@ public class ObjectManager : MonoBehaviour
     private Transform EffectParent;
     [SerializeField]
     private Transform MonsterParent;
+    [SerializeField]
+    private Transform ObjectParent;
 
     private void Awake()
     {
@@ -55,7 +59,9 @@ public class ObjectManager : MonoBehaviour
         MakePool<DrawLiner>(ref linePool, "Prefabs/Objects/LinePrefab", EffectParent, 3);
         MakePool<CharacterStateEffect>(ref characterStatePool, "Prefabs/Objects/CharacterStateEffect", EffectParent, 10);
         MakePool<PollutedArea>(ref pollutedAreaPool, "Prefabs/Objects/PollutedArea", EffectParent, 5);
+        MakePool<Turret>(ref turretPool, "Prefabs/Objects/Turret", ObjectParent, 5);
 
+        
 
         MakeMonsterPool();
 
@@ -76,10 +82,6 @@ public class ObjectManager : MonoBehaviour
     {
         if (monsterPool != null)
             monsterPool.ReleaseMonsterPool();
-
-
-
-
     }
 
 

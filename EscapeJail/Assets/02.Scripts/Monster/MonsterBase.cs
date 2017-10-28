@@ -143,10 +143,15 @@ public class MonsterBase : CharacterInfo
     {
         SetUpComponent();
         SetUpCustomScript();
+        SetLayerAndTag();
+
+
+    }
+
+    private void SetLayerAndTag()
+    {
         this.gameObject.layer = LayerMask.NameToLayer("Enemy");
         this.gameObject.tag = "Enemy";
-
-
     }
 
     protected void SetUpComponent()
@@ -534,4 +539,6 @@ public class MonsterBase : CharacterInfo
             capsuleCollider.enabled = OnOff;
 
     }
+
+
 }

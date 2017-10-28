@@ -23,19 +23,5 @@ public class SceneManager : MonoBehaviour
         }
 
     }
- 
-    //void Update()
-    //{
-    //    //임시코드
-    //    if (Input.GetKeyDown(KeyCode.Alpha1))
-    //    {        
-    //        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.LobbyScene);
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.Alpha2))
-    //    {
-    //        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.GameScene);
-        
-    //    }
-    //}
 }
+  
