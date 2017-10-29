@@ -38,9 +38,9 @@ public class Criminal4 : MonsterBase
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
             bullet.Initialize(firePos, fireDir.normalized, 5, BulletType.EnemyBullet,1.3f, 1, 2f);
             bullet.InitializeImage("CriminalGrande", true);
-            bullet.SetEffectName("CriminalGrandeExplosion", 1.5f);
+            bullet.SetEffectName("GranadeExplosion", 1.5f);
             bullet.SetExplosion(1.5f);
-            bullet.SetBloom(false,Color.white);
+            bullet.SetBloom(false);
 
 
         }

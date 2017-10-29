@@ -27,7 +27,7 @@ public class CharacterBase : CharacterInfo
 
     //무기 회전 관련
     protected float weaponAngle = 0f;
-    protected bool nowWeaponRotate = false;
+
 
 
     //무기
@@ -246,7 +246,7 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-        if (nowWeaponRotate == true) return;
+      
 
         Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
@@ -272,20 +272,7 @@ public class CharacterBase : CharacterInfo
             }
         }
 
-    }
-
-    protected void NearWeaponRotate()
-    {
-        nowWeaponRotate = true;
-
-    }
-
-    protected void NearWeaponRotateEnd()
-    {
-        Debug.Log("들어오냐?");
-        iTween.Stop(weaponPosit.gameObject);
-        nowWeaponRotate = false;
-    }
+    } 
 
     protected void MoveInPc()
     {
