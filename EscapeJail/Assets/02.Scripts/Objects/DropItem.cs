@@ -38,7 +38,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     private void SetColliderSize()
     {
         if (boxCollider != null && spriteRenderer != null)
-            boxCollider.size = spriteRenderer.size;
+            boxCollider.size = spriteRenderer.size*0.5f;
     }
 
     private void Start()
