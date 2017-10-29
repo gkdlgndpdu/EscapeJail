@@ -17,6 +17,8 @@ public class BossBase : CharacterInfo
 
     protected bool isBossDie = false;
 
+    protected float moveSpeed = 1f;
+
 
     //컴포넌트
     protected Animator animator;

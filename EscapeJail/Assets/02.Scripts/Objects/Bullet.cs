@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour
         if (spriteRenderer != null)
             defaultSprite = spriteRenderer.sprite;
 
-     
+
     }
 
 
@@ -145,7 +145,7 @@ public class Bullet : MonoBehaviour
 
         if (hasMoveLifetime == true)
         {
-            if(expireCount>= moveLifeTime)
+            if (expireCount >= moveLifeTime)
             {
                 StopBullet();
             }
@@ -174,7 +174,7 @@ public class Bullet : MonoBehaviour
     {
         if (isAnimBullet == true && animator != null)
         {
-            RuntimeAnimatorController animController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Bullet/{0}", bulletImageName)); 
+            RuntimeAnimatorController animController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Bullet/{0}", bulletImageName));
             if (animController != null)
             {
                 animator.runtimeAnimatorController = animController;
@@ -247,21 +247,22 @@ public class Bullet : MonoBehaviour
         if (canDestroyByCollision == true)
             BulletDestroy();
         else if (canDestroyByCollision == false)
-        {            
-            StopBullet();
+        {
+            if (collision.gameObject.CompareTag("Tile"))
+                StopBullet();
             return;
         }
 
-        if(explosionType==ExplosionType.single)
-            SingleTargetDamage(collision); 
-        
+        if (explosionType == ExplosionType.single)
+            SingleTargetDamage(collision);
+
 
         if (collision.gameObject.CompareTag("ItemTable"))
         {
             DamegeToItemTable(collision);
         }
 
-    
+
     }
 
     private void StopBullet()
@@ -287,7 +288,7 @@ public class Bullet : MonoBehaviour
     {
         switch (bulletDestroyAction)
         {
-            case BulletDestroyAction.none: { }break;
+            case BulletDestroyAction.none: { } break;
             case BulletDestroyAction.aroundFire:
                 {
                     for (int i = 0; i < 12; i++)
@@ -297,12 +298,13 @@ public class Bullet : MonoBehaviour
                         {
                             Vector3 fireDIr = Quaternion.Euler(new Vector3(0f, 0f, i * 30)) * Vector3.right;
                             bullet.gameObject.SetActive(true);
-                            bullet.Initialize(this.transform.position+ fireDIr*0.1f, fireDIr.normalized, bulletSpeed, bulletType);
+                            bullet.Initialize(this.transform.position + fireDIr * 0.1f, fireDIr.normalized, bulletSpeed, bulletType);
                             bullet.InitializeImage("white", false);
                             bullet.SetEffectName("revolver");
                         }
                     }
-                } break;
+                }
+                break;
         }
     }
 

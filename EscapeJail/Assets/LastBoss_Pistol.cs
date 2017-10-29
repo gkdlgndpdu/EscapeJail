@@ -9,7 +9,7 @@ namespace weapon
         public LastBoss_Pistol()
         {
             weapontype = WeaponType.LastBoss_Pistol;
-            bulletSpeed = 5f;
+            bulletSpeed = 13f;
             weaponScale = Vector3.one * 3f;
             bulletType = BulletType.EnemyBullet;
         }

@@ -10,7 +10,7 @@ namespace weapon
         public LastBoss_MinuGun()
         {
             weapontype = WeaponType.LastBoss_MinuGun;
-            bulletSpeed = 5f;
+            bulletSpeed = 12f;
             weaponScale = Vector3.one * 3f;
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)

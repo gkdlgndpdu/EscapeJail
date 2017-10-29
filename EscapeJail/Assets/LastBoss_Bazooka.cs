@@ -10,7 +10,7 @@ namespace weapon
         public LastBoss_Bazooka()
         {
             weapontype = WeaponType.LastBoss_Bazooka;
-            bulletSpeed = 5f;
+            bulletSpeed = 15f;
             weaponScale = Vector3.one * 3f;
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -26,8 +26,6 @@ namespace weapon
                 bullet.Initialize(firePos+ fireDIr, fireDIr, bulletSpeed, BulletType.EnemyBullet,2f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-
-
             }
 
             PlayFireAnim();

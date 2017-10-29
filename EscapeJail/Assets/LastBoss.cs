@@ -9,6 +9,8 @@ public class LastBoss : BossBase
     private WeaponHandler weaponHandler;
 
     private Transform PlayerTr;
+    private Vector3 moveDir;
+    private bool canMove = true;
 
 
     private Dictionary<WeaponType, Weapon> weaponDic = new Dictionary<WeaponType, Weapon>();
@@ -42,6 +44,18 @@ public class LastBoss : BossBase
 
     }
 
+    private new void Start()
+    {
+        LinkPlayer();
+        weaponHandler.ChangeWeapon(new LastBoss_Pistol());
+    }
+
+    private void Update()
+    {
+        RotateWeapon();
+        MoveToTarget();
+    }
+
     private void SetWeapon()
     {
         weaponDic.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
@@ -64,11 +78,6 @@ public class LastBoss : BossBase
         PlayerTr = GamePlayerManager.Instance.player.transform;
     }
 
-    private new void Start()
-    {
-        LinkPlayer();
-        weaponHandler.ChangeWeapon(new LastBoss_Pistol());
-    }
 
     protected void RotateWeapon()
     {
@@ -183,15 +192,16 @@ public class LastBoss : BossBase
         }
     }
 
+    #region Pattern
     private void RegistPatternToQueue()
     {
 
         bossEventQueue.Initialize(this, EventOrder.InOrder);
 
         bossEventQueue.AddEvent("SpreadBomb");
-        //bossEventQueue.AddEvent("TempFireRoutine1");
-        //bossEventQueue.AddEvent("TempFireRoutine2");
-        //bossEventQueue.AddEvent("TempFireRoutine3");
+        bossEventQueue.AddEvent("TempFireRoutine1");
+        bossEventQueue.AddEvent("TempFireRoutine2");
+        bossEventQueue.AddEvent("TempFireRoutine3");
 
     }
 
@@ -244,55 +254,76 @@ public class LastBoss : BossBase
 
     IEnumerator SpreadBomb()
     {
+        canMove = false;
         Action(Actions.BombAttackStart);
         yield return new WaitForSeconds(3.0f);
+        canMove = true;
     }
+    #endregion
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeWeapon(WeaponType.LastBoss_Pistol);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeWeapon(WeaponType.LastBoss_MinuGun);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeWeapon(WeaponType.LastBoss_Bazooka);
-        }
-
-        RotateWeapon();
-    }
 
     public void SpreadDynamiteAndGranade()
-    {   
-
-        float dynamaiteSpeed = 3f;
+    {           
         Vector3 fireDirection = Vector3.right;
         for (int i = 0; i < 8; i++)
         {
+            float dynamaiteSpeed = Random.Range(1f, 5f);
             fireDirection = Quaternion.Euler(0f, 0f, 45f) * fireDirection;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
-                bullet.Initialize(this.transform.position, fireDirection.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 0.5f, 1, 3f);
+                bullet.Initialize(this.transform.position, fireDirection.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 3f);
                 bullet.InitializeImage("Dynamite", true);
                 bullet.SetBloom(false);
                 bullet.SetDestroyByCollision(false);
                 bullet.SetMoveLifetime(1f);
-                bullet.SetEffectName("DynamiteExplostion",3f);
+                bullet.SetEffectName("Explode_1", 3f);
                 bullet.SetExplosion(1.5f);
                
             }
         }
-   
+
+
+        Vector3 fireDirection2 =Quaternion.Euler(0f,0f,22.5f)* Vector3.right;
+        for (int i = 0; i < 8; i++)
+        {
+            float dynamaiteSpeed = Random.Range(5f, 8f);
+            fireDirection2 = Quaternion.Euler(0f, 0f, 45f) * fireDirection2;
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                bullet.Initialize(this.transform.position, fireDirection2.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 3f);
+                bullet.InitializeImage("Dynamite", true);
+                bullet.SetBloom(false);
+                bullet.SetDestroyByCollision(false);
+                bullet.SetMoveLifetime(1f);
+                bullet.SetEffectName("DynamiteExplostion", 3f);
+                bullet.SetExplosion(1.5f);
+
+            }
+        }
+
+    }
+    protected void CalculateMoveDIr()
+    {
+        if (PlayerTr == null) return;
+        moveDir = PlayerTr.position - this.transform.position;
+    }
+
+    protected void MoveToTarget()
+    {
+        if (rb == null) return;
+
+        CalculateMoveDIr();
+
+        if (PlayerTr == null) return;
+
+        if (rb != null && canMove == true)
+            rb.velocity = moveDir.normalized * moveSpeed;
+        else if (canMove == false)
+            rb.velocity = Vector3.zero;
+
     }
 
 }
 
-public class Test
-{
-   public int k = 30;
-}
