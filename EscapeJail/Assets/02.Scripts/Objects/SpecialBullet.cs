@@ -56,7 +56,7 @@ public class SpecialBullet : Bullet
         this.specialBulletType = specialBulletType;
         SetBulletImage(this.specialBulletType);
 
-        SetBloom(false, Color.white);
+        SetBloom(false);
 
 
         if (specialBulletType == SpecialBulletType.LaserBullet)

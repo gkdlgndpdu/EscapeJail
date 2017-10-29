@@ -51,12 +51,16 @@ namespace weapon
                     bullet.Initialize(firePos, fd.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f);
 
                     //총알 이미지 설정 앞에인자는 파일이름 뒤에는 애니메이션 유무
-                    bullet.InitializeImage("cardcase_4", false);
+                    bullet.InitializeImage("Dynamite", true);
 
                     //총알 터졌을때 이펙트 설정
-                    bullet.SetEffectName("revolver");
+                    bullet.SetEffectName("DynamiteExplostion");
 
-                    bullet.SetBloom(false, Color.white);
+                    bullet.SetBloom(false);
+
+                    bullet.SetDestroyByCollision(false);
+
+                    bullet.SetMoveLifetime(0.1f);
                 }
             }
 

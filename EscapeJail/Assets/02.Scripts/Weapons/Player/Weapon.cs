@@ -36,6 +36,9 @@ namespace weapon
         Last1Gun,
         Last2Sniper,
         Last5Bazooka,
+        LastBoss_Bazooka,
+        LastBoss_MinuGun,
+        LastBoss_Pistol,
         MonsterWeaponEnd
     }
 
@@ -48,9 +51,9 @@ namespace weapon
     public class Weapon : ItemBase
     {
         protected Animator animator;
-       
-    
 
+
+        protected BulletType bulletType;
         protected AttackType attackType = AttackType.gun;
         public AttackType AttackType
         {

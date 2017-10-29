@@ -14,10 +14,9 @@ namespace weapon
             weapontype = WeaponType.Bazooka;
             bulletSpeed = 10f;
             fireDelay = 1.5f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            SetAmmo(100);
             needBulletToFire = 1;
-            damage = 100;
+            damage = 1;
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(-0.3f, 0f, 0f);
 
@@ -40,7 +39,7 @@ namespace weapon
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("bazooka", 3f);
-                bullet.SetExplosion(1f);
+                bullet.SetExplosion(1.5f);
 
 
             }

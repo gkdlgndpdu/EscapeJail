@@ -15,6 +15,7 @@ public class WeaponHandler : MonoBehaviour
     private Animator animator;
     private Weapon nowWeapon;
     private SlashObject slashObject;
+    [HideInInspector]
     public AttackType attackType = AttackType.near;  
     private WeaponUI weaponUi;
 

@@ -35,7 +35,7 @@ namespace weapon
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1, 1);
                 bullet.InitializeImage("watergun", true);
                 bullet.SetEffectName("watergun");
-                bullet.SetBloom(false,Color.white);
+                bullet.SetBloom(false);
 
             }
 

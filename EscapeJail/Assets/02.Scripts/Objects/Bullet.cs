@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//레이어이름과같음
+//레이어이름과같음 이걸로 충돌 레이어 구분
 public enum BulletType
 {
     PlayerBullet,
@@ -39,6 +39,17 @@ public class Bullet : MonoBehaviour
     protected ExplosionType explosionType;
     protected BulletDestroyAction bulletDestroyAction = BulletDestroyAction.none;
     private float bulletSpeed = 0f;
+    //충돌에 의해 파괴 가능? 왠만하면 true, 수류탄 다이나마이트같이 시간 기다려주는것들 제외
+    private bool canDestroyByCollision = true;
+    //움직이다가 중간에 멈춥니까?
+    private bool hasMoveLifetime = false;
+    private float moveLifeTime = 0f;
+
+    public void SetMoveLifetime(float time)
+    {
+        hasMoveLifetime = true;
+        moveLifeTime = time;
+    }
 
     [SerializeField]
     private SpriteRenderer bloomSprite;
@@ -58,7 +69,9 @@ public class Bullet : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 기타설정은 이 함수 호출 후에 해야함 (볼룸,멀티타겟,다이나마이트,등
+    /// </summary>
     public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {
         //위치
@@ -106,8 +119,14 @@ public class Bullet : MonoBehaviour
         }
 
         bulletDestroyAction = BulletDestroyAction.none;
-
+        canDestroyByCollision = true;
+        hasMoveLifetime = false;
     }
+    public void SetDestroyByCollision(bool canDestroyByCollision)
+    {
+        this.canDestroyByCollision = canDestroyByCollision;
+    }
+
     private void OnDisable()
     {
         expireCount = 0f;
@@ -123,6 +142,15 @@ public class Bullet : MonoBehaviour
     public void Update()
     {
         expireCount += Time.deltaTime;
+
+        if (hasMoveLifetime == true)
+        {
+            if(expireCount>= moveLifeTime)
+            {
+                StopBullet();
+            }
+        }
+
         if (expireCount >= lifeTime)
         {
             BulletDestroy();
@@ -215,30 +243,32 @@ public class Bullet : MonoBehaviour
     //다른 물체와의 충돌은 layer로 막아놓음
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (explosionType)
-        {
-            case ExplosionType.single:
-                {
-                    SingleTargetDamage(collision);
-
-                }
-                break;
-            case ExplosionType.multiple:
-                {
-                    MultiTargetDamage();
-                }
-                break;
+        //이펙트 호출
+        if (canDestroyByCollision == true)
+            BulletDestroy();
+        else if (canDestroyByCollision == false)
+        {            
+            StopBullet();
+            return;
         }
+
+        if(explosionType==ExplosionType.single)
+            SingleTargetDamage(collision); 
+        
 
         if (collision.gameObject.CompareTag("ItemTable"))
         {
             DamegeToItemTable(collision);
         }
 
-        //이펙트 호출
-        BulletDestroy();
+    
     }
 
+    private void StopBullet()
+    {
+        if (rb != null)
+            rb.velocity = Vector3.zero;
+    }
 
 
     protected void BulletDestroy()
@@ -293,5 +323,10 @@ public class Bullet : MonoBehaviour
             if (OnOff == true)
                 bloomSprite.color = color;
         }
+    }
+    //꼼수
+    public void SetBloom(bool OnOff)
+    {
+        SetBloom(OnOff, Color.white);
     }
 }
