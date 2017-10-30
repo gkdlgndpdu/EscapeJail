@@ -71,6 +71,14 @@ public class ItemBase
     protected void SetItemLevel()
     {
         ItemLevel = DatabaseLoader.Instance.RandomItemLevelGenerator(itemType.ToString());
+        LoadDBData();
+    }
+
+    protected void LoadDBData()
+    {
+        ItemDB itemDB = DatabaseLoader.Instance.GetItemDBData(itemType.ToString());
+        if (itemDB != null)
+            this.Value = itemDB.Value * ItemLevel;
     }
 }
 public class Item_Weapon : ItemBase
@@ -109,42 +117,48 @@ public class Item_Bullet : ItemBase
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnBullet(player.transform.position, null);
+        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null);
     }
 }
 
 public class Item_Medicine : ItemBase
 {
-    public Item_Medicine(int level)
+    public Item_Medicine(int level = 999)
     {
         itemType = ItemType.Medicine;
-        ItemLevel = level;
 
-        LoadDBData();
-
-    }
-
-    private void LoadDBData()
-    {
-        ItemDB itemDB = DatabaseLoader.Instance.GetItemDBData(itemType.ToString() + ItemLevel.ToString());
-        if (itemDB != null)
-            this.Value = itemDB.Value;
+        if (level == 999)
+        {
+            SetItemLevel();
+        }
+        else
+        {
+            ItemLevel = level;
+            LoadDBData();
+        }
     }
 
     public override void ItemAction()
     {
+
         if (player != null)
         {
+            if (player.CanHeal() == false)
+            {
+                Debug.Log("Can't Heal");
+                return;
+
+            }
+
             player.GetHp(Value);
             player.RemoveItem(this);
         }
-
     }
 
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnBullet(player.transform.position, null);
+        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
     }
 }
 
@@ -155,7 +169,7 @@ public class Item_Armor : ItemBase
         itemType = ItemType.Armor;
         SetItemLevel();
 
-    }  
+    }
 }
 
 public class Item_Bag : ItemBase

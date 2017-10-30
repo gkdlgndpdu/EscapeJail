@@ -82,6 +82,23 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetColliderSize();
     }
 
+    public void SetItemToMedicine(int level =999)
+    {
+        itemBase = null;
+
+
+        if(level==999)
+            itemBase = new Item_Medicine();
+        else
+            itemBase = new Item_Medicine(level);
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+
+        SetColliderSize();
+    }
+
     public void SetItemToBag()
     {
 

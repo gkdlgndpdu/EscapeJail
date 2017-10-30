@@ -49,7 +49,6 @@ public class CharacterBase : CharacterInfo
     [HideInInspector]
     protected PlayerUI playerUi;
 
-    protected InventoryUi inventoryUi;
     [SerializeField]
     private Slider weaponSlider;
 
@@ -126,7 +125,7 @@ public class CharacterBase : CharacterInfo
 
         if (armorSystem == null)
         {
-            armorSystem = new ArmorSystem(inventoryUi, playerUi, playerUi.hpBar);
+            armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpBar);
             //임시
             SetArmor(0);
         }
@@ -533,6 +532,7 @@ public class CharacterBase : CharacterInfo
 
     public void GetHp(int value)
     {
+        Debug.Log("Heal" + value.ToString());
         hp += value;
         if (hp > hpMax)
         {

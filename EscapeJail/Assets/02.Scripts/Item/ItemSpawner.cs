@@ -36,7 +36,7 @@ public class ItemSpawner : MonoBehaviour
     {
         randomGenerator = new RandomGenerator<ItemType>();
 
-        for(int i = 0; i < (int)ItemType.ItemTypeEnd; i++)
+        for (int i = 0; i < (int)ItemType.ItemTypeEnd; i++)
         {
             ItemType itemKey = (ItemType)i;
 
@@ -44,42 +44,16 @@ public class ItemSpawner : MonoBehaviour
             if (itemDB != null)
                 randomGenerator.AddToList(itemKey, itemDB.Probability);
         }
-        
+
     }
 
-    public void SpawnRandomItem(Vector3 spawnPosit,Transform parent)
+    public void SpawnRandomItem(Vector3 spawnPosit, Transform parent)
     {
         if (randomGenerator == null) return;
 
         ItemType randomType = randomGenerator.GetRandomData();
+        SpawnItem(randomType, spawnPosit, parent);
 
-        switch (randomType)
-        {
-            case ItemType.Armor:
-                {
-                    SpawnArmor(spawnPosit, parent);
-                } break;
-            case ItemType.Bullet:
-                {
-                    SpawnBullet(spawnPosit, parent);
-                } break;
-            case ItemType.Bag:
-                {
-                    SpawnBag(spawnPosit, parent);
-                } break;
-            case ItemType.Stimulant:
-                {
-
-                } break;
-            case ItemType.Medicine:
-                {
-
-                } break;
-            case ItemType.EnergyDrink:
-                {
-
-                } break;
-        }
     }
 
 
@@ -134,10 +108,10 @@ public class ItemSpawner : MonoBehaviour
 
         if (shuffledWeaponList.Count > 0)
         {
-          RandomWeapon = shuffledWeaponList[0];
-          shuffledWeaponList.RemoveAt(0);
+            RandomWeapon = shuffledWeaponList[0];
+            shuffledWeaponList.RemoveAt(0);
         }
-        else if(shuffledWeaponList.Count<=0)
+        else if (shuffledWeaponList.Count <= 0)
         {
             return;
         }
@@ -166,37 +140,55 @@ public class ItemSpawner : MonoBehaviour
 
     ////////////////////임시코드
 
-    public void SpawnArmor(Vector3 posit, Transform parent)
+    public void SpawnItem(ItemType itemType, Vector3 posit, Transform parent, int level = 999)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
         item.transform.parent = parent;
-        item.SetItemToArmor();
+
+
+        switch (itemType)
+        {
+            case ItemType.Armor:
+                {
+                    item.SetItemToArmor();
+                }
+                break;
+            case ItemType.Bullet:
+                {
+                    item.SetItemToBullet();
+                }
+                break;
+            case ItemType.Bag:
+                {
+                    item.SetItemToBag();
+                }
+                break;
+            case ItemType.Stimulant:
+                {
+
+                }
+                break;
+            case ItemType.Medicine:
+                {
+                    if (level == 999)
+                        item.SetItemToMedicine();
+                    else
+                        item.SetItemToMedicine(level);
+                }
+                break;
+            case ItemType.EnergyDrink:
+                {
+
+                }
+                break;
+        }
+
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
 
-    public void SpawnBullet(Vector3 posit, Transform parent)
-    {
-        DropItem item = MakeItemPrefab(posit);
-        if (item == null) return;
-        item.transform.parent = parent;
-        item.SetItemToBullet();
-
-        if (spawnedObjectList != null)
-            spawnedObjectList.Add(item.gameObject);
-    }
-    public void SpawnBag(Vector3 posit, Transform parent)
-    {
-        DropItem item = MakeItemPrefab(posit);
-        if (item == null) return;
-        item.transform.parent = parent;
-        item.SetItemToBag();
-
-        if (spawnedObjectList != null)
-            spawnedObjectList.Add(item.gameObject);
-    }
     public DropItem MakeItemPrefab(Vector3 posit)
     {
         GameObject obj = GameObject.Instantiate(dropItemPrefab, posit, Quaternion.identity, this.transform);
