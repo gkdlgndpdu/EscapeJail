@@ -32,9 +32,9 @@ public class InventoryUi : MonoBehaviour
 
     public void SetArmorUi(float ratio)
     {
-        if (ArmorImage != null)
-        {           
-            ArmorImage.fillAmount =1f- ratio;            
+        if (ArmorRedImage != null)
+        {
+            ArmorRedImage.fillAmount =1f- ratio;            
         }
         
     }
@@ -54,6 +54,12 @@ public class InventoryUi : MonoBehaviour
             }
         }
 
+    }
+
+    public void UpdateInventoryArmorUi(float ratio)
+    {
+        if (ArmorRedImage != null)
+            ArmorRedImage.fillAmount = ratio;
     }
 
     public void InventoryStateButtonClick()

@@ -127,7 +127,7 @@ public class CharacterBase : CharacterInfo
         {
             armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpBar);
             //임시
-            SetArmor(0);
+            SetArmor(0,0);
         }
     }
 
@@ -148,10 +148,10 @@ public class CharacterBase : CharacterInfo
     }
 
 
-    public void SetArmor(int level)
+    public void SetArmor(int level,int value)
     {
         if (armorSystem != null)
-            armorSystem.SetArmor(level);
+            armorSystem.SetArmor(level,value);
     }
 
     protected void SetupComponent()

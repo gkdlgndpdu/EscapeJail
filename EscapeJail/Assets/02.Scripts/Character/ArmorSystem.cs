@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorSystem 
+public class ArmorSystem
 {
-    private int remainArmor=0;
-    private int maxArmor=0;
+    private int remainArmor = 0;
+    private int maxArmor = 0;
 
     private InventoryUi inventoryUi;
     private PlayerUI playerUi;
     private HpBar hpBar;
-    private int armorLevel;
 
-    public ArmorSystem(InventoryUi InventroyUi,PlayerUI playerUi,HpBar hpBar)
+    public ArmorSystem(InventoryUi InventroyUi, PlayerUI playerUi, HpBar hpBar)
     {
         this.inventoryUi = InventroyUi;
         this.playerUi = playerUi;
@@ -23,12 +22,17 @@ public class ArmorSystem
 
         UpdateArmorUi();
     }
-    
-    public void SetArmor(int level)
+
+    public void SetArmor(int level, int value)
     {
-        remainArmor = level * 3;
+
+        if (remainArmor > value) return;
+        inventoryUi.SetArmorImage(level);      
+        Debug.Log("Gain Armor " + value.ToString());
+
+        remainArmor = value;
         maxArmor = remainArmor;
-        armorLevel = level;
+        
         UpdateArmorUi();
     }
 
@@ -48,13 +52,8 @@ public class ArmorSystem
         if (inventoryUi == null || hpBar == null) return;
 
         float ratio = (float)remainArmor / (float)maxArmor;
-
-
-            inventoryUi.SetArmorImage(armorLevel);
-            inventoryUi.SetArmorUi(ratio);
-
-      
-            hpBar.SetArmorBar(ratio);
+        inventoryUi.SetArmorUi(ratio);
+        hpBar.SetArmorBar(ratio);
     }
-	
+
 }

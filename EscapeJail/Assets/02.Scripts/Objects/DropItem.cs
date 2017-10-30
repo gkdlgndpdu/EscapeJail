@@ -148,14 +148,14 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     if (bag == null) return;
 
                     if (bag != null)
-                        player.GetBag(bag.ItemLevel);
+                        player.GetBag(bag.Value);
                     //해제
                     itemBase = null;
 
                 } break;
             case ItemType.Armor:
                 {
-                    player.SetArmor(itemBase.ItemLevel);
+                    player.SetArmor(itemBase.ItemLevel,itemBase.Value);
                 } break;
             default:
                 {
