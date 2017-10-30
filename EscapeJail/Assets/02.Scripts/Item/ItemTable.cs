@@ -32,7 +32,7 @@ public class ItemTable : CharacterInfo
         if (animator != null)
             animator.speed = 0f;
 
-        this.transform.localPosition = Vector3.zero;
+//        this.transform.localPosition = Vector3.zero;
 
         hp = 15;
 
@@ -96,26 +96,7 @@ public class ItemTable : CharacterInfo
     {
         if (SpawnPosit != null)
         {
-            ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Stimulant);
-            switch (itemType)
-            {              
-                case ItemType.Armor:
-                    {
-                        ItemSpawner.Instance.SpawnArmor(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform, Random.Range(1, 4));
-                    }
-                    break;
-
-                case ItemType.Bullet:
-                    {
-                        ItemSpawner.Instance.SpawnBullet(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);
-                    }
-                    break;
-                case ItemType.Bag:
-                    {
-                        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);
-                    }
-                    break;
-            }
+            ItemSpawner.Instance.SpawnRandomItem(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,this.transform);
 
         }
     }

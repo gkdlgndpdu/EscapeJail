@@ -28,6 +28,7 @@ public class CharacterBase : CharacterInfo
     //무기 회전 관련
     protected float weaponAngle = 0f;
 
+    private bool hasBag = false;
 
 
     //무기
@@ -66,7 +67,7 @@ public class CharacterBase : CharacterInfo
 
         Initialize();
 
- 
+
 
         if (weaponHandler != null && slashObject != null)
         {
@@ -84,7 +85,7 @@ public class CharacterBase : CharacterInfo
             weaponHandler.SetWeaponUi(playerUi.weaponUi);
         }
 
-        
+
     }
 
     protected void SetWeapon()
@@ -136,7 +137,15 @@ public class CharacterBase : CharacterInfo
     public void GetBag(int level)
     {
         if (inventory != null)
+        {
             inventory.SetInventorySize(level);
+            hasBag = true;
+        }
+    }
+
+    public bool HasBag()
+    {
+        return hasBag;
     }
 
 
@@ -208,12 +217,12 @@ public class CharacterBase : CharacterInfo
 
 
     private void RotateWeapon()
-    {  
+    {
 
         GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-        if (nearEnemy != null && weaponHandler.attackType ==AttackType.gun)
+        if (nearEnemy != null && weaponHandler.attackType == AttackType.gun)
             RotateWeapon(nearEnemy.transform.position);
-        else if(nearEnemy==null ||weaponHandler.attackType==AttackType.near)
+        else if (nearEnemy == null || weaponHandler.attackType == AttackType.near)
         {
             RotateWeapon(this.transform.position + moveDir);
         }
@@ -231,7 +240,7 @@ public class CharacterBase : CharacterInfo
             FireWeapon();
 
         }
-   
+
 #endif
 
         if (moveDir != Vector3.zero)
@@ -246,7 +255,7 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-      
+
 
         Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
@@ -272,7 +281,7 @@ public class CharacterBase : CharacterInfo
             }
         }
 
-    } 
+    }
 
     protected void MoveInPc()
     {
@@ -334,8 +343,8 @@ public class CharacterBase : CharacterInfo
 
     protected void FlipCharacter(bool flip)
     {
-        if (spriteRenderer != null) 
-        spriteRenderer.flipX = flip;
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = flip;
 
         if (slashObject != null)
             slashObject.FlipOnOff(flip);
@@ -361,7 +370,7 @@ public class CharacterBase : CharacterInfo
 
         iTween.Stop(this.gameObject);
         iTween.ColorTo(target, Color.white, 0.1f);
-        isImmune = false; 
+        isImmune = false;
     }
 
     public override void GetDamage(int damage)
@@ -514,6 +523,23 @@ public class CharacterBase : CharacterInfo
     public virtual void UseCharacterSkill()
     {
         //자식에서 구현띠
+    }
+
+
+    public bool CanHeal()
+    {
+        return hp < hpMax;
+    }
+
+    public void GetHp(int value)
+    {
+        hp += value;
+        if (hp > hpMax)
+        {
+            hp = hpMax;
+        }
+
+        UIUpdate();
     }
 
 

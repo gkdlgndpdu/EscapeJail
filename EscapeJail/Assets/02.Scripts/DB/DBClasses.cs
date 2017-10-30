@@ -31,12 +31,12 @@ public class ItemProbabilityDB
 //중분류
 public class ItemDB
 {
-    public int Probability;
+    public int Value;
     public string Discription;
 
-    public ItemDB(int Probability,string Discription)
-    {
-        this.Probability = Probability;
+    public ItemDB(int Value,string Discription)
+    {     
+        this.Value = Value;
         this.Discription = Discription;
     }
 }

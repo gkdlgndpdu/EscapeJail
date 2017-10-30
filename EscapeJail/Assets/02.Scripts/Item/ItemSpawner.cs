@@ -9,7 +9,13 @@ public class ItemSpawner : MonoBehaviour
     private GameObject dropItemPrefab;
 
     private List<WeaponType> spawnedWeaponList;
+    //맵 변경될때 삭제하기 위함
     private List<GameObject> spawnedObjectList;
+
+
+    private RandomGenerator<ItemType> randomGenerator;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,8 +28,62 @@ public class ItemSpawner : MonoBehaviour
         spawnedObjectList = new List<GameObject>();
 
 
+        SetRandomGenerator();
         SetRandomWeapon();
     }
+
+    private void SetRandomGenerator()
+    {
+        randomGenerator = new RandomGenerator<ItemType>();
+
+        for(int i = 0; i < (int)ItemType.ItemTypeEnd; i++)
+        {
+            ItemType itemKey = (ItemType)i;
+
+            ItemProbabilityDB itemDB = DatabaseLoader.Instance.GetItemProbabilityDB(itemKey);
+            if (itemDB != null)
+                randomGenerator.AddToList(itemKey, itemDB.Probability);
+        }
+        
+    }
+
+    public void SpawnRandomItem(Vector3 spawnPosit,Transform parent)
+    {
+        if (randomGenerator == null) return;
+
+        ItemType randomType = randomGenerator.GetRandomData();
+
+        switch (randomType)
+        {
+            case ItemType.Armor:
+                {
+                    SpawnArmor(spawnPosit, parent);
+                } break;
+            case ItemType.Bullet:
+                {
+                    SpawnBullet(spawnPosit, parent);
+                } break;
+            case ItemType.Bag:
+                {
+                    SpawnBag(spawnPosit, parent);
+                } break;
+            case ItemType.Stimulant:
+                {
+
+                } break;
+            case ItemType.Medicine:
+                {
+
+                } break;
+            case ItemType.EnergyDrink:
+                {
+
+                } break;
+        }
+    }
+
+
+
     private void LoadPrefab()
     {
         GameObject obj = Resources.Load<GameObject>("Prefabs/Objects/DropItem");
@@ -106,12 +166,12 @@ public class ItemSpawner : MonoBehaviour
 
     ////////////////////임시코드
 
-    public void SpawnArmor(Vector3 posit, Transform parent, int level = 1)
+    public void SpawnArmor(Vector3 posit, Transform parent)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
         item.transform.parent = parent;
-        item.SetItemToArmor(level);
+        item.SetItemToArmor();
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);

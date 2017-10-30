@@ -59,9 +59,9 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     }
 
-    public void SetItemToArmor(int level)
+    public void SetItemToArmor()
     {
-        itemBase = new Item_Armor(level);
+        itemBase = new Item_Armor();
 
         string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);

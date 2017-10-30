@@ -10,10 +10,10 @@ public enum ItemType
     Bullet,
     Bag,
     Stimulant,
-    Medicine,  
+    Medicine,
     EnergyDrink,
-    Weapon,  //Weapon은 상자에서 나오기 떄문에 위치가 여기여야 현재 테이블에서 안나옴
-    ItemTypeEnd
+    ItemTypeEnd,
+    Weapon
 }
 
 
@@ -21,7 +21,20 @@ public class ItemBase
 {
     public ItemType itemType;
     public WeaponType weapontype;
-    public int ItemLevel = 0;
+    private int itemLevel = 0;
+    public int ItemLevel
+    {
+        get
+        {
+            return itemLevel;
+        }
+        set
+        {
+            int data = Mathf.Clamp(value, 0, 3);
+            itemLevel = data;
+        }
+    }
+    public int Value = 0;
     protected CharacterBase player;
     public string itemName
     {
@@ -43,6 +56,7 @@ public class ItemBase
         //Debug.Log("순수 itemAction 호출");
     }
 
+    //땅에 아이템 버렸을때
     public virtual void RemoveItem()
     {
         if (player == null) return;
@@ -51,6 +65,12 @@ public class ItemBase
             player.RemoveItem(this);
         else
             player.RemoveWeapon(this);
+    }
+
+    //레벨이 있는 아이템은 생성자에 달아줘야함
+    protected void SetItemLevel()
+    {
+        ItemLevel = DatabaseLoader.Instance.RandomItemLevelGenerator(itemType.ToString());
     }
 }
 public class Item_Weapon : ItemBase
@@ -64,7 +84,7 @@ public class Item_Weapon : ItemBase
     public override void ItemAction()
     {
         Debug.Log("무기클릭");
-    } 
+    }
 
 }
 public class Item_Bullet : ItemBase
@@ -82,31 +102,60 @@ public class Item_Bullet : ItemBase
             player.RemoveItem(this);
         }
 
-       // Debug.Log("총알 클릭");
+        // Debug.Log("총알 클릭");
 
     }
 
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnBullet(player.transform.position,null);    
+        ItemSpawner.Instance.SpawnBullet(player.transform.position, null);
+    }
+}
+
+public class Item_Medicine : ItemBase
+{
+    public Item_Medicine(int level)
+    {
+        itemType = ItemType.Medicine;
+        ItemLevel = level;
+
+        LoadDBData();
+
+    }
+
+    private void LoadDBData()
+    {
+        ItemDB itemDB = DatabaseLoader.Instance.GetItemDBData(itemType.ToString() + ItemLevel.ToString());
+        if (itemDB != null)
+            this.Value = itemDB.Value;
+    }
+
+    public override void ItemAction()
+    {
+        if (player != null)
+        {
+            player.GetHp(Value);
+            player.RemoveItem(this);
+        }
+
+    }
+
+    public override void RemoveItem()
+    {
+        base.RemoveItem();
+        ItemSpawner.Instance.SpawnBullet(player.transform.position, null);
     }
 }
 
 public class Item_Armor : ItemBase
 {
-
-    public Item_Armor(int level)
+    public Item_Armor()
     {
         itemType = ItemType.Armor;
-        ItemLevel = level;
+        SetItemLevel();
 
-    }
-    public override void ItemAction()
-    {
-    //    Debug.Log("아머 클릭");
-
-    }
+    }  
 }
 
 public class Item_Bag : ItemBase
@@ -115,12 +164,12 @@ public class Item_Bag : ItemBase
     {
         //랜덤
         itemType = ItemType.Bag;
-        ItemLevel = 1;
+        SetItemLevel();
     }
 
     public override void ItemAction()
     {
-      //  Debug.Log("아머 클릭");
+        //  Debug.Log("아머 클릭");
 
     }
 

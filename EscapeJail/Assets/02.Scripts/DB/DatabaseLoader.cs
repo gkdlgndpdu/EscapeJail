@@ -12,15 +12,26 @@ public class DatabaseLoader : MonoBehaviour
 {
     private Dictionary<MonsterName, MonsterDB> MonsterDB;
     //대분류
-    private Dictionary<string, ItemProbabilityDB> ItemProbabilityDB;
+    private Dictionary<ItemType, ItemProbabilityDB> ItemProbabilityDB;
     //중분류
     private Dictionary<string, ItemDB> ItemDB;
+    /// <summary>
+    /// key값에 해당 아이템을 넣으면 확률에 맞게 lv을 뱉음
+    /// </summary>
+    private Dictionary<string, RandomGenerator<int>> ItemRandomLevelGenerator;
 
     public static DatabaseLoader Instance = null;
 
     //디버그용
     public Text debugText;
     public StringBuilder sb = new StringBuilder();
+
+    public int RandomItemLevelGenerator(string key)
+    {
+        if (ItemRandomLevelGenerator == null) return 0;
+        if (ItemRandomLevelGenerator.ContainsKey(key) == false) return 0;
+        return ItemRandomLevelGenerator[key].GetRandomData();
+    }
         
 
     public MonsterDB GetMonsterData(MonsterName key)
@@ -29,6 +40,22 @@ public class DatabaseLoader : MonoBehaviour
         if (MonsterDB.ContainsKey(key) == false) return null;
 
         return MonsterDB[key];
+    }
+
+    public ItemDB GetItemDBData(string key)
+    {
+        if (ItemDB == null) return null;
+        if (ItemDB.ContainsKey(key) == false) return null;
+
+        return ItemDB[key];
+    }
+
+    public ItemProbabilityDB GetItemProbabilityDB(ItemType key)
+    {
+        if (ItemProbabilityDB == null) return null;
+        if (ItemProbabilityDB.ContainsKey(key) == false) return null;
+
+        return ItemProbabilityDB[key];
     }
 
     private void Awake()
@@ -79,6 +106,7 @@ public class DatabaseLoader : MonoBehaviour
     private void LoadItemDB()
     {
         ItemDB = new Dictionary<string, ItemDB>();
+        ItemRandomLevelGenerator = new Dictionary<string, RandomGenerator<int>>();
 
         string fileName = GameConstants.ItemDBName;
         IDbCommand dbcmd = null;
@@ -94,7 +122,7 @@ public class DatabaseLoader : MonoBehaviour
 
     private void LoadItemProbabilityDB()
     {
-        ItemProbabilityDB = new Dictionary<string,ItemProbabilityDB>();
+        ItemProbabilityDB = new Dictionary<ItemType, ItemProbabilityDB>();
 
         string fileName = GameConstants.ItemProbabilityDBName;
         IDbCommand dbcmd = null;
@@ -163,7 +191,9 @@ public class DatabaseLoader : MonoBehaviour
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
             {
+                int t = reader.FieldCount;
                 MonsterDB.Add((MonsterName)reader.GetInt32(0), new MonsterDB(reader.GetInt32(1), reader.GetInt32(2)));
+             
             }
         }
 
@@ -176,6 +206,13 @@ public class DatabaseLoader : MonoBehaviour
         }
 
     }
+
+
+    //테이블
+    // 0   1   2   3    4       5
+    //key lv1 lv2 lv3 value discription
+
+
     private void ReadItemDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
     {
         string query;
@@ -189,18 +226,21 @@ public class DatabaseLoader : MonoBehaviour
         {
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
-            {
-                ItemDB.Add(reader.GetString(0), new ItemDB(reader.GetInt32(1), reader.GetString(2)));
+            {                
+                //아이템일반정보
+                ItemDB.Add(reader.GetString(0), new ItemDB(reader.GetInt32(4), reader.GetString(5)));
+
+                //레벨별 확률정보
+                RandomGenerator<int> randGenerator = new RandomGenerator<int>();
+                for(int i = 1; i < 4; i++)
+                {
+                    randGenerator.AddToList(i, reader.GetInt32(i));
+                }
+                ItemRandomLevelGenerator.Add(reader.GetString(0), randGenerator);
+
             }
         }
 
-        //디버깅
-        foreach (KeyValuePair<string, ItemDB> data in ItemDB)
-        {
-            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Discription + "\n";
-            Debug.Log(debugmsg);
-            sb.Append(debugmsg);
-        }
 
 
     }
@@ -221,13 +261,13 @@ public class DatabaseLoader : MonoBehaviour
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
             {
-                ItemProbabilityDB.Add(reader.GetString(0), new ItemProbabilityDB(reader.GetInt32(1), reader.GetString(2)));
+                ItemProbabilityDB.Add((ItemType)reader.GetInt32(0), new ItemProbabilityDB(reader.GetInt32(1), reader.GetString(2)));
             }
         }
 
 
         //디버깅
-        foreach (KeyValuePair<string, ItemProbabilityDB> data in ItemProbabilityDB)
+        foreach (KeyValuePair<ItemType, ItemProbabilityDB> data in ItemProbabilityDB)
         {
             string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Discription + "\n";
             Debug.Log(debugmsg);

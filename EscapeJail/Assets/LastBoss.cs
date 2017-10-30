@@ -11,7 +11,7 @@ public class LastBoss : BossBase
     private Transform PlayerTr;
     private Vector3 moveDir;
     private bool canMove = true;
-    private bool isPatternStart = false;
+
 
 
     private Dictionary<WeaponType, Weapon> weaponDic = new Dictionary<WeaponType, Weapon>();
