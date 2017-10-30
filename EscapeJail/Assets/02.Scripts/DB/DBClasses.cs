@@ -13,3 +13,31 @@ public class MonsterDB
         this.Hp = Hp;
     }
 }
+
+
+//대분류
+public class ItemProbabilityDB
+{
+    public int Probability;
+    public string Discription;
+    public ItemProbabilityDB(int Probability,string Discription)
+    {
+        this.Probability = Probability;
+        this.Discription = Discription;
+    }
+}
+
+
+//중분류
+public class ItemDB
+{
+    public int Probability;
+    public string Discription;
+
+    public ItemDB(int Probability,string Discription)
+    {
+        this.Probability = Probability;
+        this.Discription = Discription;
+    }
+}
+

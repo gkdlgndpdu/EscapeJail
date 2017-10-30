@@ -82,10 +82,10 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetColliderSize();
     }
 
-    public void SetItemToBag(int level = 1)
+    public void SetItemToBag()
     {
 
-        itemBase = new Item_Bag(level);
+        itemBase = new Item_Bag();
 
         string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);

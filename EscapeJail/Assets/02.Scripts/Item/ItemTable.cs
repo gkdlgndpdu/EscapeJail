@@ -96,7 +96,7 @@ public class ItemTable : CharacterInfo
     {
         if (SpawnPosit != null)
         {
-            ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Consumables);
+            ItemType itemType = (ItemType)Random.Range(0, (int)ItemType.Stimulant);
             switch (itemType)
             {              
                 case ItemType.Armor:
@@ -112,7 +112,7 @@ public class ItemTable : CharacterInfo
                     break;
                 case ItemType.Bag:
                     {
-                        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform, Random.Range(1, 4));
+                        ItemSpawner.Instance.SpawnBag(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);
                     }
                     break;
             }

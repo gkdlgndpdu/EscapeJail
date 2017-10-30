@@ -127,12 +127,12 @@ public class ItemSpawner : MonoBehaviour
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
-    public void SpawnBag(Vector3 posit, Transform parent, int level = 1)
+    public void SpawnBag(Vector3 posit, Transform parent)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
         item.transform.parent = parent;
-        item.SetItemToBag(level);
+        item.SetItemToBag();
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);

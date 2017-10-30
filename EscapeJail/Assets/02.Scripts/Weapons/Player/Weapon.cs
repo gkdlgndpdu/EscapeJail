@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace weapon
 {
+    //WeaponTable과 연동
     public enum WeaponType
     {
         PlayerWeaponStart,

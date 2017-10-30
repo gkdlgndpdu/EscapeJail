@@ -11,6 +11,7 @@ public class LastBoss : BossBase
     private Transform PlayerTr;
     private Vector3 moveDir;
     private bool canMove = true;
+    private bool isPatternStart = false;
 
 
     private Dictionary<WeaponType, Weapon> weaponDic = new Dictionary<WeaponType, Weapon>();
@@ -52,6 +53,7 @@ public class LastBoss : BossBase
 
     private void Update()
     {
+        if (isPatternStart == false) return;
         RotateWeapon();
         MoveToTarget();
     }
@@ -145,6 +147,8 @@ public class LastBoss : BossBase
 
         if (bossEventQueue != null)
             bossEventQueue.StartEventQueue();
+
+        isPatternStart = true;
     }
 
 
@@ -297,7 +301,7 @@ public class LastBoss : BossBase
                 bullet.SetBloom(false);
                 bullet.SetDestroyByCollision(false);
                 bullet.SetMoveLifetime(1f);
-                bullet.SetEffectName("DynamiteExplostion", 3f);
+                bullet.SetEffectName("Explode_1", 3f);
                 bullet.SetExplosion(1.5f);
 
             }

@@ -10,10 +10,7 @@ public class RandomGenerator <T>
 
     public void RemoveInList(T data)
     {
-        if (allItemList == null) return;
-        //이건왜안될까
-        // allItemList.RemoveAll((item) => (item == data));
-        // allItemList.RemoveAll(x => x.Equals(data));
+        if (allItemList == null) return;    
         allItemList.RemoveAll(x => EqualityComparer<T>.Default.Equals(x, data));
 
 

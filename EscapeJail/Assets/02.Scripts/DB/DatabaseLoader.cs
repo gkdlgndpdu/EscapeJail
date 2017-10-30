@@ -7,10 +7,14 @@ using System.Data;
 using System.Text;
 using Mono.Data.SqliteClient;
 using UnityEngine.UI;
-using System.Text;
+
 public class DatabaseLoader : MonoBehaviour
 {
     private Dictionary<MonsterName, MonsterDB> MonsterDB;
+    //대분류
+    private Dictionary<string, ItemProbabilityDB> ItemProbabilityDB;
+    //중분류
+    private Dictionary<string, ItemDB> ItemDB;
 
     public static DatabaseLoader Instance = null;
 
@@ -37,8 +41,24 @@ public class DatabaseLoader : MonoBehaviour
             return;
         }
 
-        LoadMonsterDB();
+        LoadAllDB();
+
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void LoadAllDB()
+    {
+        LoadMonsterDB();
+        LoadItemDB();
+        LoadItemProbabilityDB();
+
+        DebugDB();
+    }
+
+    private void DebugDB()
+    {
+        if (debugText != null)
+            debugText.text = sb.ToString();
     }
 
     private void LoadMonsterDB()
@@ -51,10 +71,42 @@ public class DatabaseLoader : MonoBehaviour
         IDataReader reader = null;
 
         OpenDB(fileName, ref dbcon);
-        ReadItemDB(ref dbcmd, ref dbcon, ref reader);
+        ReadMonsterDB(ref dbcmd, ref dbcon, ref reader);
         CloseDB(ref dbcmd, ref dbcon, ref reader);
 
     }
+
+    private void LoadItemDB()
+    {
+        ItemDB = new Dictionary<string, ItemDB>();
+
+        string fileName = GameConstants.ItemDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadItemDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+
+        
+    }
+
+    private void LoadItemProbabilityDB()
+    {
+        ItemProbabilityDB = new Dictionary<string,ItemProbabilityDB>();
+
+        string fileName = GameConstants.ItemProbabilityDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadItemProbabilityDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+    }
+
+   
 
     public void OpenDB(string fileName, ref IDbConnection dbcon)
     {
@@ -64,12 +116,6 @@ public class DatabaseLoader : MonoBehaviour
 #else
        filepath = Application.persistentDataPath + "/" + fileName;
 #endif
-
-
-
-        //filepath = Application.streamingAssetsPath + "/" + fileName;
-
-
 
         if (!File.Exists(filepath))
         {
@@ -91,7 +137,19 @@ public class DatabaseLoader : MonoBehaviour
         dbcon.Open();
     }
 
-    public void ReadItemDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    public void CloseDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+        reader.Close();
+        reader = null;
+        dbcmd.Dispose();
+        dbcmd = null;
+        dbcon.Close();
+        dbcon = null;
+    }
+
+
+    //몬스터 정보 저장
+    public void ReadMonsterDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
     { // Selects a single Item
         string query;
         /////////////////////////////////////////////////////////// 반드시 수정
@@ -109,28 +167,74 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-
         //디버깅
         foreach (KeyValuePair<MonsterName, MonsterDB> data in MonsterDB)
         {
-            string debugmsg = "키:" + data.Key.ToString() + " 체력 :" + data.Value.Hp + " 확률 :" + data.Value.Probability + "\n";
+            string debugmsg = "Key:" + data.Key.ToString() + " Hp :" + data.Value.Hp + " Prob :" + data.Value.Probability + "\n";
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }
 
-        if(debugText!=null)
-        debugText.text = sb.ToString();
-
     }
-
-
-    public void CloseDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    private void ReadItemDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
     {
-        reader.Close();
-        reader = null;
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbcon.Close();
-        dbcon = null;
+        string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM ItemDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {
+                ItemDB.Add(reader.GetString(0), new ItemDB(reader.GetInt32(1), reader.GetString(2)));
+            }
+        }
+
+        //디버깅
+        foreach (KeyValuePair<string, ItemDB> data in ItemDB)
+        {
+            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Discription + "\n";
+            Debug.Log(debugmsg);
+            sb.Append(debugmsg);
+        }
+
+
     }
+
+
+
+    private void ReadItemProbabilityDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+        string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM ItemProbabilityDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {
+                ItemProbabilityDB.Add(reader.GetString(0), new ItemProbabilityDB(reader.GetInt32(1), reader.GetString(2)));
+            }
+        }
+
+
+        //디버깅
+        foreach (KeyValuePair<string, ItemProbabilityDB> data in ItemProbabilityDB)
+        {
+            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Discription + "\n";
+            Debug.Log(debugmsg);
+            sb.Append(debugmsg);
+        }
+
+    }
+
+
 }
