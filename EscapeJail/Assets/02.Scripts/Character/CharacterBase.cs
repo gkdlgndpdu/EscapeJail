@@ -133,11 +133,11 @@ public class CharacterBase : CharacterInfo
 
 
 
-    public void GetBag(int level)
+    public void GetBag(int value)
     {
         if (inventory != null)
         {
-            inventory.SetInventorySize(level);
+            inventory.SetInventorySize(value);
             hasBag = true;
         }
     }

@@ -24,12 +24,14 @@ public class Inventory
         return allItemList.Count >= bagSize;
     }
 
-    public void SetInventorySize(int level)
+    public void SetInventorySize(int value)
     {
-        if (level == 0)
+        if (bagSize >= value) return;
+
+        if (value == 0)
             bagSize = 2;
         else
-            bagSize = level * 5;
+            bagSize = value;
 
         if (inventoryUi != null)
             inventoryUi.SetSlotNum(bagSize);

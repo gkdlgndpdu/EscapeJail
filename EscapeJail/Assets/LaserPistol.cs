@@ -10,7 +10,7 @@ namespace weapon
 
         public LaserPistol()
         {
-            weapontype = WeaponType.laserpistol;
+            weapontype = WeaponType.LaserPistol;
             bulletSpeed = 20f;
             fireDelay = 0.1f;
             maxAmmo = 100;

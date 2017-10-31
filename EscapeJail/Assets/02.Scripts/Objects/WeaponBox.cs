@@ -47,7 +47,7 @@ public class WeaponBox : MonoBehaviour, iReactiveAction
         if(animator!=null)
             animator.speed= 1f;
 
-        //무기 생성해버리기~
+        //무기 생성
         ItemSpawner.Instance.SpawnWeapon(this.transform.position,this.transform);
         
     }
