@@ -180,11 +180,10 @@ public class ItemSpawner : MonoBehaviour
                         item.SetItemToMedicine(level);
                 }
                 break;
-            case ItemType.EnergyDrink:
+            case ItemType.Turret:
                 {
-
-                }
-                break;
+                    item.SetItemToTurret();
+                } break;
         }
 
 

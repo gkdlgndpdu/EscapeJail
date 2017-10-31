@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Turret : CharacterInfo
 {
     private BulletType bulletType;
@@ -12,29 +12,35 @@ public class Turret : CharacterInfo
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isDestroy = false;
+    private CapsuleCollider2D capsuleCollider;
+
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
 
         //상태이상 면역
         isImmuneAnyState = true;
     }
 
-    private void OnEnable()
+    private void ColliderOnOff(bool OnOff)
     {
-        MonsterManager.Instance.AddToList(this.gameObject);
+        if (capsuleCollider != null)
+            capsuleCollider.enabled = OnOff;
     }
+
     private void OnDisable()
     {
-        MonsterManager.Instance.DeleteInList(this.gameObject);
+        StopAllCoroutines();
     }
 
     //애니메이션에 연결
     public void TurretOff()
     {
         this.gameObject.SetActive(false);
+
     }
 
     private void SetLayer()
@@ -51,18 +57,50 @@ public class Turret : CharacterInfo
         }
     }
 
-    public void Initialize(Vector3 position, BulletType bulletType, int hp)
+    public void Initialize(Vector3 position, BulletType bulletType, int hp = 10, float lifeTime = 10f)
     {
         this.bulletType = bulletType;
+
+        if (bulletType == BulletType.PlayerBullet)
+        {
+            StartCoroutine(TurretLifeTimeRoutine(lifeTime));
+            ColliderOnOff(false);
+        }
+        else if(bulletType == BulletType.EnemyBullet)
+        {
+            MonsterManager.Instance.AddToList(this.gameObject);
+            ColliderOnOff(true);
+        }
+
         this.transform.position = position;
+
         SetHp(hp);
+
         SetLayer();
+
         isDestroy = false;
+
+        SetTurretImage();
+
+
     }
+
+    IEnumerator TurretLifeTimeRoutine(float lifeTime)
+    {
+        yield return new WaitForSeconds(lifeTime);
+        TurretDestroy();
+    }
+
+
+
+
 
     public void FireBullet()
     {
         Vector3 fireDir = Vector3.one;
+        float reBoundValue = 5f;
+        float bulletSpeed = 5f;
+
 
         switch (bulletType)
         {
@@ -72,20 +110,24 @@ public class Turret : CharacterInfo
                     if (nearMonster != null)
                         fireDir = nearMonster.transform.position - this.transform.position;
                     else if (nearMonster == null)
-                        fireDir = Vector3.up;
+                        fireDir = Vector3.left;
+
+                    bulletSpeed = 10f;
+                    reBoundValue = 0f;
+
                 }
                 break;
             case BulletType.EnemyBullet:
                 {
                     CharacterBase player = GamePlayerManager.Instance.player;
-                    if(player!=null)
-                    fireDir = player.transform.position - this.transform.position;
+                    if (player != null)
+                        fireDir = player.transform.position - this.transform.position;
+
                 }
                 break;
         }
 
-        float reBoundValue = 5f;
-        float bulletSpeed = 5f;
+      
 
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)
@@ -103,31 +145,36 @@ public class Turret : CharacterInfo
 
     private void FlipTurret(Vector3 fireDir)
     {
+
         if (spriteRenderer != null)
         {
             if (fireDir.x > 0)
             {
-                spriteRenderer.flipX = false;
+                if (bulletType == BulletType.EnemyBullet)
+                    spriteRenderer.flipX = false;
+                else
+                    spriteRenderer.flipX = true;
             }
             else
             {
-                spriteRenderer.flipX = true;
+                if (bulletType == BulletType.EnemyBullet)
+                    spriteRenderer.flipX = true;
+                else
+                    spriteRenderer.flipX = false;
             }
         }
     }
 
-
-    private void TurretOn()
-    {
-
-    }
     private void TurretDestroy()
     {
         if (animator != null)
             animator.SetTrigger("TurretDestroy");
-
+        
+        MonsterManager.Instance.DeleteInList(this.gameObject);
 
     }
+
+
 
     //애니메이션에 연결
     private void AttackOn()
@@ -136,12 +183,6 @@ public class Turret : CharacterInfo
             animator.SetTrigger("TurretAttackOn");
 
     }
-
-    //private void AttackOff()
-    //{
-    //    if (animator != null)
-    //        animator.SetTrigger("TurretAttackOff");
-    //}
 
 
     public override void GetDamage(int damage)
@@ -154,10 +195,27 @@ public class Turret : CharacterInfo
         {
             isDestroy = true;
 
-            if (animator != null)
-                animator.SetTrigger("TurretDestroy");
+            TurretDestroy();
+
+            ColliderOnOff(false);
 
         }
 
+    }
+
+    private void SetTurretImage()
+    {
+        string path;
+
+        if (bulletType == BulletType.EnemyBullet)
+            path = string.Format("Animators/Object/EnemyTurret");
+        else
+            path = string.Format("Animators/Object/PlayerTurret");
+
+        RuntimeAnimatorController animController = Resources.Load<RuntimeAnimatorController>(path);
+        if (animator != null && animController != null)
+        {
+            animator.runtimeAnimatorController = animController;
+        }
     }
 }

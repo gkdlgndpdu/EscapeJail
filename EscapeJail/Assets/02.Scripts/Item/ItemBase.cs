@@ -10,8 +10,8 @@ public enum ItemType
     Bullet,
     Bag,
     Stimulant,
-    Medicine,
-    EnergyDrink,
+    Medicine, 
+    Turret,
     ItemTypeEnd,
     Weapon
 }
@@ -227,4 +227,19 @@ public class Item_Bag : ItemBase
 
     }
 
+}
+
+public class Item_Turret : ItemBase
+{
+    public Item_Turret()
+    {
+        itemType = ItemType.Turret;
+    }
+    public override void ItemAction()
+    {
+        Turret turret = ObjectManager.Instance.turretPool.GetItem();
+        if (turret != null)
+            turret.Initialize(player.transform.position, BulletType.PlayerBullet);
+        player.RemoveItem(this);
+    }
 }

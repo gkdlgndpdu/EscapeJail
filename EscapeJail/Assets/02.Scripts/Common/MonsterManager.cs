@@ -50,11 +50,8 @@ public class MonsterManager : MonoBehaviour
         //
         //벽에 막혀있을때의 예외처리 필요
         //
-
         monsterList.Sort((a, b) => { return Vector3.Distance(a.transform.position, playerPosit).CompareTo(Vector3.Distance(b.transform.position, playerPosit)); });
-
-        float distance = Vector3.Distance(monsterList[0].transform.position, playerPosit);
-     
+                 
         return monsterList[0];
 
     }

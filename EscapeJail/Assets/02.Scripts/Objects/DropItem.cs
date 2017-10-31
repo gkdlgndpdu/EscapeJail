@@ -70,6 +70,16 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetColliderSize();
 
     }
+    public void SetItemToTurret()
+    {
+        itemBase = new Item_Turret();
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+
+        SetColliderSize();
+    }
 
     public void SetItemToBullet()
     {

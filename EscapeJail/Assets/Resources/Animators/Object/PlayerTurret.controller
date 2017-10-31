@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Last4Turret
+  m_Name: AutoTurret
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: TurretDestroy
@@ -13,19 +13,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: TurretAttackOn
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: TurretAttackOff
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -138,8 +138,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: last4turreton
-  m_Speed: 1
+  m_Name: turreton
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101801416250187638}
@@ -151,7 +151,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bef89ee334852fb40b9dc8a604b58efb, type: 2}
+  m_Motion: {fileID: 7400000, guid: b65d655cd411cd0429f40e76a5e8b27f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -162,8 +162,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: last4turretFire
-  m_Speed: 0.5
+  m_Name: turretFire
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101642901204470930}
@@ -175,7 +175,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ad62b100636e1b340965baf43de20c7e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0a387b5c5a5e2114da38fa4cd03e81e9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -186,8 +186,8 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: last4turretdown
-  m_Speed: 1
+  m_Name: turretdown
+  m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -198,7 +198,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e4f512d3e0111a44bb44626c2700fa91, type: 2}
+  m_Motion: {fileID: 7400000, guid: a0ca59c11fe1b814ba49127fb246fdb0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -209,7 +209,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: last4TurretIdle
+  m_Name: TurretIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -221,7 +221,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d9be0ff0a869fcf4fae44d488856a2e8, type: 2}
+  m_Motion: {fileID: 7400000, guid: 79b7138c392030a49be5911c0d6458f3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

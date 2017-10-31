@@ -16,8 +16,8 @@ namespace weapon
             maxAmmo = 100;
             nowAmmo = 100;
             needBulletToFire = 1;
-            weaponScale = Vector3.one * 4;
-            relativePosition = new Vector3(-0.3f, 0f, 0f);
+            weaponScale = Vector3.one * 3;
+    
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
