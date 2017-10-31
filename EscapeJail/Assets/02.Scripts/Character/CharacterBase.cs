@@ -58,6 +58,13 @@ public class CharacterBase : CharacterInfo
     //아머
     protected ArmorSystem armorSystem;
 
+    //진통제
+
+    protected int stimulantRecoverTime = 30;
+    protected bool nowUseStimulant = false;
+
+    //버프효과
+    protected BuffEffect buffEffect;
 
 
     protected void Awake()
@@ -66,7 +73,7 @@ public class CharacterBase : CharacterInfo
 
         Initialize();
 
-
+        SetBuffEffect();
 
         if (weaponHandler != null && slashObject != null)
         {
@@ -87,9 +94,39 @@ public class CharacterBase : CharacterInfo
 
     }
 
+    protected void SetBuffEffect()
+    {
+        GameObject loadObj = Resources.Load<GameObject>("Prefabs/Objects/BuffEffect");
+        if(loadObj!=null)
+        {
+            GameObject makingObject = Instantiate(loadObj, this.transform);
+            if (makingObject != null)
+            {
+                BuffEffect effect = makingObject.GetComponent<BuffEffect>();
+                if (effect != null)
+                {
+                    this.buffEffect = effect;
+                    BuffEffectOnOff(false);
+                }
+            }         
+
+        }
+    }
+
+    protected void BuffEffectOnOff(bool OnOff)
+    {
+        if (buffEffect != null)
+            buffEffect.gameObject.SetActive(OnOff);
+    }
+    protected void SetBuffEffectColor(Color color)
+    {
+        if (buffEffect != null)
+            buffEffect.SetBuffColor(color);
+    }
+
     protected void SetWeapon()
     {
-        AddWeapon(new Revolver());
+        AddWeapon(new Flamethrower());
 
         UIUpdate();
     }
@@ -188,6 +225,10 @@ public class CharacterBase : CharacterInfo
         if (Input.GetKeyDown(KeyCode.E))
         {
             ReactiveButtonClick();
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            GetDamage(1);
         }
         MoveInPc();
     }
@@ -436,7 +477,7 @@ public class CharacterBase : CharacterInfo
         if (inventory != null && weapon != null)
         {
             inventory.AddWeapon(weapon);
-            weaponHandler.ChangeWeapon(inventory.GetWeapon());
+            weaponHandler.ChangeWeapon(inventory.GetLastWeapon());
         }
     }
 
@@ -542,26 +583,58 @@ public class CharacterBase : CharacterInfo
         UIUpdate();
     }
 
+    public bool CanUseStimulant()
+    {
+        //체력이 풀피이거나 이미 사용중이면 사용 불가
+        return !(hp >= hpMax) && !nowUseStimulant;
+    }
+
+    //위에 조건이 충족되면 여기로 들어옴
     public void UseStimulant(int value)
     {
+        BuffEffectOnOff(true);
+        SetBuffEffectColor(Color.green);
+
+        nowUseStimulant = true;
         StopCoroutine("StimulantRoutine");
         StartCoroutine("StimulantRoutine",value);
     }
 
   
-    int stimulantRecoverTime = 30;
+
+
+  
+
     private IEnumerator StimulantRoutine(int value)
     {
-        int data = stimulantRecoverTime / value;
+        float durationTime = GameConstants.StimulantDurationTime;
 
-        for (int i = 1; i < stimulantRecoverTime+1; i++)
+        float addValue = (float)value / durationTime;
+        float countValue = 0f;
+        float elapsedTime = 0f;
+
+        while (true)
         {
-            if (i % data == 0)
+            countValue += addValue;
+            if (countValue >= 1f)
             {
                 GetHp(1);
+                countValue -= 1f;
             }
+
+            elapsedTime += 1f;
+            if (elapsedTime >= durationTime)
+            {
+                nowUseStimulant = false;
+                BuffEffectOnOff(false);
+                Debug.Log("끝 " + countValue.ToString());
+                yield break;
+            }
+
             yield return new WaitForSeconds(1.0f);
         }
+
+
     }
 
 }

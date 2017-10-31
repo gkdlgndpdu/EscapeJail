@@ -183,7 +183,14 @@ public class Item_Stimulant : ItemBase
     {
         if (player != null)
         {
-      
+            //이미 진통제 사용중일때는 못을어옴
+            if (player.CanUseStimulant() == false)
+            {
+                Debug.Log("진통제 사용불가");
+                return;
+            }
+            Debug.Log("30초간 " + Value + " 회복");
+            player.UseStimulant(Value);
             player.RemoveItem(this);
         }
     }

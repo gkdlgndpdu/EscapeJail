@@ -24,9 +24,13 @@ public class Inventory
         return allItemList.Count >= bagSize;
     }
 
+    /// <summary>
+    /// value가 0이라는건 처음 디폴트상태를 의미
+    /// </summary>
+    /// <param name="value">늘려줄 가방의 양</param>
     public void SetInventorySize(int value)
     {
-        if (bagSize >= value) return;
+        if (bagSize >= value&&value!=0) return;
 
         if (value == 0)
             bagSize = 2;
@@ -55,6 +59,12 @@ public class Inventory
             weaponIndex = 0;
 
         return weaponList[weaponIndex];
+    }
+    public Weapon GetLastWeapon()
+    {
+        if (weaponList == null) return null;
+        if (weaponList.Count == 0) return null;
+        return weaponList[weaponList.Count-1];
     }
     // Use this for initialization
 

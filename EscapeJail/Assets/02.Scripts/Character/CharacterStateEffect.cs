@@ -11,6 +11,7 @@ public class CharacterStateEffect : MonoBehaviour
     private float count = 0f;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Transform target;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class CharacterStateEffect : MonoBehaviour
 
     public void Initialize(float lifeTime, float size, Transform target, CharacterCondition characterCondition)
     {
-        this.transform.parent = target;
+        this.target = target;
         this.lifeTime = lifeTime;
         this.transform.localScale = Vector3.one * size;
 
@@ -40,6 +41,7 @@ public class CharacterStateEffect : MonoBehaviour
 
     }
 
+ 
     /// <summary>
     /// 이펙트가 사라지는 시간을 줄여줌
     /// </summary>
@@ -49,9 +51,13 @@ public class CharacterStateEffect : MonoBehaviour
     }
 
     private void Update()
-    {  
+    {
+        if (target != null)
+            this.transform.position = target.transform.position;
+        else if (target == null)
+            EffectOff();
 
-        count += Time.deltaTime;
+            count += Time.deltaTime;
         if (count >= lifeTime)
         {
             EffectOff();

@@ -21,6 +21,9 @@ public static class GameConstants
     //PlayerPref KeyValue
     public static string CharacterKeyValue = "CharacterType";
 
+    //진통제 지속시간
+    public static float StimulantDurationTime = 30f;
+
     //DB
     public static string MonsterDBName = "MonsterDB.db";
     public static string WeaponDBName = "WeaponDB.db";
