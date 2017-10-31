@@ -17,6 +17,7 @@ public class Guard1 : MonsterBase
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOn();
     }
 
     private void SetWeapon()

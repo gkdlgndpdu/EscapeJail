@@ -12,17 +12,20 @@ public enum MapState
 public class MapModule : MapModuleBase
 {
 
-
     private List<MonsterBase> monsterList = new List<MonsterBase>();
     [SerializeField]
     private GameObject maskObject;
 
     //속성
-    private int SpawnMonsterNum = 0;
+    private int spawnMonsterNum = 0;
     private int widthNum;
     private int heightNum;
 
     private bool isPositioningComplete = false;
+
+    private int nowWaveNum = 0;
+    private int waveNum = 0;
+  
 
     public void OnDisable()
     {
@@ -84,6 +87,7 @@ public class MapModule : MapModuleBase
             if (monsterList[i].gameObject.activeSelf == true)
                 return false;
         }
+
         return true;
     }
 
@@ -101,6 +105,11 @@ public class MapModule : MapModuleBase
     {
         //중복진입 방지
         if (mapState == MapState.Lock || isClear == true) return;
+
+        waveNum = Random.Range(1, 4);
+        nowWaveNum = waveNum;
+
+
 
         MaskOff();
         mapState = MapState.Lock;
@@ -155,32 +164,48 @@ public class MapModule : MapModuleBase
         return spawnMonster;
     }
 
-    IEnumerator SpawnRandomMonsterRoutine()
+    private void SpawnMonster(int monsterNum)
     {
-        if (normalTileList == null) yield break;
-
-        SpawnMonsterNum = (widthNum * heightNum) /30;
-
         //몬스터 스폰
-        for (int i = 0; i < SpawnMonsterNum; i++)
+        for (int i = 0; i < monsterNum; i++)
         {
             int RandomIndex = Random.Range(0, normalTileList.Count - 1);
             Vector3 RandomSpawnPosit = normalTileList[RandomIndex].transform.position;
 
             SpawnRandomMonsterInModule(RandomSpawnPosit);
 
-             yield return new WaitForSeconds(2f);
         }
 
+      
+    }
+
+    IEnumerator SpawnRandomMonsterRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (normalTileList == null) yield break;
+
+        spawnMonsterNum = (widthNum + heightNum) /7;          
+
+        SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum+1));      
 
         //종료 체크
         while (true)
-        {
-            if (IsWaveEnd() == true)
+        {           
+            if (IsWaveEnd() == true && nowWaveNum > 0)
             {
-                EndWave();
-                yield break;
-            }
+                nowWaveNum -= 1;
+
+                if (nowWaveNum == 0)
+                {
+                    EndWave();
+                    yield break;
+                }
+
+                SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum + 1));
+              
+
+            }            
             yield return null;
         }
     }

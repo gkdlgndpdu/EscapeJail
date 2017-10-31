@@ -5,21 +5,24 @@ using UnityEngine;
 using weapon;
 public class Mouse2 : MonsterBase
 {
-
+    float shotDelay = 3f;
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;
-        SetHp(10);
+        SetHp(5);
         nearestAcessDistance = 5f;
         SetWeapon();
-        moveSpeed = 2f;
+        moveSpeed = 1f;
     }
 
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOn();
+
+
+
     }
 
   
@@ -69,7 +72,7 @@ public class Mouse2 : MonsterBase
         {
             if (isDead == true) yield break;
             FireWeapon();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(shotDelay);
         }
     }
 

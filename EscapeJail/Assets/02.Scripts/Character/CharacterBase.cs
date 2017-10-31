@@ -89,7 +89,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new CardCase());
+        AddWeapon(new Revolver());
 
         UIUpdate();
     }
@@ -542,5 +542,26 @@ public class CharacterBase : CharacterInfo
         UIUpdate();
     }
 
+    public void UseStimulant(int value)
+    {
+        StopCoroutine("StimulantRoutine");
+        StartCoroutine("StimulantRoutine",value);
+    }
+
+  
+    int stimulantRecoverTime = 30;
+    private IEnumerator StimulantRoutine(int value)
+    {
+        int data = stimulantRecoverTime / value;
+
+        for (int i = 1; i < stimulantRecoverTime+1; i++)
+        {
+            if (i % data == 0)
+            {
+                GetHp(1);
+            }
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
 
 }
