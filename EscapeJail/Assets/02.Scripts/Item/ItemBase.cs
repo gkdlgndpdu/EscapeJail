@@ -162,6 +162,39 @@ public class Item_Medicine : ItemBase
     }
 }
 
+public class Item_Stimulant : ItemBase
+{
+    public Item_Stimulant(int level = 999)
+    {
+        itemType = ItemType.Stimulant;
+
+        if (level == 999)
+        {
+            SetItemLevel();
+        }
+        else
+        {
+            ItemLevel = level;
+            LoadDBData();
+        }
+    }
+
+    public override void ItemAction()
+    {
+        if (player != null)
+        {
+      
+            player.RemoveItem(this);
+        }
+    }
+
+    public override void RemoveItem()
+    {
+        base.RemoveItem();
+        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
+    }
+}
+
 public class Item_Armor : ItemBase
 {
     public Item_Armor()

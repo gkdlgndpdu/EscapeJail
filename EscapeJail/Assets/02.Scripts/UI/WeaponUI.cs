@@ -18,9 +18,20 @@ public class WeaponUI : MonoBehaviour
     {
         if (text == null || stringBuilder == null) return;
 
-        stringBuilder.Length = 0;
-        stringBuilder.AppendFormat("{0} \n {1}/{2}", weapontype, minAmmo, maxAmmo);
-        text.text = stringBuilder.ToString();
+        if (maxAmmo == 1)
+        {
+            stringBuilder.Length = 0;
+            stringBuilder.AppendFormat("{0} \n ㅡ", weapontype);
+            text.text = stringBuilder.ToString();
+        }
+        else
+        {
+            stringBuilder.Length = 0;
+            stringBuilder.AppendFormat("{0} \n {1}/{2}", weapontype, minAmmo, maxAmmo);
+            text.text = stringBuilder.ToString();
+        }
+       // ∞
+    
     }
 
     public void SetWeaponUiDefault()

@@ -20,7 +20,7 @@ public class StageData : ScriptableObject
     [SerializeField]
     private List<Color> randomTileColor;
 
-  
+
     public List<Sprite> GetNormalTileList()
     {
         return normalTileList;
@@ -46,9 +46,13 @@ public class StageData : ScriptableObject
     }
     #endregion
     #region Map
-    public int RoomNum;
+    public int MinRoomNum;
+    public int MaxRoomNum;
     public int RoomMaxSize;
     public int RoomMinSize;
+
+    private int hideNum = 10;    
+
     #endregion
 
 }

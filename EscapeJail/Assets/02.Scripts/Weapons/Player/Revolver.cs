@@ -15,8 +15,8 @@ namespace weapon
             weapontype = WeaponType.Revolver;
             bulletSpeed = 10f;
             fireDelay = 0.3f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            maxAmmo = 1;
+            nowAmmo = 1;
             needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(-0.3f, 0f, 0f);
@@ -29,8 +29,7 @@ namespace weapon
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-
-            useBullet();
+           
             FireDelayOn();
             PlayFireAnim();
 

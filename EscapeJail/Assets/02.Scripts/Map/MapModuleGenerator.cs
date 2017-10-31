@@ -239,7 +239,11 @@ public class MapModuleGenerator
         if (minsize % 2 != 0) minsize += 1;
         if (maxSize % 2 != 0) maxSize += 1;
 
-        for (int i = 0; i < stageData.RoomNum; i++)
+        
+
+        int roomNum = Random.Range(stageData.MinRoomNum, stageData.MaxRoomNum+1);
+
+        for (int i = 0; i < roomNum; i++)
         {
             GenerateBaseMap
                 (

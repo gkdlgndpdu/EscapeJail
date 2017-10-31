@@ -99,9 +99,25 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetColliderSize();
     }
 
+    public void SetItemToStimulant(int level = 999)
+    {
+        itemBase = null;
+
+
+        if (level == 999)
+            itemBase = new Item_Stimulant();
+        else
+            itemBase = new Item_Stimulant(level);
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+
+        SetColliderSize();
+    }
+
     public void SetItemToBag()
     {
-
         itemBase = new Item_Bag();
 
         string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);

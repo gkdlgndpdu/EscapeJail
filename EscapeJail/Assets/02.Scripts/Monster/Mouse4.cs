@@ -4,6 +4,8 @@ using UnityEngine;
 using weapon;
 public class Mouse4 : MonsterBase
 {
+
+    float fireDelay = 3f;
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse4;
@@ -61,7 +63,7 @@ public class Mouse4 : MonsterBase
         while (true)
         {        
             FireWeapon();
-            yield return new WaitForSeconds(1f);         
+            yield return new WaitForSeconds(fireDelay);         
         }
     }
 

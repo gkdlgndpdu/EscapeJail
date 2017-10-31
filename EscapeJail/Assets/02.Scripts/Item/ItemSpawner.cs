@@ -166,7 +166,10 @@ public class ItemSpawner : MonoBehaviour
                 break;
             case ItemType.Stimulant:
                 {
-
+                    if (level == 999)
+                        item.SetItemToStimulant();
+                    else
+                        item.SetItemToStimulant(level);
                 }
                 break;
             case ItemType.Medicine:
