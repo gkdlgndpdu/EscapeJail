@@ -12,8 +12,6 @@ public class RandomGenerator <T>
     {
         if (allItemList == null) return;    
         allItemList.RemoveAll(x => EqualityComparer<T>.Default.Equals(x, data));
-
-
     }
 
     public void AddToList(T data,int num)
@@ -31,6 +29,12 @@ public class RandomGenerator <T>
         return allItemList[UnityEngine.Random.Range(0, allItemList.Count)];
     }
 
+    public bool CanReturnValue()
+    {
+        if (allItemList == null) return false;
+        if (allItemList.Count == 0) return false;
+        return true;
+    }
 
 
 

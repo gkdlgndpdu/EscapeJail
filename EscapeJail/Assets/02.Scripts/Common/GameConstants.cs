@@ -26,7 +26,8 @@ public static class GameConstants
 
     //DB
     public static string MonsterDBName = "MonsterDB.db";
-    public static string WeaponDBName = "WeaponDB.db";
     public static string ItemDBName = "ItemDB.db";
     public static string ItemProbabilityDBName = "ItemProbabilityDB.db";
+    public static string WeaponDBName = "WeaponDB.db";
+    
 }

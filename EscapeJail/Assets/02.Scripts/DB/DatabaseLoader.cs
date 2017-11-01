@@ -7,20 +7,30 @@ using System.Data;
 using System.Text;
 using Mono.Data.SqliteClient;
 using UnityEngine.UI;
+using weapon;
 
 public class DatabaseLoader : MonoBehaviour
 {
+    //몬스터 DB
     private Dictionary<MonsterName, MonsterDB> MonsterDB;
+    
+    //아이템 DB
     //대분류
     private Dictionary<ItemType, ItemProbabilityDB> ItemProbabilityDB;
     //중분류
     private Dictionary<string, ItemDB> ItemDB;
+
+    //무기 DB
+    private Dictionary<WeaponType,WeaponDB> WeaponDB;
+
     /// <summary>
     /// key값에 해당 아이템을 넣으면 확률에 맞게 lv을 뱉음
     /// </summary>
     private Dictionary<string, RandomGenerator<int>> ItemRandomLevelGenerator;
 
     public static DatabaseLoader Instance = null;
+
+    private RandomGenerator<WeaponType> WeaponRandomGenerator;
 
     //디버그용
     public Text debugText;
@@ -33,6 +43,14 @@ public class DatabaseLoader : MonoBehaviour
         return ItemRandomLevelGenerator[key].GetRandomData();
     }
         
+    public WeaponType GetRandomWeaponTypeByProbability()
+    {
+        if (WeaponRandomGenerator == null) return WeaponType.Revolver;
+        if (WeaponRandomGenerator.CanReturnValue() == false) return WeaponType.Revolver;
+        WeaponType randWeaponType = WeaponRandomGenerator.GetRandomData();
+        WeaponRandomGenerator.RemoveInList(randWeaponType);
+        return randWeaponType;
+    }
 
     public MonsterDB GetMonsterData(MonsterName key)
     {
@@ -78,6 +96,7 @@ public class DatabaseLoader : MonoBehaviour
         LoadMonsterDB();
         LoadItemDB();
         LoadItemProbabilityDB();
+        LoadWeaponProbabilityDB();
 
         DebugDB();
     }
@@ -134,7 +153,22 @@ public class DatabaseLoader : MonoBehaviour
         CloseDB(ref dbcmd, ref dbcon, ref reader);
     }
 
-   
+    private void LoadWeaponProbabilityDB()
+    {
+        WeaponDB = new Dictionary<WeaponType, WeaponDB>();
+        WeaponRandomGenerator = new RandomGenerator<WeaponType>();
+
+        string fileName = GameConstants.WeaponDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadWeaponDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+    }
+
+
 
     public void OpenDB(string fileName, ref IDbConnection dbcon)
     {
@@ -240,9 +274,6 @@ public class DatabaseLoader : MonoBehaviour
 
             }
         }
-
-
-
     }
 
 
@@ -262,6 +293,7 @@ public class DatabaseLoader : MonoBehaviour
             while (reader.Read())
             {
                 ItemProbabilityDB.Add((ItemType)reader.GetInt32(0), new ItemProbabilityDB(reader.GetInt32(1), reader.GetString(2)));
+
             }
         }
 
@@ -269,7 +301,37 @@ public class DatabaseLoader : MonoBehaviour
         //디버깅
         foreach (KeyValuePair<ItemType, ItemProbabilityDB> data in ItemProbabilityDB)
         {
-            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Discription + "\n";
+            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
+            Debug.Log(debugmsg);
+            sb.Append(debugmsg);
+        }
+
+    }
+
+    private void ReadWeaponDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+        string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM WeaponDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {                                                               //Probability       //Description
+                WeaponDB.Add((WeaponType)reader.GetInt32(0), new WeaponDB(reader.GetInt32(1), reader.GetString(2)));
+                WeaponRandomGenerator.AddToList((WeaponType)reader.GetInt32(0), reader.GetInt32(1));
+            }
+        }
+
+
+        //디버깅
+        foreach (KeyValuePair<WeaponType, WeaponDB> data in WeaponDB)
+        {
+            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }

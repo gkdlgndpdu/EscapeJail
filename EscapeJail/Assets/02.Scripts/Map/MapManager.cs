@@ -45,7 +45,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public GameObject GetRandomObject()
+    public GameObject GetRandomArticle()
     {
         if (objectList == null) return null;
         if (objectList.Count == 0) return null;
@@ -153,7 +153,7 @@ public class MapManager : MonoBehaviour
 
         for (int i = 0; i < moduleList.Count; i++)
         {
-            if (moduleList[i] != null) ;
+            if (moduleList[i] != null) 
             Destroy(moduleList[i].gameObject);
         }
 

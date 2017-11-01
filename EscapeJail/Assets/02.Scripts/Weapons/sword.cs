@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class sword : Weapon
+    public class Sword : Weapon
     {
 
-        public sword()
+        public Sword()
         {
             SetNearWeapon(Color.white, Vector3.one * 8f);
 
 
-            weapontype = WeaponType.sword;
+            weapontype = WeaponType.Sword;
             fireDelay = 1f;
 
 

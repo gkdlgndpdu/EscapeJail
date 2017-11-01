@@ -11,9 +11,19 @@ public class StagerController : MonoBehaviour
     [SerializeField]
     private ItemSpawner itemSpawner;
 
-    //생성정보
-    private StageData stageData;
+    public StageData stageData;
+ 
+    private int nowStageLevel = 1;
 
+
+    public void LoadstageData()
+    {
+        Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
+        if (obj != null)
+            stageData = (StageData)obj;
+
+        nowStageLevel++;
+    }
 
 
     private void Awake()
@@ -42,12 +52,9 @@ public class StagerController : MonoBehaviour
     public void CreateNextStage()
     {
         //stage data 갱신
-        GameOption.Instance.LoadstageData();
-
+        LoadstageData();
         //monsterPool갱신
-        ObjectManager.Instance.MakeMonsterPool();
-
-        stageData = GameOption.Instance.StageData;
+        ObjectManager.Instance.MakeMonsterPool();      
         mapManager.MakeMap(stageData);
     }
 

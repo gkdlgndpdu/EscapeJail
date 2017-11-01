@@ -239,7 +239,7 @@ public class MapModule : MapModuleBase
     {
         //계수가 생성확률
         float makeNum = (float)(widthNum * heightNum) * 0.015f;
-
+      
         for (int i = 0; i < (int)makeNum; i++)
         {
             MakeEachObject();
@@ -255,7 +255,7 @@ public class MapModule : MapModuleBase
         if (mapManager == null) return;
 
 
-        GameObject obj = mapManager.GetRandomObject();
+        GameObject obj = mapManager.GetRandomArticle();
 
         if (obj == null) return;
 
@@ -281,7 +281,7 @@ public class MapModule : MapModuleBase
             {
                 targetTile.canSpawned = false;
                 GameObject article = GameObject.Instantiate(obj, targetTile.transform);
-
+                article.transform.localPosition = Vector3.zero;
                 return;
             }
         }

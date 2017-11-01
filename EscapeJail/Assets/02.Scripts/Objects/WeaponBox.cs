@@ -24,6 +24,7 @@ public class WeaponBox : MonoBehaviour, iReactiveAction
             animator.speed = 0f;
 
         SetLayerOrder();
+
     }
 
 

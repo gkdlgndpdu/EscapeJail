@@ -8,7 +8,6 @@ public class ItemSpawner : MonoBehaviour
     public static ItemSpawner Instance;
     private GameObject dropItemPrefab;
 
-    private List<WeaponType> spawnedWeaponList;
     //맵 변경될때 삭제하기 위함
     private List<GameObject> spawnedObjectList;
 
@@ -23,13 +22,12 @@ public class ItemSpawner : MonoBehaviour
             Instance = this;
         }
         LoadPrefab();
-
-        spawnedWeaponList = new List<WeaponType>();
+     
         spawnedObjectList = new List<GameObject>();
 
 
         SetRandomGenerator();
-        SetRandomWeapon();
+    
     }
 
     private void SetRandomGenerator()
@@ -65,21 +63,6 @@ public class ItemSpawner : MonoBehaviour
             dropItemPrefab = obj;
     }
 
-    //무기 중복생성 방지
-    private bool isWeaponSpawned(WeaponType weaponType)
-    {
-        if (spawnedWeaponList == null) return true;
-
-        for (int i = 0; i < spawnedWeaponList.Count; i++)
-        {
-            if (spawnedWeaponList[i] == weaponType)
-                return true;
-        }
-        spawnedWeaponList.Add(weaponType);
-        return false;
-
-    }
-
 
     //중복체크 X 아이템 삭제할때 땅에 똑같은거 버려주는 용도로 사용
     public void SpawnWeapon(Vector3 posit, Transform parent, WeaponType weaponType)
@@ -99,23 +82,11 @@ public class ItemSpawner : MonoBehaviour
     ///////////////////임시코드
 
 
-    //임시코드 (아이템 확률이 생기면 삭제)
-    private List<WeaponType> shuffledWeaponList = new List<WeaponType>();
+   
 
     public void SpawnWeapon(Vector3 posit, Transform parent)
     {
-        WeaponType RandomWeapon = WeaponType.Revolver;
-
-        if (shuffledWeaponList.Count > 0)
-        {
-            RandomWeapon = shuffledWeaponList[0];
-            shuffledWeaponList.RemoveAt(0);
-        }
-        else if (shuffledWeaponList.Count <= 0)
-        {
-            return;
-        }
-
+        WeaponType RandomWeapon =DatabaseLoader.Instance.GetRandomWeaponTypeByProbability();
 
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
@@ -125,20 +96,8 @@ public class ItemSpawner : MonoBehaviour
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
     }
-    private void SetRandomWeapon()
-    {
-        for (int i = 0; i < (int)WeaponType.PlayerWeaponEnd; i++)
-        {
-            shuffledWeaponList.Add((WeaponType)i);
-        }
-
-        shuffledWeaponList.ListShuffle(100);
-    }
-
-
-
-
-    ////////////////////임시코드
+    
+  
 
     public void SpawnItem(ItemType itemType, Vector3 posit, Transform parent, int level = 999)
     {

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class baseballbat : Weapon
+    public class Baseballbat : Weapon
     {
 
-        public baseballbat()
+        public Baseballbat()
         {
             SetNearWeapon(new Color(147f/255f,0f,0f,1f), Vector3.one * 8f);
 
 
-            weapontype = WeaponType.baseballbat;
+            weapontype = WeaponType.Baseballbat;
             fireDelay = 1f;
 
 

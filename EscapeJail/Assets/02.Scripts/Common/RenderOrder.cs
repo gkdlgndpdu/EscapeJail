@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class RenderOrder : MonoBehaviour
 {
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
     private void Awake()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     } 
 
     private void OnEnable()
@@ -23,8 +23,8 @@ public class RenderOrder : MonoBehaviour
 
     public void SetOrder(int orderNum)
     {
-        if (renderer != null)
-            renderer.sortingOrder = orderNum;
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = orderNum;
     }
 
   

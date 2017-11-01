@@ -7,26 +7,27 @@ using UnityEngine.UI;
 namespace weapon
 {
     //WeaponTable과 연동
+    //반드시 클래스명과 일치해야 함
     public enum WeaponType
     {
         PlayerWeaponStart,
-        Revolver,
-        ShotGun,
-        WaterGun,
-        AssaultRifle,
-        Bazooka,
-        LightSaber,
-        Hammer,
-        Flamethrower,
-        BasicSniper,
-        Minigun,
-        sword,
-        baseballbat,
-        shortknife,
-        LaserPistol,
-        CardCase,
+        Revolver, //1
+        ShotGun,  //2
+        WaterGun, //3
+        AssaultRifle, //4
+        Bazooka, //5
+        LightSaber, //6
+        Hammer, //7
+        Flamethrower, //8
+        BasicSniper, //9
+        Minigun, //10
+        Sword, //11
+        Baseballbat, //12
+        Shortknife, //13
+        LaserPistol, //14
+        CardCase, //15
         PlayerWeaponEnd,
-        MouseGun,
+        MouseGun, 
         CriminalPistol,
         CriminalShotGun,
         CriminalUzi,

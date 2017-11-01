@@ -7,8 +7,8 @@ public class MonsterDB
     public int Probability;
     public int Hp;
 
-    public MonsterDB( int Probability, int Hp)
-    {   
+    public MonsterDB(int Probability, int Hp)
+    {
         this.Probability = Probability;
         this.Hp = Hp;
     }
@@ -19,11 +19,11 @@ public class MonsterDB
 public class ItemProbabilityDB
 {
     public int Probability;
-    public string Discription;
-    public ItemProbabilityDB(int Probability,string Discription)
+    public string Description;
+    public ItemProbabilityDB(int Probability, string Description)
     {
         this.Probability = Probability;
-        this.Discription = Discription;
+        this.Description = Description;
     }
 }
 
@@ -32,12 +32,24 @@ public class ItemProbabilityDB
 public class ItemDB
 {
     public int Value;
-    public string Discription;
+    public string Description;
 
-    public ItemDB(int Value,string Discription)
-    {     
+    public ItemDB(int Value, string Description)
+    {
         this.Value = Value;
-        this.Discription = Discription;
+        this.Description = Description;
+    }
+}
+
+public class WeaponDB
+{
+    public int Probability;
+    public string Description;
+
+    public WeaponDB(int Probability, string Description)
+    {
+        this.Probability = Probability;
+        this.Description = Description;
     }
 }
 

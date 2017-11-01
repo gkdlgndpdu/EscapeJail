@@ -169,7 +169,7 @@ public class MapModuleGenerator
         if (bossMakableList == null) return;
         if (bossMakableList.Count == 0) return;
 
-        BossModule bossModuleObject = GameOption.Instance.StageData.bossModule.GetComponent<BossModule>();
+        BossModule bossModuleObject = StagerController.Instance.stageData.bossModule.GetComponent<BossModule>();
         if (bossModuleObject == null) return;
 
 
@@ -190,7 +190,7 @@ public class MapModuleGenerator
 
     private void LoadTileSprites()
     {
-        StageData nowStageData = GameOption.Instance.StageData;
+        StageData nowStageData = StagerController.Instance.stageData;
         if (nowStageData == null) return;
 
         //일반타일 로드
@@ -367,7 +367,7 @@ public class MapModuleGenerator
                 else
                 {
                     Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform);
-                    SetTileColor(tile, GameOption.Instance.StageData.GetRandomTileColor());
+                    //SetTileColor(tile, StagerController.Instance.stageData.GetRandomTileColor());
 
                 }
 

@@ -26,13 +26,12 @@ public class ItemTable : CharacterInfo
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectShadow = GetComponentInChildren<ObjectShadow>();
 
-        SetLayerOrder();
-       
+        SetLayerOrder();       
 
         if (animator != null)
             animator.speed = 0f;
 
-//        this.transform.localPosition = Vector3.zero;
+        this.transform.localPosition = Vector3.zero;
 
         hp = 15;
 

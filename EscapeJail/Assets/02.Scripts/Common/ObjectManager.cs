@@ -74,7 +74,7 @@ public class ObjectManager : MonoBehaviour
             monsterPool = null;
         }
 
-        StageData nowStageData = GameOption.Instance.StageData;
+        StageData nowStageData = StagerController.Instance.stageData;
         monsterPool = new MonsterPool(MonsterParent, nowStageData);
     }
 

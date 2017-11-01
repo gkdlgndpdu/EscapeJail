@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class shortknife : Weapon
+    public class Shortknife : Weapon
     {
-        public shortknife()
+        public Shortknife()
         {
             SetNearWeapon(Color.black, Vector3.one * 6f);
 
 
-            weapontype = WeaponType.shortknife;
+            weapontype = WeaponType.Shortknife;
             fireDelay = 0.2f;
 
 
