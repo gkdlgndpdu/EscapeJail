@@ -29,8 +29,8 @@ public class MapModuleGenerator
     private List<Sprite> wallSpriteList;
     private Sprite doorSprite;
 
-    //모듈 리스트
-    private List<MapModuleBase> moduleList;
+    ////모듈 리스트
+    //private List<MapModuleBase> moduleList;
 
 
     //벽만들때 필요
@@ -61,7 +61,7 @@ public class MapModuleGenerator
         //wallSpriteList = new List<Sprite>();
         everyWallList = new List<Tile>();
         bossMakableList = new List<Tile>();
-        moduleList = new List<MapModuleBase>();
+
 
 
         LoadTileSprites();
@@ -164,26 +164,25 @@ public class MapModuleGenerator
 
     }
 
-    public void MakeBossModule(Transform moduleParent,Vector3 spawnPosit)
+    public void MakeBossModule(Transform moduleParent, Vector3 spawnPosit)
     {
-        //if (bossMakableList == null) return;
-        //if (bossMakableList.Count == 0) return;
-
         BossModule bossModuleObject = StagerController.Instance.stageData.bossModule.GetComponent<BossModule>();
 
         if (bossModuleObject == null) return;
 
-
-
-        //보스 문방향이 down
-       // Vector3 SpawnPosit = bossMakableList[0].transform.position + Vector3.right * 0.64f / 2f + Vector3.up * 0.64f / 2f + Vector3.up * (bossModuleObject.heightNum / 2 - 1) * 0.64f;
-
         BossModule module = GameObject.Instantiate(bossModuleObject, spawnPosit, Quaternion.identity, moduleParent);
+        module.AddToMapManager(mapManager);
+        module.GetMyTiles();
 
-        if (moduleList != null)
-            moduleList.Add(module);
+        List<Tile> bossWallList = module.GetWallList();
+        for(int i=0;i< bossWallList.Count; i++)
+        {
+            everyWallList.Add(bossWallList[i]);
+        }
 
-       // bossMakableList.Clear();
+        //
+        //everyWallList.add
+
     }
 
 
@@ -195,14 +194,14 @@ public class MapModuleGenerator
         if (nowStageData == null) return;
 
         //일반타일 로드
-     
-            normalSpriteList = nowStageData.GetNormalTileList();
-        
+
+        normalSpriteList = nowStageData.GetNormalTileList();
 
 
-       //벽타일 로드
-            wallSpriteList = nowStageData.GetWallTileList();
-        
+
+        //벽타일 로드
+        wallSpriteList = nowStageData.GetWallTileList();
+
 
 
         //문타일 로드
@@ -240,9 +239,9 @@ public class MapModuleGenerator
         if (minsize % 2 != 0) minsize += 1;
         if (maxSize % 2 != 0) maxSize += 1;
 
-        
 
-        int roomNum = Random.Range(stageData.MinRoomNum, stageData.MaxRoomNum+1);
+
+        int roomNum = Random.Range(stageData.MinRoomNum, stageData.MaxRoomNum + 1);
 
         for (int i = 0; i < roomNum; i++)
         {
@@ -250,13 +249,18 @@ public class MapModuleGenerator
                 (
                 Random.Range(minsize, maxSize),  //x크기
                 Random.Range(minsize, maxSize),  //y크기
-                new Vector3((float)Random.Range(-15, 15) * 0.64f, (float)Random.Range(-15, 15) * 0.64f, 0) //초기 생성 좌표
+                new Vector3((float)Random.Range(-14, 14) * 0.64f, (float)Random.Range(-14, 14) * 0.64f, 0) //초기 생성 좌표
                 );
 
         }
 
+        //랜덤위치
+        float randX = Random.Range(0, 2) == 0 ? 1f : -1f;
+        float randY = Random.Range(0, 2) == 0 ? 1f : -1f;
+        Vector3 bossSpawnPosit = new Vector3((15f * 0.64f - 0.32f) * randX, (15f * 0.64f - 0.32f) * randY, 0f);
+
         //보스모듈
-        MakeBossModule(null, Random.insideUnitCircle*20f);
+        MakeBossModule(null, bossSpawnPosit);
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)
@@ -299,8 +303,7 @@ public class MapModuleGenerator
         if (module == null) return;
         module.Initialize(widthNum, heightNum, widthDistance, heightDistance, isStartModule, mapManager);
 
-        if (moduleList != null)
-            moduleList.Add(module);
+
         #endregion
 
         #region TileMaking
@@ -344,7 +347,7 @@ public class MapModuleGenerator
                     //일반벽
                     else
                     {
-                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform,null,0, randomWallSprite);
+                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform, null, 0, randomWallSprite);
 
 
 
@@ -391,8 +394,8 @@ public class MapModuleGenerator
         tile.ChangeColor(color);
 
     }
-                                                                                         //벽의경우 여기에 넣어주면 해당 텍스쳐로만 생성
-    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent,MapModule parentModule = null, int layerOrder = 0, Sprite specificSprite = null)
+    //벽의경우 여기에 넣어주면 해당 텍스쳐로만 생성
+    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null, int layerOrder = 0, Sprite specificSprite = null)
     {
         GameObject obj = GameObject.Instantiate(normalTile, parent);
         obj.transform.position = posit;
@@ -429,7 +432,7 @@ public class MapModuleGenerator
                         tile.SetSprite(specificSprite);
                     }
 
-                
+
 
                     tile.gameObject.name = "Wall";
                 }

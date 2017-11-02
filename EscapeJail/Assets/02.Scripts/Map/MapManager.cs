@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
-    private List<MapModule> moduleList;
+    private List<MapModuleBase> moduleList;
     private List<GameObject> objectList;
 
     private float mapMakeCount = 0;
@@ -57,7 +57,7 @@ public class MapManager : MonoBehaviour
     {
         mapModuleGenerator = new MapModuleGenerator(this.transform, this);
 
-        moduleList = new List<MapModule>();
+        moduleList = new List<MapModuleBase>();
 
         ResetMakeCount();
 
@@ -142,7 +142,7 @@ public class MapManager : MonoBehaviour
     }
 
 
-    public void AddToModuleList(MapModule module)
+    public void AddToModuleList(MapModuleBase module)
     {
         if (moduleList == null) return;
         if (module == null) return;

@@ -14,7 +14,7 @@ public class MapModuleBase : MonoBehaviour
     //상태
     protected MapState mapState = MapState.UnLock;
     protected bool isClear = false;
-
+    protected bool isPositioningComplete = false;
 
     //저장소
     public List<Tile> normalTileList;
@@ -49,6 +49,16 @@ public class MapModuleBase : MonoBehaviour
         {
             doorTileList[i].CloseDoor();
         }
+    }
+
+    public virtual void PositioningComplete()
+    {
+        isPositioningComplete = true;    
+    }
+
+    public virtual void MakeObjects()
+    {
+
     }
 
 

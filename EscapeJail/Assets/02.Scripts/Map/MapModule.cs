@@ -21,7 +21,7 @@ public class MapModule : MapModuleBase
     private int widthNum;
     private int heightNum;
 
-    private bool isPositioningComplete = false;
+
 
     private int nowWaveNum = 0;
     private int waveNum = 0;
@@ -280,17 +280,16 @@ public class MapModule : MapModuleBase
         }
     }
 
-    public void PositioningComplete()
+    public override void PositioningComplete()
     {
-        isPositioningComplete = true;
-
+        base.PositioningComplete();
 
         if (boxcollider2D != null)
             boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
     }
 
-    public void MakeObjects()
+    public override void MakeObjects()
     {
         //계수가 생성확률
         float makeNum = (float)(widthNum * heightNum) * 0.005f;

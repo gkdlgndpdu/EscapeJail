@@ -71,6 +71,6 @@ MonoBehaviour:
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
   MinRoomNum: 10
-  MaxRoomNum: 15
+  MaxRoomNum: 20
   RoomMaxSize: 30
   RoomMinSize: 20

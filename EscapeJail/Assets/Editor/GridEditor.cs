@@ -127,7 +127,7 @@ public class GridEditor : Editor
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Grid " + labelName);
-        sliderPosition = EditorGUILayout.Slider(sliderPosition, 1f, 100f, null);
+        sliderPosition = EditorGUILayout.Slider(sliderPosition, 0f, 100f, null);
         GUILayout.EndHorizontal();
 
         return sliderPosition;

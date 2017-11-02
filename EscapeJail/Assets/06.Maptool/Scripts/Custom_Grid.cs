@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +18,7 @@ public class Custom_Grid : MonoBehaviour
 
     public TileSet tileSet;
 
-    private int tileSize = 20;
+    private int tileSize = 30;
 
     public float gridMaxSize = 100f;
 
@@ -36,7 +39,7 @@ public class Custom_Grid : MonoBehaviour
         Gizmos.color = gridColor;
 
         // Gizmos.DrawLine(new Vector3(-25f,0f,0f),new Vector3(25f,0f,0f));
-        Gizmos.DrawLine(new Vector3(0f, -25f, 0f), new Vector3(0f, 25f, 0f));
+      //  Gizmos.DrawLine(new Vector3(0f, -25f, 0f), new Vector3(0f, 25f, 0f));
 
         for (int x = 0; x <= tileSize; x++)
         {
@@ -65,3 +68,4 @@ public class Custom_Grid : MonoBehaviour
 
     }
 }
+#endif
