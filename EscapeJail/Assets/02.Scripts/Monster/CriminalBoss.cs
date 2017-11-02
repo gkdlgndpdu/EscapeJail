@@ -8,6 +8,12 @@ public class CriminalBoss : BossBase
     //인스펙터에서 할당
     public List<Transform> moveList;
 
+    [SerializeField]
+    private CrossBullet crossBullet;
+
+    [SerializeField]
+    private Transform firePos;
+
     private new void Awake()
     {
         base.Awake();
@@ -114,7 +120,7 @@ public class CriminalBoss : BossBase
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, -22.5f + (float)j * 45f) * firstFireDir;
                         bullet.gameObject.SetActive(true);
-                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, bulletSize);
+                        bullet.Initialize(firePos.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, bulletSize);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                     }
@@ -129,7 +135,7 @@ public class CriminalBoss : BossBase
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, (float)j * 45f) * firstFireDir;
                         bullet.gameObject.SetActive(true);
-                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,bulletSize);
+                        bullet.Initialize(firePos.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,bulletSize);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                     }
@@ -169,7 +175,7 @@ public class CriminalBoss : BossBase
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue))* fireDir;
 
                 bullet.gameObject.SetActive(true);
-                bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
+                bullet.Initialize(firePos.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
             }
@@ -183,8 +189,16 @@ public class CriminalBoss : BossBase
 
     private IEnumerator FirePattern3()
     {
-       //십자가 돌리기
-        yield return new WaitForSeconds(1f);
+        float endDelay = 1f;
+
+        Action(Actions.FireStart);
+        crossBullet.RotationOnOff(true);
+        //십자가 돌리기
+        yield return new WaitForSeconds(8f);
+        crossBullet.RotationOnOff(false);
+        Action(Actions.FireEnd);
+
+        yield return new WaitForSeconds(endDelay);
     }
     #endregion
 

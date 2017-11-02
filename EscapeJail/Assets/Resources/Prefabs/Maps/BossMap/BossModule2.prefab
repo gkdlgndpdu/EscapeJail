@@ -1183,6 +1183,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1146266412161938
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4432870413292226}
+  - component: {fileID: 114048268878348342}
+  - component: {fileID: 114294054786676044}
+  m_Layer: 10
+  m_Name: CrossBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1146733250502822
 GameObject:
   m_ObjectHideFlags: 1
@@ -4680,6 +4697,21 @@ GameObject:
   - component: {fileID: 114086331561065518}
   m_Layer: 0
   m_Name: tile1_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1526387488330348
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4947981914202840}
+  m_Layer: 10
+  m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11425,6 +11457,19 @@ Transform:
   m_Father: {fileID: 4918125260614108}
   m_RootOrder: 405
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4432870413292226
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146266412161938}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4947981914202840}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4433435739044744
 Transform:
   m_ObjectHideFlags: 1
@@ -12513,7 +12558,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4947981914202840}
   m_Father: {fileID: 4225428588076172}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15139,6 +15185,20 @@ Transform:
   m_Father: {fileID: 4225428588076172}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4947981914202840
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1526387488330348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.139, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4432870413292226}
+  m_Father: {fileID: 4608323699200962}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4948179276683562
 Transform:
   m_ObjectHideFlags: 1
@@ -15963,6 +16023,19 @@ MonoBehaviour:
   x: 0
   y: 0
   canSpawned: 1
+--- !u!114 &114048268878348342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146266412161938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5dded3dbb71ec14b8cc65c9619b2e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 114171595123044376, guid: 77db7daf60459b24897b4f2674ae99a4,
+    type: 2}
 --- !u!114 &114051374831043788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17867,6 +17940,18 @@ MonoBehaviour:
   x: 0
   y: 0
   canSpawned: 1
+--- !u!114 &114294054786676044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146266412161938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b957a4df65f704dafa2d3147496d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTr: {fileID: 4608323699200962}
 --- !u!114 &114294488804299892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22636,6 +22721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bosshpBar: {fileID: 114762233203321398}
   moveList: []
+  crossBullet: {fileID: 114048268878348342}
+  firePos: {fileID: 4947981914202840}
 --- !u!114 &114932416825187186
 MonoBehaviour:
   m_ObjectHideFlags: 1

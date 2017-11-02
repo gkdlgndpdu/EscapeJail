@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 0f;
     //충돌에 의해 파괴 가능? 왠만하면 true, 수류탄 다이나마이트같이 시간 기다려주는것들 제외
     private bool canDestroyByCollision = true;
+    
     //움직이다가 중간에 멈춥니까?
     private bool hasMoveLifetime = false;
     private float moveLifeTime = 0f;
@@ -245,12 +246,13 @@ public class Bullet : MonoBehaviour
     {
         //이펙트 호출
         if (canDestroyByCollision == true)
+        {
             BulletDestroy();
+        }
         else if (canDestroyByCollision == false)
         {
             if (collision.gameObject.CompareTag("Tile"))
-                StopBullet();
-            return;
+                StopBullet();          
         }
 
         if (explosionType == ExplosionType.single)
@@ -272,7 +274,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    protected void BulletDestroy()
+    public void BulletDestroy()
     {
         if (explosionType == ExplosionType.multiple)
             MultiTargetDamage();
