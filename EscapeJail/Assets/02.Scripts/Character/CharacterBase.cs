@@ -126,7 +126,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Sword());
+        AddWeapon(new AssaultRifle());
 
         UIUpdate();
     }

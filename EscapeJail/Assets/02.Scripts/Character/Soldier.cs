@@ -6,7 +6,7 @@ public class Soldier : CharacterBase
 {
     private bool isDodge =false;
     private float dodgeSpeed = 5f;
-    private float dodgeCoolTime = 0.15f;
+    private float dodgeCoolTime = 0.3f;
     private bool isDodgeCoolTime = false;
     private new void Awake()
     {

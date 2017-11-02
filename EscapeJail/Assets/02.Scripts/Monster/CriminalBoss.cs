@@ -11,7 +11,7 @@ public class CriminalBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(30);
+        SetHp(150);
         RegistPatternToQueue();
     }
 
@@ -86,14 +86,16 @@ public class CriminalBoss : BossBase
 
     #region Pattern
 
+    //회오리
     private IEnumerator FirePattern1()
     {
         Action(Actions.FireStart);
 
         float eachFireDelay = 0.2f;
         float endDelay = 1f;
-        float bulletSpeed = 4f;
+        float bulletSpeed = 3f;
         int fireBulletNum = 30;
+        float bulletSize = 0.6f;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -112,7 +114,7 @@ public class CriminalBoss : BossBase
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, -22.5f + (float)j * 45f) * firstFireDir;
                         bullet.gameObject.SetActive(true);
-                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
+                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, bulletSize);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                     }
@@ -127,7 +129,7 @@ public class CriminalBoss : BossBase
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, (float)j * 45f) * firstFireDir;
                         bullet.gameObject.SetActive(true);
-                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
+                        bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,bulletSize);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                     }
@@ -150,10 +152,10 @@ public class CriminalBoss : BossBase
         Action(Actions.FireStart);
 
         float fireDelay = 0.15f;
-        float bulletSpeed = 11f;
+        float bulletSpeed = 7f;
         float endDelay = 1f;
         int fireBulletNum = 25;
-        float reBoundValue = 10f;
+        float reBoundValue = 30f;
 
         yield return new WaitForSeconds(1f);
 
@@ -181,38 +183,8 @@ public class CriminalBoss : BossBase
 
     private IEnumerator FirePattern3()
     {
-        Action(Actions.FireStart);
-
-        float fireDelay = 0.2f;
-        float bulletSpeed = 8.5f;
-        float endDelay = 1f;
-        int fireBulletNum = 15;
-
+       //십자가 돌리기
         yield return new WaitForSeconds(1f);
-
-        for (int i = 0; i < fireBulletNum; i++)
-        {
-            for (int j = -1; j < 2; j++)
-            {
-                Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                if (bullet != null)
-                {
-                    Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
-
-                    fireDir = Quaternion.Euler(0f, 0f, -10f * j) * fireDir;
-
-                    bullet.gameObject.SetActive(true);
-                    bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet);
-                    bullet.InitializeImage("white", false);
-                    bullet.SetEffectName("revolver");
-                }
-            }
-            yield return new WaitForSeconds(fireDelay);
-        }
-
-        Action(Actions.FireEnd);
-
-        yield return new WaitForSeconds(endDelay);
     }
     #endregion
 

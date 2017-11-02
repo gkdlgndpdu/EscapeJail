@@ -9,16 +9,14 @@ public class MonsterPool
     private Transform parent;
 
     private StageData nowStageData;
-
-    private RandomGenerator<MonsterName> randomGenerator;
+ 
 
     public MonsterPool(Transform monsterParent, StageData stageData)
     {
         pool = new Dictionary<MonsterName, ObjectPool<MonsterBase>>();
         parent = monsterParent;
         nowStageData = stageData;
-
-        randomGenerator = new RandomGenerator<MonsterName>();
+   
 
         Initialize();
     }
@@ -45,16 +43,7 @@ public class MonsterPool
         for (int i = 0; i < nowStageData.spawnEnemyList.Count; i++)
         {
             MonsterName monsterName = nowStageData.spawnEnemyList[i];
-            ObjectPool<MonsterBase> monsterPool = null;
-
-            //랜덤
-            if (randomGenerator != null)
-            {
-                MonsterDB monsterData = DatabaseLoader.Instance.GetMonsterData(monsterName);
-
-                if(monsterData!=null)
-                randomGenerator.AddToList(monsterName, monsterData.Probability);
-            }
+            ObjectPool<MonsterBase> monsterPool = null;          
 
             string path = string.Format("Prefabs/Monsters/{0}", monsterName.ToString());
             GameObject obj = Resources.Load<GameObject>(path);
@@ -70,26 +59,19 @@ public class MonsterPool
             }
         }
     }
-
-    public MonsterBase GetRandomMonster()
-    {
-        if (pool == null) return null;
-        if (randomGenerator == null) return null;
-             
-        List<MonsterName> keyList = new List<MonsterName>(pool.Keys);
-
-        MonsterName RandomKey = randomGenerator.GetRandomData();
-
-        if (pool.ContainsKey(RandomKey) == false) return null;
-
-        return pool[RandomKey].GetItem();
-    }
+ 
 
     public MonsterBase GetSpecificMonster(MonsterName name)
     {
         if (pool == null) return null;
         if (pool.ContainsKey(name) == false) return null;
         return pool[name].GetItem();
+    }
+
+    public List<MonsterName> GetMonsterList()
+    {
+        if (pool == null) return null;
+        return new List<MonsterName>(pool.Keys);
     }
 
 

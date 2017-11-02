@@ -11,7 +11,13 @@ public class MouseBoss : BossBase
     //패턴 시간
     private float digPatternLastTime = 5f;
     private float digPatternAttackSpeed = 0.5f;
-    private float idleLastTime = 3f;
+    private float idleLastTime = 1.5f;
+
+
+    [SerializeField]
+    private Transform leftFoot;
+    [SerializeField]
+    private Transform rightFoot;
 
     //인스펙터에서 할당
     public List<Transform> moveList;
@@ -21,16 +27,9 @@ public class MouseBoss : BossBase
         DigOut,
         Walk,
         PatternEnd,
+        Idle,
         Die
     }
-
-    public enum Pattern
-    {
-        Idle,
-        DigPattern, 
-        FirePattern
-    }
-   
 
     private void Action(Actions action)
     {
@@ -60,6 +59,12 @@ public class MouseBoss : BossBase
                         animator.SetTrigger("Die");
                 }
                 break;
+            case Actions.Idle:
+                {
+                    if (animator != null)
+                        animator.SetFloat("Speed", 0f);
+                }
+                break;
         }
     }
 
@@ -67,9 +72,9 @@ public class MouseBoss : BossBase
     {
         base.Awake();
 
-        LoadPrefab(); 
-        SetHp(30);
-
+        LoadPrefab();
+        SetHp(150);
+        moveSpeed = 1f;
         RegistPatternToQueue();
     }
 
@@ -77,9 +82,13 @@ public class MouseBoss : BossBase
     {
 
         bossEventQueue.Initialize(this, EventOrder.InOrder);
-     
+
+        bossEventQueue.AddEvent("MovePattern");
+        bossEventQueue.AddEvent("IdlePattern");
         bossEventQueue.AddEvent("DigPattern");
+        bossEventQueue.AddEvent("IdlePattern");
         bossEventQueue.AddEvent("FirePattern");
+        bossEventQueue.AddEvent("IdlePattern");
 
     }
 
@@ -113,6 +122,8 @@ public class MouseBoss : BossBase
         if (spriteRenderer != null)
             spriteRenderer.enabled = false;
 
+
+
     }
     public void HideOff()
     {
@@ -123,6 +134,7 @@ public class MouseBoss : BossBase
             spriteRenderer.enabled = true;
 
         TeleportToRandomPosit();
+
     }
 
     private void TeleportToRandomPosit()
@@ -197,7 +209,80 @@ public class MouseBoss : BossBase
                 }
             }
             yield return new WaitForSeconds(0.7f);
-        }    
+        }
     }
-   
+    public IEnumerator IdlePattern()
+    {
+        Action(Actions.Idle);
+        yield return new WaitForSeconds(idleLastTime);
+
+    }
+
+    public IEnumerator MovePattern()
+    {
+        Action(Actions.Walk);
+
+       
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 moveDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
+
+            if (rb != null)
+                rb.velocity = (Vector2)moveDir.normalized* moveSpeed;
+
+            yield return new WaitForSeconds(1f);
+        }
+        Action(Actions.Idle);
+        if (rb != null)
+            rb.velocity = Vector2.zero;
+    }
+
+    public void FireLeftHand()
+    {
+        float bulletSpeed = 3f;
+
+        for (int j = 0; j < 9; j++)
+        {
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                bullet.gameObject.SetActive(true);
+                Vector3 fireDIr;
+
+
+                fireDIr = Vector3.right;
+
+
+                fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
+                bullet.Initialize(leftFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                bullet.InitializeImage("white", false);
+                bullet.SetEffectName("revolver");
+            }
+        }
+    }
+
+    public void FireRightHand()
+    {
+        float bulletSpeed = 3f;
+
+        for (int j = 0; j < 9; j++)
+        {
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                bullet.gameObject.SetActive(true);
+                Vector3 fireDIr;
+
+
+                fireDIr = Vector3.right;
+
+
+                fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
+                bullet.Initialize(rightFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                bullet.InitializeImage("white", false);
+                bullet.SetEffectName("revolver");
+            }
+        }
+    }
+
 }

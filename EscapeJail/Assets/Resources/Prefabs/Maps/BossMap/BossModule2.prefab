@@ -16407,6 +16407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxcollider2D: {fileID: 0}
+  normalTileList: []
   doorDirection: 2
   bossBase: {fileID: 114929287332291040}
   widthNum: 22

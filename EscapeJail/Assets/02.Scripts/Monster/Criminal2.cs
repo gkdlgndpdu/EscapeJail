@@ -11,9 +11,9 @@ public class Criminal2 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal2;
-        SetHp(10);
+        SetHp(7);
         nearestAcessDistance = 5f;
-        moveSpeed = 2f;
+        moveSpeed = 1f;
         SetWeapon();
     }
     private void SetWeapon()
@@ -39,6 +39,7 @@ public class Criminal2 : MonsterBase
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOn();
     }
 
     private new void Awake()
@@ -58,11 +59,13 @@ public class Criminal2 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(Random.Range(2f, 2.5f));
         while (true)
         {    
             FireWeapon();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(2.5f, 3f));
         }
+ 
     }
 
     protected void RotateWeapon()

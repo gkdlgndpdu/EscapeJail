@@ -7,9 +7,8 @@ public class Criminal4 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal4;
-        SetHp(10);     
-        attackDelay = 1f;
-        moveSpeed = 3f;
+        SetHp(5);     
+        moveSpeed = 2f;
     }
 
     public override void ResetMonster()
@@ -29,6 +28,7 @@ public class Criminal4 : MonsterBase
 
     public void FireGranade()
     {
+        float bulletSpeed = 3f;
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)
         {
@@ -36,10 +36,10 @@ public class Criminal4 : MonsterBase
             Vector3 firePos = this.transform.position;
             Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-            bullet.Initialize(firePos, fireDir.normalized, 5, BulletType.EnemyBullet,1.3f, 1, 2f);
+            bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,1.3f, 2, 2f);
             bullet.InitializeImage("CriminalGrande", true);
-            bullet.SetEffectName("GranadeExplosion", 1.5f);
-            bullet.SetExplosion(1.5f);
+            bullet.SetEffectName("GranadeExplosion", 2f);
+            bullet.SetExplosion(1f);
             bullet.SetBloom(false);
 
 
@@ -70,7 +70,7 @@ public class Criminal4 : MonsterBase
     {
         nowAttack = true;
         SetAnimation(MonsterState.Attack);   
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         nowAttack = false;
     }
 

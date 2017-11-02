@@ -6,11 +6,11 @@ namespace weapon
     public class CriminalPistol : Weapon
     {
 
-        private float reBoundValue = 10f;
+        private float reBoundValue = 30f;
         public CriminalPistol()
         {
             weapontype = WeaponType.CriminalPistol;
-            bulletSpeed = 8f;
+            bulletSpeed = 4;
             weaponScale = Vector3.one*2f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }

@@ -63,5 +63,19 @@ public class MouseHand : MonoBehaviour
         this.gameObject.SetActive(false);
     }
  
+    private void FireBullet()
+    {
+        float bulletSpeed = 3f;
+        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+        if (bullet != null)
+        {
+            Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
+            Vector3 fireDIr = PlayerPos - this.transform.position;            
+            bullet.Initialize(this.transform.position, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 1f);
+            bullet.InitializeImage("StoneBullet", false);
+            bullet.SetEffectName("stoneExplosion",2f);
+            bullet.SetBloom(false);
+        }
+    }
 
 }

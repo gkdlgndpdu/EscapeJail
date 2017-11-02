@@ -25,7 +25,10 @@ public class MapModule : MapModuleBase
 
     private int nowWaveNum = 0;
     private int waveNum = 0;
-  
+
+    //몬스터 랜덤 생성
+    private List<MonsterName> spawnableMonsterList = new List<MonsterName>();
+    private RandomGenerator<MonsterName> randomGenerator = new RandomGenerator<MonsterName>();
 
     public void OnDisable()
     {
@@ -36,6 +39,50 @@ public class MapModule : MapModuleBase
     void Awake()
     {
         boxcollider2D = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+
+        SetSpawnableMonsterList();
+    }
+
+    private void SetSpawnableMonsterList()
+    {
+        List<MonsterName> monsterList = ObjectManager.Instance.monsterPool.GetMonsterList();
+
+        if (monsterList == null) return;
+
+        monsterList.ListShuffle(30);
+        int spawnMonsterTypeNum = Random.Range(1, monsterList.Count);
+
+        for(int i = 0; i < spawnMonsterTypeNum; i++)
+        {
+            spawnableMonsterList.Add(monsterList[i]);
+        }
+       
+        monsterList.Clear();
+        monsterList = null;
+
+
+        //랜덤
+        if (randomGenerator != null)
+        {
+            for(int i=0;i< spawnableMonsterList.Count; i++)
+            {
+                MonsterDB monsterData = DatabaseLoader.Instance.GetMonsterData(spawnableMonsterList[i]);
+
+                if (monsterData != null)
+                    randomGenerator.AddToList(spawnableMonsterList[i], monsterData.Probability);
+            }
+         
+        }
+    }
+
+    public MonsterName GetRandomMonster()
+    {
+        MonsterName RandomKey = randomGenerator.GetRandomData();   
+        return RandomKey;
     }
 
     private void SetMakeSize(Vector3 position, Vector3 scale)
@@ -140,7 +187,7 @@ public class MapModule : MapModuleBase
 
     public MonsterBase SpawnRandomMonsterInModule(Vector3 spawnPos)
     {
-        MonsterBase spawnMonster = MonsterManager.Instance.SpawnRandomMonster(spawnPos);
+        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(GetRandomMonster(),spawnPos);
 
         if (spawnMonster != null && monsterList != null)
         {
@@ -151,6 +198,7 @@ public class MapModule : MapModuleBase
         return spawnMonster;
     }
 
+    //슬라임용
     public MonsterBase SpawnSpecificMonsterInModule(MonsterName name,Vector3 spawnPos)
     {
         MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(name,spawnPos);
@@ -238,7 +286,7 @@ public class MapModule : MapModuleBase
     public void MakeObjects()
     {
         //계수가 생성확률
-        float makeNum = (float)(widthNum * heightNum) * 0.015f;
+        float makeNum = (float)(widthNum * heightNum) * 0.005f;
       
         for (int i = 0; i < (int)makeNum; i++)
         {

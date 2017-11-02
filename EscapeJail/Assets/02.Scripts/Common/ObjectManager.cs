@@ -85,13 +85,6 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    public MonsterBase GetRandomMonster()
-    {
-        if (monsterPool == null) return null;
-
-        return monsterPool.GetRandomMonster();
-    }
-
     public MonsterBase GetSpecificMonster(MonsterName name)
     {
         if (monsterPool == null) return null;

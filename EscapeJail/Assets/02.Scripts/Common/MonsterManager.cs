@@ -56,17 +56,7 @@ public class MonsterManager : MonoBehaviour
 
     }
 
-    public MonsterBase SpawnRandomMonster(Vector3 SpawnPosit)
-    {
-        MonsterBase monster =  ObjectManager.Instance.GetRandomMonster();
-      
-        if (monster == null) return null;
-
-       monster.transform.position = SpawnPosit;
-       monster.ResetMonster();    
-       return monster;
-    }
-
+    //슬라임용
     public MonsterBase SpawnSpecificMonster(MonsterName name, Vector3 SpawnPosit)
     {
         MonsterBase monster = ObjectManager.Instance.GetSpecificMonster(name);

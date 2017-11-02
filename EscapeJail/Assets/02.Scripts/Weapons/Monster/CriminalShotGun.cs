@@ -18,7 +18,7 @@ namespace weapon
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 3; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)

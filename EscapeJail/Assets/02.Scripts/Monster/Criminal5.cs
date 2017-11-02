@@ -11,11 +11,12 @@ public class Criminal5 : MonsterBase
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOn();
     }
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal5;
-        SetHp(10);
+        SetHp(6);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
@@ -62,14 +63,14 @@ public class Criminal5 : MonsterBase
         while (true)
         {
             if (isDead == true) yield break;
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 5; i++)
             {
                 FireWeapon();
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
 
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(1f,3f));
         }
     }
 

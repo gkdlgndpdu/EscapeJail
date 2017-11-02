@@ -8,7 +8,7 @@ public class Criminal1 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal1;
-        SetHp(10);
+        SetHp(5);
         nearestAcessDistance = 5f;
         SetWeapon();
     }
@@ -17,6 +17,7 @@ public class Criminal1 : MonsterBase
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOn();
     }
 
     private void SetWeapon()
@@ -59,6 +60,8 @@ public class Criminal1 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(Random.Range(2f, 2.5f));
+
         while (true)
         {        
             for (int i = 0; i < 3; i++)
@@ -68,7 +71,7 @@ public class Criminal1 : MonsterBase
             }
        
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(2.5f,3f));
         }
     }
 

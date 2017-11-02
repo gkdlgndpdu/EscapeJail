@@ -7,11 +7,11 @@ public class Criminal3 : MonsterBase
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal3;
-        SetHp(30);
+        SetHp(10);
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
-        moveSpeed = 2f;
+        moveSpeed = 1.5f;
 
     }
 
