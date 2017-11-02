@@ -76,7 +76,13 @@ public class CriminalBoss : BossBase
         }
     }
 
- 
+    protected override void BossDie()
+    {
+        base.BossDie();
+        crossBullet.RotationOnOff(false);
+
+    }
+
 
     private void RegistPatternToQueue()
     {

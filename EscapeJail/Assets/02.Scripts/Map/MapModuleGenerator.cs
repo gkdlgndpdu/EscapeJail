@@ -164,25 +164,26 @@ public class MapModuleGenerator
 
     }
 
-    public void MakeBossModule(Transform moduleParent)
+    public void MakeBossModule(Transform moduleParent,Vector3 spawnPosit)
     {
-        if (bossMakableList == null) return;
-        if (bossMakableList.Count == 0) return;
+        //if (bossMakableList == null) return;
+        //if (bossMakableList.Count == 0) return;
 
         BossModule bossModuleObject = StagerController.Instance.stageData.bossModule.GetComponent<BossModule>();
+
         if (bossModuleObject == null) return;
 
 
 
         //보스 문방향이 down
-        Vector3 SpawnPosit = bossMakableList[0].transform.position + Vector3.right * 0.64f / 2f + Vector3.up * 0.64f / 2f + Vector3.up * (bossModuleObject.heightNum / 2 - 1) * 0.64f;
+       // Vector3 SpawnPosit = bossMakableList[0].transform.position + Vector3.right * 0.64f / 2f + Vector3.up * 0.64f / 2f + Vector3.up * (bossModuleObject.heightNum / 2 - 1) * 0.64f;
 
-        BossModule module = GameObject.Instantiate(bossModuleObject, SpawnPosit, Quaternion.identity, moduleParent);
+        BossModule module = GameObject.Instantiate(bossModuleObject, spawnPosit, Quaternion.identity, moduleParent);
 
         if (moduleList != null)
             moduleList.Add(module);
 
-        bossMakableList.Clear();
+       // bossMakableList.Clear();
     }
 
 
@@ -253,6 +254,9 @@ public class MapModuleGenerator
                 );
 
         }
+
+        //보스모듈
+        MakeBossModule(null, Random.insideUnitCircle*20f);
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)

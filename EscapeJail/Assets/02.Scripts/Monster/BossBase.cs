@@ -100,7 +100,7 @@ public class BossBase : CharacterInfo
     }
 
 
-    protected void BossDie()
+    protected virtual void BossDie()
     {
         StopAllCoroutines();
 

@@ -92,7 +92,7 @@ public class MapManager : MonoBehaviour
             yield return null;
         }
 
-        MakeWallAndBossModule();
+        MakeWall();
         PositioningComplete();
         CreateObjects();
 
@@ -116,17 +116,20 @@ public class MapManager : MonoBehaviour
 
     }
 
-    private void MakeWallAndBossModule()
+    private void MakeWall()
     {
         //벽 생성
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeWall(backGroundParent);
-
-        //보스 모듈 생성
-
-        if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeBossModule(this.transform);
+            mapModuleGenerator.MakeWall(backGroundParent);       
     }
+  
+
+    //private void MakeBossModule()
+    //{
+    //    //보스 모듈 생성
+    //    if (mapModuleGenerator != null)
+    //        mapModuleGenerator.MakeBossModule(this.transform);
+    //}
 
 
     private void CreateObjects()
