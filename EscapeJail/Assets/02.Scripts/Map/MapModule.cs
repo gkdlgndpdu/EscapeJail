@@ -150,6 +150,10 @@ public class MapModule : MapModuleBase
 
     public void StartWave()
     {
+        //이동속도 정상화
+        GamePlayerManager.Instance.player.SetBurstSpeed(false);
+
+
         //중복진입 방지
         if (mapState == MapState.Lock || isClear == true) return;
 
@@ -166,6 +170,9 @@ public class MapModule : MapModuleBase
 
     public void EndWave()
     {
+        //이동속도 빠르게      
+        GamePlayerManager.Instance.player.SetBurstSpeed(true);
+
         mapState = MapState.UnLock;
 
         //사용한 리소스 정리
@@ -333,8 +340,6 @@ public class MapModule : MapModuleBase
                 return;
             }
         }
-
-
 
     }
 

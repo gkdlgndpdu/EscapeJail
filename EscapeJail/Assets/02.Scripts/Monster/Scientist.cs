@@ -5,21 +5,20 @@ using weapon;
 
 public class Scientist : CharacterBase
 {
-    private bool isSkillOn = false;
-    private float originMoveSpeed;
-    private float slowTimeRatio = 0.5f;
+    private bool isSkillOn = false; 
+    private float slowTimeRatio = 0.4f;
 
     private new void Awake()
     {
         base.Awake();
 
         SetHp(10);
-
-        originMoveSpeed = moveSpeed;
+ 
     }
 
     private new void Start()
     {
+        base.Start();
         SetWeapon();
     }
 
@@ -42,25 +41,73 @@ public class Scientist : CharacterBase
         Debug.Log("과학자 스킬");
     }
 
-    private void SkillOnOff()
+    public override void SetBurstSpeed(bool OnOff)
     {
-        //켜기
+        isBurstMoveOn = OnOff;
+
         if (isSkillOn == false)
         {
-            Time.timeScale = slowTimeRatio;
-            isSkillOn = true;
-            moveSpeed = originMoveSpeed/slowTimeRatio;
-
+            if (OnOff == true)            
+                moveSpeed = burstSpeed;
+            
+            else            
+                moveSpeed = originSpeed;
+            
         }
-        //끄기
         else if (isSkillOn == true)
         {
-            Time.timeScale = 1f;
-            isSkillOn = false;
-            moveSpeed = originMoveSpeed;
-
-
+            if (OnOff == true)    
+                moveSpeed = burstSpeed / slowTimeRatio;                   
+            else
+                moveSpeed = originSpeed / slowTimeRatio;
         }
+
+        
+    }
+
+    private void SkillOnOff()
+    {
+
+        if (isBurstMoveOn == false)
+        {
+            //켜기
+            if (isSkillOn == false)
+            {
+                TimeManager.Instance.BulletTimeOn(slowTimeRatio);
+
+                isSkillOn = true;
+                moveSpeed = originSpeed / slowTimeRatio;
+
+            }
+            //끄기
+            else if (isSkillOn == true)
+            {
+                TimeManager.Instance.BulletTimeOff();
+
+
+                isSkillOn = false;
+                moveSpeed = originSpeed;
+            }
+        }
+        else if (isBurstMoveOn == true)
+        {
+            //켜기
+            if (isSkillOn == false)
+            {
+                TimeManager.Instance.BulletTimeOn(slowTimeRatio);
+                isSkillOn = true;
+                moveSpeed = burstSpeed / slowTimeRatio;
+
+            }
+            //끄기
+            else if (isSkillOn == true)
+            {
+                TimeManager.Instance.BulletTimeOff();
+                isSkillOn = false;
+                moveSpeed = burstSpeed;
+            }
+        }
+       
 
     }
 

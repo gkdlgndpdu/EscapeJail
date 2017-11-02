@@ -16,11 +16,14 @@ public class CharacterBase : CharacterInfo
 
     //값변수
     protected float moveSpeed = 3f;
+    protected float burstSpeed = 5f;
+    protected float originSpeed = 3f;
     //단위 초 
     protected int immuneTime = 1;
 
     //상태
     protected bool isImmune = false;
+    protected bool isBurstMoveOn = true;
     //이동
     protected Vector3 moveDir = Vector3.zero;
     protected Vector3 lastMoveDir = Vector3.zero;
@@ -131,6 +134,20 @@ public class CharacterBase : CharacterInfo
         UIUpdate();
     }
 
+    public virtual void SetBurstSpeed(bool OnOff)
+    {
+        isBurstMoveOn = OnOff;
+
+        if (OnOff==true)
+        {
+            moveSpeed = burstSpeed;    
+        }
+        else
+        {
+            moveSpeed = originSpeed;
+        }
+    }
+
 
 
     private void SetLayerAndTag()
@@ -203,7 +220,7 @@ public class CharacterBase : CharacterInfo
     // Use this for initialization
     protected void Start()
     {
-
+        SetBurstSpeed(true);
     }
 
     // Update is called once per frame
