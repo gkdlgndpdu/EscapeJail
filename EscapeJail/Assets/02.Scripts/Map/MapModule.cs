@@ -150,6 +150,11 @@ public class MapModule : MapModuleBase
 
     public void StartWave()
     {
+        for(int i=0;i< spawnableMonsterList.Count; i++)
+        {
+            Debug.Log(spawnableMonsterList[i].ToString());
+        }
+
         //이동속도 정상화
         GamePlayerManager.Instance.player.SetBurstSpeed(false);
 

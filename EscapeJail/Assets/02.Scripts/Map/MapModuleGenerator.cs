@@ -260,7 +260,7 @@ public class MapModuleGenerator
         Vector3 bossSpawnPosit = new Vector3((15f * 0.64f - 0.32f) * randX, (15f * 0.64f - 0.32f) * randY, 0f);
 
         //보스모듈
-        MakeBossModule(null, bossSpawnPosit);
+        MakeBossModule(mapManager.transform, bossSpawnPosit);
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)

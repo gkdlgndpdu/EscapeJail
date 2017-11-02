@@ -24,7 +24,7 @@ public class GuardBoss : BossBase
     {
         base.Awake();    
 
-        SetHp(30);
+        SetHp(150);
         RegistPatternToQueue();
     }
  
@@ -89,9 +89,11 @@ public class GuardBoss : BossBase
     private IEnumerator FireMissilePattern()
     {
 
-        int fireTimes = 100;
-        float bulletSpeed = 10f;
+        if (rb != null)
+            rb.velocity = Vector3.zero;
 
+        float bulletSpeed = 7f;
+        float reboundValue = 10f;
         //애니메이션
         Action(Actions.FireMissile);
         yield return new WaitForSeconds(1.0f);
@@ -101,9 +103,9 @@ public class GuardBoss : BossBase
             Vector3 firstDirection = GamePlayerManager.Instance.player.transform.position-this.transform.position;
 
 
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 5; j++)
             {
-                Vector3 fireDirection = Quaternion.Euler(0f, 0f, -5f+j*5f) * firstDirection;
+                Vector3 fireDirection = Quaternion.Euler(0f, 0f, -reboundValue + j* reboundValue) * firstDirection;
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)
                 {
@@ -115,9 +117,9 @@ public class GuardBoss : BossBase
 
             }
 
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 5; j++)
             {
-                Vector3 fireDirection = Quaternion.Euler(0f, 0f, -5f + j * 5f) * firstDirection;
+                Vector3 fireDirection = Quaternion.Euler(0f, 0f, -reboundValue + j * reboundValue) * firstDirection;
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)
                 {
@@ -140,29 +142,32 @@ public class GuardBoss : BossBase
 
     private IEnumerator FireMgPattern()
     {
-        int fireTimes = 100;
-        float bulletSpeed = 5f;
+        if (rb != null)
+            rb.velocity = Vector3.zero;
+
+        float bulletSpeed = 3f;
         float endDelay = 2f;
+        float bulletSize = 0.7f;
 
         //애니메이션
         Action(Actions.FireMg);
         yield return new WaitForSeconds(1.0f);
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 5; i++)
         {
             Vector3 firstDirection = Vector3.up;
             if (i % 2 == 0)
                 firstDirection = Quaternion.Euler(0f, 0f, 15f) * firstDirection;
 
-            for (int j = 0; j < 12; j++)
+            for (int j = 0; j < 36; j++)
             {
-               Vector3 fireDirection1 = Quaternion.Euler(0f, 0f, 30f * j) * firstDirection;
+               Vector3 fireDirection1 = Quaternion.Euler(0f, 0f, 10f * j) * firstDirection;
 
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)
                 {                 
                     bullet.gameObject.SetActive(true);
-                    bullet.Initialize(bulletFirePos1.transform.position, fireDirection1.normalized, bulletSpeed, BulletType.EnemyBullet,0.5f);
+                    bullet.Initialize(bulletFirePos1.transform.position, fireDirection1.normalized, bulletSpeed, BulletType.EnemyBullet, bulletSize);
                     bullet.InitializeImage("white", false);
                     bullet.SetEffectName("revolver");
                 }
@@ -171,7 +176,7 @@ public class GuardBoss : BossBase
                 if (bullet != null)
                 {
                     bullet2.gameObject.SetActive(true);
-                    bullet2.Initialize(bulletFirePos2.transform.position, fireDirection1.normalized, bulletSpeed, BulletType.EnemyBullet, 0.5f);
+                    bullet2.Initialize(bulletFirePos2.transform.position, fireDirection1.normalized, bulletSpeed, BulletType.EnemyBullet, bulletSize);
                     bullet2.InitializeImage("white", false);
                     bullet2.SetEffectName("revolver");
                 }
@@ -191,11 +196,15 @@ public class GuardBoss : BossBase
 
     private IEnumerator MoveAttackPattern()
     {
+        if (rb != null)
+            rb.velocity = Vector3.zero;
+
         Action(Actions.Walk);
 
         Transform playerTr = GamePlayerManager.Instance.player.transform;
-        float moveSpeed = 2f;
-        float bulletSpeed = 12f;
+        float moveSpeed = 1f;
+        float bulletSpeed = 8f;
+        float reboundValue = 30f;
 
          yield return new WaitForSeconds(2.0f);
      
@@ -208,7 +217,7 @@ public class GuardBoss : BossBase
 
             //사격
             Vector3 fireDir = playerTr.position - this.transform.position;
-            fireDir = Quaternion.Euler(0f, 0f, Random.Range(-10f, 10f))* fireDir;
+            fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reboundValue, reboundValue))* fireDir;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {

@@ -9,7 +9,7 @@ namespace weapon
         public GuardRifle()
         {
             weapontype = WeaponType.GuardRifle;
-            bulletSpeed = 6f;
+            bulletSpeed = 5f;
             weaponScale = Vector3.one * 1.8f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }

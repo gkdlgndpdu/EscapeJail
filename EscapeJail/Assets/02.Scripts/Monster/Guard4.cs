@@ -17,6 +17,8 @@ public class Guard4 : MonsterBase
     {
         base.ResetMonster();
         ShieldEffectOff();
+        AttackOn();
+        StartCoroutine("FireRoutine");
 
     }
 
@@ -24,7 +26,7 @@ public class Guard4 : MonsterBase
     {
         monsterName = MonsterName.Guard4;
         SetHp(10);
-        nearestAcessDistance = 1f;
+        nearestAcessDistance = 3f;
 
         attackDelay = 1f;
         moveSpeed = 1f;
@@ -108,7 +110,9 @@ public class Guard4 : MonsterBase
         RotateWeapon();
         if (canMove() == false) return;
         ShieldRoutine();
-        MoveToTarget();
+
+        MoveAgainstTarget();
+        //MoveToTarget();
 
    
 

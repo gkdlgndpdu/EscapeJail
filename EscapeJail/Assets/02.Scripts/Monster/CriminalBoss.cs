@@ -87,7 +87,7 @@ public class CriminalBoss : BossBase
     private void RegistPatternToQueue()
     {
 
-        bossEventQueue.Initialize(this, EventOrder.InOrder);
+        bossEventQueue.Initialize(this, EventOrder.Random);
 
         //  bossEventQueue.AddEvent("FirePattern1");
         bossEventQueue.AddEvent("FirePattern3");

@@ -114,7 +114,7 @@ public class Bullet : MonoBehaviour
             case BulletType.PlayerBullet:
                 {
                     //bloom
-                    SetBloom(true, Color.green);
+                    SetBloom(true, Color.yellow);
                 }
                 break;
         }

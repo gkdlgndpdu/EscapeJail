@@ -11,7 +11,7 @@ namespace weapon
         public GuardPistol()
         {
             weapontype = WeaponType.GuardPistol;
-            bulletSpeed = 10f;
+            bulletSpeed = 5f;
             weaponScale = Vector3.one * 2f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }

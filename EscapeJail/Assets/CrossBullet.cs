@@ -6,7 +6,7 @@ public class CrossBullet : MonoBehaviour
 {
     public Bullet bulletPrefab;
     private int bulletLength = 30;
-    private float rotationSpeed = 80f;
+    private float rotationSpeed = 50f;
     private float zAngle = 0f;
     private ObjectPool<Bullet> bulletPool;
     private List<Bullet> allBulletList = new List<Bullet>();
