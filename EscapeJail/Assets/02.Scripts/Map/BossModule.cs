@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//보스방 만들때 해줘야 할것
+//타일 타입 정확히 맞춰주기 (wall인지 normal인지 door인지)
+//레이어 순서 정확히 맞춰줄것
+
+
 public enum DoorDirection
 {
     Default,
@@ -42,11 +48,14 @@ public class BossModule : MapModuleBase
             else if (tiles[i].tileType == TileType.Wall)
             {
                 wallTileList.Add(tiles[i]);
-                tiles[i].transform.gameObject.AddComponent<BoxCollider2D>();
+                tiles[i].Initialize(TileType.Wall,this);
 
             }
             else if (tiles[i].tileType == TileType.Door)
+            {
                 doorTileList.Add(tiles[i]);
+                tiles[i].Initialize(TileType.Door, this);
+            }
         }
     }
 

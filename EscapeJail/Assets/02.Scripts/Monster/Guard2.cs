@@ -24,7 +24,7 @@ public class Guard2 : MonsterBase
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
         RageOnOff(false);
-
+        AttackOn();
 
     }
 

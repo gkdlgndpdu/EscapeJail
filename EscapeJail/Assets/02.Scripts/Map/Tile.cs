@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
     public TileType tileType;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
-    private MapModule parentModule = null;
+    private MapModuleBase parentModule = null;
     private ObjectShadow objectShadow;
 
     public int x;
@@ -58,7 +58,7 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void Initialize(TileType tileType, MapModule parentModule = null,int layerOrder =0)
+    public void Initialize(TileType tileType, MapModuleBase parentModule = null,int layerOrder =0)
     {
         SetLayerOrder(layerOrder);
 
