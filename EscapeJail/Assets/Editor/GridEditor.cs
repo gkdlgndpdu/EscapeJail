@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+#if UNITY_EDITOR
 
 [CustomEditor(typeof(Custom_Grid))]
 public class GridEditor : Editor
@@ -278,3 +279,4 @@ public class GridEditor : Editor
     }
 
 }
+#endif

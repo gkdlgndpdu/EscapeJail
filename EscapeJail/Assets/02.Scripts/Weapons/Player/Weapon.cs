@@ -33,7 +33,7 @@ namespace weapon
         CriminalUzi,
         GuardPistol,
         GuardRifle,
-        AroundGun,
+        MouseRifle,
         Scientist_GasGun,
         Last1Gun,
         Last2Sniper,

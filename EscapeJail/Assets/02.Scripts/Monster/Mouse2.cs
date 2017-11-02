@@ -5,7 +5,7 @@ using UnityEngine;
 using weapon;
 public class Mouse2 : MonsterBase
 {
-    float shotDelay = 3f;
+    float shotDelay = 2.5f;
     public new void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;

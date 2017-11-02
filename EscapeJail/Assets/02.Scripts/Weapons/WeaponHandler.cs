@@ -87,12 +87,7 @@ public class WeaponHandler : MonoBehaviour
         }
         //무기가 있을때
         else
-        {
-            if (animator != null && weapon.weapontype != WeaponType.Flamethrower)
-            {
-                animator.speed = 0f;
-                animator.Play(0,0);
-            }
+        {          
 
       
 
@@ -110,6 +105,12 @@ public class WeaponHandler : MonoBehaviour
                     SetScale(nowWeapon.weaponScale);
                     SetPostion(nowWeapon.relativePosition);
 
+                }
+
+                if (animator != null && weapon.weapontype != WeaponType.Flamethrower)
+                {
+                    animator.Play("Fire", 0, 0f);
+                    animator.speed = 0f;
                 }
             }
 

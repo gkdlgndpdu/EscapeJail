@@ -54,7 +54,7 @@ public class MapModule : MapModuleBase
         if (monsterList == null) return;
 
         monsterList.ListShuffle(30);
-        int spawnMonsterTypeNum = Random.Range(1, monsterList.Count);
+        int spawnMonsterTypeNum = Random.Range(2, monsterList.Count);
 
         for(int i = 0; i < spawnMonsterTypeNum; i++)
         {

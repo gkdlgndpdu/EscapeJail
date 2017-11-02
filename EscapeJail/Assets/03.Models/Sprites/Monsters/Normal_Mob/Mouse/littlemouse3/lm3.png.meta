@@ -1,22 +1,23 @@
 fileFormatVersion: 2
-guid: 925b8032a07def94783d455ec53b25af
-timeCreated: 1509626316
+guid: 1610bf0bb96362646ace7314c366db28
+timeCreated: 1509652846
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: lm3_0
-    21300002: lm3_1
-    21300004: lm3_2
-    21300006: lm3_3
-    21300008: lm3_4
-    21300010: lm3_5
-    21300012: lm3_6
-    21300014: lm3_7
-    21300016: lm3_8
-    21300018: lm3_9
-    21300020: lm3_10
-    21300022: lm3_11
-    21300024: lm3_12
+    21300000: lm4_0
+    21300002: lm4_1
+    21300004: lm4_2
+    21300006: lm4_3
+    21300008: lm4_4
+    21300010: lm4_5
+    21300012: lm4_6
+    21300014: lm4_7
+    21300016: lm4_8
+    21300018: lm4_9
+    21300020: lm4_10
+    21300022: lm4_11
+    21300024: lm4_12
+    21300026: lm3_0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -96,183 +97,183 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lm3_0
+      name: lm4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_1
+      name: lm4_1
       rect:
         serializedVersion: 2
         x: 65
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_2
+      name: lm4_2
       rect:
         serializedVersion: 2
         x: 130
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_3
+      name: lm4_3
       rect:
         serializedVersion: 2
         x: 195
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_4
+      name: lm4_4
       rect:
         serializedVersion: 2
         x: 260
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_5
+      name: lm4_5
       rect:
         serializedVersion: 2
         x: 325
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_6
+      name: lm4_6
       rect:
         serializedVersion: 2
         x: 390
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_7
+      name: lm4_7
       rect:
         serializedVersion: 2
         x: 0
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_8
+      name: lm4_8
       rect:
         serializedVersion: 2
         x: 65
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_9
+      name: lm4_9
       rect:
         serializedVersion: 2
         x: 130
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_10
+      name: lm4_10
       rect:
         serializedVersion: 2
         x: 195
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_11
+      name: lm4_11
       rect:
         serializedVersion: 2
         x: 260
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lm3_12
+      name: lm4_12
       rect:
         serializedVersion: 2
         x: 325
         y: 127
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

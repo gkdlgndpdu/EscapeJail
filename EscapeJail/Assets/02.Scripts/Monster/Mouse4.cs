@@ -10,15 +10,26 @@ public class Mouse4 : MonsterBase
     {
         monsterName = MonsterName.Mouse4;
         SetHp(10);
-        nearestAcessDistance = 6f;
+        nearestAcessDistance = 1f;
         SetWeapon();
     }
 
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new AroundGun());
+        nowWeapon.ChangeWeapon(new MouseRifle());
 
     }
+
+
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        StartCoroutine(FireRoutine());
+        AttackOn();
+
+    }
+
+
 
     // Use this for initialization
     private new void Start()
@@ -29,8 +40,8 @@ public class Mouse4 : MonsterBase
 
     protected new void OnEnable()
     {
-        base.OnEnable();    
-    
+        base.OnEnable();
+
     }
 
     private new void Awake()
@@ -38,15 +49,7 @@ public class Mouse4 : MonsterBase
         base.Awake();
     }
 
-    public override void ResetMonster()
-    {
-        base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
-  
 
-
-    }
 
     // Update is called once per frame
     private void Update()
@@ -61,32 +64,16 @@ public class Mouse4 : MonsterBase
     protected override IEnumerator FireRoutine()
     {
         while (true)
-        {        
-            FireWeapon();
-            yield return new WaitForSeconds(fireDelay);         
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                FireWeapon();
+                yield return new WaitForSeconds(0.2f);
+            }
+            yield return new WaitForSeconds(fireDelay);
         }
     }
 
-    protected void RotateWeapon()
-    {
-        float angle = MyUtils.GetAngle(this.transform.position, target.position);
-        if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        //flip
-        if ((angle >= 0f && angle <= 90) ||
-              angle >= 270f && angle <= 360)
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(false);
-        }
-        else
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(true);
-        }
-
-    }
 
     protected override void FireWeapon()
     {

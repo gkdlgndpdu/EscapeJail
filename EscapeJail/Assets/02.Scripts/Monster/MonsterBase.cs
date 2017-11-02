@@ -259,6 +259,9 @@ public class MonsterBase : CharacterInfo
     }
 
 
+    /// <summary>
+    /// 원거리 몬스터의 경우에 무기를 켜줄때 사용
+    /// </summary>
     public void AttackOn()
     {
         if (weaponPosit != null)

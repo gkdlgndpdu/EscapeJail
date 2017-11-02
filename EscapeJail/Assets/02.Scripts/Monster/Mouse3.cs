@@ -40,6 +40,7 @@ public class Mouse3 : MonsterBase
     private void Update()
     {
         if (canMove() == false) return;
+        if (nowAttack == true) return;
 
         MoveToTarget();
         NearAttackLogic();
@@ -52,29 +53,25 @@ public class Mouse3 : MonsterBase
     {
         nowAttack = true;
 
+        SetAnimation(MonsterState.Attack);
         //선딜
         yield return new WaitForSeconds(0.5f);
         AttackOn();
 
         Vector3 RushDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
-        for (int i = 0; i < 30; i++)
-        {
-            RushDir.Normalize();
+        RushDir.Normalize();
 
-            if (rb != null)
-                rb.velocity = RushDir * RushPower;
-
-            yield return null;
-        }
-
-
-
-        //후딜
-        yield return new WaitForSeconds(RushAfterDelay);
-        AttackOff();
-        nowAttack = false;
         if (rb != null)
-            rb.velocity = Vector3.zero;
+            rb.velocity = RushDir * RushPower;
+        yield return new WaitForSeconds(1.0f);
+        if (animator != null)
+            animator.SetTrigger("AttackEndTrigger");
+        if (rb != null)
+            rb.velocity = Vector3.zero;                
+        AttackOff();
+
+        yield return new WaitForSeconds(RushAfterDelay);
+        nowAttack = false;   
 
     
     }
