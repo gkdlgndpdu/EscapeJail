@@ -27,6 +27,8 @@ namespace ScientistBoss
         public bool isDead = false;
         private ScientistBoss parentComputer;
         private Image hudImage;
+
+        public List<Transform> computer1FirePos;
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -61,7 +63,7 @@ namespace ScientistBoss
 
         }
 
-        public void StartPattern(ScientistBoss parent,int hp =30)
+        public void StartPattern(ScientistBoss parent,int hp =40)
         {
             parentComputer = parent;
             AddToMonsterList();
@@ -159,67 +161,99 @@ namespace ScientistBoss
             {
                 case ChildType._1:
                     {
-                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                        if (bullet != null)
+                        if (computer1FirePos == null) return;
+
+                        Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
+                        Vector3 fireDIr = PlayerPos - this.transform.position;
+                        float reboundValue = 30f;
+
+                        for (int i=0;i< computer1FirePos.Count; i++)
                         {
-                            bullet.gameObject.SetActive(true);
-                            Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
-                            Vector3 fireDIr = PlayerPos - this.transform.position;
-                            bullet.Initialize(this.transform.position, fireDIr.normalized, 5f, BulletType.EnemyBullet);
-                            bullet.InitializeImage("white", false);
-                            bullet.SetEffectName("revolver");
+                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                            if (bullet != null)
+                            {
+                                bullet.gameObject.SetActive(true);
+                                Vector3 fireDirection = Quaternion.Euler(0f, 0f, Random.Range(-reboundValue, reboundValue)) * fireDIr;
+                                bullet.Initialize(computer1FirePos[i].position, fireDirection.normalized, 5f, BulletType.EnemyBullet);
+                                bullet.InitializeImage("white", false);
+                                bullet.SetEffectName("revolver");
+                            }
                         }
+                      
                     }
                     break;
                 case ChildType._2:
                     {
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;
-                        for (int i = 0; i < 3; i++)
-                        {
-                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                            if (bullet != null)
-                            {
-                                Vector3 fireDirection = Quaternion.Euler(0f, 0f, -15f + i * 15f) * fireDIr;
-                                bullet.gameObject.SetActive(true);
-                                bullet.Initialize(this.transform.position, fireDirection.normalized, 5f, BulletType.EnemyBullet);
-                                bullet.InitializeImage("white", false);
-                                bullet.SetEffectName("revolver");
-                            }
-                        }
+                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                        if (bullet != null)
+                        {                           
+                            bullet.gameObject.SetActive(true);
+                            bullet.Initialize(this.transform.position, fireDIr.normalized, 1f, BulletType.EnemyBullet);
+                            bullet.InitializeImage("white", false);
+                            bullet.SetEffectName("revolver");
+                        }                    
+                      
+
+                      
 
                     }
                     break;
                 case ChildType._3:
                     {
-                        for(int i = 0; i < 3; i++)
+
+                        Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
+                        Vector3 fireDIr = PlayerPos - this.transform.position;
+                        for (int k = 0; k < 2; k++)
                         {
-                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                            if (bullet != null)
+                            for (int i = 0; i < 3; i++)
                             {
-                                bullet.gameObject.SetActive(true);
-                                Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
-                                Vector3 fireDIr = PlayerPos - this.transform.position;
-                                bullet.Initialize(this.transform.position, fireDIr.normalized, 8f-(float)i, BulletType.EnemyBullet);
-                                bullet.InitializeImage("white", false);
-                                bullet.SetEffectName("revolver");
+                                Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                                if (bullet != null)
+                                {
+                                    bullet.gameObject.SetActive(true);
+                             
+                                    Vector3 realFireDir = Quaternion.Euler(0f, 0f, -5f + 10f * k) * fireDIr;
+                                  
+                                    bullet.Initialize(this.transform.position, realFireDir.normalized, 8f - (float)i, BulletType.EnemyBullet);
+                                    bullet.InitializeImage("white", false);
+                                    bullet.SetEffectName("revolver");
+                                }
                             }
                         }
+
+              
                  
                     }
                     break;
                 case ChildType._4:
                     {
-                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                        if (bullet != null)
+                        if (ratio == 0.5f)
+                            ratio = 1f;
+                        else
+                            ratio = 0.5f;
+
+                        float bulletSpeed = 7f;
+
+                        Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
+                        Vector3 fireDIr = PlayerPos - this.transform.position;                   
+
+                        for(int i = 0; i < 36; i++)
                         {
-                            bullet.gameObject.SetActive(true);
-                            Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
-                            Vector3 fireDIr = PlayerPos - this.transform.position;
-                            bullet.Initialize(this.transform.position, fireDIr.normalized, 5f, BulletType.EnemyBullet);
-                            bullet.InitializeImage("white", false);
-                            bullet.SetEffectName("revolver");
+                            Vector3 fd = Quaternion.Euler(0f, 0f, i*10f)* fireDIr;              
+                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                            if (bullet != null)
+                            {
+                                bullet.gameObject.SetActive(true);                        
+                                bullet.Initialize(this.transform.position+fd.normalized* ratio, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
+                                bullet.InitializeImage("white", false);
+                                bullet.SetEffectName("revolver");
+                                bullet.SetDestroyByCollision(false,false);
+                            }
                         }
+
+                       
                     }
                     break;
             }
@@ -227,8 +261,12 @@ namespace ScientistBoss
 
         }
 
+        //4번째 컴퓨터 한발 3발쏘고 다음발 4발쏘게 할때 구분하려고 사용
+        float ratio = 0.5f;
+
 
     }
+
 
 
 

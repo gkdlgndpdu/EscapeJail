@@ -601,15 +601,13 @@ public class MonsterBase : CharacterInfo
                     if (findPath == true)
                     {
                         if (rb != null)
-                            rb.velocity = moveDir * moveSpeed;
+                            rb.velocity = moveDir * moveSpeed*1.5f;
 
                         yield return new WaitForSeconds(findMoveTime);
                         break;
                     }
                 }             
-
             }
-
             yield return new WaitForSeconds(0.2f);
         }
 

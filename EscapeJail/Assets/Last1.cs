@@ -17,6 +17,7 @@ public class Last1 : MonsterBase
         base.ResetMonster();
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
+        AttackOff();
     }
 
     private void SetWeapon()

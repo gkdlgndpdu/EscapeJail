@@ -13,7 +13,8 @@ public class Scientist1 : MonsterBase
     private Vector3 transformSize = Vector3.one * 2f;
 
     private bool UseBullet = false;
-
+    //변신중에 무적상태가됨
+    private bool isImmune = false;
 
     //도망
     private float avoidTime = 3f;
@@ -43,6 +44,7 @@ public class Scientist1 : MonsterBase
         this.transform.localScale = Vector3.one;
         scientistState = ScientistState.Normal;
         UseBullet = false;
+        isImmune = false;
     }
 
     // Use this for initialization
@@ -72,12 +74,16 @@ public class Scientist1 : MonsterBase
         if (animator != null)
             animator.SetTrigger("TransformTrigger");
 
+        //변신중에는 무적
+        isImmune = true;
+
         AbilityChange();
     
     }
     public void TransformEnd()
     {
         this.scientistState = ScientistState.Transform;
+        isImmune = false;
     }
 
     private void AbilityChange()
@@ -98,6 +104,12 @@ public class Scientist1 : MonsterBase
 
     public override void GetDamage(int damage)
     {
+        if (isImmune == true)
+        {
+            Debug.Log("변신중에는 무적입니다");
+            return;
+        }
+
         //한대맞으면 그떄부터 도망감
         if (scientistState == ScientistState.Normal)
         {
@@ -178,6 +190,11 @@ public class Scientist1 : MonsterBase
         {
             MoveToTarget();
             NearAttackLogic();
+        }
+        else if(scientistState==ScientistState.Normal)
+        {
+            if (rb != null)
+                rb.velocity = Vector3.zero; 
         }
 
     }

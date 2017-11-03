@@ -49,7 +49,7 @@ public class Scientist3 : MonsterBase
         //독지대
         PollutedArea pollutedArea = ObjectManager.Instance.pollutedAreaPool.GetItem();
         if (pollutedArea != null)
-            pollutedArea.Initialize(this.transform.position, 5f, 2f, CharacterCondition.InPoison,BulletType.EnemyBullet);
+            pollutedArea.Initialize(this.transform.position, 20f, 3f, CharacterCondition.InPoison,BulletType.EnemyBullet);
 
 
     }
