@@ -66,7 +66,7 @@ public class MonsterBase : CharacterInfo
     protected float activeDistance = 10;
 
     //Hud
-    protected EnemyHpBar enemyHpBar;    
+    protected EnemyHpBar enemyHpBar;
     //무기
     protected WeaponHandler nowWeapon;
     [SerializeField]
@@ -76,6 +76,9 @@ public class MonsterBase : CharacterInfo
     protected AttackObject attackObject;
 
     protected MapModule parentModule;
+
+    //앞에 벽이 있다
+    protected bool hasWall = false;
 
     public void SetMapModule(MapModule mapModule)
     {
@@ -93,7 +96,7 @@ public class MonsterBase : CharacterInfo
         nowAttack = false;
         isDead = false;
 
-        ColliderOnOff(true);   
+        ColliderOnOff(true);
 
         isMoveRandom = false;
 
@@ -338,18 +341,19 @@ public class MonsterBase : CharacterInfo
         }
 
         CalculateMoveDIr();
-        rb.velocity = Quaternion.Euler(0f,0f,Random.Range(-45f,45f))* -moveDir.normalized * moveSpeed;
+        rb.velocity = Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)) * -moveDir.normalized * moveSpeed;
 
         SetAnimation(MonsterState.Walk);
     }
 
     protected void CalculateMoveDIr()
     {
-        moveDir = target.position - this.transform.position;
+        if (hasWall == false)
+            moveDir = target.position - this.transform.position;
     }
 
     protected void UpdateHud()
-    {    
+    {
         if (enemyHpBar != null)
             enemyHpBar.SetHpBar((float)hp, (float)hpMax);
     }
@@ -543,5 +547,76 @@ public class MonsterBase : CharacterInfo
 
     }
 
+    protected IEnumerator PathFindRoutine()
+    {
+        int layerMask = MyUtils.GetLayerMaskByString("ItemTable");
+        float rayDistance = 1.5f;
+        //찾은길로 이동하는 시간
+        float findMoveTime = 1f;
+
+        while (true)
+        {
+            Vector3 rayDir = moveDir.normalized;
+            RaycastHit2D raycastHit = Physics2D.Raycast(this.transform.position, rayDir, rayDistance, layerMask);
+            //벽이없음 -> 갈길간다
+            if (raycastHit.collider == null)
+            {
+                Debug.Log("벽이없음");
+                hasWall = false;
+            }
+            //벽이 탐지됨 ->길을 찾는다
+            else
+            {
+                Debug.Log("벽이있어");
+                hasWall = true;
+
+                for (int i = 1; i < 5; i++)
+                {
+                    Vector3 nextRayDir1 = Quaternion.Euler(0f, 0f, i * 40f) * rayDir;
+                    Vector3 nextRayDir2 = Quaternion.Euler(0f, 0f, i * -40f) * rayDir;
+                    RaycastHit2D raycastHit1 = Physics2D.Raycast(this.transform.position, nextRayDir1, rayDistance, layerMask);
+                    RaycastHit2D raycastHit2 = Physics2D.Raycast(this.transform.position, nextRayDir2, rayDistance, layerMask);
+                  
+                    bool findPath = false;
+                    float pointdistance = 99f;
+
+                    if (raycastHit1.collider == null)
+                    {
+                        findPath = true;              
+                        pointdistance = raycastHit1.distance;
+                        moveDir = nextRayDir1.normalized;
+                    }
+                    if (raycastHit2.collider == null)
+                    {
+                        findPath = true;
+                  
+                        //두번째 경로가 더 짧으면
+                        if (raycastHit2.distance < pointdistance)
+                        {
+                            moveDir = nextRayDir2.normalized;
+                    
+                        }
+                    }
+
+                    if (findPath == true)
+                    {
+                        if (rb != null)
+                            rb.velocity = moveDir * moveSpeed;
+
+                        yield return new WaitForSeconds(findMoveTime);
+                        break;
+                    }
+                }             
+
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+    }
 
 }
+
+
+
+

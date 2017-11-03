@@ -54,13 +54,18 @@ public class MapModule : MapModuleBase
         if (monsterList == null) return;
 
         monsterList.ListShuffle(30);
-        int spawnMonsterTypeNum = Random.Range(2, monsterList.Count);
 
-        for(int i = 0; i < spawnMonsterTypeNum; i++)
+
+        int spawnMonsterTypeNum = 0;
+        if (monsterList.Count > 1)
+            spawnMonsterTypeNum = Random.Range(2, monsterList.Count);
+        else
+            spawnMonsterTypeNum = Random.Range(1, monsterList.Count);
+        for (int i = 0; i < spawnMonsterTypeNum; i++)
         {
             spawnableMonsterList.Add(monsterList[i]);
         }
-       
+
         monsterList.Clear();
         monsterList = null;
 
@@ -68,20 +73,20 @@ public class MapModule : MapModuleBase
         //랜덤
         if (randomGenerator != null)
         {
-            for(int i=0;i< spawnableMonsterList.Count; i++)
+            for (int i = 0; i < spawnableMonsterList.Count; i++)
             {
                 MonsterDB monsterData = DatabaseLoader.Instance.GetMonsterData(spawnableMonsterList[i]);
 
                 if (monsterData != null)
                     randomGenerator.AddToList(spawnableMonsterList[i], monsterData.Probability);
             }
-         
+
         }
     }
 
     public MonsterName GetRandomMonster()
     {
-        MonsterName RandomKey = randomGenerator.GetRandomData();   
+        MonsterName RandomKey = randomGenerator.GetRandomData();
         return RandomKey;
     }
 
@@ -150,7 +155,7 @@ public class MapModule : MapModuleBase
 
     public void StartWave()
     {
-        for(int i=0;i< spawnableMonsterList.Count; i++)
+        for (int i = 0; i < spawnableMonsterList.Count; i++)
         {
             Debug.Log(spawnableMonsterList[i].ToString());
         }
@@ -199,7 +204,7 @@ public class MapModule : MapModuleBase
 
     public MonsterBase SpawnRandomMonsterInModule(Vector3 spawnPos)
     {
-        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(GetRandomMonster(),spawnPos);
+        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(GetRandomMonster(), spawnPos);
 
         if (spawnMonster != null && monsterList != null)
         {
@@ -211,9 +216,9 @@ public class MapModule : MapModuleBase
     }
 
     //슬라임용
-    public MonsterBase SpawnSpecificMonsterInModule(MonsterName name,Vector3 spawnPos)
+    public MonsterBase SpawnSpecificMonsterInModule(MonsterName name, Vector3 spawnPos)
     {
-        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(name,spawnPos);
+        MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(name, spawnPos);
 
         if (spawnMonster != null && monsterList != null)
         {
@@ -236,7 +241,7 @@ public class MapModule : MapModuleBase
 
         }
 
-      
+
     }
 
     IEnumerator SpawnRandomMonsterRoutine()
@@ -245,13 +250,13 @@ public class MapModule : MapModuleBase
 
         if (normalTileList == null) yield break;
 
-        spawnMonsterNum = (widthNum + heightNum) /7;          
+        spawnMonsterNum = (widthNum + heightNum) / 7;
 
-        SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum+1));      
+        SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum + 1));
 
         //종료 체크
         while (true)
-        {           
+        {
             if (IsWaveEnd() == true && nowWaveNum > 0)
             {
                 nowWaveNum -= 1;
@@ -263,9 +268,9 @@ public class MapModule : MapModuleBase
                 }
 
                 SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum + 1));
-              
 
-            }            
+
+            }
             yield return null;
         }
     }
@@ -298,7 +303,7 @@ public class MapModule : MapModuleBase
     {
         //계수가 생성확률
         float makeNum = (float)(widthNum * heightNum) * 0.005f;
-      
+
         for (int i = 0; i < (int)makeNum; i++)
         {
             MakeEachObject();

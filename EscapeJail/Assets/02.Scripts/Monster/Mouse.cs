@@ -12,9 +12,16 @@ public class Mouse : MonsterBase
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
-        moveSpeed = 2f;
+        moveSpeed = 1f;
 
     }
+
+    public override void ResetMonster()
+    {
+        base.ResetMonster();
+        StartCoroutine(PathFindRoutine());
+    }
+
 
     // Use this for initialization
     private new void Start()
@@ -32,6 +39,11 @@ public class Mouse : MonsterBase
     // Update is called once per frame
     private void Update()
     {
+        //임시코드
+        if (hasWall == true) return;
+        //임시코드
+
+
         NearAttackRotate();
         if (canMove() == false) return;
         MoveToTarget();  
