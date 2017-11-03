@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 878b5866f2b16df4f92b422306fa51e9, type: 3}
-  m_Name: Stage3
+  m_Name: Stage4complete
   m_EditorClassIdentifier: 
-  spawnEnemyList: 0d0000000e0000000f00000010000000
+  spawnEnemyList: 12000000
   bossModule: {fileID: 1744010242839476, guid: 36140675aeb71b04cb8f3ec4f0a7e8bd, type: 2}
   normalTileList:
   - {fileID: 21300000, guid: 7bca7511ea40a6846a00e3e7466d2c3c, type: 3}
@@ -51,7 +51,7 @@ MonoBehaviour:
   spriteDoor: {fileID: 21300000, guid: 6b9fae584b185024e8a55cc876210c16, type: 3}
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
-  MinRoomNum: 5
-  MaxRoomNum: 7
+  MinRoomNum: 1
+  MaxRoomNum: 1
   RoomMaxSize: 30
   RoomMinSize: 20
