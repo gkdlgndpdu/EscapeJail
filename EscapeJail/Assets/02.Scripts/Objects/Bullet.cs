@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 0f;
     //충돌에 의해 파괴 가능? 왠만하면 true, 수류탄 다이나마이트같이 시간 기다려주는것들 제외
     private bool canDestroyByCollision = true;
+    private bool stopWhenCollision = false;
     
     //움직이다가 중간에 멈춥니까?
     private bool hasMoveLifetime = false;
@@ -71,8 +72,15 @@ public class Bullet : MonoBehaviour
 
 
     /// <summary>
-    /// 기타설정은 이 함수 호출 후에 해야함 (볼룸,멀티타겟,다이나마이트,등
+    /// 총알 초기화함수
     /// </summary>
+    /// <param name="startPos">처음위치</param>
+    /// <param name="moveDir">발사방향</param>
+    /// <param name="moveSpeed">총알속도</param>
+    /// <param name="bulletType"></param>
+    /// <param name="bulletScale"></param>
+    /// <param name="power"></param>
+    /// <param name="lifeTime"></param>
     public void Initialize(Vector3 startPos, Vector3 moveDir, float moveSpeed, BulletType bulletType, float bulletScale = 1f, int power = 1, float lifeTime = 5f)
     {
         //위치
@@ -122,10 +130,12 @@ public class Bullet : MonoBehaviour
         bulletDestroyAction = BulletDestroyAction.none;
         canDestroyByCollision = true;
         hasMoveLifetime = false;
+        stopWhenCollision = false;
     }
-    public void SetDestroyByCollision(bool canDestroyByCollision)
+    public void SetDestroyByCollision(bool canDestroyByCollision, bool stopWhenCollision = true)
     {
         this.canDestroyByCollision = canDestroyByCollision;
+           this.stopWhenCollision = stopWhenCollision;
     }
 
     private void OnDisable()
@@ -136,6 +146,7 @@ public class Bullet : MonoBehaviour
     public void SetBulletDestroyAction(BulletDestroyAction action)
     {
         bulletDestroyAction = action;
+     
     }
 
 
@@ -249,7 +260,7 @@ public class Bullet : MonoBehaviour
         {
             BulletDestroy();
         }
-        else if (canDestroyByCollision == false)
+        else if (canDestroyByCollision == false&&stopWhenCollision==true)
         {
             if (collision.gameObject.CompareTag("Tile"))
                 StopBullet();          
