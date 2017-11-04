@@ -22,7 +22,7 @@ public class Scientist4 : MonsterBase
 
     private void SetWeapon()
     {
-        nowWeapon.ChangeWeapon(new Scientist_GasGun());
+        nowWeapon.ChangeWeapon(new Scientist_PoisionGun());
 
     }
 

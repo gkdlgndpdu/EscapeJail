@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 //레이어이름과같음 이걸로 충돌 레이어 구분
 public enum BulletType
 {
@@ -47,10 +47,27 @@ public class Bullet : MonoBehaviour
     private bool hasMoveLifetime = false;
     private float moveLifeTime = 0f;
 
+    private bool hasPollute = false;
+    private CharacterCondition polluteType;
+
+    //폭발시 실행할 함수
+    public Action<Vector3> explostionEndFunc;
+
+    public void SetExplosionEndFunc(Action<Vector3> linkFunc)
+    {
+        explostionEndFunc = linkFunc;
+    }
+
     public void SetMoveLifetime(float time)
     {
         hasMoveLifetime = true;
         moveLifeTime = time;
+    }
+
+    public void SetPollute(CharacterCondition polluteType)
+    {
+        hasPollute = true;
+        this.polluteType = polluteType;
     }
 
     [SerializeField]
@@ -131,6 +148,8 @@ public class Bullet : MonoBehaviour
         canDestroyByCollision = true;
         hasMoveLifetime = false;
         stopWhenCollision = false;
+        explostionEndFunc = null;
+        hasPollute = false;
     }
     public void SetDestroyByCollision(bool canDestroyByCollision, bool stopWhenCollision = true)
     {
@@ -219,8 +238,31 @@ public class Bullet : MonoBehaviour
         {
             CharacterInfo characterInfo = collision.gameObject.GetComponent<CharacterInfo>();
 
-            if (characterInfo != null)
-                characterInfo.GetDamage(this.power);
+            if (hasPollute == false)
+            {
+                if (characterInfo != null)
+                    characterInfo.GetDamage(this.power);
+            }
+            else if(hasPollute == true)
+            {
+                switch (polluteType)
+                {
+                    case CharacterCondition.InFire:
+                        {
+                            if (characterInfo != null)
+                                characterInfo.SetFire();
+                        }
+                        break;
+                    case CharacterCondition.InPoison:
+                        {
+                            if (characterInfo != null)
+                                characterInfo.SetPoison();
+                        }
+                        break;
+                }
+      
+            }
+
         }
     }
 
@@ -289,6 +331,12 @@ public class Bullet : MonoBehaviour
     {
         if (explosionType == ExplosionType.multiple)
             MultiTargetDamage();
+
+        if (explostionEndFunc != null)
+        {
+            explostionEndFunc(this.transform.position);
+            explostionEndFunc = null;
+        }
 
         expireCount = 0f;
         ShowEffect();

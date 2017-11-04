@@ -41,6 +41,7 @@ namespace weapon
         LastBoss_Bazooka,
         LastBoss_MinuGun,
         LastBoss_Pistol,
+        Scientist_PoisionGun,
         MonsterWeaponEnd
     }
 

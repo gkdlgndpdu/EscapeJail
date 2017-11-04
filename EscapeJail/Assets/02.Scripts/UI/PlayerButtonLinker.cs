@@ -18,8 +18,11 @@ public class PlayerButtonLinker : MonoBehaviour
     [SerializeField]
     private StayButton ShotButton;
 
-  
-    
+    [SerializeField]
+    private StayButton ShotStick;
+
+
+
 
     private void Start()
     {
@@ -37,6 +40,11 @@ public class PlayerButtonLinker : MonoBehaviour
     {
         if (ShotButton == null) return;
         ShotButton.myEvent.AddListener(playerData.FireWeapon);
+
+        if (ShotStick == null) return;
+        ShotStick.myEvent.AddListener(playerData.FireWeapon);
+        
+     
     }
 
     private void LinkGetButton()

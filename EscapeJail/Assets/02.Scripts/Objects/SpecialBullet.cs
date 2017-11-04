@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 public enum SpecialBulletType
 {
@@ -18,6 +18,8 @@ public class SpecialBullet : Bullet
     private SpecialBulletType specialBulletType;
     private BoxCollider2D boxCollider;
     private CapsuleCollider2D capsuleCollider;
+
+
 
     private new void Awake()
     {
@@ -63,6 +65,8 @@ public class SpecialBullet : Bullet
             CapsuleColliderOn();
         else
             BoxColliderOn();
+
+        explostionEndFunc = null;
     }
 
     //총알 애니메이션 설정하는곳

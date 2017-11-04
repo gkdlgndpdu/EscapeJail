@@ -6,9 +6,9 @@ public class Scientist1 : MonsterBase
 {
     private ScientistState scientistState = ScientistState.Normal;
     private int originHp = 5;
-
+    private float RushPower = 7f;
     private float transformMoveSpeed = 2f;
-
+    private float RushAfterDelay = 1f;
     private Vector3 orginSize = Vector3.one;
     private Vector3 transformSize = Vector3.one * 2f;
 
@@ -31,7 +31,7 @@ public class Scientist1 : MonsterBase
     {
         monsterName = MonsterName.Scientist1;
         SetHp(originHp);
-        nearestAcessDistance = 1f;
+        nearestAcessDistance = 4f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
         moveSpeed = 4f;
@@ -183,8 +183,8 @@ public class Scientist1 : MonsterBase
     // Update is called once per frame
     private void Update()
     {
-        NearAttackRotate();
         if (canMove() == false) return;
+        if (nowAttack == true) return;
               
         if (scientistState == ScientistState.Transform)
         {
@@ -204,9 +204,27 @@ public class Scientist1 : MonsterBase
     protected override IEnumerator AttackRoutine()
     {
         nowAttack = true;
+
         SetAnimation(MonsterState.Attack);
-        yield return new WaitForSeconds(attackDelay);
+        //선딜
+        yield return new WaitForSeconds(0.5f);
+        AttackOn();
+
+        Vector3 RushDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
+        RushDir.Normalize();
+
+        if (rb != null)
+            rb.velocity = RushDir * RushPower;
+        yield return new WaitForSeconds(1.0f);
+        if (animator != null)
+            animator.SetTrigger("AttackEndTrigger");
+        if (rb != null)
+            rb.velocity = Vector3.zero;
+        AttackOff();
+
+        yield return new WaitForSeconds(RushAfterDelay);
         nowAttack = false;
+
     }
 
 

@@ -33,6 +33,7 @@ public class CharacterBase : CharacterInfo
 
     private bool hasBag = false;
 
+    private Vector3 lastFireDirection = Vector3.zero;
 
     //무기
     [SerializeField]
@@ -100,7 +101,7 @@ public class CharacterBase : CharacterInfo
     protected void SetBuffEffect()
     {
         GameObject loadObj = Resources.Load<GameObject>("Prefabs/Objects/BuffEffect");
-        if(loadObj!=null)
+        if (loadObj != null)
         {
             GameObject makingObject = Instantiate(loadObj, this.transform);
             if (makingObject != null)
@@ -111,7 +112,7 @@ public class CharacterBase : CharacterInfo
                     this.buffEffect = effect;
                     BuffEffectOnOff(false);
                 }
-            }         
+            }
 
         }
     }
@@ -138,9 +139,9 @@ public class CharacterBase : CharacterInfo
     {
         isBurstMoveOn = OnOff;
 
-        if (OnOff==true)
+        if (OnOff == true)
         {
-            moveSpeed = burstSpeed;    
+            moveSpeed = burstSpeed;
         }
         else
         {
@@ -181,7 +182,7 @@ public class CharacterBase : CharacterInfo
         {
             armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpBar);
             //임시
-            SetArmor(0,0);
+            SetArmor(0, 0);
         }
     }
 
@@ -202,10 +203,10 @@ public class CharacterBase : CharacterInfo
     }
 
 
-    public void SetArmor(int level,int value)
+    public void SetArmor(int level, int value)
     {
         if (armorSystem != null)
-            armorSystem.SetArmor(level,value);
+            armorSystem.SetArmor(level, value);
     }
 
     protected void SetupComponent()
@@ -252,22 +253,41 @@ public class CharacterBase : CharacterInfo
 
     public virtual void FireWeapon()
     {
-        GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
-        if (nearEnemy != null && weaponHandler != null)
+        if (GameOption.FireStyle == FireStyle.Auto)
         {
-            Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
-            weaponHandler.FireBullet(this.FirePos.position, fireDir);
+            GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
 
-
+            if (nearEnemy != null && weaponHandler != null)
+            {
+                Vector3 fireDir = nearEnemy.transform.position - this.transform.position;
+                weaponHandler.FireBullet(this.FirePos.position, fireDir);
+            }
+            else if (nearEnemy == null)
+            {
+                if (lastMoveDir != Vector3.zero)
+                    weaponHandler.FireBullet(this.FirePos.position, lastMoveDir);
+                else
+                    weaponHandler.FireBullet(this.FirePos.position, Vector3.left);
+            }
         }
-        else if (nearEnemy == null)
+        else if (GameOption.FireStyle == FireStyle.Manual)
         {
-            if (lastMoveDir != Vector3.zero)
-                weaponHandler.FireBullet(this.FirePos.position, lastMoveDir);
-            else
-                weaponHandler.FireBullet(this.FirePos.position, Vector3.left);
+            if (weaponHandler != null)
+            {
+                Vector3 fd = FireJoyStick.Instance.FireDir;
+                if (fd != Vector3.zero)
+                {
+                    weaponHandler.FireBullet(this.FirePos.position, fd);
+                    lastFireDirection = fd;
+                }
+                else
+                    weaponHandler.FireBullet(this.FirePos.position, lastFireDirection);
+
+            }
         }
+
+
 
 
     }
@@ -275,13 +295,20 @@ public class CharacterBase : CharacterInfo
 
     private void RotateWeapon()
     {
-
-        GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
-        if (nearEnemy != null && weaponHandler.attackType == AttackType.gun)
-            RotateWeapon(nearEnemy.transform.position);
-        else if (nearEnemy == null || weaponHandler.attackType == AttackType.near)
+        if (GameOption.FireStyle == FireStyle.Auto)
         {
-            RotateWeapon(this.transform.position + moveDir);
+            GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
+            if (nearEnemy != null && weaponHandler.attackType == AttackType.gun)
+                RotateWeapon(nearEnemy.transform.position);
+            else if (nearEnemy == null || weaponHandler.attackType == AttackType.near)
+            {
+                RotateWeapon(this.transform.position + moveDir);
+            }
+        }
+        else if (GameOption.FireStyle == FireStyle.Manual)
+        {
+            if (lastFireDirection != Vector3.zero) ;
+            RotateWeapon(this.transform.position +lastFireDirection);
         }
     }
 
@@ -300,8 +327,8 @@ public class CharacterBase : CharacterInfo
 
 #endif
 
-        if (moveDir != Vector3.zero)
-            RotateWeapon();
+
+        RotateWeapon();
 
     }
 
@@ -614,13 +641,13 @@ public class CharacterBase : CharacterInfo
 
         nowUseStimulant = true;
         StopCoroutine("StimulantRoutine");
-        StartCoroutine("StimulantRoutine",value);
+        StartCoroutine("StimulantRoutine", value);
     }
 
-  
 
 
-  
+
+
 
     private IEnumerator StimulantRoutine(int value)
     {

@@ -228,25 +228,21 @@ namespace ScientistBoss
                     }
                     break;
                 case ChildType._4:
-                    {
-                        if (ratio == 0.5f)
-                            ratio = 1f;
-                        else
-                            ratio = 0.5f;
+                    {                       
 
-                        float bulletSpeed = 7f;
+                        float bulletSpeed = 8f;
 
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;                   
 
-                        for(int i = 0; i < 36; i++)
+                        for(int i = 0; i < 18; i++)
                         {
-                            Vector3 fd = Quaternion.Euler(0f, 0f, i*10f)* fireDIr;              
+                            Vector3 fd = Quaternion.Euler(0f, 0f, i*20f)* fireDIr;              
                             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                             if (bullet != null)
                             {
                                 bullet.gameObject.SetActive(true);                        
-                                bullet.Initialize(this.transform.position+fd.normalized* ratio, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
+                                bullet.Initialize(this.transform.position+fd.normalized*1f, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
                                 bullet.InitializeImage("white", false);
                                 bullet.SetEffectName("revolver");
                                 bullet.SetDestroyByCollision(false,false);
@@ -261,9 +257,7 @@ namespace ScientistBoss
 
         }
 
-        //4번째 컴퓨터 한발 3발쏘고 다음발 4발쏘게 할때 구분하려고 사용
-        float ratio = 0.5f;
-
+   
 
     }
 
