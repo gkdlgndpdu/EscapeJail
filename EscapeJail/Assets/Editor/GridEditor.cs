@@ -51,6 +51,7 @@ public class GridEditor : Editor
 
     public override void OnInspectorGUI()
     {
+
         //base.OnInspectorGUI();
      
         grid.width = createFloatSlider("Width", grid.width);
@@ -157,6 +158,8 @@ public class GridEditor : Editor
     //에디터 모드에서 액션에 반응
     private void OnSceneGUI()
     {
+        if (grid.enabled == false) return;
+
         int controlId = GUIUtility.GetControlID(FocusType.Passive);
         Event e = Event.current;
         Ray ray = Camera.current.ScreenPointToRay(new Vector3(e.mousePosition.x, -e.mousePosition.y + Camera.current.pixelHeight));

@@ -202,7 +202,7 @@ namespace ScientistBoss
                         childList[j].HideOnOff(false);
                     
                 }
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(1.5f);
             }
                      
             //리소스 해제

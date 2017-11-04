@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// 이동용 조이스틱
+/// </summary>
 public class JoyStick : MonoBehaviour
 {
     public static JoyStick Instance;
