@@ -27,10 +27,10 @@ public class Scientist1 : MonsterBase
         Transform
     }
 
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Scientist1;
-        SetHp(originHp);
+        
         nearestAcessDistance = 4f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
@@ -40,6 +40,7 @@ public class Scientist1 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
+        SetHp(originHp);
         SetAnimation(MonsterState.Idle);
         this.transform.localScale = Vector3.one;
         scientistState = ScientistState.Normal;
@@ -47,11 +48,11 @@ public class Scientist1 : MonsterBase
         isImmune = false;
     }
 
-    // Use this for initialization
-    private new void Start()
+    protected new void Start()
     {
         base.Start();
-        SetUpMonsterAttribute();
+        originHp = hp;
+
     }
 
     private IEnumerator TransformRoutine()
@@ -174,12 +175,6 @@ public class Scientist1 : MonsterBase
     }
 
 
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
-
     // Update is called once per frame
     private void Update()
     {
@@ -227,11 +222,6 @@ public class Scientist1 : MonsterBase
 
     }
 
-
-    public void OnDisable()
-    {
-        AttackOff();
-    }
 
 
 

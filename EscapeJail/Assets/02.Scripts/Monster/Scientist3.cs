@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Scientist3 : MonsterBase
 {
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Scientist3;
-        SetHp(10);
+     
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
@@ -15,19 +15,6 @@ public class Scientist3 : MonsterBase
 
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-
-
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
 
     // Update is called once per frame
     private void Update()
@@ -65,11 +52,6 @@ public class Scientist3 : MonsterBase
         nowAttack = false;
     }
 
-
-    public void OnDisable()
-    {
-        AttackOff();
-    }
 
 
 

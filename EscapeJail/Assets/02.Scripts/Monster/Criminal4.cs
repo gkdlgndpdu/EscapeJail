@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Criminal4 : MonsterBase
 {
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal4;
-        SetHp(5);     
+      
         moveSpeed = 2f;
     }
 
@@ -18,13 +18,7 @@ public class Criminal4 : MonsterBase
         StartCoroutine(AttackRoutine());
     } 
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-
+ 
 
     public void FireGranade()
     {
@@ -47,11 +41,6 @@ public class Criminal4 : MonsterBase
     }
 
 
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
 
     // Update is called once per frame
     private void Update()

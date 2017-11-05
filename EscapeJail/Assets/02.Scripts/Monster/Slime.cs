@@ -8,10 +8,10 @@ public class Slime : MonsterBase
     public bool CanDivide = true;
     private int babyNum = 2;
 
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Slime;
-        SetHp(10);
+      
         nearestAcessDistance = 1f;
 
     }

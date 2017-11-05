@@ -22,10 +22,10 @@ public class Guard4 : MonsterBase
 
     }
 
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Guard4;
-        SetHp(10);
+      
         nearestAcessDistance = 3f;
 
         attackDelay = 1f;
@@ -40,19 +40,8 @@ public class Guard4 : MonsterBase
 
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
 
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-        if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-    }
+
 
     private void ShieldOnOff(bool OnOff)
     {
@@ -97,12 +86,7 @@ public class Guard4 : MonsterBase
             SetDie();
         }
     }
-
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
+    
 
     // Update is called once per frame
     private void Update()
@@ -147,31 +131,7 @@ public class Guard4 : MonsterBase
             yield return new WaitForSeconds(1f);
         }
     }
-
-
-   
-
-    protected void RotateWeapon()
-    {
-        float angle = MyUtils.GetAngle(this.transform.position, target.position);
-        if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        //flip
-        if ((angle >= 0f && angle <= 90) ||
-              angle >= 270f && angle <= 360)
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(false);
-        }
-        else
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(true);
-        }
-
-    }
-
+        
     private void ShieldEffectOn()
     {
         GameObject target = spriteRenderer.gameObject;

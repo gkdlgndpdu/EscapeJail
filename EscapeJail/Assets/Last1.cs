@@ -5,10 +5,10 @@ using weapon;
 
 public class Last1 : MonsterBase
 {
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last1;
-        SetHp(10);
+   
         nearestAcessDistance = 5f;
         SetWeapon();
     } 
@@ -26,25 +26,7 @@ public class Last1 : MonsterBase
 
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
 
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-        if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-    }
-
-    private new void Awake()
-    {
-        base.Awake();
-
-    }
 
     // Update is called once per frame
     private void Update()

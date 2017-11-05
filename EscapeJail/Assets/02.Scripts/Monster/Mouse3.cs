@@ -8,34 +8,15 @@ public class Mouse3 : MonsterBase
 
     private float RushPower = 5f;
     private float RushAfterDelay = 1f;
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;
-        SetHp(10);
+
         nearestAcessDistance = 3f;
 
     } 
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-    
-
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-
-    }
-
-    private new void Awake()
-    {
-        base.Awake();
-
-    }
-
+ 
     // Update is called once per frame
     private void Update()
     {
@@ -74,6 +55,21 @@ public class Mouse3 : MonsterBase
         nowAttack = false;   
 
     
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (nowAttack == false) return;
+        if (collision.gameObject.CompareTag("Player") == true)
+        {
+            if (rb != null)
+                rb.velocity = Vector3.zero;
+
+            if (animator != null)
+                animator.SetTrigger("AttackEndTrigger");
+
+            AttackOff();
+        }
     }
 
 

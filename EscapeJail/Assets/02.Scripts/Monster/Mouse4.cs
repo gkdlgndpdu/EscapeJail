@@ -6,10 +6,10 @@ public class Mouse4 : MonsterBase
 {
 
     float fireDelay = 3f;
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse4;
-        SetHp(10);
+     
         nearestAcessDistance = 1f;
         SetWeapon();
     }
@@ -28,27 +28,6 @@ public class Mouse4 : MonsterBase
         AttackOn();
 
     }
-
-
-
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-
-    }
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
-
 
 
     // Update is called once per frame

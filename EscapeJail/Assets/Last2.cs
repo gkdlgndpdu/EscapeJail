@@ -41,15 +41,11 @@ public class Last2 : MonsterBase
     }
  
     
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-    public new void SetUpMonsterAttribute()
+ 
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last2;
-        SetHp(10);
+      
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(5f,10f);
         SetWeapon();
@@ -70,15 +66,8 @@ public class Last2 : MonsterBase
         nowWeapon.ChangeWeapon(new Last2Sniper());
     }
 
-    // Use this for initialization
-  
 
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-        if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-    }
+  
 
  
 

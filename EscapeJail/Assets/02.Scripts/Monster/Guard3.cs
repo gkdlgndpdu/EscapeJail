@@ -21,22 +21,15 @@ public class Guard3 : MonsterBase
 
     }
 
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Guard3;
-        SetHp(10);
+     
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
         moveSpeed = 1f;
 
-    }
-
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();      
     }
 
 
@@ -80,10 +73,6 @@ public class Guard3 : MonsterBase
     }
 
 
-    private new void Awake()
-    {
-        base.Awake();
-    }
 
     // Update is called once per frame
     private void Update()
@@ -123,12 +112,6 @@ public class Guard3 : MonsterBase
         SetAnimation(MonsterState.Attack);
         yield return new WaitForSeconds(attackDelay);
         nowAttack = false;
-    }
-
-
-    public void OnDisable()
-    {
-        AttackOff();
     }
 
 

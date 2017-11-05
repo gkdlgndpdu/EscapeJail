@@ -28,6 +28,7 @@ public enum MonsterName
     Last3,
     Last4,
     Last5,
+    Last6,
     EndMonster
 }
 
@@ -43,6 +44,8 @@ public enum MonsterState
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class MonsterBase : CharacterInfo
 {
+    public bool isInitialize = false;
+
     //대상 타겟
     protected Transform target;
 
@@ -53,7 +56,7 @@ public class MonsterBase : CharacterInfo
     protected SpriteRenderer spriteRenderer;
     protected CapsuleCollider2D capsuleCollider;
 
-    //속성값 (속도,hp,mp etc...)
+    //속성값 (속도 etc...)
     protected MonsterName monsterName;
     protected int attackPower = 1;
     protected float moveSpeed = 1f;
@@ -62,6 +65,7 @@ public class MonsterBase : CharacterInfo
     protected float attackDelay = 0f;
     protected bool isDead = false;
     protected bool isMoveRandom = false;
+    protected MonsterDB monsterDB;
     //사정거리 확인용
     protected float activeDistance = 10;
 
@@ -147,7 +151,7 @@ public class MonsterBase : CharacterInfo
         SetUpComponent();
         SetUpCustomScript();
         SetLayerAndTag();
-
+     
 
     }
 
@@ -176,8 +180,23 @@ public class MonsterBase : CharacterInfo
         if (target == null)
             target = GamePlayerManager.Instance.player.transform;
 
-        rb = GetComponent<Rigidbody2D>();
+ 
+    }
 
+    /// <summary>
+    /// 몬스터 초기설정 (db읽기, 속성,체력 세팅등등)
+    /// </summary>
+    public void FirstInitializeMonster()
+    {
+        SetUpMonsterAttribute();
+        ReadDBData();
+        SetHp();
+        isInitialize = true;
+    }
+
+    private void ReadDBData()
+    {
+        this.monsterDB = DatabaseLoader.Instance.GetMonsterData(this.monsterName);
     }
 
     protected void SetAttackPower(int power)
@@ -186,15 +205,24 @@ public class MonsterBase : CharacterInfo
             attackObject.Initialize(power);
     }
 
-    protected void SetUpMonsterAttribute()
+    protected virtual void SetUpMonsterAttribute()
     {
 
     }
 
-    protected new void SetHp(int hpMax)
+    protected  void SetHp()
     {
-        this.hp = hpMax;
-        this.hpMax = hpMax;
+        if (monsterDB != null)
+        {
+            base.SetHp(monsterDB.Hp);
+        }
+#if UNITY_EDITOR
+        if (monsterDB == null)
+            Debug.Log(monsterName.ToString() + " DB 읽기 실패");
+#endif
+
+
+
         UpdateHud();
     }
 

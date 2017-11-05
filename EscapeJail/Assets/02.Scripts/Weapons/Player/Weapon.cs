@@ -42,6 +42,7 @@ namespace weapon
         LastBoss_MinuGun,
         LastBoss_Pistol,
         Scientist_PoisionGun,
+        Last6Rifle,
         MonsterWeaponEnd
     }
 

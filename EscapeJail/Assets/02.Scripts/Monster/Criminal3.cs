@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Criminal3 : MonsterBase
 {
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal3;
-        SetHp(10);
+     
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
@@ -15,19 +15,7 @@ public class Criminal3 : MonsterBase
 
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-
-
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
+    
 
     // Update is called once per frame
     private void Update()

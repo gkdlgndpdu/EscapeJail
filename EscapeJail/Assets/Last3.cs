@@ -19,29 +19,19 @@ public class Last3 : MonsterBase
     }
 
 
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last3;
-        SetHp(10);
+      
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
         moveSpeed = 2f;
     }
 
-    private new void Awake()
-    {
-        base.Awake();
-    }
+    
 
 
-
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
 
  
 
@@ -86,10 +76,7 @@ public class Last3 : MonsterBase
     }
 
 
-    public void OnDisable()
-    {
-        AttackOff();
-    }
+
 
     private void MoveToNearPosit()
     {

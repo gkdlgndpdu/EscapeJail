@@ -8,6 +8,9 @@ using System.Text;
 using Mono.Data.SqliteClient;
 using UnityEngine.UI;
 using weapon;
+/// <summary>
+/// DB 파일을 읽어오고 정보를 저장
+/// </summary>
 
 public class DatabaseLoader : MonoBehaviour
 {

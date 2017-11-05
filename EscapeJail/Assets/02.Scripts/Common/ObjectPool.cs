@@ -7,6 +7,13 @@ public class ObjectPool<T> where T : Component
     private List<T> objectPool;
     private GameObject prefab;
     private Transform objectParent;
+    public List<T> UsingList
+    {
+        get
+        {
+            return objectPool;
+        }
+    }
 
     public ObjectPool(Transform objectParent, GameObject prefab, int objectNum)
     {

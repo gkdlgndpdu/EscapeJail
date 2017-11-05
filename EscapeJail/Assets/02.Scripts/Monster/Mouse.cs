@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Mouse : MonsterBase
 {
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse1;
-        SetHp(7);
+   
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
@@ -22,19 +22,6 @@ public class Mouse : MonsterBase
         StartCoroutine(PathFindRoutine());
     }
 
-
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-
-    }
-
-    private new void Awake()
-    {
-        base.Awake();
-    }
 
     // Update is called once per frame
     private void Update()

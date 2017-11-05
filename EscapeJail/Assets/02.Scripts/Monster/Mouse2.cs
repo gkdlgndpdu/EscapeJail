@@ -6,10 +6,10 @@ using weapon;
 public class Mouse2 : MonsterBase
 {
     float shotDelay = 2.5f;
-    public new void SetUpMonsterAttribute()
+    protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;
-        SetHp(5);
+      
         nearestAcessDistance = 5f;
         SetWeapon();
         moveSpeed = 1f;
@@ -20,41 +20,13 @@ public class Mouse2 : MonsterBase
         base.ResetMonster();
         StartCoroutine(FireRoutine());
         AttackOn();
-
-
-
     }
-
-  
-
+    
     private void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new MouseGun());
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
-
-
-
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-        if (weaponPosit != null)
-            weaponPosit.gameObject.SetActive(true);
-    }
-
-
-
-    private new void Awake()
-    {
-        base.Awake();
-
-    }
 
     // Update is called once per frame
     private void Update()
@@ -74,33 +46,6 @@ public class Mouse2 : MonsterBase
             FireWeapon();
             yield return new WaitForSeconds(shotDelay);
         }
-    }
-
-    protected void RotateWeapon()
-    {
-        float angle = MyUtils.GetAngle(this.transform.position, target.position);
-        if (weaponPosit != null)
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        //flip
-        if ((angle >= 0f && angle <= 90) ||
-              angle >= 270f && angle <= 360)
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(false);
-        }
-        else
-        {
-            if (nowWeapon != null)
-                nowWeapon.FlipWeapon(true);
-        }
-
-    }
-
-    private void FireWeapon()
-    {
-        if (nowWeapon != null)
-            nowWeapon.FireBullet(this.transform.position, Vector3.zero);
     }
 
 

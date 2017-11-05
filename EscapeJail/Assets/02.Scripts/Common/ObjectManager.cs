@@ -47,13 +47,13 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject LoadObj = Resources.Load<GameObject>(prefabPath);
         if (LoadObj != null)
-            objectPool = new ObjectPool<T>(parent, LoadObj, 10);
+            objectPool = new ObjectPool<T>(parent, LoadObj, size);
 
     }
 
     private void MakePool()
     {
-        MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", bulletParent, 10);
+        MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", bulletParent,500);
         MakePool<ExplosionEffect>(ref effectPool, "Prefabs/Objects/ExplosionEffect", EffectParent, 10);
         MakePool<SpecialBullet>(ref specialBulletPool, "Prefabs/Objects/SpecialBullet", bulletParent, 10);
         MakePool<DrawLiner>(ref linePool, "Prefabs/Objects/LinePrefab", EffectParent, 3);

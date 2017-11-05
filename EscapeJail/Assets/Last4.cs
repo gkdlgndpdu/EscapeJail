@@ -57,17 +57,11 @@ public class Last4 : MonsterBase
             animator.SetTrigger("BuildTurretEnd");
     }
 
-    // Use this for initialization
-    private new void Start()
-    {
-        base.Start();
-        SetUpMonsterAttribute();
-    }
 
-    public new void SetUpMonsterAttribute()
+
+    protected override void SetUpMonsterAttribute()
     {
-        monsterName = MonsterName.Last4;
-        SetHp(10);
+        monsterName = MonsterName.Last4;  
         nearestAcessDistance = 5f;
      
     }

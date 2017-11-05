@@ -64,6 +64,10 @@ public class MonsterManager : MonoBehaviour
         if (monster == null) return null;
 
         monster.transform.position = SpawnPosit;
+
+        if (monster.isInitialize == false)
+            monster.FirstInitializeMonster();
+
         monster.ResetMonster();
         return monster;
     }
