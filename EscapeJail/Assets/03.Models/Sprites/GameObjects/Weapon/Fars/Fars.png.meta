@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: b8177e2a9375adf419ad43a852f5b0a7
-timeCreated: 1509891532
+guid: 44d780b1ca622f247bcf23f95eee4ccb
+timeCreated: 1509891892
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slingshot_0
-    21300002: slingshot_1
+    21300000: fars_0
+    21300002: fars_1
+    21300004: fars_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,29 +86,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slingshot_0
+      name: fars_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 74.5
-        height: 76
+        width: 75
+        height: 64
       alignment: 9
-      pivot: {x: 0.49176958, y: 0.17497446}
+      pivot: {x: 0.64849305, y: 0.34009406}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: slingshot_1
+      name: fars_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 75
         y: 0
-        width: 74.5
-        height: 76
+        width: 75
+        height: 64
       alignment: 9
-      pivot: {x: 0.4917696, y: 0.1749745}
+      pivot: {x: 0.6484931, y: 0.3400941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fars_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 75
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6484931, y: 0.3400941}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

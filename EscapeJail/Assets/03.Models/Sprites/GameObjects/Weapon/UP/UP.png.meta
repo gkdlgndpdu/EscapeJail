@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: b8177e2a9375adf419ad43a852f5b0a7
-timeCreated: 1509891532
+guid: 88ba2d1dff82dd34a923ddc15874a0b5
+timeCreated: 1509894078
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slingshot_0
-    21300002: slingshot_1
+    21300000: UP_0
+    21300002: UP_1
+    21300004: UP_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,29 +86,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slingshot_0
+      name: UP_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 74.5
-        height: 76
+        y: 64
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.49176958, y: 0.17497446}
+      pivot: {x: 0.82955724, y: 0.31920135}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: slingshot_1
+      name: UP_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 0
-        width: 74.5
-        height: 76
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.4917696, y: 0.1749745}
+      pivot: {x: 0.8295572, y: 0.3192014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UP_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8295572, y: 0.3192014}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
