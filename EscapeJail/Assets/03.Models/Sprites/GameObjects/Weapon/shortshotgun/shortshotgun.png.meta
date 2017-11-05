@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: b8177e2a9375adf419ad43a852f5b0a7
-timeCreated: 1509891532
+guid: 4d6d5058dcb421344bddfacb3176190b
+timeCreated: 1509892798
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slingshot_0
-    21300002: slingshot_1
+    21300000: shortshotgun_0
+    21300002: shortshotgun_1
+    21300004: shortshotgun_2
+    21300006: shortshotgun_3
+    21300008: shortshotgun_4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,29 +88,71 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slingshot_0
+      name: shortshotgun_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 74.5
-        height: 76
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.49176958, y: 0.17497446}
+      pivot: {x: 0.8356823, y: 0.40499544}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: slingshot_1
+      name: shortshotgun_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 81
         y: 0
-        width: 74.5
-        height: 76
+        width: 80
+        height: 64
       alignment: 9
-      pivot: {x: 0.4917696, y: 0.1749745}
+      pivot: {x: 0.8356823, y: 0.4049954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: shortshotgun_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8356823, y: 0.4049954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: shortshotgun_3
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.8356823, y: 0.4049954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: shortshotgun_4
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

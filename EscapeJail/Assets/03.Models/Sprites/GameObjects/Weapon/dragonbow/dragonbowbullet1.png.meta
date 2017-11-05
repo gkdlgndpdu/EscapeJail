@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: b8177e2a9375adf419ad43a852f5b0a7
-timeCreated: 1509891532
+guid: 0b4acb83989c448498ac0dca50d4d995
+timeCreated: 1509890201
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slingshot_0
-    21300002: slingshot_1
+    21300000: dragonbowbullet1_0
+    21300002: dragonbowbullet1_1
+    21300004: dragonbowbullet1_2
+    21300006: dragonbowbullet1_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,29 +87,57 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slingshot_0
+      name: dragonbowbullet1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 74.5
-        height: 76
-      alignment: 9
-      pivot: {x: 0.49176958, y: 0.17497446}
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: slingshot_1
+      name: dragonbowbullet1_1
       rect:
         serializedVersion: 2
-        x: 74
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dragonbowbullet1_2
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 74.5
-        height: 76
-      alignment: 9
-      pivot: {x: 0.4917696, y: 0.1749745}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dragonbowbullet1_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
