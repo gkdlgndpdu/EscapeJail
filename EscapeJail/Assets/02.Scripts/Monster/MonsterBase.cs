@@ -148,9 +148,7 @@ public class MonsterBase : CharacterInfo
 
     protected void Awake()
     {
-        SetUpComponent();
-        SetUpCustomScript();
-        SetLayerAndTag();
+   
      
 
     }
@@ -172,7 +170,7 @@ public class MonsterBase : CharacterInfo
 
     protected void SetUpCustomScript()
     {
-        nowWeapon = GetComponentInChildren<WeaponHandler>();
+        nowWeapon = weaponPosit.GetComponentInChildren<WeaponHandler>();
     }
     // Use this for initialization
     protected void Start()
@@ -188,6 +186,9 @@ public class MonsterBase : CharacterInfo
     /// </summary>
     public void FirstInitializeMonster()
     {
+        SetUpComponent();
+        SetUpCustomScript();
+        SetLayerAndTag();
         SetUpMonsterAttribute();
         ReadDBData();
         SetHp();
@@ -470,7 +471,7 @@ public class MonsterBase : CharacterInfo
 
 
     }
-    protected IEnumerator RandomMovePattern()
+    protected IEnumerator RandomMovePattern(float moveTime = 2f, float randomMoveDelay = 2f)
     {
         while (true)
         {
@@ -481,17 +482,16 @@ public class MonsterBase : CharacterInfo
                 {
                     //백무빙
                     isMoveRandom = true;
-                    StartCoroutine(RandomBackMove());
+                    StartCoroutine(RandomBackMove(moveTime));
 
                 }
             }
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(randomMoveDelay);
         }
     }
 
-    protected IEnumerator RandomBackMove()
-    {
-        float moveTime = 2f;
+    protected IEnumerator RandomBackMove(float moveTime=2f)
+    {    
         float count = 0f;
         Vector3 randomDirection = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(-90f, 90f)) * -(moveDir.normalized);
 

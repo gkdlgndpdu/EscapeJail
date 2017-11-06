@@ -95,8 +95,8 @@ public class WeaponHandler : MonoBehaviour
 
             attackType = nowWeapon.AttackType;
 
-            if (animator == null)
-                animator=GetComponent<Animator>();
+            //if (animator == null)
+            //    animator=GetComponent<Animator>();
 
             if (animator != null)
             {

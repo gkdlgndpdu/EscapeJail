@@ -18,6 +18,7 @@ public class Last6 : MonsterBase
         //  StartCoroutine(RandomMovePattern());
         nearestAcessDistance = Random.Range(3f,6f);
         StartCoroutine(FireRoutine());
+        StartCoroutine(RandomMovePattern(0.5f,1f));
         AttackOn();
     }
 
