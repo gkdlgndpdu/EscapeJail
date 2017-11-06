@@ -96,6 +96,9 @@ public class MapModuleGenerator
         float width = maxX - minX;
         float height = maxY - minY;
 
+ 
+
+
         int num1 = Mathf.RoundToInt(width / 0.64f);
         int num2 = Mathf.RoundToInt(height / 0.64f);
 
@@ -105,9 +108,14 @@ public class MapModuleGenerator
         int widthNum = (int)(width / widthDistance) + 8;
         int heightNum = (int)(height / heightDistance) + 8;
 
+        MiniMap.Instance.SetBackGroundScale(new Vector3((float)widthNum * widthDistance, (float)heightNum * heightDistance, 1f));
+      
+
         //교정
         if (num1 % 2 != 0) offSetX += 0.32f;
         if (num2 % 2 != 0) offSetY += 0.32f;
+
+        MiniMap.Instance.SetBackGroundPosit(new Vector3(offSetX, offSetY, 1f));
 
         //랜덤벽스프라이트
         Sprite randomWallSprite = GetRandomWallTileList();

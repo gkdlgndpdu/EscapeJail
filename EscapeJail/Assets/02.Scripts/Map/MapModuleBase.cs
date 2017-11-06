@@ -16,6 +16,11 @@ public class MapModuleBase : MonoBehaviour
     protected bool isClear = false;
     protected bool isPositioningComplete = false;
 
+    [SerializeField]
+    protected int widthNum;
+    [SerializeField]
+    protected int heightNum;
+
     //저장소
     public List<Tile> normalTileList;
     public List<Tile> NormalTileList

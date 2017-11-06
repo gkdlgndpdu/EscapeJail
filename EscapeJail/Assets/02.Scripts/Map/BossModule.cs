@@ -22,9 +22,7 @@ public class BossModule : MapModuleBase
 {
     public DoorDirection doorDirection;
     
-    public BossBase bossBase;
-    public int widthNum;
-    public int heightNum;
+    public BossBase bossBase; 
     private bool isBossStart = false;
     private void Awake()
     {
@@ -76,7 +74,10 @@ public class BossModule : MapModuleBase
 
     public override void PositioningComplete()
     {
-        isPositioningComplete = true;
+        base.PositioningComplete();
+        MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
+
+
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
