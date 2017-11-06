@@ -39,7 +39,7 @@ namespace weapon
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 fireDir.Normalize();
-                bullet.Initialize(firePos+ fireDir*0.3f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1);
+                bullet.Initialize(firePos+ fireDir*0.5f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
 
