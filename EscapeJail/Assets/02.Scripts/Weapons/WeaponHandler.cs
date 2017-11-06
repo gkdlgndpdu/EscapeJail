@@ -95,6 +95,9 @@ public class WeaponHandler : MonoBehaviour
 
             attackType = nowWeapon.AttackType;
 
+            if (animator == null)
+                animator=GetComponent<Animator>();
+
             if (animator != null)
             {
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Weapon/{0}", weapon.weapontype)) ;

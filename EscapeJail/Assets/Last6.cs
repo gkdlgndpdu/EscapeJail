@@ -16,7 +16,7 @@ public class Last6 : MonsterBase
     {
         base.ResetMonster();
         //  StartCoroutine(RandomMovePattern());
-        nearestAcessDistance = Random.Range(1f,5f);
+        nearestAcessDistance = Random.Range(3f,6f);
         StartCoroutine(FireRoutine());
         AttackOn();
     }
@@ -44,7 +44,12 @@ public class Last6 : MonsterBase
         {
             //
             //발사
-            FireGun();
+            for(int i = 0; i < 2; i++)
+            {
+                FireGun();
+                yield return new WaitForSeconds(0.5f);
+            }
+     
             if (rb != null)
                 rb.velocity = Vector3.zero;
             //

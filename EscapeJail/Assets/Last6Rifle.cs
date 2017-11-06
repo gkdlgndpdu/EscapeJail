@@ -8,14 +8,13 @@ namespace weapon
     public class Last6Rifle : Weapon
 {
 
-    private float reBoundValue = 1f;
+    private float reBoundValue = 30f;
 
     public Last6Rifle()
     {
         weapontype = WeaponType.Last6Rifle;
         bulletSpeed = 5f;
-        weaponScale = Vector3.one * 2f;
-        relativePosition = new Vector3(0f, 0f, 0f);
+        weaponScale = Vector3.one * 2f; 
     }
     public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
