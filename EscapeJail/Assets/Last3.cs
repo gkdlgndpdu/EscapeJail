@@ -80,7 +80,7 @@ public class Last3 : MonsterBase
 
     private void MoveToNearPosit()
     {
-        this.transform.position = target.transform.position;
+        this.transform.position = target.transform.position+(Vector3)Random.insideUnitCircle;
     }
 
     public void HideOn()

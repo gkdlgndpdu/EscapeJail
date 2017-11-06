@@ -34,10 +34,17 @@ public class LastBoss : BossBase
 
     }
 
+    protected override void BossDie()
+    {
+        base.BossDie();
+        canMove = false;
+        WeaponHideOnOff(true);
+    }
+
     private new void Awake()
     {
         base.Awake();
-        SetHp(30);
+        SetHp(100);
         RegistPatternToQueue();
         SetWeapon();
 
@@ -211,7 +218,7 @@ public class LastBoss : BossBase
 
     IEnumerator TempFireRoutine1()
     {
-        Action(Actions.FireStartTrigger);
+ 
         WeaponHideOnOff(false);
         ChangeWeapon(WeaponType.LastBoss_Pistol);
         yield return new WaitForSeconds(1.0f);
@@ -220,13 +227,13 @@ public class LastBoss : BossBase
             FireNowWeapon();
             yield return new WaitForSeconds(0.5f);
         }
-        Action(Actions.FireEndTrigger);
+     
         WeaponHideOnOff(true);
         yield return new WaitForSeconds(1.0f);
     }
     IEnumerator TempFireRoutine2()
     {
-        Action(Actions.FireStartTrigger);
+  
         WeaponHideOnOff(false);
         ChangeWeapon(WeaponType.LastBoss_MinuGun);
         yield return new WaitForSeconds(1.0f);
@@ -235,14 +242,14 @@ public class LastBoss : BossBase
             FireNowWeapon();
             yield return new WaitForSeconds(0.1f);
         }
-        Action(Actions.FireEndTrigger);
+
         WeaponHideOnOff(true);
 
         yield return new WaitForSeconds(1.0f);
     }
     IEnumerator TempFireRoutine3()
     {
-        Action(Actions.FireStartTrigger);
+    
         WeaponHideOnOff(false);
         ChangeWeapon(WeaponType.LastBoss_Bazooka);
         yield return new WaitForSeconds(1.0f);
@@ -251,7 +258,7 @@ public class LastBoss : BossBase
             FireNowWeapon();
             yield return new WaitForSeconds(0.5f);
         }
-        Action(Actions.FireEndTrigger);
+     
         WeaponHideOnOff(true);
         yield return new WaitForSeconds(1.0f);
     }
@@ -267,16 +274,17 @@ public class LastBoss : BossBase
 
 
     public void SpreadDynamiteAndGranade()
-    {           
+    {                   
+
         Vector3 fireDirection = Vector3.right;
         for (int i = 0; i < 8; i++)
         {
             float dynamaiteSpeed = Random.Range(1f, 5f);
-            fireDirection = Quaternion.Euler(0f, 0f, 45f) * fireDirection;
+            fireDirection = Quaternion.Euler(0f, 0f, Random.Range(30f,45f)) * fireDirection;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
-                bullet.Initialize(this.transform.position, fireDirection.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 3f);
+                bullet.Initialize(this.transform.position, fireDirection.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 1.5f);
                 bullet.InitializeImage("Dynamite", true);
                 bullet.SetBloom(false);
                 bullet.SetDestroyByCollision(false);
@@ -292,11 +300,11 @@ public class LastBoss : BossBase
         for (int i = 0; i < 8; i++)
         {
             float dynamaiteSpeed = Random.Range(5f, 8f);
-            fireDirection2 = Quaternion.Euler(0f, 0f, 45f) * fireDirection2;
+            fireDirection2 = Quaternion.Euler(0f, 0f, Random.Range(30f, 45f)) * fireDirection2;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
-                bullet.Initialize(this.transform.position, fireDirection2.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 3f);
+                bullet.Initialize(this.transform.position, fireDirection2.normalized, dynamaiteSpeed, BulletType.EnemyBullet, 1f, 1, 1.5f);
                 bullet.InitializeImage("Dynamite", true);
                 bullet.SetBloom(false);
                 bullet.SetDestroyByCollision(false);
@@ -323,9 +331,15 @@ public class LastBoss : BossBase
         if (PlayerTr == null) return;
 
         if (rb != null && canMove == true)
+        {
+            Action(Actions.Walk);
             rb.velocity = moveDir.normalized * moveSpeed;
+        }
         else if (canMove == false)
+        {
+            Action(Actions.Idle);
             rb.velocity = Vector3.zero;
+        }
 
     }
 
