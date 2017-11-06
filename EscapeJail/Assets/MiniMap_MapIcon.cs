@@ -9,12 +9,15 @@ public class MiniMap_MapIcon : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.red;
     }
 
 	public void SetClear()
     {
         if (spriteRenderer != null)
-            spriteRenderer.color = Color.red;
+            spriteRenderer.color = Color.green;
     }
 
 }

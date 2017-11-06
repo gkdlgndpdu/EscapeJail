@@ -40,7 +40,7 @@ public class MiniMap : MonoBehaviour
         
     }
 
-    public void MakeRoomIcon(Vector3 position,Vector3 scale)
+    public MiniMap_MapIcon MakeRoomIcon(Vector3 position,Vector3 scale)
     {
         GameObject obj = Instantiate(mapIconPrefab, this.transform);
         if (obj != null)
@@ -48,7 +48,10 @@ public class MiniMap : MonoBehaviour
             obj.transform.localPosition = position;
             obj.transform.localScale = scale;
             MiniMap_MapIcon icon = obj.GetComponent<MiniMap_MapIcon>();
-        }     
+            return icon;
+        }
+
+        return null;
 
     }
 
