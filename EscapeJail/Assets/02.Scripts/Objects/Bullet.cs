@@ -32,8 +32,7 @@ public class Bullet : MonoBehaviour
     protected string effectName = "revolver";
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-    protected Sprite defaultSprite;
-    protected float lifeTime = 1.0f;
+    protected Sprite defaultSprite;   
     protected float effectsize = 1f;
     protected float explosionRadius = 1f;
     protected ExplosionType explosionType;
@@ -41,11 +40,7 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 0f;
     //충돌에 의해 파괴 가능? 왠만하면 true, 수류탄 다이나마이트같이 시간 기다려주는것들 제외
     private bool canDestroyByCollision = true;
-    private bool stopWhenCollision = false;
-    
-    //움직이다가 중간에 멈춥니까?
-    private bool hasMoveLifetime = false;
-    private float moveLifeTime = 0f;
+    private bool stopWhenCollision = false; 
 
     private bool hasPollute = false;
     private CharacterCondition polluteType;
@@ -60,8 +55,7 @@ public class Bullet : MonoBehaviour
 
     public void SetMoveLifetime(float time)
     {
-        hasMoveLifetime = true;
-        moveLifeTime = time;
+        StartCoroutine(bulletMoveLifeCount(time));
     }
 
     public void SetPollute(CharacterCondition polluteType)
@@ -72,8 +66,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer bloomSprite;
-
-    float expireCount = 0f;
+  
 
     protected void Awake()
     {
@@ -121,9 +114,7 @@ public class Bullet : MonoBehaviour
 
         //애니메이션불렛 유무
         if (animator != null)
-            animator.runtimeAnimatorController = null;
-
-        this.lifeTime = lifeTime;
+            animator.runtimeAnimatorController = null;       
 
         //폭발 타입
         explosionType = ExplosionType.single;
@@ -144,9 +135,10 @@ public class Bullet : MonoBehaviour
                 break;
         }
 
+        StartCoroutine(bulletDestroyRoutine(lifeTime));
+
         bulletDestroyAction = BulletDestroyAction.none;
-        canDestroyByCollision = true;
-        hasMoveLifetime = false;
+        canDestroyByCollision = true;      
         stopWhenCollision = false;
         explostionEndFunc = null;
         hasPollute = false;
@@ -159,7 +151,7 @@ public class Bullet : MonoBehaviour
 
     private void OnDisable()
     {
-        expireCount = 0f;
+      StopAllCoroutines();
     }
 
     public void SetBulletDestroyAction(BulletDestroyAction action)
@@ -168,25 +160,25 @@ public class Bullet : MonoBehaviour
      
     }
 
-
-
-    public void Update()
+    IEnumerator bulletDestroyRoutine(float time)
     {
-        expireCount += Time.deltaTime;
-
-        if (hasMoveLifetime == true)
+        for(float t=0f; t < time; t += 0.1f)
         {
-            if (expireCount >= moveLifeTime)
-            {
-                StopBullet();
-            }
+            yield return new WaitForSeconds(0.1f);
         }
 
-        if (expireCount >= lifeTime)
-        {
-            BulletDestroy();
-        }
+        BulletDestroy();
     }
+
+    IEnumerator bulletMoveLifeCount(float time)
+    {
+        for (float t = 0f; t < time; t += 0.1f)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        StopBullet();
+    }
+    
 
     public void SetExplosion(float radius)
     {
@@ -338,11 +330,9 @@ public class Bullet : MonoBehaviour
             explostionEndFunc = null;
         }
 
-        expireCount = 0f;
         ShowEffect();
         BulletDestroyActionExcute();
         this.gameObject.SetActive(false);
-
     }
 
     protected void BulletDestroyActionExcute()

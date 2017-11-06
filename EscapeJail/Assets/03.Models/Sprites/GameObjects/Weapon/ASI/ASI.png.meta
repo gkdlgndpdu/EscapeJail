@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 869dedd0ffc50e1418e557a72285ea7b
-timeCreated: 1509888406
+guid: 9d694224c2fea5e438d5eb90c3a341cd
+timeCreated: 1509957399
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -90,11 +90,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 100
+        y: 0
+        width: 130
         height: 64
       alignment: 9
-      pivot: {x: 0.87624925, y: 0.43415618}
+      pivot: {x: 0.9075069, y: 0.42945322}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -103,12 +103,12 @@ TextureImporter:
       name: ASI_1
       rect:
         serializedVersion: 2
-        x: 101
-        y: 64
-        width: 100
+        x: 130
+        y: 0
+        width: 130
         height: 64
       alignment: 9
-      pivot: {x: 0.8762493, y: 0.4341562}
+      pivot: {x: 0.9075069, y: 0.4294532}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -117,12 +117,12 @@ TextureImporter:
       name: ASI_2
       rect:
         serializedVersion: 2
-        x: 0
+        x: 260
         y: 0
-        width: 100
+        width: 130
         height: 64
       alignment: 9
-      pivot: {x: 0.8762493, y: 0.4341562}
+      pivot: {x: 0.9075069, y: 0.4294532}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
