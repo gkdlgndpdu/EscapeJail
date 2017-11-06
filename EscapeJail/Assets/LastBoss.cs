@@ -6,7 +6,9 @@ public class LastBoss : BossBase
 {
 
     [SerializeField]
-    private WeaponHandler weaponHandler;
+    private WeaponHandler weaponHandler1;
+    [SerializeField]
+    private WeaponHandler weaponHandler2;
 
     private Transform PlayerTr;
     private Vector3 moveDir;
@@ -23,13 +25,21 @@ public class LastBoss : BossBase
     {
         if (OnOff == true)
         {
-            if (weaponHandler != null)
-                iTween.FadeTo(weaponHandler.gameObject, 0f, 0.8f);
+            if (weaponHandler1 != null)
+                iTween.FadeTo(weaponHandler1.gameObject, 0f, 0.8f);
+
+            if (weaponHandler2 != null)
+                iTween.FadeTo(weaponHandler2.gameObject, 0f, 0.8f);
+            
         }
         else if (OnOff == false)
         {
-            if (weaponHandler != null)
-                iTween.FadeTo(weaponHandler.gameObject, 1f, 0.8f);
+            if (weaponHandler1 != null)
+                iTween.FadeTo(weaponHandler1.gameObject, 1f, 0.8f);
+
+            if (weaponHandler2 != null)
+                iTween.FadeTo(weaponHandler2.gameObject, 1f, 0.8f);
+            
         }
 
     }
@@ -55,7 +65,8 @@ public class LastBoss : BossBase
     private new void Start()
     {
         LinkPlayer();
-        weaponHandler.ChangeWeapon(new LastBoss_Pistol());
+        weaponHandler1.ChangeWeapon(new LastBoss_Pistol());
+        weaponHandler2.ChangeWeapon(new LastBoss_Pistol());
     }
 
     private void Update()
@@ -78,7 +89,8 @@ public class LastBoss : BossBase
 
         if (weaponDic.ContainsKey(weaponType) == true)
         {
-            weaponHandler.ChangeWeapon(weaponDic[weaponType]);
+            weaponHandler1.ChangeWeapon(weaponDic[weaponType]);
+            weaponHandler2.ChangeWeapon(weaponDic[weaponType]);
         }
     }
 
@@ -96,24 +108,42 @@ public class LastBoss : BossBase
             playerPos = PlayerTr.position;
 
         float weaponAngle = MyUtils.GetAngle(playerPos, this.transform.position);
-        if (weaponHandler != null)
-            weaponHandler.transform.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
+        if (weaponHandler1 != null)
+            weaponHandler1.transform.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
+
+        if (weaponHandler2 != null)
+            weaponHandler2.transform.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
 
         //flip
         if ((weaponAngle >= 0f && weaponAngle <= 90) ||
               weaponAngle >= 270f && weaponAngle <= 360)
         {
-            if (weaponHandler != null)
+            if (weaponHandler1 != null)
             {
-                weaponHandler.FlipWeapon(false);
+                weaponHandler1.FlipWeapon(false);
                 FlipCharacter(false);
             }
+
+            if (weaponHandler2 != null)
+            {
+                weaponHandler2.FlipWeapon(false);
+                FlipCharacter(false);
+            }
+
+            
         }
         else
         {
-            if (weaponHandler != null)
+            if (weaponHandler1 != null)
             {
-                weaponHandler.FlipWeapon(true);
+                weaponHandler1.FlipWeapon(true);
+                FlipCharacter(true);
+
+            }
+
+            if (weaponHandler2 != null)
+            {
+                weaponHandler2.FlipWeapon(true);
                 FlipCharacter(true);
 
             }
@@ -129,10 +159,16 @@ public class LastBoss : BossBase
 
     private void FireNowWeapon()
     {
-        if (weaponHandler != null)
+        if (weaponHandler1 != null)
         {
             Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
-            weaponHandler.FireBullet(this.transform.position, fireDir);
+            weaponHandler1.FireBullet(weaponHandler1.transform.position, fireDir);
+        }
+
+        if (weaponHandler2 != null)
+        {
+            Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
+            weaponHandler2.FireBullet(weaponHandler2.transform.position, fireDir);
         }
     }
 
