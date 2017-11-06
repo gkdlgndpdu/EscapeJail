@@ -48,7 +48,7 @@ public class Last2 : MonsterBase
       
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(5f,10f);
-        SetWeapon();
+    
     }
     public override void ResetMonster()
     {
@@ -61,7 +61,7 @@ public class Last2 : MonsterBase
 
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new Last2Sniper());
     }

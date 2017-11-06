@@ -11,10 +11,10 @@ public class Mouse4 : MonsterBase
         monsterName = MonsterName.Mouse4;
      
         nearestAcessDistance = 1f;
-        SetWeapon();
+    
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new MouseRifle());
 

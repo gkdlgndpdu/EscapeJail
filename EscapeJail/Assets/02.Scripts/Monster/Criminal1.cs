@@ -20,7 +20,7 @@ public class Criminal1 : MonsterBase
         AttackOn();
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new CriminalPistol());
 

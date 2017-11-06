@@ -30,11 +30,11 @@ public class Guard4 : MonsterBase
 
         attackDelay = 1f;
         moveSpeed = 1f;
-        SetWeapon();
+      
 
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new GuardPistol());
 

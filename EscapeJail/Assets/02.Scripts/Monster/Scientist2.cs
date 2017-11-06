@@ -11,7 +11,7 @@ public class Scientist2 : MonsterBase
         monsterName = MonsterName.Scientist2;
  
         nearestAcessDistance = 5f;
-        SetWeapon();
+     
     }
     public override void ResetMonster()
     {
@@ -20,7 +20,7 @@ public class Scientist2 : MonsterBase
         StartCoroutine(FireRoutine());
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new Scientist_GasGun());
 

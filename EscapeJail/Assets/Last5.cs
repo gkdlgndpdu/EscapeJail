@@ -12,7 +12,7 @@ public class Last5 : MonsterBase
         monsterName = MonsterName.Last5;
     
         nearestAcessDistance = 5f;
-        SetWeapon();
+       
     }
     public override void ResetMonster()
     {
@@ -21,7 +21,7 @@ public class Last5 : MonsterBase
         StartCoroutine(FireRoutine());
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new Last5Bazooka());
 

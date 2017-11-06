@@ -170,7 +170,23 @@ public class MonsterBase : CharacterInfo
 
     protected void SetUpCustomScript()
     {
-        nowWeapon = weaponPosit.GetComponentInChildren<WeaponHandler>();
+        bool findObj = false;
+        foreach (Transform child in this.transform)
+        {   
+            foreach (Transform grandChild in child)
+            {
+                nowWeapon = grandChild.gameObject.GetComponent<WeaponHandler>();
+                if (nowWeapon != null)
+                {
+                    findObj = true;
+                    break;
+                }
+            }
+            if (findObj == true) break;
+        }
+
+
+       
     }
     // Use this for initialization
     protected void Start()
@@ -178,7 +194,15 @@ public class MonsterBase : CharacterInfo
         if (target == null)
             target = GamePlayerManager.Instance.player.transform;
 
- 
+        SetWeapon();
+
+
+
+    }
+
+    protected virtual void SetWeapon()
+    {
+
     }
 
     /// <summary>

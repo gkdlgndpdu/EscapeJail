@@ -46,7 +46,9 @@ public class WeaponHandler : MonoBehaviour
     {        
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        
+        animator.runtimeAnimatorController = null;
+
+
     }
 
     public void GetBulletItem()

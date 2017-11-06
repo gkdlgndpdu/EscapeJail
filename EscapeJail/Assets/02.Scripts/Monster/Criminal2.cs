@@ -14,9 +14,9 @@ public class Criminal2 : MonsterBase
    
         nearestAcessDistance = 5f;
         moveSpeed = 1f;
-        SetWeapon();
+  
     }
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new CriminalShotGun());
     }

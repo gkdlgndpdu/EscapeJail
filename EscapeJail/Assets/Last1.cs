@@ -10,7 +10,7 @@ public class Last1 : MonsterBase
         monsterName = MonsterName.Last1;
    
         nearestAcessDistance = 5f;
-        SetWeapon();
+     
     } 
     public override void ResetMonster()
     {
@@ -20,7 +20,7 @@ public class Last1 : MonsterBase
         AttackOff();
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new Last1Gun());
 

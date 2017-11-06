@@ -9,7 +9,7 @@ public class Last6 : MonsterBase
         monsterName = MonsterName.Last6;
   
         nearestAcessDistance = 5f;
-        SetWeapon();
+    
         moveSpeed = 2f;
     }
     public override void ResetMonster()
@@ -22,10 +22,9 @@ public class Last6 : MonsterBase
         AttackOn();
     }
 
-    private void SetWeapon()
-    {
+    protected override void SetWeapon()
+    {        
         nowWeapon.ChangeWeapon(new Last6Rifle());
-
     }
 
 

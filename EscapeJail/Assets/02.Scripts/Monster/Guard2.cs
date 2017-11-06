@@ -15,7 +15,7 @@ public class Guard2 : MonsterBase
         monsterName = MonsterName.Guard2;
       
         nearestAcessDistance = 5f;
-        SetWeapon();
+       
 
     }
     public override void ResetMonster()
@@ -65,7 +65,7 @@ public class Guard2 : MonsterBase
 
     }
 
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new GuardRifle());
 

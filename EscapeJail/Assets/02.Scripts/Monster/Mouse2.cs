@@ -11,7 +11,7 @@ public class Mouse2 : MonsterBase
         monsterName = MonsterName.Mouse2;
       
         nearestAcessDistance = 5f;
-        SetWeapon();
+    
         moveSpeed = 1f;
     }
 
@@ -21,8 +21,8 @@ public class Mouse2 : MonsterBase
         StartCoroutine(FireRoutine());
         AttackOn();
     }
-    
-    private void SetWeapon()
+
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new MouseGun());
     }

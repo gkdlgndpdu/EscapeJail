@@ -18,9 +18,9 @@ public class Criminal5 : MonsterBase
         monsterName = MonsterName.Criminal5;
       
         nearestAcessDistance = 5f;
-        SetWeapon();
+      
     }
-    private void SetWeapon()
+    protected override void SetWeapon()
     {
         nowWeapon.ChangeWeapon(new CriminalUzi());
 
