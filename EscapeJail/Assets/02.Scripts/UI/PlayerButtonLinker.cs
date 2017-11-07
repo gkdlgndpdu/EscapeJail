@@ -10,8 +10,6 @@ public class PlayerButtonLinker : MonoBehaviour
     CharacterBase playerData;
 
     [SerializeField]
-    private EventTrigger getButton;
-    [SerializeField]
     private EventTrigger swapButton;
     [SerializeField]
     private EventTrigger SkillButton;
@@ -30,8 +28,7 @@ public class PlayerButtonLinker : MonoBehaviour
 
         if (playerData == null) return;
 
-        LinkShotButton();
-        LinkGetButton();
+        LinkShotButton();       
         LinkSwapButton();
         LinkSkillButton();
     }
@@ -47,11 +44,6 @@ public class PlayerButtonLinker : MonoBehaviour
      
     }
 
-    private void LinkGetButton()
-    {
-        if (getButton == null) return;
-        getButton.triggers.Add(MakeTriggerEntry(playerData.ReactiveButtonClick));
-    }
     private void LinkSwapButton()
     {
         if (swapButton == null) return;       

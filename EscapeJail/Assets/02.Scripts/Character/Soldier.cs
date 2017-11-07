@@ -25,12 +25,9 @@ public class Soldier : CharacterBase
 
     // Update is called once per frame
     private new void Update()
-    {
-   
+    {   
         if (isDodge == true) return;
-
         base.Update();
-
 #if UNITY_EDITOR
         //임시코드
         if (Input.GetKeyDown(KeyCode.Mouse1))

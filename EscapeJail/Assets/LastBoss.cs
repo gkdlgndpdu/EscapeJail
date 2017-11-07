@@ -65,8 +65,8 @@ public class LastBoss : BossBase
 
     private new void Start()
     {
+        base.Start();
         LinkPlayer();
-
     }
 
     private void Update()

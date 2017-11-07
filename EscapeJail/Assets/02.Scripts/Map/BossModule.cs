@@ -22,7 +22,7 @@ public class BossModule : MapModuleBase
 {
     public DoorDirection doorDirection;
     
-    public BossBase bossBase; 
+    private BossBase bossBase; 
     private bool isBossStart = false;
     private void Awake()
     {

@@ -17,7 +17,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     private SpriteRenderer spriteRenderer;
 
     //속성
-    private ItemBase itemBase;
+    public ItemBase itemBase;
 
     private CharacterBase player;
 

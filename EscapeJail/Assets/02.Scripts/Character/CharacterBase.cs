@@ -222,11 +222,22 @@ public class CharacterBase : CharacterInfo
     protected void Start()
     {
         SetBurstSpeed(true);
+        StartCoroutine(FindItemRoutine());
+    }
+
+    protected IEnumerator FindItemRoutine()
+    {
+        while (true)
+        {
+            ReactiveItem();
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     // Update is called once per frame
     protected void Update()
     {
+    
 
         HandleNowWeapon();
 
@@ -239,11 +250,7 @@ public class CharacterBase : CharacterInfo
 
     }
     protected void InputOnPc()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ReactiveButtonClick();
-        }
+    {     
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             GetDamage(1);
@@ -555,32 +562,41 @@ public class CharacterBase : CharacterInfo
         return inventory.isInventoryFull();
     }
 
-    //반응키 눌렸을때
-    public void ReactiveButtonClick()
+  
+    public void ReactiveItem()
     {
-
         int activeLayer = MyUtils.GetLayerMaskByString("DropItem");
         Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, 0.5f, activeLayer);
 
-        if (colls == null) return;
-        if (colls.Length == 0) return;
-
+        if (colls == null)
+        {
+            ItemInfoBar.Instance.ResetItemBar();
+            return;
+        }
+        if (colls.Length == 0)
+        {
+            ItemInfoBar.Instance.ResetItemBar();
+            return;
+        }
         if (colls.Length == 1)
         {
-            iReactiveAction action = colls[0].gameObject.GetComponent<iReactiveAction>();
-            if (action != null)
-                action.ClickAction();
+            DropItem dropItem = colls[0].gameObject.GetComponent<DropItem>();
+            if (dropItem != null)
+            {
+                ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                return;
+            }
+            WeaponBox weaponBox = colls[0].gameObject.GetComponent<WeaponBox>();
+            if (weaponBox != null)
+            {
+                ItemInfoBar.Instance.SetItemBar(null, weaponBox.ClickAction);
+                return;
+            }
+
+
         }
         else if (colls.Length > 1)
-        {
-            //Array.Sort(colls, (a, b) =>
-            //{
-            //    if (Vector2.Distance(this.transform.position, a.transform.position) >
-            //    Vector2.Distance(this.transform.position, b.transform.position))
-            //        return 1;
-            //    else return -1;
-
-            //});
+        {               
             Collider2D neariestCollider = null;
             float neariestDistance = 999f;
             for (int i = 0; i < colls.Length; i++)
@@ -593,15 +609,20 @@ public class CharacterBase : CharacterInfo
                 }
             }
 
-
-            iReactiveAction action = neariestCollider.gameObject.GetComponent<iReactiveAction>();
-            if (action != null)
-                action.ClickAction();
+            DropItem dropItem = neariestCollider.gameObject.GetComponent<DropItem>();
+            if (dropItem != null)
+            {
+                ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                return;
+            }
+            WeaponBox weaponBox = neariestCollider.gameObject.GetComponent<WeaponBox>();
+            if (weaponBox != null)
+            {
+                ItemInfoBar.Instance.SetItemBar(null, weaponBox.ClickAction);
+                return;
+            }
 
         }
-
-
-
     }
 
     public virtual void UseCharacterSkill()
