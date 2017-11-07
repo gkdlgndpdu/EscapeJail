@@ -13,9 +13,6 @@ public class MapManager : MonoBehaviour
 
     //맵 생성기
     private MapModuleGenerator mapModuleGenerator;
-
-    [SerializeField]
-    private Transform backGroundParent;
     
 
 
@@ -120,7 +117,7 @@ public class MapManager : MonoBehaviour
     {
         //벽 생성
         if (mapModuleGenerator != null)
-            mapModuleGenerator.MakeWall(backGroundParent);       
+            mapModuleGenerator.MakeWall(this.transform);       
     }
   
 
