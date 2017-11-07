@@ -17,6 +17,14 @@ public class ItemInfoBar : MonoBehaviour
 
     private ItemBase nowItem = null;
 
+    float moveSpeed = 1f;
+
+    [SerializeField]
+    private Transform showPosit;
+
+    [SerializeField]
+    private Transform hidePosit;
+
     private void Awake()
     {
         Instance = this;
@@ -24,8 +32,10 @@ public class ItemInfoBar : MonoBehaviour
                                   //item 인자가 null -> 무기상자가 들어옴
     public void SetItemBar(ItemBase item, Action clickFunc)
     {
+        iTween.MoveTo(this.gameObject, showPosit.position, moveSpeed);
+
         //무기상자가 들어옴
-        if(item == null)
+        if (item == null)
         {
             string path = "Sprites/Icons/WeaponBox";
             Sprite sprite = Resources.Load<Sprite>(path);
@@ -85,6 +95,9 @@ public class ItemInfoBar : MonoBehaviour
     public void ResetItemBar()
     {
         if (clickEvent == null) return;
+
+        iTween.MoveTo(this.gameObject, hidePosit.position, moveSpeed);
+
 
         nowItem = null;
         clickEvent = null;
