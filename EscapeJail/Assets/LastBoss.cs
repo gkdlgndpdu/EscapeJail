@@ -16,7 +16,8 @@ public class LastBoss : BossBase
 
 
 
-    private Dictionary<WeaponType, Weapon> weaponDic = new Dictionary<WeaponType, Weapon>();
+    private Dictionary<WeaponType, Weapon> weaponDic1 = new Dictionary<WeaponType, Weapon>();
+    private Dictionary<WeaponType, Weapon> weaponDic2 = new Dictionary<WeaponType, Weapon>();
     /// <summary>
     /// 
     /// </summary>
@@ -65,8 +66,7 @@ public class LastBoss : BossBase
     private new void Start()
     {
         LinkPlayer();
-        weaponHandler1.ChangeWeapon(new LastBoss_Pistol());
-        weaponHandler2.ChangeWeapon(new LastBoss_Pistol());
+
     }
 
     private void Update()
@@ -78,20 +78,32 @@ public class LastBoss : BossBase
 
     private void SetWeapon()
     {
-        weaponDic.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
-        weaponDic.Add(WeaponType.LastBoss_MinuGun, new LastBoss_MinuGun());
-        weaponDic.Add(WeaponType.LastBoss_Bazooka, new LastBoss_Bazooka());
+        weaponDic1.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
+        weaponDic1.Add(WeaponType.LastBoss_MinuGun, new LastBoss_MinuGun());
+        weaponDic1.Add(WeaponType.LastBoss_Bazooka, new LastBoss_Bazooka());
+
+        weaponDic2.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
+        weaponDic2.Add(WeaponType.LastBoss_MinuGun, new LastBoss_MinuGun());
+        weaponDic2.Add(WeaponType.LastBoss_Bazooka, new LastBoss_Bazooka());
+
+
     }
 
-    private void ChangeWeapon(WeaponType weaponType)
+    private void ChangeRandomWeapon()
     {
-        if (weaponDic == null) return;
+        if (weaponDic1 == null) return;
 
-        if (weaponDic.ContainsKey(weaponType) == true)
-        {
-            weaponHandler1.ChangeWeapon(weaponDic[weaponType]);
-            weaponHandler2.ChangeWeapon(weaponDic[weaponType]);
-        }
+        List<WeaponType> keyList1 = new List<WeaponType>(weaponDic1.Keys);
+        List<WeaponType> keyList2 = new List<WeaponType>(weaponDic2.Keys);
+
+        if (keyList1 == null) return;
+        if (keyList2 == null) return;
+
+        Weapon randWeapon1 = weaponDic1[keyList1[Random.Range(0,keyList1.Count)]];
+        Weapon randWeapon2 = weaponDic2[keyList2[Random.Range(0, keyList2.Count)]];
+
+        weaponHandler1.ChangeWeapon(randWeapon1);
+        weaponHandler2.ChangeWeapon(randWeapon2);
     }
 
     private void LinkPlayer()
@@ -247,57 +259,57 @@ public class LastBoss : BossBase
 
         bossEventQueue.AddEvent("SpreadBomb");
         bossEventQueue.AddEvent("TempFireRoutine1");
-        bossEventQueue.AddEvent("TempFireRoutine2");
-        bossEventQueue.AddEvent("TempFireRoutine3");
+        //bossEventQueue.AddEvent("TempFireRoutine2");
+        //bossEventQueue.AddEvent("TempFireRoutine3");
 
     }
 
     IEnumerator TempFireRoutine1()
-    {
- 
+    { 
         WeaponHideOnOff(false);
-        ChangeWeapon(WeaponType.LastBoss_Pistol);
+        ChangeRandomWeapon();
+        //ChangeWeapon(WeaponType.LastBoss_Pistol);
         yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < 10; i++)
-        {
-            FireNowWeapon();
-            yield return new WaitForSeconds(0.5f);
-        }
-     
-        WeaponHideOnOff(true);
-        yield return new WaitForSeconds(1.0f);
-    }
-    IEnumerator TempFireRoutine2()
-    {
-  
-        WeaponHideOnOff(false);
-        ChangeWeapon(WeaponType.LastBoss_MinuGun);
-        yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             FireNowWeapon();
             yield return new WaitForSeconds(0.1f);
         }
-
-        WeaponHideOnOff(true);
-
-        yield return new WaitForSeconds(1.0f);
-    }
-    IEnumerator TempFireRoutine3()
-    {
-    
-        WeaponHideOnOff(false);
-        ChangeWeapon(WeaponType.LastBoss_Bazooka);
-        yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < 5; i++)
-        {
-            FireNowWeapon();
-            yield return new WaitForSeconds(0.5f);
-        }
      
         WeaponHideOnOff(true);
         yield return new WaitForSeconds(1.0f);
     }
+    //IEnumerator TempFireRoutine2()
+    //{
+  
+    //    WeaponHideOnOff(false);
+    //    ChangeWeapon(WeaponType.LastBoss_MinuGun);
+    //    yield return new WaitForSeconds(1.0f);
+    //    for (int i = 0; i < 20; i++)
+    //    {
+    //        FireNowWeapon();
+    //        yield return new WaitForSeconds(0.1f);
+    //    }
+
+    //    WeaponHideOnOff(true);
+
+    //    yield return new WaitForSeconds(1.0f);
+    //}
+    //IEnumerator TempFireRoutine3()
+    //{
+    
+    //    WeaponHideOnOff(false);
+    //    ChangeWeapon(WeaponType.LastBoss_Bazooka);
+    //    yield return new WaitForSeconds(1.0f);
+    //    for (int i = 0; i < 5; i++)
+    //    {
+    //        FireNowWeapon();
+    //        yield return new WaitForSeconds(0.5f);
+    //    }
+     
+    //    WeaponHideOnOff(true);
+    //    yield return new WaitForSeconds(1.0f);
+    //}
 
     IEnumerator SpreadBomb()
     {

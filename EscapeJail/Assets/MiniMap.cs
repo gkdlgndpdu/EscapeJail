@@ -6,8 +6,9 @@ public class MiniMap : MonoBehaviour
 {
     public static MiniMap Instance;
     [SerializeField]
-    private SpriteRenderer backGround;
+    private MinimapBackGround backGround;
 
+    private List<GameObject> objectList = new List<GameObject>();
 
     private GameObject mapIconPrefab;
     private GameObject playerIconPrefab;
@@ -19,12 +20,29 @@ public class MiniMap : MonoBehaviour
 
     Vector3 prefPosit;
 
+    private MiniMap_PlayerIcon playerIcon;
+
     private void Awake()
     {
         Instance = this;
         LoadPrefab();
 
         this.transform.localScale = Vector3.one * realRatio;
+    }
+
+    public void ResetMiniMap()
+    {
+        if (objectList != null)
+        {
+            foreach(GameObject obj in objectList)
+            {
+                Destroy(obj);
+            }
+            objectList.Clear();            
+        }
+
+      //  this.transform.localPosition = Vector3.zero;
+
     }
 
     public void SetBackGroundPosit(Vector3 posit)
@@ -48,6 +66,7 @@ public class MiniMap : MonoBehaviour
             obj.transform.localPosition = position;
             obj.transform.localScale = scale;
             MiniMap_MapIcon icon = obj.GetComponent<MiniMap_MapIcon>();
+            objectList.Add(icon.gameObject);
             return icon;
         }
 
@@ -68,12 +87,15 @@ public class MiniMap : MonoBehaviour
 
             target = playerTr;
             prefPosit = target.transform.localPosition;
+
+            playerIcon = icon;
         }
     }
 
     public void SetBackGroundScale(Vector3 scale)
     {
-        backGround.transform.localScale = scale;
+        backGround.SetScale(scale);
+     //   backGround.transform.localScale = scale;
     }
 
     // Use this for initialization

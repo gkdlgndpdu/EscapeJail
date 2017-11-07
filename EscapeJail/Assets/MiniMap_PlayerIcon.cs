@@ -2,12 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class MiniMap_PlayerIcon : MonoBehaviour
 {
-    Transform target;
+    private Transform target;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     public void LinkPlayer(Transform transform)
     {
         target = transform;
+        SetIcon();
+    }
+
+    private void SetIcon()
+    {
+        CharacterType playerName = (CharacterType)PlayerPrefs.GetInt(GameConstants.CharacterKeyValue, (int)CharacterType.Soldier);
+        string ItemPath = string.Format("Sprites/Icons/{0}", playerName.ToString());
+        Sprite loadSprite  = Resources.Load<Sprite>(ItemPath);
+        if(loadSprite!=null)
+            spriteRenderer.sprite = loadSprite;
     }
 
     public void Update()

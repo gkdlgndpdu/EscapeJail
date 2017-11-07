@@ -12,9 +12,14 @@ namespace weapon
             bulletSpeed = 13f;
             weaponScale = Vector3.one * 3f;
             bulletType = BulletType.EnemyBullet;
+            fireDelay = 0.3f;
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
+            if (canFire() == false) return;
+
+            FireDelayOn();
+
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {

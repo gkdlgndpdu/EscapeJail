@@ -14,8 +14,8 @@ public class BossEventQueue : MonoBehaviour
     private List<string> eventList = new List<string>();
     private Queue<string> eventQueue = new Queue<string>();
 
-    private MonoBehaviour targetGameObject =null;
-    private EventOrder eventOrder;  
+    private MonoBehaviour targetGameObject = null;
+    private EventOrder eventOrder;
 
     public void Initialize(MonoBehaviour target, EventOrder eventOrder)
     {
@@ -30,7 +30,7 @@ public class BossEventQueue : MonoBehaviour
         switch (eventOrder)
         {
             case EventOrder.InOrder:
-                {                
+                {
                     StartCoroutine(EventInOrderProcess());
                 }
                 break;
@@ -46,7 +46,7 @@ public class BossEventQueue : MonoBehaviour
     {
         if (eventList == null) return;
         eventList.Add(Name);
-    }   
+    }
 
     public void RemoveEvent(string Name)
     {
@@ -61,10 +61,10 @@ public class BossEventQueue : MonoBehaviour
     }
     private void AddRandomEventToQueue()
     {
-        if (eventList == null|| eventQueue==null) return;
+        if (eventList == null || eventQueue == null) return;
         eventQueue.Enqueue(eventList[Random.Range(0, eventList.Count)]);
-    } 
-	
+    }
+
     public IEnumerator EventRandomProcess()
     {
         if (targetGameObject == null) yield break;
@@ -80,7 +80,7 @@ public class BossEventQueue : MonoBehaviour
                 AddRandomEventToQueue();
             }
             else
-            {            
+            {
                 yield return null;
             }
         }
@@ -90,7 +90,7 @@ public class BossEventQueue : MonoBehaviour
     {
         if (targetGameObject == null) yield break;
 
-        int EventIndex =0;
+        int EventIndex = 0;
         while (true)
         {
             if (EventIndex < eventList.Count)
@@ -109,9 +109,16 @@ public class BossEventQueue : MonoBehaviour
 
     public void OnDisable()
     {
-        eventList.Clear();
-        eventList = null;
-        eventQueue.Clear();
-        eventQueue = null;
+        if (eventList != null)
+        {
+            eventList.Clear();
+            eventList = null;
+        }
+        if (eventQueue != null)
+        {
+            eventQueue.Clear();
+            eventQueue = null;
+        }
+
     }
 }

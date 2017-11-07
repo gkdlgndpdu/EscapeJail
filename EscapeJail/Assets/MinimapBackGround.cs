@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(SpriteRenderer))]
-public class MiniMap_MapIcon : MonoBehaviour
+public class MinimapBackGround : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer != null)
-            spriteRenderer.color = Color.red;
     }
 
-	public void SetClear()
+    public void SetScale(Vector3 scale)
     {
-        if (spriteRenderer != null)
-            spriteRenderer.color = Color.white;
+        if (spriteRenderer == null) return;
+        spriteRenderer.size = scale;
     }
 
 }

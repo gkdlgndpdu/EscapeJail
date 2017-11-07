@@ -27,7 +27,7 @@ namespace weapon
         LaserPistol, //14
         CardCase, //15
         PlayerWeaponEnd,
-        MouseGun, 
+        MouseGun,
         CriminalPistol,
         CriminalShotGun,
         CriminalUzi,
@@ -47,9 +47,9 @@ namespace weapon
     }
 
     public enum AttackType
-    {      
+    {
         gun,
-        near        
+        near
     }
 
     public class Weapon : ItemBase
@@ -77,7 +77,7 @@ namespace weapon
         public int maxAmmo = 10;
         public int nowAmmo = 10;
         public int needBulletToFire = 1;
-        
+
         public Vector3 weaponScale = Vector3.one;
         public Vector3 relativePosition = Vector3.zero;
 
@@ -85,7 +85,7 @@ namespace weapon
 
         //근접무기용
         public Color slashColor = Color.green;
-        public Vector3 slashSize = Vector3.one*7f;
+        public Vector3 slashSize = Vector3.one * 7f;
         public Weapon()
         {
             itemType = ItemType.Weapon;
@@ -124,33 +124,40 @@ namespace weapon
             Debug.Log("자식에서 구현");
         }
 
-        public void WeaponUpdate(Slider slider=null)
+        public void WeaponUpdate(Slider slider = null)
         {
             if (isFireDelayFinish == true)
             {
                 if (slider != null)
                 {
-                    slider.value = 0f;               
+                    slider.value = 0f;
                 }
                 return;
-            } 
+            }
 
 
-            fireCount += Time.deltaTime;       
+            fireCount += Time.deltaTime;
             if (fireCount >= fireDelay)
             {
                 isFireDelayFinish = true;
-                slider.gameObject.SetActive(false);
+
+                if (slider != null)
+                    slider.gameObject.SetActive(false);
+
                 return;
             }
 
             if (slider != null)
             {
-                slider.gameObject.SetActive(true);
-                slider.value = fireCount / fireDelay;
+                if (slider != null)
+                {
+                    slider.gameObject.SetActive(true);
+                    slider.value = fireCount / fireDelay;
+                }
+
             }
 
-        }   
+        }
 
         public void FireDelayOn()
         {
@@ -172,7 +179,7 @@ namespace weapon
             maxAmmo = num;
         }
 
-        protected void SetNearWeapon(Color slashColor,Vector3 slashSize)
+        protected void SetNearWeapon(Color slashColor, Vector3 slashSize)
         {
             attackType = AttackType.near;
             this.slashColor = slashColor;

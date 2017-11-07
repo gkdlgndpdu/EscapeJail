@@ -10,11 +10,16 @@ namespace weapon
         public LastBoss_Bazooka()
         {
             weapontype = WeaponType.LastBoss_Bazooka;
-            bulletSpeed = 15f;
+            bulletSpeed = 10f;
             weaponScale = Vector3.one * 3f;
+            fireDelay = 1f;
         }
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
+            if (canFire() == false) return;
+
+            FireDelayOn();
+
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
@@ -22,13 +27,16 @@ namespace weapon
                 Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                 Vector3 fireDIr = PlayerPos - firePos;
                 fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-                fireDIr.Normalize();
-                bullet.Initialize(firePos+ fireDIr, fireDIr, bulletSpeed, BulletType.EnemyBullet,2f);
+                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 1.5f, 1, 1f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                bullet.SetBulletDestroyAction(BulletDestroyAction.aroundFire);
             }
 
             PlayFireAnim();
+
+
+
 
 
         }
