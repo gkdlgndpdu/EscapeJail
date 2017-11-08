@@ -37,6 +37,7 @@ namespace weapon
         Fars,
         Vectol,
         Scolpigeon,
+        DoubleP2,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
