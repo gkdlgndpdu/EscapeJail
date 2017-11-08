@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class Condender : Weapon
+    public class Gluck : Weapon
     {
-
         //리볼버 반동
         private float reBoundValue = 5f;
 
-        public Condender()
+        public Gluck()
         {
-            weapontype = WeaponType.Condender;
+            weapontype = WeaponType.Gluck;
             bulletSpeed = 13f;
-            fireDelay = 1.5f;
+            fireDelay = 0.4f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 4;
+            damage = 1;
 
         }
 
@@ -33,11 +32,12 @@ namespace weapon
 
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet,1, damage);
+                fireDir.Normalize();
+                bullet.Initialize(firePos+ fireDir*0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                bullet.SetBloom(true, CustomColor.Orange);
-             
+                bullet.SetBloom(true, CustomColor.Silver);
+
 
 
             }

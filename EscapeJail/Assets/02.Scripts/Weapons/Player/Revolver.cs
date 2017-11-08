@@ -14,9 +14,8 @@ namespace weapon
         {
             weapontype = WeaponType.Revolver;
             bulletSpeed = 10f;
-            fireDelay = 0.3f;
-            maxAmmo = 1;
-            nowAmmo = 1;
+            fireDelay = 0.5f;
+            SetAmmo(1);
             needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(-0.3f, 0f, 0f);

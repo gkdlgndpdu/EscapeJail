@@ -38,6 +38,9 @@ namespace weapon
         Vectol,
         Scolpigeon,
         DoubleP2,
+        K_Cobra,
+        Gluck,
+        Fire_seveN,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
