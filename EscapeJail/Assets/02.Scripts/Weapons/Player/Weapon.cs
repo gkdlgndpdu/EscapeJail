@@ -36,9 +36,10 @@ namespace weapon
         N16,
         Fars,
         Vectol,
-        //
+        Scolpigeon,
+        //////////////////////////////////
         PlayerWeaponEnd,
-        //
+        //////////////////////////////////
         MouseGun,
         CriminalPistol,
         CriminalShotGun,
