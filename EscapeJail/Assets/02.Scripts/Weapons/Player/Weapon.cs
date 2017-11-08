@@ -34,6 +34,7 @@ namespace weapon
         WellRoad,
         M400,
         N16,
+        Fars,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,
