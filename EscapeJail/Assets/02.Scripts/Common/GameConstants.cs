@@ -31,3 +31,10 @@ public static class GameConstants
     public static string WeaponDBName = "WeaponDB.db";
     
 }
+
+public static class CustomColor
+{
+    public static Color Orange = new Color(255f / 255f, 187f / 255f, 0f);
+    public static Color Silver = new Color(192f / 255f, 192f / 255f, 192f/255f);
+
+}

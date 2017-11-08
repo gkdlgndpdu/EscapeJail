@@ -26,6 +26,9 @@ namespace weapon
         Shortknife, //13
         LaserPistol, //14
         CardCase, //15
+        Condender,
+        D_Eagle,
+        AKL,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,

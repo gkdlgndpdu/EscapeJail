@@ -130,7 +130,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new AssaultRifle());
+        AddWeapon(new AKL());
 
         UIUpdate();
     }
@@ -309,12 +309,12 @@ public class CharacterBase : CharacterInfo
                 RotateWeapon(nearEnemy.transform.position);
             else if (nearEnemy == null || weaponHandler.attackType == AttackType.near)
             {
-                RotateWeapon(this.transform.position + moveDir);
+                RotateWeapon(this.transform.position + lastMoveDir);
             }
         }
         else if (GameOption.FireStyle == FireStyle.Manual)
         {
-            if (lastFireDirection != Vector3.zero) ;
+            if (lastFireDirection != Vector3.zero) 
             RotateWeapon(this.transform.position +lastFireDirection);
         }
     }
@@ -346,8 +346,6 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-
-
         Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
         if (weaponPosit != null)
