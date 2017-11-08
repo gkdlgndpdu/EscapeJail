@@ -35,7 +35,10 @@ namespace weapon
         M400,
         N16,
         Fars,
+        Vectol,
+        //
         PlayerWeaponEnd,
+        //
         MouseGun,
         CriminalPistol,
         CriminalShotGun,
