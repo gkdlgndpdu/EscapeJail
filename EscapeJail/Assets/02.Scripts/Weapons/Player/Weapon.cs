@@ -32,6 +32,8 @@ namespace weapon
         Scal,
         Tal_21,
         WellRoad,
+        M400,
+        N16,
         PlayerWeaponEnd,
         MouseGun,
         CriminalPistol,

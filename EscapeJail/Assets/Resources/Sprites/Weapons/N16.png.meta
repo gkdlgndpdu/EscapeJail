@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 848046ddb7d37d143a41a19944bc3cf5
-timeCreated: 1510076318
+guid: 65c4f654f736d1b43a3edd1055a0bf95
+timeCreated: 1510165182
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tea-30_0
-    21300002: tea-30_1
-    21300004: tea-30_2
+    21300000: MI_0
+    21300002: MI_1
+    21300004: MI_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tea-30_0
+      name: MI_0
       rect:
         serializedVersion: 2
         x: 0
@@ -94,13 +94,13 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.61287487, y: 0.26249266}
+      pivot: {x: 0.78, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tea-30_1
+      name: MI_1
       rect:
         serializedVersion: 2
         x: 80
@@ -108,13 +108,13 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.6128749, y: 0.2624927}
+      pivot: {x: 0.84772474, y: 0.39999992}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tea-30_2
+      name: MI_2
       rect:
         serializedVersion: 2
         x: 160
@@ -122,7 +122,7 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.6128749, y: 0.2624927}
+      pivot: {x: 0.78, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
