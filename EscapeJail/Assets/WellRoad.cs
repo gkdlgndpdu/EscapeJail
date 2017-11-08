@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class AKL : Weapon
+    public class WellRoad : Weapon
     {
 
         //리볼버 반동
-        private float reBoundValue = 15f;
+        private float reBoundValue = 0f;
 
-        public AKL()
+        public WellRoad()
         {
-            weapontype = WeaponType.AKL;
-            bulletSpeed = 15f;
-            fireDelay = 0.18f;
-            damage = 2;
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
-            needBulletToFire = 1;          
-           
+            weapontype = WeaponType.WellRoad;
+            bulletSpeed = 13f;
+            fireDelay = 0.5f;
+            SetAmmo(100);
+            needBulletToFire = 1;
+            damage = 1;
 
         }
 
@@ -26,26 +24,23 @@ namespace weapon
         {
             if (canFire() == false) return;
 
-            useBullet();
             FireDelayOn();
             PlayFireAnim();
-
-          
-
+            useBullet();
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
+
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                fireDir.Normalize();
-                bullet.Initialize(firePos + fireDir * 0.6f+Vector3.up*0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                bullet.SetBloom(true, Color.black);
+
+
 
             }
-
-
         }
-
     }
 }

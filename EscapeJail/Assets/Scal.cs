@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class AKL : Weapon
+    public class Scal : Weapon
     {
-
         //리볼버 반동
-        private float reBoundValue = 15f;
+        private float reBoundValue = 10f;
 
-        public AKL()
+        public Scal()
         {
-            weapontype = WeaponType.AKL;
+            weapontype = WeaponType.Scal;
             bulletSpeed = 15f;
-            fireDelay = 0.18f;
-            damage = 2;
+            fireDelay = 0.13f;
+            damage = 1;
             maxAmmo = 1000;
             nowAmmo = maxAmmo;
-            needBulletToFire = 1;          
-           
+            needBulletToFire = 1;
+            weaponScale = Vector3.one * 2.5f;
+     
 
         }
 
@@ -30,7 +30,6 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
-          
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
@@ -38,14 +37,13 @@ namespace weapon
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 fireDir.Normalize();
-                bullet.Initialize(firePos + fireDir * 0.6f+Vector3.up*0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
+                bullet.Initialize(firePos + fireDir * 0.5f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-
+                bullet.SetBloom(true, CustomColor.Orange);
             }
 
 
         }
-
     }
 }

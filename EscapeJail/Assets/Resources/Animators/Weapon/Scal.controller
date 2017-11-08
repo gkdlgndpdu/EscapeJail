@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: AKL
+  m_Name: Scal
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: FireTrigger
@@ -69,7 +69,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7c8e4936174cf6542bf796fb1c5c0583, type: 2}
+  m_Motion: {fileID: 7400000, guid: 769439feb1cf9a4409491e2d2dfbcd1f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
