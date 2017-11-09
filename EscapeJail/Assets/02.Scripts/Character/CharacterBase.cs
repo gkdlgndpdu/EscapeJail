@@ -130,7 +130,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new UP45());
+        AddWeapon(new War2000());
 
         UIUpdate();
     }

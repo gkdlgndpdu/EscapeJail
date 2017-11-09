@@ -49,6 +49,9 @@ namespace weapon
         TomSon,
         UP45,
         Uze,
+        Dragunoob,
+        Mtw,
+        War2000,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
@@ -212,7 +215,7 @@ namespace weapon
             SetAmmo(1);
         }
 
-        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage)
+        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage, Color color =default(Color))
         {
             int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
             Ray2D ray = new Ray2D(firePos, fireDirection);
@@ -227,6 +230,11 @@ namespace weapon
                 if (line != null)
                 {
                     line.Initialize(firePos, hit.point);
+                }
+
+                if (color != default(Color))
+                {
+                    line.SetLineColor(color);
                 }
             }
         }

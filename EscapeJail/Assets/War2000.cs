@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class ASI : Weapon
+    public class War2000 : Weapon
     {
 
         //리볼버 반동
-        private float reBoundValue = 0f;
+        private float reBoundValue = 5f;
 
-        public ASI()
+        public War2000()
         {
-            weapontype = WeaponType.ASI;
+            weapontype = WeaponType.War2000;
             bulletSpeed = 10f;
-            fireDelay = 1f;
+            fireDelay = 0.5f;
             maxAmmo = 100;
             nowAmmo = 100;
-            needBulletToFire = 1;       
-            damage = 10;
+            needBulletToFire = 1;
+            damage = 3;
 
         }
 
@@ -30,8 +30,7 @@ namespace weapon
             PlayFireAnim();
 
             //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
-            FireHitScan(firePos+Vector3.up*0.1f, fireDirection, damage);
+            FireHitScan(firePos + Vector3.up * 0.1f, fireDirection, damage,CustomColor.Orange);
         }
-
     }
 }
