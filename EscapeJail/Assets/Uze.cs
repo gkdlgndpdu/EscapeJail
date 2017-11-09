@@ -13,7 +13,7 @@ namespace weapon
         {
             weapontype = WeaponType.Uze;
             bulletSpeed = 10f;
-            fireDelay = 0.05f;
+            fireDelay = 0.08f;
             SetAmmo(999);
             needBulletToFire = 1;
             damage = 1;

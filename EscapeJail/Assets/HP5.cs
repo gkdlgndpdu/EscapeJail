@@ -7,20 +7,16 @@ namespace weapon
     {
 
         //리볼버 반동
-        private float reBoundValue = 6f;
+        private float reBoundValue = 20f;
 
         public HP5()
         {
             weapontype = WeaponType.HP5;
             bulletSpeed = 10f;
             fireDelay = 0.1f;
-            damage = 1;
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
+            SetAmmo(999);
             needBulletToFire = 1;
-            weaponScale = Vector3.one * 2.5f;
-
-
+            damage = 1;
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -31,17 +27,18 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
-
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
+
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 fireDir.Normalize();
-                bullet.Initialize(firePos + fireDir * 0.5f + Vector3.up * 0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.4f, damage, 0.6f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                bullet.SetBloom(true, Color.blue);
+                bullet.SetBloom(true, CustomColor.Orange);
+
 
             }
 
