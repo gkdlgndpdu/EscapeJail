@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4d6d5058dcb421344bddfacb3176190b
-timeCreated: 1509892798
+timeCreated: 1510227126
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -50,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -96,7 +96,7 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.8356823, y: 0.40499544}
+      pivot: {x: 0.7830073, y: 0.40499538}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -110,7 +110,7 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.8356823, y: 0.4049954}
+      pivot: {x: 0.92221963, y: 0.40499538}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -124,7 +124,7 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.8356823, y: 0.4049954}
+      pivot: {x: 0.69270724, y: 0.40499538}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,21 +138,7 @@ TextureImporter:
         width: 80
         height: 64
       alignment: 9
-      pivot: {x: 0.8356823, y: 0.4049954}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shortshotgun_4
-      rect:
-        serializedVersion: 2
-        x: 323
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.92221946, y: 0.41440162}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -43,6 +43,7 @@ namespace weapon
         Fire_seveN,
         M1G1,
         M1G2,
+        PumpAction,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

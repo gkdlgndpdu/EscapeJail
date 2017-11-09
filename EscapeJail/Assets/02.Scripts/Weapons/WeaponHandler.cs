@@ -177,8 +177,10 @@ public class WeaponHandler : MonoBehaviour
         nowWeapon.FireBullet(firePos, fireDirection);
 
         UpdateWeaponUI();
+
+        
     }
-    
+
     private void UpdateWeaponUI()
     {
         if (weaponUi != null && nowWeapon != null)
