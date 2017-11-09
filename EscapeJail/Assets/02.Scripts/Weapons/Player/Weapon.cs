@@ -41,6 +41,8 @@ namespace weapon
         K_Cobra,
         Gluck,
         Fire_seveN,
+        M1G1,
+        M1G2,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

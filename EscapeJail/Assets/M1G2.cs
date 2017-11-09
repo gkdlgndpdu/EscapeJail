@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class WellRoad : Weapon
+    public class M1G2 : Weapon
     {
 
         //리볼버 반동
         private float reBoundValue = 0f;
 
-        public WellRoad()
+        public M1G2()
         {
-            weapontype = WeaponType.WellRoad;
+            weapontype = WeaponType.M1G2;
             bulletSpeed = 15f;
             fireDelay = 0.5f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 1;
+            damage = 2;
 
         }
 
@@ -36,7 +36,7 @@ namespace weapon
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                bullet.SetBloom(true, Color.black);
+                bullet.SetBloom(true, CustomColor.Orange);
 
 
 
