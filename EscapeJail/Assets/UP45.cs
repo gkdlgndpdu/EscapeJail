@@ -7,23 +7,22 @@ namespace weapon
     {
 
         //리볼버 반동
-        private float reBoundValue = 40f;
+        private float reBoundValue = 5f;
 
         public UP45()
         {
             weapontype = WeaponType.UP45;
             bulletSpeed = 10f;
-            fireDelay = 0.04f;
-            SetAmmo(999);
+            fireDelay = 0.5f;
+            SetAmmo(10);
             needBulletToFire = 1;
-            damage = 1;
+            damage = 2;
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
 
-            useBullet();
             FireDelayOn();
             PlayFireAnim();
 
@@ -32,16 +31,14 @@ namespace weapon
             {
 
                 Vector3 fireDir = fireDirection;
-                fireDir.Normalize();
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.3f, damage, 0.4f);
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                bullet.SetBloom(true, Color.yellow);
+                bullet.SetBloom(true, Color.blue);
 
 
             }
-
 
         }
     }
