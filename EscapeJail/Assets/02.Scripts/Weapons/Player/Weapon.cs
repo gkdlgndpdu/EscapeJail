@@ -52,6 +52,8 @@ namespace weapon
         Dragunoob,
         Mtw,
         War2000,
+        PMP45,
+        PPAP900,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

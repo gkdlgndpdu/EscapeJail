@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: d626fec5238318049b10be824f176130
-timeCreated: 1510253411
+guid: 3d886734a2f875249a1db4e7d6bdd91e
+timeCreated: 1510267924
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pp900_0
-    21300002: pp900_1
-    21300004: pp900_2
+    21300000: pmp45k_0
+    21300002: pmp45k_1
+    21300004: pmp45k_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 42
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -86,43 +86,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pp900_0
+      name: pmp45k_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: pp900_1
+      name: pmp45k_1
       rect:
         serializedVersion: 2
         x: 64
         y: 64
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.73890615, y: 0.40228856}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: pp900_2
+      name: pmp45k_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6519395, y: 0.39771134}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
