@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M1G2
+  m_Name: shotgun
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: FireTrigger
@@ -69,7 +69,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6578c60426a4f6f43bc3b0899b7cc813, type: 2}
+  m_Motion: {fileID: 7400000, guid: 67878baec3bd61844a0394770d13ef50, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
