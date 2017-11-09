@@ -44,6 +44,11 @@ namespace weapon
         M1G1,
         M1G2,
         PumpAction,
+        ASI,
+        HP5,
+        TomSon,
+        UP45,
+        Uze,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
@@ -205,6 +210,25 @@ namespace weapon
             this.slashColor = slashColor;
             this.slashSize = slashSize;
             SetAmmo(1);
+        }
+
+        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage)
+        {
+            int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
+            Ray2D ray = new Ray2D(firePos, fireDirection);
+            RaycastHit2D hit = Physics2D.Raycast(firePos, fireDirection, 50f, layerMask);
+            if (hit == true)
+            {
+                CharacterInfo characterInfo = hit.transform.gameObject.GetComponent<CharacterInfo>();
+                if (characterInfo != null)
+                    characterInfo.GetDamage(damage);
+                //라인 그려주기
+                DrawLiner line = ObjectManager.Instance.linePool.GetItem();
+                if (line != null)
+                {
+                    line.Initialize(firePos, hit.point);
+                }
+            }
         }
 
     }

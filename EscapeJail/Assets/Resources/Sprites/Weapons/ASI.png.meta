@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: c7952f9bb53265c4c80ab72adf154ef8
-timeCreated: 1509894303
+guid: 9d694224c2fea5e438d5eb90c3a341cd
+timeCreated: 1509957399
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: wz_0
-    21300002: wz_1
-    21300004: wz_2
+    21300000: ASI_0
+    21300002: ASI_1
+    21300004: ASI_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 44
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -86,43 +86,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wz_0
+      name: ASI_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 130
         height: 64
       alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
+      pivot: {x: 0.9075069, y: 0.42945322}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: wz_1
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: wz_2
+      name: ASI_1
       rect:
         serializedVersion: 2
         x: 130
         y: 0
-        width: 64
+        width: 130
         height: 64
       alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
+      pivot: {x: 0.9075069, y: 0.4294532}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ASI_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 130
+        height: 64
+      alignment: 9
+      pivot: {x: 0.9075069, y: 0.4294532}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
