@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: c7952f9bb53265c4c80ab72adf154ef8
-timeCreated: 1509894303
+guid: 8bf604240cf92134c9d2e3c75ec503ec
+timeCreated: 1510253921
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: wz_0
-    21300002: wz_1
-    21300004: wz_2
+    21300000: thomsonSMG_0
+    21300002: thomsonSMG_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -48,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 42
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -86,43 +85,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wz_0
+      name: thomsonSMG_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 74.5
+        height: 76
       alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
+      pivot: {x: 0.60934746, y: 0.45043936}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: wz_1
+      name: thomsonSMG_1
       rect:
         serializedVersion: 2
-        x: 65
+        x: 74
         y: 0
-        width: 64
-        height: 64
+        width: 74
+        height: 76
       alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: wz_2
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.7633741, y: 0.2813051}
+      pivot: {x: 0.6540827, y: 0.5034578}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

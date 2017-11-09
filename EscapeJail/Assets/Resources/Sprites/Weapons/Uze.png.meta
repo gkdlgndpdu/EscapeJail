@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: fef1e96ad3f1a044c902430051e446b9
-timeCreated: 1509893735
+guid: c7952f9bb53265c4c80ab72adf154ef8
+timeCreated: 1510250367
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: U45_0
-    21300002: U45_1
-    21300004: U45_2
+    21300000: wz_0
+    21300002: wz_1
+    21300004: wz_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 42
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -86,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: U45_0
+      name: wz_0
       rect:
         serializedVersion: 2
         x: 0
@@ -94,35 +94,35 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.73750734, y: 0.32363313}
+      pivot: {x: 0.75631934, y: 0.39653143}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: U45_1
+      name: wz_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 0
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.7375073, y: 0.3236331}
+      pivot: {x: 0.8057021, y: 0.40593767}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: U45_2
+      name: wz_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 130
         y: 0
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.7375073, y: 0.3236331}
+      pivot: {x: 0.74221015, y: 0.40123457}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
