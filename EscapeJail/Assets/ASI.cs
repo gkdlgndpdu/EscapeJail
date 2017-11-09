@@ -19,8 +19,6 @@ namespace weapon
             needBulletToFire = 1;       
             damage = 10;
 
-
-
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
