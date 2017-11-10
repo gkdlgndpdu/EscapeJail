@@ -104,7 +104,7 @@ public class FireJoyStick : MonoBehaviour
                 if (touchAreaRadius > stickRadius)
                 {
                     stickImage.rectTransform.position = originPos + (fireDir * stickRadius);
-                  
+                    GamePlayerManager.Instance.player.FireWeapon();
                 }              
                 else
                 {
