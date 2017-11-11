@@ -53,9 +53,7 @@ public class CharacterBase : CharacterInfo
     [HideInInspector]
     protected PlayerUI playerUi;
 
-    [SerializeField]
-    private Slider weaponSlider;
-
+    private CharacterSliders characterSliders;
     //인벤토리
     protected Inventory inventory;
 
@@ -70,11 +68,22 @@ public class CharacterBase : CharacterInfo
     //버프효과
     protected BuffEffect buffEffect;
 
-
+    protected void LoadPrefabs()
+    {
+        GameObject loadObj = Resources.Load<GameObject>("Prefabs/ETC/Sliders");
+        if (loadObj != null)
+        {
+            GameObject makeObj = Instantiate(loadObj, this.transform);
+            if (makeObj != null)
+            {
+                characterSliders = makeObj.GetComponent<CharacterSliders>();
+            }
+        }
+    }
     protected void Awake()
     {
         SetLayerAndTag();
-
+        LoadPrefabs();
         Initialize();
 
         SetBuffEffect();
@@ -85,9 +94,9 @@ public class CharacterBase : CharacterInfo
             slashObject.gameObject.SetActive(false);
         }
 
-        if (weaponHandler != null && weaponSlider != null)
+        if (weaponHandler != null && characterSliders != null)
         {
-            weaponHandler.SetSlider(weaponSlider);
+            weaponHandler.SetSlider(characterSliders.weaponDelaySlider, characterSliders.weaponReboundSlider);
         }
 
         if (weaponHandler != null && playerUi != null)
@@ -130,7 +139,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new M1G2());
+        AddWeapon(new HWMMG());
 
         UIUpdate();
     }
@@ -237,7 +246,7 @@ public class CharacterBase : CharacterInfo
     // Update is called once per frame
     protected void Update()
     {
-    
+
 
         HandleNowWeapon();
 
@@ -250,7 +259,7 @@ public class CharacterBase : CharacterInfo
 
     }
     protected void InputOnPc()
-    {     
+    {
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             GetDamage(1);
@@ -314,8 +323,8 @@ public class CharacterBase : CharacterInfo
         }
         else if (GameOption.FireStyle == FireStyle.Manual)
         {
-            if (lastFireDirection != Vector3.zero) 
-            RotateWeapon(this.transform.position +lastFireDirection);
+            if (lastFireDirection != Vector3.zero)
+                RotateWeapon(this.transform.position + lastFireDirection);
         }
     }
 
@@ -560,7 +569,7 @@ public class CharacterBase : CharacterInfo
         return inventory.isInventoryFull();
     }
 
-  
+
     public void ReactiveItem()
     {
         int activeLayer = MyUtils.GetLayerMaskByString("DropItem");
@@ -594,7 +603,7 @@ public class CharacterBase : CharacterInfo
 
         }
         else if (colls.Length > 1)
-        {               
+        {
             Collider2D neariestCollider = null;
             float neariestDistance = 999f;
             for (int i = 0; i < colls.Length; i++)

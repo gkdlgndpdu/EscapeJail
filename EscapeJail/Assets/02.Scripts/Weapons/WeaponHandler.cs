@@ -23,7 +23,7 @@ public class WeaponHandler : MonoBehaviour
 
     //
     private Slider weaponSlider=null;
-
+    private Slider reboundSlider = null;
 
 
 
@@ -31,9 +31,10 @@ public class WeaponHandler : MonoBehaviour
     {
         this.weaponUi = weaponUi;
     }
-    public void SetSlider(Slider weaponSlider)
+    public void SetSlider(Slider weaponSlider,Slider reboundSlider)
     {
         this.weaponSlider = weaponSlider;
+        this.reboundSlider = reboundSlider;
     }
     
 
@@ -197,7 +198,7 @@ public class WeaponHandler : MonoBehaviour
     private void Update()
     {
         if (nowWeapon != null)
-            nowWeapon.WeaponUpdate(weaponSlider);
+            nowWeapon.WeaponUpdate(weaponSlider,reboundSlider);
         else if (nowWeapon == null)
         {
             if(weaponSlider!=null)

@@ -259,16 +259,13 @@ public class LastBoss : BossBase
 
         bossEventQueue.AddEvent("SpreadBomb");
         bossEventQueue.AddEvent("TempFireRoutine1");
-        //bossEventQueue.AddEvent("TempFireRoutine2");
-        //bossEventQueue.AddEvent("TempFireRoutine3");
-
     }
 
     IEnumerator TempFireRoutine1()
     { 
         WeaponHideOnOff(false);
         ChangeRandomWeapon();
-        //ChangeWeapon(WeaponType.LastBoss_Pistol);
+  
         yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < 30; i++)
         {
@@ -279,37 +276,7 @@ public class LastBoss : BossBase
         WeaponHideOnOff(true);
         yield return new WaitForSeconds(1.0f);
     }
-    //IEnumerator TempFireRoutine2()
-    //{
-  
-    //    WeaponHideOnOff(false);
-    //    ChangeWeapon(WeaponType.LastBoss_MinuGun);
-    //    yield return new WaitForSeconds(1.0f);
-    //    for (int i = 0; i < 20; i++)
-    //    {
-    //        FireNowWeapon();
-    //        yield return new WaitForSeconds(0.1f);
-    //    }
 
-    //    WeaponHideOnOff(true);
-
-    //    yield return new WaitForSeconds(1.0f);
-    //}
-    //IEnumerator TempFireRoutine3()
-    //{
-    
-    //    WeaponHideOnOff(false);
-    //    ChangeWeapon(WeaponType.LastBoss_Bazooka);
-    //    yield return new WaitForSeconds(1.0f);
-    //    for (int i = 0; i < 5; i++)
-    //    {
-    //        FireNowWeapon();
-    //        yield return new WaitForSeconds(0.5f);
-    //    }
-     
-    //    WeaponHideOnOff(true);
-    //    yield return new WaitForSeconds(1.0f);
-    //}
 
     IEnumerator SpreadBomb()
     {

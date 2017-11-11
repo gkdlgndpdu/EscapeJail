@@ -1,25 +1,22 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace weapon
 {
-    public class BasicSniper : Weapon
+    public class Car98 : Weapon
     {
+
         //리볼버 반동
         private float reBoundValue = 5f;
 
-        public BasicSniper()
+        public Car98()
         {
-            weapontype = WeaponType.BasicSniper;
+            weapontype = WeaponType.Car98;
             bulletSpeed = 10f;
-            fireDelay = 2f;
+            fireDelay = 1f;
             maxAmmo = 100;
             nowAmmo = 100;
-            needBulletToFire = 1;
-            weaponScale = Vector3.one * 0.7f;
-            relativePosition = new Vector3(-0.3f, 0f, 0f);
+            needBulletToFire = 1;   
             damage = 10;
 
 
@@ -35,12 +32,8 @@ namespace weapon
             PlayFireAnim();
 
             //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
-            FireHitScan(firePos, fireDirection, damage);   
+            FireHitScan(firePos+Vector3.up*0.1f, fireDirection, damage,CustomColor.Orange);
         }
 
-  
-
-        
     }
-
 }

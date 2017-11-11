@@ -54,6 +54,13 @@ namespace weapon
         War2000,
         PMP45,
         PPAP900,
+        K2G,
+        Saigong12,
+        Spa20,
+        SuperShort,
+        Car98,
+        H249,
+        HWMMG,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
@@ -116,6 +123,14 @@ namespace weapon
         //근접무기용
         public Color slashColor = Color.green;
         public Vector3 slashSize = Vector3.one * 7f;
+
+        //반동관련
+        protected float reboundDuringFire = 0f;
+        protected bool hasRebuondDuringFire = false;
+        protected float reboundAddValue = 0f;
+        protected float reboundRecoverValue = 0f;
+        protected float lastFireTime = 0f;
+        protected float maxRebound;
         public Weapon()
         {
             itemType = ItemType.Weapon;
@@ -154,8 +169,63 @@ namespace weapon
             Debug.Log("자식에서 구현");
         }
 
-        public void WeaponUpdate(Slider slider = null)
+
+
+
+        protected void AddRebound()
         {
+            if (reboundDuringFire<= maxRebound)
+                reboundDuringFire += reboundAddValue;
+
+        
+        }
+
+    
+
+        /// <summary>
+        /// normalize 값 반환
+        /// </summary>       
+        protected Vector3 ApplyReboundDirection(Vector3 originDir)
+        {
+            Vector3 returnValue = Quaternion.Euler(0f, 0f,UnityEngine.Random.Range(-reboundDuringFire, reboundDuringFire)) * originDir;
+            return returnValue.normalized;
+        }
+
+        public void WeaponUpdate(Slider slider = null,Slider reboundSlider =null)
+        {
+            if (hasRebuondDuringFire == true)
+            {
+                if (fireCount < fireDelay)
+                    lastFireTime += Time.deltaTime * 1.1f;
+
+                lastFireTime -= Time.deltaTime;
+                if (lastFireTime <= 0)
+                {
+                    reboundDuringFire = 0f;
+                    lastFireTime = 0f;
+                    if (reboundSlider != null)
+                        reboundSlider.gameObject.SetActive(false);
+                }
+
+                if (reboundDuringFire > 0f)
+                {                
+                    reboundDuringFire -= reboundRecoverValue * Time.deltaTime;
+                    if (reboundSlider != null)
+                    {
+                        reboundSlider.gameObject.SetActive(true);
+                        reboundSlider.value = reboundDuringFire / maxRebound;
+                    }
+                }
+                if (reboundDuringFire < 0f)
+                {
+                    reboundDuringFire = 0f;
+                    if (reboundSlider != null)
+                        reboundSlider.gameObject.SetActive(false);
+                }
+           
+
+            }
+
             if (isFireDelayFinish == true)
             {
                 if (slider != null)
@@ -173,17 +243,14 @@ namespace weapon
 
                 if (slider != null)
                     slider.gameObject.SetActive(false);
-
                 return;
             }
 
+    
             if (slider != null)
-            {
-                if (slider != null)
-                {
+            {              
                     slider.gameObject.SetActive(true);
-                    slider.value = fireCount / fireDelay;
-                }
+                    slider.value = fireCount / fireDelay;          
 
             }
 
@@ -199,6 +266,17 @@ namespace weapon
         {
             if (animator != null)
                 animator.SetTrigger("FireTrigger");
+        }
+
+   
+
+        protected void SetReboundDuringFire(float addValue,float recoverValue,float maxRebound = 45f)
+        {
+            hasRebuondDuringFire = true;
+            reboundDuringFire = 0f;
+            reboundAddValue = addValue;
+            reboundRecoverValue = recoverValue;
+            this.maxRebound = maxRebound;
         }
 
 
