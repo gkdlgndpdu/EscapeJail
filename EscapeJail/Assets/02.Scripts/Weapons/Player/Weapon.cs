@@ -138,7 +138,7 @@ namespace weapon
 
         public void GetBullet()
         {
-            nowAmmo = maxAmmo;
+            nowAmmo = maxAmmo;            
         }
         public void Initialize(Animator animator)
         {
@@ -169,7 +169,11 @@ namespace weapon
             Debug.Log("자식에서 구현");
         }
 
-
+        public override void ItemAction()
+        {
+            Debug.Log("무기변경" + weapontype.ToString());
+            GamePlayerManager.Instance.player.ChangeSpeceficWeapon(weapontype);
+        }
 
 
         protected void AddRebound()
@@ -278,6 +282,8 @@ namespace weapon
             reboundRecoverValue = recoverValue;
             this.maxRebound = maxRebound;
         }
+
+
 
 
 

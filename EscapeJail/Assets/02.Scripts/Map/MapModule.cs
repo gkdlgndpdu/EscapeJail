@@ -133,6 +133,7 @@ public class MapModule : MapModuleBase
     private bool IsWaveEnd()
     {
         if (monsterList == null) return true;
+        if (monsterList.Count == 0) return false;
 
         for (int i = 0; i < monsterList.Count; i++)
         {
@@ -206,7 +207,7 @@ public class MapModule : MapModuleBase
 
     }
 
-    public MonsterBase SpawnRandomMonsterInModule(Vector3 spawnPos)
+    public void SpawnRandomMonsterInModule(Vector3 spawnPos)
     {
         MonsterBase spawnMonster = MonsterManager.Instance.SpawnSpecificMonster(GetRandomMonster(), spawnPos);
 
@@ -215,8 +216,6 @@ public class MapModule : MapModuleBase
             spawnMonster.SetMapModule(this);
             AddtoMonsterList(spawnMonster);
         }
-
-        return spawnMonster;
     }
 
     //슬라임용
@@ -235,13 +234,19 @@ public class MapModule : MapModuleBase
 
     private void SpawnMonster(int monsterNum)
     {
+        if (monsterList != null)
+            monsterList.Clear();
+
         //몬스터 스폰
         for (int i = 0; i < monsterNum; i++)
         {
             int RandomIndex = Random.Range(0, normalTileList.Count - 1);
             Vector3 RandomSpawnPosit = normalTileList[RandomIndex].transform.position;
 
-            SpawnRandomMonsterInModule(RandomSpawnPosit);
+            MonsterSpawnEffect spawnEffect =ObjectManager.Instance.monsterSpawnEffectPool.GetItem();
+            spawnEffect.Initialize(RandomSpawnPosit, SpawnRandomMonsterInModule);
+
+        //    SpawnRandomMonsterInModule(RandomSpawnPosit);
 
         }
 
@@ -258,6 +263,9 @@ public class MapModule : MapModuleBase
 
         SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum + 1));
 
+
+     
+
         //종료 체크
         while (true)
         {
@@ -272,7 +280,7 @@ public class MapModule : MapModuleBase
                 }
 
                 SpawnMonster(Random.Range(spawnMonsterNum, spawnMonsterNum + 1));
-
+                
 
             }
             yield return null;

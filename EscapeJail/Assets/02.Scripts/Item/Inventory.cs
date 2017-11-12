@@ -60,6 +60,17 @@ public class Inventory
 
         return weaponList[weaponIndex];
     }
+    public Weapon GetSpeceficWeapon(WeaponType weaponType)
+    {
+        if (weaponList == null) return null;
+        if (weaponList.Count == 0) return null;
+        for(int i = 0; i < weaponList.Count; i++)
+        {
+            if (weaponList[i].weapontype == weaponType)
+                return weaponList[i];
+        }
+        return null;
+    }
     public Weapon GetLastWeapon()
     {
         if (weaponList == null) return null;

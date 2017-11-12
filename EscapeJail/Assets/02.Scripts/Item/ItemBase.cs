@@ -89,10 +89,7 @@ public class Item_Weapon : ItemBase
         this.weapontype = weapontype;
     }
 
-    public override void ItemAction()
-    {
-        Debug.Log("무기클릭");
-    }
+
 
 }
 public class Item_Bullet : ItemBase
@@ -106,6 +103,8 @@ public class Item_Bullet : ItemBase
     {
         if (player != null)
         {
+            if (player.CanReload() == false) return;
+
             player.GetBulletItem();
             player.RemoveItem(this);
         }
@@ -157,7 +156,7 @@ public class Item_Medicine : ItemBase
 
     public override void RemoveItem()
     {
-        base.RemoveItem();
+        base.RemoveItem();      
         ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
     }
 }
