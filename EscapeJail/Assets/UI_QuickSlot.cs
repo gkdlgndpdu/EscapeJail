@@ -7,29 +7,28 @@ using System;
 public class UI_QuickSlot : MonoBehaviour
 {
 
-    private ItemBase nowItem;
+    private UI_ItemSlot targetSlot;
     [SerializeField]
     private Image iconImage;
 
-    public void SetQuickSlot(ItemBase item)
-    {
-        if (item == null)
-        {
-            iconImage.sprite = null;
-            return;
-        }
+    private ItemBase prefItem;
+    public void SetQuickSlot(UI_ItemSlot slot)
+    {             
+        targetSlot = slot;
+        prefItem = targetSlot.ItemBase;
 
-        nowItem = item;
         SetIcon();
     }
 
     public void UpdateQuickSlot()
     {
-        //아이템이 실제로 사용 됐다
-        if (nowItem == null)
+        if (targetSlot == null) return;
+
+        if (targetSlot.ItemBase != prefItem)
         {
             //리셋
             iconImage.sprite = null;
+            prefItem = null;
         }
     }
 
@@ -37,7 +36,7 @@ public class UI_QuickSlot : MonoBehaviour
     {
         if (iconImage == null) return;
 
-        
+        ItemBase nowItem = targetSlot.ItemBase;
 
         switch (nowItem.itemType)
         {
@@ -63,9 +62,9 @@ public class UI_QuickSlot : MonoBehaviour
 
     public void ClickButton()
     {
-        if (nowItem == null) return;
+        if (targetSlot == null) return;
 
-        nowItem.ItemAction();
+        targetSlot.UseItem();
 
         UpdateQuickSlot();
         

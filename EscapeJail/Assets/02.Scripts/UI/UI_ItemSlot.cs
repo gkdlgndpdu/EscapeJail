@@ -23,8 +23,10 @@ public class UI_ItemSlot : MonoBehaviour
     [SerializeField]
     private Image selectedFrame;
 
-    [SerializeField]
+    
     private bool isSelected = false;
+
+    private bool isQuickSlot = false;
 
     private void Awake()
     {

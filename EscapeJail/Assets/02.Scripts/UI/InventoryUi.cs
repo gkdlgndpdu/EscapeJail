@@ -71,7 +71,7 @@ public class InventoryUi : MonoBehaviour
         if (quickSlot == null) return;
         if (nowSelectedSlot == null) return;        
 
-        quickSlot.SetQuickSlot(nowSelectedSlot.ItemBase);
+        quickSlot.SetQuickSlot(nowSelectedSlot);
 
     }
 
