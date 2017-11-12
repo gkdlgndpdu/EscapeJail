@@ -107,6 +107,14 @@ public class CharacterBase : CharacterInfo
 
     }
 
+    public bool CanReload()
+    {
+        if (weaponHandler == null)
+            return false;
+
+        return weaponHandler.CanReload();
+    }
+
     protected void SetBuffEffect()
     {
         GameObject loadObj = Resources.Load<GameObject>("Prefabs/Objects/BuffEffect");
@@ -353,6 +361,11 @@ public class CharacterBase : CharacterInfo
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
     }
 
+    public void ChangeSpeceficWeapon(WeaponType weaponType)
+    {
+        weaponHandler.ChangeWeapon(inventory.GetSpeceficWeapon(weaponType));
+    }
+
     protected void RotateWeapon(Vector3 enemyPos)
     {
         Vector3 nearestEnemyPos = enemyPos;
@@ -559,6 +572,7 @@ public class CharacterBase : CharacterInfo
         if (inventory != null && item != null)
         {
             inventory.RemoveInInventory(item);
+            item = null;
         }
     }
 

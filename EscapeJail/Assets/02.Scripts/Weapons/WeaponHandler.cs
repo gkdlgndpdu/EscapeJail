@@ -26,6 +26,16 @@ public class WeaponHandler : MonoBehaviour
     private Slider reboundSlider = null;
 
 
+    //총알 채울수 있는지
+    public bool CanReload()
+    {
+        //무기를 안꼇거나
+        if (nowWeapon == null) return false;
+        //총알이 풀이면 안됨
+        if (nowWeapon.nowAmmo == nowWeapon.maxAmmo) return false;
+
+        return true;
+    }
 
     public void SetWeaponUi(WeaponUI weaponUi)
     {

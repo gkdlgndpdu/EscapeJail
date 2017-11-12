@@ -56,7 +56,7 @@ public class MonsterManager : MonoBehaviour
 
     }
 
-    //슬라임용
+   
     public MonsterBase SpawnSpecificMonster(MonsterName name, Vector3 SpawnPosit)
     {
         MonsterBase monster = ObjectManager.Instance.GetSpecificMonster(name);

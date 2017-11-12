@@ -7,17 +7,49 @@ using UnityEngine.UI;
 public class UI_ItemSlot : MonoBehaviour
 {
     private ItemBase itemBase;
+    public ItemBase ItemBase
+    {
+        get
+        {
+            return itemBase;
+        }
+    }
     private Text itemText;
     [SerializeField]
     private Image image;
     private bool isEmpty = true;
     private InventoryUi inventoryUi;
 
+    [SerializeField]
+    private Image selectedFrame;
+
+    [SerializeField]
+    private bool isSelected = false;
+
     private void Awake()
     {
         itemText = GetComponentInChildren<Text>();
-     
+
+        if (selectedFrame != null)
+            selectedFrame.gameObject.SetActive(false);
     }
+
+    public void SelectOnOff(bool OnOff)
+    {
+        //선택
+        if (OnOff == true)
+        {
+            if (selectedFrame != null)
+                selectedFrame.gameObject.SetActive(true);
+        }
+        //해제
+        else if (OnOff == false)
+        {
+            if (selectedFrame != null)
+                selectedFrame.gameObject.SetActive(false);
+        }
+    }
+
     public void LinkInventoryUi(InventoryUi inventoryUi)
     {
         this.inventoryUi = inventoryUi;
@@ -50,24 +82,24 @@ public class UI_ItemSlot : MonoBehaviour
         itemBase = null;
         isEmpty = true;
     }
-    public void OnClick()
+   
+    public void UseItem()
     {
-        if (inventoryUi == null|| itemBase==null) return;
+        if(itemBase!=null)
+        itemBase.ItemAction();
 
-        switch (inventoryUi.inventoryState)
-        {
-            case InventoryState.Select:
-                {                  
-                  itemBase.ItemAction();                    
-                } break;
-            case InventoryState.Delete:
-                {
-                   itemBase.RemoveItem();
-                } break;
-        }
-       
-    
+   
+
+        //if(inventoryUi!=null)
+        //inventoryUi.ResetSelectedSlot();
     }
+
+    public void DiscardItem()
+    {
+        if (itemBase != null)
+            itemBase.RemoveItem();
+    }
+
     public void UpdateSlotInfo()
     {
         if (itemText == null || image == null|| itemBase==null) return;
@@ -92,8 +124,7 @@ public class UI_ItemSlot : MonoBehaviour
                     SetSlotSprite(sprite);
 
                 } break;
-        }
-       
+        }       
 
     }
 
@@ -101,7 +132,9 @@ public class UI_ItemSlot : MonoBehaviour
     {
         SetSlotSprite(null);
         SetSlotText("Empty");
-    
+        itemBase = null;
+
+
     }
 
     public void SetSlotSprite(Sprite sprite)
@@ -113,6 +146,13 @@ public class UI_ItemSlot : MonoBehaviour
     {
         if(itemText!=null)
         itemText.text = text;
+    }
+
+    public void OnClick()
+    {
+        if (inventoryUi == null) return;
+
+        inventoryUi.SetSelectSlot(this);
     }
 
 }

@@ -22,6 +22,8 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<PollutedArea> pollutedAreaPool;
     [HideInInspector]
     public ObjectPool<Turret> turretPool;
+    [HideInInspector]
+    public ObjectPool<MonsterSpawnEffect> monsterSpawnEffectPool;
 
     public MonsterPool monsterPool;
 
@@ -60,8 +62,8 @@ public class ObjectManager : MonoBehaviour
         MakePool<CharacterStateEffect>(ref characterStatePool, "Prefabs/Objects/CharacterStateEffect", EffectParent, 10);
         MakePool<PollutedArea>(ref pollutedAreaPool, "Prefabs/Objects/PollutedArea", EffectParent, 5);
         MakePool<Turret>(ref turretPool, "Prefabs/Objects/Turret", ObjectParent, 5);
+        MakePool<MonsterSpawnEffect>(ref monsterSpawnEffectPool, "Prefabs/Objects/MonsterSpawnEffect", EffectParent, 10);
 
-        
 
         MakeMonsterPool();
 

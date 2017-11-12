@@ -193,10 +193,7 @@ namespace ScientistBoss
                             bullet.Initialize(this.transform.position, fireDIr.normalized, 1f, BulletType.EnemyBullet);
                             bullet.InitializeImage("white", false);
                             bullet.SetEffectName("revolver");
-                        }                    
-                      
-
-                      
+                        }                                         
 
                     }
                     break;

@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossBullet : MonoBehaviour
-{
-    public Bullet bulletPrefab;
+public class CrossBullet : ShapeBulletBase
+{ 
+
     private int bulletLength = 30;
     private float rotationSpeed = 50f;
     private float zAngle = 0f;
-    private ObjectPool<Bullet> bulletPool;
-    private List<Bullet> allBulletList = new List<Bullet>();
     private bool nowRotateBullet = false;
 
     private void Start()
     {
-        MakeBulletPool();
-   
+        MakeBulletPool(bulletLength * 4);
+
     }
 
     private enum BulletDirection
@@ -26,17 +24,18 @@ public class CrossBullet : MonoBehaviour
         Right
     }
 
-    private void MakeBulletPool()
-    {
-        ObjectManager.Instance.MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", this.transform, bulletLength * 4);
-    }
+
 
     public void RotationOnOff(bool OnOff)
     {
-        nowRotateBullet = OnOff;
         if (OnOff == true)
         {
             StartCoroutine(bulletRotationRoutine());
+        }
+        else if (OnOff == false)
+        {
+            DestroyAllBullet();
+            StopAllCoroutines();
         }
     }
 
@@ -51,26 +50,9 @@ public class CrossBullet : MonoBehaviour
             zAngle += Time.deltaTime * rotationSpeed;
             this.transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
 
-            if (nowRotateBullet == false)
-            {
-                DestroyAllBullet();
-                yield break;
-            }
-
             yield return null;
         }
     }
-
-    private void DestroyAllBullet()
-    {
-        if (allBulletList == null) return;
-        for(int i=0;i< allBulletList.Count; i++)
-        {
-            allBulletList[i].BulletDestroy();
-        }
-    }
-
-
 
     private void MakeBullet(BulletDirection bulletDirection, int bulletNum)
     {

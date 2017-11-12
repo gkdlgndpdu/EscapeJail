@@ -161,21 +161,14 @@ public class Bullet : MonoBehaviour
     }
 
     IEnumerator bulletDestroyRoutine(float time)
-    {
-        for(float t=0f; t < time; t += 0.1f)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
+    { 
+        yield return new WaitForSeconds(time);
         BulletDestroy();
     }
 
     IEnumerator bulletMoveLifeCount(float time)
     {
-        for (float t = 0f; t < time; t += 0.1f)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
+        yield return new WaitForSeconds(time);
         StopBullet();
     }
     

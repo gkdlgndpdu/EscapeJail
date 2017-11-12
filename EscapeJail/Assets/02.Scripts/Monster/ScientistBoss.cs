@@ -20,9 +20,11 @@ namespace ScientistBoss
         [SerializeField]
         public List<ChildComputer> childList;
 
+        [SerializeField]
+        private CircleBullet circleBullet;
 
         private int childHp = 10;
-    
+
 
         private new void Awake()
         {
@@ -33,11 +35,11 @@ namespace ScientistBoss
 
         public override void StartBossPattern()
         {
-            StartChild();    
+            StartChild();
 
             if (bossEventQueue != null)
                 bossEventQueue.StartEventQueue();
-  
+
         }
         public void ChildDead()
         {
@@ -53,6 +55,7 @@ namespace ScientistBoss
             base.StartBossPattern();
             bossEventQueue.RemoveAllEvent();
             bossEventQueue.AddEvent("ParentPattern");
+            bossEventQueue.AddEvent("CircleAttackPattern");
         }
 
         private void StartChild()
@@ -69,7 +72,7 @@ namespace ScientistBoss
         {
             if (childList == null) return false;
 
-            for(int i=0;i< childList.Count; i++)
+            for (int i = 0; i < childList.Count; i++)
             {
                 if (childList[i].isDead == false) return true;
             }
@@ -158,7 +161,7 @@ namespace ScientistBoss
         private void RegistPatternToQueue()
         {
 
-            bossEventQueue.Initialize(this, EventOrder.InOrder);
+            bossEventQueue.Initialize(this, EventOrder.InOrder);      
             bossEventQueue.AddEvent("ChildPattern");
 
         }
@@ -169,7 +172,7 @@ namespace ScientistBoss
             List<ChildComputer> RandomMonster = new List<ChildComputer>();
 
             //안죽은애들 넣어줌
-            for(int i = 0; i < childList.Count; i++)
+            for (int i = 0; i < childList.Count; i++)
             {
                 if (childList[i].isDead == false)
                     RandomMonster.Add(childList[i]);
@@ -182,12 +185,12 @@ namespace ScientistBoss
                 RandomMonster[i].FireStart();
 
                 //나머지는 숨기
-                for(int j=0;j< childList.Count; j++)
+                for (int j = 0; j < childList.Count; j++)
                 {
-                    if (childList[j] == RandomMonster[i]|| childList[j].isDead==true) continue;
-                    
-                        childList[j].HideOnOff(true);
-                    
+                    if (childList[j] == RandomMonster[i] || childList[j].isDead == true) continue;
+
+                    childList[j].HideOnOff(true);
+
                 }
 
                 yield return new WaitForSeconds(4.0f);
@@ -198,13 +201,13 @@ namespace ScientistBoss
                 for (int j = 0; j < childList.Count; j++)
                 {
                     if (childList[j] == RandomMonster[i] || childList[j].isDead == true) continue;
-                    
-                        childList[j].HideOnOff(false);
-                    
+
+                    childList[j].HideOnOff(false);
+
                 }
                 yield return new WaitForSeconds(1.5f);
             }
-                     
+
             //리소스 해제
             RandomMonster.Clear();
             RandomMonster = null;
@@ -214,12 +217,32 @@ namespace ScientistBoss
 
         }
 
+        IEnumerator RectanglePattern()
+        {
+            yield return null;
+        }
+
         IEnumerator ParentPattern()
         {
             Action(Actions.FireStart);
             yield return new WaitForSeconds(3.0f);
             Action(Actions.FireEnd);
             yield return new WaitForSeconds(1.0f);
+        }
+
+        IEnumerator CircleAttackPattern()
+        {
+            if (circleBullet == null) yield break;
+
+            circleBullet.StartAttack();
+
+            while (true)
+            {
+                if (circleBullet.NowAttack == false)
+                    yield break;
+
+                    yield return new WaitForSeconds(1.0f);
+            }
         }
 
         public void Fire1()
@@ -249,4 +272,6 @@ namespace ScientistBoss
 
 
     }
+
+
 }

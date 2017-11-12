@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum InventoryState
-{
-    Select,
-    Delete
-}
+
 public class InventoryUi : MonoBehaviour
 {
     private List<UI_ItemSlot> itemSlots= new List<UI_ItemSlot>();
@@ -19,7 +15,8 @@ public class InventoryUi : MonoBehaviour
     [SerializeField]
     private GameObject slotPrefab;
 
-    public InventoryState inventoryState = InventoryState.Select;
+    private UI_ItemSlot nowSelectedSlot;
+
 
     [SerializeField]
     private Image backGroundImage;
@@ -28,6 +25,55 @@ public class InventoryUi : MonoBehaviour
     private Image ArmorImage;
     [SerializeField]
     private Image ArmorRedImage;
+
+    [SerializeField]
+    private UI_QuickSlot quickSlot;
+
+    public void SetSelectSlot(UI_ItemSlot slot)
+    {
+        if (slot == null) return;
+
+        //기존 선택 항목 해제
+        if (nowSelectedSlot != null)
+        {
+            nowSelectedSlot.SelectOnOff(false);
+        }
+
+        //새로 선택 항목으로 갱신
+        slot.SelectOnOff(true);
+        nowSelectedSlot = slot;
+    }
+
+    public void ResetSelectedSlot()
+    {
+        if (nowSelectedSlot != null)
+        {
+            nowSelectedSlot.SelectOnOff(false);
+        }
+        nowSelectedSlot = null;
+    }
+
+    public void UseSelectedItem()
+    {
+        if (nowSelectedSlot == null) return;
+        nowSelectedSlot.UseItem();
+        UpdateQuickSlot();
+    }
+    public void DiscardSelectedItem()
+    {
+        if (nowSelectedSlot == null) return;
+        nowSelectedSlot.DiscardItem();
+        UpdateQuickSlot();
+    }
+
+    public void RegistQuickSlotSelectedItem()
+    {
+        if (quickSlot == null) return;
+        if (nowSelectedSlot == null) return;        
+
+        quickSlot.SetQuickSlot(nowSelectedSlot.ItemBase);
+
+    }
 
 
     public void SetArmorUi(float ratio)
@@ -62,34 +108,13 @@ public class InventoryUi : MonoBehaviour
             ArmorRedImage.fillAmount = ratio;
     }
 
-    public void InventoryStateButtonClick()
+
+    public void UpdateQuickSlot()
     {
-        if(inventoryState == InventoryState.Select)
-        {
-            SetInventoryState(InventoryState.Delete);
-        }
-        else
-        {
-            SetInventoryState(InventoryState.Select);
-        }
+        if (quickSlot == null) return;
+        quickSlot.UpdateQuickSlot();
     }
 
-    private void SetInventoryState(InventoryState state)
-    {
-        switch (state)
-        {
-            case InventoryState.Select:
-                {
-                    inventoryState = InventoryState.Select;
-                    ChangeBackGroundColor(Color.white);
-                } break;
-            case InventoryState.Delete:
-                {
-                    inventoryState = InventoryState.Delete;
-                    ChangeBackGroundColor(Color.red);
-                } break;
-        }
-    }
 
     private void ChangeBackGroundColor(Color color)
     {
@@ -159,7 +184,7 @@ public class InventoryUi : MonoBehaviour
     private void OnEnable()
     {
         UpdateInventoryUi();
-        SetInventoryState(InventoryState.Select);
+   
 
         GameManager.Instance.StopTime();
     }

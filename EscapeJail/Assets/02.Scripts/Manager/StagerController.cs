@@ -15,6 +15,14 @@ public class StagerController : MonoBehaviour
  
     private int nowStageLevel = 1;
 
+    public int NowStageLevel
+    {
+        get
+        {
+            return nowStageLevel - 1;
+        }
+    }
+
 
     public void LoadstageData()
     {

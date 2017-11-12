@@ -165,7 +165,8 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     Weapon instance = Activator.CreateInstance(type) as Weapon;
                     if (instance == null) break;
                     player.AddWeapon(instance);
-                    //itemBase = null;
+                    itemBase = null;
+
                 }
                 break;
             case ItemType.Bag:
