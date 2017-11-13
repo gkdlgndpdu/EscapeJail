@@ -8,7 +8,7 @@ namespace weapon
     public class Revolver : Weapon
     {
         //리볼버 반동
-        protected float reBoundValue = 5f;
+        protected float reBoundValue = 10f;
 
         public Revolver()
         {

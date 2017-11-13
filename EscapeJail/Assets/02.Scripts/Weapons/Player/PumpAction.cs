@@ -12,9 +12,8 @@ namespace weapon
             bulletSpeed = 10f;
             fireDelay = 1f;
 
-            maxAmmo = 10000;
-            nowAmmo = maxAmmo;
-            needBulletToFire = 5;       
+            SetAmmo(30);        
+            needBulletToFire = 1;       
 
         }
 
@@ -29,13 +28,14 @@ namespace weapon
             Vector3 firePosit = firePos;
             fireDirection.Normalize();
 
-            for (int i = 0; i < needBulletToFire; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                Vector3 fd = Quaternion.Euler(0f, 0f, Random.Range(-8f,8f)) * fireDirection;
                 if (bullet != null)
                 {
                     bullet.gameObject.SetActive(true);                  
-                    bullet.Initialize(firePosit+(Vector3)Random.insideUnitCircle*0.4f+ fireDirection*0.25f, fireDirection, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.7f);
+                    bullet.Initialize(firePosit+(Vector3)Random.insideUnitCircle*0.35f, fd.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.7f);
                     bullet.InitializeImage("white", false);
                     bullet.SetEffectName("revolver");
                 }

@@ -147,8 +147,8 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new HWMMG());
-
+        AddWeapon(new Saigong12());
+        AddWeapon(new Revolver());
         UIUpdate();
     }
 

@@ -13,10 +13,10 @@ namespace weapon
         {
             weapontype = WeaponType.WellRoad;
             bulletSpeed = 15f;
-            fireDelay = 0.5f;
+            fireDelay = 0.8f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 1;
+            damage = 2;
 
         }
 

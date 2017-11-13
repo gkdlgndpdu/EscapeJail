@@ -12,9 +12,8 @@ namespace weapon
         {
             weapontype = WeaponType.LaserPistol;
             bulletSpeed = 20f;
-            fireDelay = 0.1f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.2f;
+            SetAmmo(100);
             needBulletToFire = 1;
             weaponScale = Vector3.one * 2;
   

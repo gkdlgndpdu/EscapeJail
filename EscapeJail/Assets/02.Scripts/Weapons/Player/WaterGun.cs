@@ -11,9 +11,8 @@ namespace weapon
             weapontype = WeaponType.WaterGun;
             bulletSpeed = 5f;
             fireDelay = 0.3f;
-            maxAmmo = 50;
-            nowAmmo = 30;
-            needBulletToFire = 2;
+            SetAmmo(50);
+            needBulletToFire = 1;
             weaponScale = Vector3.one * 0.8f;
             relativePosition = new Vector3(-0.23f, 0f, 0f);
 
@@ -32,10 +31,11 @@ namespace weapon
             {
                 bullet.gameObject.SetActive(true);
                 Vector3 fireDir = fireDirection;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1, 1);
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 3, 1);
                 bullet.InitializeImage("watergun", true);
                 bullet.SetEffectName("watergun");
                 bullet.SetBloom(false);
+                bullet.SetExplosion(1f);
 
             }
 

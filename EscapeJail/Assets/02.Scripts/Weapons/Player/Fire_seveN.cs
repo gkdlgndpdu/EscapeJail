@@ -16,7 +16,7 @@ namespace weapon
             fireDelay = 0.3f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 2;
+            damage = 1;
 
         }
 

@@ -12,9 +12,8 @@ namespace weapon
             bulletSpeed = 10f;
             fireDelay = 1f;
 
-            maxAmmo = 10000;
-            nowAmmo = maxAmmo;
-            needBulletToFire = 3;
+            SetAmmo(30);
+            needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(-0.65f, 0f, 0f);
 
@@ -40,34 +39,13 @@ namespace weapon
                 if (bullet != null)
                 {
                     bullet.gameObject.SetActive(true);
-                    fireDir = Quaternion.Euler(0f, 0f, -15f + 15f * i) * fireDirection;
-                    bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.4f);
+                    fireDir = Quaternion.Euler(0f, 0f, -10f + 10f * i) * fireDirection;
+                    bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.5f);
                     bullet.InitializeImage("white", false);
                     bullet.SetEffectName("revolver");
 
                 }
-            }
-
-            for (int i = 0; i < 2; i++)
-            {
-                Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                if (bullet != null)
-                {
-                    bullet.gameObject.SetActive(true);
-                    fireDir = Quaternion.Euler(0f, 0f, -7.5f + 15f * i) * fireDirection;
-                    bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.4f);
-                    bullet.InitializeImage("white", false);
-                    bullet.SetEffectName("revolver");
-
-                }
-            }
-
-
-
-
-
-
-
+            }   
 
         }
 

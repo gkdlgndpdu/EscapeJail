@@ -14,7 +14,7 @@ namespace weapon
             weapontype = WeaponType.Condender;
             bulletSpeed = 13f;
             fireDelay = 1.5f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
             damage = 4;
 

@@ -11,9 +11,11 @@ namespace weapon
             weapontype = WeaponType.Saigong12;
             bulletSpeed = 10f;
             fireDelay = 0.3f;
-            SetAmmo(10000);
-            needBulletToFire = 5;
+            SetAmmo(30);
+            needBulletToFire = 1;
             SetReboundDuringFire(5f, 5f);
+
+
 
         }
 
@@ -33,7 +35,7 @@ namespace weapon
             fireDirection = ApplyReboundDirection(fireDirection);
        
 
-            for (int i = 0; i < needBulletToFire; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)

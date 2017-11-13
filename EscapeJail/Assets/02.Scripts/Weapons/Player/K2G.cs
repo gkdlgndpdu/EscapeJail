@@ -12,8 +12,8 @@ namespace weapon
             bulletSpeed = 13f;
             fireDelay = 0.5f;
 
-            SetAmmo(100);
-            needBulletToFire = 3;
+            SetAmmo(30);
+            needBulletToFire = 1;
 
         }
 

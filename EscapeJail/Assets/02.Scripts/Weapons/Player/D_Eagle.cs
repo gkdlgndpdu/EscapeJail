@@ -12,10 +12,10 @@ namespace weapon
         {
             weapontype = WeaponType.D_Eagle;
             bulletSpeed = 13f;
-            fireDelay = 1f;
+            fireDelay = 0.8f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 3;
+            damage = 4;
           
         }
 
