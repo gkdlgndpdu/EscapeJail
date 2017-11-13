@@ -89,7 +89,7 @@ public class MapModule : MapModuleBase
         return RandomKey;
     }
 
-    private void SetMakeSize(Vector3 position, Vector3 scale)
+    private void SetMaskSize(Vector3 position, Vector3 scale)
     {
         if (maskObject == null) return;
         maskObject.transform.localPosition = position;
@@ -118,7 +118,7 @@ public class MapModule : MapModuleBase
         {
             boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
             boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
-            SetMakeSize(boxcollider2D.offset, new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance));
+            SetMaskSize(boxcollider2D.offset, new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance));
 
         }
 
