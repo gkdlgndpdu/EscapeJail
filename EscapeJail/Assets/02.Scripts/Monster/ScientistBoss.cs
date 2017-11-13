@@ -197,6 +197,8 @@ namespace ScientistBoss
 
                 RandomMonster[i].FireEnd();
 
+                yield return new WaitForSeconds(1.5f);
+
                 //숨은애들 올라옴
                 for (int j = 0; j < childList.Count; j++)
                 {
@@ -205,7 +207,7 @@ namespace ScientistBoss
                     childList[j].HideOnOff(false);
 
                 }
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(2f);
             }
 
             //리소스 해제

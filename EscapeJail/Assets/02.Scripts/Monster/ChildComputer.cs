@@ -186,14 +186,20 @@ namespace ScientistBoss
                     {
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;
-                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                        if (bullet != null)
-                        {                           
-                            bullet.gameObject.SetActive(true);
-                            bullet.Initialize(this.transform.position, fireDIr.normalized, 1f, BulletType.EnemyBullet);
-                            bullet.InitializeImage("white", false);
-                            bullet.SetEffectName("revolver");
-                        }                                         
+                        for (int i = 0; i < 2; i++)
+                        {
+                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                            if (bullet != null)
+                            {
+                                bullet.gameObject.SetActive(true);
+
+                                Vector3 fd = Quaternion.Euler(0f, 0f, -7.5f + i * 15f) * fireDIr;
+                                bullet.Initialize(this.transform.position, fd.normalized, 7f, BulletType.EnemyBullet, 1.5f, 1, Random.Range(0.5f, 2.5f));
+                                bullet.InitializeImage("white", false);
+                                bullet.SetEffectName("revolver");
+                                bullet.SetBulletDestroyAction(BulletDestroyAction.aroundFire);
+                            }
+                        }                   
 
                     }
                     break;

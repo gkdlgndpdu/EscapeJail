@@ -210,6 +210,8 @@ public class DatabaseLoader : MonoBehaviour
         dbcmd = null;
         dbcon.Close();
         dbcon = null;
+
+    
     }
 
 
