@@ -419,7 +419,7 @@ public class MonsterBase : CharacterInfo
     {
         yield break;
     }
-
+ 
     protected void NearAttackLogic()
     {
         if (IsInAcessArea() == true && nowAttack == false)

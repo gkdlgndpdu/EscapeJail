@@ -31,7 +31,8 @@ public class BossModule : MapModuleBase
         boxcollider2D = GetComponent<BoxCollider2D>();
 
         SetColliderSizeBig();
-
+        
+       
     }
 
     private void SetColliderSizeBig()
@@ -95,7 +96,7 @@ public class BossModule : MapModuleBase
 
 
         MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
-
+               
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)

@@ -34,6 +34,12 @@ public class CharacterInfo : MonoBehaviour
         //자식에서 구현!
     }
 
+    protected void SetStun()
+    {
+
+    }
+
+
     protected void AddCondition(CharacterCondition condition)
     {
         if (conditionList == null) return;

@@ -32,6 +32,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
+            SoundManager.Instance.PlayerOneShot("Sample");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
