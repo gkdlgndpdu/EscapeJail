@@ -17,9 +17,14 @@ public class Last6 : MonsterBase
         base.ResetMonster();
         //  StartCoroutine(RandomMovePattern());
         nearestAcessDistance = Random.Range(3f,6f);
-        StartCoroutine(FireRoutine());
-        StartCoroutine(RandomMovePattern(0.5f,1f));
+     
         AttackOn();
+    }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(FireRoutine());
+        StartCoroutine(RandomMovePattern(0.5f, 1f));
     }
 
     protected override void SetWeapon()

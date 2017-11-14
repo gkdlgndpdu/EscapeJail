@@ -15,10 +15,17 @@ public class Last1 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+        
         AttackOff();
     }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
+
+
 
     protected override void SetWeapon()
     {

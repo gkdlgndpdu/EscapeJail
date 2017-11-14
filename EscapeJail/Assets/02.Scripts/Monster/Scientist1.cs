@@ -48,6 +48,8 @@ public class Scientist1 : MonsterBase
         isImmune = false;
     }
 
+
+
     protected new void Start()
     {
         base.Start();

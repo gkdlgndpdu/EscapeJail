@@ -16,6 +16,12 @@ public class Scientist4 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
+  
+
+    }
+
+    protected override void StartMyCoroutine()
+    {
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
     }

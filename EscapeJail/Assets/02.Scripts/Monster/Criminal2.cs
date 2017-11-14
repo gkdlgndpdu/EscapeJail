@@ -25,12 +25,17 @@ public class Criminal2 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+  
         AttackOn();
     }
 
-   
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
+
+
     // Update is called once per frame
     private void Update()
     {

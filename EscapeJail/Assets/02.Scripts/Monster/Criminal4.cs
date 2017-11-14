@@ -14,11 +14,16 @@ public class Criminal4 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
+ 
+    }
+
+    protected override void StartMyCoroutine()
+    {
         StartCoroutine(RandomMovePattern());
         StartCoroutine(AttackRoutine());
-    } 
+    }
 
- 
+
 
     public void FireGranade()
     {

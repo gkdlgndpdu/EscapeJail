@@ -15,9 +15,14 @@ public class Criminal1 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
+   
+        AttackOn();
+    }
+
+    protected override void StartMyCoroutine()
+    {
         StartCoroutine(RandomMovePattern());
         StartCoroutine(FireRoutine());
-        AttackOn();
     }
 
     protected override void SetWeapon()

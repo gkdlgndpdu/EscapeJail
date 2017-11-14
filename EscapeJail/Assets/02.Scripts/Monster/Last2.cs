@@ -24,7 +24,7 @@ public class Last2 : MonsterBase
                 lineRenderer.SetPosition(0, this.transform.position);
                 lineRenderer.SetPosition(1, target.position);
             }
-        
+
         }
     }
 
@@ -39,26 +39,30 @@ public class Last2 : MonsterBase
         if (lineRenderer != null)
             lineRenderer.enabled = OnOff;
     }
- 
-    
- 
+
+
+
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last2;
-      
+
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
-        nearestAcessDistance = Random.Range(5f,10f);
-    
+        nearestAcessDistance = Random.Range(5f, 10f);
+
     }
     public override void ResetMonster()
     {
         base.ResetMonster();
-       // StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+    
 
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(3f, 8f);
 
+    }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(FireRoutine());
     }
 
     protected override void SetWeapon()
@@ -67,9 +71,9 @@ public class Last2 : MonsterBase
     }
 
 
-  
 
- 
+
+
 
     // Update is called once per frame
     private void Update()
@@ -86,8 +90,8 @@ public class Last2 : MonsterBase
     {
         AimOnOff(true);
         while (true)
-        {   
-            SetAnimation(MonsterState.Attack);       
+        {
+            SetAnimation(MonsterState.Attack);
             yield return new WaitForSeconds(2f);
             AimOnOff(true);
             yield return new WaitForSeconds(2f);
@@ -100,6 +104,6 @@ public class Last2 : MonsterBase
     {
         FireWeapon();
         AimOnOff(false);
-      
+
     }
 }

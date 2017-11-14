@@ -21,14 +21,19 @@ public class Guard2 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+   
         RageOnOff(false);
         AttackOn();
 
     }
 
-  
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
+
+
 
     private void RageOnOff(bool OnOff)
     {

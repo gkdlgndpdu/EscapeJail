@@ -104,12 +104,16 @@ public class MonsterBase : CharacterInfo
 
         isMoveRandom = false;
 
+        isStun = false;
+
         AddToList();
 
         HudOnOff(true);
         UpdateHud();
 
         AttackOff();
+
+        StartMyCoroutine();
     }
 
 
@@ -678,8 +682,10 @@ public class MonsterBase : CharacterInfo
         }
         else if(OnOff == false)
         {
-            isStun = false;
+            if(isStun==true)
             StartMyCoroutine();
+
+            isStun = false;
 
         }
     }

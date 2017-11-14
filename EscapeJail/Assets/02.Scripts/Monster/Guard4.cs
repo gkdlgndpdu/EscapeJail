@@ -18,9 +18,16 @@ public class Guard4 : MonsterBase
         base.ResetMonster();
         ShieldEffectOff();
         AttackOn();
-        StartCoroutine("FireRoutine");
+      
 
     }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine("FireRoutine");
+    }
+
+
 
     protected override void SetUpMonsterAttribute()
     {

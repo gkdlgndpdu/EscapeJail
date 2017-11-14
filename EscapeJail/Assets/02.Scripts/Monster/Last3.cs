@@ -13,27 +13,32 @@ public class Last3 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(hideRoutine());
+  
         isHide = false;
         canAttack = false;
+    }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(hideRoutine());
     }
 
 
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last3;
-      
+
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
         moveSpeed = 2f;
     }
 
-    
 
 
 
- 
+
+
 
     // Update is called once per frame
     private void Update()
@@ -58,7 +63,7 @@ public class Last3 : MonsterBase
             {
                 yield return new WaitForSeconds(hideTime);
                 HideOff();
-            }      
+            }
 
             yield return null;
         }
@@ -80,7 +85,7 @@ public class Last3 : MonsterBase
 
     private void MoveToNearPosit()
     {
-        this.transform.position = target.transform.position+(Vector3)Random.insideUnitCircle;
+        this.transform.position = target.transform.position + (Vector3)Random.insideUnitCircle;
     }
 
     public void HideOn()

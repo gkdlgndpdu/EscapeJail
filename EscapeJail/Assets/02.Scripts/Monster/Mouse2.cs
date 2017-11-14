@@ -18,7 +18,7 @@ public class Mouse2 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartMyCoroutine();
+     
         AttackOn();
     }
 

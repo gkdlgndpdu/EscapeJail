@@ -9,10 +9,16 @@ public class Criminal5 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(RandomMovePattern());
-        StartCoroutine(FireRoutine());
+ 
         AttackOn();
     }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(RandomMovePattern());
+        StartCoroutine(FireRoutine());
+    }
+
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal5;

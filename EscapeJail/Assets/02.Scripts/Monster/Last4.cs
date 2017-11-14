@@ -69,9 +69,14 @@ public class Last4 : MonsterBase
     {
         base.ResetMonster();
         nowBuildTurret = false;
-        StartCoroutine(AvoidRoutine());
+     
         myTurret = null;
 
+    }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(AvoidRoutine());
     }
 
 
