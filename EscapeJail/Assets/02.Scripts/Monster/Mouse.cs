@@ -19,6 +19,11 @@ public class Mouse : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
+        StartMyCoroutine();
+    }
+
+    protected override void StartMyCoroutine()
+    {
         StartCoroutine(PathFindRoutine());
     }
 

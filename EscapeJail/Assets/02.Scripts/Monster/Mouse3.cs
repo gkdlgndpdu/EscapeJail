@@ -14,9 +14,8 @@ public class Mouse3 : MonsterBase
 
         nearestAcessDistance = 3f;
 
-    } 
+    }
 
- 
     // Update is called once per frame
     private void Update()
     {

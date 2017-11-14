@@ -51,12 +51,12 @@ public class MonsterManager : MonoBehaviour
         //벽에 막혀있을때의 예외처리 필요
         //
         monsterList.Sort((a, b) => { return Vector3.Distance(a.transform.position, playerPosit).CompareTo(Vector3.Distance(b.transform.position, playerPosit)); });
-                 
+
         return monsterList[0];
 
     }
 
-   
+
     public MonsterBase SpawnSpecificMonster(MonsterName name, Vector3 SpawnPosit)
     {
         MonsterBase monster = ObjectManager.Instance.GetSpecificMonster(name);
@@ -71,5 +71,33 @@ public class MonsterManager : MonoBehaviour
         monster.ResetMonster();
         return monster;
     }
- 
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            for (int i = 0; i < monsterList.Count; i++)
+            {
+                CharacterInfo character = monsterList[i].GetComponent<CharacterInfo>();
+                if (character != null)
+                {
+                    character.SetStun(true);
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            for (int i = 0; i < monsterList.Count; i++)
+            {
+                CharacterInfo character = monsterList[i].GetComponent<CharacterInfo>();
+                if (character != null)
+                {
+                    character.SetStun(false);
+                }
+            }
+        }
+
+    }
+
 }

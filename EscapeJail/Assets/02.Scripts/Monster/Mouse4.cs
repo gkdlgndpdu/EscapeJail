@@ -24,10 +24,17 @@ public class Mouse4 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        StartCoroutine(FireRoutine());
+        StartMyCoroutine();
         AttackOn();
 
     }
+
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(FireRoutine());
+    }
+
+
 
 
     // Update is called once per frame

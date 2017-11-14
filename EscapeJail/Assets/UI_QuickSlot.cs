@@ -28,6 +28,7 @@ public class UI_QuickSlot : MonoBehaviour
         {
             //리셋
             iconImage.sprite = null;
+            iconImage.color = new Color(0f, 0f, 0f, 0f);
             prefItem = null;
         }
     }
@@ -45,6 +46,7 @@ public class UI_QuickSlot : MonoBehaviour
                     string path = string.Format("Sprites/Icons/{0}", nowItem.weapontype.ToString());
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
+                    iconImage.color = Color.white;
                 }
                 break;
             default:
@@ -52,6 +54,7 @@ public class UI_QuickSlot : MonoBehaviour
                     string path = string.Format("Sprites/Icons/{0}", nowItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
+                    iconImage.color = Color.white;
                 }
                 break;
         }

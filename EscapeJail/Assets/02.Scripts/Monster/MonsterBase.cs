@@ -115,8 +115,8 @@ public class MonsterBase : CharacterInfo
 
     protected bool canMove()
     {
-        //죽었거나             랜덤이동중이면
-        if (isDead == true || isMoveRandom == true) return false;
+        //죽었거나             랜덤이동중이거나   스턴이면
+        if (isDead == true || isMoveRandom == true|| isStun==true) return false;
 
         return true;
     }
@@ -664,6 +664,37 @@ public class MonsterBase : CharacterInfo
         }
 
     }
+
+    public override void SetStun(bool OnOff)
+    {
+        if (OnOff == true)
+        {
+            isStun = true;
+            StopAllMyCoroutine();
+
+            if (rb != null)
+                rb.velocity = Vector3.zero;
+
+        }
+        else if(OnOff == false)
+        {
+            isStun = false;
+            StartMyCoroutine();
+
+        }
+    }
+
+    protected virtual void StartMyCoroutine()
+    {
+
+    }
+
+    protected void StopAllMyCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
+
 
 }
 

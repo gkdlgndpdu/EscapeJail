@@ -29,12 +29,19 @@ public class CharacterInfo : MonoBehaviour
 
     protected Dictionary<CharacterCondition, CharacterStateEffect> effectDic = new Dictionary<CharacterCondition, CharacterStateEffect>();
 
+    protected bool isStun = false;
+
+
     public virtual void GetDamage(int damage)
     {
         //자식에서 구현!
     }
 
-    protected void SetStun()
+    /// <summary>
+    /// 스턴 설정
+    /// </summary>
+    /// <param name="OnOff">true = 스턴 o /false = 스턴 x </param>
+    public virtual void SetStun(bool OnOff)
     {
 
     }
