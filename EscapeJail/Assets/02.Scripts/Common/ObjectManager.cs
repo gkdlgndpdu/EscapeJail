@@ -94,6 +94,20 @@ public class ObjectManager : MonoBehaviour
         return monsterPool.GetSpecificMonster(name);
     }
 
+
+    public void AllEnemyBulletDestroy()
+    {
+        List<Bullet> allBulletList = bulletPool.UsingList;
+        if (allBulletList == null) return;
+
+        for (int i=0;i< allBulletList.Count; i++)
+        {
+            if (allBulletList[i].gameObject.activeSelf == false) return;
+
+            if (allBulletList[i].BulletType == BulletType.EnemyBullet)
+                allBulletList[i].BulletDestroy();
+        }
+    }
  
 
 

@@ -10,8 +10,9 @@ public enum ItemType
     Bullet,
     Bag,
     Stimulant,
-    Medicine, 
+    Medicine,
     Turret,
+    FlashBang,
     ItemTypeEnd,
     Weapon
 }
@@ -156,7 +157,7 @@ public class Item_Medicine : ItemBase
 
     public override void RemoveItem()
     {
-        base.RemoveItem();      
+        base.RemoveItem();
         ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
     }
 }
@@ -225,8 +226,9 @@ public class Item_Bag : ItemBase
         //  Debug.Log("아머 클릭");
 
     }
-
 }
+
+
 
 public class Item_Turret : ItemBase
 {
@@ -239,6 +241,26 @@ public class Item_Turret : ItemBase
         Turret turret = ObjectManager.Instance.turretPool.GetItem();
         if (turret != null)
             turret.Initialize(player.transform.position, BulletType.PlayerBullet);
+        player.RemoveItem(this);
+    }
+}
+
+public class Item_FlashBang : ItemBase
+{
+    public Item_FlashBang()
+    {
+        itemType = ItemType.FlashBang;
+    }
+
+    public override void ItemAction()
+    {
+        //총알삭제
+        ObjectManager.Instance.AllEnemyBulletDestroy();
+
+        //스턴효과
+        MonsterManager.Instance.StunAllMonster();
+
+ 
         player.RemoveItem(this);
     }
 }

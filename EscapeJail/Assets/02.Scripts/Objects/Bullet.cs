@@ -28,6 +28,13 @@ public class Bullet : MonoBehaviour
 {
     protected int power = 0;
     protected BulletType bulletType;
+    public BulletType BulletType
+    {
+        get
+        {
+            return bulletType;
+        }
+    }
     protected Rigidbody2D rb;
     protected string effectName = "revolver";
     protected Animator animator;

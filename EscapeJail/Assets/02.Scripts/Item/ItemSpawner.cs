@@ -143,6 +143,10 @@ public class ItemSpawner : MonoBehaviour
                 {
                     item.SetItemToTurret();
                 } break;
+            case ItemType.FlashBang:
+                {
+                    item.SetItemToFlashBang();
+                } break;
         }
 
 

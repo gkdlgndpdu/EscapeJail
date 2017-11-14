@@ -675,6 +675,7 @@ public class MonsterBase : CharacterInfo
         {
             isStun = true;
             StopAllMyCoroutine();
+            StartCoroutine(StunRoutine());
 
             if (rb != null)
                 rb.velocity = Vector3.zero;
@@ -688,6 +689,12 @@ public class MonsterBase : CharacterInfo
             isStun = false;
 
         }
+    }
+
+    private IEnumerator StunRoutine()
+    {
+        yield return new WaitForSeconds(GameConstants.FlashBangStunTime);
+        SetStun(false);
     }
 
     protected virtual void StartMyCoroutine()

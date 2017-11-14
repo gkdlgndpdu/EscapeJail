@@ -72,32 +72,17 @@ public class MonsterManager : MonoBehaviour
         return monster;
     }
 
-    public void Update()
+    public void StunAllMonster()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        for (int i = 0; i < monsterList.Count; i++)
         {
-            for (int i = 0; i < monsterList.Count; i++)
+            CharacterInfo character = monsterList[i].GetComponent<CharacterInfo>();
+            if (character != null&& character.gameObject.activeSelf==true)
             {
-                CharacterInfo character = monsterList[i].GetComponent<CharacterInfo>();
-                if (character != null)
-                {
-                    character.SetStun(true);
-                }
+                character.SetStun(true);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            for (int i = 0; i < monsterList.Count; i++)
-            {
-                CharacterInfo character = monsterList[i].GetComponent<CharacterInfo>();
-                if (character != null)
-                {
-                    character.SetStun(false);
-                }
-            }
-        }
-
     }
+
 
 }

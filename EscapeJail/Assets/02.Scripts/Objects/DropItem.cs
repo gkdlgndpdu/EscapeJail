@@ -137,6 +137,18 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetColliderSize();
     }
 
+    public void SetItemToFlashBang()
+    {
+        itemBase = new Item_FlashBang();
+
+        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        SetDropItemImage(ItemPath);
+
+
+        SetColliderSize();
+
+    }
+
     private void SetDropItemImage(string path)
     {
         if (spriteRenderer != null)
