@@ -14,6 +14,13 @@ public class WeaponHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Weapon nowWeapon;
+    public Weapon NowWeapon
+    {
+        get
+        {
+            return nowWeapon;
+        }
+    }
     private SlashObject slashObject;
     [HideInInspector]
     public AttackType attackType = AttackType.near;  
@@ -25,6 +32,13 @@ public class WeaponHandler : MonoBehaviour
     private Slider weaponSlider=null;
     private Slider reboundSlider = null;
 
+    public bool CanRotateWeapon()
+    {
+        if (nowWeapon == null) return false;
+        if (nowWeapon.weapontype == WeaponType.ChickenGun) return false;
+
+        return true;
+    }
 
     //총알 채울수 있는지
     public bool CanReload()
@@ -100,9 +114,7 @@ public class WeaponHandler : MonoBehaviour
         }
         //무기가 있을때
         else
-        {          
-
-      
+        {         
 
             nowWeapon = weapon;
 
@@ -125,8 +137,11 @@ public class WeaponHandler : MonoBehaviour
 
                 if (animator != null && weapon.weapontype != WeaponType.Flamethrower)
                 {
-                    animator.Play("Fire", 0, 0f);
+                    animator.Play("Fire", 0, 0f);                   
                     animator.speed = 0f;
+
+                    if (nowWeapon.weapontype == WeaponType.ChickenGun)
+                        animator.speed = 1f;
                 }
             }
 

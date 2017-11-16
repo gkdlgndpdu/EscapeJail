@@ -61,6 +61,7 @@ namespace weapon
         Car98,
         H249,
         HWMMG,
+        ChickenGun,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

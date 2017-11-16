@@ -147,8 +147,8 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new AssaultRifle());
-        AddWeapon(new Revolver());
+        AddWeapon(new ChickenGun());
+  
         UIUpdate();
     }
 
@@ -368,10 +368,16 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-        Vector3 nearestEnemyPos = enemyPos;
+        if (weaponHandler.CanRotateWeapon() == false) return;
+
+            Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
+
         if (weaponPosit != null)
+        {
+      
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
+        }
 
         //flip
         if ((weaponAngle >= 0f && weaponAngle <= 90) ||
