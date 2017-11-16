@@ -147,7 +147,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new ChickenGun());
+        AddWeapon(new RhinoGun());
   
         UIUpdate();
     }
@@ -368,14 +368,13 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-        if (weaponHandler.CanRotateWeapon() == false) return;
+    
 
             Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
 
-        if (weaponPosit != null)
-        {
-      
+        if (weaponPosit != null&& weaponHandler.CanRotateWeapon()==true)
+        {          
             weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
         }
 

@@ -204,7 +204,10 @@ public class Bullet : MonoBehaviour
             }
         }
         else if (isAnimBullet == false && spriteRenderer != null)
-        {
+        {      
+            if (animator != null)
+                animator.runtimeAnimatorController = null;
+
             Sprite sprite = Resources.Load<Sprite>(string.Format("Sprites/Bullet/{0}", bulletImageName));
             if (sprite != null)
                 spriteRenderer.sprite = sprite;

@@ -62,6 +62,7 @@ namespace weapon
         H249,
         HWMMG,
         ChickenGun,
+        RhinoGun,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

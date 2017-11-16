@@ -140,7 +140,7 @@ public class WeaponHandler : MonoBehaviour
                     animator.Play("Fire", 0, 0f);                   
                     animator.speed = 0f;
 
-                    if (nowWeapon.weapontype == WeaponType.ChickenGun)
+                    if (hasIdleAnimation())
                         animator.speed = 1f;
                 }
             }
@@ -164,6 +164,17 @@ public class WeaponHandler : MonoBehaviour
             UpdateWeaponUI();
         }     
 
+    }
+
+    private bool hasIdleAnimation()
+    {
+        if (nowWeapon == null) return false;
+
+        if (nowWeapon.weapontype == WeaponType.ChickenGun ||
+            nowWeapon.weapontype == WeaponType.RhinoGun)
+            return true;
+
+        return false;
     }
 
     private void SlashObjectOnOff(bool OnOff)

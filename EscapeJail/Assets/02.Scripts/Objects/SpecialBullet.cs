@@ -7,7 +7,8 @@ public enum SpecialBulletType
 {
     Fire,
     PoisionGranade,
-    LaserBullet
+    LaserBullet,
+    Poison,
 }
 
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -92,8 +93,7 @@ public class SpecialBullet : Bullet
         }
     }
 
-
-
+    
 
 
     private void FireDamage(Collider2D collision)
@@ -174,6 +174,7 @@ public class SpecialBullet : Bullet
     }
 
 
+
     //다른 물체와의 충돌은 layer로 막아놓음
     protected new void OnTriggerEnter2D(Collider2D collision)
     {
@@ -204,6 +205,11 @@ public class SpecialBullet : Bullet
                 FireDamage(collision);
             else
                 BulletDestroy();
+        }
+        else if(specialBulletType == SpecialBulletType.Poison)
+        {          
+                PoisionDamage(collision);
+                BulletDestroy();                     
         }
         else if (specialBulletType == SpecialBulletType.LaserBullet)
         {
