@@ -65,6 +65,7 @@ namespace weapon
         RhinoGun,
         PowerGauntlet,
         DragonBow,
+        E_Desert,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
