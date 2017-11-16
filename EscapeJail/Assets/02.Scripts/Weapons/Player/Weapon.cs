@@ -63,6 +63,7 @@ namespace weapon
         HWMMG,
         ChickenGun,
         RhinoGun,
+        PowerGauntlet,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

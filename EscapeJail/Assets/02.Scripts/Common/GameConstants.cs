@@ -27,6 +27,9 @@ public static class GameConstants
     //섬광탄 스턴 지속시간
     public static float FlashBangStunTime = 2f;
 
+    //밀리는 시간
+    public static float PushTime = 0.5f;
+
     //DB
     public static string MonsterDBName = "MonsterDB.db";
     public static string ItemDBName = "ItemDB.db";

@@ -30,7 +30,7 @@ public class CharacterInfo : MonoBehaviour
     protected Dictionary<CharacterCondition, CharacterStateEffect> effectDic = new Dictionary<CharacterCondition, CharacterStateEffect>();
 
     protected bool isStun = false;
-
+    protected bool isPushed = false;
 
     public virtual void GetDamage(int damage)
     {
@@ -42,6 +42,11 @@ public class CharacterInfo : MonoBehaviour
     /// </summary>
     /// <param name="OnOff">true = 스턴 o /false = 스턴 x </param>
     public virtual void SetStun(bool OnOff)
+    {
+
+    }
+
+    public virtual void SetPush(Vector3 pushPoint,float pushPower,int damage)
     {
 
     }

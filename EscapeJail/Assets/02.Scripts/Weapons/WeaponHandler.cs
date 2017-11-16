@@ -171,7 +171,8 @@ public class WeaponHandler : MonoBehaviour
         if (nowWeapon == null) return false;
 
         if (nowWeapon.weapontype == WeaponType.ChickenGun ||
-            nowWeapon.weapontype == WeaponType.RhinoGun)
+            nowWeapon.weapontype == WeaponType.RhinoGun||
+            nowWeapon.weapontype == WeaponType.PowerGauntlet)
             return true;
 
         return false;

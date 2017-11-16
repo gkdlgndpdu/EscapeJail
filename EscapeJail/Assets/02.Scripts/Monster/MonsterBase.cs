@@ -119,8 +119,8 @@ public class MonsterBase : CharacterInfo
 
     protected bool canMove()
     {
-        //죽었거나             랜덤이동중이거나   스턴이면
-        if (isDead == true || isMoveRandom == true|| isStun==true) return false;
+        //죽었거나             랜덤이동   스턴    //밀림
+        if (isDead == true || isMoveRandom == true|| isStun==true|| isPushed==true) return false;
 
         return true;
     }
@@ -676,19 +676,37 @@ public class MonsterBase : CharacterInfo
             isStun = true;
             StopAllMyCoroutine();
             StartCoroutine(StunRoutine());
-
             if (rb != null)
                 rb.velocity = Vector3.zero;
-
         }
         else if(OnOff == false)
         {
             if(isStun==true)
             StartMyCoroutine();
-
             isStun = false;
-
         }
+    }
+
+    public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
+    {
+        Vector3 pushDir = this.transform.position - pushPoint;
+
+        if (rb != null)
+            rb.AddForce(pushDir * pushPower, ForceMode2D.Impulse);
+
+        GetDamage(damage);
+
+        isPushed = true;
+        StartCoroutine(PushRoutine());
+    }
+
+    private IEnumerator PushRoutine()
+    {
+        yield return new WaitForSeconds(GameConstants.PushTime);
+
+        isPushed = false;
+        if (rb != null)
+            rb.velocity = Vector3.zero;
     }
 
     private IEnumerator StunRoutine()
