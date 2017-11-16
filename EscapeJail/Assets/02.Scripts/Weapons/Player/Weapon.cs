@@ -64,6 +64,7 @@ namespace weapon
         ChickenGun,
         RhinoGun,
         PowerGauntlet,
+        DragonBow,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
