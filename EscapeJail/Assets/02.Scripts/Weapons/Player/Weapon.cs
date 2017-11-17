@@ -66,6 +66,8 @@ namespace weapon
         PowerGauntlet,
         DragonBow,
         E_Desert,
+        FingerGun,
+        TenisBallShooter,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

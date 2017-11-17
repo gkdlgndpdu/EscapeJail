@@ -42,5 +42,5 @@ public static class CustomColor
 {
     public static Color Orange = new Color(255f / 255f, 187f / 255f, 0f);
     public static Color Silver = new Color(192f / 255f, 192f / 255f, 192f/255f);
-
+    public static Color SkinColor = new Color(255f / 255f, 215f / 255f, 181f / 255f);
 }

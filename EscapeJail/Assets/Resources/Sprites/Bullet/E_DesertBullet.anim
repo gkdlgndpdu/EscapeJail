@@ -19,14 +19,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 4396.9272}
+        outSlope: {x: 0, y: 0, z: 4396.9272}
         tangentMode: 0
       - serializedVersion: 2
         time: 0.083333336
         value: {x: 0, y: 0, z: 360.31696}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 4679.061}
+        outSlope: {x: 0, y: 0, z: 4679.061}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -137,15 +137,15 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: 4396.9272
+        outSlope: 4396.9272
+        tangentMode: 0
       - serializedVersion: 2
         time: 0.083333336
         value: 360.31696
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        inSlope: 4679.061
+        outSlope: 4679.061
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
