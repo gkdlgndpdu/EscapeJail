@@ -23,19 +23,20 @@ public class WeaponHandler : MonoBehaviour
     }
     private SlashObject slashObject;
     [HideInInspector]
-    public AttackType attackType = AttackType.near;  
+    public AttackType attackType = AttackType.near;
     private WeaponUI weaponUi;
 
     private Vector3 originPosit;
 
     //
-    private Slider weaponSlider=null;
+    private Slider weaponSlider = null;
     private Slider reboundSlider = null;
 
     public bool CanRotateWeapon()
     {
         if (nowWeapon == null) return false;
-        if (nowWeapon.weapontype == WeaponType.ChickenGun) return false;
+        if (nowWeapon.weapontype == WeaponType.ChickenGun||
+            nowWeapon.weapontype == WeaponType.MemoryEraser) return false;
 
         return true;
     }
@@ -55,12 +56,12 @@ public class WeaponHandler : MonoBehaviour
     {
         this.weaponUi = weaponUi;
     }
-    public void SetSlider(Slider weaponSlider,Slider reboundSlider)
+    public void SetSlider(Slider weaponSlider, Slider reboundSlider)
     {
         this.weaponSlider = weaponSlider;
         this.reboundSlider = reboundSlider;
     }
-    
+
 
     public void SetSlashObject(SlashObject slashObject)
     {
@@ -68,7 +69,7 @@ public class WeaponHandler : MonoBehaviour
     }
 
     private void Awake()
-    {        
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = null;
@@ -98,10 +99,10 @@ public class WeaponHandler : MonoBehaviour
         if (weapon == null)
         {
             nowWeapon = null;
-            
+
             //이미지 제거
-            if(animator!=null)
-            animator.runtimeAnimatorController = null;
+            if (animator != null)
+                animator.runtimeAnimatorController = null;
 
             if (spriteRenderer != null)
                 spriteRenderer.sprite = null;
@@ -114,7 +115,7 @@ public class WeaponHandler : MonoBehaviour
         }
         //무기가 있을때
         else
-        {         
+        {
 
             nowWeapon = weapon;
 
@@ -125,7 +126,7 @@ public class WeaponHandler : MonoBehaviour
 
             if (animator != null)
             {
-                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Weapon/{0}", weapon.weapontype)) ;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animators/Weapon/{0}", weapon.weapontype));
 
                 if (nowWeapon != null)
                 {
@@ -137,7 +138,7 @@ public class WeaponHandler : MonoBehaviour
 
                 if (animator != null && weapon.weapontype != WeaponType.Flamethrower)
                 {
-                    animator.Play("Fire", 0, 0f);                   
+                    animator.Play("Fire", 0, 0f);
                     animator.speed = 0f;
 
                     if (hasIdleAnimation())
@@ -162,7 +163,7 @@ public class WeaponHandler : MonoBehaviour
             }
 
             UpdateWeaponUI();
-        }     
+        }
 
     }
 
@@ -171,8 +172,13 @@ public class WeaponHandler : MonoBehaviour
         if (nowWeapon == null) return false;
 
         if (nowWeapon.weapontype == WeaponType.ChickenGun ||
-            nowWeapon.weapontype == WeaponType.RhinoGun||
-            nowWeapon.weapontype == WeaponType.PowerGauntlet)
+            nowWeapon.weapontype == WeaponType.RhinoGun ||
+            nowWeapon.weapontype == WeaponType.PowerGauntlet ||
+             nowWeapon.weapontype == WeaponType.Sturgeon ||
+              nowWeapon.weapontype == WeaponType.RoseGun ||
+                 nowWeapon.weapontype == WeaponType.G403||
+                    nowWeapon.weapontype == WeaponType.GiraffeSword
+             )
             return true;
 
         return false;
@@ -195,7 +201,7 @@ public class WeaponHandler : MonoBehaviour
         this.transform.localPosition = posit;
     }
 
- 
+
 
     public void FireBullet(Vector3 firePos, Vector3 fireDirection)
     {
@@ -206,7 +212,7 @@ public class WeaponHandler : MonoBehaviour
 
         //근접무기용
         if (nowWeapon.AttackType == AttackType.near && nowWeapon.canFire() == true)
-        {       
+        {
             SlashObjectOnOff(true);
         }
 
@@ -216,14 +222,14 @@ public class WeaponHandler : MonoBehaviour
 
         UpdateWeaponUI();
 
-        
+
     }
 
     private void UpdateWeaponUI()
     {
         if (weaponUi != null && nowWeapon != null)
             weaponUi.SetWeaponUI(nowWeapon.nowAmmo, nowWeapon.maxAmmo, nowWeapon.weapontype.ToString());
-        else if (nowWeapon == null&& weaponUi != null)
+        else if (nowWeapon == null && weaponUi != null)
             weaponUi.SetWeaponUiDefault();
     }
 
@@ -235,11 +241,11 @@ public class WeaponHandler : MonoBehaviour
     private void Update()
     {
         if (nowWeapon != null)
-            nowWeapon.WeaponUpdate(weaponSlider,reboundSlider);
+            nowWeapon.WeaponUpdate(weaponSlider, reboundSlider);
         else if (nowWeapon == null)
         {
-            if(weaponSlider!=null)
-            weaponSlider.gameObject.SetActive(false);
+            if (weaponSlider != null)
+                weaponSlider.gameObject.SetActive(false);
         }
     }
 }

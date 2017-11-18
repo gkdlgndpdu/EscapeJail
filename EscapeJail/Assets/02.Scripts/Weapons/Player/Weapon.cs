@@ -68,6 +68,12 @@ namespace weapon
         E_Desert,
         FingerGun,
         TenisBallShooter,
+        Sturgeon,
+        RoseGun,
+        G403,
+        GiraffeSword,
+        Boomerang,
+        MemoryEraser,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

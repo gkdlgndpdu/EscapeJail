@@ -1,25 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
-public class BounceBullet : MonoBehaviour
+
+public class BounceBullet : PlayerSpecialBullet
 {
     private Vector3 moveDir;
-    private Rigidbody2D rb;
-    private float moveSpeed =10f;
+  //  private Rigidbody2D rb;
+ //   private float moveSpeed =10f;
     private int bouncCount = 0;
     private int bounceMax = 0;
-    private BulletType bulletType;
+   // private BulletType bulletType;
     private bool canCollision = true;
-    private int damage;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+   // private int damage;
 
 
     private void Update()
@@ -41,7 +33,7 @@ public class BounceBullet : MonoBehaviour
         this.moveSpeed = moveSpeed;
         this.bounceMax = bounceMax;
         this.damage = damage;
-        SetLayer(bulletType);
+        SetLayer();
     }
 
     //중복충돌 방지
@@ -82,8 +74,5 @@ public class BounceBullet : MonoBehaviour
         
     }
 
-    protected void SetLayer(BulletType bulletType)
-    {
-        this.gameObject.layer = LayerMask.NameToLayer(bulletType.ToString());
-    }
+
 }

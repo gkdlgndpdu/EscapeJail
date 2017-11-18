@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StageChangeRoutine()
     {
+        TemporaryObjects.Instance.DestroyAllChildrenObject();
         MiniMap.Instance.ResetMiniMap();
         MonsterManager.Instance.ClearMonsterList();
         yield return new WaitForSeconds(5.0f);
