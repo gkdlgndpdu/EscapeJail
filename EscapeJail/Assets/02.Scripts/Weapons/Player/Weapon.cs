@@ -74,6 +74,11 @@ namespace weapon
         GiraffeSword,
         Boomerang,
         MemoryEraser,
+        BomberGun,
+        AirGun,
+        CueGun,
+        MagicStick,
+        Bfe,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////
@@ -314,7 +319,7 @@ namespace weapon
             SetAmmo(1);
         }
 
-        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage, Color color =default(Color))
+        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage ,Color color =default(Color), bool setPush = false,float pushPower = 3f)
         {
             int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
             Ray2D ray = new Ray2D(firePos, fireDirection);
@@ -323,7 +328,12 @@ namespace weapon
             {
                 CharacterInfo characterInfo = hit.transform.gameObject.GetComponent<CharacterInfo>();
                 if (characterInfo != null)
+                {
+                    if (setPush == true)
+                        characterInfo.SetPush(firePos, pushPower, 0);
+
                     characterInfo.GetDamage(damage);
+                }
                 //라인 그려주기
                 DrawLiner line = ObjectManager.Instance.linePool.GetItem();
                 if (line != null)
@@ -337,6 +347,8 @@ namespace weapon
                 }
             }
         }
+
+    
 
     }
 }

@@ -12,13 +12,18 @@ public class PlayerSpecialBullet : MonoBehaviour
     protected int damage;
     protected float moveSpeed = 0f;
     protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
+        {
             rb.gravityScale = 0f;
+ 
+        }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         SetLayer();
     }
 

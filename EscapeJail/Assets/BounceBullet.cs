@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BounceBulletType
+{
+    tenisBall,
+    BillardsBall
+}
+
 public class BounceBullet : PlayerSpecialBullet
 {
     private Vector3 moveDir;
-  //  private Rigidbody2D rb;
- //   private float moveSpeed =10f;
     private int bouncCount = 0;
     private int bounceMax = 0;
-   // private BulletType bulletType;
     private bool canCollision = true;
-   // private int damage;
+    private BounceBulletType bounceBulletType;
 
+    public List<Sprite> billardsSprites;
+    public RuntimeAnimatorController tenisBallAnimator;
+
+    private void DestroyBullet()
+    {
+        bouncCount = 0;
+        bounceMax = 0;
+        canCollision = true;
+        StopAllCoroutines();
+        this.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -25,15 +39,40 @@ public class BounceBullet : PlayerSpecialBullet
             rb.velocity = moveDir * moveSpeed;
     }
 
-    public void Initialize(BulletType bulletType,Vector3 startPos,Vector3 moveDir,float moveSpeed,int bounceMax,int damage =1)
+    public void Initialize(BulletType bulletType, Vector3 startPos, Vector3 moveDir, float moveSpeed, int bounceMax, BounceBulletType bounceBulletType, int damage = 1)
     {
-        this.transform.position = startPos;         
+        this.transform.position = startPos;
         this.bulletType = bulletType;
         this.moveDir = moveDir.normalized;
         this.moveSpeed = moveSpeed;
         this.bounceMax = bounceMax;
         this.damage = damage;
+        this.bounceBulletType = bounceBulletType;
+        SetBulletImage();
         SetLayer();
+    }
+
+    private void SetBulletImage()
+    {
+        switch (bounceBulletType)
+        {
+            case BounceBulletType.tenisBall:
+                {
+                    if (animator != null)
+                        animator.runtimeAnimatorController = tenisBallAnimator;
+
+                }
+                break;
+            case BounceBulletType.BillardsBall:
+                {
+                    if (animator != null)
+                        animator.runtimeAnimatorController = null;
+
+                    if (spriteRenderer != null && billardsSprites != null)
+                        spriteRenderer.sprite = billardsSprites[Random.Range(0, billardsSprites.Count)];
+                }
+                break;    
+        }
     }
 
     //중복충돌 방지
@@ -48,6 +87,11 @@ public class BounceBullet : PlayerSpecialBullet
         if (canCollision == false) return;
 
         bouncCount += 1;
+        if (bouncCount >= bounceMax)
+        {
+            DestroyBullet();
+            return;
+        }
         canCollision = false;
         StartCoroutine(CollisionCheckRoutine());
 
@@ -57,22 +101,21 @@ public class BounceBullet : PlayerSpecialBullet
             chr.GetDamage(damage);
         }
 
-        if (bouncCount>= bounceMax)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+
 
         int layerMask = MyUtils.GetLayerMaskExcludeName(bulletType.ToString());
-        RaycastHit2D rayHit= Physics2D.Raycast(this.transform.position, moveDir, 1f, layerMask);
+        RaycastHit2D rayHit = Physics2D.Raycast(this.transform.position, moveDir, 1f, layerMask);
 
-        Vector2 reflectVector =  Vector2.Reflect(moveDir, rayHit.normal);
+        Vector2 reflectVector = Vector2.Reflect(moveDir, rayHit.normal);
         reflectVector.Normalize();
 
         if (rb != null)
-            moveDir = reflectVector.normalized;    
-        
+            moveDir = reflectVector.normalized;
+
     }
 
 
+
+
 }
+

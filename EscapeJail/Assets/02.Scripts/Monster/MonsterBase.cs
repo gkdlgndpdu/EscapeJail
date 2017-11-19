@@ -617,13 +617,13 @@ public class MonsterBase : CharacterInfo
             //벽이없음 -> 갈길간다
             if (raycastHit.collider == null)
             {
-                Debug.Log("벽이없음");
+              //  Debug.Log("벽이없음");
                 hasWall = false;
             }
             //벽이 탐지됨 ->길을 찾는다
             else
             {
-                Debug.Log("벽이있어");
+            //    Debug.Log("벽이있어");
                 hasWall = true;
 
                 for (int i = 1; i < 5; i++)
@@ -690,7 +690,7 @@ public class MonsterBase : CharacterInfo
     public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
     {
         Vector3 pushDir = this.transform.position - pushPoint;
-
+        pushDir.Normalize();
         if (rb != null)
             rb.AddForce(pushDir * pushPower, ForceMode2D.Impulse);
 

@@ -171,6 +171,9 @@ public class InventoryUi : MonoBehaviour
     public void InventoryOnOff()
     {     
         this.gameObject.SetActive(!this.gameObject.activeSelf);
+
+        if(!this.gameObject.activeSelf == true)
+            UpdateInventoryUi(); 
     }
 
 
@@ -183,10 +186,12 @@ public class InventoryUi : MonoBehaviour
     }
     private void OnEnable()
     {
-        UpdateInventoryUi();
+  
    
 
         GameManager.Instance.StopTime();
+
+        System.GC.Collect();
     }
 
     private void OnDisable()

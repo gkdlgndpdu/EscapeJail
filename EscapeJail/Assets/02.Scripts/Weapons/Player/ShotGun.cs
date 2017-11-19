@@ -27,9 +27,6 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
-
-
-
             Vector3 fireDir = fireDirection;
 
 
