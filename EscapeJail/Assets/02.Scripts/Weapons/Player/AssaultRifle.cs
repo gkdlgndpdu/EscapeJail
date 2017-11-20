@@ -25,8 +25,7 @@ namespace weapon
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
-        {
-    
+        {    
             if (canFire() == false) return;
 
             useBullet();
@@ -34,6 +33,7 @@ namespace weapon
             PlayFireAnim();
 
             SoundManager.Instance.PlayerOneShot("Sample");
+
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)

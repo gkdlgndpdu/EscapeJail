@@ -80,6 +80,7 @@ namespace weapon
         MagicStick,
         Bfe,
         GravityGun,
+        MindArrow,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

@@ -8,7 +8,14 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager Instance;
-    public List<GameObject> monsterList;
+    private List<GameObject> monsterList;
+    public List<GameObject> MonsterList
+    {
+        get
+        {
+            return monsterList;
+        }
+    }
 
 
     private void Awake()

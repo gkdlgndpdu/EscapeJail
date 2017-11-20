@@ -147,7 +147,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Bfe());
+        AddWeapon(new MindArrow());
   
         UIUpdate();
     }

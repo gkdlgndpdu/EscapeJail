@@ -21,7 +21,7 @@ public class MonsterSpawnEffect : MonoBehaviour
        this.animationEndFunc = animationEndFunc;
 
         if (animator != null)
-            animator.SetTrigger(StagerController.Instance.NowStageLevel);
+            animator.SetTrigger(StagerController.Instance.NowStageLevel.ToString());
      
     }
 
