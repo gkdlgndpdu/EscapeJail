@@ -51,7 +51,6 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-
     protected void AddCondition(CharacterCondition condition)
     {
         if (conditionList == null) return;

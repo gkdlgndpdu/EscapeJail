@@ -8,7 +8,7 @@ public enum SpecialBulletType
     Fire,
     PoisionGranade,
     LaserBullet,
-    Poison,
+    Poison
 }
 
 [RequireComponent(typeof(CapsuleCollider2D))]

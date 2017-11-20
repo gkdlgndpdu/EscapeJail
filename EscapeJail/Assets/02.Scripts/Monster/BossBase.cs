@@ -85,8 +85,8 @@ public class BossBase : CharacterInfo
     }
     public override void GetDamage(int damage)
     {
-        if (isBossDie == true) return;
-
+        if (isBossDie == true|| isPatternStart==false) return;
+        
         hp -= damage;
 
         if (bosshpBar != null)

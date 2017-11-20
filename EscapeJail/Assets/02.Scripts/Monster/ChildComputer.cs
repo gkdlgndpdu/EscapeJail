@@ -53,6 +53,8 @@ namespace ScientistBoss
             isDead = true;
             Action(Actions.Dead);
             RemoveInMonsterList();
+
+            if(parentComputer!=null)
             parentComputer.ChildDead();
         }
 

@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace weapon
 {
-    public class Bfe : Weapon
+    public class GravityGun : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 0f;
 
-        public Bfe()
+        private float reBoundValue = 5f;
+        private float pullRadius = 3f;
+        private float pullPower = 5f;
+
+        public GravityGun()
         {
-            weapontype = WeaponType.Bfe;
-            bulletSpeed = 5f;
+            weapontype = WeaponType.GravityGun;
+            bulletSpeed = 13f;
             fireDelay = 0.4f;
             SetAmmo(100);
             needBulletToFire = 1;
@@ -26,17 +28,24 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
+
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 fireDir.Normalize();
-                bullet.Initialize(firePos + fireDir * 0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 1f, damage);
-                bullet.InitializeImage("BfeBullet", true);
+                bullet.Initialize(firePos + fireDir * 0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 2f, damage);
+                bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                bullet.SetBloom(false);
+                bullet.SetBloom(true, CustomColor.Silver);
+                bullet.SetPushOption(1f, 4f, 1);
+
+
+
             }
+
 
         }
     }

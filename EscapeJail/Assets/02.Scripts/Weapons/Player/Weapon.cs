@@ -79,6 +79,7 @@ namespace weapon
         CueGun,
         MagicStick,
         Bfe,
+        GravityGun,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

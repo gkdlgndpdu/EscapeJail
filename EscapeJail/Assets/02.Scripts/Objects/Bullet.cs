@@ -18,7 +18,8 @@ public enum ExplosionType
 public enum BulletDestroyAction
 {
     none,
-    aroundFire
+    aroundFire,
+    Gravity
 }
 
 
@@ -39,7 +40,7 @@ public class Bullet : MonoBehaviour
     protected string effectName = "revolver";
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-    protected Sprite defaultSprite;   
+    protected Sprite defaultSprite;
     protected float effectsize = 1f;
     protected float explosionRadius = 1f;
     protected ExplosionType explosionType;
@@ -47,7 +48,7 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 0f;
     //충돌에 의해 파괴 가능? 왠만하면 true, 수류탄 다이나마이트같이 시간 기다려주는것들 제외
     private bool canDestroyByCollision = true;
-    private bool stopWhenCollision = false; 
+    private bool stopWhenCollision = false;
 
     private bool hasPollute = false;
     private CharacterCondition polluteType;
@@ -73,7 +74,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer bloomSprite;
-  
+
 
     protected void Awake()
     {
@@ -121,7 +122,7 @@ public class Bullet : MonoBehaviour
 
         //애니메이션불렛 유무
         if (animator != null)
-            animator.runtimeAnimatorController = null;       
+            animator.runtimeAnimatorController = null;
 
         //폭발 타입
         explosionType = ExplosionType.single;
@@ -145,7 +146,7 @@ public class Bullet : MonoBehaviour
         StartCoroutine(bulletDestroyRoutine(lifeTime));
 
         bulletDestroyAction = BulletDestroyAction.none;
-        canDestroyByCollision = true;      
+        canDestroyByCollision = true;
         stopWhenCollision = false;
         explostionEndFunc = null;
         hasPollute = false;
@@ -153,22 +154,22 @@ public class Bullet : MonoBehaviour
     public void SetDestroyByCollision(bool canDestroyByCollision, bool stopWhenCollision = true)
     {
         this.canDestroyByCollision = canDestroyByCollision;
-           this.stopWhenCollision = stopWhenCollision;
+        this.stopWhenCollision = stopWhenCollision;
     }
 
     private void OnDisable()
     {
-      StopAllCoroutines();
+        StopAllCoroutines();
     }
 
     public void SetBulletDestroyAction(BulletDestroyAction action)
     {
         bulletDestroyAction = action;
-     
+
     }
 
     IEnumerator bulletDestroyRoutine(float time)
-    { 
+    {
         yield return new WaitForSeconds(time);
         BulletDestroy();
     }
@@ -178,7 +179,7 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(time);
         StopBullet();
     }
-    
+
 
     public void SetExplosion(float radius)
     {
@@ -204,7 +205,7 @@ public class Bullet : MonoBehaviour
             }
         }
         else if (isAnimBullet == false && spriteRenderer != null)
-        {      
+        {
             if (animator != null)
                 animator.runtimeAnimatorController = null;
 
@@ -238,7 +239,7 @@ public class Bullet : MonoBehaviour
                 if (characterInfo != null)
                     characterInfo.GetDamage(this.power);
             }
-            else if(hasPollute == true)
+            else if (hasPollute == true)
             {
                 switch (polluteType)
                 {
@@ -255,7 +256,7 @@ public class Bullet : MonoBehaviour
                         }
                         break;
                 }
-      
+
             }
 
         }
@@ -297,10 +298,10 @@ public class Bullet : MonoBehaviour
         {
             BulletDestroy();
         }
-        else if (canDestroyByCollision == false&&stopWhenCollision==true)
+        else if (canDestroyByCollision == false && stopWhenCollision == true)
         {
             if (collision.gameObject.CompareTag("Tile"))
-                StopBullet();          
+                StopBullet();
         }
 
         if (explosionType == ExplosionType.single)
@@ -359,6 +360,10 @@ public class Bullet : MonoBehaviour
                     }
                 }
                 break;
+            case BulletDestroyAction.Gravity:
+                {
+                    PushEnemy();
+                } break;
         }
     }
 
@@ -385,4 +390,39 @@ public class Bullet : MonoBehaviour
     {
         SetBloom(OnOff, Color.white);
     }
+
+
+
+
+    private float pushRadius = 3f;
+    private float pushPower = 2f;
+    private int pushDamage = 1;
+
+    public void SetPushOption(float pushRadius, float pushPower, int pushDamage)
+    {
+        bulletDestroyAction = BulletDestroyAction.Gravity;
+
+        this.pushRadius = pushRadius;
+        this.pushPower = pushPower;
+        this.pushDamage = pushDamage;
+    }
+
+    private void PushEnemy()
+    {
+        //밀어내기
+
+        int layerMask = MyUtils.GetLayerMaskByString("Enemy");
+
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, pushRadius, layerMask);
+        if (colls == null) return;
+
+        for (int i = 0; i < colls.Length; i++)
+        {
+            CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
+            if (characterInfo != null)
+                characterInfo.SetPush(this.transform.position, pushPower, pushDamage);
+        }
+    }
+
 }

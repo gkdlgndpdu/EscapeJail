@@ -699,6 +699,7 @@ public class MonsterBase : CharacterInfo
         isPushed = true;
         StartCoroutine(PushRoutine());
     }
+ 
 
     private IEnumerator PushRoutine()
     {

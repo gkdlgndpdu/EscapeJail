@@ -10,16 +10,39 @@ public class ThunderLine : MonoBehaviour
     [SerializeField]
     private SpriteRenderer thunderBloomSprite;
 
-    float eachPointDistance = 0f;  
+    float eachPointDistance = 0f;
 
-
-    public void Initialize(Vector3 startPos,Vector3 endPos,Color color = default(Color), float lifeTime =1f,float scale =1f)
+    private Transform startTarget;
+    private Transform endTarget;
+    private float scale = 1f;
+    private void Update()
     {
-        eachPointDistance = Vector3.Distance(startPos, endPos);
-        this.transform.position = startPos + (endPos - startPos).normalized * eachPointDistance * 0.5f;
-        this.transform.rotation = Quaternion.Euler(0f, 0f, MyUtils.GetAngle(startPos, endPos));
+        UpdateThunder();
+    }
+
+    private void UpdateThunder()
+    {
+
+        if (startTarget == null || endTarget == null) return;      
+
+        eachPointDistance = Vector3.Distance(startTarget.position, endTarget.position);
+        this.transform.position = startTarget.position + (endTarget.position - startTarget.position).normalized * eachPointDistance * 0.5f;
+        this.transform.rotation = Quaternion.Euler(0f, 0f, MyUtils.GetAngle(startTarget.position, endTarget.position));
         this.transform.localScale = new Vector3(1f, 1f, scale);
         SetThundertLength();
+    }
+
+    public void Initialize(Transform startTarget, Transform endTarget, Color color = default(Color), float lifeTime =1f,float scale =0.5f)
+    {
+        eachPointDistance = Vector3.Distance(startTarget.position, endTarget.position);
+        this.transform.position = startTarget.position + (endTarget.position - startTarget.position).normalized * eachPointDistance * 0.5f;
+        this.transform.rotation = Quaternion.Euler(0f, 0f, MyUtils.GetAngle(startTarget.position, endTarget.position));
+        this.transform.localScale = new Vector3(1f, 1f, scale);
+        SetThundertLength();
+
+        this.startTarget = startTarget;
+        this.endTarget = endTarget;
+        this.scale = scale;
         StartCoroutine(StopRoutine(lifeTime));
 
         if (color != default(Color))
