@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public enum SceneName
 {
     LobbyScene,
+    SelectScene,
     GameScene
 }
 public class SceneManager : MonoBehaviour

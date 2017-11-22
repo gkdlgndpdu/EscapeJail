@@ -4,31 +4,14 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour
 {
-    public void StartSoldier()
+
+
+
+    public void StartGame()
     {
-        SetCharacter(CharacterType.Soldier);
-        ChangeScene();
-    }
-
-    public void StartScientist()
-    {
-        SetCharacter(CharacterType.Scientist);
-        ChangeScene();
-    }
-
-    private void SetCharacter(CharacterType characterType)
-    {
-        PlayerPrefs.SetInt(GameConstants.CharacterKeyValue, (int)characterType);
-    }
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.SelectScene);
 
 
-    private void ChangeScene()
-    {
-        Application.LoadLevelAsync(1);
-
-
-     
-           
 
     }
 
