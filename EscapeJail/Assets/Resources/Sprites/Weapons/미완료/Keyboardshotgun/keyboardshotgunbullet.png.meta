@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: 42dd70fd0958acc45bf96b56799f2a86
-timeCreated: 1510687632
+timeCreated: 1511327627
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: keyboardshotgunbullet_0
+    21300002: keyboardshotgunbullet_1
+    21300004: keyboardshotgunbullet_2
+    21300006: keyboardshotgunbullet_3
+    21300008: keyboardshotgunbullet_4
+    21300010: keyboardshotgunbullet_5
+    21300012: keyboardshotgunbullet_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -81,7 +88,105 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 46
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 45
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_3
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 23
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 9
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_5
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_6
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: keyboardshotgunbullet_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 37
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

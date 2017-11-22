@@ -147,9 +147,8 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new MindArrow());
-  
-        UIUpdate();
+        AddWeapon(new BubbleGun());  
+   
     }
 
     public virtual void SetBurstSpeed(bool OnOff)
@@ -197,7 +196,7 @@ public class CharacterBase : CharacterInfo
 
         if (armorSystem == null)
         {
-            armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpBar);
+            armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpUi.SetArmor);
             //임시
             SetArmor(0, 0);
         }
@@ -240,6 +239,7 @@ public class CharacterBase : CharacterInfo
     {
         SetBurstSpeed(true);
         StartCoroutine(FindItemRoutine());
+        UIUpdate();
     }
 
     protected IEnumerator FindItemRoutine()
@@ -368,15 +368,20 @@ public class CharacterBase : CharacterInfo
 
     protected void RotateWeapon(Vector3 enemyPos)
     {
-    
-
-            Vector3 nearestEnemyPos = enemyPos;
+        Vector3 nearestEnemyPos = enemyPos;
         weaponAngle = MyUtils.GetAngle(nearestEnemyPos, this.transform.position);
 
-        if (weaponPosit != null&& weaponHandler.CanRotateWeapon()==true)
-        {          
-            weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
-        }
+        if (weaponHandler.CanRotateWeapon() == true)
+        {
+         
+
+            if (weaponPosit != null)
+            {
+                weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
+            }
+        } 
+
+     
 
         //flip
         if ((weaponAngle >= 0f && weaponAngle <= 90) ||
@@ -384,7 +389,9 @@ public class CharacterBase : CharacterInfo
         {
             if (weaponHandler != null)
             {
+                if(weaponHandler.CanRotateWeapon()==true)
                 weaponHandler.FlipWeapon(false);
+
                 FlipCharacter(true);
             }
         }
@@ -392,7 +399,9 @@ public class CharacterBase : CharacterInfo
         {
             if (weaponHandler != null)
             {
-                weaponHandler.FlipWeapon(true);
+                if (weaponHandler.CanRotateWeapon() == true)
+                    weaponHandler.FlipWeapon(true);
+
                 FlipCharacter(false);
             }
         }
@@ -531,7 +540,7 @@ public class CharacterBase : CharacterInfo
     protected void UIUpdate()
     {
         if (playerUi != null)
-            playerUi.SetHpBar(hp, hpMax);
+            playerUi.hpUi.SetHp(hp);
     }
 
     protected void DieAction()

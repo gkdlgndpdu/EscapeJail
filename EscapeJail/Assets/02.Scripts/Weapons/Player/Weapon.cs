@@ -81,6 +81,9 @@ namespace weapon
         Bfe,
         GravityGun,
         MindArrow,
+        Gramophone,
+        BubbleGun,
+        GuitarCase,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

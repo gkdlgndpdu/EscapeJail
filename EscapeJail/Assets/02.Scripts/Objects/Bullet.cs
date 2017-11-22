@@ -55,6 +55,7 @@ public class Bullet : MonoBehaviour
 
     //폭발시 실행할 함수
     public Action<Vector3> explostionEndFunc;
+    private Vector3 moveDir;
 
     public void SetExplosionEndFunc(Action<Vector3> linkFunc)
     {
@@ -109,6 +110,7 @@ public class Bullet : MonoBehaviour
         {
             bulletSpeed = moveSpeed;
             rb.velocity = moveDir.normalized * moveSpeed;
+            this.moveDir = moveDir;
         }
 
         //피아식별
@@ -423,6 +425,14 @@ public class Bullet : MonoBehaviour
             if (characterInfo != null)
                 characterInfo.SetPush(this.transform.position, pushPower, pushDamage);
         }
+    }
+
+    public void RotateBullet()
+    {
+        float RotateAngle = MyUtils.GetAngle(Vector3.zero, moveDir) + 180f;
+
+        //회전
+        this.transform.rotation = Quaternion.Euler(0f, 0f, RotateAngle);
     }
 
 }

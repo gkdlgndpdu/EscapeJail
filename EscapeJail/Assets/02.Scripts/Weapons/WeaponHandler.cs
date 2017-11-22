@@ -36,7 +36,8 @@ public class WeaponHandler : MonoBehaviour
     {
         if (nowWeapon == null) return false;
         if (nowWeapon.weapontype == WeaponType.ChickenGun||
-            nowWeapon.weapontype == WeaponType.MemoryEraser) return false;
+            nowWeapon.weapontype == WeaponType.MemoryEraser||
+            nowWeapon.weapontype == WeaponType.Gramophone) return false;
 
         return true;
     }
@@ -177,7 +178,8 @@ public class WeaponHandler : MonoBehaviour
              nowWeapon.weapontype == WeaponType.Sturgeon ||
               nowWeapon.weapontype == WeaponType.RoseGun ||
                  nowWeapon.weapontype == WeaponType.G403||
-                    nowWeapon.weapontype == WeaponType.GiraffeSword
+                    nowWeapon.weapontype == WeaponType.GiraffeSword||
+                    nowWeapon.weapontype ==WeaponType.Gramophone
              )
             return true;
 

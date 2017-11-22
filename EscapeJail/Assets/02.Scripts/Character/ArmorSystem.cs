@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ArmorSystem
 {
@@ -9,13 +10,13 @@ public class ArmorSystem
 
     private InventoryUi inventoryUi;
     private PlayerUI playerUi;
-    private HpBar hpBar;
+    Action<int> updateFunc;
 
-    public ArmorSystem(InventoryUi InventroyUi, PlayerUI playerUi, HpBar hpBar)
+    public ArmorSystem(InventoryUi InventroyUi, PlayerUI playerUi, Action<int> updateFunc)
     {
         this.inventoryUi = InventroyUi;
         this.playerUi = playerUi;
-        this.hpBar = hpBar;
+        this.updateFunc = updateFunc;
 
         remainArmor = 0;
         maxArmor = 0;
@@ -49,11 +50,10 @@ public class ArmorSystem
 
     private void UpdateArmorUi()
     {
-        if (inventoryUi == null || hpBar == null) return;
+        if (updateFunc == null) return;
+        updateFunc(remainArmor);
 
-        float ratio = (float)remainArmor / (float)maxArmor;
-        inventoryUi.SetArmorUi(ratio);
-        hpBar.SetArmorBar(ratio);
+       
     }
 
 }
