@@ -12,6 +12,8 @@ public class Coin : MonoBehaviour
     private int value = 0;
     private CharacterBase player;
     private float moveSpeed = 5f;
+    private float sleepTime = 1f;
+    private bool isSleep = true;
 
     private void Awake()
     {
@@ -23,10 +25,18 @@ public class Coin : MonoBehaviour
     {
         this.transform.position = spawnPosit;
         this.value = value;
+        StartCoroutine(SleepRoutine());
+    }
+    IEnumerator SleepRoutine()
+    {
+        yield return new WaitForSeconds(sleepTime);
+        isSleep = false;
     }
 
     public void Update()
     {
+        if (isSleep == true) return;
+
         if (player != null)
         {
             if (rb != null)
@@ -40,8 +50,17 @@ public class Coin : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(player!=null)
+        if (isSleep == true) return;
+
+        if (player!=null)
         player.GetCoin(value);
+        OffCoin();
+    }
+
+    private void OffCoin()
+    {
+        isSleep = true;
+        StopAllCoroutines();
         this.gameObject.SetActive(false);
     }
 }

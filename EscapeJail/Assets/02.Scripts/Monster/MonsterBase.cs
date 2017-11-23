@@ -120,7 +120,7 @@ public class MonsterBase : CharacterInfo
     protected bool canMove()
     {
         //죽었거나             랜덤이동   스턴    //밀림
-        if (isDead == true || isMoveRandom == true|| isStun==true|| isPushed==true) return false;
+        if (isDead == true || isMoveRandom == true || isStun == true || isPushed == true) return false;
 
         return true;
     }
@@ -152,8 +152,8 @@ public class MonsterBase : CharacterInfo
 
     protected void Awake()
     {
-   
-     
+
+
 
     }
 
@@ -176,7 +176,7 @@ public class MonsterBase : CharacterInfo
     {
         bool findObj = false;
         foreach (Transform child in this.transform)
-        {   
+        {
             foreach (Transform grandChild in child)
             {
                 nowWeapon = grandChild.gameObject.GetComponent<WeaponHandler>();
@@ -190,7 +190,7 @@ public class MonsterBase : CharacterInfo
         }
 
 
-       
+
     }
     // Use this for initialization
     protected void Start()
@@ -239,7 +239,7 @@ public class MonsterBase : CharacterInfo
 
     }
 
-    protected  void SetHp()
+    protected void SetHp()
     {
         if (monsterDB != null)
         {
@@ -305,6 +305,10 @@ public class MonsterBase : CharacterInfo
         //hud꺼줌
         HudOnOff(false);
 
+        //코인생성
+
+        Coin coin = ObjectManager.Instance.coinPool.GetItem();
+        coin.Initiatlize(this.transform.position, 10);
 
 
 
@@ -423,7 +427,7 @@ public class MonsterBase : CharacterInfo
     {
         yield break;
     }
- 
+
     protected void NearAttackLogic()
     {
         if (IsInAcessArea() == true && nowAttack == false)
@@ -518,8 +522,8 @@ public class MonsterBase : CharacterInfo
         }
     }
 
-    protected IEnumerator RandomBackMove(float moveTime=2f)
-    {    
+    protected IEnumerator RandomBackMove(float moveTime = 2f)
+    {
         float count = 0f;
         Vector3 randomDirection = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(-90f, 90f)) * -(moveDir.normalized);
 
@@ -617,13 +621,13 @@ public class MonsterBase : CharacterInfo
             //벽이없음 -> 갈길간다
             if (raycastHit.collider == null)
             {
-              //  Debug.Log("벽이없음");
+                //  Debug.Log("벽이없음");
                 hasWall = false;
             }
             //벽이 탐지됨 ->길을 찾는다
             else
             {
-            //    Debug.Log("벽이있어");
+                //    Debug.Log("벽이있어");
                 hasWall = true;
 
                 for (int i = 1; i < 5; i++)
@@ -632,37 +636,37 @@ public class MonsterBase : CharacterInfo
                     Vector3 nextRayDir2 = Quaternion.Euler(0f, 0f, i * -40f) * rayDir;
                     RaycastHit2D raycastHit1 = Physics2D.Raycast(this.transform.position, nextRayDir1, rayDistance, layerMask);
                     RaycastHit2D raycastHit2 = Physics2D.Raycast(this.transform.position, nextRayDir2, rayDistance, layerMask);
-                  
+
                     bool findPath = false;
                     float pointdistance = 99f;
 
                     if (raycastHit1.collider == null)
                     {
-                        findPath = true;              
+                        findPath = true;
                         pointdistance = raycastHit1.distance;
                         moveDir = nextRayDir1.normalized;
                     }
                     if (raycastHit2.collider == null)
                     {
                         findPath = true;
-                  
+
                         //두번째 경로가 더 짧으면
                         if (raycastHit2.distance < pointdistance)
                         {
                             moveDir = nextRayDir2.normalized;
-                    
+
                         }
                     }
 
                     if (findPath == true)
                     {
                         if (rb != null)
-                            rb.velocity = moveDir * moveSpeed*1.5f;
+                            rb.velocity = moveDir * moveSpeed * 1.5f;
 
                         yield return new WaitForSeconds(findMoveTime);
                         break;
                     }
-                }             
+                }
             }
             yield return new WaitForSeconds(0.2f);
         }
@@ -679,10 +683,10 @@ public class MonsterBase : CharacterInfo
             if (rb != null)
                 rb.velocity = Vector3.zero;
         }
-        else if(OnOff == false)
+        else if (OnOff == false)
         {
-            if(isStun==true)
-            StartMyCoroutine();
+            if (isStun == true)
+                StartMyCoroutine();
             isStun = false;
         }
     }
@@ -699,7 +703,7 @@ public class MonsterBase : CharacterInfo
         isPushed = true;
         StartCoroutine(PushRoutine());
     }
- 
+
 
     private IEnumerator PushRoutine()
     {

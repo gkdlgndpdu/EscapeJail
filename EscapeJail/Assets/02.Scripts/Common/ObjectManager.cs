@@ -117,11 +117,7 @@ public class ObjectManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Coin coin = coinPool.GetItem();
-            coin.Initiatlize(Vector3.zero, 10);
-        }
+     
 
     }
 
