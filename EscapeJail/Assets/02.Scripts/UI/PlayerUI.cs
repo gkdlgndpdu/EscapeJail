@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
     public WeaponUI weaponUi;
     public OptionUi optionUi;
     public HpUi hpUi;
+    public GoodsUi goodsUi;
 
     private void Awake()
     {

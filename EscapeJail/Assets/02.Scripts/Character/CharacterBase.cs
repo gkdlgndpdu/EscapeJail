@@ -68,6 +68,17 @@ public class CharacterBase : CharacterInfo
     //버프효과
     protected BuffEffect buffEffect;
 
+    //재화
+    protected int coin = 0;
+
+    public void GetCoin(int coin)
+    {
+        this.coin += coin;
+
+        if (playerUi != null)
+            playerUi.goodsUi.SetText(this.coin);
+    }
+
     protected void LoadPrefabs()
     {
         GameObject loadObj = Resources.Load<GameObject>("Prefabs/ETC/Sliders");

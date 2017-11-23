@@ -348,14 +348,7 @@ public class DatabaseLoader : MonoBehaviour
     /// 
     /// </summary>
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SaveBtn();
-        }
-      
-    }
+  
 
     //파일 저장
     public void SaveBtn()
