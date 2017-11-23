@@ -36,6 +36,7 @@ public class BossBase : CharacterInfo
     public virtual void StartBossPattern()
     {
         SetUiOnOff(true);
+        isPatternStart = true;
         AddToList();
     }
 

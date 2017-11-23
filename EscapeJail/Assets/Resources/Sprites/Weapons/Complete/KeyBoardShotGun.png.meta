@@ -1,16 +1,12 @@
 fileFormatVersion: 2
-guid: 42dd70fd0958acc45bf96b56799f2a86
-timeCreated: 1511327627
+guid: bce5ddbf717ee7f4e9f00bb92742987b
+timeCreated: 1511468550
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: keyboardshotgunbullet_0
-    21300002: keyboardshotgunbullet_1
-    21300004: keyboardshotgunbullet_2
-    21300006: keyboardshotgunbullet_3
-    21300008: keyboardshotgunbullet_4
-    21300010: keyboardshotgunbullet_5
-    21300012: keyboardshotgunbullet_6
+    21300000: keyboardshotgun_0
+    21300002: keyboardshotgun_1
+    21300004: keyboardshotgun_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -52,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -90,99 +86,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: keyboardshotgunbullet_0
+      name: keyboardshotgun_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 46
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.7, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: keyboardshotgunbullet_1
+      name: keyboardshotgun_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 45
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.7, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: keyboardshotgunbullet_3
+      name: keyboardshotgun_2
       rect:
         serializedVersion: 2
-        x: 18
-        y: 23
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: keyboardshotgunbullet_4
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 9
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: keyboardshotgunbullet_5
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 32
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: keyboardshotgunbullet_6
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 1
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: keyboardshotgunbullet_2
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 37
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.7, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

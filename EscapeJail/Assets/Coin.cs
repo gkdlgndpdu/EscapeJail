@@ -34,7 +34,7 @@ public class Coin : MonoBehaviour
     }
 
     public void Update()
-    {
+    {        
         if (isSleep == true) return;
 
         if (player != null)

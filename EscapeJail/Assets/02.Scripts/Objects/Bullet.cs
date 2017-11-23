@@ -216,10 +216,21 @@ public class Bullet : MonoBehaviour
                 spriteRenderer.sprite = sprite;
             else if (sprite == null)
                 spriteRenderer.sprite = defaultSprite;
-
         }
 
+    }
 
+    //sprite multiple 로드해서 랜덤 이미지 사용
+    public void InitializeMultipleImage(string bulletImageName)
+    {
+        if (animator != null)
+            animator.runtimeAnimatorController = null;
+
+        Sprite[] sprites = Resources.LoadAll<Sprite>(string.Format("Sprites/Bullet/{0}", bulletImageName));
+        if (sprites != null)
+            spriteRenderer.sprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+        else if (sprites == null)
+            spriteRenderer.sprite = defaultSprite;
     }
 
     protected void SetLayer(BulletType bulletType)

@@ -84,6 +84,7 @@ namespace weapon
         Gramophone,
         BubbleGun,
         GuitarCase,
+        KeyBoardShotGun,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

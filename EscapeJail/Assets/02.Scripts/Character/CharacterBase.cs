@@ -87,6 +87,8 @@ public class CharacterBase : CharacterInfo
     }
     public void UseCoin(int coin)
     {
+       
+
         this.coin -= coin;
         if (playerUi != null)
             playerUi.goodsUi.SetText(this.coin);
@@ -171,7 +173,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new BubbleGun());  
+        AddWeapon(new KeyBoardShotGun());  
    
     }
 
@@ -278,7 +280,12 @@ public class CharacterBase : CharacterInfo
     // Update is called once per frame
     protected void Update()
     {
-
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            GetCoin(100);
+        }
+#endif
 
         HandleNowWeapon();
 

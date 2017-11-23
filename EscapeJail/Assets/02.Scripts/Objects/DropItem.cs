@@ -202,6 +202,8 @@ public class DropItem : MonoBehaviour, iReactiveAction
             }
             else
             {
+                if (player.isInventoryFull() == true) return;
+
                 player.UseCoin(price);
             }
         }
