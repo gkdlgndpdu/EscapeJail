@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: 175844f3fcb96cb4293f8933ee5b9e31
+timeCreated: 1511447983
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: engineer_0
+    21300002: engineer_1
+    21300004: engineer_2
+    21300006: engineer_3
+    21300008: engineer_4
+    21300010: engineer_5
+    21300012: engineer_6
+    21300014: engineer_7
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: engineer_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: engineer_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -102, y: -8}
+      - {x: -114, y: -9}
+      - {x: -114, y: -47}
+      - {x: -103, y: -61}
+      - {x: -92, y: -64}
+      - {x: -82, y: -64}
+      - {x: -72, y: -40}
+      - {x: -72, y: -12}
+      - {x: -81, y: -8}
+    - - {x: -52, y: -10}
+      - {x: -54, y: -32}
+      - {x: -54, y: -51}
+      - {x: -41, y: -64}
+      - {x: -16, y: -64}
+      - {x: -6, y: -58}
+      - {x: -6, y: -14}
+      - {x: -15, y: -10}
+    - - {x: 47, y: -8}
+      - {x: 22, y: -8}
+      - {x: 10, y: -11}
+      - {x: 10, y: -46}
+      - {x: 23, y: -64}
+      - {x: 41, y: -64}
+      - {x: 56, y: -49}
+      - {x: 56, y: -15}
+    - - {x: 122, y: -26}
+      - {x: 90, y: -26}
+      - {x: 83, y: -27}
+      - {x: 70, y: -36}
+      - {x: 70, y: -62}
+      - {x: 122, y: -62}
+      - {x: 128, y: -59}
+      - {x: 128, y: -34}
+    - - {x: -111, y: 56}
+      - {x: -120, y: 43}
+      - {x: -120, y: 15}
+      - {x: -107, y: 0}
+      - {x: -78, y: 0}
+      - {x: -72, y: 12}
+      - {x: -72, y: 56}
+    - - {x: -45, y: 54}
+      - {x: -50, y: 52}
+      - {x: -50, y: 15}
+      - {x: -40, y: 0}
+      - {x: -8, y: 0}
+      - {x: -8, y: 54}
+    - - {x: 17, y: 56}
+      - {x: 14, y: 52}
+      - {x: 14, y: 15}
+      - {x: 19, y: 0}
+      - {x: 58, y: 0}
+      - {x: 58, y: 56}
+    - - {x: 84, y: 56}
+      - {x: 79, y: 53}
+      - {x: 72, y: 35}
+      - {x: 72, y: 26}
+      - {x: 88, y: 0}
+      - {x: 117, y: 0}
+      - {x: 120, y: 3}
+      - {x: 120, y: 55}
+      - {x: 112, y: 56}
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
