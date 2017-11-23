@@ -193,6 +193,25 @@ public class MapModuleGenerator
 
     }
 
+    public void MakeShopModule(Transform moduleParent,Vector3 spawnPosit)
+    {
+        GameObject shopModuleObj = Resources.Load<GameObject>("Prefabs/Maps/ETC/ShopModule");
+        if (shopModuleObj != null)
+        {
+            ShopModule shopModule = GameObject.Instantiate(shopModuleObj, spawnPosit, Quaternion.identity, moduleParent).GetComponent<ShopModule>();
+            shopModule.AddToMapManager(mapManager);
+            shopModule.GetMyTiles();
+
+            List<Tile> shopWallList = shopModule.GetWallList();
+            for (int i = 0; i < shopWallList.Count; i++)
+            {
+                everyWallList.Add(shopWallList[i]);
+            }
+
+        }
+
+    }
+
 
 
 
@@ -265,10 +284,19 @@ public class MapModuleGenerator
         //랜덤위치
         float randX = Random.Range(0, 2) == 0 ? 1f : -1f;
         float randY = Random.Range(0, 2) == 0 ? 1f : -1f;
-        Vector3 bossSpawnPosit = new Vector3((15f * 0.64f - 0.32f) * randX, (15f * 0.64f - 0.32f) * randY, 0f);
+        Vector3 bossSpawnPosit = new Vector3((30 * 0.64f - 0.32f) * randX, (30 * 0.64f - 0.32f) * randY, 0f);
 
         //보스모듈
         MakeBossModule(mapManager.transform, bossSpawnPosit);
+
+        //랜덤위치  
+        randX = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;
+        randY = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;        
+
+        Vector3 shopSpawnPosit = new Vector3((3f * 0.64f - 0.32f) * randX, (3f * 0.64f - 0.32f) * randY, 0f);
+
+        //상점
+        MakeShopModule(mapManager.transform, shopSpawnPosit);
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)

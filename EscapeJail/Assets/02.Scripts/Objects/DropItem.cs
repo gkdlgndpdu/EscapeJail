@@ -20,6 +20,22 @@ public class DropItem : MonoBehaviour, iReactiveAction
     public ItemBase itemBase;
 
     private CharacterBase player;
+    private bool isSalesItem = false;
+    public bool IsSalesItem
+    {
+        get
+        {
+            return isSalesItem;
+        }
+    }
+    private int price = 0;
+    public int Price
+    {
+        get
+        {
+            return price;
+        }
+    }
 
     private void Awake()
     {
@@ -38,7 +54,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     private void SetColliderSize()
     {
         if (boxCollider != null && spriteRenderer != null)
-            boxCollider.size = spriteRenderer.size*0.5f;
+            boxCollider.size = spriteRenderer.size * 0.5f;
     }
 
     private void Start()
@@ -56,9 +72,23 @@ public class DropItem : MonoBehaviour, iReactiveAction
         SetDropItemImage(ItemPath);
         SetColliderSize();
 
+    }
+    public void SetItemToSales()
+    {
+        isSalesItem = true;
+
+        if (itemBase.itemType == ItemType.Weapon)
+        {
+            WeaponDB weaponData = DatabaseLoader.Instance.weaponDB[itemBase.weapontype];
+            price = weaponData.Probability * 100; 
+        }
+        else
+        {
+
+        }
+
 
     }
-
     public void SetItemToArmor()
     {
         itemBase = new Item_Armor();
@@ -88,16 +118,16 @@ public class DropItem : MonoBehaviour, iReactiveAction
         string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
-        
+
         SetColliderSize();
     }
 
-    public void SetItemToMedicine(int level =999)
+    public void SetItemToMedicine(int level = 999)
     {
         itemBase = null;
 
 
-        if(level==999)
+        if (level == 999)
             itemBase = new Item_Medicine();
         else
             itemBase = new Item_Medicine(level);
@@ -163,10 +193,22 @@ public class DropItem : MonoBehaviour, iReactiveAction
     public void ClickAction()
     {
         if (player == null) return;
-        
+
+        if (isSalesItem == true)
+        {
+            if (player.Coin < price)
+            {
+                return;
+            }
+            else
+            {
+                player.UseCoin(price);
+            }
+        }
+
         if (player.isInventoryFull() == true &&
             //가방 , 아머일때는 인벤토리 크기 상관 x
-            (itemBase.itemType!=ItemType.Bag&&itemBase.itemType!=ItemType.Armor)) return;
+            (itemBase.itemType != ItemType.Bag && itemBase.itemType != ItemType.Armor)) return;
 
         switch (itemBase.itemType)
         {
@@ -191,19 +233,22 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     //해제
                     itemBase = null;
 
-                } break;
+                }
+                break;
             case ItemType.Armor:
                 {
-                    player.SetArmor(itemBase.ItemLevel,itemBase.Value);
-                } break;
+                    player.SetArmor(itemBase.ItemLevel, itemBase.Value);
+                }
+                break;
             default:
                 {
-                    player. AddItem(itemBase);
-                } break;
+                    player.AddItem(itemBase);
+                }
+                break;
 
         }
-                Destroy(this.gameObject);
-           
+        Destroy(this.gameObject);
+
     }
 
 

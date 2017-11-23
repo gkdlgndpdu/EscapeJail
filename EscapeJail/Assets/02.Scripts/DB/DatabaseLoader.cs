@@ -25,7 +25,13 @@ public class DatabaseLoader : MonoBehaviour
 
     //무기 DB
     private Dictionary<WeaponType,WeaponDB> WeaponDB;
-
+    public Dictionary<WeaponType, WeaponDB> weaponDB
+    {
+        get
+        {
+            return WeaponDB;
+        }
+    }
     /// <summary>
     /// key값에 해당 아이템을 넣으면 확률에 맞게 lv을 뱉음
     /// </summary>

@@ -30,7 +30,7 @@ public class ItemInfoBar : MonoBehaviour
         Instance = this;
     }
                                   //item 인자가 null -> 무기상자가 들어옴
-    public void SetItemBar(ItemBase item, Action clickFunc)
+    public void SetItemBar(ItemBase item, Action clickFunc,bool isSalesItem =false,int price =0)
     {
         iTween.MoveTo(this.gameObject, showPosit.position, moveSpeed);
 
@@ -70,7 +70,7 @@ public class ItemInfoBar : MonoBehaviour
                     //아이템 텍스트 변경
                     if (itemText != null)
                         itemText.text = nowItem.weapontype.ToString();
-                }
+                           }
                 break;
             default:
                 {              
@@ -83,13 +83,15 @@ public class ItemInfoBar : MonoBehaviour
                     //아이템 텍스트 변경
                     if (itemText != null)
                         itemText.text = nowItem.itemName;
+
+         
                 }
                 break;
         }
 
-      
-
-
+        //가격 표시
+        if (isSalesItem == true)
+            itemText.text = itemText.text + " " + price.ToString()+"$";
     }
 
     public void ResetItemBar()

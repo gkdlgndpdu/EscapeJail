@@ -84,7 +84,7 @@ public class ItemSpawner : MonoBehaviour
 
    
 
-    public void SpawnWeapon(Vector3 posit, Transform parent)
+    public void SpawnWeapon(Vector3 posit, Transform parent,bool isSalesItem =false)
     {
         WeaponType RandomWeapon =DatabaseLoader.Instance.GetRandomWeaponTypeByProbability();
 
@@ -95,11 +95,13 @@ public class ItemSpawner : MonoBehaviour
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
-    }
-    
-  
 
-    public void SpawnItem(ItemType itemType, Vector3 posit, Transform parent, int level = 999)
+        if (isSalesItem == true)
+            item.SetItemToSales();
+    }
+
+
+    public void SpawnItem(ItemType itemType, Vector3 posit, Transform parent, bool isSalesItem = false, int level = 999)
     {
         DropItem item = MakeItemPrefab(posit);
         if (item == null) return;
@@ -152,6 +154,10 @@ public class ItemSpawner : MonoBehaviour
 
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
+
+
+        if (isSalesItem == true)
+            item.SetItemToSales();
     }
 
     public DropItem MakeItemPrefab(Vector3 posit)

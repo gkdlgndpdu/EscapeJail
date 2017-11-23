@@ -158,7 +158,7 @@ public class Item_Medicine : ItemBase
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
+        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, false,ItemLevel);
     }
 }
 
@@ -198,7 +198,7 @@ public class Item_Stimulant : ItemBase
     public override void RemoveItem()
     {
         base.RemoveItem();
-        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, ItemLevel);
+        ItemSpawner.Instance.SpawnItem(itemType, player.transform.position, null, false,ItemLevel);
     }
 }
 

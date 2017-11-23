@@ -13,7 +13,8 @@ public static class GameConstants
 
     //타일크기
     public static float tileSize = 0.64f;
-
+    //맵간 밀릴때 최소거리
+    public static float eachModuleDistance = 1.28f;
     //상태이상 데미지
     public static int fireTicDamage = 1;
     public static int poisonTicDamage = 1;

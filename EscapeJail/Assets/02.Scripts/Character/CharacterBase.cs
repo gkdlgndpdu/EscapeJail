@@ -70,11 +70,24 @@ public class CharacterBase : CharacterInfo
 
     //재화
     protected int coin = 0;
+    public int Coin
+    {
+        get
+        {
+            return coin;
+        }
+    }
 
     public void GetCoin(int coin)
     {
         this.coin += coin;
 
+        if (playerUi != null)
+            playerUi.goodsUi.SetText(this.coin);
+    }
+    public void UseCoin(int coin)
+    {
+        this.coin -= coin;
         if (playerUi != null)
             playerUi.goodsUi.SetText(this.coin);
     }
@@ -629,7 +642,10 @@ public class CharacterBase : CharacterInfo
             DropItem dropItem = colls[0].gameObject.GetComponent<DropItem>();
             if (dropItem != null)
             {
-                ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                if (dropItem.IsSalesItem == false)
+                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                else
+                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction,true,dropItem.Price);
                 return;
             }
             WeaponBox weaponBox = colls[0].gameObject.GetComponent<WeaponBox>();
@@ -658,7 +674,11 @@ public class CharacterBase : CharacterInfo
             DropItem dropItem = neariestCollider.gameObject.GetComponent<DropItem>();
             if (dropItem != null)
             {
-                ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                if (dropItem.IsSalesItem == false)
+                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
+                else
+                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction, true, dropItem.Price);
+
                 return;
             }
             WeaponBox weaponBox = neariestCollider.gameObject.GetComponent<WeaponBox>();

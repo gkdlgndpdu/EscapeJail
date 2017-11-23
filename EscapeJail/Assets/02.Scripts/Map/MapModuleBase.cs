@@ -36,7 +36,7 @@ public class MapModuleBase : MonoBehaviour
     protected bool isStartModule = false;
     protected float widthDistance;
     protected float heightDistance;
-    protected float eachModuleDistance = 1.28f;
+  //  protected float eachModuleDistance = 1.28f;
 
     protected void OpenDoor()
     {
@@ -72,37 +72,37 @@ public class MapModuleBase : MonoBehaviour
         if (isStartModule == true) return;
         if (collision.CompareTag("MapModule"))
         {
-            MapModule anotherModule = collision.gameObject.GetComponent<MapModule>();
+       //     MapModule anotherModule = collision.gameObject.GetComponent<MapModule>();
 
             //겹치는거 예외처리
-            if (eachModuleDistance <= widthDistance * 2f)
+            if (GameConstants.eachModuleDistance <= widthDistance * 2f)
             {
-                eachModuleDistance = widthDistance * 2f;
+                GameConstants.eachModuleDistance = widthDistance * 2f;
             }          
 
-            if (anotherModule != null)
-            {
+            //if (anotherModule != null)
+            //{
                 if (mapManager != null)
                     mapManager.ResetMakeCount();
 
                 if (this.transform.position.x < collision.bounds.center.x)
                 {
-                    this.transform.position -= Vector3.right * eachModuleDistance;
+                    this.transform.position -= Vector3.right * GameConstants.eachModuleDistance;
                 }
                 else if (this.transform.position.x >= collision.bounds.center.x)
                 {
-                    this.transform.position += Vector3.right * eachModuleDistance;
+                    this.transform.position += Vector3.right * GameConstants.eachModuleDistance;
                 }
 
                 if (this.transform.position.y < collision.bounds.center.y)
                 {
-                    this.transform.position -= Vector3.up * eachModuleDistance;
+                    this.transform.position -= Vector3.up * GameConstants.eachModuleDistance;
                 }
                 else if (this.transform.position.y >= collision.bounds.center.y)
                 {
-                    this.transform.position += Vector3.up * eachModuleDistance;
+                    this.transform.position += Vector3.up * GameConstants.eachModuleDistance;
                 }
-            }
+            //}
         }
     }
 }
