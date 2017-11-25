@@ -42,19 +42,16 @@ public class Inventory
             {
                 bagSize = 2;
             }
-
-            //임시
-            bagSize = 25;
         }
         else
         {
             if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedPocket)
             {
-                bagSize = 2 + 5;
+                bagSize = value + 5;
             }
             else
             {
-                bagSize = value+5;
+                bagSize = value;
             }
     
         }

@@ -32,10 +32,10 @@ public class ItemTable : CharacterInfo
             animator.speed = 0f;
 
 
-#if UNITY_EDITOR
-#else
-           this.transform.localPosition = Vector3.zero;
-#endif
+//#if UNITY_EDITOR
+//#else
+//           this.transform.localPosition = Vector3.zero;
+//#endif
 
         hp = 15;
 

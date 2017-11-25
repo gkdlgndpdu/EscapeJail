@@ -147,7 +147,8 @@ public class InventoryUi : MonoBehaviour
         if (rectTr != null)
         {
             float eachDistance = grid.cellSize.y + grid.spacing.y;
-       //     rectTr.sizeDelta = new Vector2(500f, eachDistance * ((float)(itemSlots.Count/5)*0.5f));
+            rectTr.transform.localPosition = new Vector3(0f, -(float)itemSlots.Count / 5f * 70f,0f);
+            rectTr.sizeDelta = new Vector2(500f, eachDistance * ((float)((float)itemSlots.Count/5f)));
         }
 
 
