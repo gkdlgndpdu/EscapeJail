@@ -12,6 +12,11 @@ public class PlayerUI : MonoBehaviour
     public HpUi hpUi;
     public GoodsUi goodsUi;
 
+    [SerializeField]
+    private GameObject autoStick;
+    [SerializeField]
+    private GameObject manualStick;
+
     private void Awake()
     {
         //player에서 GameObject.find로 찾기때문에 건들면 안됨
@@ -41,4 +46,23 @@ public class PlayerUI : MonoBehaviour
         optionUi.gameObject.SetActive(!optionUi.gameObject.activeSelf);
     }
 
+    public void ChangeFireStyle(FireStyle style)
+    {
+        switch (style)
+        {
+            case FireStyle.Auto:
+                {
+                    autoStick.SetActive(true);
+                    manualStick.SetActive(false);
+                }
+                break;
+            case FireStyle.Manual:
+                {
+                    autoStick.SetActive(false);
+                    manualStick.SetActive(true);
+                }
+                break;
+        }
+
+    }
 }

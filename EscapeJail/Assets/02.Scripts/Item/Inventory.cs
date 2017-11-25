@@ -30,12 +30,34 @@ public class Inventory
     /// <param name="value">늘려줄 가방의 양</param>
     public void SetInventorySize(int value)
     {
-        if (bagSize >= value&&value!=0) return;
+        if (bagSize >= value && value != 0) return;
 
         if (value == 0)
-            bagSize = 2;
+        {
+            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedPocket)
+            {
+                bagSize = 2 +5;
+            }
+            else
+            {
+                bagSize = 2;
+            }
+
+            //임시
+            bagSize = 25;
+        }
         else
-            bagSize = value;
+        {
+            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedPocket)
+            {
+                bagSize = 2 + 5;
+            }
+            else
+            {
+                bagSize = value+5;
+            }
+    
+        }
 
         if (inventoryUi != null)
             inventoryUi.SetSlotNum(bagSize);
@@ -64,7 +86,7 @@ public class Inventory
     {
         if (weaponList == null) return null;
         if (weaponList.Count == 0) return null;
-        for(int i = 0; i < weaponList.Count; i++)
+        for (int i = 0; i < weaponList.Count; i++)
         {
             if (weaponList[i].weapontype == weaponType)
                 return weaponList[i];
@@ -75,7 +97,7 @@ public class Inventory
     {
         if (weaponList == null) return null;
         if (weaponList.Count == 0) return null;
-        return weaponList[weaponList.Count-1];
+        return weaponList[weaponList.Count - 1];
     }
     // Use this for initialization
 
@@ -96,7 +118,7 @@ public class Inventory
     {
         if (prefSpawnWeapons == null) return weapon;
 
-        for(int i=0;i< prefSpawnWeapons.Count; i++)
+        for (int i = 0; i < prefSpawnWeapons.Count; i++)
         {
             if (prefSpawnWeapons[i].weapontype == weapon.weapontype)
             {

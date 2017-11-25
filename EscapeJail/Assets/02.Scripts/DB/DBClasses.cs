@@ -53,3 +53,21 @@ public class WeaponDB
     }
 }
 
+
+public class PassiveDB
+{
+  //  public PassiveType passiveType = PassiveType.None;
+    public bool hasPassive = false;
+    public string description;
+    public string howToGet;
+    public PassiveDB(bool hasPassive, string description, string howToGet)
+    {
+        this.hasPassive = hasPassive;
+      //  this.passiveType = passiveType;
+        this.description = description;
+        this.howToGet = howToGet;
+
+    }
+
+}
+

@@ -32,6 +32,16 @@ public class DatabaseLoader : MonoBehaviour
             return WeaponDB;
         }
     }
+
+    //패시브 db
+    private Dictionary<PassiveType, PassiveDB> PassiveDB;
+    public Dictionary<PassiveType,PassiveDB> passiveDB
+    {
+        get
+        {
+            return PassiveDB;
+        }
+    }
     /// <summary>
     /// key값에 해당 아이템을 넣으면 확률에 맞게 lv을 뱉음
     /// </summary>
@@ -106,7 +116,7 @@ public class DatabaseLoader : MonoBehaviour
         LoadItemDB();
         LoadItemProbabilityDB();
         LoadWeaponProbabilityDB();
-
+        LoadPassiveItemDB();
         DebugDB();
     }
 
@@ -174,6 +184,19 @@ public class DatabaseLoader : MonoBehaviour
 
         OpenDB(fileName, ref dbcon);
         ReadWeaponDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+    }
+
+    private void LoadPassiveItemDB()
+    {
+        PassiveDB = new Dictionary<PassiveType, PassiveDB>();
+        string fileName = GameConstants.PassiveDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadPassiveDB(ref dbcmd, ref dbcon, ref reader);
         CloseDB(ref dbcmd, ref dbcon, ref reader);
     }
 
@@ -349,17 +372,52 @@ public class DatabaseLoader : MonoBehaviour
 
     }
 
+    private void ReadPassiveDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+         string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM PassiveItemDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {                                                               //Probability       //Description
+               PassiveDB.Add((PassiveType)reader.GetInt32(0), new PassiveDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3)));
+            }
+        }
+
+
+        //디버깅
+        foreach (KeyValuePair<PassiveType, PassiveDB> data in PassiveDB)
+        {
+            string debugmsg = "Key:" + data.Key.ToString() + " has :" + data.Value.hasPassive + " Desc :" + data.Value.description + " howtoget :" + data.Value.howToGet + "\n";
+            Debug.Log(debugmsg);
+            sb.Append(debugmsg);
+        }
+
+    }
+
     /// <summary>
     /// //////////////////// //파일 저장 //파일 저장 //파일 저장 //파일 저장
     /// 
     /// </summary>
 
-  
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SaveBtn();
+        }
+    }
 
     //파일 저장
     public void SaveBtn()
     {
-        StartCoroutine(SaveDb("ItemDb.sqlite"));
+        StartCoroutine(SaveDb("PassiveItemDB.db"));
 
     }
     // 코루틴 .
@@ -394,13 +452,12 @@ public class DatabaseLoader : MonoBehaviour
             {
 
                 //수정
-                string ID = "2";
-                string Name = "박";
-                string Discription = "용진";
+                string ID = "10";
+                string Boolean = "False";           
 
-                string sqlQuery = "UPDATE  ItemTable  SET " +
-                    "Name =" + "'" + Name + "'"
-                    + ",Desc =" + "'" + Discription + "'"+" "+"WHERE ID = "+ ID;
+                string sqlQuery = "UPDATE  PassiveItemDB  SET " +
+                    "HasItem =" + "'" + Boolean + "'"
+                    +"WHERE PassiveType = "+ ID;
 
                 // string sqlQuery = "INSERT INTO ItemTable  (Name,Desc) VALUES('죽창','죽창이다.')";
 

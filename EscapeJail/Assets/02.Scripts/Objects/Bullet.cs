@@ -247,12 +247,11 @@ public class Bullet : MonoBehaviour
         {
             CharacterInfo characterInfo = collision.gameObject.GetComponent<CharacterInfo>();
 
-            if (hasPollute == false)
-            {
+            
                 if (characterInfo != null)
                     characterInfo.GetDamage(this.power);
-            }
-            else if (hasPollute == true)
+            
+            if (hasPollute == true)
             {
                 switch (polluteType)
                 {

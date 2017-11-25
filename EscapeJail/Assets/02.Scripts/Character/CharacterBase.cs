@@ -16,10 +16,10 @@ public class CharacterBase : CharacterInfo
 
     //값변수
     protected float moveSpeed = 3f;
+    protected float originSpeed = 0f;
     protected float burstSpeed = 5f;
-    protected float originSpeed = 3f;
     //단위 초 
-    protected int immuneTime = 1;
+    protected float immuneTime = 1f;
 
     //상태
     protected bool isImmune = false;
@@ -106,8 +106,35 @@ public class CharacterBase : CharacterInfo
             }
         }
     }
+    //패시브와 관련된 설정
+    private void PassiveSetting()
+    {
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.HolyCape)
+            immuneTime = 2f;
+
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Ginseng)
+            isImmuneAnyState = true;
+
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.AutoAim)
+        {
+            GameOption.ChangeFireStype(FireStyle.Auto);
+            playerUi.ChangeFireStyle(FireStyle.Auto);
+        }
+        else
+        {
+            GameOption.ChangeFireStype(FireStyle.Manual);
+            playerUi.ChangeFireStyle(FireStyle.Manual);
+        }
+
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.WingShoes)
+            moveSpeed = 5f;
+
+        originSpeed = moveSpeed;
+
+    }
     protected void Awake()
     {
+       
         SetLayerAndTag();
         LoadPrefabs();
         Initialize();
@@ -130,6 +157,7 @@ public class CharacterBase : CharacterInfo
             weaponHandler.SetWeaponUi(playerUi.weaponUi);
         }
 
+        PassiveSetting();
 
     }
 
@@ -190,8 +218,6 @@ public class CharacterBase : CharacterInfo
             moveSpeed = originSpeed;
         }
     }
-
-
 
     private void SetLayerAndTag()
     {

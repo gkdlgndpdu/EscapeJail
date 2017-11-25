@@ -15,6 +15,7 @@ public class CharacterInfo : MonoBehaviour
     protected int hp = 0;
     protected int hpMax = 0;
 
+    //상태이상 면역이신지요
     protected bool isImmuneAnyState = false;
 
     //화상
@@ -85,6 +86,10 @@ public class CharacterInfo : MonoBehaviour
 
     public void SetHp(int hp)
     {
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Littlelove)
+        {
+            hp += 2;
+        }
         this.hp = hp;
         hpMax = hp;
     }

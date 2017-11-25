@@ -21,6 +21,7 @@ public static class GameConstants
 
     //PlayerPref KeyValue
     public static string CharacterKeyValue = "CharacterType";
+    public static string PassiveKeyValue = "Passive";
 
     //진통제 지속시간
     public static float StimulantDurationTime = 30f;
@@ -36,7 +37,7 @@ public static class GameConstants
     public static string ItemDBName = "ItemDB.db";
     public static string ItemProbabilityDBName = "ItemProbabilityDB.db";
     public static string WeaponDBName = "WeaponDB.db";
-    
+    public static string PassiveDBName = "PassiveItemDB.db";
 }
 
 public static class CustomColor

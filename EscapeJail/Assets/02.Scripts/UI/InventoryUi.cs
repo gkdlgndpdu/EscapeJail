@@ -29,6 +29,16 @@ public class InventoryUi : MonoBehaviour
     [SerializeField]
     private UI_QuickSlot quickSlot;
 
+    //스크롤
+    [SerializeField]
+    private Transform slotsParent;
+    private RectTransform rectTr;
+
+    private void Awake()
+    {
+        rectTr = slotsParent.GetComponent<RectTransform>();
+    }
+
     public void SetSelectSlot(UI_ItemSlot slot)
     {
         if (slot == null) return;
@@ -134,6 +144,13 @@ public class InventoryUi : MonoBehaviour
             MakeSlot();
         }
 
+        if (rectTr != null)
+        {
+            float eachDistance = grid.cellSize.y + grid.spacing.y;
+       //     rectTr.sizeDelta = new Vector2(500f, eachDistance * ((float)(itemSlots.Count/5)*0.5f));
+        }
+
+
         UpdateInventoryUi();
     }
 
@@ -186,8 +203,6 @@ public class InventoryUi : MonoBehaviour
     }
     private void OnEnable()
     {
-  
-   
 
         GameManager.Instance.StopTime();
 

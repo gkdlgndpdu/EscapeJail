@@ -108,7 +108,10 @@ public class MonsterBase : CharacterInfo
 
         AddToList();
 
-        HudOnOff(true);
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Scouter)
+            HudOnOff(true);
+
+
         UpdateHud();
 
         AttackOff();
@@ -220,6 +223,11 @@ public class MonsterBase : CharacterInfo
         SetUpMonsterAttribute();
         ReadDBData();
         SetHp();
+        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Scouter)
+            HudOnOff(true);
+        else
+            HudOnOff(false);
+
         isInitialize = true;
     }
 
@@ -308,6 +316,7 @@ public class MonsterBase : CharacterInfo
         //코인생성
 
         Coin coin = ObjectManager.Instance.coinPool.GetItem();
+
         coin.Initiatlize(this.transform.position, 10);
 
 

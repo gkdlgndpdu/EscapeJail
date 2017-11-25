@@ -31,6 +31,7 @@ namespace weapon
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,1.5f);
+                bullet.InitializeImage("White", false);
                 bullet.SetBloom(true, Color.green);
                 bullet.SetPollute(CharacterCondition.InPoison);
             }
