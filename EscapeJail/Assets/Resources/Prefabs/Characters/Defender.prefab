@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4796397206263568}
   - component: {fileID: 50740079540305980}
   - component: {fileID: 70756456401895878}
-  - component: {fileID: 114757701486727362}
+  - component: {fileID: 114282531854298928}
   m_Layer: 9
   m_Name: Defender
   m_TagString: Player
@@ -301,7 +301,7 @@ Animator:
   m_GameObject: {fileID: 1864840677005360}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c2e658b9c34c18479b7158710dccad7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 58e21e571c1350646b152215f886a460, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -362,6 +362,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114282531854298928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524678553857932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d12835fcb2715d4182aed9eae161848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHandler: {fileID: 114802700687379614}
+  slashObject: {fileID: 114524878713842728}
+  weaponPosit: {fileID: 4993553049480872}
+  FirePos: {fileID: 4024413948689210}
 --- !u!114 &114524878713842728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,21 +389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 212066652304222476}
---- !u!114 &114757701486727362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1524678553857932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf56509ba6a0c34699256b00beb4573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHandler: {fileID: 114802700687379614}
-  slashObject: {fileID: 114524878713842728}
-  weaponPosit: {fileID: 4993553049480872}
-  FirePos: {fileID: 4024413948689210}
 --- !u!114 &114802700687379614
 MonoBehaviour:
   m_ObjectHideFlags: 1

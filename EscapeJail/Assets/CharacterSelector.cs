@@ -3,25 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class CharacterSelector : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject characterSlotPrefab;
+ 
 
-    // Use this for initialization
-    public void StartSoldier()
+
+
+    private void Start()
     {
-        SetCharacter(CharacterType.Soldier);
-        ChangeScene();
+        MakeCharacterSlots();
     }
 
-    public void StartScientist()
+    private void MakeCharacterSlots()
     {
-        SetCharacter(CharacterType.Scientist);
-        ChangeScene();
-    }
+        if (characterSlotPrefab == null) return;
 
-    private void SetCharacter(CharacterType characterType)
-    {
-        PlayerPrefs.SetInt(GameConstants.CharacterKeyValue, (int)characterType);
+        for(int i = 0; i < (int)CharacterType.CharacterEnd; i++)
+        {
+            GameObject makeObj = GameObject.Instantiate(characterSlotPrefab,this.transform);
+            if (makeObj != null)
+            {
+                CharacterSlot_Ui slot = makeObj.GetComponent<CharacterSlot_Ui>();
+                if (slot != null)
+                {
+                    slot.Initialize((CharacterType)i);
+                }
+            }
+        }
     }
 
     private void ChangeScene()
