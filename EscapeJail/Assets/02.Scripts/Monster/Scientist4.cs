@@ -74,7 +74,7 @@ public class Scientist4 : MonsterBase
     public void FireGasGun()
     {
         FireWeapon();
-        Debug.Log("Bang");
+        //Debug.Log("Bang");
 
     }
 

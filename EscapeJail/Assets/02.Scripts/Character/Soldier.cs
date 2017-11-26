@@ -7,6 +7,7 @@ public class Soldier : CharacterBase
     private bool isDodge =false;
     private float dodgeSpeed = 5f;
     private float dodgeCoolTime = 0.3f;
+
     private bool isDodgeCoolTime = false;
     private new void Awake()
     {
@@ -72,8 +73,21 @@ public class Soldier : CharacterBase
 
     IEnumerator DodgeCoolTimeRoutine()
     {
-        yield return new WaitForSeconds(dodgeCoolTime);
-        isDodgeCoolTime = false;
+        float count = 0f;
+        while (true)
+        {
+            count += Time.deltaTime;
+
+            playerUi.SetSkillButtonProgress(count, dodgeCoolTime);
+            if (count > dodgeCoolTime)
+            {
+                isDodgeCoolTime = false;
+
+                yield break;
+            }
+            yield return null;
+        }
+
     }
 
     

@@ -34,7 +34,7 @@ public class Inventory
 
         if (value == 0)
         {
-            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedPocket)
+            if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
                 bagSize = 2 +5;
             }
@@ -45,7 +45,7 @@ public class Inventory
         }
         else
         {
-            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedPocket)
+            if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
                 bagSize = value + 5;
             }

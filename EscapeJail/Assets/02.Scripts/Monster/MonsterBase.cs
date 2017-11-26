@@ -108,7 +108,7 @@ public class MonsterBase : CharacterInfo
 
         AddToList();
 
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Scouter)
+        if (MyUtils.GetNowPassive() == PassiveType.Scouter)
             HudOnOff(true);
 
 
@@ -223,7 +223,7 @@ public class MonsterBase : CharacterInfo
         SetUpMonsterAttribute();
         ReadDBData();
         SetHp();
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Scouter)
+        if (MyUtils.GetNowPassive() == PassiveType.Scouter)
             HudOnOff(true);
         else
             HudOnOff(false);
@@ -567,6 +567,7 @@ public class MonsterBase : CharacterInfo
 
     public override void GetDamage(int damage)
     {
+        VampiricGunEffect();
         this.hp -= damage;
         UpdateHud();
         if (hp <= 0)

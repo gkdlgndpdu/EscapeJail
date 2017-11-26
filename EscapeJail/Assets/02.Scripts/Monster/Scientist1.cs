@@ -119,7 +119,7 @@ public class Scientist1 : MonsterBase
             scientistState = ScientistState.Avoid;
             StartCoroutine(AvoidRoutine());
         }
-
+        VampiricGunEffect();
         this.hp -= damage;
         UpdateHud();
         if (hp <= 0)

@@ -188,7 +188,7 @@ public class Turret : CharacterInfo
     public override void GetDamage(int damage)
     {
         if (isDestroy == true) return;
-
+        VampiricGunEffect();
         hp -= damage;
 
         if (hp <= 0)

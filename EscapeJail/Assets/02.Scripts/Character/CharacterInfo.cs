@@ -35,7 +35,8 @@ public class CharacterInfo : MonoBehaviour
 
     public virtual void GetDamage(int damage)
     {
-        //자식에서 구현!
+      
+
     }
 
     /// <summary>
@@ -86,7 +87,7 @@ public class CharacterInfo : MonoBehaviour
 
     public void SetHp(int hp)
     {
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Littlelove)
+        if (MyUtils.GetNowPassive() == PassiveType.Littlelove)
         {
             hp += 2;
         }
@@ -187,5 +188,17 @@ public class CharacterInfo : MonoBehaviour
 
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+    protected void VampiricGunEffect()
+    {
+        //흡혈의낫
+        if (MyUtils.GetNowPassive() == PassiveType.VampiricGun)
+        {
+            if (MyUtils.GetPercentResult(50) == true)
+                GamePlayerManager.Instance.player.GetHp(1);
+
+        }
+
     }
 }

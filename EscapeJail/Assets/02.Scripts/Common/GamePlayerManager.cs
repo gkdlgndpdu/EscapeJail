@@ -5,7 +5,8 @@ using UnityEngine;
 public enum CharacterType
 {
     Soldier,
-    Scientist
+    Scientist,
+    Defender
 }
 
 /// <summary>

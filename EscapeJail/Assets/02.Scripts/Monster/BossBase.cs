@@ -87,7 +87,7 @@ public class BossBase : CharacterInfo
     public override void GetDamage(int damage)
     {
         if (isBossDie == true|| isPatternStart==false) return;
-        
+        VampiricGunEffect();
         hp -= damage;
 
         if (bosshpBar != null)

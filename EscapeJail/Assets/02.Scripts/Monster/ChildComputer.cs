@@ -39,7 +39,7 @@ namespace ScientistBoss
         public override void GetDamage(int damage)
         {
             if (isDead == true) return;
-
+            VampiricGunEffect();
             hp -= damage;
             UpdateHud();
             if (hp <= 0)

@@ -36,8 +36,15 @@ public class MyUtils
 
         int randNum = Random.Range(0, 101);
 
-        return percent<randNum;
+        return randNum <= percent;
     }
+
+    public static PassiveType GetNowPassive()
+    {
+        return (PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue);
+    }
+
+
 
     //public static Vector3 AbsVector(Vector3 value)
     //{
@@ -63,7 +70,7 @@ public class MyUtils
     //    return new Vector3(x, y, z);
 
     //} 
- 
+
 
 
 }

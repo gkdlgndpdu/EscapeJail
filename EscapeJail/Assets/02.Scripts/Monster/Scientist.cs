@@ -8,12 +8,23 @@ public class Scientist : CharacterBase
     private bool isSkillOn = false; 
     private float slowTimeRatio = 0.4f;
 
+    private float maxSaveTime =5f;
+    private float nowRemainTime = 0f;
+
     private new void Awake()
     {
         base.Awake();
 
         SetHp(10);
- 
+
+        SetSkillTime(5f);
+
+    }
+
+    private void SetSkillTime(float t)
+    {
+        nowRemainTime = t;
+        maxSaveTime = t;
     }
 
     private new void Start()
@@ -25,14 +36,29 @@ public class Scientist : CharacterBase
     private new void Update()
     {
         base.Update();
-#if UNITY_EDITOR
-        //임시코드
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        SkillRoutine();
+    }
+
+    private void SkillRoutine()
+    {
+        if (isSkillOn == true)
         {
-            UseCharacterSkill();
+            nowRemainTime -= Time.unscaledDeltaTime ;
         }
-        //임시코드
-#endif
+        else if(isSkillOn == false)
+        {
+            nowRemainTime += Time.deltaTime;         
+        }
+
+        nowRemainTime = Mathf.Clamp(nowRemainTime, 0f, maxSaveTime);
+
+        if (nowRemainTime <= 0)
+        {
+            SkillOnOff();
+        }
+
+        if (playerUi != null)
+            playerUi.SetSkillButtonProgress(nowRemainTime, maxSaveTime);
     }
 
     public override void UseCharacterSkill()

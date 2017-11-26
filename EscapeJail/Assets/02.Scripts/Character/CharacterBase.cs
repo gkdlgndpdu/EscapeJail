@@ -78,6 +78,8 @@ public class CharacterBase : CharacterInfo
         }
     }
 
+    private LineRenderer redDotLine;
+
     public void GetCoin(int coin)
     {
         this.coin += coin;
@@ -109,13 +111,21 @@ public class CharacterBase : CharacterInfo
     //패시브와 관련된 설정
     private void PassiveSetting()
     {
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.HolyCape)
+        //망토
+        if (MyUtils.GetNowPassive() == PassiveType.HolyCape)
             immuneTime = 2f;
 
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.Ginseng)
+        //인삼
+        if (MyUtils.GetNowPassive() == PassiveType.Ginseng)
             isImmuneAnyState = true;
 
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.AutoAim)
+
+#if UNITY_EDITOR
+        GameOption.ChangeFireStype(FireStyle.Auto);
+        playerUi.ChangeFireStyle(FireStyle.Auto);
+#else
+                //오토에임
+        if (MyUtils.GetNowPassive() == PassiveType.AutoAim)
         {
             GameOption.ChangeFireStype(FireStyle.Auto);
             playerUi.ChangeFireStyle(FireStyle.Auto);
@@ -125,13 +135,63 @@ public class CharacterBase : CharacterInfo
             GameOption.ChangeFireStype(FireStyle.Manual);
             playerUi.ChangeFireStyle(FireStyle.Manual);
         }
+#endif
 
-        if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.WingShoes)
+
+        //신발
+        if (MyUtils.GetNowPassive() == PassiveType.WingShoes)
             moveSpeed = 5f;
-
         originSpeed = moveSpeed;
 
+        //조준기
+        if (MyUtils.GetNowPassive() == PassiveType.RedDotSight)
+        {
+           redDotLine =  gameObject.AddComponent<LineRenderer>();
+            if (redDotLine != null)
+            {
+                redDotLine.material = Resources.Load<Material>("Materials/SpriteMaterial");
+                redDotLine.SetWidth(0.05f, 0.05f);
+                redDotLine.sortingOrder = 30;                
+                redDotLine.receiveShadows = false;
+                redDotLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                redDotLine.SetColors(Color.red, Color.red);
+                redDotLine.positionCount = 2;
+
+                StartCoroutine(RedDotLineRenderRoutine());
+
+            }
+        }
     }
+
+    private IEnumerator RedDotLineRenderRoutine()
+    {
+        while (true)
+        {
+            int layerMask = (1 << LayerMask.NameToLayer("Enemy")) |
+                                (1 << LayerMask.NameToLayer("Tile")) |
+                                (1 << LayerMask.NameToLayer("ItemTable"));
+
+           
+
+            if (lastFireDirection != Vector3.zero)
+            {
+                RaycastHit2D castHit = Physics2D.Raycast(this.transform.position, lastFireDirection, 50f, layerMask);
+
+                redDotLine.SetPosition(0, this.transform.position);
+                redDotLine.SetPosition(1, castHit.point);
+            }
+            else if (lastFireDirection == Vector3.zero)
+            {
+                RaycastHit2D castHit = Physics2D.Raycast(this.transform.position, lastMoveDir, 50f, layerMask);
+
+                redDotLine.SetPosition(0, this.transform.position);
+                redDotLine.SetPosition(1, castHit.point);
+            }
+  
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     protected void Awake()
     {
        

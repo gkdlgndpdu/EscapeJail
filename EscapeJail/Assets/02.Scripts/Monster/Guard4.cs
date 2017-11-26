@@ -85,7 +85,7 @@ public class Guard4 : MonsterBase
             return;
             //파랑 빤작이
         }
-
+        VampiricGunEffect();
         this.hp -= damage;
         UpdateHud();
         if (hp <= 0)
