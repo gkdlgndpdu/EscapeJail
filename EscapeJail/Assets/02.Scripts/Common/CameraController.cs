@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public enum CameraState
 {
@@ -28,9 +29,22 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float followSpeed = 2;
 
+    [SerializeField]
+    private PostProcessingBehaviour sniperAimEffect;
+
     private void Awake()
     {
         Instance = this;
+
+        if (sniperAimEffect != null)
+            sniperAimEffect.enabled = false;
+    }
+
+    public void  SniperAimEffectOnOff(bool OnOff)
+    {
+        if (sniperAimEffect == null) return;
+
+        sniperAimEffect.enabled = OnOff;
     }
 
     private void ChangeCameraMode(CameraState cameraState)

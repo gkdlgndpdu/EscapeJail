@@ -7,6 +7,7 @@ public enum CharacterType
     Soldier,
     Scientist,
     Defender,
+    Sniper,
     CharacterEnd
 }
 

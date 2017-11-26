@@ -427,10 +427,6 @@ public class CharacterBase : CharacterInfo
 
             }
         }
-
-
-
-
     }
 
 
@@ -525,7 +521,7 @@ public class CharacterBase : CharacterInfo
 
     }
 
-    protected void MoveInPc()
+    protected virtual void MoveInPc()
     {
         if (rb != null)
             rb.velocity = Vector2.zero;
@@ -548,7 +544,7 @@ public class CharacterBase : CharacterInfo
 
     }
 
-    protected void MoveInMobie()
+    protected virtual void MoveInMobie()
     {
         if (rb != null)
             rb.velocity = Vector2.zero;
@@ -786,7 +782,7 @@ public class CharacterBase : CharacterInfo
 
     public virtual void UseCharacterSkill()
     {
-        //자식에서 구현띠
+        //자식에서 구현띠 ,UI 스킬버튼 눌렀을때 실행됨
     }
 
 

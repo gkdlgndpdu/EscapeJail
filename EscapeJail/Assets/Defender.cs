@@ -8,8 +8,7 @@ public class Defender : CharacterBase
 
     private float maxSaveTime = 5f;
     private float nowRemainTime = 0f;
-
-    private float originSpeed = 0f;
+   
     private void SetSkillTime(float t)
     {
         nowRemainTime = t;
