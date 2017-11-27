@@ -32,7 +32,14 @@ public class CharacterInfo : MonoBehaviour
 
     protected bool isStun = false;
     protected bool isPushed = false;
-
+    protected bool isDead = false;
+    public bool IsDead
+    {
+        get
+        {
+            return isDead;
+        }
+    }
     public virtual void GetDamage(int damage)
     {
       

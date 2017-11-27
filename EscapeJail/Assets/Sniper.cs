@@ -4,29 +4,99 @@ using UnityEngine;
 
 public class Sniper : CharacterBase
 {
-
-    private float maxSaveTime = 5f;
-    private float nowRemainTime = 0f;
     private bool nowUsingSkill = false;
-    private float slowTimeRatio = 0.4f;
-    private void SetSkillTime(float t)
+    private float slowTimeRatio = 0.2f;
+    private int snipingLayerMask;
+    private int snipingPower = 30;
+
+    private int maxBullet = 5;
+    private int nowBullet = 5;
+
+    private float requireTimeforReload = 5f;
+
+    private IEnumerator ReLoadRoutine()
     {
-        nowRemainTime = t;
-        maxSaveTime = t;
+        float count = 0f;
+        while (true)
+        {
+            if (nowUsingSkill == true || AmmoisFull() == true)
+            {
+                yield return null;
+                continue;
+            }
+
+            count += Time.deltaTime;
+
+            if (count >= requireTimeforReload)
+            {
+                count = 0;
+                GetBullet(1);
+            }
+
+            //ui 업데이트
+            if (playerUi != null)
+                playerUi.SetSkillButtonProgress(count, requireTimeforReload);
+
+            yield return null;
+        }
     }
+    private bool CanFire()
+    {
+        return nowBullet > 0;
+    }
+
+    private void UseBullet()
+    {
+        nowBullet -= 1;
+        UpdateSkillUi(nowBullet.ToString());
+
+        if (nowBullet == 0)
+            SkillOff();
+    }
+
+    private void GetBullet(int num)
+    {
+        nowBullet += num;
+        if (nowBullet >= maxBullet)
+            nowBullet = maxBullet;
+
+        UpdateSkillUi(nowBullet.ToString());
+    }
+    private void UpdateSkillUi(string text)
+    {
+        if (playerUi != null)
+            playerUi.SetSkillButtonText(text);
+    }
+
+    private bool AmmoisFull()
+    {
+        return nowBullet >= maxBullet;
+    }
+
+    private void SetBullet(int bulletNum)
+    {
+        maxBullet = bulletNum;
+        nowBullet = bulletNum;
+    }
+
+
 
     private new void Awake()
     {
         base.Awake();
         SetHp(10);
-        SetSkillTime(5f);
+        SetBullet(5);
+
+        snipingLayerMask = MyUtils.GetLayerMaskByString("Enemy");
     }
 
     private new void Start()
     {
         base.Start();
         SetWeapon();
+        StartCoroutine(ReLoadRoutine());
         originSpeed = moveSpeed;
+        UpdateSkillUi(nowBullet.ToString());
     }
 
     private new void Update()
@@ -41,23 +111,68 @@ public class Sniper : CharacterBase
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                for (int i = 0; i < Input.touchCount; ++i)
+                if (CanFire() == true)
                 {
-                    Vector2 test = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                    int layerMask = MyUtils.GetLayerMaskByString("Enemy");
-                    if (Input.GetTouch(i).phase == TouchPhase.Stationary)
+
+
+#if UNITY_EDITOR
+                    Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D rayHit = Physics2D.Raycast(touchPos, Vector2.zero, 0.1f, snipingLayerMask);
+                    if (rayHit.collider != null)
                     {
-                        test = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                        RaycastHit2D rayHit = Physics2D.Raycast(test, (Input.GetTouch(i).position),1f, layerMask);
-                        if (rayHit.collider!=null)
+                        CharacterInfo monster = rayHit.collider.gameObject.GetComponent<CharacterInfo>();
+                        if (monster != null)
                         {
+                            if (monster.IsDead == false)
+                            {
+                                UseBullet();
+                                monster.GetDamage(snipingPower);
+                            }
+                        }
+
+                        //이펙트 호출
+                        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+                        if (effect != null)
+                        {
+                            effect.Initilaize(rayHit.transform.position, "SniperAim", 0.5f, 2f);
+                            effect.SetAlpha(150f);
+                        }
+
+                    }
+#else
+                    Touch[] touches = Input.touches;
+                if (touches != null)
+                {
+                    for (int i = 0; i < touches.Length; i++)
+                    {
+                        Vector2 touchPos = Camera.main.ScreenToWorldPoint(touches[i].position);
+                        RaycastHit2D rayHit = Physics2D.Raycast(touchPos, Vector2.zero, 0.1f, snipingLayerMask);
+                        if (rayHit.collider != null)
+                        {
+                            CharacterInfo monster = rayHit.collider.gameObject.GetComponent<CharacterInfo>();
+                           if (monster != null)
+                        {
+                            if (monster.IsDead == false)
+                            {
+                                UseBullet();
+                                monster.GetDamage(snipingPower);
+                            }
+                        }
                             //이펙트 호출
                             ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
                             if (effect != null)
-                                effect.Initilaize(this.transform.position, "revolver", 0.5f, 2f);
+                            {
+                                effect.Initilaize(rayHit.transform.position, "SniperAim", 0.5f, 2f);
+                                effect.SetAlpha(150f);
+                            }
+                            break;
                         }
                     }
                 }
+#endif
+                }
+
+
             }
 
             yield return null;
@@ -78,6 +193,8 @@ public class Sniper : CharacterBase
 
     private void SkillOn()
     {
+        if (CanFire() == false) return;
+
         nowUsingSkill = true;
         CameraController.Instance.SniperAimEffectOnOff(true);
 
