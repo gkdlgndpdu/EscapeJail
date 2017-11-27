@@ -261,7 +261,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new KeyBoardShotGun());  
+        AddWeapon(new Revolver());  
    
     }
 
@@ -780,6 +780,9 @@ public class CharacterBase : CharacterInfo
         }
     }
 
+    /// <summary>
+    /// 스킬버튼과 연결됨
+    /// </summary>
     public virtual void UseCharacterSkill()
     {
         //자식에서 구현띠 ,UI 스킬버튼 눌렀을때 실행됨

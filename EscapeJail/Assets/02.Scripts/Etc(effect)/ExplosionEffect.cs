@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 public class ExplosionEffect : MonoBehaviour
 {
 
     private Animator animator;
     private bool isEffectOff = false;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -34,14 +36,23 @@ public class ExplosionEffect : MonoBehaviour
             if (obj != null)
             {
              
-                    animator.runtimeAnimatorController = obj;
-
-                
+                    animator.runtimeAnimatorController = obj;                
             }
         }
 
-
-       
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);            
+        }     
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value">0~255</param>
+    public void SetAlpha(float value)
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.color = new Color(1f, 1f, 1f, value / 255f);
     }
     
 

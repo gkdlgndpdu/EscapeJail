@@ -24,6 +24,11 @@ public class PlayerUI : MonoBehaviour
         if (skillButtonProgress != null)
             skillButtonProgress.SetProgress(min, max);
     }
+    public void SetSkillButtonText(string text)
+    {
+        if (skillButtonProgress != null)
+            skillButtonProgress.SetText(text);
+    }
 
     private void Awake()
     {

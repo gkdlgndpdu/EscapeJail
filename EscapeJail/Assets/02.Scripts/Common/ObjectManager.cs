@@ -108,7 +108,7 @@ public class ObjectManager : MonoBehaviour
 
         for (int i=0;i< allBulletList.Count; i++)
         {
-            if (allBulletList[i].gameObject.activeSelf == false) return;
+            if (allBulletList[i].gameObject.activeSelf == false) continue;
 
             if (allBulletList[i].BulletType == BulletType.EnemyBullet)
                 allBulletList[i].BulletDestroy();

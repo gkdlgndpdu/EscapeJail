@@ -30,21 +30,25 @@ public class CameraController : MonoBehaviour
     private float followSpeed = 2;
 
     [SerializeField]
-    private PostProcessingBehaviour sniperAimEffect;
+    private PostProcessingProfile postProcessBehavior;
 
     private void Awake()
     {
         Instance = this;
 
-        if (sniperAimEffect != null)
-            sniperAimEffect.enabled = false;
-    }
+        postProcessBehavior = GetComponent<PostProcessingBehaviour>().profile;
+        postProcessBehavior.vignette.enabled = false;
+
+
+    }   
 
     public void  SniperAimEffectOnOff(bool OnOff)
     {
-        if (sniperAimEffect == null) return;
+        if (postProcessBehavior != null)
+            postProcessBehavior.vignette.enabled = OnOff;
 
-        sniperAimEffect.enabled = OnOff;
+
+
     }
 
     private void ChangeCameraMode(CameraState cameraState)
@@ -75,7 +79,11 @@ public class CameraController : MonoBehaviour
         LinkPlayer();
 
         ChangeCameraMode(CameraState.FollowPlayer);
+        
+     
     }
+
+    
 
     private void FixedUpdate()
     {

@@ -63,7 +63,7 @@ public class MonsterBase : CharacterInfo
     protected float nearestAcessDistance = 1f;
     protected bool nowAttack = false;
     protected float attackDelay = 0f;
-    protected bool isDead = false;
+  
     protected bool isMoveRandom = false;
     protected MonsterDB monsterDB;
     //사정거리 확인용
