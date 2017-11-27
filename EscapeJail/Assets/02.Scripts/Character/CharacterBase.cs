@@ -261,7 +261,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new KeyBoardShotGun());  
+        AddWeapon(new Revolver());  
    
     }
 
