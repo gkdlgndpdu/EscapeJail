@@ -5,7 +5,12 @@ using UnityEngine;
 public class Engineer : CharacterBase
 {
     [SerializeField]
+    private GameObject DronePrefab;
+
     private Engineer_Drone drone;
+
+    [SerializeField]
+    private Transform dronePos;
 
     private float skillCoolTimeMax = 10f;
     private bool isSkillOn = true;
@@ -23,6 +28,10 @@ public class Engineer : CharacterBase
             if (count >= skillCoolTimeMax)
             {
                 isSkillOn = true;
+
+                if (drone != null)
+                    drone.ShowDrone();
+
                 yield break;
             }
             yield return null;
@@ -33,6 +42,25 @@ public class Engineer : CharacterBase
     {
         base.Awake();
         SetHp(10);
+        SetDrone();
+    }
+
+    private void SetDrone()
+    {
+        if (DronePrefab == null) return;
+
+        GameObject makeObj = Instantiate(DronePrefab);
+        if (makeObj != null)
+        {
+            Engineer_Drone droneobj = makeObj.GetComponent<Engineer_Drone>();
+            if (droneobj != null)
+            {
+                droneobj.SetTarget(dronePos);
+                this.drone = droneobj;
+            }
+
+        }
+
     }
     private new void Start()
     {
@@ -61,5 +89,8 @@ public class Engineer : CharacterBase
         //효과
         //총알삭제
         ObjectManager.Instance.AllEnemyBulletDestroy();
+
+        if (drone != null)
+            drone.HideDrone();
     }
 }
