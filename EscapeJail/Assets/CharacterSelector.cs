@@ -44,7 +44,7 @@ public class CharacterSelector : MonoBehaviour
         float eachDistance = grid.cellSize.y + grid.spacing.y;
         if (rectTr != null)
         {
-            rectTr.sizeDelta = new Vector2(500f, eachDistance * ((int)CharacterType.CharacterEnd - 4));
+            rectTr.sizeDelta = new Vector2(eachDistance * ((int)CharacterType.CharacterEnd), 100f);
         }
 
     }

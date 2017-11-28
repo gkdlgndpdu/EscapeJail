@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 
 public class MapManager : MonoBehaviour
-{
+{ 
+    public static MapManager Instance;
+
     private List<MapModuleBase> moduleList;
     private List<GameObject> objectList;
 
@@ -18,6 +20,7 @@ public class MapManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         LoadObject();
 
     }
