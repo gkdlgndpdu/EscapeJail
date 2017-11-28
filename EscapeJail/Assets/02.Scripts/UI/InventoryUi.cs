@@ -172,6 +172,7 @@ public class InventoryUi : MonoBehaviour
 
     public void UpdateInventoryUi()
     {
+        if (this.gameObject.activeSelf == false) return;
         if (itemSlots == null) return;
         if (allItemList == null) return;
 
@@ -190,23 +191,22 @@ public class InventoryUi : MonoBehaviour
     {     
         this.gameObject.SetActive(!this.gameObject.activeSelf);
 
-        if(!this.gameObject.activeSelf == true)
-            UpdateInventoryUi(); 
+        //if(!this.gameObject.activeSelf == true)
+        //    UpdateInventoryUi(); 
     }
 
 
     // Use this for initialization
     void Start()
     {
-        SetSlotNum(1);
-        UpdateInventoryUi();
+        SetSlotNum(1);  
 
     }
     private void OnEnable()
     {
 
+        UpdateInventoryUi();
         GameManager.Instance.StopTime();
-
         System.GC.Collect();
     }
 

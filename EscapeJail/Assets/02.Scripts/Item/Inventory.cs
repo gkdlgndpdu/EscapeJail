@@ -18,6 +18,7 @@ public class Inventory
 
     public bool isInventoryFull()
     {
+        if (GamePlayerManager.Instance.PlayerName == CharacterType.Trader) return false;
         if (allItemList == null) return true;
         if (bagSize == 0) return true;
 
@@ -36,11 +37,13 @@ public class Inventory
         {
             if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
-                bagSize = 2 +5;
+                bagSize = 2 + 5;
             }
             else
             {
-                bagSize = 2;
+                //
+                //bagSize = 2;
+                bagSize = 1;
             }
         }
         else
@@ -53,7 +56,7 @@ public class Inventory
             {
                 bagSize = value;
             }
-    
+
         }
 
         if (inventoryUi != null)
@@ -155,12 +158,29 @@ public class Inventory
     {
         if (itemBase == null) return;
         if (allItemList == null) return;
-        if (allItemList.Count > bagSize) return;
+
+
+        if (allItemList.Count >= bagSize)
+        {
+            if (GamePlayerManager.Instance.PlayerName == CharacterType.Trader)
+            {
+                bagSize += 1;
+                if (inventoryUi != null)
+                    inventoryUi.SetSlotNum(bagSize);
+            }
+            else
+            {
+                return;
+            }              
+
+         
+        }
+
 
         allItemList.Add(itemBase);
 
-        if (inventoryUi != null)
-            inventoryUi.UpdateInventoryUi();
+        //if (inventoryUi != null)
+        //    inventoryUi.UpdateInventoryUi();
     }
 
 

@@ -14,7 +14,7 @@ public class UI_ItemSlot : MonoBehaviour
             return itemBase;
         }
     }
-    private Text itemText;
+
     [SerializeField]
     private Image image;
     private bool isEmpty = true;
@@ -23,14 +23,15 @@ public class UI_ItemSlot : MonoBehaviour
     [SerializeField]
     private Image selectedFrame;
 
-    
+    [SerializeField]
+    private Text itemText;
+
     private bool isSelected = false;
 
     private bool isQuickSlot = false;
 
     private void Awake()
-    {
-        itemText = GetComponentInChildren<Text>();
+    {  
 
         if (selectedFrame != null)
             selectedFrame.gameObject.SetActive(false);
@@ -75,7 +76,16 @@ public class UI_ItemSlot : MonoBehaviour
 
             UpdateSlotInfo();
         }
-    
+
+    }
+
+    public void ResetSlot()
+    {
+        SetSlotSprite(null);
+        SetSlotText("Empty");
+        itemBase = null;
+
+
     }
 
     public void ClearSlot()
@@ -130,14 +140,6 @@ public class UI_ItemSlot : MonoBehaviour
 
     }
 
-    public void ResetSlot()
-    {
-        SetSlotSprite(null);
-        SetSlotText("Empty");
-        itemBase = null;
-
-
-    }
 
     public void SetSlotSprite(Sprite sprite)
     {

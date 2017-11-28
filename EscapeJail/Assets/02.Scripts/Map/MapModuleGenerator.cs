@@ -295,10 +295,9 @@ public class MapModuleGenerator
 
         Vector3 shopSpawnPosit = new Vector3((3f * 0.64f - 0.32f) * randX, (3f * 0.64f - 0.32f) * randY, 0f);
 
-        //상점
-        CharacterType playerName = (CharacterType)PlayerPrefs.GetInt(GameConstants.CharacterKeyValue, (int)CharacterType.Soldier);
+        //상점     
 
-        if (playerName !=CharacterType.Trader)
+        if (GamePlayerManager.Instance.PlayerName !=CharacterType.Trader)
         MakeShopModule(mapManager.transform, shopSpawnPosit);
     }
 

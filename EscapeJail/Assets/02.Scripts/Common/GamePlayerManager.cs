@@ -20,6 +20,13 @@ public class GamePlayerManager : MonoBehaviour
 {
     public static GamePlayerManager Instance;
     private CharacterType playerName = CharacterType.Scientist;
+    public CharacterType PlayerName
+    {
+        get
+        {
+            return playerName;
+        }
+    }
 
     [HideInInspector]
     public CharacterBase player;
