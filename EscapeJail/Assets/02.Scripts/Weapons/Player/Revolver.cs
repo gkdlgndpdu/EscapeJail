@@ -24,7 +24,7 @@ namespace weapon
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-            SoundManager.Instance.PlayerOneShot("Sample");
+            SoundManager.Instance.PlaySoundEffect("Sample");
 
             FireDelayOn();
             PlayFireAnim();
