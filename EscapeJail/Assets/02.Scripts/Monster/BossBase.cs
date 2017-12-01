@@ -37,6 +37,8 @@ public class BossBase : CharacterInfo
     {
         SetUiOnOff(true);
         isPatternStart = true;
+        //이동속도 정상화
+        GamePlayerManager.Instance.player.SetBurstSpeed(false);
         AddToList();
     }
 
@@ -108,11 +110,12 @@ public class BossBase : CharacterInfo
         if (animator != null)
             animator.SetTrigger("DeadTrigger");
         if (rb != null)
-            rb.velocity = Vector3.zero; 
-      
+            rb.velocity = Vector3.zero;
+
 
         //할꺼 해주고~
-
+        //이동속도 정상화
+        GamePlayerManager.Instance.player.SetBurstSpeed(true);
         //할꺼 해주고~
 
 

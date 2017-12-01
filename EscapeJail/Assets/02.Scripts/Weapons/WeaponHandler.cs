@@ -238,6 +238,7 @@ public class WeaponHandler : MonoBehaviour
     private void OnDestroy()
     {
         nowWeapon = null;
+       
     }
 
     private void Update()
