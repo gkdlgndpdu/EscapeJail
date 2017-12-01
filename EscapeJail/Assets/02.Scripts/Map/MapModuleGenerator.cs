@@ -290,15 +290,18 @@ public class MapModuleGenerator
         MakeBossModule(mapManager.transform, bossSpawnPosit);
 
         //랜덤위치  
-        randX = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;
-        randY = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;        
+        //randX = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;
+        //randY = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;        
+        randX = Random.Range(0, 2) == 0 ? 1f : -1f;
+        randY = Random.Range(0, 2) == 0 ? 1f : -1f;
 
-        Vector3 shopSpawnPosit = new Vector3((3f * 0.64f - 0.32f) * randX, (3f * 0.64f - 0.32f) * randY, 0f);
 
-        //상점     
+        //상점    
+        Vector3 shopSpawnPosit = new Vector3((30 * 0.64f - 0.32f) * randX, (30 * 0.64f - 0.32f) * randY, 0f);
 
         if (GamePlayerManager.Instance.PlayerName !=CharacterType.Trader)
         MakeShopModule(mapManager.transform, shopSpawnPosit);
+
     }
 
     private void GenerateBaseMap(int widthNum, int heightNum, Vector3 modulePosit, bool isStartModule = false)

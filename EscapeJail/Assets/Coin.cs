@@ -12,6 +12,7 @@ public class Coin : MonoBehaviour
     private int value = 0;
     private CharacterBase player;
     private float moveSpeed = 5f;
+    private float originSpeed = 5f;
     private float sleepTime = 1f;
     private bool isSleep = true;
 
@@ -43,6 +44,7 @@ public class Coin : MonoBehaviour
             {
                 Vector3 moveDir = player.transform.position - this.transform.position;
                 rb.velocity = moveDir.normalized * moveSpeed;
+                moveSpeed += Time.deltaTime*2f;
             }
         }
     }
@@ -59,6 +61,7 @@ public class Coin : MonoBehaviour
 
     private void OffCoin()
     {
+        moveSpeed = originSpeed;
         isSleep = true;
         StopAllCoroutines();
         this.gameObject.SetActive(false);

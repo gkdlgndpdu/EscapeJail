@@ -19,7 +19,6 @@ public class ShopModule : MapModuleBase
 
         boxcollider2D = GetComponent<BoxCollider2D>();
 
-        SetColliderSizeBig();
 
 
     }
@@ -28,8 +27,8 @@ public class ShopModule : MapModuleBase
     {
         base.PositioningComplete();
 
-        if (boxcollider2D != null)
-            boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
+        //if (boxcollider2D != null)
+        //    boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
 
         MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
@@ -59,17 +58,8 @@ public class ShopModule : MapModuleBase
                 tiles[i].Initialize(TileType.Door, this);
             }
         }
+  
     }
 
-    private void SetColliderSizeBig()
-    {
-        widthDistance = GameConstants.tileSize;
-        heightDistance = GameConstants.tileSize;
 
-        if (boxcollider2D != null)
-        {
-            boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
-            boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
-        }
-    }
 }

@@ -250,8 +250,11 @@ namespace weapon
                     if (reboundSlider != null)
                         reboundSlider.gameObject.SetActive(false);
                 }
-           
-
+            }
+            else if (hasRebuondDuringFire == false)
+            {
+                if (reboundSlider != null)
+                    reboundSlider.gameObject.SetActive(false);
             }
 
             if (isFireDelayFinish == true)

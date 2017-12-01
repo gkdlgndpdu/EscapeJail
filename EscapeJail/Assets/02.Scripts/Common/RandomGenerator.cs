@@ -26,6 +26,7 @@ public class RandomGenerator <T>
     public T GetRandomData()
     {
         if (allItemList == null) return default(T);
+        if(allItemList.Count==0) return default(T);
         return allItemList[UnityEngine.Random.Range(0, allItemList.Count)];
     }
 

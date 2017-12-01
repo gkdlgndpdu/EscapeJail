@@ -15,6 +15,7 @@ public class SceneManager : MonoBehaviour
     {
         if (Instance == null)
         {
+            Application.targetFrameRate = 60;
             Instance = this;
             DontDestroyOnLoad(Instance.gameObject);
         }
@@ -31,21 +32,5 @@ public class SceneManager : MonoBehaviour
 
     }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeScene(SceneName.LobbyScene);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeScene(SceneName.SelectScene);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeScene(SceneName.GameScene);
-        }
-    }
 }
-  
+

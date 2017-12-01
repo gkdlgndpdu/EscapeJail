@@ -30,6 +30,7 @@ namespace weapon
                 bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 1.5f, 1, 1f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                bullet.SetBloom(true, CustomColor.Orange);
                 bullet.SetBulletDestroyAction(BulletDestroyAction.aroundFire);
             }
 

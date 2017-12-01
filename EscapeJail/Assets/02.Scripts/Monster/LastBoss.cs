@@ -13,6 +13,7 @@ public class LastBoss : BossBase
     private Transform PlayerTr;
     private Vector3 moveDir;
     private bool canMove = true;
+    private bool isHideOn = false;
 
 
 
@@ -44,6 +45,32 @@ public class LastBoss : BossBase
         }
 
     }
+    private void HideOn()
+    {
+        isHideOn = true;
+        DeleteInList();
+
+        if (boxCollider != null)
+            boxCollider.enabled = false;
+
+        if (spriteRenderer != null)
+            iTween.FadeTo(this.gameObject, 0f, 0.8f);
+
+    }
+ 
+    
+    private void HideOff()
+    {
+        isHideOn = false;
+        AddToList();
+
+        if (boxCollider != null)
+            boxCollider.enabled = true;
+
+        if (spriteRenderer != null)
+            iTween.FadeTo(this.gameObject, 1f, 0.8f);
+
+    }
 
     protected override void BossDie()
     {
@@ -58,7 +85,7 @@ public class LastBoss : BossBase
         SetHp(100);
         RegistPatternToQueue();
         SetWeapon();
-
+        moveSpeed = 2f;
         WeaponHideOnOff(true);
 
     }
@@ -72,6 +99,12 @@ public class LastBoss : BossBase
     private void Update()
     {
         if (isPatternStart == false) return;
+        if (isHideOn == true)
+        {
+            if (rb != null)
+                rb.velocity = Vector3.zero;
+            return;
+        } 
         RotateWeapon();
         MoveToTarget();
     }
@@ -257,8 +290,10 @@ public class LastBoss : BossBase
 
         bossEventQueue.Initialize(this, EventOrder.InOrder);
 
-        bossEventQueue.AddEvent("SpreadBomb");
+        //bossEventQueue.AddEvent("SpreadBomb");
         bossEventQueue.AddEvent("TempFireRoutine1");
+      //  bossEventQueue.AddEvent("SpawnNinjaRoutine");
+        bossEventQueue.AddEvent("HideRoutine");
     }
 
     IEnumerator TempFireRoutine1()
@@ -282,8 +317,34 @@ public class LastBoss : BossBase
     {
         canMove = false;
         Action(Actions.BombAttackStart);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.5f);
+        Action(Actions.BombAttackStart);
+        yield return new WaitForSeconds(1.5f);
+        Action(Actions.BombAttackStart);
+        yield return new WaitForSeconds(1.5f);
         canMove = true;
+    }
+
+    IEnumerator SpawnNinjaRoutine()
+    {
+
+        MonsterSpawnEffect spawnEffect = ObjectManager.Instance.monsterSpawnEffectPool.GetItem();
+        spawnEffect.Initialize(GamePlayerManager.Instance.player.transform.position, SpawnNinja);       
+
+        yield return new WaitForSeconds(5.0f);
+    }
+
+    IEnumerator HideRoutine()
+    {
+        HideOn();
+        yield return new WaitForSeconds(3.0f);
+        HideOff();
+        yield return new WaitForSeconds(2.0f);
+    }
+
+    public void SpawnNinja(Vector3 posit)
+    {
+        MonsterManager.Instance.SpawnSpecificMonster(MonsterName.Last3, posit);
     }
     #endregion
 
@@ -292,10 +353,10 @@ public class LastBoss : BossBase
     {                   
 
         Vector3 fireDirection = Vector3.right;
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 25; i++)
         {
-            float dynamaiteSpeed = Random.Range(1f, 5f);
-            fireDirection = Quaternion.Euler(0f, 0f, Random.Range(30f,45f)) * fireDirection;
+            float dynamaiteSpeed = Random.Range(1f, 15f);
+            fireDirection = Quaternion.Euler(0f, 0f, Random.Range(50f,60f)) * fireDirection;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
@@ -312,10 +373,10 @@ public class LastBoss : BossBase
 
 
         Vector3 fireDirection2 =Quaternion.Euler(0f,0f,22.5f)* Vector3.right;
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 25; i++)
         {
-            float dynamaiteSpeed = Random.Range(5f, 8f);
-            fireDirection2 = Quaternion.Euler(0f, 0f, Random.Range(30f, 45f)) * fireDirection2;
+            float dynamaiteSpeed = Random.Range(1f, 15f);
+            fireDirection2 = Quaternion.Euler(0f, 0f, Random.Range(50f, 60f)) * fireDirection2;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {

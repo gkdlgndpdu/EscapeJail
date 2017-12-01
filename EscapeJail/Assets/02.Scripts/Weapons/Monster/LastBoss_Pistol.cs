@@ -30,6 +30,7 @@ namespace weapon
                 fireDIr.Normalize();
                 bullet.Initialize(firePos+ fireDIr*0.7f, fireDIr, bulletSpeed, bulletType);
                 bullet.InitializeImage("white", false);
+                bullet.SetBloom(true, Color.blue);
                 bullet.SetEffectName("revolver");
             }
 

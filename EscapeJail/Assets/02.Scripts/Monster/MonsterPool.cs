@@ -15,8 +15,7 @@ public class MonsterPool
     {
         pool = new Dictionary<MonsterName, ObjectPool<MonsterBase>>();
         parent = monsterParent;
-        nowStageData = stageData;
-   
+        nowStageData = stageData;   
 
         Initialize();
     }

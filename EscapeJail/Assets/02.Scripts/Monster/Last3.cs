@@ -28,17 +28,11 @@ public class Last3 : MonsterBase
     {
         monsterName = MonsterName.Last3;
 
-        nearestAcessDistance = 1f;
+        nearestAcessDistance = 0.5f;
         weaponPosit.gameObject.SetActive(false);
-        attackDelay = 1f;
-        moveSpeed = 2f;
+        attackDelay = 0.5f;
+        moveSpeed = 7f;
     }
-
-
-
-
-
-
 
     // Update is called once per frame
     private void Update()

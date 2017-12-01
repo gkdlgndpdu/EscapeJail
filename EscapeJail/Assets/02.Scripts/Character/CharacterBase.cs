@@ -15,9 +15,9 @@ public class CharacterBase : CharacterInfo
     protected CapsuleCollider bodyCollider;
 
     //값변수
-    protected float moveSpeed = 3f;
+    protected float moveSpeed = 4f;
     protected float originSpeed = 0f;
-    protected float burstSpeed = 5f;
+    protected float burstSpeed = 6f;
     //단위 초 
     protected float immuneTime = 1f;
 
@@ -261,7 +261,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Revolver());  
+        AddWeapon(new PMP45());  
    
     }
 
