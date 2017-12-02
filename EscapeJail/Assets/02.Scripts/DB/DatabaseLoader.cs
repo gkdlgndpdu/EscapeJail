@@ -386,7 +386,7 @@ public class DatabaseLoader : MonoBehaviour
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
             {                                                               //Probability       //Description
-               PassiveDB.Add((PassiveType)reader.GetInt32(0), new PassiveDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3)));
+               PassiveDB.Add((PassiveType)reader.GetInt32(0), new PassiveDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3),reader.GetInt32(4)));
             }
         }
 

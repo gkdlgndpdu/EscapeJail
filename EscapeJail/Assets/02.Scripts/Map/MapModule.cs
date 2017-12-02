@@ -198,6 +198,11 @@ public class MapModule : MapModuleBase
 
         if (minimap_Icon != null)
             minimap_Icon.SetClear();
+
+        //메달 생성
+        DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
+        medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
+
     }
 
     public void AddtoMonsterList(MonsterBase monster)

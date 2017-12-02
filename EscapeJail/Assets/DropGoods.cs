@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GoodsType
+{
+    Coin,
+    Medal
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 
-public class Coin : MonoBehaviour
+public class DropGoods : MonoBehaviour
 {
     private Rigidbody2D rb;
     private int value = 0;
@@ -15,18 +21,43 @@ public class Coin : MonoBehaviour
     private float originSpeed = 5f;
     private float sleepTime = 1f;
     private bool isSleep = true;
+    private GoodsType goodsType;
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Sprite coinSprite;
+    [SerializeField]
+    private Sprite medalSprite;
 
     private void Awake()
     {
         player = GamePlayerManager.Instance.player;
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Initiatlize(Vector3 spawnPosit,int value) 
+    public void Initiatlize(Vector3 spawnPosit, int value,GoodsType goodsType)
     {
         this.transform.position = spawnPosit;
         this.value = value;
+        this.goodsType = goodsType;
+        SetSprite();
         StartCoroutine(SleepRoutine());
+    }
+    private void SetSprite()
+    {
+        if (spriteRenderer == null) return;
+        if (coinSprite == null || medalSprite == null) return;
+        switch (goodsType)
+        {
+            case GoodsType.Coin:
+                spriteRenderer.sprite = coinSprite;
+                break;
+            case GoodsType.Medal:
+                spriteRenderer.sprite = medalSprite;
+                break;
+        }
+  
     }
     IEnumerator SleepRoutine()
     {
@@ -35,7 +66,7 @@ public class Coin : MonoBehaviour
     }
 
     public void Update()
-    {        
+    {
         if (isSleep == true) return;
 
         if (player != null)
@@ -44,7 +75,7 @@ public class Coin : MonoBehaviour
             {
                 Vector3 moveDir = player.transform.position - this.transform.position;
                 rb.velocity = moveDir.normalized * moveSpeed;
-                moveSpeed += Time.deltaTime*2f;
+                moveSpeed += Time.deltaTime * 2f;
             }
         }
     }
@@ -54,8 +85,22 @@ public class Coin : MonoBehaviour
     {
         if (isSleep == true) return;
 
-        if (player!=null)
-        player.GetCoin(value);
+        switch (goodsType)
+        {
+            case GoodsType.Coin:
+                {
+                    if (player != null)
+                        player.GetCoin(value);
+                }
+                break;
+            case GoodsType.Medal:
+                {
+                    if (player != null)
+                        player.GetMedal(value);
+                }
+                break;
+        }
+
         OffCoin();
     }
 

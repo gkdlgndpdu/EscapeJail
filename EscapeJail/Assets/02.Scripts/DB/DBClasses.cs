@@ -60,12 +60,14 @@ public class PassiveDB
     public bool hasPassive = false;
     public string description;
     public string howToGet;
-    public PassiveDB(bool hasPassive, string description, string howToGet)
+    public int price;
+    public PassiveDB(bool hasPassive, string description, string howToGet,int price)
     {
         this.hasPassive = hasPassive;
       //  this.passiveType = passiveType;
         this.description = description;
         this.howToGet = howToGet;
+        this.price = price;
 
     }
 

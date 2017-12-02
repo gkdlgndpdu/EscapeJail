@@ -11,13 +11,5 @@ public class PassiveSelect : MonoBehaviour
         if (passiveUiScreen == null) return;
         passiveUiScreen.SetActive(!passiveUiScreen.activeSelf);
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -315,9 +315,9 @@ public class MonsterBase : CharacterInfo
 
         //코인생성
 
-        Coin coin = ObjectManager.Instance.coinPool.GetItem();
+        DropGoods coin = ObjectManager.Instance.coinPool.GetItem();
 
-        coin.Initiatlize(this.transform.position, 10);
+        coin.Initiatlize(this.transform.position, 10,GoodsType.Coin);
 
 
 

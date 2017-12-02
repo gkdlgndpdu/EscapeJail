@@ -15,6 +15,13 @@ public class LastBoss : BossBase
     private bool canMove = true;
     private bool isHideOn = false;
 
+    [SerializeField]
+    private List<LastBossFirePosition> firePosits;
+
+    [SerializeField]
+    public Transform leftTop;
+    [SerializeField]
+    public Transform rightTop;
 
 
     private Dictionary<WeaponType, Weapon> weaponDic1 = new Dictionary<WeaponType, Weapon>();
@@ -32,7 +39,7 @@ public class LastBoss : BossBase
 
             if (weaponHandler2 != null)
                 iTween.FadeTo(weaponHandler2.gameObject, 0f, 0.8f);
-            
+
         }
         else if (OnOff == false)
         {
@@ -41,7 +48,7 @@ public class LastBoss : BossBase
 
             if (weaponHandler2 != null)
                 iTween.FadeTo(weaponHandler2.gameObject, 1f, 0.8f);
-            
+
         }
 
     }
@@ -57,8 +64,8 @@ public class LastBoss : BossBase
             iTween.FadeTo(this.gameObject, 0f, 0.8f);
 
     }
- 
-    
+
+
     private void HideOff()
     {
         isHideOn = false;
@@ -104,7 +111,7 @@ public class LastBoss : BossBase
             if (rb != null)
                 rb.velocity = Vector3.zero;
             return;
-        } 
+        }
         RotateWeapon();
         MoveToTarget();
     }
@@ -132,7 +139,7 @@ public class LastBoss : BossBase
         if (keyList1 == null) return;
         if (keyList2 == null) return;
 
-        Weapon randWeapon1 = weaponDic1[keyList1[Random.Range(0,keyList1.Count)]];
+        Weapon randWeapon1 = weaponDic1[keyList1[Random.Range(0, keyList1.Count)]];
         Weapon randWeapon2 = weaponDic2[keyList2[Random.Range(0, keyList2.Count)]];
 
         weaponHandler1.ChangeWeapon(randWeapon1);
@@ -175,7 +182,7 @@ public class LastBoss : BossBase
                 FlipCharacter(false);
             }
 
-            
+
         }
         else
         {
@@ -291,23 +298,24 @@ public class LastBoss : BossBase
         bossEventQueue.Initialize(this, EventOrder.InOrder);
 
         //bossEventQueue.AddEvent("SpreadBomb");
-        bossEventQueue.AddEvent("TempFireRoutine1");
-      //  bossEventQueue.AddEvent("SpawnNinjaRoutine");
-        bossEventQueue.AddEvent("HideRoutine");
+        // bossEventQueue.AddEvent("TempFireRoutine1");
+        // bossEventQueue.AddEvent("SpawnNinjaRoutine");
+        // bossEventQueue.AddEvent("HideRoutine");
+        bossEventQueue.AddEvent("BulletRainRoutine");
     }
 
     IEnumerator TempFireRoutine1()
-    { 
+    {
         WeaponHideOnOff(false);
         ChangeRandomWeapon();
-  
+
         yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < 30; i++)
         {
             FireNowWeapon();
             yield return new WaitForSeconds(0.1f);
         }
-     
+
         WeaponHideOnOff(true);
         yield return new WaitForSeconds(1.0f);
     }
@@ -329,17 +337,79 @@ public class LastBoss : BossBase
     {
 
         MonsterSpawnEffect spawnEffect = ObjectManager.Instance.monsterSpawnEffectPool.GetItem();
-        spawnEffect.Initialize(GamePlayerManager.Instance.player.transform.position, SpawnNinja);       
+        spawnEffect.Initialize(GamePlayerManager.Instance.player.transform.position, SpawnNinja);
 
         yield return new WaitForSeconds(5.0f);
     }
 
     IEnumerator HideRoutine()
     {
+        yield return new WaitForSeconds(2.0f);
         HideOn();
-        yield return new WaitForSeconds(3.0f);
+        FirePositsFireOnOff(true);
+        yield return new WaitForSeconds(5.0f);
+        HideOff();
+        FirePositsFireOnOff(false);
+        yield return new WaitForSeconds(2.0f);
+    }
+
+    IEnumerator BulletRainRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        HideOn();
+
+        for (int i = 0; i < 50; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                FireBulletRain();
+            }
+            yield return new WaitForSeconds(0.2f);
+
+        }
+
         HideOff();
         yield return new WaitForSeconds(2.0f);
+    }
+
+    private void FireBulletRain()
+    {
+        if (leftTop == null || rightTop == null) return;
+        float y = leftTop.transform.position.y;
+        float x = Random.Range(leftTop.transform.position.x, rightTop.transform.position.x);
+        Vector3 firePos = new Vector3(x, y);
+
+
+        for (int i = 0; i < 3; i++)
+        {
+            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            if (bullet != null)
+            {
+                bullet.gameObject.SetActive(true);
+                bullet.Initialize(firePos, Vector3.down, 12f - (float)i * 0.6f, BulletType.EnemyBullet);
+                bullet.InitializeImage("white", false);
+                bullet.SetBloom(true, Color.green);
+                bullet.SetEffectName("revolver");
+                bullet.SetDestroyByCollision(false, false);
+            }
+        }
+
+
+    }
+
+    private void FirePositsFireOnOff(bool OnOff)
+    {
+        if (firePosits == null) return;
+        if (firePosits.Count == 0) return;
+
+        for (int i = 0; i < firePosits.Count; i++)
+        {
+            if (OnOff == true)
+                firePosits[i].FireStart();
+            else if (OnOff == false)
+                firePosits[i].EndFire();
+        }
+
     }
 
     public void SpawnNinja(Vector3 posit)
@@ -350,13 +420,13 @@ public class LastBoss : BossBase
 
 
     public void SpreadDynamiteAndGranade()
-    {                   
+    {
 
         Vector3 fireDirection = Vector3.right;
         for (int i = 0; i < 25; i++)
         {
             float dynamaiteSpeed = Random.Range(1f, 15f);
-            fireDirection = Quaternion.Euler(0f, 0f, Random.Range(50f,60f)) * fireDirection;
+            fireDirection = Quaternion.Euler(0f, 0f, Random.Range(50f, 60f)) * fireDirection;
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
@@ -367,12 +437,12 @@ public class LastBoss : BossBase
                 bullet.SetMoveLifetime(1f);
                 bullet.SetEffectName("Explode_1", 3f);
                 bullet.SetExplosion(1.5f);
-               
+
             }
         }
 
 
-        Vector3 fireDirection2 =Quaternion.Euler(0f,0f,22.5f)* Vector3.right;
+        Vector3 fireDirection2 = Quaternion.Euler(0f, 0f, 22.5f) * Vector3.right;
         for (int i = 0; i < 25; i++)
         {
             float dynamaiteSpeed = Random.Range(1f, 15f);

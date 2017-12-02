@@ -226,9 +226,7 @@ namespace ScientistBoss
                                     bullet.SetEffectName("revolver");
                                 }
                             }
-                        }
-
-              
+                        }              
                  
                     }
                     break;

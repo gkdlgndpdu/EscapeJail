@@ -9,6 +9,7 @@ public class PassiveSlot_Ui : MonoBehaviour
     private PassiveType passiveType;
     private bool hasItem = false;
     private bool isSelected = false;
+    private PassiveDB data;
 
     [SerializeField]
     private Button button;
@@ -24,6 +25,8 @@ public class PassiveSlot_Ui : MonoBehaviour
 
     [SerializeField]
     private Image iconImage;
+    [SerializeField]
+    private Text priceText;
 
     private void Awake()
     {       
@@ -33,15 +36,24 @@ public class PassiveSlot_Ui : MonoBehaviour
             selectIcon.gameObject.SetActive(false);
     }
 
-    public void Initialize(PassiveType passiveType,bool hasItem,string howToGet,string description,PassiveSelectScreen parent)
+    public void Initialize(PassiveType passiveType, PassiveDB data, PassiveSelectScreen parent)
     {
+        if (data == null) return;
+
+        this.data = data;
         this.passiveType = passiveType;
-        this.hasItem = hasItem;
+        this.hasItem = data.hasPassive;
         this.parent = parent;
 
         SetButton(hasItem);
         SetIcon();
-        SetText(howToGet, description);
+        SetText(data.howToGet, data.description);
+        SetPrice(data.price);
+    }
+    private void SetPrice(int price)
+    {
+        if (priceText == null) return;
+        priceText.text = string.Format("{0} 훈장", price.ToString());
     }
 
     private void SetIcon()
@@ -57,6 +69,11 @@ public class PassiveSlot_Ui : MonoBehaviour
     {
         if (text == null) return;
         text.text = string.Format("{0} \n {1}", description, howToGet);
+    }
+
+    private void SetPrice()
+    {
+
     }
 
     private void SetButton(bool OnOff)
@@ -84,7 +101,9 @@ public class PassiveSlot_Ui : MonoBehaviour
 
     //선택되면 들어옴
     public void OnClick()
-    {  
+    {
+        if (data == null) return;
+        if (data.hasPassive == false) return;
         if (parent != null)
             parent.RegistSelectSlot(this);
     }

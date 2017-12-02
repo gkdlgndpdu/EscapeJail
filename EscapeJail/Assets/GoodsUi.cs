@@ -5,14 +5,24 @@ using UnityEngine.UI;
 public class GoodsUi : MonoBehaviour
 {
     [SerializeField]
-    private Text text;
+    private Text coinText;
+
+    [SerializeField]
+    private Text medalText;
 
 
-    public void SetText(int value)
+    public void SetCoin(int value)
     {
-        if (text == null) return;
+        if (coinText == null) return;
 
-        text.text = value.ToString();
+        coinText.text = value.ToString();
+
+    }
+    public void SetMedal(int value)
+    {
+        if (medalText == null) return;
+
+        medalText.text = value.ToString();
 
     }
 

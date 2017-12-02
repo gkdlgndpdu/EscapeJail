@@ -77,6 +77,8 @@ public class CharacterBase : CharacterInfo
             return coin;
         }
     }
+    protected int medal = 0;
+
 
     private LineRenderer redDotLine;
 
@@ -85,7 +87,19 @@ public class CharacterBase : CharacterInfo
         this.coin += coin;
 
         if (playerUi != null)
-            playerUi.goodsUi.SetText(this.coin);
+            playerUi.goodsUi.SetCoin(this.coin);
+    }
+    public void GetMedal(int medal)
+    {
+        this.medal += medal;
+        if (playerUi != null)
+            playerUi.goodsUi.SetMedal(this.medal);
+    }
+    private void UpdateMedal()
+    {
+        int prefMedal = PlayerPrefs.GetInt(GoodsType.Medal.ToString(), 0);
+        prefMedal += medal;
+        PlayerPrefs.SetInt(GoodsType.Medal.ToString(), prefMedal);
     }
     public void UseCoin(int coin)
     {
@@ -93,7 +107,7 @@ public class CharacterBase : CharacterInfo
 
         this.coin -= coin;
         if (playerUi != null)
-            playerUi.goodsUi.SetText(this.coin);
+            playerUi.goodsUi.SetCoin(this.coin);
     }
 
     protected void LoadPrefabs()
@@ -635,7 +649,7 @@ public class CharacterBase : CharacterInfo
 
             UIUpdate();
 
-            if (hp <= 0)
+            if (hp <= 0&&isDead==false)
             {
                 DieAction();
             }
@@ -658,7 +672,9 @@ public class CharacterBase : CharacterInfo
 
     protected void DieAction()
     {
+        isDead = true;
         Debug.Log("CharacterDie");
+        UpdateMedal();
     }
 
     public void GetBulletItem()

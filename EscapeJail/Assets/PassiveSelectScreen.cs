@@ -13,6 +13,8 @@ public class PassiveSelectScreen : MonoBehaviour
     private PassiveSlot_Ui slotPrefab;
     [SerializeField]
     private GridLayoutGroup grid;
+    [SerializeField]
+    private Text medalText;
 
     private RectTransform rectTr;
 
@@ -25,6 +27,7 @@ public class PassiveSelectScreen : MonoBehaviour
         slotList = new List<PassiveSlot_Ui>();
         rectTr = slotsParent.GetComponent<RectTransform>();
         MakeSlots();
+        UpdateMedalText();
     }
 
     public void RegistSelectSlot(PassiveSlot_Ui slot)
@@ -66,18 +69,26 @@ public class PassiveSelectScreen : MonoBehaviour
         foreach (KeyValuePair<PassiveType, PassiveDB> data in passiveDB)
         {
             PassiveSlot_Ui slot = Instantiate(slotPrefab, slotsParent);
-            slot.Initialize(data.Key, data.Value.hasPassive,data.Value.howToGet,data.Value.description,this);
+            slot.Initialize(data.Key, data.Value,this);
             slotList.Add(slot);
         }   
 
         if (invisibleTouchArea != null)
         {
-            invisibleTouchArea.transform.localScale = new Vector3(5f, ((float)makeSlotNum + 1f) * 1.1f, 1f);
+            invisibleTouchArea.transform.localScale = new Vector3(4.6f, ((float)makeSlotNum + 2.5f) * 1.1f, 1f);
         }
 
         if (rectTr != null)
         {
-            rectTr.sizeDelta = new Vector2(500f, eachDistance * ((float)(makeSlotNum - 4)));
+            rectTr.sizeDelta = new Vector2(500f, eachDistance * ((float)(makeSlotNum - 3)));
         }
+    }
+
+    private void UpdateMedalText()
+    {
+        if (medalText == null) return;
+
+        int medal = PlayerPrefs.GetInt(GoodsType.Medal.ToString(), 0);
+        medalText.text = medal.ToString();
     }
 }

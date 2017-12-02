@@ -15,7 +15,7 @@ public class SceneManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 120;
             Instance = this;
             DontDestroyOnLoad(Instance.gameObject);
         }

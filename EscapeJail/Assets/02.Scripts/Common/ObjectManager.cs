@@ -29,7 +29,7 @@ public class ObjectManager : MonoBehaviour
     [HideInInspector]
     public ObjectPool<ThunderLine> thunderLinePool;
     [HideInInspector]
-    public ObjectPool<Coin> coinPool;
+    public ObjectPool<DropGoods> coinPool;
     public MonsterPool monsterPool;
 
     [SerializeField]
@@ -70,7 +70,7 @@ public class ObjectManager : MonoBehaviour
         MakePool<MonsterSpawnEffect>(ref monsterSpawnEffectPool, "Prefabs/Objects/MonsterSpawnEffect", EffectParent, 10);
         MakePool<BounceBullet>(ref bounceBulletPool, "Prefabs/Objects/BounceBullet", bulletParent, 1);
         MakePool<ThunderLine>(ref thunderLinePool, "Prefabs/Objects/ThunderLine", EffectParent, 10);
-        MakePool<Coin>(ref coinPool, "Prefabs/Objects/Coin", ObjectParent, 10);
+        MakePool<DropGoods>(ref coinPool, "Prefabs/Objects/Coin", ObjectParent, 10);
         MakeMonsterPool();
 
     }
