@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum MapModuleType
+{
+    NormalModule,
+    BossModule,
+    ShopModule
+}
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class MapModuleBase : MonoBehaviour
 {
     //관리받게될 매니저
     protected MapManager mapManager;
-
+    protected MapModuleType moduleType;
     //컴포넌트
     public BoxCollider2D boxcollider2D;
 
@@ -20,6 +26,12 @@ public class MapModuleBase : MonoBehaviour
     protected int widthNum;
     [SerializeField]
     protected int heightNum;
+
+    protected bool hasPortal = false;
+    public bool HasPortal
+    {
+        get { return hasPortal; }
+    }
 
     //저장소
     public List<Tile> normalTileList;
@@ -63,7 +75,28 @@ public class MapModuleBase : MonoBehaviour
 
     public virtual void MakeObjects()
     {
+    
+    }
 
+    public void MakePortal()
+    {
+        if (moduleType != MapModuleType.NormalModule) return;
+
+        hasPortal = true;
+
+        GameObject portalPrefab = Resources.Load<GameObject>("Prefabs/Articles/Portal");
+        if (portalPrefab != null)
+        {
+            GameObject makeObj = Instantiate(portalPrefab);
+            if (makeObj != null)
+            {
+                Portal portal = makeObj.GetComponent<Portal>();
+                if (portal != null)
+                {
+                    portal.Initialize(this);
+                }
+            }
+        }
     }
 
 
@@ -84,7 +117,9 @@ public class MapModuleBase : MonoBehaviour
             //{
                 if (mapManager != null)
                     mapManager.ResetMakeCount();
-
+            int randNum = Random.Range(0, 2);
+            if (randNum == 0)
+            {
                 if (this.transform.position.x < collision.bounds.center.x)
                 {
                     this.transform.position -= Vector3.right * GameConstants.eachModuleDistance;
@@ -93,7 +128,9 @@ public class MapModuleBase : MonoBehaviour
                 {
                     this.transform.position += Vector3.right * GameConstants.eachModuleDistance;
                 }
-
+            }
+            else
+            {
                 if (this.transform.position.y < collision.bounds.center.y)
                 {
                     this.transform.position -= Vector3.up * GameConstants.eachModuleDistance;
@@ -102,6 +139,12 @@ public class MapModuleBase : MonoBehaviour
                 {
                     this.transform.position += Vector3.up * GameConstants.eachModuleDistance;
                 }
+
+            }
+
+       
+
+              
             //}
         }
     }

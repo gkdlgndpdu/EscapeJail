@@ -38,6 +38,7 @@ public class MapModule : MapModuleBase
     void Awake()
     {
         boxcollider2D = GetComponent<BoxCollider2D>();
+        moduleType = MapModuleType.NormalModule;
     }
 
     private void Start()
@@ -314,7 +315,7 @@ public class MapModule : MapModuleBase
         if (boxcollider2D != null)
             boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
-       minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
+       minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f),hasPortal,this);
 
     }
 

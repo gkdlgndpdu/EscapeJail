@@ -31,8 +31,11 @@ public class BossModule : MapModuleBase
         boxcollider2D = GetComponent<BoxCollider2D>();
 
         SetColliderSizeBig();
-        
-       
+
+        moduleType = MapModuleType.BossModule;
+
+
+
     }
 
     private void SetColliderSizeBig()

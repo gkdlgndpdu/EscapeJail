@@ -60,12 +60,12 @@ public class Trader : CharacterBase
 
         if (MyUtils.GetPercentResult(20) == true)
         {
-            ItemSpawner.Instance.SpawnRandomItem(this.transform.position, MapManager.Instance.transform);
+            ItemSpawner.Instance.SpawnRandomItem(this.transform.position);
         }
         else
         {
             //무기 생성
-            ItemSpawner.Instance.SpawnWeapon(this.transform.position, MapManager.Instance.transform);
+            ItemSpawner.Instance.SpawnWeapon(this.transform.position);
         }
 
 

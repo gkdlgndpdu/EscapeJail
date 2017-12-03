@@ -194,7 +194,7 @@ public class Inventory
 
             CharacterBase player = GamePlayerManager.Instance.player;
             //해당 무기 생성
-            ItemSpawner.Instance.SpawnWeapon(player.transform.position, null, itemBase.weapontype);
+            ItemSpawner.Instance.SpawnWeapon(player.transform.position, itemBase.weapontype);
             player.ChangeWeapon();
         }
 

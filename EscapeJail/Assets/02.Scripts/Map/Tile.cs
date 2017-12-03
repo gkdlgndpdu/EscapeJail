@@ -18,6 +18,13 @@ public class Tile : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
     private MapModuleBase parentModule = null;
+    public MapModuleBase ParentModule
+    {
+        get
+        {
+            return parentModule;
+        }
+    }
     private ObjectShadow objectShadow;
 
     public int x;
@@ -58,10 +65,11 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void Initialize(TileType tileType, MapModuleBase parentModule = null,int layerOrder =0)
+    public void Initialize(TileType tileType, MapModuleBase parentModule,int layerOrder =0)
     {
         SetLayerOrder(layerOrder);
 
+        this.parentModule = parentModule;
 
         if (tileType == TileType.Wall)
         {
@@ -78,7 +86,7 @@ public class Tile : MonoBehaviour
 
         if (tileType == TileType.Door)
         {
-            this.parentModule = parentModule;
+           
             collider = this.gameObject.AddComponent<BoxCollider2D>();
 
             OpenDoor();

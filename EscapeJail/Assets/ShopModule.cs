@@ -18,7 +18,7 @@ public class ShopModule : MapModuleBase
     {     
 
         boxcollider2D = GetComponent<BoxCollider2D>();
-
+        moduleType = MapModuleType.ShopModule;
 
 
     }

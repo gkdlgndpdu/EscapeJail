@@ -37,6 +37,10 @@ public class MapModuleGenerator
     //현재 모듈들의 모서리 벽부분(보스룸 생성에 정보가 필요함)
     public List<Tile> everyWallList;
 
+    //포탈 만들때 필요
+    //현재 생성된 모듈들중 맨끝쪽에 있는애들
+    public List<Tile> portalMakableList = new List<Tile>();
+
     public MapModuleGenerator(Transform moduleParent, MapManager mapManager)
     {
         normalTile = Resources.Load<GameObject>("Prefabs/Maps/MapObjects/tile");
@@ -83,6 +87,8 @@ public class MapModuleGenerator
         float minX = everyWallList[0].transform.position.x;
         float maxX = everyWallList[everyWallList.Count - 1].transform.position.x;
 
+        portalMakableList.Add(everyWallList[0]);
+        portalMakableList.Add(everyWallList[everyWallList.Count - 1]);
 
         //Y최대 최소
         everyWallList.Sort((a, b) =>
@@ -92,6 +98,9 @@ public class MapModuleGenerator
 
         float minY = everyWallList[0].transform.position.y;
         float maxY = everyWallList[everyWallList.Count - 1].transform.position.y;
+
+        portalMakableList.Add(everyWallList[0]);
+        portalMakableList.Add(everyWallList[everyWallList.Count - 1]);
 
         float width = maxX - minX;
         float height = maxY - minY;
@@ -168,6 +177,21 @@ public class MapModuleGenerator
 
                 }
             }
+        }
+
+    }
+    /// <summary>
+    /// 반드시 벽 생성후 호출
+    /// </summary>
+    public void MakePortal()
+    {
+        if (portalMakableList == null) return;
+        if (portalMakableList.Count == 0) return;
+
+        for(int i=0;i< portalMakableList.Count; i++)
+        {
+            if (portalMakableList[i].ParentModule == null) continue;
+            portalMakableList[i].ParentModule.MakePortal();
         }
 
     }
@@ -388,7 +412,7 @@ public class MapModuleGenerator
                     //일반벽
                     else
                     {
-                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform, null, 0, randomWallSprite);
+                        tile = MakeTile(TileType.Wall, posit, x, y, module.transform, module, 0, randomWallSprite);
 
 
 
@@ -414,7 +438,7 @@ public class MapModuleGenerator
                 //노말타일
                 else
                 {
-                    Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform);
+                    Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform, module);
                     //SetTileColor(tile, StagerController.Instance.stageData.GetRandomTileColor());
 
                 }
@@ -436,7 +460,7 @@ public class MapModuleGenerator
 
     }
     //벽의경우 여기에 넣어주면 해당 텍스쳐로만 생성
-    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule = null, int layerOrder = 0, Sprite specificSprite = null)
+    private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule, int layerOrder = 0, Sprite specificSprite = null)
     {
         GameObject obj = GameObject.Instantiate(normalTile, parent);
         obj.transform.position = posit;

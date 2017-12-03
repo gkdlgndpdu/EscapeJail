@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 { 
-    public static MapManager Instance;
+ 
 
     private List<MapModuleBase> moduleList;
     private List<GameObject> objectList;
@@ -17,12 +17,10 @@ public class MapManager : MonoBehaviour
     private MapModuleGenerator mapModuleGenerator;
     
 
-
+    
     void Awake()
-    {
-        Instance = this;
+    {       
         LoadObject();
-
     }
 
     private void LoadObject()
@@ -30,7 +28,7 @@ public class MapManager : MonoBehaviour
         objectList = new List<GameObject>();
 
         if (objectList == null) return;
-        GameObject[] objects = Resources.LoadAll<GameObject>("Prefabs/Articles/");
+        GameObject[] objects = Resources.LoadAll<GameObject>("Prefabs/Articles/ItemTables/");
 
         if (objects != null)
         {
@@ -93,6 +91,7 @@ public class MapManager : MonoBehaviour
         }
 
         MakeWall();
+        MakePortal();
         PositioningComplete();
         CreateObjects();
 
@@ -121,6 +120,14 @@ public class MapManager : MonoBehaviour
         //벽 생성
         if (mapModuleGenerator != null)
             mapModuleGenerator.MakeWall(this.transform);       
+    }
+
+    private void MakePortal()
+    {
+        if (mapModuleGenerator != null)
+            mapModuleGenerator.MakePortal();
+
+   
     }
   
 

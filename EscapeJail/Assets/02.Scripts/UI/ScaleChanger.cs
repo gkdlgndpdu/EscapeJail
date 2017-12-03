@@ -7,7 +7,7 @@ public class ScaleChanger : MonoBehaviour
     [SerializeField]
     private Transform parentTr;
 
-    private void Awake()
+    private void Start()
     {
 
         if (parentTr != null)

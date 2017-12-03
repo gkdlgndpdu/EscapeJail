@@ -14,7 +14,7 @@ public class Shop_Field : MonoBehaviour
 
         for(int i = 0; i < tableList.Count; i++)
         {
-            ItemSpawner.Instance.SpawnWeapon(tableList[i].transform.position, this.transform,true);
+            ItemSpawner.Instance.SpawnWeapon(tableList[i].transform.position, true);
         }
     }
 
