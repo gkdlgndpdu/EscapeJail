@@ -81,7 +81,14 @@ public class CharacterBase : CharacterInfo
 
 
     private LineRenderer redDotLine;
-
+    private CardCaseCard cardCaseCard;
+    public CardCaseCard NowCard
+    {
+        get
+        {
+            return cardCaseCard;
+        }
+    }
     public void GetCoin(int coin)
     {
         this.coin += coin;
@@ -261,6 +268,25 @@ public class CharacterBase : CharacterInfo
 
         }
     }
+    //CardCaseCard
+    protected void SetCardCaseCard()
+    {
+        GameObject loadObj = Resources.Load<GameObject>("Prefabs/Objects/CardCaseCard");
+        if (loadObj != null)
+        {
+            GameObject makingObject = Instantiate(loadObj, this.transform);
+            if (makingObject != null)
+            {
+                CardCaseCard card = makingObject.GetComponent<CardCaseCard>();
+                if (card != null)
+                {
+                    cardCaseCard = card;
+                    cardCaseCard.gameObject.SetActive(false);
+                }
+            }
+
+        }
+    }
 
     protected void BuffEffectOnOff(bool OnOff)
     {
@@ -275,8 +301,8 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new PMP45());  
-   
+        AddWeapon(new CardCase());
+        AddWeapon(new ShotGun());
     }
 
     public virtual void SetBurstSpeed(bool OnOff)
@@ -485,7 +511,33 @@ public class CharacterBase : CharacterInfo
 
     public void ChangeWeapon()
     {
+        if (weaponHandler == null) return;
+
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
+
+        if (weaponHandler.NowWeapon != null)
+        {
+            if(weaponHandler.NowWeapon.weapontype == WeaponType.CardCase)
+            {
+                if (cardCaseCard == null)
+                {
+                    SetCardCaseCard();
+                }
+
+                if (cardCaseCard != null)
+                    cardCaseCard.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (cardCaseCard != null)
+                    cardCaseCard.gameObject.SetActive(false);
+            }
+        }
+        else if (weaponHandler.NowWeapon == null)
+        {
+            if (cardCaseCard != null)
+                cardCaseCard.gameObject.SetActive(false);
+        }
     }
 
     public void ChangeSpeceficWeapon(WeaponType weaponType)

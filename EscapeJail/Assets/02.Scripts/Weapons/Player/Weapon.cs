@@ -85,6 +85,7 @@ namespace weapon
         BubbleGun,
         GuitarCase,
         KeyBoardShotGun,
+        Mjolnir,
         //////////////////////////////////
         PlayerWeaponEnd,
         //////////////////////////////////

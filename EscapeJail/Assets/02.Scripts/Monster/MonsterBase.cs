@@ -108,9 +108,12 @@ public class MonsterBase : CharacterInfo
 
         AddToList();
 
+
         if (MyUtils.GetNowPassive() == PassiveType.Scouter)
             HudOnOff(true);
-
+#if UNITY_EDITOR
+        HudOnOff(true);
+#endif
 
         UpdateHud();
 

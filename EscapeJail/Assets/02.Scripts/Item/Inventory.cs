@@ -42,8 +42,8 @@ public class Inventory
             else
             {
                 //
-                //bagSize = 2;
-                bagSize = 1;
+                bagSize = 2;
+         
             }
         }
         else

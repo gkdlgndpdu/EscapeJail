@@ -159,26 +159,29 @@ public class MiniMap : MonoBehaviour
  
 
         if (target == null) return;
+        //if (count > 1f) return;
 
         if (miniMapState == MiniMapState.Origin)
         {
+            count += Time.deltaTime;
             this.transform.position = Vector3.Lerp(this.transform.position,originPosit.transform.position , count);
-
+            maskTr.localScale = Vector3.Lerp(maskTr.localScale, maskOriginSize, count);
             if (target.position != prefPosit)
             {
                 float x = prefPosit.x - target.position.x;
                 float y = prefPosit.y - target.position.y;
 
                 //   iconsParent.localPosition += new Vector3(x*realRatio, y*realRatio, 0f);
-                iconsParent.localPosition = new Vector3(-target.position.x * realRatio, -target.position.y * realRatio, 0f);
+                iconsParent.localPosition = new Vector3(-target.position.x * realRatio, -target.position.y * realRatio, 0f);         
 
-                count += Time.deltaTime;
+           
             }
         }
         else if (miniMapState == MiniMapState.Center)
         {
             count += Time.deltaTime;
             this.transform.position = Vector3.Lerp(this.transform.position, centerPosit.transform.position, count);
+            maskTr.localScale = Vector3.Lerp(maskTr.localScale, maskMaxSize, count);
             iconsParent.localPosition = Vector3.zero;
 
             if (Input.GetKeyDown(KeyCode.Mouse0))

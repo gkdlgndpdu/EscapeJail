@@ -8,15 +8,25 @@ namespace weapon
     public class CardCase : Weapon
     {
         //리볼버 반동
-        private float reBoundValue = 5f;
+        private float reBoundValue = 0f;
+
+        private float spadeSpeed =15f;
+        private int spadeDamage= 2;
+
+        private float heartSpeed =10f;
+        private int heartDamage =5;
+
+        private float cloverSpeed =10f;
+        private int cloverDamage = 2;
+
+        private float diamondSpeed =15f;
+        private int diamondDamage =2;
 
         public CardCase()
         {
             weapontype = WeaponType.CardCase;
-
-
-            bulletSpeed = 10f;
-            fireDelay = 0.3f;
+            
+            fireDelay = 0.6f;
             SetAmmo(100);   
             needBulletToFire = 1;
 
@@ -37,39 +47,84 @@ namespace weapon
             //애니메이션재생
             PlayFireAnim();
 
+            CardCaseCard card = GamePlayerManager.Instance.player.NowCard;
+            if (card == null) return;
 
-            Vector3 fireDir = fireDirection;
-            for(int i = 0; i < 3; i++)
+            switch (card.NowCardType)
             {
-                Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
-                if (bullet != null)
-                {
-                                                  //x,y,z, 회전 값을 넣고 * 원래 방향벡터     
-                    Vector3 fd = Quaternion.Euler(0f, 0f, -15f  + ( 15f * i)) * fireDir;                              
+                case CardType.Spade:
+                    {
+                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                        if (bullet != null)
+                        {
 
-                    //총알 기본속성 발사 위치 ,방향 ,피아식별 등등
-                    bullet.Initialize(firePos, fd.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f);
+                            Vector3 fireDir = fireDirection;                  
+                            fireDir.Normalize();
+                            bullet.Initialize(firePos + fireDir * 0.1f, fireDir, spadeSpeed, BulletType.PlayerBullet, 1.5f, spadeDamage);
+                            bullet.InitializeImage("Spade", false);
+                            bullet.SetEffectName("revolver");
+                            bullet.RotateBullet();
+                            bullet.SetBloom(false);
+                        }
+                    }
+                    break;
+                case CardType.Heart:
+                    {
+                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                        if (bullet != null)
+                        {
+                            Vector3 fireDir = fireDirection;                           
+                            bullet.Initialize(firePos, fireDir.normalized, heartSpeed, BulletType.PlayerBullet, 1.5f, heartDamage);
+                            bullet.InitializeImage("Heart", false);
+                            bullet.SetEffectName("bazooka", 3f);
+                            bullet.SetBloom(false);
+                            bullet.RotateBullet();
+                            bullet.SetExplosion(1.5f);
 
-                    //총알 이미지 설정 앞에인자는 파일이름 뒤에는 애니메이션 유무
-                    bullet.InitializeImage("Dynamite", true);
+                        }
+                    }
+                    break;
+                case CardType.Clover:
+                    {
+                        Vector3 fireDir = fireDirection;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                            if (bullet != null)
+                            {                           
+                                fireDir = Quaternion.Euler(0f, 0f, -10f + 10f * i) * fireDirection;
+                                bullet.Initialize(firePos, fireDir.normalized, cloverSpeed, BulletType.PlayerBullet, 1.5f, cloverDamage, 0.5f);
+                                bullet.InitializeImage("Clover", false);
+                                bullet.SetEffectName("revolver");
+                                bullet.SetBloom(false);
+                                bullet.RotateBullet();
 
-                    //총알 터졌을때 이펙트 설정
-                    bullet.SetEffectName("DynamiteExplostion");
+                            }
+                        }
+                    }
+                    break;
+                case CardType.Diamond:
+                    {
+                        Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                        if (bullet != null)
+                        {
 
-                    bullet.SetBloom(false);
+                            Vector3 fireDir = fireDirection;                      
+                            fireDir.Normalize();
+                            bullet.Initialize(firePos + fireDir * 0.1f, fireDir, diamondSpeed, BulletType.PlayerBullet, 1.5f, diamondDamage);
+                            bullet.InitializeImage("Diamond", false);
+                            bullet.SetEffectName("revolver");
+                            bullet.SetBloom(false);
+                            bullet.SetDestroyByCollision(false,false);
+                            bullet.RotateBullet();
 
-                    bullet.SetDestroyByCollision(false);
 
-                    bullet.SetMoveLifetime(0.1f);
-                }
+                        }
+
+                    }
+                    break;
             }
-
-               
-            
-
-      
-
         }
-    }
 
+    }
 }

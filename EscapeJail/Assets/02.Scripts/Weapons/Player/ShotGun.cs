@@ -34,8 +34,7 @@ namespace weapon
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)
-                {
-                    bullet.gameObject.SetActive(true);
+                {                 
                     fireDir = Quaternion.Euler(0f, 0f, -10f + 10f * i) * fireDirection;
                     bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.5f);
                     bullet.InitializeImage("white", false);
