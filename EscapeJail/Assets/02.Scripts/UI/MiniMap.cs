@@ -50,14 +50,16 @@ public class MiniMap : MonoBehaviour
 
     public void ChangeMiniMapMode()
     {
+        count = 0f;
         if (miniMapState == MiniMapState.Origin)
         {
-            iTween.ScaleTo(maskTr.gameObject, maskMaxSize, 1f);
+            iTween.ScaleTo(maskTr.gameObject, maskMaxSize, 0.5f);
             miniMapState = MiniMapState.Center;
+      
         }
         else if(miniMapState == MiniMapState.Center)
         {
-            iTween.ScaleTo(maskTr.gameObject, maskOriginSize, 1f);
+            iTween.ScaleTo(maskTr.gameObject, maskOriginSize, 0.5f);
             miniMapState = MiniMapState.Origin;
         }
     }
@@ -150,6 +152,8 @@ public class MiniMap : MonoBehaviour
 
     }
 
+    float count = 0f;
+
     private void Update()
     {
  
@@ -158,7 +162,7 @@ public class MiniMap : MonoBehaviour
 
         if (miniMapState == MiniMapState.Origin)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, originPosit.transform.position, Time.deltaTime * moveSpeed);
+            this.transform.position = Vector3.Lerp(this.transform.position,originPosit.transform.position , count);
 
             if (target.position != prefPosit)
             {
@@ -167,12 +171,16 @@ public class MiniMap : MonoBehaviour
 
                 //   iconsParent.localPosition += new Vector3(x*realRatio, y*realRatio, 0f);
                 iconsParent.localPosition = new Vector3(-target.position.x * realRatio, -target.position.y * realRatio, 0f);
+
+                count += Time.deltaTime;
             }
         }
         else if (miniMapState == MiniMapState.Center)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, centerPosit.transform.position, Time.deltaTime * moveSpeed);
+            count += Time.deltaTime;
+            this.transform.position = Vector3.Lerp(this.transform.position, centerPosit.transform.position, count);
             iconsParent.localPosition = Vector3.zero;
+
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
 #if UNITY_EDITOR
@@ -185,17 +193,14 @@ public class MiniMap : MonoBehaviour
 
                     if (target != null)
                     {
-                        if (target.HasProtal == true)
+                        if (target.HasProtal == true&&target.CanUsePortal==true)
                         {
                             if(target.LinkModule!=null)                        
                             GamePlayerManager.Instance.player.transform.position = target.LinkModule.transform.position;
 
                         }
                     }
-
                 }
-
-
 #else
       Touch[] touches = Input.touches;
             if (touches != null)
@@ -210,7 +215,7 @@ public class MiniMap : MonoBehaviour
 
                     if (target != null)
                     {
-                        if (target.HasProtal == true)
+                        if (target.HasProtal == true&&target.CanUsePortal==true)
                         {
                             if(target.LinkModule!=null)                        
                             GamePlayerManager.Instance.player.transform.position = target.LinkModule.transform.position;
