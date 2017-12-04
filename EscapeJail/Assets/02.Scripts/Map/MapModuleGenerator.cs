@@ -40,6 +40,7 @@ public class MapModuleGenerator
     //포탈 만들때 필요
     //현재 생성된 모듈들중 맨끝쪽에 있는애들
     public List<Tile> portalMakableList = new List<Tile>();
+    public Tile centerTile;
 
     public MapModuleGenerator(Transform moduleParent, MapManager mapManager)
     {
@@ -192,6 +193,12 @@ public class MapModuleGenerator
         {
             if (portalMakableList[i].ParentModule == null) continue;
             portalMakableList[i].ParentModule.MakePortal();
+        }
+
+        if(centerTile!=null)
+        {
+            if (centerTile.ParentModule != null)
+                centerTile.ParentModule.MakePortal();
         }
 
     }
@@ -440,7 +447,8 @@ public class MapModuleGenerator
                 {
                     Tile tile = MakeTile(TileType.Normal, posit, x, y, module.transform, module);
                     //SetTileColor(tile, StagerController.Instance.stageData.GetRandomTileColor());
-
+                    if (isStartModule == true)
+                        centerTile = tile;
                 }
 
 

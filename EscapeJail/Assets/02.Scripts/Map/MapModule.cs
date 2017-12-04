@@ -113,6 +113,7 @@ public class MapModule : MapModuleBase
         if (isStartModule == true)
         {
             MaskOff();
+            EndWave();
         }
 
         if (boxcollider2D != null)
@@ -201,8 +202,12 @@ public class MapModule : MapModuleBase
             minimap_Icon.SetClear();
 
         //메달 생성
-        DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
-        medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
+        if (isStartModule != true)
+        {
+            DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
+            medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
+        }
+  
 
     }
 
@@ -316,7 +321,8 @@ public class MapModule : MapModuleBase
             boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
        minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f),hasPortal,this);
-
+        if (isStartModule == true)
+            minimap_Icon.SetClear();
     }
 
     public override void MakeObjects()

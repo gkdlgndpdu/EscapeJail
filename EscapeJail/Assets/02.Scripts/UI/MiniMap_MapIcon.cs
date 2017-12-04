@@ -29,6 +29,13 @@ public class MiniMap_MapIcon : MonoBehaviour
         }
     }
     private bool canUsePortal = false;
+    public bool CanUsePortal
+    {
+        get
+        {
+            return canUsePortal;
+        }
+    }
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
