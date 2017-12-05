@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 [RequireComponent(typeof(Image))]
 public class CharacterSlot_Ui : MonoBehaviour
 {
     private Image characterImage;
     private CharacterType characterType;
-
+    private Action passiveWindowOnFunc;
     private void Awake()
     {
         characterImage = GetComponent<Image>();
+
+        GameObject passiveSelectObj = GameObject.Find("PassiveSelect");
+        if (passiveSelectObj != null)
+        {
+            PassiveSelect passiveSelect = passiveSelectObj.GetComponent<PassiveSelect>();
+            if (passiveSelect != null)
+            {
+                passiveWindowOnFunc = passiveSelect.PassiveUiOnOff;
+            }
+        }
     }
     public void Initialize(CharacterType characterType)
     {
@@ -31,9 +42,8 @@ public class CharacterSlot_Ui : MonoBehaviour
     {
         PlayerPrefs.SetInt(GameConstants.CharacterKeyValue, (int)characterType);
 
-        //임시코드
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.GameScene);
-        //임시코드
+        if (passiveWindowOnFunc != null)
+            passiveWindowOnFunc();   
     }
 
 

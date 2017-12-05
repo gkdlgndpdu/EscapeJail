@@ -12,5 +12,8 @@ EditorBuildSettings:
     path: Assets/01.Scenes/SelectScene.unity
     guid: 41d334f594cf80842b643cb939f16c5f
   - enabled: 1
+    path: Assets/01.Scenes/StroyScene.unity
+    guid: 8ffab6ed89772e24181c97e61e3c4f30
+  - enabled: 1
     path: Assets/01.Scenes/GameScene.unity
     guid: 4a89e0584d42e694f85b9e7dd72fd820

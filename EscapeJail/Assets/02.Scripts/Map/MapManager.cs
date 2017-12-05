@@ -93,7 +93,7 @@ public class MapManager : MonoBehaviour
         MakeWall();
         MakePortal();
         PositioningComplete();
-        CreateObjects();
+        CreateObjects();  
 
         LoadingBoard.Instance.LoadingEnd();
 
