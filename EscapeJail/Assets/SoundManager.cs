@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, AudioClip> soundEffectPool;
     private Dictionary<string, AudioClip> bgmPool;
     private float volume = 1f;
-
+    private ObjectPool<EachSound> soundPool;
     private void Awake()
     {
         if (Instance == null)
@@ -19,7 +19,8 @@ public class SoundManager : MonoBehaviour
             Instance = this;
             soundEffectPool = new Dictionary<string, AudioClip>();
             bgmPool = new Dictionary<string, AudioClip>();
-            bgmSource = GetComponent<AudioSource>();
+            MakeSoundPool();
+                bgmSource = GetComponent<AudioSource>();
             bgmSource.volume = volume;
             bgmSource.loop = true;
             LoadSounds();
@@ -33,7 +34,10 @@ public class SoundManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    private void MakeSoundPool()
+    {
+       ObjectManager.MakePool<EachSound>(ref soundPool, "Prefabs/Objects/EachSound", this.transform, 20);
+    }
     private void LoadSounds()
     {
         LoadBGM();
@@ -147,7 +151,15 @@ public class SoundManager : MonoBehaviour
     {
         if (soundEffectPool == null) return;
         if (soundEffectPool.ContainsKey(soundName) == false) return;
-        AudioSource.PlayClipAtPoint(soundEffectPool[soundName], Camera.main.transform.position, volume);
+        if (soundPool == null) return;
+
+        EachSound eachSound = soundPool.GetItem();
+        if (eachSound != null)
+        {
+            eachSound.Initialize(soundEffectPool[soundName], volume);
+        }
+        
+      //  AudioSource.PlayClipAtPoint(soundEffectPool[soundName], Camera.main.transform.position, volume);
     }
 
 
