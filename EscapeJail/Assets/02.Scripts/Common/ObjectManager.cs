@@ -50,7 +50,7 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    public void MakePool<T>(ref ObjectPool<T> objectPool, string prefabPath, Transform parent, int size) where T : Component
+    public static void MakePool<T>(ref ObjectPool<T> objectPool, string prefabPath, Transform parent, int size) where T : Component
     {
         GameObject LoadObj = Resources.Load<GameObject>(prefabPath);
         if (LoadObj != null)

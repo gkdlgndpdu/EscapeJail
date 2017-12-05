@@ -10,7 +10,7 @@ public class ShapeBulletBase : MonoBehaviour
 
     protected void MakeBulletPool(int bulletNum)
     {
-        ObjectManager.Instance.MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", this.transform, bulletNum);
+        ObjectManager.MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", this.transform, bulletNum);
     }
 
     protected void DestroyAllBullet()
