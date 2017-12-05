@@ -301,8 +301,8 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new CardCase());
-        AddWeapon(new ShotGun());
+        AddWeapon(new Mtw());
+      //  AddWeapon(new ShotGun());
     }
 
     public virtual void SetBurstSpeed(bool OnOff)

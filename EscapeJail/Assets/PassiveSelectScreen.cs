@@ -60,6 +60,8 @@ public class PassiveSelectScreen : MonoBehaviour
 
     private void MakeSlots()
     {
+        if (DatabaseLoader.Instance == null) return;
+
         Dictionary<PassiveType, PassiveDB> passiveDB = DatabaseLoader.Instance.passiveDB;
         if (passiveDB == null) return;
 

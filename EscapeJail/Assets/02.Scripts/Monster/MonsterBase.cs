@@ -299,7 +299,7 @@ public class MonsterBase : CharacterInfo
         StopAllCoroutines();
 
         //스코어 올려줌
-        ScoreBoard.Instance.GetScore();
+      //  ScoreBoard.Instance.GetScore();
 
         //무기꺼중
         if (weaponPosit != null)

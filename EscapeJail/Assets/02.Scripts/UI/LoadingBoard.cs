@@ -17,18 +17,27 @@ public class LoadingBoard : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-    }
-    // Use this for initialization
-    void Start()
-    {
-
-        iTween.FadeTo(this.gameObject, 0f, 5f);
-    }
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Instance = null;
+            Instance = this;
+        }
+        LoadingStart();
+    }        
 
     public void LoadingEnd()
     {
-        StartCoroutine(fadeRoutine());
+        iTween.FadeTo(this.gameObject, 0f, 1f);
+        StartCoroutine(OffImages());
+    }
+    IEnumerator OffImages()
+    {
+        yield return new WaitForSeconds(1.0f);
+        ImageAndTextOnOff(false);
     }
 
     public void LoadingStart()
@@ -39,31 +48,7 @@ public class LoadingBoard : MonoBehaviour
     }
 
  
-    IEnumerator fadeRoutine()
-    {
-        float count = 0f;
-        float alphaValue = 1f;
-        while (true)
-        {
-            alphaValue = Mathf.Lerp(1f, 0f, count / fadeTime);         
-
-            SetAlphaToImage(alphaValue);
-
-             count += Time.deltaTime;
-
-            if (count > fadeTime)
-            {
-                SetAlphaToImage(1f);
-                ImageAndTextOnOff(false);
-                yield break;
-            }
-
-            yield return null;
-
-        }
-
-
-    }
+   
 
     private void SetAlphaToImage(float alpha)
     {
