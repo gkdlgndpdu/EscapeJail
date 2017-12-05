@@ -6,15 +6,16 @@ namespace weapon
     public class K_Cobra : Weapon
     {
 
-        //리볼버 반동
-        private float reBoundValue = 5f;
+    
 
         public K_Cobra()
         {
             weapontype = WeaponType.K_Cobra;
+            SetWeaponKind(WeaponKind.Pistol);
+            SetReBound(5f);
+
             bulletSpeed = 12f;
-            fireDelay = 1f;
-            SetAmmo(100);
+            fireDelay = 0.8f;      
             needBulletToFire = 1;
             damage = 3;
 
@@ -27,12 +28,13 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("pistol2");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

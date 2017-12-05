@@ -6,17 +6,17 @@ namespace weapon
     public class M400 : Weapon
     {
 
-        //리볼버 반동
-        private float reBoundValue = 6f;
+  
 
         public M400()
         {
             weapontype = WeaponType.M400;
-            bulletSpeed = 10f;
-            fireDelay = 0.1f; 
-            damage = 1;
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
+   
+            SetWeaponKind(WeaponKind.AR);
+            SetReBound(6f);
+            damage = 2;
+            bulletSpeed = 13f;
+            fireDelay = 0.15f;
             needBulletToFire = 1;
             weaponScale = Vector3.one * 2.5f;
 
@@ -31,12 +31,12 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
-
+            SoundManager.Instance.PlaySoundEffect("Sample");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 fireDir.Normalize();
                 bullet.Initialize(firePos + fireDir * 0.5f+Vector3.up*0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);

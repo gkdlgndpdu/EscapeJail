@@ -4,8 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 namespace weapon
 {
+    public enum WeaponKind
+    {
+        Pistol,
+        AR,
+        SMG,
+    }
+
     //WeaponTable과 연동
     //반드시 클래스명과 일치해야 함
     public enum WeaponType
@@ -117,7 +126,7 @@ namespace weapon
     public class Weapon : ItemBase
     {
         protected Animator animator;
-
+        private WeaponKind weaponKind;
 
         protected BulletType bulletType;
         protected AttackType attackType = AttackType.gun;
@@ -149,6 +158,16 @@ namespace weapon
         public Color slashColor = Color.green;
         public Vector3 slashSize = Vector3.one * 7f;
 
+        private float reBoundValue = 5f;
+        public float ReBoundValue
+        {
+            get
+            {
+
+                return reBoundValue;
+            }
+        }
+
         //반동관련
         protected float reboundDuringFire = 0f;
         protected bool hasRebuondDuringFire = false;
@@ -163,7 +182,7 @@ namespace weapon
 
         public void GetBullet()
         {
-            nowAmmo = maxAmmo;            
+            nowAmmo = maxAmmo;
         }
         public void Initialize(Animator animator)
         {
@@ -189,6 +208,17 @@ namespace weapon
             }
         }
 
+        protected void SetWeaponKind(WeaponKind kind)
+        {
+            this.weaponKind = kind;
+            SetAmmoByKind();
+        }
+
+        protected void SetReBound(float bound)
+        {
+            reBoundValue = bound;
+        }
+
         public virtual void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             Debug.Log("자식에서 구현");
@@ -203,24 +233,24 @@ namespace weapon
 
         protected void AddRebound()
         {
-            if (reboundDuringFire<= maxRebound)
+            if (reboundDuringFire <= maxRebound)
                 reboundDuringFire += reboundAddValue;
 
-        
+
         }
 
-    
+
 
         /// <summary>
         /// normalize 값 반환
         /// </summary>       
         protected Vector3 ApplyReboundDirection(Vector3 originDir)
         {
-            Vector3 returnValue = Quaternion.Euler(0f, 0f,UnityEngine.Random.Range(-reboundDuringFire, reboundDuringFire)) * originDir;
+            Vector3 returnValue = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(-reboundDuringFire, reboundDuringFire)) * originDir;
             return returnValue.normalized;
         }
 
-        public void WeaponUpdate(Slider slider = null,Slider reboundSlider =null)
+        public void WeaponUpdate(Slider slider = null, Slider reboundSlider = null)
         {
             if (hasRebuondDuringFire == true)
             {
@@ -237,7 +267,7 @@ namespace weapon
                 }
 
                 if (reboundDuringFire > 0f)
-                {                
+                {
                     reboundDuringFire -= reboundRecoverValue * Time.deltaTime;
                     if (reboundSlider != null)
                     {
@@ -278,11 +308,11 @@ namespace weapon
                 return;
             }
 
-    
+
             if (slider != null)
-            {              
-                    slider.gameObject.SetActive(true);
-                    slider.value = fireCount / fireDelay;          
+            {
+                slider.gameObject.SetActive(true);
+                slider.value = fireCount / fireDelay;
 
             }
 
@@ -300,9 +330,9 @@ namespace weapon
                 animator.SetTrigger("FireTrigger");
         }
 
-   
 
-        protected void SetReboundDuringFire(float addValue,float recoverValue,float maxRebound = 45f)
+
+        protected void SetReboundDuringFire(float addValue, float recoverValue, float maxRebound = 45f)
         {
             hasRebuondDuringFire = true;
             reboundDuringFire = 0f;
@@ -317,13 +347,29 @@ namespace weapon
 
         protected void SetAmmo(int num)
         {
-            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedMag&&num!=1)
+            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedMag && num != 1)
             {
                 num += (int)((float)num * 0.5f);
             }
 
             nowAmmo = num;
             maxAmmo = num;
+        }
+
+        private void SetAmmoByKind()
+        {
+            switch (weaponKind)
+            {
+                case WeaponKind.Pistol:
+                    SetAmmo(100);
+                    break;
+                case WeaponKind.AR:
+                    SetAmmo(200);
+                    break;
+                case WeaponKind.SMG:
+                    SetAmmo(150);
+                    break;
+            }
         }
 
         protected void SetNearWeapon(Color slashColor, Vector3 slashSize)
@@ -334,7 +380,7 @@ namespace weapon
             SetAmmo(1);
         }
 
-        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage ,Color color =default(Color), bool setPush = false,float pushPower = 3f)
+        protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage, Color color = default(Color), bool setPush = false, float pushPower = 3f)
         {
             int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
             Ray2D ray = new Ray2D(firePos, fireDirection);
@@ -363,7 +409,7 @@ namespace weapon
             }
         }
 
-    
+
 
     }
 }

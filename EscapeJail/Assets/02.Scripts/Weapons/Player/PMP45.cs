@@ -5,15 +5,16 @@ namespace weapon
 {
     public class PMP45 : Weapon
     {
-
-        private float reBoundValue = 20f;
+     
 
         public PMP45()
         {
             weapontype = WeaponType.PMP45;
+            SetWeaponKind(WeaponKind.SMG);
+            SetReBound(20f);
+
             bulletSpeed = 10f;
-            fireDelay = 0.08f;
-            SetAmmo(999);
+            fireDelay = 0.08f;        
             needBulletToFire = 1;
             damage = 1;
         }
@@ -25,14 +26,14 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("rifle3");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
                 fireDir.Normalize();
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.3f, damage, 0.4f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

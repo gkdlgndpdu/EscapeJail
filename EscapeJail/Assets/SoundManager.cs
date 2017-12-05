@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.loop = true;
             LoadSounds();
 
-            PlayerBgm("Main");
+         //   PlayerBgm("Main");
 
             DontDestroyOnLoad(Instance.gameObject);
         }

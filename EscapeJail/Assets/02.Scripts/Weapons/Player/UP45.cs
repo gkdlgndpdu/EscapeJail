@@ -6,15 +6,15 @@ namespace weapon
     public class UP45 : Weapon
     {
 
-        //리볼버 반동
-        private float reBoundValue = 5f;
 
         public UP45()
         {
             weapontype = WeaponType.UP45;
+            SetWeaponKind(WeaponKind.Pistol);
+            SetReBound(5f);
             bulletSpeed = 10f;
             fireDelay = 0.5f;
-            SetAmmo(10);
+            
             needBulletToFire = 1;
             damage = 2;
         }
@@ -26,12 +26,14 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
+            SoundManager.Instance.PlaySoundEffect("pistol1");
+
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

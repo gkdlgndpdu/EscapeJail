@@ -6,15 +6,15 @@ namespace weapon
     public class HP5 : Weapon
     {
 
-        //리볼버 반동
-        private float reBoundValue = 20f;
 
         public HP5()
         {
             weapontype = WeaponType.HP5;
+            SetWeaponKind(WeaponKind.SMG);
+            SetReBound(20f);
+
             bulletSpeed = 10f;
-            fireDelay = 0.1f;
-            SetAmmo(999);
+            fireDelay = 0.1f;         
             needBulletToFire = 1;
             damage = 1;
         }
@@ -26,14 +26,14 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("smg5");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
                 fireDir.Normalize();
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.4f, damage, 0.6f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

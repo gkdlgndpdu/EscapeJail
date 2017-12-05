@@ -5,13 +5,14 @@ namespace weapon
 {
     public class DoubleP2 : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 10f;
+
 
         public DoubleP2()
         {
             weapontype = WeaponType.DoubleP2;
             bulletSpeed = 10f;
+            SetReBound(10f);
+            SetWeaponKind(WeaponKind.SMG);
             fireDelay = 0.03f;
             SetAmmo(999);
             needBulletToFire = 1;
@@ -30,14 +31,14 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("pistol5");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
                 fireDir.Normalize();
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.3f, 1, 0.5f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

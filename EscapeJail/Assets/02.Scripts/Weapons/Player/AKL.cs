@@ -6,17 +6,18 @@ namespace weapon
     public class AKL : Weapon
     {
 
-        //리볼버 반동
-        private float reBoundValue = 15f;
+   
 
         public AKL()
         {
             weapontype = WeaponType.AKL;
+            SetReBound(15f);
+            SetWeaponKind(WeaponKind.AR);
+
             bulletSpeed = 15f;
             fireDelay = 0.18f;
             damage = 2;
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
+      
             needBulletToFire = 1;          
            
 
@@ -30,13 +31,13 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
-          
+            SoundManager.Instance.PlaySoundEffect("pistol2");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 fireDir.Normalize();
                 bullet.Initialize(firePos + fireDir * 0.6f+Vector3.up*0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);

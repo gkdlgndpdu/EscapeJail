@@ -301,8 +301,9 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Mtw());
-      //  AddWeapon(new ShotGun());
+        AddWeapon(new DoubleP2());
+        AddWeapon(new Revolver());
+        //  AddWeapon(new ShotGun());
     }
 
     public virtual void SetBurstSpeed(bool OnOff)

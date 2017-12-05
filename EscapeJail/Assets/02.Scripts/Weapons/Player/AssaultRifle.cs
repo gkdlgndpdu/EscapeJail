@@ -6,18 +6,17 @@ namespace weapon
 {
     public class AssaultRifle : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 3f;
+   
 
         public AssaultRifle()
         {
             weapontype = WeaponType.AssaultRifle;
-            bulletSpeed = 15f;
-            fireDelay = 0.1f;
-            damage = 10;
+            SetReBound(3f);
+            SetWeaponKind(WeaponKind.AR);
 
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
+            bulletSpeed = 15f;
+            fireDelay = 0.2f;
+            damage = 1;       
             needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(-0.56f, 0f, 0f);
@@ -39,7 +38,7 @@ namespace weapon
             if (bullet != null)
             {
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 fireDir.Normalize();
                 bullet.Initialize(firePos+ fireDir*0.5f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1);
                 bullet.InitializeImage("white", false);

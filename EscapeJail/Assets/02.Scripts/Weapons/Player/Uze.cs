@@ -5,15 +5,15 @@ namespace weapon
 {
     public class Uze : Weapon
     {
-              
-        private float reBoundValue =40f;
+                 
 
         public Uze()
         {
             weapontype = WeaponType.Uze;
+            SetWeaponKind(WeaponKind.SMG);
+            SetReBound(40f);
             bulletSpeed = 10f;
-            fireDelay = 0.08f;
-            SetAmmo(999);
+            fireDelay = 0.04f;    
             needBulletToFire = 1;
             damage = 1;
         }
@@ -32,7 +32,7 @@ namespace weapon
 
                 Vector3 fireDir = fireDirection;
                 fireDir.Normalize();
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 bullet.Initialize(firePos + fireDir * 0.6f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.3f, damage,0.4f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");

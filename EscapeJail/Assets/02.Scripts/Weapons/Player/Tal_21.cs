@@ -4,18 +4,17 @@ using UnityEngine;
 namespace weapon
 {
     public class Tal_21 : Weapon
-    {
-        //리볼버 반동
-        private float reBoundValue = 0f;
+    { 
 
         public Tal_21()
         {
             weapontype = WeaponType.Tal_21;
-            bulletSpeed = 15f;
+            SetWeaponKind(WeaponKind.AR);
+            SetReBound(0f);
+
+            bulletSpeed = 16f;
             fireDelay = 0.1f;
-            damage = 1;
-            maxAmmo = 1000;
-            nowAmmo = maxAmmo;
+            damage = 1;      
             needBulletToFire = 1;
             weaponScale = Vector3.one * 2.5f;
    
@@ -29,13 +28,13 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("pistol9");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
                 fireDir.Normalize();
                 bullet.Initialize(firePos + fireDir * 0.5f, fireDir, bulletSpeed, BulletType.PlayerBullet, 0.5f, damage);
                 bullet.InitializeImage("white", false);

@@ -29,14 +29,7 @@ public class Soldier : CharacterBase
     {   
         if (isDodge == true) return;
         base.Update();
-#if UNITY_EDITOR
-        //임시코드
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            UseCharacterSkill();
-        }
-        //임시코드
-#endif
+
     }
 
     private void DodgeOn()
