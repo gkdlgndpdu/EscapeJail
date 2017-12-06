@@ -9,13 +9,11 @@ namespace weapon
         public ShotGun()
         {
             weapontype = WeaponType.ShotGun;
+            SetWeaponKind(WeaponKind.ShotGun);
             bulletSpeed = 10f;
-            fireDelay = 1f;
-
-            SetAmmo(30);
+            fireDelay = 1f;       
             needBulletToFire = 1;
-            weaponScale = Vector3.one * 3;
-            relativePosition = new Vector3(-0.65f, 0f, 0f);
+
 
         }
 
@@ -26,7 +24,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("ShotGun");
             Vector3 fireDir = fireDirection;
 
 

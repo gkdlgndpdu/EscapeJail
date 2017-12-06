@@ -287,7 +287,7 @@ public class CharacterBase : CharacterInfo
 
         }
     }
-
+    
     protected void BuffEffectOnOff(bool OnOff)
     {
         if (buffEffect != null)
@@ -301,7 +301,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new DoubleP2());
+        AddWeapon(new MindArrow());
         AddWeapon(new Revolver());
         //  AddWeapon(new ShotGun());
     }
@@ -513,7 +513,7 @@ public class CharacterBase : CharacterInfo
     public void ChangeWeapon()
     {
         if (weaponHandler == null) return;
-
+        
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
 
         if (weaponHandler.NowWeapon != null)
@@ -559,7 +559,14 @@ public class CharacterBase : CharacterInfo
             {
                 weaponPosit.rotation = Quaternion.Euler(0f, 0f, weaponAngle);
             }
-        } 
+        }
+        else
+        {
+            if (weaponPosit != null)
+            {
+                weaponPosit.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+        }
 
      
 

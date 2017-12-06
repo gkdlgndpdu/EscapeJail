@@ -6,17 +6,18 @@ namespace weapon
     public class PowerGauntlet : Weapon
     {
 
-        private float reBoundValue = 0f;
+
         private float explosionRadius = 5f;
-        private int multiDamage=3;
+        private int multiDamage=5;
         
         public PowerGauntlet()
         {
             SetNearWeapon(Color.yellow, Vector3.one * 8f);
 
-            weapontype = WeaponType.PowerGauntlet;   
-            fireDelay = 0.4f;
-            SetAmmo(100);
+            weapontype = WeaponType.PowerGauntlet;
+            SetWeaponKind(WeaponKind.Special);
+            fireDelay = 1f;
+            SetAmmo(30);
             needBulletToFire = 1;
 
         }
@@ -27,6 +28,8 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+
+            SoundManager.Instance.PlaySoundEffect("powergauntlet");
 
             //밀어내기
 
@@ -40,7 +43,7 @@ namespace weapon
             {
                 CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
                 if (characterInfo != null)
-                    characterInfo.SetPush(firePos,3f, multiDamage);
+                    characterInfo.SetPush(firePos,10f, multiDamage);
             }
 
             //이펙트

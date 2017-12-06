@@ -14,12 +14,12 @@ public class BoomerangBullet : PlayerSpecialBullet
     private Vector3 moveDir = Vector3.zero;
     private float ThrowTime = 1f;
     private Transform playerTr;
-
+    private float originSpeed;
     private new void Awake()
     {
         base.Awake();
         moveSpeed = 5f;
-
+        originSpeed = moveSpeed;
     }
 
     void Start()
@@ -33,6 +33,7 @@ public class BoomerangBullet : PlayerSpecialBullet
         this.damage = damage;
         this.transform.position = firePos;
         this.moveDir = fireDir.normalized;
+        this.moveSpeed = originSpeed;
         StartCoroutine(ThrowRoutine());
 
     }
@@ -65,6 +66,8 @@ public class BoomerangBullet : PlayerSpecialBullet
 
         if (rb != null)
             rb.velocity = moveDir.normalized * moveSpeed;
+
+        moveSpeed += Time.deltaTime*1.3f;
 
         float dist = Vector3.Distance(this.transform.position, playerTr.transform.position);
         if (dist < 0.1f)

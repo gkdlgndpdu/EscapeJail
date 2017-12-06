@@ -9,15 +9,16 @@ namespace weapon
     {
         public LightSaber()
         {     
-            SetNearWeapon(Color.green, Vector3.one * 8f);
+            SetNearWeapon(Color.green, Vector3.one * 15f);
 
 
             weapontype = WeaponType.LightSaber;
-            fireDelay = 0f;
+            fireDelay = 0.5f;
             maxAmmo = 1;
             nowAmmo = 1;
             needBulletToFire = 1;
-            damage = 10;
+            
+            damage = 4;
             weaponScale = Vector3.one * 4f;
        
         }
@@ -28,7 +29,7 @@ namespace weapon
 
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("lightsaber");
 
         }
 

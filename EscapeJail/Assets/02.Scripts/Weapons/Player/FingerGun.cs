@@ -15,7 +15,7 @@ namespace weapon
             fireDelay = 0.3f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 5;
+            damage = 4;
 
         }
 
@@ -26,7 +26,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
-
+            SoundManager.Instance.PlaySoundEffect("fingergun");
 
             FireHitScan(firePos, fireDirection, damage, CustomColor.SkinColor);
 

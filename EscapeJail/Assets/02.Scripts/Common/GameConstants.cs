@@ -27,7 +27,7 @@ public static class GameConstants
     public static float StimulantDurationTime = 30f;
 
     //섬광탄 스턴 지속시간
-    public static float FlashBangStunTime = 2f;
+    public static float FlashBangStunTime = 3f;
 
     //밀리는 시간
     public static float PushTime = 0.5f;

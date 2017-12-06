@@ -12,10 +12,10 @@ namespace weapon
         public Mjolnir()
         {
             SetNearWeapon(CustomColor.Silver, Vector3.one * 8f);
-            weapontype = WeaponType.Mjolnir;        
-
-            fireDelay = 0.4f;
-            SetAmmo(100);
+            weapontype = WeaponType.Mjolnir;
+            SetWeaponKind(WeaponKind.Special);
+            fireDelay = 0.5f;
+            SetAmmo(30);
             needBulletToFire = 1;
             damage = 1;
 
@@ -31,7 +31,7 @@ namespace weapon
 
 
             int layerMask = MyUtils.GetLayerMaskByString("Enemy");
-
+            SoundManager.Instance.PlaySoundEffect("thunder");
 
             Collider2D[] colls = Physics2D.OverlapCircleAll(firePos, explosionRadius, layerMask);
             if (colls == null) return;

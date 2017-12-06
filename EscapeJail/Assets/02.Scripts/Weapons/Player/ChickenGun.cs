@@ -5,8 +5,6 @@ namespace weapon
 {
     public class ChickenGun : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 5f;
         private GameObject chickenEggPrefab;
 
         private void LoadPrefab()
@@ -19,9 +17,11 @@ namespace weapon
             LoadPrefab();
 
             weapontype = WeaponType.ChickenGun;
+            SetWeaponKind(WeaponKind.Special);
+
             bulletSpeed = 13f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
             damage = 1;
 
@@ -35,6 +35,7 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
+            SoundManager.Instance.PlaySoundEffect("chickengun");
             if(chickenEggPrefab!=null)
             GameObject.Instantiate(chickenEggPrefab, firePos, Quaternion.identity);
           

@@ -14,7 +14,7 @@ namespace weapon
             weapontype = WeaponType.Gramophone;
             bulletSpeed = 13f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(40);
             needBulletToFire = 1;
             damage = 1;
 
@@ -27,6 +27,8 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("gromophone");
+
             for(int i = 0; i < 3; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
@@ -38,6 +40,7 @@ namespace weapon
                     bullet.Initialize(firePos + fireDir * 0.1f, fireDir, bulletSpeed, BulletType.PlayerBullet, 1f, damage);
                     bullet.InitializeImage("GramophoneBullet", true);
                     bullet.SetEffectName("revolver");
+                    bullet.SetDestroyByCollision(false, false);
                     bullet.SetBloom(false);
                 }
 

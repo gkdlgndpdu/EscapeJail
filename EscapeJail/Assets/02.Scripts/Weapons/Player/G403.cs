@@ -5,16 +5,17 @@ namespace weapon
 {
     public class G403 : Weapon
     {
-        private float reBoundValue = 0f;
         private GameObject mouseBullet;
         public G403()
         {
             weapontype = WeaponType.G403;
+            SetWeaponKind(WeaponKind.Special);
+            SetAmmo(50);
+
             bulletSpeed = 10f;
             fireDelay = 0.4f;
-            SetAmmo(100);
             needBulletToFire = 1;
-            damage = 1;
+            damage = 5;
             LoadPrefab();
         }
 
@@ -30,7 +31,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
-
+            SoundManager.Instance.PlaySoundEffect("Mouse");
             if (mouseBullet != null)
             {
                 GameObject makeObj = GameObject.Instantiate(mouseBullet, TemporaryObjects.Instance.transform);

@@ -12,9 +12,10 @@ namespace weapon
         public Boomerang()
         {
             weapontype = WeaponType.Boomerang;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
             damage = 1;
 
@@ -35,7 +36,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
-
+            SoundManager.Instance.PlaySoundEffect("Boomerang");
             if (loadObject != null)
             {
                 GameObject makeObj = GameObject.Instantiate(loadObject, TemporaryObjects.Instance.transform);

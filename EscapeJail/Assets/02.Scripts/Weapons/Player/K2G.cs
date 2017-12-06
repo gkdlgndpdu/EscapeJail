@@ -9,10 +9,12 @@ namespace weapon
         public K2G()
         {
             weapontype = WeaponType.K2G;
-            bulletSpeed = 13f;
-            fireDelay = 0.5f;
+            SetWeaponKind(WeaponKind.ShotGun);
 
-            SetAmmo(30);
+            bulletSpeed = 13f;
+            fireDelay = 0.3f;
+
+            SetAmmo(100);
             needBulletToFire = 1;
 
         }
@@ -24,7 +26,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("shotgun2");
             Vector3 firePosit = firePos;
             fireDirection.Normalize();
             Vector3 fireDir = fireDirection;

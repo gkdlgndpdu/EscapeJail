@@ -44,6 +44,8 @@ public class BfeBullet : MonoBehaviour
             {
                 for (int i = 0; i < colls.Length; i++)
                 {
+                    if(i==0)
+                        SoundManager.Instance.PlaySoundEffect("electric");
                     CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
                     if (characterInfo != null)
                         characterInfo.GetDamage(ticDamage);
@@ -57,7 +59,7 @@ public class BfeBullet : MonoBehaviour
 
                 }
             }
-
+   
             yield return new WaitForSeconds(0.5f);
         }
     }

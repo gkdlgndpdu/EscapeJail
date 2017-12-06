@@ -13,12 +13,12 @@ namespace weapon
         public Dragunoob()
         {
             weapontype = WeaponType.Dragunoob;
+            SetWeaponKind(WeaponKind.Sniper);
             bulletSpeed = 10f;
-            fireDelay = 0.4f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.4f;           
             needBulletToFire = 1;
             damage = 2;
+            SetAmmo(50);
 
         }
 
@@ -29,8 +29,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
-            //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
+            SoundManager.Instance.PlaySoundEffect("sniper5");   
             FireHitScan(firePos + Vector3.up * 0.1f, fireDirection, damage);
         }
 

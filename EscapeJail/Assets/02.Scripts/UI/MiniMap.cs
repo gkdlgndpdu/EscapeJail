@@ -46,7 +46,10 @@ public class MiniMap : MonoBehaviour
 
     private MiniMap_PlayerIcon playerIcon;
 
-    private int mapModuleLayerMask; 
+    private int mapModuleLayerMask;
+
+    [SerializeField]
+    private Transform allParent;
 
     public void ChangeMiniMapMode()
     {
@@ -66,7 +69,17 @@ public class MiniMap : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Instance = null;
+            Instance = this;
+
+        }
+  
         LoadPrefab();
 
         iconsParent.transform.localScale = Vector3.one * realRatio;

@@ -8,7 +8,7 @@ namespace weapon
 
         public Sword()
         {
-            SetNearWeapon(Color.white, Vector3.one * 8f);
+            SetNearWeapon(Color.white, Vector3.one * 10f);
 
 
             weapontype = WeaponType.Sword;
@@ -25,7 +25,7 @@ namespace weapon
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-
+            SoundManager.Instance.PlaySoundEffect("swings2");
             FireDelayOn();
             PlayFireAnim();
         }

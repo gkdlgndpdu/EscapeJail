@@ -282,7 +282,7 @@ public class Bullet : MonoBehaviour
         else
             layerMask = MyUtils.GetLayerMaskByString("Player");
 
-
+        
         Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, explosionRadius, layerMask);
         if (colls == null) return;
 
@@ -292,6 +292,7 @@ public class Bullet : MonoBehaviour
             if (characterInfo != null)
                 characterInfo.GetDamage(power);
         }
+        SoundManager.Instance.PlaySoundEffect("explosion");
 
     }
 
@@ -385,6 +386,7 @@ public class Bullet : MonoBehaviour
         ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
         if (effect != null)
             effect.Initilaize(this.transform.position, effectName, 0.5f, effectsize);
+
     }
 
 

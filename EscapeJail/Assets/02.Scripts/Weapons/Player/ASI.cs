@@ -4,20 +4,16 @@ using UnityEngine;
 namespace weapon
 {
     public class ASI : Weapon
-    {
-
-        //리볼버 반동
-        private float reBoundValue = 0f;
+    {     
 
         public ASI()
         {
             weapontype = WeaponType.ASI;
+            SetWeaponKind(WeaponKind.Sniper);
             bulletSpeed = 10f;
-            fireDelay = 1f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.9f; 
             needBulletToFire = 1;       
-            damage = 10;
+            damage = 5;
 
         }
 
@@ -28,7 +24,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("sniper9");
             //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
             FireHitScan(firePos+Vector3.up*0.1f, fireDirection, damage);
         }

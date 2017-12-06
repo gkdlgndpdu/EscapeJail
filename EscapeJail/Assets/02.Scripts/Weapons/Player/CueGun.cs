@@ -4,21 +4,17 @@ using UnityEngine;
 namespace weapon
 {
     public class CueGun : Weapon
-    {
-
-        //리볼버 반동
-        private float reBoundValue = 5f;
+    {  
         private GameObject bounceBullet;
         public CueGun()
         {
             weapontype = WeaponType.CueGun;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
             damage = 1;
-
-
 
         }
 
@@ -31,7 +27,7 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
-
+            SoundManager.Instance.PlaySoundEffect("cuegunfire");
 
             for(int i = 0; i < 5; i++)
             {

@@ -17,7 +17,7 @@ public class ArmorSystem
         this.inventoryUi = InventroyUi;
         this.playerUi = playerUi;
         this.updateFunc = updateFunc;
-
+        
         remainArmor = 0;
         maxArmor = 0;
 

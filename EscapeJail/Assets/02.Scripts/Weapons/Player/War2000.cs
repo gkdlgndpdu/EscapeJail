@@ -12,11 +12,12 @@ namespace weapon
         public War2000()
         {
             weapontype = WeaponType.War2000;
+            SetWeaponKind(WeaponKind.Sniper);
+
             bulletSpeed = 10f;
-            fireDelay = 0.5f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.4f;         
             needBulletToFire = 1;
+            SetAmmo(50);
             damage = 3;
 
         }
@@ -28,7 +29,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("sniper1");
             //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
             FireHitScan(firePos + Vector3.up * 0.1f, fireDirection, damage,CustomColor.Orange);
         }

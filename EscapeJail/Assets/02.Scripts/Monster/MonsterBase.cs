@@ -322,10 +322,12 @@ public class MonsterBase : CharacterInfo
 
         coin.Initiatlize(this.transform.position, 10,GoodsType.Coin);
 
+        //사운드
+        //SoundManager.Instance.PlaySoundEffect("monsterDown");
+         SoundManager.Instance.PlaySoundEffect("monsterHit");
 
-
-
-
+        isPushed = false;
+        isStun = false;
     }
 
     protected void ObjectOff()
@@ -570,6 +572,7 @@ public class MonsterBase : CharacterInfo
 
     public override void GetDamage(int damage)
     {
+
         VampiricGunEffect();
         this.hp -= damage;
         UpdateHud();

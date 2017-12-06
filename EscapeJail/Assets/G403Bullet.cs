@@ -26,6 +26,10 @@ public class G403Bullet : LivingBullet
         {
             chr.GetDamage(damage);
             DestroyBullet();
+
+            ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+            if (effect != null)
+                effect.Initilaize(this.transform.position, "revolver", 0.5f, 1f);
         }
     }
 

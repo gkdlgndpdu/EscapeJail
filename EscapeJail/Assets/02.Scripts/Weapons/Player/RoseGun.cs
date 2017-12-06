@@ -5,14 +5,15 @@ namespace weapon
 {
     public class RoseGun : Weapon
     {
-        private float reBoundValue = 0f;
+ 
 
         public RoseGun()
         {
             weapontype = WeaponType.RoseGun;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 10f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
 
         }
@@ -23,12 +24,12 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("swings2");
 
             SpecialBullet bullet = ObjectManager.Instance.specialBulletPool.GetItem();
             if (bullet != null)
             {
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, SpecialBulletType.Poison, 1.5f, 1, 2f);
                 bullet.SetEffectName("GasGunExplostion", 1);
                 bullet.InitializeImage("RoseGunBullet", false);

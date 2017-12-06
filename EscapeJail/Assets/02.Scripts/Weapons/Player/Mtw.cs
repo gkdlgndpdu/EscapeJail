@@ -12,12 +12,11 @@ namespace weapon
         public Mtw()
         {
             weapontype = WeaponType.Mtw;
-            bulletSpeed = 10f;
-            fireDelay = 4f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            SetWeaponKind(WeaponKind.Sniper);
+
+            fireDelay = 3f;           
             needBulletToFire = 1;
-            damage = 25;
+            damage = 22;
 
         }
 
@@ -28,7 +27,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("sniper10");
             //   int layerMask = MyUtils.GetLayerMaskByString("Enemy");
             FireHitScan(firePos + Vector3.up * 0.1f, fireDirection, damage);
         }

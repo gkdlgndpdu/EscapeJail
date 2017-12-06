@@ -9,10 +9,10 @@ namespace weapon
         public PumpAction()
         {
             weapontype = WeaponType.PumpAction;
+            SetWeaponKind(WeaponKind.ShotGun);
             bulletSpeed = 10f;
             fireDelay = 1f;
-
-            SetAmmo(30);        
+      
             needBulletToFire = 1;       
 
         }
@@ -27,8 +27,8 @@ namespace weapon
 
             Vector3 firePosit = firePos;
             fireDirection.Normalize();
-
-            for (int i = 0; i < 4; i++)
+            SoundManager.Instance.PlaySoundEffect("ShotGun");
+            for (int i = 0; i < 5; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 Vector3 fd = Quaternion.Euler(0f, 0f, Random.Range(-8f,8f)) * fireDirection;

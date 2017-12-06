@@ -10,9 +10,11 @@ namespace weapon
         public BomberGun()
         {
             weapontype = WeaponType.BomberGun;
+            SetWeaponKind(WeaponKind.Special);
+
             bulletSpeed = 10f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(30);
             needBulletToFire = 1;
             damage = 5;
             LoadPrefab();
@@ -30,6 +32,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("bombergun");
 
             if (bomberGunBullet != null)
             {

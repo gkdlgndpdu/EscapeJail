@@ -9,11 +9,12 @@ namespace weapon
         public Spa20()
         {
             weapontype = WeaponType.Spa20;
+            SetWeaponKind(WeaponKind.ShotGun);
             bulletSpeed = 10f;
-            fireDelay = 0.3f;
-            SetAmmo(10000);
-            needBulletToFire = 5;
+            fireDelay = 0.3f;  
+            needBulletToFire = 1;
             SetReboundDuringFire(10f, 5f);
+            SetAmmo(100);
 
         }
 
@@ -28,7 +29,7 @@ namespace weapon
             PlayFireAnim();
 
             Vector3 firePosit = firePos;
-
+            SoundManager.Instance.PlaySoundEffect("shotgun1");
             AddRebound();
             fireDirection = ApplyReboundDirection(fireDirection);
 

@@ -5,18 +5,17 @@ namespace weapon
 {
     public class GuitarCase : Weapon
     {
-
-        //리볼버 반동
-        private float reBoundValue = 0f;
+            
 
         public GuitarCase()
         {
             weapontype = WeaponType.GuitarCase;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
-            fireDelay = 0.4f;
-            SetAmmo(100);
+            fireDelay = 1f;
+            SetAmmo(30);
             needBulletToFire = 1;
-            damage = 1;
+            damage = 5;
 
         }
 
@@ -27,6 +26,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("guitarcase");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
