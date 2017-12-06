@@ -13,6 +13,10 @@ namespace weapon
         Pistol,
         AR,
         SMG,
+        Special,
+        ShotGun,
+        Sniper,
+        MG,
     }
 
     //WeaponTable과 연동
@@ -192,7 +196,9 @@ namespace weapon
         public bool canFire()
         {
             if (nowAmmo <= 0)
+            {         
                 return false;
+            }
             else if (isFireDelayFinish == false)
                 return false;
             else
@@ -368,6 +374,17 @@ namespace weapon
                     break;
                 case WeaponKind.SMG:
                     SetAmmo(150);
+                    break;
+                case WeaponKind.Special:
+                    break;
+                case WeaponKind.ShotGun:
+                    SetAmmo(50);
+                    break;
+                case WeaponKind.Sniper:
+                    SetAmmo(30);
+                    break;
+                case WeaponKind.MG:
+                    SetAmmo(300);
                     break;
             }
         }

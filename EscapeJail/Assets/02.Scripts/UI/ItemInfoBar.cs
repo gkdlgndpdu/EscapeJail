@@ -29,7 +29,12 @@ public class ItemInfoBar : MonoBehaviour
     {
         Instance = this;
     }
-                                  //item 인자가 null -> 무기상자가 들어옴
+
+    private void Start()
+    {
+        iTween.MoveTo(this.gameObject, hidePosit.position, moveSpeed);
+    }
+    //item 인자가 null -> 무기상자가 들어옴
     public void SetItemBar(ItemBase item, Action clickFunc,bool isSalesItem =false,int price =0)
     {
         iTween.MoveTo(this.gameObject, showPosit.position, moveSpeed);
@@ -125,16 +130,4 @@ public class ItemInfoBar : MonoBehaviour
             clickEvent(); 
     }
 
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -9,12 +9,11 @@ namespace weapon
         public SuperShort()
         {
             weapontype = WeaponType.SuperShort;
+            SetWeaponKind(WeaponKind.ShotGun);
+            SetAmmo(100);
             bulletSpeed = 10f;
-            fireDelay = 1f;
-
-            maxAmmo = 10000;
-            nowAmmo = maxAmmo;
-            needBulletToFire = 3;
+            fireDelay = 0.9f;        
+            needBulletToFire = 1;
 
         }
 
@@ -28,8 +27,8 @@ namespace weapon
 
             Vector3 firePosit = firePos;
             fireDirection.Normalize();
-
-            for (int i = 0; i < needBulletToFire; i++)
+            SoundManager.Instance.PlaySoundEffect("shotgun2");
+            for (int i = 0; i < 5; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)

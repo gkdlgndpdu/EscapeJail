@@ -5,21 +5,17 @@ namespace weapon
 {
     public class TenisBallShooter : Weapon
     {
-
-        //리볼버 반동
-        private float reBoundValue = 5f;
+    
 
         public TenisBallShooter()
         {
             weapontype = WeaponType.TenisBallShooter;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
             fireDelay = 0.4f;
             SetAmmo(100);
             needBulletToFire = 1;
-            damage = 1;
-
-
-
+            damage = 2;
         }
 
 
@@ -32,12 +28,14 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
+            SoundManager.Instance.PlaySoundEffect("tenisfire");
+
 
 
             BounceBullet bounceBullet = ObjectManager.Instance.bounceBulletPool.GetItem();
             if (bounceBullet != null)
             {
-                bounceBullet.Initialize(BulletType.PlayerBullet, firePos + fireDirection.normalized * 0.1f, fireDirection, 10f, 5, BounceBulletType.tenisBall);
+                bounceBullet.Initialize(BulletType.PlayerBullet, firePos + fireDirection.normalized * 0.1f, fireDirection, 10f, 5, BounceBulletType.tenisBall, damage);
             }
 
 

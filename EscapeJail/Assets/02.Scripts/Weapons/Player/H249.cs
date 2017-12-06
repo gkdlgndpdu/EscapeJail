@@ -10,20 +10,20 @@ namespace weapon
         public H249()
         {
             weapontype = WeaponType.H249;
+            SetWeaponKind(WeaponKind.MG);
             bulletSpeed = 10f;
-            fireDelay = 0.1f;
-            SetAmmo(999);
+            fireDelay = 0.1f;       
             needBulletToFire = 1;
             damage = 1;
 
-            SetReboundDuringFire(3f, 5f);
+            SetReboundDuringFire(1f, 5f);
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
             lastFireTime += Time.deltaTime * 1.1f;
-
+            SoundManager.Instance.PlaySoundEffect("pistol1");
             useBullet();
             FireDelayOn();
             PlayFireAnim();

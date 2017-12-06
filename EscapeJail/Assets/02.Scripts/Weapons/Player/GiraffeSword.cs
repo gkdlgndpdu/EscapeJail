@@ -7,8 +7,8 @@ namespace weapon
     {
         public GiraffeSword()
         {
-            SetNearWeapon(Color.yellow, Vector3.one * 10f);
-
+            SetNearWeapon(Color.yellow, Vector3.one * 20f);
+            SetWeaponKind(WeaponKind.Special);
             weapontype = WeaponType.GiraffeSword;
             fireDelay = 1f;
             needBulletToFire = 1;
@@ -19,7 +19,7 @@ namespace weapon
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-
+            SoundManager.Instance.PlaySoundEffect("girrafe");
             FireDelayOn();
             PlayFireAnim();
         }

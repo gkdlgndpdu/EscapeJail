@@ -264,7 +264,7 @@ public class DatabaseLoader : MonoBehaviour
              
             }
         }
-
+#if UNITY_EDITOR
         //디버깅
         foreach (KeyValuePair<MonsterName, MonsterDB> data in MonsterDB)
         {
@@ -272,6 +272,8 @@ public class DatabaseLoader : MonoBehaviour
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }
+#endif
+
 
     }
 
@@ -331,7 +333,7 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-
+#if UNITY_EDITOR
         //디버깅
         foreach (KeyValuePair<ItemType, ItemProbabilityDB> data in ItemProbabilityDB)
         {
@@ -339,6 +341,8 @@ public class DatabaseLoader : MonoBehaviour
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }
+#endif
+
 
     }
 
@@ -361,7 +365,7 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-
+#if UNITY_EDITOR
         //디버깅
         foreach (KeyValuePair<WeaponType, WeaponDB> data in WeaponDB)
         {
@@ -369,6 +373,8 @@ public class DatabaseLoader : MonoBehaviour
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }
+#endif
+
 
     }
 
@@ -391,6 +397,7 @@ public class DatabaseLoader : MonoBehaviour
         }
 
 
+#if UNITY_EDITOR
         //디버깅
         foreach (KeyValuePair<PassiveType, PassiveDB> data in PassiveDB)
         {
@@ -398,6 +405,8 @@ public class DatabaseLoader : MonoBehaviour
             Debug.Log(debugmsg);
             sb.Append(debugmsg);
         }
+#endif
+
 
     }
 

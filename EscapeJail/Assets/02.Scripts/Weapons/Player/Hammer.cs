@@ -10,15 +10,15 @@ namespace weapon
 
         public Hammer()
         {           
-            SetNearWeapon(Color.gray, Vector3.one * 15f);
+            SetNearWeapon(Color.gray, Vector3.one * 30f);
 
 
             weapontype = WeaponType.Hammer;
-            fireDelay = 3f;
+            fireDelay = 30f;
        
       
             needBulletToFire = 1;
-            damage = 100;
+            damage = 50;
 
             weaponScale = Vector3.one * 3;
             relativePosition = new Vector3(0f, 0f, 0f);
@@ -29,6 +29,7 @@ namespace weapon
             if (canFire() == false) return;
             FireDelayOn();
             PlayFireAnim();
+            SoundManager.Instance.PlaySoundEffect("hammer");
         }
 
 

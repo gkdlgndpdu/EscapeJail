@@ -10,9 +10,10 @@ namespace weapon
         public HWMMG()
         {
             weapontype = WeaponType.HWMMG;
+            SetWeaponKind(WeaponKind.MG);
+
             bulletSpeed = 10f;
-            fireDelay = 0.05f;
-            SetAmmo(999);
+            fireDelay = 0.05f;         
             needBulletToFire = 1;
             damage = 1;
 
@@ -27,7 +28,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("mg1");
             AddRebound();
             fireDirection = ApplyReboundDirection(fireDirection);
 

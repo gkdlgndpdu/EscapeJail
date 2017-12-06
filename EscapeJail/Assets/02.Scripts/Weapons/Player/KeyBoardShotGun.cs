@@ -11,11 +11,12 @@ namespace weapon
         public KeyBoardShotGun()
         {
             weapontype = WeaponType.KeyBoardShotGun;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
-            fireDelay = 0.7f;
-            SetAmmo(100);
-            needBulletToFire = 4;
-            damage = 1;
+            fireDelay = 1f;
+            SetAmmo(20);
+            needBulletToFire = 1;
+            damage = 2;
 
         }
 
@@ -27,7 +28,7 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
-
+            SoundManager.Instance.PlaySoundEffect("keyboardshotgun");
             Vector3 firePosit = firePos;
             for (int i = 0; i < 5; i++)
             {
@@ -36,7 +37,7 @@ namespace weapon
                 if (bullet != null)
                 {
                     bullet.gameObject.SetActive(true);
-                    bullet.Initialize(firePosit + (Vector3)Random.insideUnitCircle * 0.35f, fd.normalized, bulletSpeed, BulletType.PlayerBullet, 1f, 1, 0.7f);
+                    bullet.Initialize(firePosit + (Vector3)Random.insideUnitCircle * 0.35f, fd.normalized, bulletSpeed, BulletType.PlayerBullet, 1f, damage, 0.7f);
                     bullet.InitializeMultipleImage("KeyBoardShotGunBullet");
                     bullet.SetEffectName("revolver");
                     bullet.SetBloom(false);

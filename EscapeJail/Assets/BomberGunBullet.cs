@@ -39,6 +39,8 @@ public class BomberGunBullet : LivingBullet
         if (effect != null)
             effect.Initilaize(this.transform.position, "bazooka", 0.5f, 3f);
 
+        SoundManager.Instance.PlaySoundEffect("explosion");
+
         //삭제
         DestroyBullet();
     }

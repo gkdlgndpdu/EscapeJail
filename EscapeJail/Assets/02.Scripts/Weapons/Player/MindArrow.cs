@@ -12,9 +12,10 @@ namespace weapon
         public MindArrow()
         {
             weapontype = WeaponType.MindArrow;
+            SetWeaponKind(WeaponKind.Special);
             bulletSpeed = 13f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(20);
             needBulletToFire = 1;
             damage = 1;
             LoadPrefab();
@@ -34,7 +35,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
-
+            SoundManager.Instance.PlaySoundEffect("magicstick2");
             if (arrowPrefab != null)
             {
                 GameObject InstObj = GameObject.Instantiate(arrowPrefab);

@@ -9,11 +9,12 @@ namespace weapon
         public Saigong12()
         {
             weapontype = WeaponType.Saigong12;
-            bulletSpeed = 10f;
-            fireDelay = 0.3f;
-            SetAmmo(30);
+            SetWeaponKind(WeaponKind.ShotGun);
+            bulletSpeed = 15f;
+            fireDelay = 0.3f;      
             needBulletToFire = 1;
             SetReboundDuringFire(5f, 5f);
+            SetAmmo(100);
 
 
 
@@ -29,6 +30,8 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
 
+            SoundManager.Instance.PlaySoundEffect("shotgun3");
+
             Vector3 firePosit = firePos;
 
             AddRebound();
@@ -41,7 +44,7 @@ namespace weapon
                 if (bullet != null)
                 {
                     bullet.gameObject.SetActive(true);
-                    bullet.Initialize(firePosit + (Vector3)Random.insideUnitCircle * 0.4f + fireDirection * 0.25f, fireDirection, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.7f);
+                    bullet.Initialize(firePosit + (Vector3)Random.insideUnitCircle * 0.4f + fireDirection * 0.25f, fireDirection, bulletSpeed, BulletType.PlayerBullet, 0.5f, 1, 0.6f);
                     bullet.InitializeImage("white", false);
                     bullet.SetEffectName("revolver");
                 }

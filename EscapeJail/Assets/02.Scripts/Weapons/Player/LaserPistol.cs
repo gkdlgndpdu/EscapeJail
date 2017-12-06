@@ -11,9 +11,11 @@ namespace weapon
         public LaserPistol()
         {
             weapontype = WeaponType.LaserPistol;
-            bulletSpeed = 20f;
-            fireDelay = 0.2f;
+            SetWeaponKind(WeaponKind.Special);
             SetAmmo(100);
+
+            bulletSpeed = 20f;
+            fireDelay = 0.2f;           
             needBulletToFire = 1;
             weaponScale = Vector3.one * 2;
   
@@ -28,13 +30,15 @@ namespace weapon
 
             firePos += Vector3.up * 0.15f;
 
+            SoundManager.Instance.PlaySoundEffect("Laserpistol");
+
             SpecialBullet bullet = ObjectManager.Instance.specialBulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, SpecialBulletType.LaserBullet, 1f, 1);
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, SpecialBulletType.LaserBullet, 2f, 1);
                 bullet.SetBloom(true, Color.green);
 
             }

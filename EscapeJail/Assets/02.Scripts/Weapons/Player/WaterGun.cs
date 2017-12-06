@@ -9,33 +9,37 @@ namespace weapon
         public WaterGun()
         {
             weapontype = WeaponType.WaterGun;
-            bulletSpeed = 5f;
+            SetWeaponKind(WeaponKind.Special);
+            SetReBound(0f);
+            bulletSpeed = 13f;
             fireDelay = 0.3f;
-            SetAmmo(50);
+            SetAmmo(1);
             needBulletToFire = 1;
-            weaponScale = Vector3.one * 0.8f;
-            relativePosition = new Vector3(-0.23f, 0f, 0f);
+         
+            damage = 1;
+ 
 
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-
-            useBullet();
+            
             FireDelayOn();
             PlayFireAnim();
 
+            SoundManager.Instance.PlaySoundEffect("watergun");
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
-                bullet.gameObject.SetActive(true);
+
                 Vector3 fireDir = fireDirection;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 3, 1);
+                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-ReBoundValue, ReBoundValue)) * fireDir;
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, 1f, damage);
                 bullet.InitializeImage("watergun", true);
-                bullet.SetEffectName("watergun");
                 bullet.SetBloom(false);
-                bullet.SetExplosion(1f);
+                bullet.SetEffectName("revolver");
+
 
             }
 

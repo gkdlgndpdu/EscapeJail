@@ -68,6 +68,8 @@ public class CardCaseCard : MonoBehaviour
                 if (spriteRenderer != null)
                     spriteRenderer.sprite = data.Value;
                 nowCardType = data.Key;
+
+                SoundManager.Instance.PlaySoundEffect("cardShuffle");
                 yield return new WaitForSeconds(ShuffleDelay);
             }
        

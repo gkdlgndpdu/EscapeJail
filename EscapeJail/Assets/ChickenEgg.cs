@@ -75,6 +75,9 @@ public class ChickenEgg : MonoBehaviour
         if (effect != null)
             effect.Initilaize(this.transform.position, "bazooka", 0.5f, explosionRadius * 2f);
 
+        //사운드
+        SoundManager.Instance.PlaySoundEffect("explosion");
+  
         Destroy(this.gameObject);
     }
 

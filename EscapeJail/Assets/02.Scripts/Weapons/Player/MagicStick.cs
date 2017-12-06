@@ -5,11 +5,10 @@ namespace weapon
 {
     public class MagicStick : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 5f;
-
+        
         public MagicStick()
         {
+            SetWeaponKind(WeaponKind.Special);     
             weapontype = WeaponType.MagicStick;
             bulletSpeed = 13f;
             fireDelay = 0.4f;
@@ -28,7 +27,7 @@ namespace weapon
             useBullet();
             fireDirection.Normalize();
 
-
+            SoundManager.Instance.PlaySoundEffect("magic");
         
 
             for (int i = 0; i < 5; i++)

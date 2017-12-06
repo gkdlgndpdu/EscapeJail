@@ -4,19 +4,15 @@ using UnityEngine;
 namespace weapon
 {
     public class MemoryEraser : Weapon
-    {
-        //리볼버 반동
-        private float reBoundValue = 5f;
+    { 
 
         public MemoryEraser()
         {
             weapontype = WeaponType.MemoryEraser;
-            bulletSpeed = 13f;
-            fireDelay = 0.4f;
-            SetAmmo(100);
-            needBulletToFire = 1;
-            damage = 1;
+            SetWeaponKind(WeaponKind.Special);      
+            SetAmmo(10);
 
+            fireDelay = 10f;
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
@@ -27,6 +23,7 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
+            SoundManager.Instance.PlaySoundEffect("Memory");
             //스턴효과
             MonsterManager.Instance.StunAllMonster();
         }

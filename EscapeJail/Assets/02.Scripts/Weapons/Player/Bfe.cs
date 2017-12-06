@@ -5,15 +5,16 @@ namespace weapon
 {
     public class Bfe : Weapon
     {
-        //리볼버 반동
-        private float reBoundValue = 0f;
+   
         private GameObject bulletPrefab;
         public Bfe()
         {
             weapontype = WeaponType.Bfe;
+            SetWeaponKind(WeaponKind.Special);
+
             bulletSpeed = 5f;
             fireDelay = 0.4f;
-            SetAmmo(100);
+            SetAmmo(50);
             needBulletToFire = 1;
             damage = 1;
             LoadPrefab();
@@ -31,6 +32,7 @@ namespace weapon
             FireDelayOn();
             PlayFireAnim();
             useBullet();
+            SoundManager.Instance.PlaySoundEffect("pulse");
 
             if (bulletPrefab != null)
             {

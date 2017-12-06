@@ -85,6 +85,21 @@ public class BounceBullet : PlayerSpecialBullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (canCollision == false) return;
+        if (bounceBulletType == BounceBulletType.BillardsBall)
+        {
+            SoundManager.Instance.PlaySoundEffect("cueGunBounce");
+
+
+
+        }
+        else if (bounceBulletType == BounceBulletType.tenisBall) 
+        {
+            SoundManager.Instance.PlaySoundEffect("Tenisd");
+        }
+
+        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+        if (effect != null)
+            effect.Initilaize(this.transform.position, "revolver", 0.5f, 1f);
 
         bouncCount += 1;
         if (bouncCount >= bounceMax)

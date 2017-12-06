@@ -25,8 +25,8 @@ namespace weapon
         public CardCase()
         {
             weapontype = WeaponType.CardCase;
-            
-            fireDelay = 0.6f;
+            SetWeaponKind(WeaponKind.Special);
+            fireDelay = 0.4f;
             SetAmmo(100);   
             needBulletToFire = 1;
 
@@ -46,6 +46,8 @@ namespace weapon
             FireDelayOn();
             //애니메이션재생
             PlayFireAnim();
+
+            SoundManager.Instance.PlaySoundEffect("cardThrow");
 
             CardCaseCard card = GamePlayerManager.Instance.player.NowCard;
             if (card == null) return;
@@ -93,7 +95,7 @@ namespace weapon
                             if (bullet != null)
                             {                           
                                 fireDir = Quaternion.Euler(0f, 0f, -10f + 10f * i) * fireDirection;
-                                bullet.Initialize(firePos, fireDir.normalized, cloverSpeed, BulletType.PlayerBullet, 1.5f, cloverDamage, 0.5f);
+                                bullet.Initialize(firePos, fireDir.normalized, cloverSpeed, BulletType.PlayerBullet, 1.5f, cloverDamage, 1f);
                                 bullet.InitializeImage("Clover", false);
                                 bullet.SetEffectName("revolver");
                                 bullet.SetBloom(false);

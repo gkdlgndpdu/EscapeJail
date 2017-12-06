@@ -5,16 +5,13 @@ namespace weapon
 {
     public class Flamethrower : Weapon
     {
-        
-        private float reBoundValue = 0f;
-
+    
         public Flamethrower()
         {
             weapontype = WeaponType.Flamethrower;
             bulletSpeed = 10f;
             fireDelay = 0.3f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            SetAmmo(50);        
             needBulletToFire = 1;
             weaponScale = Vector3.one * 3;
     
@@ -26,14 +23,13 @@ namespace weapon
             PlayFireAnim();
             useBullet();
             FireDelayOn();
-         
 
+            SoundManager.Instance.PlaySoundEffect("FireThrower");
             SpecialBullet bullet = ObjectManager.Instance.specialBulletPool.GetItem();
             if (bullet != null)
             {
 
                 Vector3 fireDir = fireDirection;
-                fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.PlayerBullet, SpecialBulletType.Fire, 4f, 1);
              
 

@@ -88,6 +88,13 @@ public class WeaponHandler : MonoBehaviour
 
     public void FlipWeapon(bool value)
     {
+        if (CanRotateWeapon() == false)
+        {
+            if (spriteRenderer != null)
+                spriteRenderer.flipY = false;
+            return;
+        }
+       
         if (spriteRenderer != null)
             spriteRenderer.flipY = value;
     }
@@ -117,7 +124,7 @@ public class WeaponHandler : MonoBehaviour
         //무기가 있을때
         else
         {
-
+            SoundManager.Instance.PlaySoundEffect("changeWeapon");
             nowWeapon = weapon;
 
             attackType = nowWeapon.AttackType;
@@ -145,6 +152,9 @@ public class WeaponHandler : MonoBehaviour
                     if (hasIdleAnimation())
                         animator.speed = 1f;
                 }
+
+                if (CanRotateWeapon() == false)
+                    FlipWeapon(false);
             }
 
             //바뀐 무기가 근접무기일경우 근접무기 세팅
