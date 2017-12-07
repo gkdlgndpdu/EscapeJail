@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShopModule : MapModuleBase
 {
+    [SerializeField]
+    private Shop_Field shop;
     public List<Tile> GetWallList()
     {
         return wallTileList;
@@ -32,7 +34,8 @@ public class ShopModule : MapModuleBase
 
 
         MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
-
+        if(shop!=null)
+        shop.MakeItems();
     }
 
     public void GetMyTiles()

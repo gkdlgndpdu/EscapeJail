@@ -4768,6 +4768,7 @@ MonoBehaviour:
   widthNum: 8
   heightNum: 8
   normalTileList: []
+  shop: {fileID: 114033243905568782}
 --- !u!114 &114125706523198626
 MonoBehaviour:
   m_ObjectHideFlags: 1

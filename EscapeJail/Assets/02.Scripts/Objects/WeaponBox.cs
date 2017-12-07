@@ -48,7 +48,7 @@ public class WeaponBox : MonoBehaviour, iReactiveAction
             animator.speed= 1f;
 
         //무기 생성
-        ItemSpawner.Instance.SpawnWeapon(this.transform.position,this.transform);
+        ItemSpawner.Instance.SpawnWeapon(this.transform.position);
         
     }
 }

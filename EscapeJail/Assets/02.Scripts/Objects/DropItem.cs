@@ -79,8 +79,11 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
         if (itemBase.itemType == ItemType.Weapon)
         {
-            WeaponDB weaponData = DatabaseLoader.Instance.weaponDB[itemBase.weapontype];
-            price = weaponData.Probability * 100; 
+            WeaponDB weaponData = DatabaseLoader.Instance.GetWeaponDB(itemBase.weapontype);
+            if (weaponData != null)
+            {
+                price = weaponData.Probability * 100;
+            }
         }
         else
         {
@@ -192,7 +195,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     //반응키로 눌렀을때
     public void ClickAction()
     {
-        if (player == null) return;       
+        if (player == null) return;
 
         if (player.isInventoryFull() == true &&
             //가방 , 아머일때는 인벤토리 크기 상관 x

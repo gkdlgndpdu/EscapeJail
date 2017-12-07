@@ -10,12 +10,20 @@ public class SoundManager : MonoBehaviour
     private AudioSource bgmSource;
     private Dictionary<string, AudioClip> soundEffectPool;
     private Dictionary<string, AudioClip> bgmPool;
-    private float volume = 1f;
-    public float Volume
+    private float bgmVolume = 1f;
+    public float BgmVolume
     {
         get
         {
-            return volume;
+            return bgmVolume;
+        }
+    }
+    private float effectVolume = 1f;
+    public float EffectVolume
+    {
+        get
+        {
+            return effectVolume;
         }
     }
     private ObjectPool<EachSound> soundPool;
@@ -28,7 +36,7 @@ public class SoundManager : MonoBehaviour
             bgmPool = new Dictionary<string, AudioClip>();
             MakeSoundPool();
                 bgmSource = GetComponent<AudioSource>();
-            bgmSource.volume = volume;
+            bgmSource.volume = bgmVolume;
             bgmSource.loop = true;
             LoadSounds();
 
@@ -109,14 +117,14 @@ public class SoundManager : MonoBehaviour
         while (true)
         {
             count += Time.deltaTime;
-            countVolume = Mathf.Lerp(volume, 0f, count);
+            countVolume = Mathf.Lerp(bgmVolume, 0f, count);
 
             if (bgmSource != null)
                 bgmSource.volume = countVolume;
       
             if (count >= 1f)
             {
-                countVolume = volume;
+                countVolume = bgmVolume;
                 yield break;
             }
             yield return null;
@@ -134,14 +142,14 @@ public class SoundManager : MonoBehaviour
         while (true)
         {
             count += Time.deltaTime;
-            countVolume = Mathf.Lerp(0f, volume, count);
+            countVolume = Mathf.Lerp(0f, bgmVolume, count);
 
             if (bgmSource != null)
                 bgmSource.volume = countVolume;
        
             if (count >= 1f)
             {
-                countVolume = volume;
+                countVolume = bgmVolume;
                 yield break;
             }
             yield return null;
@@ -163,7 +171,7 @@ public class SoundManager : MonoBehaviour
         EachSound eachSound = soundPool.GetItem();
         if (eachSound != null)
         {
-            eachSound.Initialize(soundEffectPool[soundName], volume);
+            eachSound.Initialize(soundEffectPool[soundName], effectVolume);
         }
         
       //  AudioSource.PlayClipAtPoint(soundEffectPool[soundName], Camera.main.transform.position, volume);

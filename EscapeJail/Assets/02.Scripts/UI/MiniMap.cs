@@ -53,6 +53,8 @@ public class MiniMap : MonoBehaviour
 
     public void ChangeMiniMapMode()
     {
+        if (this.gameObject.activeSelf == false) return;
+
         count = 0f;
         if (miniMapState == MiniMapState.Origin)
         {
@@ -194,6 +196,8 @@ public class MiniMap : MonoBehaviour
         {
             count += Time.deltaTime;
             this.transform.position = Vector3.Lerp(this.transform.position, centerPosit.transform.position, count);
+
+
             maskTr.localScale = Vector3.Lerp(maskTr.localScale, maskMaxSize, count);
             iconsParent.localPosition = Vector3.zero;
 

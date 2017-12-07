@@ -25,6 +25,7 @@ public class StoryViewer : MonoBehaviour
     private char[] texts;
     private float textSpeed = 0.05f;
     private float commaDelayTime = 1f;
+    private bool isStoryAllShow = false;
 
     private void Start()
     {
@@ -68,6 +69,7 @@ public class StoryViewer : MonoBehaviour
 
        
         }
+        isStoryAllShow = true;
     }
 
     public void ChangeScene()
@@ -78,6 +80,10 @@ public class StoryViewer : MonoBehaviour
     public void ShowAllText()
     {
         if (stringBuilder == null) return;
+        if (isStoryAllShow == true)
+        {
+            ChangeScene();
+        }
 
         StopAllCoroutines();
 
@@ -111,6 +117,7 @@ public class StoryViewer : MonoBehaviour
 
 
         }
+        isStoryAllShow = true;
     }
 
 

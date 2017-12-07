@@ -37,7 +37,7 @@ public class WeaponHandler : MonoBehaviour
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.loop = false;
-        audioSource.volume = SoundManager.Instance.Volume;
+        audioSource.volume = SoundManager.Instance.EffectVolume;
         AudioClip clip = SoundManager.Instance.GetClip("noammo");
         if (clip != null)
             audioSource.clip = clip;
@@ -114,6 +114,9 @@ public class WeaponHandler : MonoBehaviour
 
     public void ChangeWeapon(Weapon weapon)
     {
+        if (reboundProgress != null)
+            reboundProgress.gameObject.SetActive(false);
+
         //무기가 없을때 들어옴(아무것도 없을때)
         if (weapon == null)
         {

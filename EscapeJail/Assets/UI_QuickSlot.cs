@@ -13,24 +13,30 @@ public class UI_QuickSlot : MonoBehaviour
 
     private ItemBase prefItem;
     public void SetQuickSlot(UI_ItemSlot slot)
-    {             
+    {
         targetSlot = slot;
         prefItem = targetSlot.ItemBase;
 
         SetIcon();
+    }
+    private void Start()
+    {
+        if(iconImage!=null)
+        iconImage.color = new Color(0f, 0f, 0f, 0f);
     }
 
     public void UpdateQuickSlot()
     {
         if (targetSlot == null) return;
 
-        if (targetSlot.ItemBase != prefItem)
-        {
-            //리셋
-            iconImage.sprite = null;
-            iconImage.color = new Color(0f, 0f, 0f, 0f);
-            prefItem = null;
-        }
+
+        //리셋
+        iconImage.sprite = null;
+        iconImage.color = new Color(0f, 0f, 0f, 0f);
+        prefItem = null;
+        targetSlot = null;
+
+
     }
 
     public void SetIcon()
@@ -38,6 +44,8 @@ public class UI_QuickSlot : MonoBehaviour
         if (iconImage == null) return;
 
         ItemBase nowItem = targetSlot.ItemBase;
+
+        iconImage.color = new Color(1f, 1f, 1f, 1f);
 
         switch (nowItem.itemType)
         {
@@ -50,7 +58,7 @@ public class UI_QuickSlot : MonoBehaviour
                 }
                 break;
             default:
-                {             
+                {
                     string path = string.Format("Sprites/Icons/{0}", nowItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
@@ -61,7 +69,7 @@ public class UI_QuickSlot : MonoBehaviour
 
 
     }
-  
+
 
     public void ClickButton()
     {
@@ -70,7 +78,7 @@ public class UI_QuickSlot : MonoBehaviour
         targetSlot.UseItem();
 
         UpdateQuickSlot();
-        
+
     }
 
 

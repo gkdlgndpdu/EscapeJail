@@ -24,13 +24,14 @@ public class DatabaseLoader : MonoBehaviour
     private Dictionary<string, ItemDB> ItemDB;
 
     //무기 DB
-    private Dictionary<WeaponType,WeaponDB> WeaponDB;
-    public Dictionary<WeaponType, WeaponDB> weaponDB
+    private Dictionary<WeaponType,WeaponDB> WeaponDB;  
+
+    public WeaponDB GetWeaponDB(WeaponType type)
     {
-        get
-        {
-            return WeaponDB;
-        }
+        if (WeaponDB == null) return null;
+        if (WeaponDB.ContainsKey(type) == false) return null;
+
+        return WeaponDB[type];
     }
 
     //패시브 db
@@ -360,7 +361,7 @@ public class DatabaseLoader : MonoBehaviour
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
             {                                                               //Probability       //Description
-                WeaponDB.Add((WeaponType)reader.GetInt32(0), new WeaponDB(reader.GetInt32(1), reader.GetString(2)));
+                WeaponDB.Add((WeaponType)reader.GetInt32(0), new WeaponDB(reader.GetInt32(1), reader.GetString(2), reader.GetInt32(4)));
                 WeaponRandomGenerator.AddToList((WeaponType)reader.GetInt32(0), reader.GetInt32(1));
             }
         }

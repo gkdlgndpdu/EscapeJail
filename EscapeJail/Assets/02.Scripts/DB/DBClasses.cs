@@ -45,11 +45,13 @@ public class WeaponDB
 {
     public int Probability;
     public string Description;
+    public int level;
 
-    public WeaponDB(int Probability, string Description)
+    public WeaponDB(int Probability, string Description, int level)
     {
         this.Probability = Probability;
         this.Description = Description;
+        this.level = level;
     }
 }
 

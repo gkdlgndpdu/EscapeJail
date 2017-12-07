@@ -25,6 +25,9 @@ public class ItemInfoBar : MonoBehaviour
     [SerializeField]
     private Transform hidePosit;
 
+    [SerializeField]
+    private Ui_Stars ui_Stars;
+
     private void Awake()
     {
         Instance = this;
@@ -35,7 +38,7 @@ public class ItemInfoBar : MonoBehaviour
         iTween.MoveTo(this.gameObject, hidePosit.position, moveSpeed);
     }
     //item 인자가 null -> 무기상자가 들어옴
-    public void SetItemBar(ItemBase item, Action clickFunc,bool isSalesItem =false,int price =0)
+    public void SetItemBar(ItemBase item, Action clickFunc, bool isSalesItem = false, int price = 0)
     {
         iTween.MoveTo(this.gameObject, showPosit.position, moveSpeed);
 
@@ -52,6 +55,9 @@ public class ItemInfoBar : MonoBehaviour
             if (itemText != null)
                 itemText.text = "WeaponBox \n What's in it?";
             clickEvent = clickFunc;
+
+            if (ui_Stars != null)
+                ui_Stars.SetStar(0);
             return;
         }
 
@@ -75,10 +81,20 @@ public class ItemInfoBar : MonoBehaviour
                     //아이템 텍스트 변경
                     if (itemText != null)
                         itemText.text = nowItem.weapontype.ToString();
-                           }
+
+                    if (ui_Stars != null)
+                    {
+                        WeaponDB weaponData = DatabaseLoader.Instance.GetWeaponDB(item.weapontype);
+                        if (weaponData != null)
+                        {
+                            ui_Stars.SetStar(weaponData.level);
+                        }             
+                       
+                    }
+                }
                 break;
             default:
-                {              
+                {
                     string path = string.Format("Sprites/Icons/{0}", nowItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
 
@@ -89,14 +105,17 @@ public class ItemInfoBar : MonoBehaviour
                     if (itemText != null)
                         itemText.text = nowItem.itemName;
 
-         
+                    if (ui_Stars != null)
+                        ui_Stars.SetStar(item.ItemLevel);
+
+
                 }
                 break;
         }
 
         //가격 표시
         if (isSalesItem == true)
-            itemText.text = itemText.text + " " + price.ToString()+"$";
+            itemText.text = itemText.text + " " + price.ToString() + "$";
     }
 
     public void ResetItemBar()
@@ -127,7 +146,7 @@ public class ItemInfoBar : MonoBehaviour
     public void GetItemButtonClick()
     {
         if (clickEvent != null)
-            clickEvent(); 
+            clickEvent();
     }
 
 }
