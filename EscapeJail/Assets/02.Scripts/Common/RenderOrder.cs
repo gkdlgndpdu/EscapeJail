@@ -6,11 +6,11 @@ using UnityEngine;
 public class RenderOrder : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-    } 
-
+    }
     private void OnEnable()
     {
         RenderController.Instance.AddToRenderList(this);
@@ -27,5 +27,5 @@ public class RenderOrder : MonoBehaviour
             spriteRenderer.sortingOrder = orderNum;
     }
 
-  
+
 }

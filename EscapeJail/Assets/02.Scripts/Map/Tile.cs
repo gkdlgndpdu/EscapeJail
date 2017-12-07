@@ -70,6 +70,7 @@ public class Tile : MonoBehaviour
         SetLayerOrder(layerOrder);
 
         this.parentModule = parentModule;
+        this.tileType = tileType;
 
         if (tileType == TileType.Wall)
         {
@@ -81,6 +82,8 @@ public class Tile : MonoBehaviour
 
             if (objectShadow != null)
                 objectShadow.SetObjectShadow(spriteRenderer.sprite, GameConstants.WallLayerMin - 1);
+
+            return;
         }
 
 
@@ -92,8 +95,9 @@ public class Tile : MonoBehaviour
             OpenDoor();
         }
 
-        this.tileType = tileType;
 
+        if (objectShadow != null)
+            Destroy(objectShadow.gameObject);
 
 
     }

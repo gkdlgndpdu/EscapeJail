@@ -17,8 +17,8 @@ public class DropGoods : MonoBehaviour
     private Rigidbody2D rb;
     private int value = 0;
     private CharacterBase player;
-    private float moveSpeed = 5f;
-    private float originSpeed = 5f;
+    private float moveSpeed = 10f;
+    private float originSpeed = 10f;
     private float sleepTime = 1f;
     private bool isSleep = true;
     private GoodsType goodsType;
@@ -75,7 +75,7 @@ public class DropGoods : MonoBehaviour
             {
                 Vector3 moveDir = player.transform.position - this.transform.position;
                 rb.velocity = moveDir.normalized * moveSpeed;
-                moveSpeed += Time.deltaTime * 2f;
+                moveSpeed += Time.deltaTime * 5f;
             }
         }
     }
