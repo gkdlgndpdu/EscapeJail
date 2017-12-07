@@ -238,6 +238,10 @@ public class CharacterBase : CharacterInfo
             weaponHandler.SetWeaponUi(playerUi.weaponUi);
         }
 
+        if (weaponHandler != null)        
+            weaponHandler.SetAudioSource();
+        
+
         PassiveSetting();
 
     }

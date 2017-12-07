@@ -32,6 +32,17 @@ public class WeaponHandler : MonoBehaviour
     private Slider weaponSlider = null;
     private Slider reboundSlider = null;
 
+    private AudioSource audioSource;
+    public void SetAudioSource()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.volume = SoundManager.Instance.Volume;
+        AudioClip clip = SoundManager.Instance.GetClip("noammo");
+        if (clip != null)
+            audioSource.clip = clip;
+    }
+
     public bool CanRotateWeapon()
     {
         if (nowWeapon == null) return false;
@@ -221,6 +232,15 @@ public class WeaponHandler : MonoBehaviour
 
         if (animator != null)
             animator.speed = 1f;
+
+        if (audioSource != null)
+        {
+            if (nowWeapon.hasAmmo() == false && audioSource.isPlaying==false)
+            {
+                audioSource.Play();
+            }
+        }
+   
 
         //근접무기용
         if (nowWeapon.AttackType == AttackType.near && nowWeapon.canFire() == true)

@@ -2,6 +2,7 @@ fileFormatVersion: 2
 guid: 1b145bcffd767854fb0c71c37678ebaa
 timeCreated: 18446744011573954816
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 1

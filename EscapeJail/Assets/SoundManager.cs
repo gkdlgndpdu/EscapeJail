@@ -11,6 +11,13 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, AudioClip> soundEffectPool;
     private Dictionary<string, AudioClip> bgmPool;
     private float volume = 1f;
+    public float Volume
+    {
+        get
+        {
+            return volume;
+        }
+    }
     private ObjectPool<EachSound> soundPool;
     private void Awake()
     {
@@ -175,5 +182,12 @@ public class SoundManager : MonoBehaviour
     //        ChangeBgm("Stage3");
     //    }
     //}
+    public AudioClip GetClip(string name)
+    {
+        if (soundEffectPool == null) return null;
+        if (soundEffectPool.Count == 0) return null;
+        if (soundEffectPool.ContainsKey(name) == false) return null;
 
+        return soundEffectPool[name];
+    }
 }

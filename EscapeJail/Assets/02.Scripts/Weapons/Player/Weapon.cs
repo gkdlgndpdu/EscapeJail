@@ -205,6 +205,11 @@ namespace weapon
                 return true;
         }
 
+        public bool hasAmmo()
+        {
+            return nowAmmo > 0;
+        }
+
         protected void useBullet()
         {
             nowAmmo -= needBulletToFire;
