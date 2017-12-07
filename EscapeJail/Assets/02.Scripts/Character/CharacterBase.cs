@@ -305,7 +305,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new MindArrow());
+        AddWeapon(new HWMMG());
         AddWeapon(new Revolver());
         //  AddWeapon(new ShotGun());
     }
@@ -741,11 +741,11 @@ public class CharacterBase : CharacterInfo
         UpdateMedal();
     }
 
-    public void GetBulletItem()
+    public void GetBulletItem(int value)
     {
         if (weaponHandler != null)
         {
-            weaponHandler.GetBulletItem();
+            weaponHandler.GetBulletItem(value);
 
         }
     }

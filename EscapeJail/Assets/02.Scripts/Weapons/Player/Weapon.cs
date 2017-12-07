@@ -184,9 +184,12 @@ namespace weapon
             itemType = ItemType.Weapon;
         }
 
-        public void GetBullet()
+        public void GetBullet(int value)
         {
-            nowAmmo = maxAmmo;
+            nowAmmo  += value;
+
+            if (nowAmmo > maxAmmo)
+                nowAmmo = maxAmmo;
         }
         public void Initialize(Animator animator)
         {
@@ -261,7 +264,7 @@ namespace weapon
             return returnValue.normalized;
         }
 
-        public void WeaponUpdate(Slider slider = null, Slider reboundSlider = null)
+        public void WeaponUpdate(Slider slider = null, ReboundProgress reboundProgress = null)
         {
             if (hasRebuondDuringFire == true)
             {
@@ -273,30 +276,30 @@ namespace weapon
                 {
                     reboundDuringFire = 0f;
                     lastFireTime = 0f;
-                    if (reboundSlider != null)
-                        reboundSlider.gameObject.SetActive(false);
+                    if (reboundProgress != null)
+                        reboundProgress.gameObject.SetActive(false);
                 }
 
                 if (reboundDuringFire > 0f)
                 {
                     reboundDuringFire -= reboundRecoverValue * Time.deltaTime;
-                    if (reboundSlider != null)
+                    if (reboundProgress != null)
                     {
-                        reboundSlider.gameObject.SetActive(true);
-                        reboundSlider.value = reboundDuringFire / maxRebound;
+                        reboundProgress.gameObject.SetActive(true);
+                        reboundProgress.SetProgress(reboundDuringFire , maxRebound);
                     }
                 }
                 if (reboundDuringFire < 0f)
                 {
                     reboundDuringFire = 0f;
-                    if (reboundSlider != null)
-                        reboundSlider.gameObject.SetActive(false);
+                    if (reboundProgress != null)
+                        reboundProgress.gameObject.SetActive(false);
                 }
             }
             else if (hasRebuondDuringFire == false)
             {
-                if (reboundSlider != null)
-                    reboundSlider.gameObject.SetActive(false);
+                if (reboundProgress != null)
+                    reboundProgress.gameObject.SetActive(false);
             }
 
             if (isFireDelayFinish == true)

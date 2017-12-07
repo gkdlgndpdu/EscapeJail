@@ -95,10 +95,18 @@ public class Item_Weapon : ItemBase
 }
 public class Item_Bullet : ItemBase
 {
-    public Item_Bullet()
+    public Item_Bullet(int level =999)
     {
         itemType = ItemType.Bullet;
-        ItemLevel = 0;
+        if (level == 999)
+        {
+            SetItemLevel();
+        }
+        else
+        {
+            ItemLevel = level;
+            LoadDBData();
+        }
     }
     public override void ItemAction()
     {
@@ -106,7 +114,7 @@ public class Item_Bullet : ItemBase
         {
             if (player.CanReload() == false) return;
 
-            player.GetBulletItem();
+            player.GetBulletItem(this.Value);
             player.RemoveItem(this);
         }
 

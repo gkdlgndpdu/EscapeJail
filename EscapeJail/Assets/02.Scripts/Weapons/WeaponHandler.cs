@@ -30,7 +30,7 @@ public class WeaponHandler : MonoBehaviour
 
     //
     private Slider weaponSlider = null;
-    private Slider reboundSlider = null;
+    private ReboundProgress reboundProgress = null;
 
     private AudioSource audioSource;
     public void SetAudioSource()
@@ -68,10 +68,10 @@ public class WeaponHandler : MonoBehaviour
     {
         this.weaponUi = weaponUi;
     }
-    public void SetSlider(Slider weaponSlider, Slider reboundSlider)
+    public void SetSlider(Slider weaponSlider, ReboundProgress reboundProgress)
     {
         this.weaponSlider = weaponSlider;
-        this.reboundSlider = reboundSlider;
+        this.reboundProgress = reboundProgress;
     }
 
 
@@ -88,11 +88,11 @@ public class WeaponHandler : MonoBehaviour
 
 
     }
-
-    public void GetBulletItem()
+         
+    public void GetBulletItem(int value)
     {
         if (nowWeapon == null) return;
-        nowWeapon.GetBullet();
+        nowWeapon.GetBullet(value);
 
         UpdateWeaponUI();
     }
@@ -274,7 +274,7 @@ public class WeaponHandler : MonoBehaviour
     private void Update()
     {
         if (nowWeapon != null)
-            nowWeapon.WeaponUpdate(weaponSlider, reboundSlider);
+            nowWeapon.WeaponUpdate(weaponSlider, reboundProgress);
         else if (nowWeapon == null)
         {
             if (weaponSlider != null)

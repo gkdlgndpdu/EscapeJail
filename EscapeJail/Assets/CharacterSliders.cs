@@ -5,5 +5,5 @@ using UnityEngine.UI;
 public class CharacterSliders : MonoBehaviour
 {
     public Slider weaponDelaySlider;
-    public Slider weaponReboundSlider;  
+    public ReboundProgress weaponReboundSlider;  
 }
