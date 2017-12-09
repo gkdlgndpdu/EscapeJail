@@ -701,14 +701,17 @@ public class MonsterBase : CharacterInfo
         }
         else if (OnOff == false)
         {
-            if (isStun == true)
+            if (isStun == true&&isDead==false)
                 StartMyCoroutine();
+
             isStun = false;
+            nowAttack = false;
         }
     }
 
     public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
     {
+        StopAllMyCoroutine();
         Vector3 pushDir = this.transform.position - pushPoint;
         pushDir.Normalize();
         if (rb != null)
@@ -721,19 +724,26 @@ public class MonsterBase : CharacterInfo
     }
 
 
+
     private IEnumerator PushRoutine()
     {
         yield return new WaitForSeconds(GameConstants.PushTime);
-
+        nowAttack = false;
         isPushed = false;
         if (rb != null)
             rb.velocity = Vector3.zero;
+
+        if(isDead==false)
+        StartMyCoroutine();
+
+
     }
 
     private IEnumerator StunRoutine()
     {
         yield return new WaitForSeconds(GameConstants.FlashBangStunTime);
         SetStun(false);
+        nowAttack = false;
     }
 
     protected virtual void StartMyCoroutine()

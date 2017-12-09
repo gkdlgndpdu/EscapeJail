@@ -5,18 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/StartScene.unity
     guid: d29b7d4f5b9ac094d845fbfe79b7d94d
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/SelectScene.unity
     guid: 41d334f594cf80842b643cb939f16c5f
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/StoryScene.unity
     guid: 8ffab6ed89772e24181c97e61e3c4f30
-  - enabled: 0
+  - enabled: 1
     path: Assets/01.Scenes/GameScene.unity
     guid: 4a89e0584d42e694f85b9e7dd72fd820
-  - enabled: 1
-    path: Assets/01.Scenes/GoogleServiceTestScene.unity
-    guid: 06cebb58818d83440837893662529e48

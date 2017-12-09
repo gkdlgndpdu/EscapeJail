@@ -176,7 +176,7 @@ public class WeaponHandler : MonoBehaviour
             {
                 if (slashObject != null)
                 {
-                    slashObject.Initialize(nowWeapon.damage, nowWeapon.slashColor, nowWeapon.slashSize);
+                    slashObject.Initialize(nowWeapon.damage, nowWeapon.slashColor, nowWeapon.slashSize,nowWeapon.weapontype);
                 }
             }
 

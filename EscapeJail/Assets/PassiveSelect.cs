@@ -12,9 +12,6 @@ public class PassiveSelect : MonoBehaviour
         passiveUiScreen.SetActive(!passiveUiScreen.activeSelf);
     }
 
-    public void GameStart()
-    {
-        SceneManager.Instance.ChangeScene(SceneName.StoryScene);
-    }
+   
 
 }

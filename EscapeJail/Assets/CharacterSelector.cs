@@ -12,6 +12,9 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     private GridLayoutGroup grid;
 
+    [SerializeField]
+    private GameObject passiveUiParent;
+
     private RectTransform rectTr;
 
     private void Awake()
@@ -36,7 +39,7 @@ public class CharacterSelector : MonoBehaviour
                 CharacterSlot_Ui slot = makeObj.GetComponent<CharacterSlot_Ui>();
                 if (slot != null)
                 {
-                    slot.Initialize((CharacterType)i);
+                    slot.Initialize((CharacterType)i, PassiveUiOnOff);
                 }
             }
         }
@@ -48,10 +51,15 @@ public class CharacterSelector : MonoBehaviour
         }
 
     }
+  
 
-    private void ChangeScene()
-    {    
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)SceneName.GameScene);
-
+    public void PassiveUiOnOff()
+    {
+        if (passiveUiParent == null) return;
+        passiveUiParent.gameObject.SetActive(!passiveUiParent.gameObject.activeSelf);
+    }
+    public void GameStart()
+    {
+        SceneManager.Instance.ChangeScene(SceneName.StoryScene);
     }
 }

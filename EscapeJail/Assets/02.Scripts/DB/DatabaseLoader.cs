@@ -190,6 +190,11 @@ public class DatabaseLoader : MonoBehaviour
 
     private void LoadPassiveItemDB()
     {
+        if (PassiveDB != null)
+        {
+            PassiveDB.Clear();
+            PassiveDB = null;
+        }
         PassiveDB = new Dictionary<PassiveType, PassiveDB>();
         string fileName = GameConstants.PassiveDBName;
         IDbCommand dbcmd = null;
@@ -265,15 +270,15 @@ public class DatabaseLoader : MonoBehaviour
              
             }
         }
-#if UNITY_EDITOR
-        //디버깅
-        foreach (KeyValuePair<MonsterName, MonsterDB> data in MonsterDB)
-        {
-            string debugmsg = "Key:" + data.Key.ToString() + " Hp :" + data.Value.Hp + " Prob :" + data.Value.Probability + "\n";
-            Debug.Log(debugmsg);
-            sb.Append(debugmsg);
-        }
-#endif
+//#if UNITY_EDITOR
+//        //디버깅
+//        foreach (KeyValuePair<MonsterName, MonsterDB> data in MonsterDB)
+//        {
+//            string debugmsg = "Key:" + data.Key.ToString() + " Hp :" + data.Value.Hp + " Prob :" + data.Value.Probability + "\n";
+//            Debug.Log(debugmsg);
+//            sb.Append(debugmsg);
+//        }
+//#endif
 
 
     }
@@ -334,15 +339,15 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-#if UNITY_EDITOR
-        //디버깅
-        foreach (KeyValuePair<ItemType, ItemProbabilityDB> data in ItemProbabilityDB)
-        {
-            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
-            Debug.Log(debugmsg);
-            sb.Append(debugmsg);
-        }
-#endif
+//#if UNITY_EDITOR
+//        //디버깅
+//        foreach (KeyValuePair<ItemType, ItemProbabilityDB> data in ItemProbabilityDB)
+//        {
+//            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
+//            Debug.Log(debugmsg);
+//            sb.Append(debugmsg);
+//        }
+//#endif
 
 
     }
@@ -366,15 +371,15 @@ public class DatabaseLoader : MonoBehaviour
             }
         }
 
-#if UNITY_EDITOR
-        //디버깅
-        foreach (KeyValuePair<WeaponType, WeaponDB> data in WeaponDB)
-        {
-            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
-            Debug.Log(debugmsg);
-            sb.Append(debugmsg);
-        }
-#endif
+//#if UNITY_EDITOR
+//        //디버깅
+//        foreach (KeyValuePair<WeaponType, WeaponDB> data in WeaponDB)
+//        {
+//            string debugmsg = "Key:" + data.Key.ToString() + " Prob :" + data.Value.Probability + " Desc :" + data.Value.Description + "\n";
+//            Debug.Log(debugmsg);
+//            sb.Append(debugmsg);
+//        }
+//#endif
 
 
     }
@@ -398,15 +403,15 @@ public class DatabaseLoader : MonoBehaviour
         }
 
 
-#if UNITY_EDITOR
-        //디버깅
-        foreach (KeyValuePair<PassiveType, PassiveDB> data in PassiveDB)
-        {
-            string debugmsg = "Key:" + data.Key.ToString() + " has :" + data.Value.hasPassive + " Desc :" + data.Value.description + " howtoget :" + data.Value.howToGet + "\n";
-            Debug.Log(debugmsg);
-            sb.Append(debugmsg);
-        }
-#endif
+//#if UNITY_EDITOR
+//        //디버깅
+//        foreach (KeyValuePair<PassiveType, PassiveDB> data in PassiveDB)
+//        {
+//            string debugmsg = "Key:" + data.Key.ToString() + " has :" + data.Value.hasPassive + " Desc :" + data.Value.description + " howtoget :" + data.Value.howToGet + "\n";
+//            Debug.Log(debugmsg);
+//            sb.Append(debugmsg);
+//        }
+//#endif
 
 
     }
@@ -416,37 +421,31 @@ public class DatabaseLoader : MonoBehaviour
     /// 
     /// </summary>
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SaveBtn();
-        }
-    }
+
 
     //파일 저장
-    public void SaveBtn()
+    public void BuyPassiveItem(PassiveType passiveType)
     {
-        StartCoroutine(SaveDb("PassiveItemDB.db"));
+        ChangePassiveDB(passiveType);
 
     }
     // 코루틴 .
-    IEnumerator SaveDb(string p)
+    private void ChangePassiveDB(PassiveType passiveType)
     {
 
         string Filepath;
 #if UNITY_EDITOR
-        Filepath = Application.streamingAssetsPath + "/" + p;
+        Filepath = Application.streamingAssetsPath + "/" + "PassiveItemDB.db";
 #else
-       Filepath = Application.persistentDataPath + "/" + p;
+       Filepath = Application.persistentDataPath + "/" + "PassiveItemDB.db";
 #endif
 
         if (!File.Exists(Filepath))
         {
             Debug.LogWarning("File \"" + Filepath + "\" does not exist. Attempting to create from \"" +
-                             Application.dataPath + "!/assets/" + p);
+                             Application.dataPath + "!/assets/" + "PassiveItemDB.db");
 
-            WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + p);
+            WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/" + "PassiveItemDB.db");
             while (!loadDB.isDone) { }
             File.WriteAllBytes(Filepath, loadDB.bytes);
         }
@@ -462,8 +461,8 @@ public class DatabaseLoader : MonoBehaviour
             {
 
                 //수정
-                string ID = "10";
-                string Boolean = "False";           
+                string ID = ((int)passiveType).ToString();
+                string Boolean = "True";           
 
                 string sqlQuery = "UPDATE  PassiveItemDB  SET " +
                     "HasItem =" + "'" + Boolean + "'"
@@ -485,7 +484,11 @@ public class DatabaseLoader : MonoBehaviour
                 }
             }
         }
-        yield return null;
+
+        //DB재갱신
+        LoadPassiveItemDB();
+
+
     }
 
 

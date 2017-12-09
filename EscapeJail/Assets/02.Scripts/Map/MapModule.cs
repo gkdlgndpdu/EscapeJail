@@ -180,6 +180,9 @@ public class MapModule : MapModuleBase
         mapState = MapState.Lock;
         StartCoroutine(SpawnRandomMonsterRoutine());
         CloseDoor();
+
+        //미니맵 끔
+        MiniMap.Instance.MinimapOnOff(false);
     }
 
     public void EndWave()
@@ -207,7 +210,11 @@ public class MapModule : MapModuleBase
             DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
             medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
         }
-  
+
+        //미니맵 켜줌
+        //미니맵 끔
+        MiniMap.Instance.MinimapOnOff(true);
+
 
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using weapon;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 
@@ -12,13 +12,14 @@ public class SlashObject : MonoBehaviour
     private SpriteRenderer spriteRenderer;    
     private Animator animator;
     private int power = 0;
+    private WeaponType weaponType;
     
     private void Awake()
     {     
         animator = GetComponent<Animator>();
     } 
 
-    public void Initialize(int power, Color color, Vector3 size)
+    public void Initialize(int power, Color color, Vector3 size,WeaponType weaponType)
     {
         //색상
         SetSlashColor(color);
@@ -28,6 +29,8 @@ public class SlashObject : MonoBehaviour
 
         //공격력
         this.power = power;
+
+        this.weaponType = weaponType;
 
     }
 
@@ -105,6 +108,9 @@ public class SlashObject : MonoBehaviour
 
             if (characterInfo != null)
                 characterInfo.GetDamage(this.power);
+
+            if (this.weaponType == WeaponType.Baseballbat)
+                characterInfo.SetPush(this.transform.position, 10f, 0);
         }
     }
 

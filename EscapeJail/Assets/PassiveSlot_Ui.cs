@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class PassiveSlot_Ui : MonoBehaviour
 {
-    private PassiveType passiveType;
+    public PassiveType passiveType;    
     private bool hasItem = false;
     private bool isSelected = false;
-    private PassiveDB data;
-
-    [SerializeField]
-    private Button button;
+    private PassiveDB passiveDB;
+ 
     private PassiveSelectScreen parent;
 
     [SerializeField]
@@ -30,7 +28,7 @@ public class PassiveSlot_Ui : MonoBehaviour
 
     private void Awake()
     {       
-        button = GetComponent<Button>();
+     
 
         if (selectIcon != null)
             selectIcon.gameObject.SetActive(false);
@@ -40,12 +38,12 @@ public class PassiveSlot_Ui : MonoBehaviour
     {
         if (data == null) return;
 
-        this.data = data;
+        this.passiveDB = data;
         this.passiveType = passiveType;
         this.hasItem = data.hasPassive;
         this.parent = parent;
 
-        SetButton(hasItem);
+        SetCanUse(hasItem);
         SetIcon();
         SetText(data.howToGet, data.description);
         SetPrice(data.price);
@@ -71,20 +69,12 @@ public class PassiveSlot_Ui : MonoBehaviour
         text.text = string.Format("{0} \n {1}", description, howToGet);
     }
 
-    private void SetPrice()
-    {
+   
 
-    }
-
-    private void SetButton(bool OnOff)
-    {
-        if (button != null)
-        button.enabled = OnOff;
-
+    private void SetCanUse(bool OnOff)
+    {        
         if (mask != null)
             mask.gameObject.SetActive(!OnOff);
-
-
     }
 
     public void SetSelect(bool OnOff)
@@ -102,9 +92,20 @@ public class PassiveSlot_Ui : MonoBehaviour
     //선택되면 들어옴
     public void OnClick()
     {
-        if (data == null) return;
-        if (data.hasPassive == false) return;
+        if (passiveDB == null) return;
+        if (passiveDB.hasPassive == false)
+        {
+            //구매창 보여줌
+            if (parent != null)
+                parent.OpenPassiveBuyScreen(this.passiveType, passiveDB);
+            return;
+        }
         if (parent != null)
             parent.RegistSelectSlot(this);
+    }
+
+    private void BuyPassiveItem()
+    {
+
     }
 }

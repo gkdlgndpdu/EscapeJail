@@ -51,6 +51,25 @@ public class MiniMap : MonoBehaviour
     [SerializeField]
     private Transform allParent;
 
+    public void MinimapOnOff(bool OnOff)
+    {
+        //켜질때
+        if (OnOff == true)
+        {
+            this.gameObject.SetActive(true);
+        }
+        //꺼질떄
+        else if (OnOff == false)
+        {
+            if (miniMapState == MiniMapState.Center)
+            {
+                ChangeMiniMapMode();              
+
+            }
+            this.gameObject.SetActive(false);
+        }
+    }
+
     public void ChangeMiniMapMode()
     {
         if (this.gameObject.activeSelf == false) return;

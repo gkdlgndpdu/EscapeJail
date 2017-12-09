@@ -13,20 +13,14 @@ public class CharacterSlot_Ui : MonoBehaviour
     {
         characterImage = GetComponent<Image>();
 
-        GameObject passiveSelectObj = GameObject.Find("PassiveSelect");
-        if (passiveSelectObj != null)
-        {
-            PassiveSelect passiveSelect = passiveSelectObj.GetComponent<PassiveSelect>();
-            if (passiveSelect != null)
-            {
-                passiveWindowOnFunc = passiveSelect.PassiveUiOnOff;
-            }
-        }
+    
     }
-    public void Initialize(CharacterType characterType)
+    public void Initialize(CharacterType characterType, Action passiveUiOnOffFunc)
     {
         this.characterType = characterType;
-        if(characterImage!=null)
+
+        passiveWindowOnFunc = passiveUiOnOffFunc;
+        if (characterImage!=null)
         {
             Sprite loadSprite = Resources.Load<Sprite>(string.Format("Sprites/Icons/{0}", characterType.ToString()));
             if (loadSprite != null)

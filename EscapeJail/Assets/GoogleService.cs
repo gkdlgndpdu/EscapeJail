@@ -20,35 +20,22 @@ using System.Text;
 
 public class GoogleService : MonoBehaviour
 {
-    public Text log;
-    public GameObject loginSuccess;
-    private StringBuilder sb = new StringBuilder();
-
+    private bool canStart = false;
+    public bool CanStart
+    {
+        get
+        {
+            return canStart;
+        }
+    }
     private void Awake()
     {
         DontDestroyOnLoad(this);
-    }
+    }  
 
-    public void Send100Point()
+    private void ShowLeaderBoardUi()
     {
-
-        ReportScore(100);
-      
-    }
-
-    public void ShowLeaderBoardUi()
-    {
-
-    }
-
-    public void AddToLog(string text)
-    {
-        if (sb == null) return;
-        if (log == null) return;
-
-        sb.Append(text);
-        log.text = sb.ToString();
-
+        PlayGamesPlatform.Instance.ShowLeaderboardUI();
     }
 
     // Use this for initialization
@@ -58,16 +45,17 @@ public class GoogleService : MonoBehaviour
             {
                 if (success == true)
                 {
-                    //로그인 성공처리
-                    AddToLog("login success");
-                    if (loginSuccess != null)
-                        loginSuccess.gameObject.SetActive(true);
+               
                 }
                 else
                 {
-                    //로그인 성공처리
-                    AddToLog("login fail");
+               
                 }
+#if UNITY_EDITOR
+                Debug.Log("로그인 시도 완료");
+#endif
+
+                canStart = true;
             });
 
     }
@@ -92,29 +80,19 @@ public class GoogleService : MonoBehaviour
 
 
     public void ReportScore(int score)
-    {
-        //로그인 성공처리
-        AddToLog("점수를 등록합니다");
+    {  
 
 #if UNITY_ANDROID
         //점수 , "리더보드 고유 id",callback
         PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
         {
             if (success)
-            {
-                AddToLog("점수 등록 성공");
-                // Report 성공
-
-              
-                PlayGamesPlatform.Instance.ShowLeaderboardUI();
-           
-
+            {             
+                ShowLeaderBoardUi();
             }
             else
             {
-                // Report 실패
-                AddToLog("점수 등록 실패");
-                // 그에 따른 처리
+         
             }
         });
 

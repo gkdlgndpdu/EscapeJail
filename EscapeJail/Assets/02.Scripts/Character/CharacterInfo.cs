@@ -42,7 +42,7 @@ public class CharacterInfo : MonoBehaviour
     }
     public virtual void GetDamage(int damage)
     {
-      
+
 
     }
 
@@ -55,10 +55,11 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    public virtual void SetPush(Vector3 pushPoint,float pushPower,int damage)
+    public virtual void SetPush(Vector3 pushPoint, float pushPower, int damage)
     {
 
     }
+
 
     protected void AddCondition(CharacterCondition condition)
     {
@@ -122,7 +123,7 @@ public class CharacterInfo : MonoBehaviour
         StartCoroutine(FireDamage());
 
 
-        SetEffect(fireSustainmentTime, CharacterCondition.InFire);     
+        SetEffect(fireSustainmentTime, CharacterCondition.InFire);
 
     }
 
@@ -148,7 +149,7 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    private void SetEffect(float sustatinmentTime, CharacterCondition condition,float size =3.5f)
+    private void SetEffect(float sustatinmentTime, CharacterCondition condition, float size = 3.5f)
     {
         CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
         if (effect != null)
@@ -172,7 +173,7 @@ public class CharacterInfo : MonoBehaviour
             {
                 RemoveCondition(CharacterCondition.InFire);
                 effectDic.Remove(CharacterCondition.InFire);
-                    yield break;
+                yield break;
             }
 
             yield return new WaitForSeconds(1.0f);
