@@ -26,10 +26,8 @@ public class UnityAdsHelper : MonoBehaviour
     public void ShowRewardedAd()
     {
         if (Advertisement.IsReady(rewarded_video_id))
-        {
-                                                            //콜백 등록
+        {                                                            //콜백 등록
             var options = new ShowOptions { resultCallback = HandleShowResult };
-
             Advertisement.Show(rewarded_video_id, options);
         }
     }
