@@ -5,19 +5,25 @@ using UnityEngine;
 public class Trader : CharacterBase
 {
     private float skillCoolTimeMax = 10f;
+    private float skillCount = 0f;
     private bool isSkillOn = true;
+
+    protected override void ResetAbility()
+    {
+        skillCount = skillCoolTimeMax;
+    }
 
     private IEnumerator skillCoolTimeRoutine()
     {
-        float count = 0f;
+        skillCount = 0f;
         while (true)
         {
-            count += Time.deltaTime;
+            skillCount += Time.deltaTime;
 
             if (playerUi != null)
-                playerUi.SetSkillButtonProgress(count, skillCoolTimeMax);
+                playerUi.SetSkillButtonProgress(skillCount, skillCoolTimeMax);
 
-            if (count >= skillCoolTimeMax)
+            if (skillCount >= skillCoolTimeMax)
             {
                 isSkillOn = true;     
 

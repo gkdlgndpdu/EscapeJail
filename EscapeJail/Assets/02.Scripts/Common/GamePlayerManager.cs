@@ -31,20 +31,26 @@ public class GamePlayerManager : MonoBehaviour
     [HideInInspector]
     public CharacterBase player;
 
+    public ScoreCounter scoreCounter;
 
     private void Awake()
     {
         if (Instance == null)
+        {           
+            Instance = this;        
+        }
+        else if (Instance != null)
+        {
+            Instance = null;
             Instance = this;
+        }
 
-        
 
         MakePlayer();
     }
 
     private void MakePlayer()
     {
-
         playerName = (CharacterType)PlayerPrefs.GetInt(GameConstants.CharacterKeyValue, (int)CharacterType.Soldier);
 
 
@@ -60,10 +66,11 @@ public class GamePlayerManager : MonoBehaviour
             playerScript = playerObj.GetComponent<CharacterBase>();
 
             if (playerScript != null)
+            {
                 player = playerScript;
+                scoreCounter = new ScoreCounter();
+            }
         }
-
-
     }
 
     public void ResetPlayerPosit()

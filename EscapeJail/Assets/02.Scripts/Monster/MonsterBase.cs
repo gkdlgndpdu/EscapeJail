@@ -299,7 +299,8 @@ public class MonsterBase : CharacterInfo
         StopAllCoroutines();
 
         //스코어 올려줌
-      //  ScoreBoard.Instance.GetScore();
+        GamePlayerManager.Instance.scoreCounter.KillMonster();
+  
 
         //무기꺼중
         if (weaponPosit != null)
@@ -574,6 +575,9 @@ public class MonsterBase : CharacterInfo
     {
 
         VampiricGunEffect();
+
+        GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
+
         this.hp -= damage;
         UpdateHud();
         if (hp <= 0)

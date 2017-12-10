@@ -11,6 +11,18 @@ public class Scientist : CharacterBase
     private float maxSaveTime =5f;
     private float nowRemainTime = 0f;
 
+    protected override void ResetAbility()
+    {
+        nowRemainTime = maxSaveTime;
+
+    }
+    protected override void DieAction()
+    {
+        base.DieAction();
+        if (isSkillOn == true)
+            SkillOnOff();
+    }
+
     private new void Awake()
     {
         base.Awake();

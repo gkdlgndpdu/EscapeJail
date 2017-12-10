@@ -64,9 +64,9 @@ public class CharacterBase : CharacterInfo
 
     protected int stimulantRecoverTime = 30;
     protected bool nowUseStimulant = false;
-
+    
     //버프효과
-    protected BuffEffect buffEffect;
+    protected BuffEffect buffEffect;    
 
     //재화
     protected int coin = 0;
@@ -421,7 +421,7 @@ public class CharacterBase : CharacterInfo
         HandleNowWeapon();
 
 #if UNITY_ANDROID
-        MoveInMobie();
+        MoveInMobile();
 #endif
 #if UNITY_EDITOR
         InputOnPc();
@@ -430,6 +430,7 @@ public class CharacterBase : CharacterInfo
     }
     protected void InputOnPc()
     {
+        if (isDead == true) return;
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             GetDamage(1);
@@ -439,7 +440,7 @@ public class CharacterBase : CharacterInfo
 
     public virtual void FireWeapon()
     {
-
+        if (isDead == true) return;
         if (GameOption.FireStyle == FireStyle.Auto)
         {
             GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
@@ -622,8 +623,10 @@ public class CharacterBase : CharacterInfo
 
     }
 
-    protected virtual void MoveInMobie()
+    protected virtual void MoveInMobile()
     {
+        if (isDead == true) return;
+
         if (rb != null)
             rb.velocity = Vector2.zero;
 
@@ -693,7 +696,7 @@ public class CharacterBase : CharacterInfo
     {
 
         if (isImmune == true) return;
-
+        if (isDead == true) return;
         //흔들리는 효과
         CameraController.Instance.ShakeCamera(3f, 0.4f);
 
@@ -710,6 +713,7 @@ public class CharacterBase : CharacterInfo
         else
         {
             hp -= damage;
+            GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
             UIUpdate();
 
@@ -734,11 +738,27 @@ public class CharacterBase : CharacterInfo
             playerUi.hpUi.SetHp(hp);
     }
 
-    protected void DieAction()
+    //죽은다음에 처리해아할 것들
+    protected virtual void DieAction()
     {
         isDead = true;
-        Debug.Log("CharacterDie");
+
+        GamePlayerManager.Instance.scoreCounter.EarningMedals = medal;
+        GamePlayerManager.Instance.scoreCounter.RemainCoin = coin;
+
+        //결과창 띄워줌
+        if (playerUi != null)
+        {
+            playerUi.ResultUiOnOff(true);
+            playerUi.resultUi.LinkFunc = () => 
+            {
+                RevivePlayer();
+                playerUi.ResultUiOnOff(false);
+            };
+        }
+
         UpdateMedal();
+
     }
 
     public void GetBulletItem(int value)
@@ -860,13 +880,7 @@ public class CharacterBase : CharacterInfo
         }
     }
 
-    /// <summary>
-    /// 스킬버튼과 연결됨
-    /// </summary>
-    public virtual void UseCharacterSkill()
-    {
-        //자식에서 구현띠 ,UI 스킬버튼 눌렀을때 실행됨
-    }
+    
 
 
     public bool CanHeal()
@@ -940,4 +954,51 @@ public class CharacterBase : CharacterInfo
 
     }
 
+    private void PushNearEnemies()
+    {
+        int layerMask = MyUtils.GetLayerMaskByString("Enemy");
+
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(this.transform.position, 10f, layerMask);
+        if (colls == null) return;
+
+        for (int i = 0; i < colls.Length; i++)
+        {
+            CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
+            if (characterInfo != null)
+                characterInfo.SetPush(this.transform.position, 10f, 0);
+        }
+    }
+
+    private void RevivePlayer()
+    {
+        isDead = false;
+        GetHp(hpMax);
+
+        //총알삭제
+        ObjectManager.Instance.AllEnemyBulletDestroy();
+        //주변 적들을 밀어냄
+        PushNearEnemies();
+
+        //모든효과 삭제
+        AllStateClear();
+
+        //특수스킬 초기화
+        ResetAbility();
+
+
+
+        //시간진행
+
+    }
+
+    public virtual void UseCharacterSkill()
+    {
+  
+    }
+    //부활시 능력관련 값 리셋
+    protected virtual void ResetAbility()
+    {
+
+    }
 }

@@ -215,6 +215,8 @@ public class MapModule : MapModuleBase
         //미니맵 끔
         MiniMap.Instance.MinimapOnOff(true);
 
+        //점수
+        GamePlayerManager.Instance.scoreCounter.ClearRoom();
 
     }
 

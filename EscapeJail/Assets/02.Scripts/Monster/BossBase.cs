@@ -82,10 +82,7 @@ public class BossBase : CharacterInfo
 
     }
 
-    protected void Initiaize()
-    {
 
-    }
     public override void GetDamage(int damage)
     {
         if (isBossDie == true|| isPatternStart==false) return;
@@ -99,6 +96,8 @@ public class BossBase : CharacterInfo
             isBossDie = true;
             BossDie();
         }
+
+        GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
     }
 
@@ -116,7 +115,9 @@ public class BossBase : CharacterInfo
         //할꺼 해주고~
         //이동속도 정상화
         GamePlayerManager.Instance.player.SetBurstSpeed(true);
-        //할꺼 해주고~
+        //할꺼 해주고
+        GamePlayerManager.Instance.scoreCounter.KillBoss();
+        GamePlayerManager.Instance.scoreCounter.ClearStage();
 
 
         GameManager.Instance.ChangeStage();

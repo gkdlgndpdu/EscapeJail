@@ -19,15 +19,7 @@ public class GameManager : MonoBehaviour
       Instance = this;
     }    
 
-	public void StopTime()
-    {
-        Time.timeScale = 0f;
-    }
 
-    public void ResumeTime()
-    {
-        Time.timeScale = 1f;
-    }
 
     public void ChangeStage()
     {
@@ -47,6 +39,7 @@ public class GameManager : MonoBehaviour
         StagerController.Instance.CreateNextStage();
         yield return new WaitForSeconds(0.5f);
         GamePlayerManager.Instance.ResetPlayerPosit();
+        System.GC.Collect();
 
     }
     

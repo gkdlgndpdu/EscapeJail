@@ -38,6 +38,17 @@ public static class GameConstants
     public static string ItemProbabilityDBName = "ItemProbabilityDB.db";
     public static string WeaponDBName = "WeaponDB.db";
     public static string PassiveDBName = "PassiveItemDB.db";
+
+    //재화
+    public static int CoinGetValue = 100;
+    public static int MedalGetValue = 50;
+
+    //타임어택용 시간 저장해놓을것
+    public static int EnemyPoint =50;
+    public static int BossPoint =1000;
+    public static int StagePoint = 1000;
+
+
 }
 
 public static class CustomColor

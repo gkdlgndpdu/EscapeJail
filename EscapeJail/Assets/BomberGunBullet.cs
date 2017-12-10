@@ -41,6 +41,9 @@ public class BomberGunBullet : LivingBullet
 
         SoundManager.Instance.PlaySoundEffect("explosion");
 
+        //흔들리는 효과
+        CameraController.Instance.ShakeCamera(3f, 0.4f);
+
         //삭제
         DestroyBullet();
     }

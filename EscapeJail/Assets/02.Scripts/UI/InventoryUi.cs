@@ -206,13 +206,13 @@ public class InventoryUi : MonoBehaviour
     {
 
         UpdateInventoryUi();
-        GameManager.Instance.StopTime();
+        TimeManager.Instance.StopTime();
         System.GC.Collect();
     }
 
     private void OnDisable()
-    {      
-        GameManager.Instance.ResumeTime();
+    {
+        TimeManager.Instance.ResumeTime();
     }
 
 }

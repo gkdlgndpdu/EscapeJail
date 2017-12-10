@@ -31,6 +31,8 @@ namespace weapon
 
             SoundManager.Instance.PlaySoundEffect("powergauntlet");
 
+            //흔들리는 효과
+            CameraController.Instance.ShakeCamera(3f, 0.4f);
             //밀어내기
 
             int layerMask = MyUtils.GetLayerMaskByString("Enemy");

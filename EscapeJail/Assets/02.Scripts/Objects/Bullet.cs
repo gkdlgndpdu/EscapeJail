@@ -276,6 +276,9 @@ public class Bullet : MonoBehaviour
 
     protected void MultiTargetDamage()
     {
+        //흔들리는 효과
+        CameraController.Instance.ShakeCamera(3f, 0.4f);
+
         int layerMask;
         if (bulletType == BulletType.PlayerBullet)
             layerMask = MyUtils.GetLayerMaskByString("Enemy");

@@ -16,6 +16,18 @@ public class Soldier : CharacterBase
         SetHp(10);     
     
     }
+
+    protected override void ResetAbility()
+    {
+        
+
+    }
+    protected override void DieAction()
+    {
+        base.DieAction();
+        if (isDodge == true)
+            DodgeOff();
+    }
     // Use this for initialization
     private new void Start()
     {
@@ -87,7 +99,7 @@ public class Soldier : CharacterBase
 
 
     public override void UseCharacterSkill()
-    {    
+    {           
         DodgeOn();
     }
 

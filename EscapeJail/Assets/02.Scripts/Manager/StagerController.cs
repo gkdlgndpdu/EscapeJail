@@ -54,7 +54,7 @@ public class StagerController : MonoBehaviour
         if (itemSpawner != null)
             itemSpawner.DestroyAllItems();
 
-        System.GC.Collect();
+       
     }
 
     public void CreateNextStage()

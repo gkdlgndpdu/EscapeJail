@@ -8,7 +8,14 @@ public class Defender : CharacterBase
 
     private float maxSaveTime = 5f;
     private float nowRemainTime = 0f;
-   
+
+    protected override void ResetAbility()
+    {
+        ShieldOff();
+         moveSpeed = originSpeed;
+        nowRemainTime = maxSaveTime;
+    }
+
     private void SetSkillTime(float t)
     {
         nowRemainTime = t;
@@ -89,4 +96,6 @@ public class Defender : CharacterBase
         if (isShieldOn == true) return;
         base.GetDamage(damage);
     }
+
+
 }

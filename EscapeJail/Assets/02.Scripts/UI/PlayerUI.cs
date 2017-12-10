@@ -11,6 +11,7 @@ public class PlayerUI : MonoBehaviour
     public OptionUi optionUi;
     public HpUi hpUi;
     public GoodsUi goodsUi;
+    public ResultUi resultUi;
 
     [SerializeField]
     private GameObject autoStick;
@@ -35,11 +36,7 @@ public class PlayerUI : MonoBehaviour
         //player에서 GameObject.find로 찾기때문에 건들면 안됨
          this.name = "PlayerUi";
     }
-    //public void SetHpBar(float min,float max)
-    //{
-    //    if (hpBar != null)
-    //        hpBar.SetHpBar(min , max);
-    //}
+  
 
     public void SetHp(int value)
     {
@@ -77,5 +74,11 @@ public class PlayerUI : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void ResultUiOnOff(bool OnOff)
+    {
+        if (resultUi != null)
+            resultUi.gameObject.SetActive(OnOff);
     }
 }

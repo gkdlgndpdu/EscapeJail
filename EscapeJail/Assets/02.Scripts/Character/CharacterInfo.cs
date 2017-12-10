@@ -5,7 +5,9 @@ using UnityEngine;
 public enum CharacterCondition
 {
     InFire,
-    InPoison
+    InPoison,
+    ConditionEnd
+
 }
 /// <summary>
 /// 해당클래스가 달려있는 오브젝트의 체력,상태(불,독  등) 관리
@@ -64,12 +66,14 @@ public class CharacterInfo : MonoBehaviour
     protected void AddCondition(CharacterCondition condition)
     {
         if (conditionList == null) return;
+        if (conditionList.Contains(condition) == true) return;
         conditionList.Add(condition);
     }
 
     protected void RemoveCondition(CharacterCondition condition)
     {
         if (conditionList == null) return;
+        if (conditionList.Contains(condition) == false) return;
         conditionList.Remove(condition);
     }
 
@@ -196,6 +200,22 @@ public class CharacterInfo : MonoBehaviour
 
             yield return new WaitForSeconds(1.0f);
         }
+    }
+    protected void AllStateClear()
+    {
+        StopCoroutine("PoisonDamage");
+        StopCoroutine("FireDamage");
+        for(int i = 0; i < (int)CharacterCondition.ConditionEnd; i++)
+        {
+            RemoveCondition((CharacterCondition)i);
+        }
+        //이펙트 다꺼줌
+        foreach (KeyValuePair<CharacterCondition,CharacterStateEffect> data in effectDic)
+        {
+            data.Value.gameObject.SetActive(false);
+        }
+        effectDic.Clear();
+
     }
 
     protected void VampiricGunEffect()

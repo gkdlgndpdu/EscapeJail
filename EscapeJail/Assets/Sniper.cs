@@ -14,6 +14,18 @@ public class Sniper : CharacterBase
 
     private float requireTimeforReload = 5f;
 
+    protected override void ResetAbility()
+    {
+        nowBullet = maxBullet;
+
+    }
+    protected override void DieAction()
+    {
+        base.DieAction();
+        if (nowUsingSkill == true)
+            UseCharacterSkill();
+    }
+
     private IEnumerator ReLoadRoutine()
     {
         float count = 0f;
@@ -239,10 +251,10 @@ public class Sniper : CharacterBase
         base.FireWeapon();
     }
 
-    protected override void MoveInMobie()
+    protected override void MoveInMobile()
     {
         if (nowUsingSkill == true) return;
-        base.MoveInMobie();
+        base.MoveInMobile();
     }
 
     protected override void MoveInPc()

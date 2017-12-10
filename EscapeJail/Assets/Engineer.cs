@@ -12,26 +12,34 @@ public class Engineer : CharacterBase
     [SerializeField]
     private Transform dronePos;
 
+    private float skillCount = 0f;
+
     private float skillCoolTimeMax = 10f;
     private bool isSkillOn = true;
 
+    protected override void ResetAbility()
+    {       
+        skillCount = skillCoolTimeMax;
+    }
+
     private IEnumerator skillCoolTimeRoutine()
     {
-        float count = 0f;
+        skillCount = 0;
         while (true)
         {
-            count += Time.deltaTime;
+            skillCount += Time.deltaTime;
 
             if (playerUi != null)
-                playerUi.SetSkillButtonProgress(count, skillCoolTimeMax);
+                playerUi.SetSkillButtonProgress(skillCount, skillCoolTimeMax);
 
-            if (count >= skillCoolTimeMax)
+            if (skillCount >= skillCoolTimeMax)
             {
                 isSkillOn = true;
 
                 if (drone != null)
                     drone.ShowDrone();
 
+                
                 yield break;
             }
             yield return null;

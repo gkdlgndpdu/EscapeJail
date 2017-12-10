@@ -29,7 +29,8 @@ namespace weapon
             PlayFireAnim();
             useBullet();
 
-
+            //흔들리는 효과
+            CameraController.Instance.ShakeCamera(3f, 0.4f);
             int layerMask = MyUtils.GetLayerMaskByString("Enemy");
             SoundManager.Instance.PlaySoundEffect("thunder");
 

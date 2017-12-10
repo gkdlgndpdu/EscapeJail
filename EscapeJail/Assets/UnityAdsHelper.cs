@@ -2,10 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using System;
 
 public class UnityAdsHelper : MonoBehaviour
 {
-                                        //고유 아이디
+    public static UnityAdsHelper Instance;
+    private Action revivalFunc;
+    public Action RevivalFunc
+    {
+        set
+        {
+            revivalFunc = value;
+        }
+    }
+    private void Awake()
+    {
+        if(Instance==null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+    //고유 아이디
     private const string android_game_id = "1613609";
 
     private const string rewarded_video_id = "rewardedVideo";
@@ -37,9 +59,10 @@ public class UnityAdsHelper : MonoBehaviour
         switch (result)
         {
             case ShowResult.Finished:
-                {             
+                {
 
-                   
+                    if (revivalFunc != null)
+                        revivalFunc();
                     // 광고 시청이 완료되었을 때 처리
 
                     break;
