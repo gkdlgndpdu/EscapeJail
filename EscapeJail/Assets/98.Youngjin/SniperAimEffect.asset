@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       tonemapping:
-        tonemapper: 2
+        tonemapper: 0
         neutralBlackIn: -0.1
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -122,21 +122,21 @@ MonoBehaviour:
       basic:
         postExposure: 0
         temperature: 0
-        tint: 0
+        tint: -0.9
         hueShift: 0
         saturation: 1
         contrast: 1
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
-        green: {x: 0, y: 1, z: 0}
-        blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
+        red: {x: 2, y: 2, z: 2}
+        green: {x: 2, y: 2, z: 2}
+        blue: {x: 2, y: 2, z: 2}
+        currentEditingChannel: 2
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 0.35134822, g: 0.2152158, b: 1, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.9886571, g: 1, b: 0.977314, a: 0.008163264}
+          power: {r: 0.98109514, g: 0.9621901, b: 1, a: 0}
+          offset: {r: 0.96219, g: 1, b: 0.97676563, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -149,14 +149,14 @@ MonoBehaviour:
             - serializedVersion: 2
               time: 0
               value: 0
-              inSlope: 1
+              inSlope: 0
               outSlope: 1
               tangentMode: 0
             - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
-              outSlope: 1
+              outSlope: 0
               tangentMode: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
