@@ -51,8 +51,8 @@ public class UI_CustomToggle : MonoBehaviour
                 {
                     if (SoundManager.Instance.IsBgmMute == true)
                         isOn = false;
-                    else                    
-                        isOn = true;                
+                    else
+                        isOn = true;
 
                 }
                 break;
@@ -60,9 +60,17 @@ public class UI_CustomToggle : MonoBehaviour
                 {
                     if (SoundManager.Instance.IsEffectMute == true)
                         isOn = false;
-                    else                   
-                        isOn = true;                    
+                    else
+                        isOn = true;
 
+                }
+                break;
+            case ToggleType.JoyStick:
+                {
+                    if (JoyStick.Instance.NowStickType==StickType.UnFixed)
+                        isOn = false;
+                    else
+                        isOn = true;
                 }
                 break;
         }

@@ -10,11 +10,9 @@ public class OptionUi : MonoBehaviour
     [SerializeField]
     private Slider effectSlider;
 
-    [SerializeField]
-    private UI_CustomToggle bgmToggle;
 
     [SerializeField]
-    private UI_CustomToggle effectMuteToggle;
+    private JoyStick moveStick;
 
     public void MuteBgm(bool OnOff)
     {
@@ -36,6 +34,23 @@ public class OptionUi : MonoBehaviour
             PlayerPrefs.SetInt(PlayerPrefKeys.EffectMuteKey, 0);
         else if (OnOff == true)
             PlayerPrefs.SetInt(PlayerPrefKeys.EffectMuteKey, 1);
+    }
+
+    public void ChangeMoveStickType(bool OnOff)
+    {
+        if (moveStick == null) return;
+
+
+        if (OnOff == false)
+        {
+            moveStick.NowStickType = StickType.UnFixed;
+            PlayerPrefs.SetInt(PlayerPrefKeys.MoveStickTypeKey, 1);
+        }
+        else if (OnOff == true)
+        {
+            moveStick.NowStickType = StickType.Fixed;
+            PlayerPrefs.SetInt(PlayerPrefKeys.MoveStickTypeKey, 0);
+        }
     }
 
     public void OnBgmSliderChange()

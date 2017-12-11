@@ -4,11 +4,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum StickType
+{
+    Fixed,
+    UnFixed
+}
 /// <summary>
 /// 이동용 조이스틱
 /// </summary>
 public class JoyStick : MonoBehaviour
-{
+{   
+    public StickType NowStickType
+    {
+        get
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.MoveStickTypeKey, 0) == 0)
+                return StickType.Fixed;
+            else
+                return StickType.UnFixed;
+        }
+        set
+        {         
+            if (value == StickType.Fixed)
+            {
+                ResetStick();
+            }
+        }
+    }
     public static JoyStick Instance;
     //
     public Image stickImage;
@@ -44,6 +66,7 @@ public class JoyStick : MonoBehaviour
     {
         Instance = this;
     }
+
     // Use this for initialization
     void Start()
     {
@@ -53,6 +76,8 @@ public class JoyStick : MonoBehaviour
 
         if(backImage!=null)
         stickRadius = backImage.rectTransform.sizeDelta.x*2f;
+
+        
         //if(middleImage!=null)
         //middleRadius = middleImage.rectTransform.sizeDelta.x;
 
@@ -71,6 +96,15 @@ public class JoyStick : MonoBehaviour
                 fingerId = touch.fingerId;
                 nowTouching = true;
 
+                if (NowStickType == StickType.UnFixed)
+                {
+                    Vector3 touchPos = Input.touches[i].position;
+                    //이동식 스틱일때
+                    originPos = touchPos;
+                    backImage.transform.position = touchPos;
+                    stickImage.transform.position = touchPos;
+                }       
+
                 break;
             }
         }
@@ -87,7 +121,7 @@ public class JoyStick : MonoBehaviour
             if (Input.touches[i].fingerId == fingerId)
             {
                 touch = Input.GetTouch(i);
-                originPos = saveOriginPos;
+               // originPos = saveOriginPos;
 
                 //이동방향 계산
                 moveDir = new Vector3(touch.position.x, touch.position.y, originPos.z) - originPos;
@@ -120,35 +154,18 @@ public class JoyStick : MonoBehaviour
 
         for (int i = 0; i < Input.touchCount; i++)
         {
-            if (Input.GetTouch(i).position.x < Screen.width * 0.5f)
-            {
-                return;
-            }
+            if (Input.GetTouch(i).fingerId == fingerId)
+                return;            
+            
         }
-        //왼쪽영역에 터치중인것이 하나도 없다.
+      
         ResetStick();
 
     }
-
-
-    //손가락 놨을때
-    public void EndDrag()
-    {
-
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            //조이스틱을 터치중인 손가락일 때만.
-            if (Input.touches[i].fingerId == fingerId)
-            {
-                ResetStick();
-                break;
-            }
-        }
-
-    }
+ 
 
     public void ResetStick()
-    {
+    {       
         //스틱 위치 원상복귀
         backImage.rectTransform.position = firstPos;
         stickImage.transform.position = firstPos;
