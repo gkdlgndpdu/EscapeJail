@@ -28,8 +28,9 @@ public class ArmorSystem
     {
 
         if (remainArmor > value) return;
-        inventoryUi.SetArmorImage(level);      
+#if UNITY_EDITOR
         Debug.Log("Gain Armor " + value.ToString());
+#endif
 
         remainArmor = value;
         maxArmor = remainArmor;

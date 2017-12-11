@@ -21,6 +21,7 @@ using System.Text;
 public class GoogleService : MonoBehaviour
 {
     private bool canStart = false;
+    public static GoogleService Instance;
     public bool CanStart
     {
         get
@@ -30,7 +31,15 @@ public class GoogleService : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
     }  
 
     private void ShowLeaderBoardUi()

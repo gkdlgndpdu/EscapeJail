@@ -16,6 +16,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     private Image fadeMask;
     private SceneName nowSceneName;
+    private bool nowChangeScene =false;
 
     void Awake()
     {
@@ -33,6 +34,9 @@ public class SceneManager : MonoBehaviour
 
     public void ChangeScene(SceneName sceneName)
     {
+        if (nowChangeScene == true)
+            StopAllCoroutines();
+
         nowSceneName = sceneName;
         StartCoroutine(FadeRoutine());
 
@@ -40,6 +44,7 @@ public class SceneManager : MonoBehaviour
 
     public IEnumerator FadeRoutine()
     {
+        nowChangeScene = true;
         MaskOnOff(true);
         iTween.FadeTo(fadeMask.gameObject, 1f, 1f);
         yield return new WaitForSeconds(1.0f);
@@ -48,6 +53,7 @@ public class SceneManager : MonoBehaviour
         iTween.FadeTo(fadeMask.gameObject, 0f, 1f);
         yield return new WaitForSeconds(1.0f);
         MaskOnOff(false);
+        nowChangeScene = false;
     }
 
     public void MaskOnOff(bool OnOff)
@@ -55,6 +61,25 @@ public class SceneManager : MonoBehaviour
         if (fadeMask != null)
             fadeMask.gameObject.SetActive(OnOff);
     }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeScene(SceneName.LobbyScene);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeScene(SceneName.SelectScene);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeScene(SceneName.GameScene);
+        }
+    }
+#endif
+
 
 }
 

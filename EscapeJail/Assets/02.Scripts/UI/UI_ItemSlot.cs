@@ -143,8 +143,15 @@ public class UI_ItemSlot : MonoBehaviour
 
     public void SetSlotSprite(Sprite sprite)
     {
-        if (image != null)
+        if (image == null) return;
+
             image.sprite = sprite;
+
+        if (sprite != null)
+            image.color = Color.white;
+        else if (sprite == null)
+            image.color = new Color(0f, 0f, 0f, 0f);
+            
     }
     public void SetSlotText(string text)
     {

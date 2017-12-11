@@ -19,12 +19,7 @@ public class InventoryUi : MonoBehaviour
 
 
     [SerializeField]
-    private Image backGroundImage;
-
-    [SerializeField]
-    private Image ArmorImage;
-    [SerializeField]
-    private Image ArmorRedImage;
+    private Image backGroundImage; 
 
     [SerializeField]
     private UI_QuickSlot quickSlot;
@@ -83,40 +78,7 @@ public class InventoryUi : MonoBehaviour
 
         quickSlot.SetQuickSlot(nowSelectedSlot);
 
-    }
-
-
-    public void SetArmorUi(float ratio)
-    {
-        if (ArmorRedImage != null)
-        {
-            ArmorRedImage.fillAmount =1f- ratio;            
-        }
-        
-    }
-
-    public void SetArmorImage(int level)
-    {
-        level = Mathf.Clamp(level, 1, 3);
-        string path = string.Format("Sprites/Icons/Armor{0}", level.ToString());
-
-        if (ArmorImage != null && ArmorRedImage != null)
-        {
-            Sprite loadImage = Resources.Load<Sprite>(path);
-            if (loadImage != null)
-            {
-                ArmorImage.sprite = loadImage;
-                ArmorRedImage.sprite = loadImage;
-            }
-        }
-
-    }
-
-    public void UpdateInventoryArmorUi(float ratio)
-    {
-        if (ArmorRedImage != null)
-            ArmorRedImage.fillAmount = ratio;
-    }
+    }   
 
 
     public void UpdateQuickSlot()
