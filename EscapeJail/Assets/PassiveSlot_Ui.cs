@@ -84,7 +84,7 @@ public class PassiveSlot_Ui : MonoBehaviour
 
         if (OnOff == true)
         {
-            PlayerPrefs.SetInt(GameConstants.PassiveKeyValue, (int)passiveType);
+            PlayerPrefs.SetInt(PlayerPrefKeys.PassiveKeyValue, (int)passiveType);
         }
 
     }

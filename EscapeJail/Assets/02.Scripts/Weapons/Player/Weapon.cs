@@ -361,7 +361,7 @@ namespace weapon
 
         protected void SetAmmo(int num)
         {
-            if ((PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue) == PassiveType.ExtendedMag && num != 1)
+            if ((PassiveType)PlayerPrefs.GetInt(PlayerPrefKeys.PassiveKeyValue) == PassiveType.ExtendedMag && num != 1)
             {
                 num += (int)((float)num * 0.5f);
             }

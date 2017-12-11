@@ -41,7 +41,7 @@ public class MyUtils
 
     public static PassiveType GetNowPassive()
     {
-        return (PassiveType)PlayerPrefs.GetInt(GameConstants.PassiveKeyValue);
+        return (PassiveType)PlayerPrefs.GetInt(PlayerPrefKeys.PassiveKeyValue);
     }
 
 

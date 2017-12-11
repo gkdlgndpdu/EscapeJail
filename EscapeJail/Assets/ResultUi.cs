@@ -34,7 +34,10 @@ public class ResultUi : MonoBehaviour
 
         //시간
         if (timeText != null)
-            timeText.text = "999:999";
+        {
+            int playTime = TimeManager.Instance.PlayTime;
+            timeText.text = string.Format("{0} seconds",playTime);
+        }
         if (bossKillText != null)
             bossKillText.text = scoreCounter.BossKillNum.ToString();
         if (monsterKillText != null)
@@ -65,6 +68,7 @@ public class ResultUi : MonoBehaviour
     private void OnEnable()
     {
         TimeManager.Instance.StopTime();
+        UpdateUiTexts();
     }
 
     private void OnDisable()

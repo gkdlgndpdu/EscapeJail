@@ -19,9 +19,7 @@ public static class GameConstants
     public static int fireTicDamage = 1;
     public static int poisonTicDamage = 1;
 
-    //PlayerPref KeyValue
-    public static string CharacterKeyValue = "CharacterType";
-    public static string PassiveKeyValue = "Passive";
+ 
 
     //진통제 지속시간
     public static float StimulantDurationTime = 30f;
@@ -49,6 +47,7 @@ public static class GameConstants
     public static int StagePoint = 1000;
 
 
+    
 }
 
 public static class CustomColor
@@ -56,4 +55,16 @@ public static class CustomColor
     public static Color Orange = new Color(255f / 255f, 187f / 255f, 0f);
     public static Color Silver = new Color(192f / 255f, 192f / 255f, 192f/255f);
     public static Color SkinColor = new Color(255f / 255f, 215f / 255f, 181f / 255f);
+}
+
+public static class PlayerPrefKeys
+{
+
+    public static string CharacterKeyValue = "CharacterType";
+    public static string PassiveKeyValue = "Passive";
+
+    public static string BgmMuteKey ="BgmMute"; //0 false 1 true
+    public static string EffectMuteKey ="EffectMute"; //0 false 1 true
+    public static string BgmVolumeKey = "BgmVolume";
+    public static string EffectVolumeKey = "EffectVolume";
 }

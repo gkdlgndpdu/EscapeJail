@@ -10,37 +10,77 @@ public class SoundManager : MonoBehaviour
     private AudioSource bgmSource;
     private Dictionary<string, AudioClip> soundEffectPool;
     private Dictionary<string, AudioClip> bgmPool;
-    private float bgmVolume = 1f;
+
     public float BgmVolume
     {
         get
         {
-            return bgmVolume;
+            return PlayerPrefs.GetFloat(PlayerPrefKeys.BgmVolumeKey);
         }
     }
-    private float effectVolume = 1f;
+    
     public float EffectVolume
     {
         get
         {
-            return effectVolume;
+            return PlayerPrefs.GetFloat(PlayerPrefKeys.EffectVolumeKey);
         }
     }
+
+    public bool IsBgmMute
+    {
+        get
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.BgmMuteKey,1) == 0)
+                return true;
+            else
+                return false;         
+        }
+    }
+    public void SetBgmMute()
+    {
+        if (bgmSource == null) return;
+        bgmSource.mute = IsBgmMute;
+    }
+    public bool IsEffectMute
+    {
+        get
+        {
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.EffectMuteKey,1) == 0)
+                return true;
+            else
+                return false;
+        }
+    }
+
+    private void SetBgmDefaultOption()
+    {
+        if (bgmSource == null) return;
+    
+            SetBgmMute();
+
+        bgmSource.volume = BgmVolume;
+    }
+
     private ObjectPool<EachSound> soundPool;
     private void Awake()
     {
         if (Instance == null)
-        {
+        {       
             Instance = this;
             soundEffectPool = new Dictionary<string, AudioClip>();
             bgmPool = new Dictionary<string, AudioClip>();
             MakeSoundPool();
-                bgmSource = GetComponent<AudioSource>();
-            bgmSource.volume = bgmVolume;
+            bgmSource = GetComponent<AudioSource>();
+            bgmSource.volume = BgmVolume;
             bgmSource.loop = true;
             LoadSounds();
 
-         //   PlayerBgm("Main");
+
+
+
+            SetBgmDefaultOption();
+            PlayBgm("Main");
 
             DontDestroyOnLoad(Instance.gameObject);
         }
@@ -48,6 +88,11 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    public void SetBgmVolume()
+    {
+        if (bgmSource == null) return;
+        bgmSource.volume = BgmVolume;
     }
     private void MakeSoundPool()
     {
@@ -79,8 +124,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayerBgm(string soundName)
+    public void PlayBgm(string soundName)
     {
+        //if (IsBgmMute==true) return;
         if (bgmSource == null || bgmPool == null) return;
         if (bgmPool.ContainsKey(soundName) == false) return;
 
@@ -103,7 +149,7 @@ public class SoundManager : MonoBehaviour
     IEnumerator BgmChangeRoutine(string name)
     {
         yield return StartCoroutine(SlowEndBgm());
-        PlayerBgm(name);
+        PlayBgm(name);
     }
 
     IEnumerator SlowEndBgm()
@@ -117,14 +163,14 @@ public class SoundManager : MonoBehaviour
         while (true)
         {
             count += Time.deltaTime;
-            countVolume = Mathf.Lerp(bgmVolume, 0f, count);
+            countVolume = Mathf.Lerp(BgmVolume, 0f, count);
 
             if (bgmSource != null)
                 bgmSource.volume = countVolume;
       
             if (count >= 1f)
             {
-                countVolume = bgmVolume;
+                countVolume = BgmVolume;
                 yield break;
             }
             yield return null;
@@ -142,14 +188,14 @@ public class SoundManager : MonoBehaviour
         while (true)
         {
             count += Time.deltaTime;
-            countVolume = Mathf.Lerp(0f, bgmVolume, count);
+            countVolume = Mathf.Lerp(0f, BgmVolume, count);
 
             if (bgmSource != null)
                 bgmSource.volume = countVolume;
        
             if (count >= 1f)
             {
-                countVolume = bgmVolume;
+                countVolume = BgmVolume;
                 yield break;
             }
             yield return null;
@@ -158,7 +204,9 @@ public class SoundManager : MonoBehaviour
     }
 
     public void PlaySoundEffect(string soundName)
-    {
+    {                                                               //0 = false
+        if (IsEffectMute ==true) return;
+
         PlayerOneShot(soundName);
     }
 
@@ -171,7 +219,7 @@ public class SoundManager : MonoBehaviour
         EachSound eachSound = soundPool.GetItem();
         if (eachSound != null)
         {
-            eachSound.Initialize(soundEffectPool[soundName], effectVolume);
+            eachSound.Initialize(soundEffectPool[soundName], EffectVolume);
         }
         
       //  AudioSource.PlayClipAtPoint(soundEffectPool[soundName], Camera.main.transform.position, volume);

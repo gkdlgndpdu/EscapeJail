@@ -46,7 +46,7 @@ public class BossModule : MapModuleBase
         if (boxcollider2D != null)
         {
             boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
-            boxcollider2D.offset = new Vector2(-widthDistance / 2, -heightDistance / 2);
+            boxcollider2D.offset = new Vector2(0f,0f);
         }
     }
 

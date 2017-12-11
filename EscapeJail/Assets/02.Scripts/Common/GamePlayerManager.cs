@@ -51,7 +51,7 @@ public class GamePlayerManager : MonoBehaviour
 
     private void MakePlayer()
     {
-        playerName = (CharacterType)PlayerPrefs.GetInt(GameConstants.CharacterKeyValue, (int)CharacterType.Soldier);
+        playerName = (CharacterType)PlayerPrefs.GetInt(PlayerPrefKeys.CharacterKeyValue, (int)CharacterType.Soldier);
 
 
         GameObject playerPrefab = null;

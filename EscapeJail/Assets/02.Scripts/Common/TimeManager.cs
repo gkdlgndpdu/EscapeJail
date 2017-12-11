@@ -5,6 +5,25 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance;
+    private int playTime = 0;
+    public int PlayTime
+    {
+        get { return playTime; }
+    }
+    private IEnumerator CalculatePlayTime()
+    {
+        while(true)
+        {
+            playTime++;
+            yield return new WaitForSeconds(1.0f);
+        }
+        
+    }
+
+    private void Start()
+    {
+        StartCoroutine(CalculatePlayTime());
+    }
 
     private void Awake()
     {

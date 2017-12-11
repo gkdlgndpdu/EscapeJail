@@ -15,7 +15,10 @@ public class Criminal3 : MonsterBase
 
     }
 
-    
+    protected override void StartMyCoroutine()
+    {
+        StartCoroutine(PathFindRoutine());
+    }
 
     // Update is called once per frame
     private void Update()

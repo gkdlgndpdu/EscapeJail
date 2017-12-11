@@ -34,7 +34,7 @@ public class CharacterSlot_Ui : MonoBehaviour
 
     public void SelectCharacter()
     {
-        PlayerPrefs.SetInt(GameConstants.CharacterKeyValue, (int)characterType);
+        PlayerPrefs.SetInt(PlayerPrefKeys.CharacterKeyValue, (int)characterType);
 
         if (passiveWindowOnFunc != null)
             passiveWindowOnFunc();   
