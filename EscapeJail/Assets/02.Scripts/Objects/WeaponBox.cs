@@ -37,6 +37,7 @@ public class WeaponBox : MonoBehaviour, iReactiveAction
     public void ClickAction()
     {
         OpenBox();
+        SoundManager.Instance.PlaySoundEffect("boxopen");
     }
 
     private void OpenBox()

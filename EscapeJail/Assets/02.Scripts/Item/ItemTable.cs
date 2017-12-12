@@ -93,6 +93,7 @@ public class ItemTable : CharacterInfo
             animator.speed = 1f;
 
             BreakTable();
+            SoundManager.Instance.PlaySoundEffect("wooden desk break4");
         }
     }
 
