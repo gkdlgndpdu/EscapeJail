@@ -25,7 +25,7 @@ namespace weapon
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)
         {
             if (canFire() == false) return;
-
+            SoundManager.Instance.PlaySoundEffect("baseballbat2");
             FireDelayOn();
             PlayFireAnim();
 

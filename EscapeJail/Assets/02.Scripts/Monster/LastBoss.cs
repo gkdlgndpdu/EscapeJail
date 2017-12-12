@@ -297,10 +297,10 @@ public class LastBoss : BossBase
 
         bossEventQueue.Initialize(this, EventOrder.InOrder);
 
-        //bossEventQueue.AddEvent("SpreadBomb");
-        // bossEventQueue.AddEvent("TempFireRoutine1");
-        // bossEventQueue.AddEvent("SpawnNinjaRoutine");
-        // bossEventQueue.AddEvent("HideRoutine");
+        bossEventQueue.AddEvent("SpreadBomb");
+         bossEventQueue.AddEvent("TempFireRoutine1");
+         //bossEventQueue.AddEvent("SpawnNinjaRoutine");
+         bossEventQueue.AddEvent("HideRoutine");
         bossEventQueue.AddEvent("BulletRainRoutine");
     }
 

@@ -196,10 +196,13 @@ public class Sniper : CharacterBase
         if (nowUsingSkill == true)
         {
             SkillOff();
+            SoundManager.Instance.PlaySoundEffect("sniperscope");
+
         }
         else if (nowUsingSkill == false)
         {
             SkillOn();
+            SoundManager.Instance.PlaySoundEffect("sniperscope");
         }
     }
 
