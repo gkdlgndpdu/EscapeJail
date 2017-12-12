@@ -33,6 +33,9 @@ public class LoadingBoard : MonoBehaviour
     {
         iTween.FadeTo(this.gameObject, 0f, 1f);
         StartCoroutine(OffImages());
+
+        SoundManager.Instance.ChangeBgm(string.Format("Stage{0}", StagerController.Instance.NowStageLevel.ToString()));
+
     }
     IEnumerator OffImages()
     {

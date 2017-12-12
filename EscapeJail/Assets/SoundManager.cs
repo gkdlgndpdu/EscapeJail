@@ -24,14 +24,16 @@ public class SoundManager : MonoBehaviour
         get
         {
             return PlayerPrefs.GetFloat(PlayerPrefKeys.EffectVolumeKey);
-        }
+            
+                
+        }   
     }
 
     public bool IsBgmMute
     {
         get
         {
-            if (PlayerPrefs.GetInt(PlayerPrefKeys.BgmMuteKey,1) == 0)
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.BgmMuteKey,0) == 0)
                 return true;
             else
                 return false;         
@@ -46,7 +48,7 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            if (PlayerPrefs.GetInt(PlayerPrefKeys.EffectMuteKey,1) == 0)
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.EffectMuteKey,0) == 0)
                 return true;
             else
                 return false;
@@ -132,7 +134,7 @@ public class SoundManager : MonoBehaviour
 
         bgmSource.clip = bgmPool[soundName];
         bgmSource.Play();
-
+        StopCoroutine("SlowStartBgm");
         StartCoroutine(SlowStartBgm());
     }
 

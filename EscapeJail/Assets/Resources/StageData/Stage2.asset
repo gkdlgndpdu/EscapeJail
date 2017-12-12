@@ -70,7 +70,7 @@ MonoBehaviour:
   spriteDoor: {fileID: 21300000, guid: 6b9fae584b185024e8a55cc876210c16, type: 3}
   randomTileColor:
   - {r: 1, g: 1, b: 1, a: 1}
-  MinRoomNum: 5
-  MaxRoomNum: 7
-  RoomMaxSize: 10
-  RoomMinSize: 10
+  MinRoomNum: 10
+  MaxRoomNum: 10
+  RoomMaxSize: 20
+  RoomMinSize: 40

@@ -52,6 +52,15 @@ public class DatabaseLoader : MonoBehaviour
 
     private RandomGenerator<WeaponType> WeaponRandomGenerator;
 
+    //캐릭터 db
+    private Dictionary<CharacterType, CharacterDB> CharacterDB;
+    public CharacterDB GetCharacterDB(CharacterType type)
+    {
+        if (CharacterDB == null) return null;
+        if (CharacterDB.ContainsKey(type) == false) return null;
+        return CharacterDB[type];
+    }
+
     //디버그용
     public Text debugText;
     public StringBuilder sb = new StringBuilder();
@@ -118,7 +127,11 @@ public class DatabaseLoader : MonoBehaviour
         LoadItemProbabilityDB();
         LoadWeaponProbabilityDB();
         LoadPassiveItemDB();
+        LoadCharacterDB();
+#if UNITY_EDITOR
         DebugDB();
+#endif
+
     }
 
     private void DebugDB()
@@ -203,6 +216,24 @@ public class DatabaseLoader : MonoBehaviour
 
         OpenDB(fileName, ref dbcon);
         ReadPassiveDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+    }
+
+    private void LoadCharacterDB()
+    {
+        if (CharacterDB != null)
+        {
+            CharacterDB.Clear();
+            CharacterDB = null;
+        }
+        CharacterDB = new Dictionary<CharacterType, CharacterDB>();
+        string fileName = GameConstants.CharacterDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadCharacterDB(ref dbcmd, ref dbcon, ref reader);
         CloseDB(ref dbcmd, ref dbcon, ref reader);
     }
 
@@ -412,6 +443,27 @@ public class DatabaseLoader : MonoBehaviour
 //            sb.Append(debugmsg);
 //        }
 //#endif
+
+
+    }
+    private void ReadCharacterDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+        string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM CharacterDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {                                                               //Probability       //Description
+                CharacterDB.Add((CharacterType)reader.GetInt32(0), new CharacterDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+            }
+        }
+
 
 
     }

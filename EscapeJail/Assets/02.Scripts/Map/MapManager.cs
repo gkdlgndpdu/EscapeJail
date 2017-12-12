@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 
 public class MapManager : MonoBehaviour
-{ 
- 
-
+{
     private List<MapModuleBase> moduleList;
     private List<GameObject> objectList;
 
@@ -54,6 +52,8 @@ public class MapManager : MonoBehaviour
     public void MakeMap(StageData stageData)
     {
         mapModuleGenerator = new MapModuleGenerator(this.transform, this);
+        
+  
 
         moduleList = new List<MapModuleBase>();
 

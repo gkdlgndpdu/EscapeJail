@@ -47,16 +47,20 @@ public class ItemSpawner : MonoBehaviour
 
     }
 
-    public void SpawnRandomItem(Vector3 spawnPosit, Transform parent = null)
+    public DropItem SpawnRandomItem(Vector3 spawnPosit, Transform parent = null)
     {
-        if (randomGenerator == null) return;
-        if (mapManager == null) return;
+        if (randomGenerator == null) return null;
+        if (mapManager == null) return null;
 
         ItemType randomType = randomGenerator.GetRandomData();
         if (parent == null)
-            SpawnItem(randomType, spawnPosit, mapManager.transform);
+        {
+          return SpawnItem(randomType, spawnPosit, mapManager.transform);
+        }
         else
-            SpawnItem(randomType, spawnPosit, parent);
+        {
+           return SpawnItem(randomType, spawnPosit, parent);
+        }
 
     }
 
@@ -114,10 +118,10 @@ public class ItemSpawner : MonoBehaviour
     }
 
 
-    public void SpawnItem(ItemType itemType, Vector3 posit, Transform parent, bool isSalesItem = false, int level = 999)
+    public DropItem SpawnItem(ItemType itemType, Vector3 posit, Transform parent, bool isSalesItem = false, int level = 999)
     {
         DropItem item = MakeItemPrefab(posit);
-        if (item == null) return;
+        if (item == null) return null;
         item.transform.parent = parent;
 
 
@@ -170,9 +174,10 @@ public class ItemSpawner : MonoBehaviour
         if (spawnedObjectList != null)
             spawnedObjectList.Add(item.gameObject);
 
-
         if (isSalesItem == true)
             item.SetItemToSales();
+
+        return item;
     }
 
     public DropItem MakeItemPrefab(Vector3 posit)

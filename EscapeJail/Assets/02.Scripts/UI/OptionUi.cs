@@ -89,4 +89,13 @@ public class OptionUi : MonoBehaviour
     {
         TimeManager.Instance.ResumeTime();
     }
+
+    public void ReStartGame()
+    {
+        SceneManager.Instance.ChangeScene(SceneName.GameScene);
+    }
+    public void GoMenu()
+    {
+        SceneManager.Instance.ChangeScene(SceneName.SelectScene);
+    }
 }

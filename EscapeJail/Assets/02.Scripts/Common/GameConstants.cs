@@ -36,7 +36,7 @@ public static class GameConstants
     public static string ItemProbabilityDBName = "ItemProbabilityDB.db";
     public static string WeaponDBName = "WeaponDB.db";
     public static string PassiveDBName = "PassiveItemDB.db";
-
+    public static string CharacterDBName = "CharacterDB.db";
     //재화
     public static int CoinGetValue = 100;
     public static int MedalGetValue = 50;

@@ -17,8 +17,6 @@ public class StoryViewer : MonoBehaviour
     [SerializeField]
     private Sprite endingTexture;
 
-
-
     private string storyText;
 
     private StringBuilder stringBuilder;
@@ -32,9 +30,14 @@ public class StoryViewer : MonoBehaviour
         storyText = "The near future, A new country called Molestan appears in peaceful time.Molstan begins developing weapons secretly in order to wage war.In the World Union, which knows the situation, sends The Alpha agent team;for prevent this situation.Can they prevent war?";
         stringBuilder = new StringBuilder();
         texts = storyText.ToCharArray();
-
+        
         StartCoroutine(ShowText());
+
+        SoundManager.Instance.ChangeBgm("Story");
+
     }
+
+    
 
     private IEnumerator ShowText()
     {

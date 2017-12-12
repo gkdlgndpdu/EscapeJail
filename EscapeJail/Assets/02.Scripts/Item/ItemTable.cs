@@ -19,6 +19,8 @@ public class ItemTable : CharacterInfo
 
     private SpriteRenderer spriteRenderer;
 
+    private DropItem myItem;
+
     public void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -63,6 +65,11 @@ public class ItemTable : CharacterInfo
         if (objectShadow != null)
             objectShadow.ShadowOff();
 
+        if (myItem != null)
+        {
+            myItem.transform.position -= Vector3.up * 0.3f;
+        }
+
     }
 
     public override void GetDamage(int damage)
@@ -99,8 +106,10 @@ public class ItemTable : CharacterInfo
     {
         if (SpawnPosit != null)
         {
-            ItemSpawner.Instance.SpawnRandomItem(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position,this.transform);
+            DropItem dropItem = ItemSpawner.Instance.SpawnRandomItem(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);
 
+            if (dropItem != null)
+                myItem = dropItem;
         }
     }
    

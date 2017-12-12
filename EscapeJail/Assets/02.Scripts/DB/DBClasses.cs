@@ -75,3 +75,19 @@ public class PassiveDB
 
 }
 
+public class CharacterDB
+{
+    public bool hasCharacter = false;
+    public string skillName;
+    public string description;
+    public string howToGet;
+    
+    public CharacterDB(bool hasCharacter,string skillName,string description,string howToGet)
+    {
+        this.hasCharacter = hasCharacter;
+        this.skillName = skillName;
+        this.description = description;
+        this.howToGet = howToGet;
+    }
+}
+

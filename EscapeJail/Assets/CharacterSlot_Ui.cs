@@ -6,8 +6,16 @@ using System;
 [RequireComponent(typeof(Image))]
 public class CharacterSlot_Ui : MonoBehaviour
 {
+    private CharacterSelector parent;
     private Image characterImage;
     private CharacterType characterType;
+    public CharacterType CharacterType
+    {
+        get
+        {
+            return characterType;
+        }
+    }
     private Action passiveWindowOnFunc;
     private void Awake()
     {
@@ -15,10 +23,10 @@ public class CharacterSlot_Ui : MonoBehaviour
 
     
     }
-    public void Initialize(CharacterType characterType, Action passiveUiOnOffFunc)
+    public void Initialize(CharacterType characterType, Action passiveUiOnOffFunc, CharacterSelector parent)
     {
         this.characterType = characterType;
-
+        this.parent = parent;
         passiveWindowOnFunc = passiveUiOnOffFunc;
         if (characterImage!=null)
         {
@@ -35,9 +43,11 @@ public class CharacterSlot_Ui : MonoBehaviour
     public void SelectCharacter()
     {
         PlayerPrefs.SetInt(PlayerPrefKeys.CharacterKeyValue, (int)characterType);
+        if (parent != null)
+            parent.RegistSelectSlot(this);
 
-        if (passiveWindowOnFunc != null)
-            passiveWindowOnFunc();   
+        //if (passiveWindowOnFunc != null)
+        //    passiveWindowOnFunc();   
     }
 
 

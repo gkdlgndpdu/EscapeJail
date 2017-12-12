@@ -15,7 +15,26 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     private GameObject passiveUiParent;
 
+    private CharacterSlot_Ui nowSelectSlot;
+
     private RectTransform rectTr;
+
+    [SerializeField]
+    private Text characterInfoText;
+
+    public void RegistSelectSlot(CharacterSlot_Ui slot)
+    {
+        this.nowSelectSlot = slot;
+        UpdateCharacterInfoText();
+    }
+    private void UpdateCharacterInfoText()
+    {
+        if (nowSelectSlot == null) return;
+        if (characterInfoText == null) return;
+        CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
+        if (db == null) return;
+        characterInfoText.text = string.Format("{0} \nSkill : {1} \n {2}", nowSelectSlot.CharacterType.ToString(), db.skillName, db.description);
+    }
 
     private void Awake()
     {
@@ -39,7 +58,7 @@ public class CharacterSelector : MonoBehaviour
                 CharacterSlot_Ui slot = makeObj.GetComponent<CharacterSlot_Ui>();
                 if (slot != null)
                 {
-                    slot.Initialize((CharacterType)i, PassiveUiOnOff);
+                    slot.Initialize((CharacterType)i, PassiveUiOnOff,this);
                 }
             }
         }
