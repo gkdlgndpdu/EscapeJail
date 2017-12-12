@@ -62,7 +62,6 @@ public class ResultUi : MonoBehaviour
 
     private void Start()
     {
-        this.gameObject.SetActive(false);
         scoreCounter = GamePlayerManager.Instance.scoreCounter;
     }
     private void OnEnable()
