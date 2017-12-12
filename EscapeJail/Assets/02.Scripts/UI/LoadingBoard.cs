@@ -31,7 +31,8 @@ public class LoadingBoard : MonoBehaviour
 
     public void LoadingEnd()
     {
-        iTween.FadeTo(this.gameObject, 0f, 1f);
+ 
+  
         StartCoroutine(OffImages());
 
         SoundManager.Instance.ChangeBgm(string.Format("Stage{0}", StagerController.Instance.NowStageLevel.ToString()));
@@ -39,8 +40,20 @@ public class LoadingBoard : MonoBehaviour
     }
     IEnumerator OffImages()
     {
-        yield return new WaitForSeconds(1.0f);
-        ImageAndTextOnOff(false);
+        float count = 0f;
+        while (true)
+        {
+            count += Time.deltaTime;
+            SetAlphaToImage(1f - count);
+            if (count > 1)
+            {
+                ImageAndTextOnOff(false);
+                yield break;
+            }
+            yield return null;
+        }
+
+  
     }
 
     public void LoadingStart()
@@ -50,8 +63,20 @@ public class LoadingBoard : MonoBehaviour
 
     }
 
- 
-   
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            LoadingStart();
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            LoadingEnd();
+        }
+    }
+
+
+
 
     private void SetAlphaToImage(float alpha)
     {

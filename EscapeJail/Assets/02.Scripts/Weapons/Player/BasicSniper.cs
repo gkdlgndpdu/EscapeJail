@@ -14,13 +14,12 @@ namespace weapon
         {
             weapontype = WeaponType.BasicSniper;
             bulletSpeed = 10f;
-            fireDelay = 2f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.1f;
+            SetAmmo(1);
             needBulletToFire = 1;
             weaponScale = Vector3.one * 0.7f;
             relativePosition = new Vector3(-0.3f, 0f, 0f);
-            damage = 10;
+            damage = 1000;
 
 
 
@@ -30,7 +29,7 @@ namespace weapon
         {
             if (canFire() == false) return;
 
-            useBullet();
+        
             FireDelayOn();
             PlayFireAnim();
 

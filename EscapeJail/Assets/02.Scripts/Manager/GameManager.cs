@@ -28,16 +28,16 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StageChangeRoutine()
     {
+        LoadingBoard.Instance.LoadingStart();
+        yield return new WaitForSeconds(1.0f);
         TemporaryObjects.Instance.DestroyAllChildrenObject();
         MiniMap.Instance.ResetMiniMap();
         MonsterManager.Instance.ClearMonsterList();
-        yield return new WaitForSeconds(5.0f);
-        LoadingBoard.Instance.LoadingStart();
-        yield return new WaitForSeconds(0.5f);
+       // yield return new WaitForSeconds(0.5f);
         StagerController.Instance.DestroyThisStage();
-        yield return new WaitForSeconds(0.5f);
+       // yield return new WaitForSeconds(0.5f);
         StagerController.Instance.CreateNextStage();
-        yield return new WaitForSeconds(0.5f);
+       // yield return new WaitForSeconds(0.5f);
         GamePlayerManager.Instance.ResetPlayerPosit();
         System.GC.Collect();
 

@@ -285,4 +285,11 @@ public class MouseBoss : BossBase
         }
     }
 
+    protected override void BossDie()
+    {
+        base.BossDie();
+        if (animator != null)
+            animator.SetFloat("Speed",0f);
+    }
+
 }

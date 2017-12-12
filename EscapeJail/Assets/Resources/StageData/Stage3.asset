@@ -64,4 +64,4 @@ MonoBehaviour:
   MinRoomNum: 10
   MaxRoomNum: 10
   RoomMaxSize: 20
-  RoomMinSize: 40
+  RoomMinSize: 30
