@@ -22,7 +22,11 @@ public class BossEventQueue : MonoBehaviour
         targetGameObject = target;
         this.eventOrder = eventOrder;
     }
-
+    public void Stop()
+    {
+        if (targetGameObject == null) return;
+        targetGameObject.StopAllCoroutines();
+    }
     public void StartEventQueue()
     {
         StopAllCoroutines();

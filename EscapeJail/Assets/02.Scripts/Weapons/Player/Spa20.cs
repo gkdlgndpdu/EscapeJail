@@ -34,7 +34,7 @@ namespace weapon
             fireDirection = ApplyReboundDirection(fireDirection);
 
 
-            for (int i = 0; i < needBulletToFire; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
                 if (bullet != null)

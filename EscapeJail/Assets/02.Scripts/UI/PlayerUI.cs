@@ -81,4 +81,12 @@ public class PlayerUI : MonoBehaviour
         if (resultUi != null)
             resultUi.gameObject.SetActive(OnOff);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ResultUiOnOff(true);
+        }
+    }
 }

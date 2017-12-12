@@ -104,8 +104,10 @@ public class BossBase : CharacterInfo
 
     protected virtual void BossDie()
     {
-        StopAllCoroutines();
-
+        if (bossEventQueue != null)
+            bossEventQueue.Stop();
+     
+   
         if (animator != null)
             animator.SetTrigger("DeadTrigger");
         if (rb != null)

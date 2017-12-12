@@ -25,7 +25,7 @@ namespace weapon
 
             FireDelayOn();
             PlayFireAnim();
-
+            useBullet();
             SoundManager.Instance.PlaySoundEffect("pistol1");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
