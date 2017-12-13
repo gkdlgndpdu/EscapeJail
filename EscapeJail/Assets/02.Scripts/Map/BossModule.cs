@@ -24,6 +24,22 @@ public class BossModule : MapModuleBase
     
     private BossBase bossBase; 
     private bool isBossStart = false;
+    [SerializeField]
+    private GameObject maskObject;
+
+    private void SetMaskSize(Vector3 position, Vector3 scale)
+    {
+        if (maskObject == null) return;
+        maskObject.transform.localPosition = position;
+        maskObject.transform.localScale = scale;
+    }
+
+    private void MaskOff()
+    {
+        if (maskObject == null) return;
+        maskObject.SetActive(false);
+    }
+
     private void Awake()
     {
         GetBossData();
@@ -47,6 +63,7 @@ public class BossModule : MapModuleBase
         {
             boxcollider2D.size = new Vector2((widthNum + 2) * widthDistance, (heightNum + 2) * heightDistance);
             boxcollider2D.offset = new Vector2(0f,0f);
+            SetMaskSize(boxcollider2D.offset, new Vector2((widthNum - 2) * widthDistance, (heightNum - 2) * heightDistance));
         }
     }
 
@@ -105,8 +122,7 @@ public class BossModule : MapModuleBase
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        
+    {        
 
         if (isBossStart == true|| isPositioningComplete==false) return;
 
@@ -118,6 +134,7 @@ public class BossModule : MapModuleBase
             isBossStart = true;
 
             CloseDoor();
+            MaskOff();
         }
     }     
 
