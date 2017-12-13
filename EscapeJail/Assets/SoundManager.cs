@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            return PlayerPrefs.GetFloat(PlayerPrefKeys.BgmVolumeKey);
+            return PlayerPrefs.GetFloat(PlayerPrefKeys.BgmVolumeKey,1f);
         }
     }
     
@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            return PlayerPrefs.GetFloat(PlayerPrefKeys.EffectVolumeKey);
+            return PlayerPrefs.GetFloat(PlayerPrefKeys.EffectVolumeKey,1f);
             
                 
         }   
@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            if (PlayerPrefs.GetInt(PlayerPrefKeys.BgmMuteKey,0) == 0)
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.BgmMuteKey,1) == 0)
                 return true;
             else
                 return false;         
@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
     {
         get
         {
-            if (PlayerPrefs.GetInt(PlayerPrefKeys.EffectMuteKey,0) == 0)
+            if (PlayerPrefs.GetInt(PlayerPrefKeys.EffectMuteKey,1) == 0)
                 return true;
             else
                 return false;
@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
             LoadSounds();
 
 
-
+        
 
             SetBgmDefaultOption();
             PlayBgm("Main");
