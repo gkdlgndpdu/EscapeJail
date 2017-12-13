@@ -410,8 +410,8 @@ public class MapModule : MapModuleBase
             else
             {
                 targetTile.canSpawned = false;
-                GameObject article = GameObject.Instantiate(obj, targetTile.transform);
-                article.transform.localPosition = Vector3.zero;
+                GameObject article = GameObject.Instantiate(obj,mapManager.transform);
+                article.transform.position = targetTile.transform.position;
                 return;
             }
         }

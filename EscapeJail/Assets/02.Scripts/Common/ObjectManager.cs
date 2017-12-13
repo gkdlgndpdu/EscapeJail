@@ -43,7 +43,7 @@ public class ObjectManager : MonoBehaviour
     private Transform MonsterParent;
     [SerializeField]
     private Transform ObjectParent;
-
+    [SerializeField]
     public Transform TileParent;
 
     private void Awake()
