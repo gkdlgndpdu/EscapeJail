@@ -256,6 +256,8 @@ public class MapModule : MapModuleBase
     {
         if (monsterList != null)
             monsterList.Clear();
+        if (normalTileList == null) return;
+        if (normalTileList.Count == 0) return;
 
         //몬스터 스폰
         for (int i = 0; i < monsterNum; i++)
