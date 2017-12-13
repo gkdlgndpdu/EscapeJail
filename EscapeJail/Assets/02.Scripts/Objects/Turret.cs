@@ -52,7 +52,7 @@ public class Turret : CharacterInfo
         }
         else
         {
-            this.gameObject.layer = LayerMask.NameToLayer("Enemy");
+            this.gameObject.layer = LayerMask.NameToLayer("EnemyTurret");
             this.gameObject.tag = "Enemy";
         }
     }

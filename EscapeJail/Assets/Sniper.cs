@@ -82,7 +82,14 @@ public class Sniper : CharacterBase
 
     private bool AmmoisFull()
     {
-        return nowBullet >= maxBullet;
+        bool returnValue = nowBullet >= maxBullet;
+        if (returnValue == true)
+        {
+            if (playerUi != null)
+                playerUi.SetSkillButtonProgress(requireTimeforReload, requireTimeforReload);
+        }
+    
+        return returnValue;
     }
 
     private void SetBullet(int bulletNum)
@@ -106,8 +113,7 @@ public class Sniper : CharacterBase
     {
         base.Start();
         SetWeapon();
-        StartCoroutine(ReLoadRoutine());
-        originSpeed = moveSpeed;
+        StartCoroutine(ReLoadRoutine());     
         UpdateSkillUi(nowBullet.ToString());
     }
 

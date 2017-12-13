@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61264520639624098}
   - component: {fileID: 212581529681045116}
   - component: {fileID: 114393541385702062}
+  - component: {fileID: 114412353372108396}
   m_Layer: 16
   m_Name: DropItem
   m_TagString: Untagged
@@ -57,9 +58,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.8, y: 0.3}
-    oldSize: {x: 0.4333333, y: 0.36}
-    newSize: {x: 0.4333333, y: 0.36}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
+    newSize: {x: 0.8, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -78,6 +79,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95f31e69460c2c4987e3ea2298a6695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114412353372108396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487537022813754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ced6a516eab2f4eb085fdf62ce9b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 1
 --- !u!212 &212581529681045116
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,11 +101,12 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 39870fdefdcc6f046a1c7451b1265767, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,6 +117,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -110,13 +126,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: 21300000, guid: fe114eccb49edef42b1e5e62ca16d964, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f77ef0d532eff1428e061494c67c00a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4333333, y: 0.36}
+  m_Size: {x: 0.8, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

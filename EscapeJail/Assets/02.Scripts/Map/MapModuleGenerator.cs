@@ -29,6 +29,8 @@ public class MapModuleGenerator
     private List<Sprite> wallSpriteList;
     private Sprite doorSprite;
 
+    private List<Tile> backGroundTileList = new List<Tile>();
+
     ////모듈 리스트
     //private List<MapModuleBase> moduleList;
 
@@ -166,7 +168,10 @@ public class MapModuleGenerator
                     //else if (y >= heightNum / 2 - doorSize / 2 && y < heightNum / 2 + doorSize / 2 && x == widthNum - 1)
                     //{
 
-                    //}              
+                    //}    
+
+                    if (backGroundTileList != null)
+                        backGroundTileList.Add(tile);
                 }
                 else
                 {
@@ -175,7 +180,8 @@ public class MapModuleGenerator
                     tile = MakeTile(TileType.Normal, posit, x, y, parent, null, GameConstants.BackgroundLayerMin);
 
                     SetTileColor(tile, Color.white);
-
+                    if (backGroundTileList != null)
+                        backGroundTileList.Add(tile);
                 }
             }
         }
@@ -470,14 +476,19 @@ public class MapModuleGenerator
     //벽의경우 여기에 넣어주면 해당 텍스쳐로만 생성
     private Tile MakeTile(TileType type, Vector3 posit, int x, int y, Transform parent, MapModule parentModule, int layerOrder = 0, Sprite specificSprite = null)
     {
-        GameObject obj = GameObject.Instantiate(normalTile, parent);
-        obj.transform.position = posit;
-        if (obj == null) return null;
+        //GameObject obj = GameObject.Instantiate(normalTile, parent);
+        //obj.transform.position = posit;
+        //if (obj == null) return null;
+        //Tile tile = null;
+        //tile = obj.GetComponent<Tile>();
+        //if (tile == null) return null;
 
-        Tile tile = null;
-        tile = obj.GetComponent<Tile>();
+        Tile tile = ObjectManager.Instance.tilePool.GetItem();
+        tile.transform.position = posit;
+        if(parentModule!=null)
+        tile.transform.parent = parentModule.transform;
+
         if (tile == null) return null;
-
         switch (type)
         {
             case TileType.Normal:
@@ -529,7 +540,15 @@ public class MapModuleGenerator
 
     }
 
+    public void PullBackGroundTiles()
+    {
+        if (backGroundTileList == null) return;
+        for(int i = 0; i < backGroundTileList.Count; i++)
+        {
+            backGroundTileList[i].PullToParentPool();
+        }
 
+    }
 
 }
 

@@ -104,11 +104,19 @@ public class MapManager : MonoBehaviour
         for (int i = transform.childCount - 1; i >= 0; i--)
             Destroy(transform.GetChild(i).gameObject);
 
+        //타일 재활용
+        for(int i = 0; i < moduleList.Count; i++)
+        {
+            MapModule normalModule = moduleList[i].GetComponent<MapModule>();
+            if (normalModule != null)
+                normalModule.PushAllTileToPool();
+        }
+
         if (moduleList != null)
         {
-            moduleList.Clear();
-         
-        }   
+            moduleList.Clear();         
+        }
+        mapModuleGenerator.PullBackGroundTiles();
 
         mapModuleGenerator = null;
     
@@ -178,6 +186,9 @@ public class MapManager : MonoBehaviour
             if (moduleList[i] != null)
                 moduleList[i].PositioningComplete();
         }
+
+        System.GC.Collect();
+        
 
     }
 

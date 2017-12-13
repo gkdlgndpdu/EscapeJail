@@ -27,13 +27,16 @@ public class LoadingBoard : MonoBehaviour
             Instance = this;
         }
         LoadingStart();
-    }        
+    }
+    public void LoadingStart()
+    {   
+        ImageAndTextOnOff(true);
+        SetAlphaToImage(1f);
 
+    }
     public void LoadingEnd()
-    {
- 
-  
-        StartCoroutine(OffImages());
+    {    
+          StartCoroutine(OffImages());
 
         SoundManager.Instance.ChangeBgm(string.Format("Stage{0}", StagerController.Instance.NowStageLevel.ToString()));
 
@@ -55,26 +58,6 @@ public class LoadingBoard : MonoBehaviour
 
   
     }
-
-    public void LoadingStart()
-    {
-        ImageAndTextOnOff(true);
-        SetAlphaToImage(1f);
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            LoadingStart();
-        }
-        if (Input.GetKeyDown(KeyCode.PageDown))
-        {
-            LoadingEnd();
-        }
-    }
-
 
 
 

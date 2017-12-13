@@ -87,4 +87,14 @@ public class ResultUi : MonoBehaviour
      
     }
 
+    //임시코드
+    public void ReviveInstantly()
+    {
+        if (linkFunc != null)
+        {
+            linkFunc();
+
+        }
+    }
+
 }

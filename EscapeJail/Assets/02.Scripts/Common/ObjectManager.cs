@@ -32,6 +32,9 @@ public class ObjectManager : MonoBehaviour
     public ObjectPool<DropGoods> coinPool;
     public MonsterPool monsterPool;
 
+    [HideInInspector]
+    public FastObjectPool<Tile> tilePool;
+
     [SerializeField]
     private Transform bulletParent;
     [SerializeField]
@@ -40,6 +43,8 @@ public class ObjectManager : MonoBehaviour
     private Transform MonsterParent;
     [SerializeField]
     private Transform ObjectParent;
+    [SerializeField]
+    public Transform TileParent;
 
     private void Awake()
     {
@@ -58,6 +63,14 @@ public class ObjectManager : MonoBehaviour
 
     }
 
+    public static void MakeFastPool<T>(ref FastObjectPool<T> objectPool, string prefabPath, Transform parent, int size) where T : Component
+    {
+        GameObject LoadObj = Resources.Load<GameObject>(prefabPath);
+        if (LoadObj != null)
+            objectPool = new FastObjectPool<T>(parent, LoadObj, size);
+
+    }
+
     private void MakePool()
     {
         MakePool<Bullet>(ref bulletPool, "Prefabs/Objects/Bullet", bulletParent,500);
@@ -71,6 +84,9 @@ public class ObjectManager : MonoBehaviour
         MakePool<BounceBullet>(ref bounceBulletPool, "Prefabs/Objects/BounceBullet", bulletParent, 1);
         MakePool<ThunderLine>(ref thunderLinePool, "Prefabs/Objects/ThunderLine", EffectParent, 10);
         MakePool<DropGoods>(ref coinPool, "Prefabs/Objects/Coin", ObjectParent, 10);
+
+        MakeFastPool<Tile>(ref tilePool, "Prefabs/Maps/MapObjects/tile", TileParent,1000);
+
         MakeMonsterPool();
 
     }

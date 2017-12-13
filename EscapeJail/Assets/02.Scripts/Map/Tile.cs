@@ -12,11 +12,13 @@ public enum TileType
 
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class Tile : MonoBehaviour
 {
     public TileType tileType;
     private SpriteRenderer spriteRenderer;
-    private BoxCollider2D collider;
+    [SerializeField]
+    private BoxCollider2D boxCollider;
     private MapModuleBase parentModule = null;
     public MapModuleBase ParentModule
     {
@@ -41,9 +43,10 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        objectShadow = GetComponentInChildren<ObjectShadow>();    
-        SetLayerAndTag();
+        objectShadow = GetComponentInChildren<ObjectShadow>();
 
+        SetLayerAndTag();
+        SetMyParentPool();
     }
 
     private void Start()
@@ -61,21 +64,29 @@ public class Tile : MonoBehaviour
     {
         if (spriteRenderer != null)
             spriteRenderer.sprite = sprite;
-
-
     }
 
-    public void Initialize(TileType tileType, MapModuleBase parentModule,int layerOrder =0)
+    public void Initialize(TileType tileType, MapModuleBase parentModule, int layerOrder = 0)
     {
         SetLayerOrder(layerOrder);
 
         this.parentModule = parentModule;
         this.tileType = tileType;
+        ChangeColor(Color.white);
+
+        if (boxCollider == null)
+        {
+            boxCollider = gameObject.AddComponent<BoxCollider2D>();
+
+        }
 
         if (tileType == TileType.Wall)
         {
-            collider = this.gameObject.AddComponent<BoxCollider2D>();
-            collider.size = new Vector2(0.64f, 0.64f);
+
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = true;
+            }
 
             if (spriteRenderer != null)
                 spriteRenderer.sortingOrder = GameConstants.WallLayerMin;
@@ -83,21 +94,31 @@ public class Tile : MonoBehaviour
             if (objectShadow != null)
                 objectShadow.SetObjectShadow(spriteRenderer.sprite, GameConstants.WallLayerMin - 1);
 
+            if (objectShadow != null)
+                objectShadow.gameObject.SetActive(true);
+
             return;
         }
 
 
         if (tileType == TileType.Door)
-        {
-           
-            collider = this.gameObject.AddComponent<BoxCollider2D>();
-
+        {         
+            ChangeColor(Color.green);
             OpenDoor();
         }
 
+        if (tileType == TileType.Normal)
+        {
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = false;
+            }
+        }
+
+
 
         if (objectShadow != null)
-            Destroy(objectShadow.gameObject);
+            objectShadow.gameObject.SetActive(false);
 
 
     }
@@ -112,13 +133,11 @@ public class Tile : MonoBehaviour
     public void OpenDoor()
     {
         if (tileType != TileType.Door) return;
-        if (collider == null)
-            collider = GetComponent<BoxCollider2D>();
 
 
-        if (collider != null)
+        if (boxCollider != null)
         {
-            collider.enabled = false;
+            boxCollider.enabled = false;
 
             //열리는 애니메이션
             ChangeColor(Color.green);
@@ -129,13 +148,11 @@ public class Tile : MonoBehaviour
     public void CloseDoor()
     {
         if (tileType != TileType.Door) return;
-        if (collider == null)
-            collider = GetComponent<BoxCollider2D>();
 
 
-        if (collider != null)
+        if (boxCollider != null)
         {
-            collider.enabled = true;
+            boxCollider.enabled = true;
 
             //닫히는 애니메이션 
             ChangeColor(Color.red);
@@ -148,9 +165,24 @@ public class Tile : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.color = color;
     }
+   
+   
 
-    public void ChangeSprite(string spriteName)
+    public FastObjectPool<Tile> myPool;
+    public void SetMyParentPool()
     {
-
+        this.myPool = ObjectManager.Instance.tilePool;
     }
+
+    public void PullToParentPool()
+    {
+        if (myPool == null)
+            SetMyParentPool();
+        if (myPool != null)
+        {
+            this.gameObject.SetActive(false);
+            myPool.PushUseEndObject(this);
+        }
+    }
+
 }
