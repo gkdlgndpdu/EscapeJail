@@ -46,6 +46,8 @@ public static class GameConstants
     public static int BossPoint =1000;
     public static int StagePoint = 1000;
 
+    public static float ReboundDecreaseValue = 10f;
+
 
     
 }

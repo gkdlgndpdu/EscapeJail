@@ -167,6 +167,15 @@ namespace weapon
         {
             get
             {
+                if (MyUtils.GetNowPassive() == PassiveType.ForeGrip)
+                {
+                    float reBound = reBoundValue - GameConstants.ReboundDecreaseValue;
+                    if (reBound <= 0f)
+                        return 0f;
+                    else
+                        return reBound;              
+                }
+                   
 
                 return reBoundValue;
             }
@@ -407,7 +416,7 @@ namespace weapon
 
         protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage, Color color = default(Color), bool setPush = false, float pushPower = 3f)
         {
-            int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
+            int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")| (1 << LayerMask.NameToLayer("EnemyTurret"))));
             Ray2D ray = new Ray2D(firePos, fireDirection);
             RaycastHit2D hit = Physics2D.Raycast(firePos, fireDirection, 50f, layerMask);
             if (hit == true)
