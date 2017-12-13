@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StageChangeRoutine()
     {
+       
+
         LoadingBoard.Instance.LoadingStart();
         yield return new WaitForSeconds(1.0f);
         TemporaryObjects.Instance.DestroyAllChildrenObject();
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
         StagerController.Instance.CreateNextStage();
        // yield return new WaitForSeconds(0.5f);
         GamePlayerManager.Instance.ResetPlayerPosit();
-        System.GC.Collect();
+
 
     }
     

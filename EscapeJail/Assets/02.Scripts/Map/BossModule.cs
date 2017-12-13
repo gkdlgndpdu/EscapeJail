@@ -73,6 +73,8 @@ public class BossModule : MapModuleBase
                 tiles[i].Initialize(TileType.Door, this);
             }
         }
+
+        OpenDoor();
     }
 
     public List<Tile> GetWallList()

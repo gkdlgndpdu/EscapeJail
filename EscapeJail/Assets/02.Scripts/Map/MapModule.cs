@@ -329,9 +329,40 @@ public class MapModule : MapModuleBase
         if (boxcollider2D != null)
             boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
-       minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f),hasPortal,this);
+        minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f),hasPortal,this);
         if (isStartModule == true)
             minimap_Icon.SetClear();
+
+        //타일 재활용
+        for(int i = 0; i < normalTileList.Count; i++)
+        {
+            normalTileList[i].transform.parent = ObjectManager.Instance.TileParent;
+        }
+        for (int i = 0; i < wallTileList.Count; i++)
+        {
+            wallTileList[i].transform.parent = ObjectManager.Instance.TileParent;
+        }
+        for (int i = 0; i < doorTileList.Count; i++)
+        {
+            doorTileList[i].transform.parent = ObjectManager.Instance.TileParent;
+        }
+
+    }
+    public void PushAllTileToPool()
+    {
+        //타일 재활용
+        for (int i = 0; i < normalTileList.Count; i++)
+        {
+            normalTileList[i].PullToParentPool();
+        }
+        for (int i = 0; i < wallTileList.Count; i++)
+        {
+            wallTileList[i].PullToParentPool();
+        }
+        for (int i = 0; i < doorTileList.Count; i++)
+        {
+            doorTileList[i].PullToParentPool();
+        }
     }
 
     public override void MakeObjects()
