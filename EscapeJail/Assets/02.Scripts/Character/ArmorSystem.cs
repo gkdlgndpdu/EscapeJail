@@ -42,6 +42,7 @@ public class ArmorSystem
     {
         remainArmor -= damage;
         UpdateArmorUi();
+        SoundManager.Instance.PlaySoundEffect("vestshieldhit");
     }
 
     public bool hasArmor()
