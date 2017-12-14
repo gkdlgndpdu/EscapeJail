@@ -20,9 +20,13 @@ public class MonsterSpawnEffect : MonoBehaviour
         this.transform.position = spawnPosit;
        this.animationEndFunc = animationEndFunc;
 
+
         if (animator != null)
-            animator.SetTrigger(StagerController.Instance.NowStageLevel.ToString());
-     
+        animator.SetTrigger(StagerController.Instance.NowStageLevel.ToString());
+            
+        
+
+
     }
 
     private void Update()

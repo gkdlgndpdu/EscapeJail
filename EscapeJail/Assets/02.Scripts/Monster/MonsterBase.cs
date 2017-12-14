@@ -579,6 +579,7 @@ public class MonsterBase : CharacterInfo
         GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
         this.hp -= damage;
+        SoundManager.Instance.PlaySoundEffect("monsterdamage");
         UpdateHud();
         if (hp <= 0)
         {
