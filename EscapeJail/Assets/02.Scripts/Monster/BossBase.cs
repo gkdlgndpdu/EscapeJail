@@ -40,6 +40,8 @@ public class BossBase : CharacterInfo
         //이동속도 정상화
         GamePlayerManager.Instance.player.SetBurstSpeed(false);
         AddToList();
+
+        
     }
 
     protected void AddToList()
@@ -122,8 +124,13 @@ public class BossBase : CharacterInfo
         GamePlayerManager.Instance.scoreCounter.ClearStage();
 
 
-        GameManager.Instance.ChangeStage();
+        Invoke("ChangeScene", 3f);
      
+    }
+
+    private void ChangeScene()
+    {
+        GameManager.Instance.ChangeStage();
     }
 
 

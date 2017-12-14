@@ -128,8 +128,9 @@ public class BossModule : MapModuleBase
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (bossBase != null)
-                bossBase.StartBossPattern();
+            BossIntroduceWindow.Instance.ShowImage(bossBase.StartBossPattern);
+            //if (bossBase != null)
+            //    bossBase.StartBossPattern();
 
             isBossStart = true;
 

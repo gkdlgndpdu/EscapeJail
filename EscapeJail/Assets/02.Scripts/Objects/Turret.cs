@@ -165,7 +165,7 @@ public class Turret : CharacterInfo
         }
     }
 
-    private void TurretDestroy()
+    public void TurretDestroy()
     {
         if (animator != null)
             animator.SetTrigger("TurretDestroy");

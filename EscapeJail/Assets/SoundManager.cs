@@ -228,18 +228,6 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Return))
-    //    {
-    //        ChangeBgm("Stage2");
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        ChangeBgm("Stage3");
-    //    }
-    //}
     public AudioClip GetClip(string name)
     {
         if (soundEffectPool == null) return null;
@@ -247,5 +235,15 @@ public class SoundManager : MonoBehaviour
         if (soundEffectPool.ContainsKey(name) == false) return null;
 
         return soundEffectPool[name];
+    }
+
+    public void PlayRandomBossBgm()
+    {
+        //노래켜주기
+        int randNum = UnityEngine.Random.Range(0, 2);
+        if (randNum == 0)
+            ChangeBgm("Boss1");
+        else
+            ChangeBgm("Boss2");
     }
 }
