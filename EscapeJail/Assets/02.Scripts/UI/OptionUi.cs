@@ -87,15 +87,18 @@ public class OptionUi : MonoBehaviour
 
     private void OnDisable()
     {
+        if (TimeManager.Instance!=null)
         TimeManager.Instance.ResumeTime();
     }
 
     public void ReStartGame()
     {
         SceneManager.Instance.ChangeScene(SceneName.GameScene);
+        TimeManager.Instance.ResumeTime();
     }
     public void GoMenu()
     {
         SceneManager.Instance.ChangeScene(SceneName.SelectScene);
+        TimeManager.Instance.ResumeTime();
     }
 }

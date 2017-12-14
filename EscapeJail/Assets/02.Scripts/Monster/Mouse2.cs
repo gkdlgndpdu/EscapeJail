@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +51,7 @@ public class Mouse2 : MonsterBase
             if (isDead == true) yield break;
             FireWeapon();
             yield return new WaitForSeconds(shotDelay);
+            shotDelay = Random.Range(1.5f, 3.5f);
         }
     }
 

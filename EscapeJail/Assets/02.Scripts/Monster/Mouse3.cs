@@ -13,7 +13,7 @@ public class Mouse3 : MonsterBase
         monsterName = MonsterName.Mouse2;
 
         nearestAcessDistance = 3f;
-
+        moveSpeed = 2f;
     }
 
     // Update is called once per frame

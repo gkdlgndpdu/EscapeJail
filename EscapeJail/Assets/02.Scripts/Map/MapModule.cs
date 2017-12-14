@@ -370,16 +370,16 @@ public class MapModule : MapModuleBase
     public override void MakeObjects()
     {
         //계수가 생성확률
-        float makeNum = (float)(widthNum * heightNum) * 0.005f;
+        float makeNum = (float)(widthNum * heightNum) * 0.01f;
 
         for (int i = 0; i < (int)makeNum; i++)
         {
-            MakeEachObject();
+            MakeArticle();
         }
 
     }
 
-    private void MakeEachObject()
+    private void MakeArticle()
     {
         if (isPositioningComplete == false) return;
         if (normalTileList == null) return;
