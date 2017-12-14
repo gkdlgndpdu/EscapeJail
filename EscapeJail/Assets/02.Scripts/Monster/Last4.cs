@@ -21,6 +21,12 @@ public class Last4 : MonsterBase
     private int buildCount=0;
     private bool nowBuildTurret = false;
     
+    protected override void SetDie()
+    {
+        base.SetDie();
+        if (myTurret != null)
+            myTurret.TurretDestroy();
+    }
 
     //애니메이션에 연결
     public void BuildCountUp()
@@ -34,6 +40,7 @@ public class Last4 : MonsterBase
 
     public void BuildStart()
     {
+ 
         nowBuildTurret = true;
 
         if (animator != null)
@@ -68,8 +75,7 @@ public class Last4 : MonsterBase
     public override void ResetMonster()
     {
         base.ResetMonster();
-        nowBuildTurret = false;
-     
+        nowBuildTurret = false;     
         myTurret = null;
 
     }
@@ -82,6 +88,7 @@ public class Last4 : MonsterBase
 
     private IEnumerator AvoidRoutine()
     {
+        if (myTurret == null) 
         BuildStart();
 
         float moveDirectionChangeTime = 1.5f;

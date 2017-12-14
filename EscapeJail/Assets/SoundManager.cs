@@ -228,18 +228,6 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Return))
-    //    {
-    //        ChangeBgm("Stage2");
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        ChangeBgm("Stage3");
-    //    }
-    //}
     public AudioClip GetClip(string name)
     {
         if (soundEffectPool == null) return null;
