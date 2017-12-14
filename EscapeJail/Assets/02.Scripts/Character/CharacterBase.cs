@@ -99,7 +99,7 @@ public class CharacterBase : CharacterInfo
     public void GetMedal(int medal)
     {
         this.medal += medal;
-        if (playerUi != null)
+        if (playerUi != null) 
             playerUi.goodsUi.SetMedal(this.medal);
     }
     private void UpdateMedal()
@@ -305,7 +305,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new BasicSniper());
+        AddWeapon(new Vectol());
         AddWeapon(new Revolver());
         //  AddWeapon(new ShotGun());
     }
@@ -808,7 +808,14 @@ public class CharacterBase : CharacterInfo
     {
         if (inventory == null) return true;
 
-        return inventory.isInventoryFull();
+        bool returnValue = inventory.isInventoryFull();
+
+        if (returnValue == true)
+        {
+            MessageBar.Instance.ShowInfoBar("Inventory Is Full", Color.red);
+        }
+
+        return returnValue;
     }
 
 
@@ -892,6 +899,9 @@ public class CharacterBase : CharacterInfo
     public void GetHp(int value)
     {
         Debug.Log("Heal" + value.ToString());
+
+        MessageBar.Instance.ShowInfoBar(string.Format("Heal {0}", value),Color.white);
+
         hp += value;
         if (hp > hpMax)
         {

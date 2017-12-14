@@ -33,6 +33,11 @@ public class ItemInfoBar : MonoBehaviour
         Instance = this;
     }
 
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
+
     private void Start()
     {
         iTween.MoveTo(this.gameObject, hidePosit.position, moveSpeed);

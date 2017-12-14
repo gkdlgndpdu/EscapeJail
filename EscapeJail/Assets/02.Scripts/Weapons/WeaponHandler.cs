@@ -240,10 +240,9 @@ public class WeaponHandler : MonoBehaviour
         {
             if (nowWeapon.hasAmmo() == false && audioSource.isPlaying==false)
             {
-                
-
                 audioSource.volume = SoundManager.Instance.EffectVolume;
                 audioSource.Play();
+                MessageBar.Instance.ShowInfoBar("Out of ammo",Color.red);
             }
         }
    
