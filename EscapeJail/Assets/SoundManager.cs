@@ -236,4 +236,14 @@ public class SoundManager : MonoBehaviour
 
         return soundEffectPool[name];
     }
+
+    public void PlayRandomBossBgm()
+    {
+        //노래켜주기
+        int randNum = UnityEngine.Random.Range(0, 2);
+        if (randNum == 0)
+            ChangeBgm("Boss1");
+        else
+            ChangeBgm("Boss2");
+    }
 }
