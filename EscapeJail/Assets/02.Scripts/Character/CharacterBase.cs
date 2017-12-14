@@ -713,6 +713,7 @@ public class CharacterBase : CharacterInfo
         else
         {
             hp -= damage;
+            SoundManager.Instance.PlaySoundEffect("monsterDown");
             GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
             UIUpdate();
