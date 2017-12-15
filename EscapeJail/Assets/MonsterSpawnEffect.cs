@@ -19,7 +19,7 @@ public class MonsterSpawnEffect : MonoBehaviour
     {
         this.transform.position = spawnPosit;
        this.animationEndFunc = animationEndFunc;
-
+        SoundManager.Instance.PlaySoundEffect("monstershow");
 
         if (animator != null)
         animator.SetTrigger(StagerController.Instance.NowStageLevel.ToString());
