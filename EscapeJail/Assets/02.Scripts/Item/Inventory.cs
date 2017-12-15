@@ -37,12 +37,12 @@ public class Inventory
         {
             if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
-                bagSize = 2 + 5;
+                bagSize = 5 + 5;
             }
             else
             {
                 //
-                bagSize = 2;
+                bagSize = 5;
          
             }
         }
@@ -50,11 +50,11 @@ public class Inventory
         {
             if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
-                bagSize = value + 5;
+                bagSize = (value+5) + 5;
             }
             else
             {
-                bagSize = value;
+                bagSize = (value + 5);
             }
 
         }

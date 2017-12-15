@@ -440,6 +440,12 @@ namespace weapon
                 {
                     line.SetLineColor(color);
                 }
+
+                //이펙트
+                //이펙트 호출
+                ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+                if (effect != null)
+                    effect.Initilaize(hit.point, "revolver", 0.5f, 1f);
             }
         }
 
