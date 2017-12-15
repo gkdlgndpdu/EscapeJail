@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: c68b8d38f716d45489b913a84bc4061d
-timeCreated: 1513332194
+guid: e1e2d83794f852f4398f755112dff31d
+timeCreated: 1513332268
 licenseType: Free
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0

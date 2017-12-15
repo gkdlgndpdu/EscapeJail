@@ -305,7 +305,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Vectol());
+        AddWeapon(new Mtw());
         AddWeapon(new Revolver());
         //  AddWeapon(new ShotGun());
     }

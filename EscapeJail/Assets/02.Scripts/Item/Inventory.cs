@@ -31,18 +31,19 @@ public class Inventory
     /// <param name="value">늘려줄 가방의 양</param>
     public void SetInventorySize(int value)
     {
+        value += 5;
         if (bagSize >= value && value != 0) return;
 
         if (value == 0)
         {
             if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
-                bagSize = 2 + 5;
+                bagSize = 5 + 5;
             }
             else
             {
                 //
-                bagSize = 2;
+                bagSize = 5;
          
             }
         }
@@ -50,11 +51,11 @@ public class Inventory
         {
             if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
             {
-                bagSize = value + 5;
+                bagSize = (value) + 5;
             }
             else
             {
-                bagSize = value;
+                bagSize = (value);
             }
 
         }
