@@ -57,6 +57,7 @@ public class Mouse4 : MonsterBase
                 yield return new WaitForSeconds(0.2f);
             }
             yield return new WaitForSeconds(fireDelay);
+            fireDelay = Random.Range(2f, 3.5f);
         }
     }
 
