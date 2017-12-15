@@ -159,6 +159,8 @@ public class MapModule : MapModuleBase
 
     public void StartWave()
     {
+        SoundManager.Instance.PlaySoundEffect("opendoor");
+
         for (int i = 0; i < spawnableMonsterList.Count; i++)
         {
             Debug.Log(spawnableMonsterList[i].ToString());
@@ -187,6 +189,8 @@ public class MapModule : MapModuleBase
 
     public void EndWave()
     {
+        SoundManager.Instance.PlaySoundEffect("closedoor");
+
         //이동속도 빠르게      
         GamePlayerManager.Instance.player.SetBurstSpeed(true);
 
