@@ -222,6 +222,7 @@ public class SoundManager : MonoBehaviour
         if (eachSound != null)
         {
             eachSound.Initialize(soundEffectPool[soundName], EffectVolume);
+            eachSound.transform.position = Camera.main.transform.position;
         }
         
       //  AudioSource.PlayClipAtPoint(soundEffectPool[soundName], Camera.main.transform.position, volume);

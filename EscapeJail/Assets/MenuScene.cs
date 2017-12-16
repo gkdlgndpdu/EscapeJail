@@ -22,13 +22,14 @@ public class MenuScene : MonoBehaviour
     //난이도설정창
     public void DifficultySelectWindowOnOff()
     {
-        if (difficultyWindow == null) return;
+        if (difficultyWindow == null) return;  
         difficultyWindow.SetActive(!difficultyWindow.activeSelf);
     }
 
     public void SelectEasy()
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.easy);
+        SoundManager.Instance.PlaySoundEffect("Button");
         SetDifficultyDescription("Easy Mode \nAuto Aiming \nMore hp \nLess score \nEtc...",Color.green);
     }
     private void SetDifficultyDescription(string text,Color color)
@@ -40,6 +41,7 @@ public class MenuScene : MonoBehaviour
     public void SelectHard()
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.hard);
+        SoundManager.Instance.PlaySoundEffect("Button");
         SetDifficultyDescription("Hard Mode \nManual Aiming \nLess hp \nMore score \nEtc...",Color.red);
     }
 

@@ -40,8 +40,9 @@ public class BossBase : CharacterInfo
         //이동속도 정상화
         GamePlayerManager.Instance.player.SetBurstSpeed(false);
         AddToList();
+        MiniMap.Instance.MinimapOnOff(false);
 
-        
+
     }
 
     protected void AddToList()
@@ -122,12 +123,15 @@ public class BossBase : CharacterInfo
             rb.velocity = Vector3.zero;
 
 
-        //할꺼 해주고~
+        //할꺼 해주고
         //이동속도 정상화
         GamePlayerManager.Instance.player.SetBurstSpeed(true);
         //할꺼 해주고
         GamePlayerManager.Instance.scoreCounter.KillBoss();
         GamePlayerManager.Instance.scoreCounter.ClearStage();
+
+
+        MiniMap.Instance.MinimapOnOff(true);
 
 
         Invoke("ChangeScene", 3f);

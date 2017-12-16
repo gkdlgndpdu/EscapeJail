@@ -133,7 +133,7 @@ public class BossModule : MapModuleBase
             //    bossBase.StartBossPattern();
 
             isBossStart = true;
-
+      
             CloseDoor();
             MaskOff();
         }
