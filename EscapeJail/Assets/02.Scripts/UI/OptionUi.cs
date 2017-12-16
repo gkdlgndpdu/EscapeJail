@@ -98,7 +98,7 @@ public class OptionUi : MonoBehaviour
     }
     public void GoMenu()
     {
-        SceneManager.Instance.ChangeScene(SceneName.SelectScene);
+        SceneManager.Instance.ChangeScene(SceneName.MenuScene);
         TimeManager.Instance.ResumeTime();
     }
 }

@@ -29,17 +29,18 @@ public class MenuScene : MonoBehaviour
     public void SelectEasy()
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.easy);
-        SetDifficultyDescription("Easy Mode \nAutoAiming \nMore hp \nLess score \nEtc...");
+        SetDifficultyDescription("Easy Mode \nAuto Aiming \nMore hp \nLess score \nEtc...",Color.green);
     }
-    private void SetDifficultyDescription(string text)
+    private void SetDifficultyDescription(string text,Color color)
     {
         if (difficultyDescription == null) return;
         difficultyDescription.text = text;
+        difficultyDescription.color = color;
     }
     public void SelectHard()
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.hard);
-        SetDifficultyDescription("Hard Mode \nAiming yourself \nLess hp \nMore score \nEtc...");
+        SetDifficultyDescription("Hard Mode \nManual Aiming \nLess hp \nMore score \nEtc...",Color.red);
     }
 
 }
