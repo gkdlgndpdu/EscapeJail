@@ -30,7 +30,7 @@ public class CharacterSlot_Ui : MonoBehaviour
         passiveWindowOnFunc = passiveUiOnOffFunc;
         if (characterImage!=null)
         {
-            Sprite loadSprite = Resources.Load<Sprite>(string.Format("Sprites/Icons/{0}", characterType.ToString()));
+            Sprite loadSprite = Resources.Load<Sprite>(string.Format("Sprites/icon/{0}", characterType.ToString()));
             if (loadSprite != null)
             {
                 if (characterImage != null)

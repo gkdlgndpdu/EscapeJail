@@ -122,7 +122,7 @@ public class UI_ItemSlot : MonoBehaviour
                 {
                     SetSlotText(itemBase.weapontype.ToString());          
                          
-                    string path = string.Format("Sprites/Icons/{0}", itemBase.weapontype.ToString());               
+                    string path = string.Format("Sprites/icon/{0}", itemBase.weapontype.ToString());               
                     Sprite sprite = Resources.Load<Sprite>(path);
 
                     SetSlotSprite(sprite);
@@ -131,7 +131,7 @@ public class UI_ItemSlot : MonoBehaviour
             default:
                 {
                     SetSlotText(itemBase.itemName);
-                    string path = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+                    string path = string.Format("Sprites/icon/{0}", itemBase.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     SetSlotSprite(sprite);
 

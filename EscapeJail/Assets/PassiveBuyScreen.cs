@@ -33,7 +33,7 @@ public class PassiveBuyScreen : MonoBehaviour
     {
         if (icon == null) return;
 
-        Sprite loadSprite = Resources.Load<Sprite>("Sprites/Icons/Passive/" + passiveName);
+        Sprite loadSprite = Resources.Load<Sprite>("Sprites/icon/Passive/" + passiveName);
         if (loadSprite != null)
             icon.sprite = loadSprite;
     }

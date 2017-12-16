@@ -207,7 +207,7 @@ public class PassiveSelectScreen : MonoBehaviour
                 nowSelectPassiveIcons[i].color = Color.white;
                 //아이콘
 
-                Sprite loadSprite = Resources.Load<Sprite>("Sprites/Icons/Passive/" + nowSelectSlotList[i].passiveType.ToString());
+                Sprite loadSprite = Resources.Load<Sprite>("Sprites/icon/Passive/" + nowSelectSlotList[i].passiveType.ToString());
                 if (loadSprite != null)
                     nowSelectPassiveIcons[i].sprite = loadSprite;
             }

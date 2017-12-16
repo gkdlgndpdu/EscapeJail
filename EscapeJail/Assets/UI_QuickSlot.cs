@@ -51,7 +51,7 @@ public class UI_QuickSlot : MonoBehaviour
         {
             case ItemType.Weapon:
                 {
-                    string path = string.Format("Sprites/Icons/{0}", nowItem.weapontype.ToString());
+                    string path = string.Format("Sprites/icon/{0}", nowItem.weapontype.ToString());
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
                     iconImage.color = Color.white;
@@ -59,7 +59,7 @@ public class UI_QuickSlot : MonoBehaviour
                 break;
             default:
                 {
-                    string path = string.Format("Sprites/Icons/{0}", nowItem.itemName);
+                    string path = string.Format("Sprites/icon/{0}", nowItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
                     iconImage.color = Color.white;

@@ -21,7 +21,7 @@ public class MiniMap_PlayerIcon : MonoBehaviour
     private void SetIcon()
     {
         CharacterType playerName = (CharacterType)PlayerPrefs.GetInt(PlayerPrefKeys.CharacterKeyValue, (int)CharacterType.Soldier);
-        string ItemPath = string.Format("Sprites/Icons/{0}", playerName.ToString());
+        string ItemPath = string.Format("Sprites/icon/{0}", playerName.ToString());
         Sprite loadSprite  = Resources.Load<Sprite>(ItemPath);
         if(loadSprite!=null)
             spriteRenderer.sprite = loadSprite;

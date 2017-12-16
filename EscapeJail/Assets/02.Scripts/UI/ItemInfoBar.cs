@@ -50,7 +50,7 @@ public class ItemInfoBar : MonoBehaviour
         //무기상자가 들어옴
         if (item == null)
         {
-            string path = "Sprites/Icons/WeaponBox";
+            string path = "Sprites/icon/WeaponBox";
             Sprite sprite = Resources.Load<Sprite>(path);
 
             if (itemIcon != null)
@@ -77,7 +77,7 @@ public class ItemInfoBar : MonoBehaviour
         {
             case ItemType.Weapon:
                 {
-                    string path = string.Format("Sprites/Icons/{0}", nowItem.weapontype.ToString());
+                    string path = string.Format("Sprites/icon/{0}", nowItem.weapontype.ToString());
                     Sprite sprite = Resources.Load<Sprite>(path);
 
                     if (itemIcon != null)
@@ -100,7 +100,7 @@ public class ItemInfoBar : MonoBehaviour
                 break;
             default:
                 {
-                    string path = string.Format("Sprites/Icons/{0}", nowItem.itemName);
+                    string path = string.Format("Sprites/icon/{0}", nowItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
 
                     if (itemIcon != null)
@@ -135,7 +135,7 @@ public class ItemInfoBar : MonoBehaviour
 
         if (itemIcon != null)
         {
-            string path = "Sprites/Icons/Blank";
+            string path = "Sprites/icon/Blank";
             Sprite sprite = Resources.Load<Sprite>(path);
             itemIcon.sprite = sprite;
 

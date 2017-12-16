@@ -58,7 +58,7 @@ public class PassiveSlot_Ui : MonoBehaviour
     {
         if (iconImage == null) return;
 
-        Sprite loadSprite = Resources.Load<Sprite>("Sprites/Icons/Passive/" + passiveType.ToString());
+        Sprite loadSprite = Resources.Load<Sprite>("Sprites/icon/Passive/" + passiveType.ToString());
         if (loadSprite != null)
             iconImage.sprite = loadSprite;
     }
