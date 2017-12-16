@@ -234,7 +234,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
                     if (bag == null) return;
 
                     if (bag != null)
-                        player.GetBag(bag.Value);
+                        player.GetBag(bag.ItemLevel,bag.Value);
                     //해제
                     itemBase = null;
 
@@ -242,7 +242,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
                 break;
             case ItemType.Armor:
                 {
-                    player.SetArmor(itemBase.ItemLevel, itemBase.Value);
+                    player.SetArmor(itemBase.Value);
                 }
                 break;
             default:

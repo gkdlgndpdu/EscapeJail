@@ -8,7 +8,7 @@ public class Guard1 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Guard1;
-      
+        hasBullet = true;
         nearestAcessDistance = 5f;
        
     }

@@ -88,6 +88,12 @@ public class BossBase : CharacterInfo
     public override void GetDamage(int damage)
     {
         if (isBossDie == true|| isPatternStart==false) return;
+
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.CrossCounter) == true)
+        {
+            damage *= 2;
+        }
+
         VampiricGunEffect();
         hp -= damage;
 

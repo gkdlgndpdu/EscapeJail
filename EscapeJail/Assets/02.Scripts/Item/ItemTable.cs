@@ -70,10 +70,17 @@ public class ItemTable : CharacterInfo
             myItem.transform.position -= Vector3.up * 0.3f;
         }
 
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.PlayingWithFire) == true)
+        {
+            PollutedArea area = ObjectManager.Instance.pollutedAreaPool.GetItem();
+            area.Initialize(this.transform.position, 3f, 4f, CharacterCondition.InFire, BulletType.PlayerBullet);
+        }
+
     }
 
     public override void GetDamage(int damage)
     {
+        
         hp -= damage;
 
         //  체력 10, 5 , 0 일때 깨짐

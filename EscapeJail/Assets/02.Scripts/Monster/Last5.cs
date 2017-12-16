@@ -10,7 +10,7 @@ public class Last5 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last5;
-    
+        hasBullet = true;
         nearestAcessDistance = 5f;
        
     }

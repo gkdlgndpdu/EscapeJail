@@ -39,6 +39,12 @@ namespace ScientistBoss
         public override void GetDamage(int damage)
         {
             if (isDead == true) return;
+
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.CrossCounter) == true)
+            {
+                damage *= 2;
+            }
+
             VampiricGunEffect();
             hp -= damage;
             UpdateHud();

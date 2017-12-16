@@ -108,8 +108,12 @@ public class Bullet : MonoBehaviour
         //이동
         if (rb != null)
         {
-            bulletSpeed = moveSpeed;
-            rb.velocity = moveDir.normalized * moveSpeed;
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.FlyingBullet) == true)
+                bulletSpeed = moveSpeed + 2f;
+            else
+                bulletSpeed = moveSpeed;
+
+            rb.velocity = moveDir.normalized * bulletSpeed;
             this.moveDir = moveDir;
         }
 

@@ -64,9 +64,9 @@ public class CharacterBase : CharacterInfo
 
     protected int stimulantRecoverTime = 30;
     protected bool nowUseStimulant = false;
-    
+
     //버프효과
-    protected BuffEffect buffEffect;    
+    protected BuffEffect buffEffect;
 
     //재화
     protected int coin = 0;
@@ -99,7 +99,7 @@ public class CharacterBase : CharacterInfo
     public void GetMedal(int medal)
     {
         this.medal += medal;
-        if (playerUi != null) 
+        if (playerUi != null)
             playerUi.goodsUi.SetMedal(this.medal);
     }
     private void UpdateMedal()
@@ -110,7 +110,7 @@ public class CharacterBase : CharacterInfo
     }
     public void UseCoin(int coin)
     {
-       
+
 
         this.coin -= coin;
         if (playerUi != null)
@@ -133,55 +133,62 @@ public class CharacterBase : CharacterInfo
     private void PassiveSetting()
     {
         //망토
-        if (MyUtils.GetNowPassive() == PassiveType.HolyCape)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.HolyCape)==true)
             immuneTime = 2f;
 
         //인삼
-        if (MyUtils.GetNowPassive() == PassiveType.Ginseng)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.Ginseng) == true)
             isImmuneAnyState = true;
 
 
-#if UNITY_EDITOR
-        GameOption.ChangeFireStype(FireStyle.Auto);
-        playerUi.ChangeFireStyle(FireStyle.Auto);
-#else
-                //오토에임
-        if (MyUtils.GetNowPassive() == PassiveType.AutoAim)
+        if (NowSelectPassive.Instance.NowDifficulty == Difficulty.easy)
         {
             GameOption.ChangeFireStype(FireStyle.Auto);
             playerUi.ChangeFireStyle(FireStyle.Auto);
         }
-        else
+        else if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
         {
             GameOption.ChangeFireStype(FireStyle.Manual);
             playerUi.ChangeFireStyle(FireStyle.Manual);
         }
-#endif
+
+            //        //오토에임
+            //if (MyUtils.GetNowPassive() == PassiveType.AutoAim)
+            //{
+            //    GameOption.ChangeFireStype(FireStyle.Auto);
+            //    playerUi.ChangeFireStyle(FireStyle.Auto);
+            //}
+            //else
+            //{
+            //    GameOption.ChangeFireStype(FireStyle.Manual);
+            //    playerUi.ChangeFireStyle(FireStyle.Manual);
+            //}
 
 
-        //신발
-        if (MyUtils.GetNowPassive() == PassiveType.WingShoes)
+
+            //신발
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.WingShoes) == true)
             moveSpeed = 5f;
         originSpeed = moveSpeed;
 
-        //조준기
-        if (MyUtils.GetNowPassive() == PassiveType.RedDotSight)
-        {
-           redDotLine =  gameObject.AddComponent<LineRenderer>();
-            if (redDotLine != null)
-            {
-                redDotLine.material = Resources.Load<Material>("Materials/SpriteMaterial");
-                redDotLine.SetWidth(0.05f, 0.05f);
-                redDotLine.sortingOrder = 30;                
-                redDotLine.receiveShadows = false;
-                redDotLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                redDotLine.SetColors(Color.red, Color.red);
-                redDotLine.positionCount = 2;
+        ////조준기
+        //if (MyUtils.GetNowPassive() == PassiveType.RedDotSight)
+        //{
+        //    redDotLine = gameObject.AddComponent<LineRenderer>();
+        //    if (redDotLine != null)
+        //    {
+        //        redDotLine.material = Resources.Load<Material>("Materials/SpriteMaterial");
+        //        redDotLine.SetWidth(0.05f, 0.05f);
+        //        redDotLine.sortingOrder = 30;
+        //        redDotLine.receiveShadows = false;
+        //        redDotLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        //        redDotLine.SetColors(Color.red, Color.red);
+        //        redDotLine.positionCount = 2;
 
-                StartCoroutine(RedDotLineRenderRoutine());
+        //        StartCoroutine(RedDotLineRenderRoutine());
 
-            }
-        }
+        //    }
+        //}
     }
 
     private IEnumerator RedDotLineRenderRoutine()
@@ -192,7 +199,7 @@ public class CharacterBase : CharacterInfo
                                 (1 << LayerMask.NameToLayer("Tile")) |
                                 (1 << LayerMask.NameToLayer("ItemTable"));
 
-           
+
 
             if (lastFireDirection != Vector3.zero)
             {
@@ -208,14 +215,14 @@ public class CharacterBase : CharacterInfo
                 redDotLine.SetPosition(0, this.transform.position);
                 redDotLine.SetPosition(1, castHit.point);
             }
-  
+
             yield return new WaitForSeconds(0.01f);
         }
     }
 
     protected void Awake()
     {
-       
+
         SetLayerAndTag();
         LoadPrefabs();
         Initialize();
@@ -238,9 +245,9 @@ public class CharacterBase : CharacterInfo
             weaponHandler.SetWeaponUi(playerUi.weaponUi);
         }
 
-        if (weaponHandler != null)        
+        if (weaponHandler != null)
             weaponHandler.SetAudioSource();
-        
+
 
         PassiveSetting();
 
@@ -291,7 +298,7 @@ public class CharacterBase : CharacterInfo
 
         }
     }
-    
+
     protected void BuffEffectOnOff(bool OnOff)
     {
         if (buffEffect != null)
@@ -347,23 +354,23 @@ public class CharacterBase : CharacterInfo
             inventory = new Inventory(playerUi.inventoryUi);
 
         if (inventory != null)
-            inventory.SetInventorySize(0);
+            inventory.SetInventorySize(0,0);
 
         if (armorSystem == null)
         {
             armorSystem = new ArmorSystem(playerUi.inventoryUi, playerUi, playerUi.hpUi.SetArmor);
             //임시
-            SetArmor(0, 0);
+            SetArmor(0);
         }
     }
 
 
 
-    public void GetBag(int value)
+    public void GetBag(int level,int value)
     {
         if (inventory != null)
         {
-            inventory.SetInventorySize(value);
+            inventory.SetInventorySize(level,value);
             hasBag = true;
         }
     }
@@ -374,10 +381,10 @@ public class CharacterBase : CharacterInfo
     }
 
 
-    public void SetArmor(int level, int value)
+    public void SetArmor(int value)
     {
         if (armorSystem != null)
-            armorSystem.SetArmor(level, value);
+            armorSystem.SetArmor( value);
     }
 
     protected void SetupComponent()
@@ -439,6 +446,16 @@ public class CharacterBase : CharacterInfo
     public virtual void FireWeapon()
     {
         if (isDead == true) return;
+        
+        if (weaponHandler.NowWeapon != null)
+        {
+            if (weaponHandler.NowWeapon.hasAmmo() == false)
+            {
+                UseSpecificItem(ItemType.Bullet);
+              
+            }
+        }
+
         if (GameOption.FireStyle == FireStyle.Auto)
         {
             GameObject nearEnemy = MonsterManager.Instance.GetNearestMonsterPos(this.transform.position);
@@ -516,12 +533,12 @@ public class CharacterBase : CharacterInfo
     public void ChangeWeapon()
     {
         if (weaponHandler == null) return;
-        
+
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
 
         if (weaponHandler.NowWeapon != null)
         {
-            if(weaponHandler.NowWeapon.weapontype == WeaponType.CardCase)
+            if (weaponHandler.NowWeapon.weapontype == WeaponType.CardCase)
             {
                 if (cardCaseCard == null)
                 {
@@ -556,7 +573,7 @@ public class CharacterBase : CharacterInfo
 
         if (weaponHandler.CanRotateWeapon() == true)
         {
-         
+
 
             if (weaponPosit != null)
             {
@@ -571,7 +588,7 @@ public class CharacterBase : CharacterInfo
             }
         }
 
-     
+
 
         //flip
         if ((weaponAngle >= 0f && weaponAngle <= 90) ||
@@ -579,8 +596,8 @@ public class CharacterBase : CharacterInfo
         {
             if (weaponHandler != null)
             {
-                if(weaponHandler.CanRotateWeapon()==true)
-                weaponHandler.FlipWeapon(false);
+                if (weaponHandler.CanRotateWeapon() == true)
+                    weaponHandler.FlipWeapon(false);
 
                 FlipCharacter(true);
             }
@@ -695,6 +712,11 @@ public class CharacterBase : CharacterInfo
 
         if (isImmune == true) return;
         if (isDead == true) return;
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.CrossCounter) == true)
+        {
+            damage *= 2;
+        }
+
         //흔들리는 효과
         CameraController.Instance.ShakeCamera(3f, 0.4f);
 
@@ -714,9 +736,12 @@ public class CharacterBase : CharacterInfo
             SoundManager.Instance.PlaySoundEffect("monsterDown");
             GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
+            //회복템 자동사용
+            UseSpecificItem(ItemType.Medicine);
+
             UIUpdate();
 
-            if (hp <= 0&&isDead==false)
+            if (hp <= 0 && isDead == false)
             {
                 DieAction();
             }
@@ -749,7 +774,7 @@ public class CharacterBase : CharacterInfo
         if (playerUi != null)
         {
             playerUi.ResultUiOnOff(true);
-            playerUi.resultUi.LinkFunc = () => 
+            playerUi.resultUi.LinkFunc = () =>
             {
                 RevivePlayer();
                 playerUi.ResultUiOnOff(false);
@@ -802,6 +827,11 @@ public class CharacterBase : CharacterInfo
         }
     }
 
+    public void UseSpecificItem(ItemType itemType)
+    {
+        inventory.UseSpecificItem(itemType);
+    }
+
     public bool isInventoryFull()
     {
         if (inventory == null) return true;
@@ -840,7 +870,7 @@ public class CharacterBase : CharacterInfo
                 if (dropItem.IsSalesItem == false)
                     ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction);
                 else
-                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction,true,dropItem.Price);
+                    ItemInfoBar.Instance.SetItemBar(dropItem.itemBase, dropItem.ClickAction, true, dropItem.Price);
                 return;
             }
             WeaponBox weaponBox = colls[0].gameObject.GetComponent<WeaponBox>();
@@ -886,7 +916,7 @@ public class CharacterBase : CharacterInfo
         }
     }
 
-    
+
 
 
     public bool CanHeal()
@@ -898,7 +928,7 @@ public class CharacterBase : CharacterInfo
     {
         Debug.Log("Heal" + value.ToString());
 
-        MessageBar.Instance.ShowInfoBar(string.Format("Heal {0}", value),Color.white);
+        MessageBar.Instance.ShowInfoBar(string.Format("Heal {0}", value), Color.white);
 
         hp += value;
         if (hp > hpMax)
@@ -1003,7 +1033,7 @@ public class CharacterBase : CharacterInfo
 
     public virtual void UseCharacterSkill()
     {
-  
+
     }
     //부활시 능력관련 값 리셋
     protected virtual void ResetAbility()

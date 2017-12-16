@@ -8,7 +8,7 @@ public class Criminal1 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal1;
-        
+        hasBullet = true;
         nearestAcessDistance = 5f;
         SetWeapon();
     }

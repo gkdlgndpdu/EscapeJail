@@ -19,23 +19,29 @@ public class ArmorSystem
         this.updateFunc = updateFunc;
         
         remainArmor = 0;
-        maxArmor = 0;
+        maxArmor = -1;
 
         UpdateArmorUi();
     }
 
-    public void SetArmor(int level, int value)
+    public void SetArmor(int value)
     {
-
-        if (remainArmor > value) return;
-#if UNITY_EDITOR
-        Debug.Log("Gain Armor " + value.ToString());
-#endif
-
-        remainArmor = value;
-        maxArmor = remainArmor;
+        //같은레벨 아이템 들어오면
+        if (maxArmor >= value)
+        {     
+            MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold",Color.white);
+            GamePlayerManager.Instance.player.GetCoin(GameConstants.ItemOverlapGold);
+            return;
+        }
+        maxArmor = value;
+        remainArmor = maxArmor;    
         
         UpdateArmorUi();
+    }
+
+    public void FillArmor()
+    {
+        remainArmor = maxArmor;
     }
 
     public void UseArmor(int damage)

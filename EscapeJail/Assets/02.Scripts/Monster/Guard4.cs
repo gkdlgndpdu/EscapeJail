@@ -34,7 +34,7 @@ public class Guard4 : MonsterBase
         monsterName = MonsterName.Guard4;
       
         nearestAcessDistance = 3f;
-
+        hasBullet = true;
         attackDelay = 1f;
         moveSpeed = 1f;
       

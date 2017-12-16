@@ -39,10 +39,7 @@ public class MyUtils
         return randNum <= percent;
     }
 
-    public static PassiveType GetNowPassive()
-    {
-        return (PassiveType)PlayerPrefs.GetInt(PlayerPrefKeys.PassiveKeyValue);
-    }
+
 
 
 

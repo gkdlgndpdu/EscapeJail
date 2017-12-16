@@ -99,7 +99,7 @@ public class CharacterInfo : MonoBehaviour
 
     public void SetHp(int hp)
     {
-        if (MyUtils.GetNowPassive() == PassiveType.Littlelove)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.Littlelove) == true)
         {
             hp += 2;
         }
@@ -221,7 +221,7 @@ public class CharacterInfo : MonoBehaviour
     protected void VampiricGunEffect()
     {
         //흡혈의낫
-        if (MyUtils.GetNowPassive() == PassiveType.VampiricGun)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.VampiricGun) == true)
         {
             if (MyUtils.GetPercentResult(50) == true)
                 GamePlayerManager.Instance.player.GetHp(1);

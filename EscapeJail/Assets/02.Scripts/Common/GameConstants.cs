@@ -48,6 +48,8 @@ public static class GameConstants
 
     public static float ReboundDecreaseValue = 10f;
 
+    public static int DefaultBagSize = 5;
+    public static int ItemOverlapGold = 100;
 
     
 }
@@ -63,7 +65,7 @@ public static class PlayerPrefKeys
 {
 
     public static string CharacterKeyValue = "CharacterType";
-    public static string PassiveKeyValue = "Passive";
+
 
     public static string BgmMuteKey ="BgmMute"; //0 false 1 true
     public static string EffectMuteKey ="EffectMute"; //0 false 1 true
