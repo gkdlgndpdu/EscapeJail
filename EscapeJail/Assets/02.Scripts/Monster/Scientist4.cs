@@ -9,7 +9,7 @@ public class Scientist4 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Scientist4;
-  
+        hasBullet = true;
         nearestAcessDistance = 5f;
         
     }

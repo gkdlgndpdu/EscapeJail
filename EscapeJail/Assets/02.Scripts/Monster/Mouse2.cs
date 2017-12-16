@@ -11,7 +11,7 @@ public class Mouse2 : MonsterBase
         monsterName = MonsterName.Mouse2;
       
         nearestAcessDistance = 5f;
-    
+        hasBullet = true;
         moveSpeed = 1f;
     }
 

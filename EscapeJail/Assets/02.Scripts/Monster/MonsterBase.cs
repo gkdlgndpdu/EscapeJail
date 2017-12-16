@@ -84,6 +84,9 @@ public class MonsterBase : CharacterInfo
     //앞에 벽이 있다
     protected bool hasWall = false;
 
+    //소매치기 패시브용
+    protected bool hasBullet = false;
+
     public void SetMapModule(MapModule mapModule)
     {
         parentModule = mapModule;
@@ -109,7 +112,7 @@ public class MonsterBase : CharacterInfo
         AddToList();
 
 
-        if (MyUtils.GetNowPassive() == PassiveType.Scouter)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.Scouter) == true)
             HudOnOff(true);
 #if UNITY_EDITOR
         HudOnOff(true);
@@ -226,7 +229,7 @@ public class MonsterBase : CharacterInfo
         SetUpMonsterAttribute();
         ReadDBData();
         SetHp();
-        if (MyUtils.GetNowPassive() == PassiveType.Scouter)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.Scouter) == true)
             HudOnOff(true);
         else
             HudOnOff(false);
@@ -329,6 +332,21 @@ public class MonsterBase : CharacterInfo
 
         isPushed = false;
         isStun = false;
+
+        //소메치기패시브
+
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.PickPocket) == true)
+        {
+            if (hasBullet == true)
+            {
+                //확률
+                if (MyUtils.GetPercentResult(10) == true)
+                {
+                    GamePlayerManager.Instance.player.GetBulletItem(10);
+                    MessageBar.Instance.ShowInfoBar("Get 10 Bullets", Color.white);
+                }
+            }
+        }
     }
 
     protected void ObjectOff()
@@ -576,7 +594,12 @@ public class MonsterBase : CharacterInfo
 
         VampiricGunEffect();
 
-        GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.CrossCounter) == true)
+        {
+            damage *= 2;
+        }
+
+            GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
 
         this.hp -= damage;
         SoundManager.Instance.PlaySoundEffect("monsterdamage");

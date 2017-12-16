@@ -13,7 +13,7 @@ public class Guard2 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Guard2;
-      
+        hasBullet = true;
         nearestAcessDistance = 5f;
        
 

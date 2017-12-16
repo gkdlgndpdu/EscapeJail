@@ -7,7 +7,7 @@ public class Last6 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last6;
-  
+        hasBullet = true;
         nearestAcessDistance = 5f;
     
         moveSpeed = 2f;

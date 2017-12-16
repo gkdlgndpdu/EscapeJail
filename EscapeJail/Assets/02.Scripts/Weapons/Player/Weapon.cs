@@ -167,15 +167,15 @@ namespace weapon
         {
             get
             {
-                if (MyUtils.GetNowPassive() == PassiveType.ForeGrip)
+                if (NowSelectPassive.Instance.HasPassive(PassiveType.ForeGrip) == true)
                 {
                     float reBound = reBoundValue - GameConstants.ReboundDecreaseValue;
                     if (reBound <= 0f)
                         return 0f;
                     else
-                        return reBound;              
+                        return reBound;
                 }
-                   
+
 
                 return reBoundValue;
             }
@@ -195,7 +195,7 @@ namespace weapon
 
         public void GetBullet(int value)
         {
-            nowAmmo  += value;
+            nowAmmo += value;
 
             if (nowAmmo > maxAmmo)
                 nowAmmo = maxAmmo;
@@ -208,7 +208,7 @@ namespace weapon
         public bool canFire()
         {
             if (nowAmmo <= 0)
-            {         
+            {
                 return false;
             }
             else if (isFireDelayFinish == false)
@@ -295,7 +295,7 @@ namespace weapon
                     if (reboundProgress != null)
                     {
                         reboundProgress.gameObject.SetActive(true);
-                        reboundProgress.SetProgress(reboundDuringFire , maxRebound);
+                        reboundProgress.SetProgress(reboundDuringFire, maxRebound);
                     }
                 }
                 if (reboundDuringFire < 0f)
@@ -370,10 +370,13 @@ namespace weapon
 
         protected void SetAmmo(int num)
         {
-            if ((PassiveType)PlayerPrefs.GetInt(PlayerPrefKeys.PassiveKeyValue) == PassiveType.ExtendedMag && num != 1)
+
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.ExtendedMag) == true)
             {
+                MessageBar.Instance.ShowInfoBar("Gain +50% bullets",Color.white);
                 num += (int)((float)num * 0.5f);
             }
+
 
             nowAmmo = num;
             maxAmmo = num;
@@ -416,7 +419,7 @@ namespace weapon
 
         protected void FireHitScan(Vector3 firePos, Vector3 fireDirection, int damage, Color color = default(Color), bool setPush = false, float pushPower = 3f)
         {
-            int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")| (1 << LayerMask.NameToLayer("EnemyTurret"))));
+            int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable") | (1 << LayerMask.NameToLayer("EnemyTurret"))));
             Ray2D ray = new Ray2D(firePos, fireDirection);
             RaycastHit2D hit = Physics2D.Raycast(firePos, fireDirection, 50f, layerMask);
             if (hit == true)

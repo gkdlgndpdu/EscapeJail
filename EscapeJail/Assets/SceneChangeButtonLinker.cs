@@ -14,9 +14,17 @@ public class SceneChangeButtonLinker : MonoBehaviour
 
     public void ButtonClick()
     {
-        if (googleService == null) return;
-        if (googleService.CanStart == false) return;
-        SceneManager.Instance.ChangeScene(targetScene);
+        if (googleService == null)
+        {
+            SceneManager.Instance.ChangeScene(targetScene);
+            return;
+        }
+        else if (googleService != null)
+        {
+            if (googleService.CanStart == true)
+            SceneManager.Instance.ChangeScene(targetScene);
+        }
+
     }
 
   

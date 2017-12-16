@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public enum SceneName
 {
     LobbyScene,
+    MenuScene,
     SelectScene,
     StoryScene,
     GameScene
@@ -39,6 +40,9 @@ public class SceneManager : MonoBehaviour
 
         nowSceneName = sceneName;
         StartCoroutine(FadeRoutine());
+        
+        if(sceneName !=SceneName.StoryScene&& sceneName != SceneName.GameScene)
+        NowSelectPassive.Instance.ClearPassives();
 
     }
 

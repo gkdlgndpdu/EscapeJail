@@ -12,6 +12,7 @@ public class Inventory
     private int weaponIndex = -1;
 
     private int bagSize = 0;
+    private int bagLevel =-1;
     //Ui
     private InventoryUi inventoryUi;
 
@@ -25,31 +26,54 @@ public class Inventory
         return allItemList.Count >= bagSize;
     }
 
+    //false리턴 => 아이템 없음
+    public void UseSpecificItem(ItemType itemType)
+    {
+        if (allItemList == null) return;
+        if (allItemList.Count == 0) return;
+        for(int i=0;i< allItemList.Count; i++)
+        {
+            if (allItemList[i].itemType == itemType)
+            {
+                MessageBar.Instance.ShowInfoBar(string.Format("Use {0}", allItemList[i].itemName), Color.white);
+                allItemList[i].ItemAction();
+                return;
+            }
+        }        
+    }
+
     /// <summary>
     /// value가 0이라는건 처음 디폴트상태를 의미
     /// </summary>
     /// <param name="value">늘려줄 가방의 양</param>
-    public void SetInventorySize(int value)
+    public void SetInventorySize(int level,int value)
     {
-        value += 5;
-        if (bagSize >= value && value != 0) return;
-
+        if (bagLevel >= level)
+        {
+            MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold", Color.white);
+            GamePlayerManager.Instance.player.GetCoin(GameConstants.ItemOverlapGold);
+            return;
+        }
+        bagLevel = level;
+        //맨처음 세팅
         if (value == 0)
         {
-            if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.ExtendedPocket) == true)
             {
-                bagSize = 5 + 5;
+                bagSize = GameConstants.DefaultBagSize + 5;
             }
             else
             {
                 //
-                bagSize = 5;
-         
+                bagSize = GameConstants.DefaultBagSize;
             }
         }
+        //가방을 먹었을때
         else
         {
-            if (MyUtils.GetNowPassive() == PassiveType.ExtendedPocket)
+            value += GameConstants.DefaultBagSize;
+
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.ExtendedPocket) == true)
             {
                 bagSize = (value) + 5;
             }
@@ -58,7 +82,7 @@ public class Inventory
                 bagSize = (value);
             }
 
-        }
+        }    
 
         if (inventoryUi != null)
             inventoryUi.SetSlotNum(bagSize);

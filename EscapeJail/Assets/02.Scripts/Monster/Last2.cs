@@ -45,7 +45,7 @@ public class Last2 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Last2;
-
+        hasBullet = true;
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(5f, 10f);
 

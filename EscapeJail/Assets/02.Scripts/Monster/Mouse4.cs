@@ -9,7 +9,7 @@ public class Mouse4 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse4;
-     
+        hasBullet = true;
         nearestAcessDistance = 1f;
     
     }

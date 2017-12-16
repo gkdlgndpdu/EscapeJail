@@ -5,7 +5,7 @@ using weapon;
 
 public class Criminal5 : MonsterBase
 {
-
+    
     public override void ResetMonster()
     {
         base.ResetMonster();
@@ -22,7 +22,7 @@ public class Criminal5 : MonsterBase
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Criminal5;
-      
+        hasBullet = true;
         nearestAcessDistance = 5f;
       
     }

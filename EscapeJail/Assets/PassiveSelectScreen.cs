@@ -26,11 +26,13 @@ public class PassiveSelectScreen : MonoBehaviour
 
     private List<PassiveSlot_Ui> slotList;
 
-    private PassiveSlot_Ui nowSelectSlot =null;
+    private List<PassiveSlot_Ui> nowSelectSlotList = new List<PassiveSlot_Ui>();
 
     private PassiveType nowBuyingPassive;
 
-   
+    [SerializeField]
+    private List<Image> nowSelectPassiveIcons;
+
 
     private void Awake()
     {
@@ -38,9 +40,11 @@ public class PassiveSelectScreen : MonoBehaviour
         rectTr = slotsParent.GetComponent<RectTransform>();
         MakeSlots();
         UpdateMedalText();
+
+        UpdateNowSelectPassiveUi();
     }
 
-    public void OpenPassiveBuyScreen(PassiveType type,PassiveDB data)
+    public void OpenPassiveBuyScreen(PassiveType type, PassiveDB data)
     {
         if (passiveBuyScreen == null) return;
         //돈이 되면 창 열기
@@ -59,13 +63,26 @@ public class PassiveSelectScreen : MonoBehaviour
 
     }
 
+    public void RemoveInFirstSlot()
+    {
+        if (nowSelectSlotList == null) return;
+        if (nowSelectSlotList.Count < 1) return;
+        RemoveInList(nowSelectSlotList[0]);
+    }
+    public void RemoveInSecondSlot()
+    {
+        if (nowSelectSlotList == null) return;
+        if (nowSelectSlotList.Count < 2) return;
+        RemoveInList(nowSelectSlotList[1]);
+    }
+
     public void ClosePassiveBuyScreen()
     {
         //갱신
         RenewPassiveSlot();
         if (passiveBuyScreen == null) return;
         passiveBuyScreen.gameObject.SetActive(false);
-     
+
     }
     public void BuyButtonClick()
     {
@@ -80,38 +97,46 @@ public class PassiveSelectScreen : MonoBehaviour
         ClosePassiveBuyScreen();
     }
 
+    private void AddToSelect(PassiveSlot_Ui slot)
+    {
+        if (nowSelectSlotList == null) return;
+        slot.SetSelect(true);
+        nowSelectSlotList.Add(slot);
+        UpdateNowSelectPassiveUi();
+    }
+    private void RemoveInList(PassiveSlot_Ui slot)
+    {
+        if (nowSelectSlotList == null) return;
+        slot.SetSelect(false);
+        nowSelectSlotList.Remove(slot);
+        UpdateNowSelectPassiveUi();
+    }
+    private bool HasSelectSlot(PassiveSlot_Ui slot)
+    {
+        if (nowSelectSlotList == null) return false;
+        return nowSelectSlotList.Contains(slot);
+    }
+
     public void RegistSelectSlot(PassiveSlot_Ui slot)
     {
-        //첫번째 선택
-        if (nowSelectSlot == null)
-        {       
-            nowSelectSlot = slot;
-            slot.SetSelect(true);
-        }
-        else if(nowSelectSlot != null)
+        if (nowSelectSlotList == null) return;
+        if (HasSelectSlot(slot) == true)
         {
-            //같은애 또들어옴
-            if (nowSelectSlot == slot)
-            {
-                nowSelectSlot.SetSelect(false);
-                nowSelectSlot = null;
-                return;
-            }
-            //방금 들어온애 선택
-            slot.SetSelect(true);
-            //이전애 선택 하제
-            nowSelectSlot.SetSelect(false);
-            //방금 들어온애를 현재 선택 슬롯으로
-            nowSelectSlot = slot;
-
+            RemoveInList(slot);
+            return;
         }
+        if (nowSelectSlotList.Count >= 2) return;
+
+        AddToSelect(slot);
+
+
     }
 
     private void RenewPassiveSlot()
     {
         if (slotList == null) return;
 
-        for(int i=0;i< slotList.Count; i++)
+        for (int i = 0; i < slotList.Count; i++)
         {
             PassiveDB data = DatabaseLoader.Instance.passiveDB[slotList[i].passiveType];
             slotList[i].Initialize(slotList[i].passiveType, data, this);
@@ -126,15 +151,15 @@ public class PassiveSelectScreen : MonoBehaviour
         Dictionary<PassiveType, PassiveDB> passiveDB = DatabaseLoader.Instance.passiveDB;
         if (passiveDB == null) return;
 
-        int makeSlotNum = passiveDB.Count ;
+        int makeSlotNum = passiveDB.Count;
         float eachDistance = grid.cellSize.y + grid.spacing.y;
 
         foreach (KeyValuePair<PassiveType, PassiveDB> data in passiveDB)
         {
             PassiveSlot_Ui slot = Instantiate(slotPrefab, slotsParent);
-            slot.Initialize(data.Key, data.Value,this);
+            slot.Initialize(data.Key, data.Value, this);
             slotList.Add(slot);
-        }   
+        }
 
         if (invisibleTouchArea != null)
         {
@@ -170,7 +195,30 @@ public class PassiveSelectScreen : MonoBehaviour
     }
 
 
- 
 
+    private void UpdateNowSelectPassiveUi()
+    {
+        if (nowSelectSlotList == null) return;
+        if (nowSelectPassiveIcons == null) return;
+        for(int i=0;i< nowSelectPassiveIcons.Count; i++)
+        {
+            if (i < nowSelectSlotList.Count)
+            {
+                nowSelectPassiveIcons[i].color = Color.white;
+                //아이콘
+
+                Sprite loadSprite = Resources.Load<Sprite>("Sprites/Icons/Passive/" + nowSelectSlotList[i].passiveType.ToString());
+                if (loadSprite != null)
+                    nowSelectPassiveIcons[i].sprite = loadSprite;
+            }
+            else
+            {
+                nowSelectPassiveIcons[i].color = new Color(1f,1f,1f,0f);
+                //아이콘
+
+
+            }
+        }
+    }
 
 }
