@@ -6,6 +6,8 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance;
     private int playTime = 0;
+    public bool nowUsingScientistSkill = false;
+    public float slowRatio = 0f;
     public int PlayTime
     {
         get { return playTime; }
@@ -34,12 +36,15 @@ public class TimeManager : MonoBehaviour
     {
         Time.timeScale = slowRatio;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        nowUsingScientistSkill = true;
+        this.slowRatio = slowRatio;
     }
 
     public void BulletTimeOff()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        nowUsingScientistSkill = false;
     }
 
     public void StopTime()

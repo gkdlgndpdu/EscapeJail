@@ -18,7 +18,7 @@ public class MapModule : MapModuleBase
 
     //속성
     private int spawnMonsterNum = 0;
-    private MiniMap_MapIcon minimap_Icon;
+
 
 
 
@@ -173,7 +173,7 @@ public class MapModule : MapModuleBase
         //중복진입 방지
         if (mapState == MapState.Lock || isClear == true) return;
 
-        waveNum = Random.Range(1, 4);
+        waveNum = Random.Range(2, 4);
         nowWaveNum = waveNum;
 
 
@@ -189,12 +189,7 @@ public class MapModule : MapModuleBase
 
     public void EndWave()
     {
-        SoundManager.Instance.PlaySoundEffect("closedoor");
-
-        //이동속도 빠르게      
-        GamePlayerManager.Instance.player.SetBurstSpeed(true);
-
-        mapState = MapState.UnLock;
+        ClearRoom();
 
         //사용한 리소스 정리
         if (monsterList != null)
@@ -202,26 +197,7 @@ public class MapModule : MapModuleBase
             monsterList.Clear();
             monsterList = null;
         }
-        isClear = true;
-        OpenDoor();
-
-        if (minimap_Icon != null)
-            minimap_Icon.SetClear();
-
-        //메달 생성
-        if (isStartModule != true)
-        {
-            DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
-            medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
-        }
-
-        //미니맵 켜줌
-        //미니맵 끔
-        MiniMap.Instance.MinimapOnOff(true);
-
-        //점수
-        GamePlayerManager.Instance.scoreCounter.ClearRoom();
-
+       
     }
 
     public void AddtoMonsterList(MonsterBase monster)

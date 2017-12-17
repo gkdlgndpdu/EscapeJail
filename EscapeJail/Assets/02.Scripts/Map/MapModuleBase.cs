@@ -48,9 +48,11 @@ public class MapModuleBase : MonoBehaviour
     protected bool isStartModule = false;
     protected float widthDistance;
     protected float heightDistance;
-  //  protected float eachModuleDistance = 1.28f;
 
-    protected void OpenDoor()
+    protected MiniMap_MapIcon minimap_Icon;
+    //  protected float eachModuleDistance = 1.28f;
+
+    public void OpenDoor()
     {
         if (doorTileList == null) return;
         for (int i = 0; i < doorTileList.Count; i++)
@@ -59,7 +61,7 @@ public class MapModuleBase : MonoBehaviour
         }
     }
 
-    protected void CloseDoor()
+    public void CloseDoor()
     {
         if (doorTileList == null) return;
         for (int i = 0; i < doorTileList.Count; i++)
@@ -80,8 +82,8 @@ public class MapModuleBase : MonoBehaviour
 
     public void MakePortal()
     {
-        if (moduleType != MapModuleType.NormalModule) return;
-
+        // if (moduleType != MapModuleType.NormalModule) return;
+        if (hasPortal == true) return;
         hasPortal = true;
 
         GameObject portalPrefab = Resources.Load<GameObject>("Prefabs/Articles/Portal");
@@ -97,6 +99,38 @@ public class MapModuleBase : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ClearRoom()
+    {
+        SoundManager.Instance.PlaySoundEffect("closedoor");
+
+        //이동속도 빠르게      
+        GamePlayerManager.Instance.player.SetBurstSpeed(true);
+
+        mapState = MapState.UnLock;
+
+        isClear = true;
+
+        OpenDoor();
+
+        if (minimap_Icon != null)
+            minimap_Icon.SetClear();
+
+        //메달 생성
+        if (isStartModule != true)
+        {
+            DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
+            medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
+        }
+
+        //미니맵 켜줌
+        //미니맵 끔
+        MiniMap.Instance.MinimapOnOff(true);
+
+        //점수
+        if(isStartModule==false)
+        GamePlayerManager.Instance.scoreCounter.ClearRoom();
     }
 
 

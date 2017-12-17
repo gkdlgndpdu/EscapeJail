@@ -41,10 +41,7 @@ public static class GameConstants
     public static int CoinGetValue = 100;
     public static int MedalGetValue = 50;
 
-    //타임어택용 시간 저장해놓을것
-    public static int EnemyPoint =50;
-    public static int BossPoint =1000;
-    public static int StagePoint = 1000;
+ 
 
     public static float ReboundDecreaseValue = 10f;
 
@@ -52,6 +49,16 @@ public static class GameConstants
     public static int ItemOverlapGold = 100;
 
     
+}
+
+public static class ScorePoint
+{
+    //점수
+    public static int EnemyPoint = 50;
+    public static int BossPoint = 1000;
+    public static int StagePoint = 1000;
+    public static int HeartMinus = 500;
+    public static int ClearRoom = 100;
 }
 
 public static class CustomColor

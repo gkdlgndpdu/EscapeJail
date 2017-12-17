@@ -27,6 +27,8 @@ public class BossModule : MapModuleBase
     [SerializeField]
     private GameObject maskObject;
 
+    private Portal myPortal;
+
     private void SetMaskSize(Vector3 position, Vector3 scale)
     {
         if (maskObject == null) return;
@@ -49,8 +51,25 @@ public class BossModule : MapModuleBase
         SetColliderSizeBig();
 
         moduleType = MapModuleType.BossModule;
+    }
 
-
+    public void HidePortal()
+    {
+        //포탈
+        myPortal = GetComponentInChildren<Portal>();
+        if (myPortal != null)
+        {
+            myPortal.gameObject.SetActive(false);
+            myPortal.SetBossPortal();
+        }
+    }
+    public void WhenBossDie()
+    {
+        if (myPortal != null)
+        {
+            myPortal.gameObject.SetActive(true);
+            myPortal.WhenBossDie();
+        }
 
     }
 
@@ -117,7 +136,7 @@ public class BossModule : MapModuleBase
             boxcollider2D.size = new Vector2((widthNum - 3) * widthDistance, (heightNum - 3) * heightDistance) - Vector2.one * 0.2f;
 
 
-        MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f));
+        minimap_Icon = MiniMap.Instance.MakeRoomIcon(this.transform.localPosition, new Vector3(widthNum * GameConstants.tileSize, heightNum * GameConstants.tileSize, 1f),true,this);
                
     }
 
@@ -135,6 +154,7 @@ public class BossModule : MapModuleBase
             isBossStart = true;
       
             CloseDoor();
+            HidePortal();
             MaskOff();
         }
     }     

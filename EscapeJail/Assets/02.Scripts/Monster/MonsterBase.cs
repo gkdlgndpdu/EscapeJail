@@ -323,7 +323,6 @@ public class MonsterBase : CharacterInfo
         //코인생성
 
         DropGoods coin = ObjectManager.Instance.coinPool.GetItem();
-
         coin.Initiatlize(this.transform.position, 10,GoodsType.Coin);
 
         //사운드
@@ -599,7 +598,7 @@ public class MonsterBase : CharacterInfo
             damage *= 2;
         }
 
-            GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
+      
 
         this.hp -= damage;
         SoundManager.Instance.PlaySoundEffect("monsterdamage");

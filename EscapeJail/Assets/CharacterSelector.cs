@@ -22,10 +22,27 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     private Text characterInfoText;
 
+    [SerializeField]
+    private GameObject selectButton;
+
     public void RegistSelectSlot(CharacterSlot_Ui slot)
     {
         this.nowSelectSlot = slot;
         UpdateCharacterInfoText();
+        SelectButtonOnOff(true);
+    }
+    public void ShowHowToGet(CharacterSlot_Ui slot)
+    {
+        this.nowSelectSlot = slot;
+        UpdataCharacterHowToGet();
+        SelectButtonOnOff(false);
+
+
+    }
+    private void SelectButtonOnOff(bool OnOff)
+    {
+        if (selectButton == null) return;
+        selectButton.SetActive(OnOff);
     }
     private void UpdateCharacterInfoText()
     {
@@ -36,6 +53,15 @@ public class CharacterSelector : MonoBehaviour
         characterInfoText.text = string.Format("{0} \nSkill : {1} \n {2}", nowSelectSlot.CharacterType.ToString(), db.skillName, db.description);
     }
 
+    private void UpdataCharacterHowToGet()
+    {
+        if (characterInfoText == null) return;
+        CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
+        if (db == null) return;
+        characterInfoText.text = string.Format("{0}\nHow to get \n{1}", nowSelectSlot.CharacterType.ToString(), db.howToGet);
+
+    }
+
     private void Awake()
     {
         rectTr = grid.GetComponent<RectTransform>();
@@ -44,6 +70,7 @@ public class CharacterSelector : MonoBehaviour
     private void Start()
     {
         MakeCharacterSlots();
+        SelectButtonOnOff(false);
     }
 
     private void MakeCharacterSlots()

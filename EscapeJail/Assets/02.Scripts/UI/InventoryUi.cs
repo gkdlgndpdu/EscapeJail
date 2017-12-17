@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using weapon;
 
 public class InventoryUi : MonoBehaviour
 {
@@ -63,12 +63,16 @@ public class InventoryUi : MonoBehaviour
         if (nowSelectedSlot == null) return;
         nowSelectedSlot.UseItem();
         UpdateQuickSlot();
+
+        UpdateInventoryUi();
     }
     public void DiscardSelectedItem()
     {
         if (nowSelectedSlot == null) return;
         nowSelectedSlot.DiscardItem();
         UpdateQuickSlot();
+
+        UpdateInventoryUi();
     }
 
     public void RegistQuickSlotSelectedItem()
@@ -138,13 +142,25 @@ public class InventoryUi : MonoBehaviour
         if (itemSlots == null) return;
         if (allItemList == null) return;
 
+        WeaponType nowEquipWeapon = GamePlayerManager.Instance.player.GetNowEquipWeapon();
 
         for(int i = 0; i < itemSlots.Count; i++)
         {
             if (i < allItemList.Count)
+            {
+                if (allItemList[i].weapontype == nowEquipWeapon && nowEquipWeapon != WeaponType.PlayerWeaponStart)
+                    itemSlots[i].SetSlotEquip(true);                
+                else
+                    itemSlots[i].SetSlotEquip(false);
+
                 itemSlots[i].SetSlot(allItemList[i]);
+
+            }
             else
+            {
                 itemSlots[i].ResetSlot();
+                
+            }
 
         }
    

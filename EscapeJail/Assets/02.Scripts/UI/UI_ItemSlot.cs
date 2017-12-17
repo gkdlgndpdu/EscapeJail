@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using weapon;
 [RequireComponent(typeof(Image))]
 public class UI_ItemSlot : MonoBehaviour
 {
@@ -24,6 +24,9 @@ public class UI_ItemSlot : MonoBehaviour
     private Image selectedFrame;
 
     [SerializeField]
+    private Text equippedText;
+
+    [SerializeField]
     private Text itemText;
 
     private bool isSelected = false;
@@ -35,6 +38,13 @@ public class UI_ItemSlot : MonoBehaviour
 
         if (selectedFrame != null)
             selectedFrame.gameObject.SetActive(false);
+    }
+
+    public void SetSlotEquip(bool OnOff)
+    {
+        if (equippedText == null) return;
+        equippedText.gameObject.SetActive(OnOff);
+
     }
 
     public void SelectOnOff(bool OnOff)
@@ -84,6 +94,7 @@ public class UI_ItemSlot : MonoBehaviour
         SetSlotSprite(null);
         SetSlotText("Empty");
         itemBase = null;
+        SetSlotEquip(false);
 
 
     }
@@ -120,7 +131,12 @@ public class UI_ItemSlot : MonoBehaviour
         {
             case ItemType.Weapon:
                 {
-                    SetSlotText(itemBase.weapontype.ToString());          
+                    if(itemBase is Weapon == true)
+                    {
+                        Weapon nowWeapon = itemBase as Weapon;
+                        if (nowWeapon != null)
+                            SetSlotText(string.Format("{0}/{1}",nowWeapon.nowAmmo,nowWeapon.maxAmmo));
+                    }                    
                          
                     string path = string.Format("Sprites/icon/{0}", itemBase.weapontype.ToString());               
                     Sprite sprite = Resources.Load<Sprite>(path);

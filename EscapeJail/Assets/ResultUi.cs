@@ -26,28 +26,45 @@ public class ResultUi : MonoBehaviour
 
     private ScoreCounter scoreCounter;
 
- 
+
 
     private void UpdateUiTexts()
     {
-        if (scoreCounter == null) return;
+        if (scoreCounter == null)
+        {
+            scoreCounter = GamePlayerManager.Instance.scoreCounter;
+        }
 
         //시간
         if (timeText != null)
         {
             int playTime = TimeManager.Instance.PlayTime;
-            timeText.text = string.Format("{0} seconds",playTime);
+            timeText.text = string.Format("{0} seconds", playTime);
         }
         if (bossKillText != null)
+        {
             bossKillText.text = scoreCounter.BossKillNum.ToString();
+        }
         if (monsterKillText != null)
+        {
             monsterKillText.text = scoreCounter.MonsterKillNum.ToString();
+
+        }
         if (usingHeartText != null)
+        {
             usingHeartText.text = scoreCounter.LostHeartNum.ToString();
+
+        }
         if (clearRoomText != null)
+        {
             clearRoomText.text = scoreCounter.ClearRoomNum.ToString();
+
+        }
         if (earingMedalText != null)
+        {
             earingMedalText.text = scoreCounter.EarningMedals.ToString();
+
+        }
     }
 
     private Action linkFunc;
@@ -58,11 +75,11 @@ public class ResultUi : MonoBehaviour
             linkFunc = value;
         }
     }
-    
+
 
     private void Start()
     {
-        scoreCounter = GamePlayerManager.Instance.scoreCounter;
+
     }
     private void OnEnable()
     {
@@ -84,7 +101,7 @@ public class ResultUi : MonoBehaviour
         }
         UnityAdsHelper.Instance.ShowRewardedAd();
 
-     
+
     }
 
     //임시코드

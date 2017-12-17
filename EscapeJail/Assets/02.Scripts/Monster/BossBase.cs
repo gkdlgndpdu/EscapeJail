@@ -55,20 +55,31 @@ public class BossBase : CharacterInfo
         MonsterManager.Instance.DeleteInList(this.gameObject);
     }
 
-    protected void OnDisable()
-    {
-        DeleteInList();
-    }
+    //protected void OnDisable()
+    //{
+    //    DeleteInList();
+    //}
 
     protected void Start()
     {
+        SetUiOnOff(false);
+        FindBossHpBar();
+    }
+    private void FindBossHpBar()
+    {
+        GameObject hpBarObj = GameObject.Find("BossHpBar");
+        if (hpBarObj != null)
+            bosshpBar = hpBarObj.GetComponent<BossHpBar>();
         SetUiOnOff(false);
     }
 
     public void SetUiOnOff(bool OnOff)
     {
         if (bosshpBar != null)
+        {
             bosshpBar.gameObject.SetActive(OnOff);
+            bosshpBar.UpdateBar(1f, 1f);
+        }
     }
 
     protected void Awake()
@@ -106,7 +117,7 @@ public class BossBase : CharacterInfo
             BossDie();
         }
 
-        GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
+       
 
     }
 
@@ -115,7 +126,9 @@ public class BossBase : CharacterInfo
     {
         if (bossEventQueue != null)
             bossEventQueue.Stop();
-     
+
+        if (boxCollider != null)
+            boxCollider.enabled = false;
    
         if (animator != null)
             animator.SetTrigger("DeadTrigger");
@@ -130,18 +143,26 @@ public class BossBase : CharacterInfo
         GamePlayerManager.Instance.scoreCounter.KillBoss();
         GamePlayerManager.Instance.scoreCounter.ClearStage();
 
+        GamePlayerManager.Instance.player.GetCoin(100);
 
         MiniMap.Instance.MinimapOnOff(true);
 
+        if (bossModule != null)
+        {
+            bossModule.ClearRoom();
+            bossModule.WhenBossDie();
 
-        Invoke("ChangeScene", 3f);
+        }
+        SetUiOnOff(false);
+
+        DeleteInList();
      
+
+ 
+
     }
 
-    private void ChangeScene()
-    {
-        GameManager.Instance.ChangeStage();
-    }
+
 
 
 }
