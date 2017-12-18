@@ -35,11 +35,7 @@ public class ScoreCounter
     {
         get { return lostHeartNum; }
     }
-    int totalDamage = 0;
-    public int TotalDamage
-    {
-        get { return totalDamage; }
-    }
+
     int remainCoin = 0;
     public int RemainCoin
     {
@@ -78,9 +74,5 @@ public class ScoreCounter
         lostHeartNum++;
     }
 
-    public void HitDamage(int damage)
-    {
-        totalDamage += damage;  
-    }
-    
+ 
 }

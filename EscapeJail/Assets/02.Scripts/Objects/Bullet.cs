@@ -108,6 +108,9 @@ public class Bullet : MonoBehaviour
         //이동
         if (rb != null)
         {
+            if (TimeManager.Instance.nowUsingScientistSkill == true)
+                moveSpeed = moveSpeed + moveSpeed*TimeManager.Instance.slowRatio;
+
             if (NowSelectPassive.Instance.HasPassive(PassiveType.FlyingBullet) == true)
                 bulletSpeed = moveSpeed + 2f;
             else

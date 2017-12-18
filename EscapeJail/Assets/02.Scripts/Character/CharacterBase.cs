@@ -312,7 +312,14 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Revolver());
+        AddWeapon(new BasicSniper());
+    }
+
+    public WeaponType GetNowEquipWeapon()
+    {
+        if (weaponHandler == null) return WeaponType.PlayerWeaponStart;
+        if(weaponHandler.NowWeapon==null) return WeaponType.PlayerWeaponStart;
+        return weaponHandler.NowWeapon.weapontype;
     }
 
     public virtual void SetBurstSpeed(bool OnOff)
@@ -734,7 +741,7 @@ public class CharacterBase : CharacterInfo
         {
             hp -= damage;
             SoundManager.Instance.PlaySoundEffect("monsterDown");
-            GamePlayerManager.Instance.scoreCounter.HitDamage(damage);
+            GamePlayerManager.Instance.scoreCounter.GetDamage();
 
             //회복템 자동사용
             UseSpecificItem(ItemType.Medicine);

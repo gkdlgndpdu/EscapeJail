@@ -16,7 +16,7 @@ public class StartScenePostProcess : MonoBehaviour
 
         bloom = postProcessBehavior.bloom.settings;
 
-        bloom.bloom.intensity = 10f;
+        bloom.bloom.intensity = 0f;
     }
     private void Start()
     {
@@ -61,7 +61,7 @@ public class StartScenePostProcess : MonoBehaviour
     {
         if (postProcessBehavior == null) return;
         bloom = postProcessBehavior.bloom.settings;
-        bloom.bloom.intensity = value*5f;
+        bloom.bloom.intensity = value*4f;
         postProcessBehavior.bloom.settings = bloom;
     }
 

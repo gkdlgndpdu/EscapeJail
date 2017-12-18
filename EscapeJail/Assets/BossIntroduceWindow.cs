@@ -13,6 +13,17 @@ public class BossIntroduceWindow : MonoBehaviour
     private Dictionary<string, Sprite> imageDic;
     private Action endImageFunc;
 
+    [SerializeField]
+    private GameObject changeScenePopUp;
+
+    public void ChangeScenePopupOn()
+    {
+        if (changeScenePopUp != null)
+            changeScenePopUp.gameObject.SetActive(true);
+    }
+
+    
+
     private void Awake()
     {
         Instance = this;

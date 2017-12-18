@@ -373,8 +373,8 @@ namespace weapon
 
             if (NowSelectPassive.Instance.HasPassive(PassiveType.ExtendedMag) == true)
             {
-                MessageBar.Instance.ShowInfoBar("Gain +50% bullets",Color.white);
-                num += (int)((float)num * 0.5f);
+                MessageBar.Instance.ShowInfoBar("Gain +30% bullets",Color.white);
+                num += (int)((float)num * 0.3f);
             }
 
 

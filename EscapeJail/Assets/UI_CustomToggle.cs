@@ -9,7 +9,8 @@ public enum ToggleType
 {
     Bgm,
     Effect,
-    JoyStick
+    JoyStick,
+    Vibration
 }
 [System.Serializable]
 public class MyBoolEvent : UnityEvent<bool>

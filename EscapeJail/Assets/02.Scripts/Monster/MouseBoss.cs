@@ -73,8 +73,8 @@ public class MouseBoss : BossBase
         base.Awake();
 
         LoadPrefab();
-        SetHp(300);
-        moveSpeed = 1f;
+        SetHp(250);
+        moveSpeed = 2f;
         RegistPatternToQueue();
     }
 
@@ -148,7 +148,7 @@ public class MouseBoss : BossBase
     {
         float patternCount = 0f;
         Action(Actions.Dig);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         while (true)
         {
@@ -185,7 +185,7 @@ public class MouseBoss : BossBase
     public IEnumerator FirePattern()
     {
         //잠시 딜레이
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < 10; i++)
         {
@@ -208,7 +208,7 @@ public class MouseBoss : BossBase
                     bullet.SetEffectName("revolver");
                 }
             }
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.6f);
         }
     }
     public IEnumerator IdlePattern()

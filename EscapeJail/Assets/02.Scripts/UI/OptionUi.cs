@@ -68,6 +68,7 @@ public class OptionUi : MonoBehaviour
 
     private void OnEnable()
     {
+        if (TimeManager.Instance!=null)
         TimeManager.Instance.StopTime();
 
         SetPrefValue();
@@ -94,11 +95,13 @@ public class OptionUi : MonoBehaviour
     public void ReStartGame()
     {
         SceneManager.Instance.ChangeScene(SceneName.GameScene);
-        TimeManager.Instance.ResumeTime();
+        if (TimeManager.Instance != null)
+            TimeManager.Instance.ResumeTime();
     }
     public void GoMenu()
     {
-        SceneManager.Instance.ChangeScene(SceneName.SelectScene);
-        TimeManager.Instance.ResumeTime();
+        SceneManager.Instance.ChangeScene(SceneName.MenuScene);
+        if (TimeManager.Instance != null)
+            TimeManager.Instance.ResumeTime();
     }
 }

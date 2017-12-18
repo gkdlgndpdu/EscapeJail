@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BossHpBar : MonoBehaviour
 {
     [SerializeField]
-    private Image hpBar;
+    private Image hpBar; 
 
     public void UpdateBar(float min,float max)
     {

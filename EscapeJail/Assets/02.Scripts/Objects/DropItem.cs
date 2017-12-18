@@ -67,7 +67,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         itemBase = new Item_Weapon(weapon);
 
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.weapontype.ToString());
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.weapontype.ToString());
 
         SetDropItemImage(ItemPath);
         SetColliderSize();
@@ -96,7 +96,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         itemBase = new Item_Armor();
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -107,7 +107,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         itemBase = new Item_Turret();
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -118,7 +118,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         itemBase = new Item_Bullet();
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -135,7 +135,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         else
             itemBase = new Item_Medicine(level);
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -152,7 +152,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         else
             itemBase = new Item_Stimulant(level);
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -163,7 +163,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         itemBase = new Item_Bag();
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
@@ -174,7 +174,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
     {
         itemBase = new Item_FlashBang();
 
-        string ItemPath = string.Format("Sprites/Icons/{0}", itemBase.itemName);
+        string ItemPath = string.Format("Sprites/icon/{0}", itemBase.itemName);
         SetDropItemImage(ItemPath);
 
 
