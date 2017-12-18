@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 61264520639624098}
   - component: {fileID: 212581529681045116}
   - component: {fileID: 114393541385702062}
-  - component: {fileID: 114412353372108396}
   m_Layer: 16
   m_Name: DropItem
   m_TagString: Untagged
@@ -79,19 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95f31e69460c2c4987e3ea2298a6695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114412353372108396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1487537022813754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ced6a516eab2f4eb085fdf62ce9b5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 0, a: 1}
-  outlineSize: 1
 --- !u!212 &212581529681045116
 SpriteRenderer:
   m_ObjectHideFlags: 1
