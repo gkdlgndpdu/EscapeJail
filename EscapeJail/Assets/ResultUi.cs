@@ -26,6 +26,7 @@ public class ResultUi : MonoBehaviour
 
     private ScoreCounter scoreCounter;
 
+    private int totalScore  =0;
 
 
     private void UpdateUiTexts()
@@ -34,7 +35,7 @@ public class ResultUi : MonoBehaviour
         {
             scoreCounter = GamePlayerManager.Instance.scoreCounter;
         }
-
+        totalScore = 0;
         //시간
         if (timeText != null)
         {
@@ -43,21 +44,29 @@ public class ResultUi : MonoBehaviour
         }
         if (bossKillText != null)
         {
-            bossKillText.text = scoreCounter.BossKillNum.ToString();
+            int bossKillScore = scoreCounter.BossKillNum * ScorePoint.BossPoint;
+            totalScore += bossKillScore;
+            bossKillText.text = bossKillScore.ToString() ;
         }
         if (monsterKillText != null)
         {
-            monsterKillText.text = scoreCounter.MonsterKillNum.ToString();
+            int monsterKillScore = scoreCounter.MonsterKillNum * ScorePoint.EnemyPoint;
+            totalScore += monsterKillScore;
+            monsterKillText.text = monsterKillScore.ToString();
 
         }
         if (usingHeartText != null)
         {
-            usingHeartText.text = scoreCounter.LostHeartNum.ToString();
+            int heartMinus = scoreCounter.LostHeartNum * ScorePoint.HeartMinus *-1;
+            totalScore += heartMinus;
+            usingHeartText.text = heartMinus.ToString(); ;
 
         }
         if (clearRoomText != null)
         {
-            clearRoomText.text = scoreCounter.ClearRoomNum.ToString();
+            int clearRoomPoint = scoreCounter.ClearRoomNum * ScorePoint.ClearRoom;
+            totalScore += clearRoomPoint;
+            clearRoomText.text = clearRoomPoint.ToString();
 
         }
         if (earingMedalText != null)
@@ -65,6 +74,14 @@ public class ResultUi : MonoBehaviour
             earingMedalText.text = scoreCounter.EarningMedals.ToString();
 
         }
+        if (totalScoreText != null)
+        {
+            totalScore = Mathf.Clamp(totalScore, 0, int.MaxValue);
+            totalScoreText.text = totalScore.ToString();
+        }
+
+    
+       
     }
 
     private Action linkFunc;
@@ -112,6 +129,16 @@ public class ResultUi : MonoBehaviour
             linkFunc();
 
         }
+    }
+
+    public void EndGame()
+    {
+        //점수 등록
+        GoogleService.Instance.ReportScore(totalScore);
+
+        TimeManager.Instance.ResumeTime();
+
+        SceneManager.Instance.ChangeScene(SceneName.MenuScene);
     }
 
 }

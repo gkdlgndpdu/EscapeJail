@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class BossHpBar : MonoBehaviour
 {
+    public static BossHpBar Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    
+    }
     [SerializeField]
     private Image hpBar; 
 
@@ -14,5 +21,11 @@ public class BossHpBar : MonoBehaviour
             hpBar.fillAmount = min / max;
         
     }
-	
+
+    private void OnDestroy()
+    {
+        if (Instance != null)
+            Instance = null;
+    }
+
 }

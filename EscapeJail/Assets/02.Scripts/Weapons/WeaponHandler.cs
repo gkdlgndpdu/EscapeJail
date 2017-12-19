@@ -179,12 +179,29 @@ public class WeaponHandler : MonoBehaviour
                     slashObject.Initialize(nowWeapon.damage, nowWeapon.slashColor, nowWeapon.slashSize,nowWeapon.weapontype);
                 }
             }
-
             //근접무기가 아니면 꺼줌
             else
             {
                 if (slashObject != null)
                     SlashObjectOnOff(false);
+            }
+
+            //카드케이스
+            if (nowWeapon != null)
+            {
+                if (nowWeapon.weapontype == WeaponType.CardCase)
+                {
+
+                    GamePlayerManager.Instance.player.CardCaseCardOnOff(true);
+                }
+                else
+                {
+                    GamePlayerManager.Instance.player.CardCaseCardOnOff(false);
+                }
+            }
+            else if (nowWeapon == null)
+            {
+                GamePlayerManager.Instance.player.CardCaseCardOnOff(false);
             }
 
             UpdateWeaponUI();
