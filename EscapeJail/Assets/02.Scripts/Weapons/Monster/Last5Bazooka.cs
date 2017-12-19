@@ -29,7 +29,8 @@ namespace weapon
             }
 
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("rocket5");
+           
 
         }
     }

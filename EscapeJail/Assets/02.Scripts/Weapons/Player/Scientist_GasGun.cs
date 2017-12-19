@@ -32,6 +32,7 @@ namespace weapon
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.PoisionGranade, 1.5f,1,2f);
                 bullet.SetEffectName("GasGunExplostion", 5);
                 bullet.SetExplosionEndFunc(func);
+                SoundManager.Instance.PlaySoundEffect("swings2");
             }
         }
 
@@ -39,6 +40,7 @@ namespace weapon
         {
            PollutedArea area = ObjectManager.Instance.pollutedAreaPool.GetItem();
             area.Initialize(posit, 5f, 4f, CharacterCondition.InFire, BulletType.EnemyBullet);
+            SoundManager.Instance.PlaySoundEffect("glassbreak");
         }
 
 

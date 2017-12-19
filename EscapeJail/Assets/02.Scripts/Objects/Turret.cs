@@ -122,7 +122,7 @@ public class Turret : CharacterInfo
                     CharacterBase player = GamePlayerManager.Instance.player;
                     if (player != null)
                         fireDir = player.transform.position - this.transform.position;
-
+                    SoundManager.Instance.PlaySoundEffect("Sample");
                 }
                 break;
         }

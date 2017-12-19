@@ -34,6 +34,7 @@ namespace weapon
                 bullet.InitializeImage("White", false);
                 bullet.SetBloom(true, Color.green);
                 bullet.SetPollute(CharacterCondition.InPoison);
+                SoundManager.Instance.PlaySoundEffect("poisongun");
             }
         }
 

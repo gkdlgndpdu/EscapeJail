@@ -24,7 +24,7 @@ namespace weapon
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
                 bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.LaserBullet, 1.5f, 1);
                 bullet.SetBloom(true, Color.red);
-
+                SoundManager.Instance.PlaySoundEffect("Sample");
             }
 
         }

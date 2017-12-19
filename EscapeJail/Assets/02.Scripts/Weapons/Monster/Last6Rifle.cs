@@ -34,7 +34,8 @@ namespace weapon
         }
 
         PlayFireAnim();
+        SoundManager.Instance.PlaySoundEffect("Sample");
 
-    }
+        }
 }
 }
