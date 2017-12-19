@@ -56,10 +56,12 @@ public class Scientist : CharacterBase
         if (isSkillOn == true)
         {
             nowRemainTime -= Time.unscaledDeltaTime ;
+            
         }
         else if(isSkillOn == false)
         {
-            nowRemainTime += Time.deltaTime;         
+            nowRemainTime += Time.deltaTime;
+          
         }
 
         nowRemainTime = Mathf.Clamp(nowRemainTime, 0f, maxSaveTime);
@@ -115,6 +117,7 @@ public class Scientist : CharacterBase
 
                 isSkillOn = true;
                 moveSpeed = originSpeed / slowTimeRatio;
+                SoundManager.Instance.PlaySoundEffect("slowmotionon");
 
             }
             //끄기
@@ -125,7 +128,10 @@ public class Scientist : CharacterBase
 
                 isSkillOn = false;
                 moveSpeed = originSpeed;
+                SoundManager.Instance.PlaySoundEffect("slowmotionoff");
+
             }
+            
         }
         else if (isBurstMoveOn == true)
         {
@@ -135,6 +141,7 @@ public class Scientist : CharacterBase
                 TimeManager.Instance.BulletTimeOn(slowTimeRatio);
                 isSkillOn = true;
                 moveSpeed = burstSpeed / slowTimeRatio;
+                SoundManager.Instance.PlaySoundEffect("slowmotionon");
 
             }
             //끄기
@@ -143,7 +150,9 @@ public class Scientist : CharacterBase
                 TimeManager.Instance.BulletTimeOff();
                 isSkillOn = false;
                 moveSpeed = burstSpeed;
+                SoundManager.Instance.PlaySoundEffect("slowmotionoff");
             }
+           
         }
        
 

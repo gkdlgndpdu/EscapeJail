@@ -55,6 +55,7 @@ public class Trader : CharacterBase
         if (isSkillOn == true)
         {
             MakeItem();
+            SoundManager.Instance.PlaySoundEffect("cape");
         }
     }
 

@@ -59,7 +59,7 @@ public class Soldier : CharacterBase
             animator.SetTrigger("SoldierDodge");
 
         this.gameObject.layer = LayerMask.NameToLayer("SoldierDodge");
-
+        SoundManager.Instance.PlaySoundEffect("dodge");
 
 
     }
@@ -101,6 +101,7 @@ public class Soldier : CharacterBase
     public override void UseCharacterSkill()
     {           
         DodgeOn();
+        
     }
 
     public override void FireWeapon()
