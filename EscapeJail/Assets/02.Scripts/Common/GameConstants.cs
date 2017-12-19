@@ -57,7 +57,9 @@ public static class ScorePoint
     public static int EnemyPoint = 50;
     public static int BossPoint = 1000;
     public static int StagePoint = 1000;
-    public static int HeartMinus = 500;
+    // public static int HeartMinus = 500;
+    public static int HeartMinus = 50;
+
     public static int ClearRoom = 100;
 }
 

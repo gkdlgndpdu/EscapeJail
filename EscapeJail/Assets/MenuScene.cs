@@ -52,4 +52,9 @@ public class MenuScene : MonoBehaviour
         SetDifficultyDescription("Hard Mode \nManual Aiming \nLess hp \nMore score \nEtc...",Color.red);
     }
 
+    public void ShowRanking()
+    {
+        GoogleService.Instance.ShowLeaderBoardUi();
+    }
+
 }

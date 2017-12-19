@@ -79,6 +79,7 @@ public class DatabaseLoader : MonoBehaviour
         WeaponType randWeaponType = WeaponRandomGenerator.GetRandomData();
         WeaponRandomGenerator.RemoveInList(randWeaponType);
         return randWeaponType;
+
     }
 
     public MonsterDB GetMonsterData(MonsterName key)

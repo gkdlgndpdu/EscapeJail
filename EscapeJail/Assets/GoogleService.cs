@@ -42,7 +42,7 @@ public class GoogleService : MonoBehaviour
         }
     }  
 
-    private void ShowLeaderBoardUi()
+    public void ShowLeaderBoardUi()
     {
         PlayGamesPlatform.Instance.ShowLeaderboardUI();
     }
@@ -97,7 +97,7 @@ public class GoogleService : MonoBehaviour
         {
             if (success)
             {             
-                ShowLeaderBoardUi();
+             //   ShowLeaderBoardUi();
             }
             else
             {

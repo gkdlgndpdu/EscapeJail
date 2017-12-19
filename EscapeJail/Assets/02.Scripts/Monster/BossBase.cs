@@ -60,21 +60,13 @@ public class BossBase : CharacterInfo
     //    DeleteInList();
     //}
 
-    protected void Start()
-    {
-        SetUiOnOff(false);
-        FindBossHpBar();
-    }
-    private void FindBossHpBar()
-    {
-        GameObject hpBarObj = GameObject.Find("BossHpBar");
-        if (hpBarObj != null)
-            bosshpBar = hpBarObj.GetComponent<BossHpBar>();
-        SetUiOnOff(false);
-    }
+
 
     public void SetUiOnOff(bool OnOff)
     {
+        if (bosshpBar == null)
+            bosshpBar = BossHpBar.Instance;
+
         if (bosshpBar != null)
         {
             bosshpBar.gameObject.SetActive(OnOff);
@@ -94,7 +86,10 @@ public class BossBase : CharacterInfo
         if (rb != null)
             rb.mass = 100f;
 
+        SetUiOnOff(false);
     }
+
+    
 
 
     public override void GetDamage(int damage)
@@ -156,9 +151,11 @@ public class BossBase : CharacterInfo
         SetUiOnOff(false);
 
         DeleteInList();
-     
 
- 
+        if (spriteRenderer != null)
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.8f);
+
+
 
     }
 

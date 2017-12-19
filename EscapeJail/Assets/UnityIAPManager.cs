@@ -25,7 +25,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
     // specific mapping to Unity Purchasing's AddProduct, below.
   
 
-    public static string kProductIDNonConsumable = "character.perchase";
+    public static string kProductIDNonConsumable = "character.purchase";
 
     //로그확인용
     [SerializeField]
@@ -249,7 +249,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
     {
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
-        Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
-        AddLog(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+        Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}',\n PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+        AddLog(string.Format("OnPurchaseFailed: FAIL. Product: '{0}',\n PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 }

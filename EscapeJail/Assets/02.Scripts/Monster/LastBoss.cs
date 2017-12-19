@@ -97,9 +97,9 @@ public class LastBoss : BossBase
 
     }
 
-    private new void Start()
+    private void Start()
     {
-        base.Start();
+   
         LinkPlayer();
     }
 

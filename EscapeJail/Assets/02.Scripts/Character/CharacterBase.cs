@@ -250,6 +250,7 @@ public class CharacterBase : CharacterInfo
 
 
         PassiveSetting();
+        SetCardCaseCard();
 
     }
 
@@ -313,6 +314,7 @@ public class CharacterBase : CharacterInfo
     protected void SetWeapon()
     {
         AddWeapon(new BasicSniper());
+
     }
 
     public WeaponType GetNowEquipWeapon()
@@ -542,30 +544,13 @@ public class CharacterBase : CharacterInfo
         if (weaponHandler == null) return;
 
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
+       
+    }
 
-        if (weaponHandler.NowWeapon != null)
-        {
-            if (weaponHandler.NowWeapon.weapontype == WeaponType.CardCase)
-            {
-                if (cardCaseCard == null)
-                {
-                    SetCardCaseCard();
-                }
-
-                if (cardCaseCard != null)
-                    cardCaseCard.gameObject.SetActive(true);
-            }
-            else
-            {
-                if (cardCaseCard != null)
-                    cardCaseCard.gameObject.SetActive(false);
-            }
-        }
-        else if (weaponHandler.NowWeapon == null)
-        {
-            if (cardCaseCard != null)
-                cardCaseCard.gameObject.SetActive(false);
-        }
+    public void CardCaseCardOnOff(bool OnOff)
+    {
+        if (cardCaseCard == null) return;
+        cardCaseCard.gameObject.SetActive(OnOff);
     }
 
     public void ChangeSpeceficWeapon(WeaponType weaponType)
