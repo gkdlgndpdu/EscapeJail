@@ -80,6 +80,8 @@ public class Defender : CharacterBase
         isShieldOn = true;
 
         moveSpeed = originSpeed - 2f;
+        SoundManager.Instance.PlaySoundEffect("shieldset");
+
     }
     private void ShieldOff()
     {
@@ -89,12 +91,15 @@ public class Defender : CharacterBase
         isShieldOn = false;
 
         moveSpeed = originSpeed;
+        SoundManager.Instance.PlaySoundEffect("shieldset");
     }
 
     public override void GetDamage(int damage)
     {
         if (isShieldOn == true) return;
+        
         base.GetDamage(damage);
+        
     }
 
 

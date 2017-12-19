@@ -97,7 +97,7 @@ public class Engineer : CharacterBase
         //효과
         //총알삭제
         ObjectManager.Instance.AllEnemyBulletDestroy();
-
+        SoundManager.Instance.PlaySoundEffect("engineerfireworks");
         if (drone != null)
             drone.HideDrone();
     }
