@@ -33,6 +33,7 @@ namespace weapon
             }
 
             PlayFireAnim();
+            SoundManager.Instance.PlaySoundEffect("pistol5");
 
         }
     }
