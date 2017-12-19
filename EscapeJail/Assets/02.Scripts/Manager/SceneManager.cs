@@ -66,23 +66,7 @@ public class SceneManager : MonoBehaviour
             fadeMask.gameObject.SetActive(OnOff);
     }
 
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeScene(SceneName.LobbyScene);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeScene(SceneName.SelectScene);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeScene(SceneName.GameScene);
-        }
-    }
-#endif
+
 
 
 }
