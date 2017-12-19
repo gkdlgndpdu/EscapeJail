@@ -25,6 +25,7 @@ namespace weapon
             useBullet();
             FireDelayOn();
             PlayFireAnim();
+            SoundManager.Instance.PlaySoundEffect("pistol5");
 
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
@@ -37,6 +38,7 @@ namespace weapon
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
                 bullet.SetBloom(true, Color.yellow);
+               
 
 
             }

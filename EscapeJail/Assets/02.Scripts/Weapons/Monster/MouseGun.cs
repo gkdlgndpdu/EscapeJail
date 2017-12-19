@@ -25,11 +25,12 @@ namespace weapon
                 bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet,0.5f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                SoundManager.Instance.PlaySoundEffect("pistol5");
+             
 
             }
 
             PlayFireAnim();
+            SoundManager.Instance.PlaySoundEffect("pistol5");
 
 
         }

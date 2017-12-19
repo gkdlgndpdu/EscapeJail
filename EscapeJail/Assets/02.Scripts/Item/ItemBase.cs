@@ -267,6 +267,7 @@ public class Item_FlashBang : ItemBase
 
         //스턴효과
         MonsterManager.Instance.StunAllMonster();
+    
 
  
         player.RemoveItem(this);

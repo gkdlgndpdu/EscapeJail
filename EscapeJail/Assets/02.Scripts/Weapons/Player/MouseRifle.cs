@@ -31,11 +31,11 @@ namespace weapon
                 bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 0.6f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
-                SoundManager.Instance.PlaySoundEffect("Sample");
+                
             }
 
             PlayFireAnim();
-
+            SoundManager.Instance.PlaySoundEffect("Sample");
 
         }
 
