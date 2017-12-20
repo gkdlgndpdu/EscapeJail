@@ -172,6 +172,8 @@ public class Turret : CharacterInfo
         
         MonsterManager.Instance.DeleteInList(this.gameObject);
 
+        GoogleService.Instance.SetCharacterAchivement(CharacterType.Engineer);
+
     }
 
 

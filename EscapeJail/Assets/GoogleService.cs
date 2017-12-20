@@ -22,6 +22,7 @@ public class GoogleService : MonoBehaviour
 {
     private bool canStart = false;
     public static GoogleService Instance;
+    private string LeaderBoardID = "CgkIm6Xsx9oYEAIQAQ";
     public bool CanStart
     {
         get
@@ -40,76 +41,131 @@ public class GoogleService : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }  
+    }
+
 
     public void ShowLeaderBoardUi()
     {
-        PlayGamesPlatform.Instance.ShowLeaderboardUI();
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
+            PlayGamesPlatform.Instance.ShowLeaderboardUI();
+
+
+    }
+    public void ShowAchivement()
+    {
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
+            PlayGamesPlatform.Instance.ShowAchievementsUI();
+        else        
+            SignIn();
+        
+
     }
 
     // Use this for initialization
     void Start()
     {
-        PlayGamesPlatform.Instance.Authenticate((bool success) =>
-            {
-                if (success == true)
-                {
-               
-                }
-                else
-                {
-               
-                }
-#if UNITY_EDITOR
-                Debug.Log("로그인 시도 완료");
-#endif
+        SignIn();
+    }
 
-                canStart = true;
-            });
+    public void SignIn()
+    {
+        PlayGamesPlatform.Instance.Authenticate((bool success) =>
+        {      
+            canStart = true;
+        });
 
     }
 
     public void SignOut()
     {
         PlayGamesPlatform.Instance.SignOut();
-    }
-
-    //업적
-    public void UnlockAchievement(int score)
-    {
-        if (score >= 100)
-        {
-#if UNITY_ANDROID
-                                                        //GPGSIDS.cs 에있는 고유 is입력 //0f-100f 업적 진행도 //세번째는 콜백함수(필요없을떄는 null)
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.leaderboard_score, 100f, null);
-
-#endif
-        }
-    }
+    }   
 
 
     public void ReportScore(int score)
-    {  
+    {
+        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_scoretest, null);    
+    }
+    //실제용 함수
+    public void SetCharacterAchivement(CharacterType characterType)
+    {
+        ReportSocial((int)characterType);
+    }
 
-#if UNITY_ANDROID
-        //점수 , "리더보드 고유 id",callback
-        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
+    //테스트용함수
+    public void ReportSocial(int type)
+    {
+        CharacterType characterType = (CharacterType)type;
+
+        CharacterDB getData = DatabaseLoader.Instance.GetCharacterDB(characterType);
+        if (getData != null)
         {
-            if (success)
-            {             
-             //   ShowLeaderBoardUi();
-            }
-            else
-            {
-         
-            }
-        });
+            if (getData.hasCharacter == true)
+                return;
+        }    
 
-#endif
+        string achivId =string.Empty;
+
+        switch (characterType)
+        {
+
+            case CharacterType.Scientist:
+                {
+                    achivId = GPGSIds.achievement_get_a_scientist;
+                }
+                break;
+            case CharacterType.Defender:
+                {
+                    achivId = GPGSIds.achievement_get_a_defender;
+                }
+                break;
+            case CharacterType.Sniper:
+                {
+
+                    achivId = GPGSIds.achievement_get_a_sniper;
+                }
+                break;
+            case CharacterType.Engineer:
+                {
+                    achivId = GPGSIds.achievement_get_a_engineer;
+                }
+                break;   
+        }
+
+        if(achivId == string.Empty)
+            return;
+        
+
+        if (PlayGamesPlatform.Instance.IsAuthenticated())
+        {
+            PlayGamesPlatform.Instance.IncrementAchievement(achivId, 1, (bool success) =>
+            {
+                if (success == true)
+                {
+                    //완료했는지 체크
+                   var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
+                    if (achivData != null)
+                    {
+                        if (achivData.IsUnlocked == true)
+                        {
+                            DatabaseLoader.Instance.BuyCharacter(characterType);
+
+                        }
+                        else if (achivData.IsUnlocked == false)
+                        {
+                            //아무것도안해
+                        }
+                    }
+
+                }
+            });
+        }
+
+
     }
 
 
-  
+
 
 
 }

@@ -23,24 +23,28 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
     // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
     // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
     // specific mapping to Unity Purchasing's AddProduct, below.
-  
+
+    public static UnityIAPManager Instance;
 
     public static string kProductIDNonConsumable = "character.purchase";
 
-    //로그확인용
-    [SerializeField]
-    private Text logText;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
 
     private StringBuilder sb = new StringBuilder();
-
-    private void AddLog(string msg)
-    {
-        if (sb == null || logText == null) return;
-
-        sb.Append(msg);
-        sb.Append("\n");
-        logText.text = sb.ToString();
-    }
+    
 
 
 
@@ -100,11 +104,25 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
 
 
 
-    public void BuyNonConsumable()
+    public void BuyTrader()
     {
         // Buy the non-consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        BuyProductID(kProductIDNonConsumable);
+
+        CharacterDB data = DatabaseLoader.Instance.GetCharacterDB(CharacterType.Trader);
+        if (data != null)
+        {
+            if (data.hasCharacter == false)
+            {
+                BuyProductID(kProductIDNonConsumable);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+    
     }
 
 
@@ -130,7 +148,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
             {
                 Debug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
 
-                AddLog(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
+              
                 // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed 
                 // asynchronously.
 
@@ -142,7 +160,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
             {
                 // ... report the product look-up failure situation  
                 Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
-                AddLog("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+               
             }
         }
         // Otherwise ...
@@ -151,7 +169,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
             Debug.Log("BuyProductID FAIL. Not initialized.");
-            AddLog("BuyProductID FAIL. Not initialized.");
+    
         }
     }
 
@@ -167,7 +185,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         {
             // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
             Debug.Log("RestorePurchases FAIL. Not initialized.");
-            AddLog("RestorePurchases FAIL. Not initialized.");
+      
             return;
         }
 
@@ -177,7 +195,7 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         {
             // ... begin restoring purchases
             Debug.Log("RestorePurchases started ...");
-            AddLog("RestorePurchases started ...");
+         
             // Fetch the Apple store-specific subsystem.
             var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             // Begin the asynchronous process of restoring purchases. Expect a confirmation response in 
@@ -187,7 +205,6 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
                 // The first phase of restoration. If no more responses are received on ProcessPurchase then 
                 // no purchases are available to be restored.
                 Debug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-                AddLog("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
 
             });
         }
@@ -196,7 +213,6 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         {
             // We are not running on an Apple device. No work is necessary to restore purchases.
             Debug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
-            AddLog("RestorePurchases FAIL.Not supported on this platform.Current = " + Application.platform);
         }
     }
 
@@ -210,7 +226,6 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
     {
         // Purchasing has succeeded initializing. Collect our Purchasing references.
         Debug.Log("OnInitialized: PASS");
-        AddLog("OnInitialized: PASS");
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
@@ -222,7 +237,6 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
         Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
-        AddLog("OnInitializeFailed InitializationFailureReason:" + error);
     }
 
     //결제 성공시 호출되는 함수
@@ -233,8 +247,8 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal))
         {
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-            AddLog(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
             // TODO: The non-consumable item has been successfully purchased, grant this item to the player.
+            DatabaseLoader.Instance.BuyCharacter(CharacterType.Trader);
         }
 
 
@@ -250,6 +264,5 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}',\n PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
-        AddLog(string.Format("OnPurchaseFailed: FAIL. Product: '{0}',\n PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 }

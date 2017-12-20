@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
        // yield return new WaitForSeconds(0.5f);
         GamePlayerManager.Instance.ResetPlayerPosit();
 
+        System.GC.Collect();
 
     }
     

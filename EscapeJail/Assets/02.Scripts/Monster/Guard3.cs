@@ -59,6 +59,7 @@ public class Guard3 : MonsterBase
     {
         if (isSheildOn == true)
         {
+            GoogleService.Instance.SetCharacterAchivement(CharacterType.Defender);
             ShieldEffectOn();
             return;
             //파랑 빤작이

@@ -60,6 +60,8 @@ public class DatabaseLoader : MonoBehaviour
         if (CharacterDB.ContainsKey(type) == false) return null;
         return CharacterDB[type];
     }
+    
+    
 
     //디버그용
     public Text debugText;
@@ -486,6 +488,13 @@ public class DatabaseLoader : MonoBehaviour
     // 코루틴 .
     private void ChangePassiveDB(PassiveType passiveType)
     {
+        if (passiveDB.ContainsKey(passiveType) == false) return;
+
+        if (passiveDB[passiveType].hasPassive == true)
+        {
+            return;
+        }
+       
 
         string Filepath;
 #if UNITY_EDITOR
@@ -551,6 +560,13 @@ public class DatabaseLoader : MonoBehaviour
 
     private void ChangeCharacterDB(CharacterType characterType)
     {
+        if (CharacterDB.ContainsKey(characterType) == false) return;
+
+        if (CharacterDB[characterType].hasCharacter == true)
+        {
+            return;
+        }
+
 
         string Filepath;
 #if UNITY_EDITOR

@@ -431,6 +431,10 @@ namespace weapon
                         characterInfo.SetPush(firePos, pushPower, 0);
 
                     characterInfo.GetDamage(damage);
+                    if (characterInfo.IsDead == true)
+                    {
+                        GoogleService.Instance.SetCharacterAchivement(CharacterType.Sniper);
+                    }
                 }
                 //라인 그려주기
                 DrawLiner line = ObjectManager.Instance.linePool.GetItem();

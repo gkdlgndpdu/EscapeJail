@@ -138,6 +138,8 @@ public class ResultUi : MonoBehaviour
 
         TimeManager.Instance.ResumeTime();
 
+        GoogleService.Instance.SetCharacterAchivement(CharacterType.Scientist);
+
         SceneManager.Instance.ChangeScene(SceneName.MenuScene);
     }
 

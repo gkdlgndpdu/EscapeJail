@@ -9,7 +9,11 @@ public class MenuScene : MonoBehaviour
     [SerializeField]
     private GameObject optionWindow;
     [SerializeField]
+    private GameObject shopWindow;
+    [SerializeField]
     private Text difficultyDescription;
+
+  
 
     private void Start()
     {
@@ -31,6 +35,11 @@ public class MenuScene : MonoBehaviour
     {
         if (optionWindow == null) return;
         optionWindow.SetActive(!optionWindow.gameObject.activeSelf);
+    }
+    public void ShopWindowOnOff()
+    {
+        if (shopWindow == null) return;
+        shopWindow.SetActive(!shopWindow.gameObject.activeSelf);
     }
 
     public void SelectEasy()
@@ -55,6 +64,11 @@ public class MenuScene : MonoBehaviour
     public void ShowRanking()
     {
         GoogleService.Instance.ShowLeaderBoardUi();
+    }
+    public void ShowAchivement()
+    {
+        GoogleService.Instance.ShowAchivement();
+
     }
 
 }

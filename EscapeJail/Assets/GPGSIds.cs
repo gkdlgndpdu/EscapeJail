@@ -24,7 +24,12 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_score = "CgkIm6Xsx9oYEAIQAQ"; // <GPGSID>
+        public const string achievement_get_a_sniper = "CgkIm6Xsx9oYEAIQCQ"; // <GPGSID>
+        public const string achievement_get_a_scientist = "CgkIm6Xsx9oYEAIQBg"; // <GPGSID>
+        public const string achievement_get_a_defender = "CgkIm6Xsx9oYEAIQBw"; // <GPGSID>
+        public const string achievement_get_a_engineer = "CgkIm6Xsx9oYEAIQCA"; // <GPGSID>
+        public const string leaderboard_scoretest = "CgkIm6Xsx9oYEAIQCw"; // <GPGSID>
+        public const string achievement_get_a_trader = "CgkIm6Xsx9oYEAIQDA"; // <GPGSID>
 
 }
 
