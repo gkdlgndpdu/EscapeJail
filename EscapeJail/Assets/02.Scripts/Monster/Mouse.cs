@@ -12,7 +12,7 @@ public class Mouse : MonsterBase
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
-        moveSpeed = 2f;
+        moveSpeed = 2.3f;
 
     }
 

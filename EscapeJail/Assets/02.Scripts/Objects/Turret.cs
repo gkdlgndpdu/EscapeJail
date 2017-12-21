@@ -34,14 +34,7 @@ public class Turret : CharacterInfo
     private void OnDisable()
     {
         StopAllCoroutines();
-    }
-
-    //애니메이션에 연결
-    public void TurretOff()
-    {
-        this.gameObject.SetActive(false);
-
-    }
+    } 
 
     private void SetLayer()
     {
@@ -57,16 +50,11 @@ public class Turret : CharacterInfo
         }
     }
 
-    public void Initialize(Vector3 position, BulletType bulletType, int hp = 10, float lifeTime = 10f)
+    public void Initialize(Vector3 position, BulletType bulletType, int hp = 10)
     {
         this.bulletType = bulletType;
-
-        if (bulletType == BulletType.PlayerBullet)
-        {
-            StartCoroutine(TurretLifeTimeRoutine(lifeTime));
-            ColliderOnOff(false);
-        }
-        else if(bulletType == BulletType.EnemyBullet)
+      
+        if(bulletType == BulletType.EnemyBullet)
         {
             MonsterManager.Instance.AddToList(this.gameObject);
             ColliderOnOff(true);
@@ -82,14 +70,8 @@ public class Turret : CharacterInfo
 
         SetTurretImage();
 
-
     }
-
-    IEnumerator TurretLifeTimeRoutine(float lifeTime)
-    {
-        yield return new WaitForSeconds(lifeTime);
-        TurretDestroy();
-    }
+ 
 
 
 
@@ -167,12 +149,25 @@ public class Turret : CharacterInfo
 
     public void TurretDestroy()
     {
+        if (isDestroy == true) return;
         if (animator != null)
             animator.SetTrigger("TurretDestroy");
         
         MonsterManager.Instance.DeleteInList(this.gameObject);
 
         GoogleService.Instance.SetCharacterAchivement(CharacterType.Engineer);
+
+        isDestroy = true;
+        ColliderOnOff(false);
+
+        StartCoroutine(DestroyRoutine());
+
+    }
+
+    IEnumerator DestroyRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        this.gameObject.SetActive(false);
 
     }
 
@@ -194,12 +189,8 @@ public class Turret : CharacterInfo
         hp -= damage;
 
         if (hp <= 0)
-        {
-            isDestroy = true;
-
-            TurretDestroy();
-
-            ColliderOnOff(false);
+        {        
+            TurretDestroy();        
 
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using weapon;
 public class Mouse2 : MonsterBase
 {
-    float shotDelay = 2.5f;
+    float shotDelay = 1.5f;
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse2;
@@ -51,7 +51,7 @@ public class Mouse2 : MonsterBase
             if (isDead == true) yield break;
             FireWeapon();
             yield return new WaitForSeconds(shotDelay);
-            shotDelay = Random.Range(1.5f, 3.5f);
+            shotDelay = Random.Range(1.0f, 2.0f);
         }
     }
 

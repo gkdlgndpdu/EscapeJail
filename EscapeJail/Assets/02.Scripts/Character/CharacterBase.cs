@@ -314,7 +314,7 @@ public class CharacterBase : CharacterInfo
     protected void SetWeapon()
     {
         AddWeapon(new BasicSniper());
-
+        AddWeapon(new Revolver());
     }
 
     public WeaponType GetNowEquipWeapon()
@@ -933,8 +933,13 @@ public class CharacterBase : CharacterInfo
 
     public bool CanUseStimulant()
     {
-        //체력이 풀피이거나 이미 사용중이면 사용 불가
-        return !(hp >= hpMax) && !nowUseStimulant;
+        //이미 사용중이면 사용 불가
+        return !nowUseStimulant;
+    }
+    public bool CanFillBullet()
+    {
+        if(weaponHandler==null)return false;
+        return weaponHandler.CanFIllBullet();
     }
 
     //위에 조건이 충족되면 여기로 들어옴

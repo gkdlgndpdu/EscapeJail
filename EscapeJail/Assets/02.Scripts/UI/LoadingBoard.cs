@@ -90,5 +90,8 @@ public class LoadingBoard : MonoBehaviour
 
     }
 
-
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 }

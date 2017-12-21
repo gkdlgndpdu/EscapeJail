@@ -57,6 +57,7 @@ public class Last2 : MonsterBase
 
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(3f, 8f);
+        AimOnOff(false);
 
     }
 
@@ -88,6 +89,9 @@ public class Last2 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        float delay = Random.Range(0f, 1f);
+        yield return new WaitForSeconds(delay);
+
         AimOnOff(true);
         while (true)
         {

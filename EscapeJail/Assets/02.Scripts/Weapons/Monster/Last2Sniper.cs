@@ -10,7 +10,7 @@ namespace weapon
         public Last2Sniper()
         {
             weapontype = WeaponType.Last2Sniper;
-            bulletSpeed = 20f;
+            bulletSpeed = 15f;
             weaponScale = Vector3.one * 2f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }

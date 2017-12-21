@@ -188,9 +188,15 @@ public class MiniMap : MonoBehaviour
 
     float count = 0f;
 
+    public void SetRealRatiofloat (float ratio)
+    {
+        realRatio = ratio;
+        iconsParent.transform.localScale = Vector3.one * realRatio;
+    }
+
     private void Update()
     {
- 
+       
 
         if (target == null) return;
         //if (count > 1f) return;

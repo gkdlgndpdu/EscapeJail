@@ -107,8 +107,11 @@ public class MapModuleGenerator
 
         float width = maxX - minX;
         float height = maxY - minY;
-
- 
+#if UNITY_EDITOR
+        Debug.Log("width = " + width.ToString() + " height = " + height.ToString());
+#endif
+        float ratio = width / 40f * 0.01f;
+        MiniMap.Instance.SetRealRatiofloat(0.09f - ratio);
 
 
         int num1 = Mathf.RoundToInt(width / 0.64f);
@@ -345,7 +348,6 @@ public class MapModuleGenerator
         //randY = Random.Range(0, 2) == 0 ? 0.5f : -0.5f;        
         randX = Random.Range(0, 2) == 0 ? 1f : -1f;
         randY = Random.Range(0, 2) == 0 ? 1f : -1f;
-
 
         //상점    
         Vector3 shopSpawnPosit = new Vector3((30 * 0.64f - 0.32f) * randX, (30 * 0.64f - 0.32f) * randY, 0f);

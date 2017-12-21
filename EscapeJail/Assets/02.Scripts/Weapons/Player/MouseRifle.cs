@@ -28,7 +28,7 @@ namespace weapon
 
                 firePos += fireDIr.normalized * 0.5f;
                 fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 0.6f);
+                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 0.8f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
                 

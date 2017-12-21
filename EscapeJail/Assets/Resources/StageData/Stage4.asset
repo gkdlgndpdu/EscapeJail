@@ -53,5 +53,5 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   MinRoomNum: 15
   MaxRoomNum: 25
-  RoomMaxSize: 10
-  RoomMinSize: 20
+  RoomMaxSize: 30
+  RoomMinSize: 15

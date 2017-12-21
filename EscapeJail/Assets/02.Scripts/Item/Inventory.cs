@@ -37,9 +37,17 @@ public class Inventory
             {
                 MessageBar.Instance.ShowInfoBar(string.Format("Use {0}", allItemList[i].itemName), Color.white);
                 allItemList[i].ItemAction();
+                if (inventoryUi != null)
+                {
+                    inventoryUi.UpdateInventoryUi();
+                    inventoryUi.UpdateQuickSlot();
+                }
                 return;
             }
-        }        
+        }
+
+     
+     
     }
 
     /// <summary>
@@ -183,6 +191,7 @@ public class Inventory
     {
         if (itemBase == null) return;
         if (allItemList == null) return;
+        if (inventoryUi == null) return;
 
 
         if (allItemList.Count >= bagSize)
@@ -204,8 +213,14 @@ public class Inventory
 
         allItemList.Add(itemBase);
 
-        //if (inventoryUi != null)
-        //    inventoryUi.UpdateInventoryUi();
+        if (inventoryUi != null)
+           inventoryUi.UpdateInventoryUi();
+
+        //자동퀵슬롯
+        if(itemBase.itemType !=ItemType.Weapon)
+        inventoryUi.RegistNowGetItemToQuickSlot(itemBase);
+
+    
     }
 
 

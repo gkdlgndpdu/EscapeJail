@@ -42,7 +42,13 @@ public class WeaponHandler : MonoBehaviour
         if (clip != null)
             audioSource.clip = clip;
     }
-
+    public bool CanFIllBullet()
+    {
+        if (nowWeapon == null) return false;
+        if (nowWeapon.AttackType == AttackType.near) return false;
+        if (nowWeapon.nowAmmo == nowWeapon.maxAmmo) return false;
+        return true;
+    }
     public bool CanRotateWeapon()
     {
         if (nowWeapon == null) return false;

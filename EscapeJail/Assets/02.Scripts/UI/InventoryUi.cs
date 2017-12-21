@@ -81,8 +81,29 @@ public class InventoryUi : MonoBehaviour
         if (nowSelectedSlot == null) return;        
 
         quickSlot.SetQuickSlot(nowSelectedSlot);
-
     }   
+
+    public void RegistNowGetItemToQuickSlot(ItemBase itembase)
+    {
+        if (itemSlots == null) return;
+        if (quickSlot == null) return;
+
+
+        if (quickSlot.IsEmpty == false) return;
+
+        for(int i=0;i< itemSlots.Count; i++)
+        {
+            if (itemSlots[i].IsEmpty == true) continue;
+            if(itemSlots[i].ItemBase == itembase)
+            {
+                quickSlot.SetQuickSlot(itemSlots[i]);
+                return;
+            }
+
+        }
+
+    }
+    
 
 
     public void UpdateQuickSlot()
@@ -138,9 +159,10 @@ public class InventoryUi : MonoBehaviour
 
     public void UpdateInventoryUi()
     {
-        if (this.gameObject.activeSelf == false) return;
+      //  if (this.gameObject.activeSelf == false) return;
         if (itemSlots == null) return;
         if (allItemList == null) return;
+        if (GamePlayerManager.Instance.player == null) return;
 
         WeaponType nowEquipWeapon = GamePlayerManager.Instance.player.GetNowEquipWeapon();
 

@@ -655,7 +655,7 @@ public class MonsterBase : CharacterInfo
         int layerMask = MyUtils.GetLayerMaskByString("ItemTable");
         float rayDistance = 1.5f;
         //찾은길로 이동하는 시간
-        float findMoveTime = 1f;
+        float findMoveTime = 0.6f;
 
         while (true)
         {
@@ -696,7 +696,7 @@ public class MonsterBase : CharacterInfo
                         //두번째 경로가 더 짧으면
                         if (raycastHit2.distance < pointdistance)
                         {
-                            moveDir = nextRayDir2.normalized;
+                            moveDir = nextRayDir2;
 
                         }
                     }
@@ -704,7 +704,7 @@ public class MonsterBase : CharacterInfo
                     if (findPath == true)
                     {
                         if (rb != null)
-                            rb.velocity = moveDir * moveSpeed * 1.5f;
+                            rb.velocity = moveDir.normalized * moveSpeed;
 
                         yield return new WaitForSeconds(findMoveTime);
                         break;

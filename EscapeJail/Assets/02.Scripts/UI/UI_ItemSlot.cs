@@ -18,6 +18,13 @@ public class UI_ItemSlot : MonoBehaviour
     [SerializeField]
     private Image image;
     private bool isEmpty = true;
+    public bool IsEmpty
+    {
+        get
+        {
+            return isEmpty;
+        }
+    }
     private InventoryUi inventoryUi;
 
     [SerializeField]

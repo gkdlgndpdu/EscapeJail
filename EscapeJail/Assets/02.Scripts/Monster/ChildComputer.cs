@@ -22,9 +22,8 @@ namespace ScientistBoss
     {
         private Animator animator;
         private BoxCollider2D boxCollider;
-        public ChildType childType;
-        [HideInInspector]
-        public bool isDead = false;
+        public ChildType childType;       
+        public new bool isDead = false;
         private ScientistBoss parentComputer;
         private Image hudImage;
 
