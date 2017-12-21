@@ -120,6 +120,8 @@ public class MapModuleGenerator
         int widthNum = (int)(width / widthDistance) + 8;
         int heightNum = (int)(height / heightDistance) + 8;
 
+        Debug.Log("width = " + widthNum.ToString() + " height = "+ heightNum.ToString());
+
         MiniMap.Instance.SetBackGroundScale(new Vector3((float)widthNum * widthDistance, (float)heightNum * heightDistance, 1f));
       
 
@@ -127,10 +129,14 @@ public class MapModuleGenerator
         if (num1 % 2 != 0) offSetX += 0.32f;
         if (num2 % 2 != 0) offSetY += 0.32f;
 
+
+        Debug.Log("num1 = " + num1.ToString() + " num2 = " + num2.ToString());
+
         MiniMap.Instance.SetBackGroundPosit(new Vector3(offSetX, offSetY, 1f));
 
         //랜덤벽스프라이트
         Sprite randomWallSprite = GetRandomWallTileList();
+
 
         for (int x = 0; x < widthNum; x++)
         {
@@ -175,16 +181,22 @@ public class MapModuleGenerator
                 }
                 else
                 {
-                    //일반벽   
-                    Tile tile;
-                    tile = MakeTile(TileType.Normal, posit, x, y, parent, null, GameConstants.BackgroundLayerMin);
+              
+                    //Tile tile;
+                    //tile = MakeTile(TileType.Normal, posit, x, y, parent, null, GameConstants.BackgroundLayerMin);
 
-                    SetTileColor(tile, Color.white);
-                    if (backGroundTileList != null)
-                        backGroundTileList.Add(tile);
+                    //SetTileColor(tile, Color.white);
+                    //if (backGroundTileList != null)
+                    //    backGroundTileList.Add(tile);
                 }
             }
         }
+
+        if (widthNum % 2 == 0) offSetX -= 0.32f;
+        if (heightNum % 2 == 0) offSetY -= 0.32f;
+
+        BackGroundTile.Instance.Initialize(new Vector3(offSetX, offSetY, 1f), new Vector2((widthNum - 2) * GameConstants.tileSize, (heightNum - 2) * GameConstants.tileSize), new Vector3(widthNum - 2, heightNum - 2, 0f));
+
 
     }
     /// <summary>
@@ -225,6 +237,8 @@ public class MapModuleGenerator
             everyWallList.Add(bossWallList[i]);
         }
 
+        if (module != null)
+            module.MakePortal();
         //
         //everyWallList.add
 

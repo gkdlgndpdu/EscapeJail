@@ -56,6 +56,7 @@ public class BossModule : MapModuleBase
     public void HidePortal()
     {
         //포탈
+        if(myPortal==null)
         myPortal = GetComponentInChildren<Portal>();
         if (myPortal != null)
         {
@@ -65,6 +66,10 @@ public class BossModule : MapModuleBase
     }
     public void WhenBossDie()
     {
+        //포탈
+        if (myPortal == null)
+            myPortal = GetComponentInChildren<Portal>();
+
         if (myPortal != null)
         {
             myPortal.gameObject.SetActive(true);
