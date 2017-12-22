@@ -92,6 +92,44 @@ public class GoogleService : MonoBehaviour
         ReportSocial((int)characterType);
     }
 
+    private void ReadPrefAchivment()
+    {
+        for(int i = 0; i < (int)CharacterType.CharacterEnd; i++)
+        {
+            string achivId = string.Empty;
+
+            switch ((CharacterType)i)
+            {
+
+                case CharacterType.Scientist:
+                    {
+                        achivId = GPGSIds.achievement_get_a_scientist;
+                    }
+                    break;
+                case CharacterType.Defender:
+                    {
+                        achivId = GPGSIds.achievement_get_a_defender;
+                    }
+                    break;
+                case CharacterType.Sniper:
+                    {
+
+                        achivId = GPGSIds.achievement_get_a_sniper;
+                    }
+                    break;
+                case CharacterType.Engineer:
+                    {
+                        achivId = GPGSIds.achievement_get_a_engineer;
+                    }
+                    break;
+                case CharacterType.Trader:
+                    {
+
+                    }break;
+            }
+        }
+    }
+
     //테스트용함수
     public void ReportSocial(int type)
     {
