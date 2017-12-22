@@ -17,7 +17,7 @@ public class CriminalBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(150);
+        SetHp(400);
         RegistPatternToQueue();
     }
 

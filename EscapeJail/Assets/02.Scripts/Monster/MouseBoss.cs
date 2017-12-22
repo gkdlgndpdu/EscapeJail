@@ -73,7 +73,7 @@ public class MouseBoss : BossBase
         base.Awake();
 
         LoadPrefab();
-        SetHp(250);
+        SetHp(300);
         moveSpeed = 2f;
         RegistPatternToQueue();
     }

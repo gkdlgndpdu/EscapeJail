@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+[RequireComponent(typeof(Button))]
 [RequireComponent(typeof(Image))]
 public class CharacterSlot_Ui : MonoBehaviour
 {
     private CharacterSelector parent;
     private Image characterImage;
-    [SerializeField]
-    private GameObject disableMask;
     private CharacterDB characterDB;
+    private Button button;
 
     private CharacterType characterType;
     public CharacterType CharacterType
@@ -24,8 +24,9 @@ public class CharacterSlot_Ui : MonoBehaviour
     private void Awake()
     {
         characterImage = GetComponent<Image>();
+        button = GetComponent<Button>();
 
-    
+
     }
     public void Initialize(CharacterType characterType, Action passiveUiOnOffFunc, CharacterSelector parent)
     {
@@ -33,7 +34,7 @@ public class CharacterSlot_Ui : MonoBehaviour
         characterDB = DatabaseLoader.Instance.GetCharacterDB(CharacterType);
 
         if(characterDB!=null)
-        SetDisableMask(characterDB.hasCharacter);
+            SetButton(characterDB.hasCharacter);
 
         this.parent = parent;
         passiveWindowOnFunc = passiveUiOnOffFunc;
@@ -47,12 +48,20 @@ public class CharacterSlot_Ui : MonoBehaviour
 
             }
         }
-    }
-
-    private void SetDisableMask(bool OnOff)
+    } 
+    public void SetButton(bool OnOff)
     {
-        if (disableMask == null) return;
-        disableMask.gameObject.SetActive(!OnOff);
+        if (button == null || characterImage == null) return;
+        if (OnOff == false)
+        {
+         //   button.enabled = false;
+            characterImage.color = Color.black;
+        }
+        else if (OnOff == true)
+        {
+          //  button.enabled = true;
+            characterImage.color = Color.white;
+        }
     }
 
     public void SelectCharacter()

@@ -65,14 +65,15 @@ public class Trader : CharacterBase
         isSkillOn = false;
         StartCoroutine(skillCoolTimeRoutine());
 
-        if (MyUtils.GetPercentResult(20) == true)
-        {
-            ItemSpawner.Instance.SpawnRandomItem(this.transform.position);
-        }
-        else
+        if (MyUtils.GetPercentResult(10) == true)
         {
             //무기 생성
             ItemSpawner.Instance.SpawnWeapon(this.transform.position);
+    
+        }
+        else
+        {
+            ItemSpawner.Instance.SpawnRandomItem(this.transform.position);
         }
 
 

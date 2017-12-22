@@ -8,7 +8,7 @@ public class Criminal4 : MonsterBase
     {
         monsterName = MonsterName.Criminal4;
       
-        moveSpeed = 2f;
+        moveSpeed = 2.5f;
     }
 
     public override void ResetMonster()
@@ -64,7 +64,7 @@ public class Criminal4 : MonsterBase
     {
         nowAttack = true;
         SetAnimation(MonsterState.Attack);   
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(Random.Range(1f,3f));
         nowAttack = false;
     }
 

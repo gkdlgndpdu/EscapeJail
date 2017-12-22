@@ -36,7 +36,7 @@ public class MyUtils
 
         int randNum = Random.Range(0, 101);
 
-        return randNum <= percent;
+        return percent > randNum;
     }
 
 

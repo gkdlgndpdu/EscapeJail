@@ -51,10 +51,10 @@ public class Mouse4 : MonsterBase
     {
         while (true)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 7; i++)
             {
                 FireWeapon();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.25f);
             }
             yield return new WaitForSeconds(fireDelay);
             fireDelay = Random.Range(2f, 3.5f);

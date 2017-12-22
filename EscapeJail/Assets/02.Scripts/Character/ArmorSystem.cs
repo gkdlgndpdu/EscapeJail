@@ -12,6 +12,15 @@ public class ArmorSystem
     private PlayerUI playerUi;
     Action<int> updateFunc;
 
+    public void SetArmorFull()
+    {
+        if (maxArmor == 0) return;
+        remainArmor = maxArmor;
+        UpdateArmorUi();
+        MessageBar.Instance.ShowInfoBar("Armor repaired", Color.white);
+
+    }
+
     public ArmorSystem(InventoryUi InventroyUi, PlayerUI playerUi, Action<int> updateFunc)
     {
         this.inventoryUi = InventroyUi;

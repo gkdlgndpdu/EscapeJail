@@ -197,7 +197,12 @@ public class MapModule : MapModuleBase
             monsterList.Clear();
             monsterList = null;
         }
-       
+        if (GamePlayerManager.Instance != null)
+        {
+            if(GamePlayerManager.Instance.player!=null)
+                GamePlayerManager.Instance.player.SetArmorFull();
+        }
+      
     }
 
     public void AddtoMonsterList(MonsterBase monster)
@@ -349,6 +354,15 @@ public class MapModule : MapModuleBase
 
     public override void MakeObjects()
     {
+        //1탄 첫번째방에서 무기 한개공자로줌
+        if (isStartModule == true&&StagerController.Instance.NowStageLevel ==1)
+        {
+            //가운데 무기하나 생성
+            GameObject obj = mapManager.WeaponBoxPrefab;
+            GameObject article = GameObject.Instantiate(obj, mapManager.transform);
+            article.transform.position = Vector3.down;
+            return;
+        }
         //계수가 생성확률
         float makeNum = (float)(widthNum * heightNum) * 0.01f;
 

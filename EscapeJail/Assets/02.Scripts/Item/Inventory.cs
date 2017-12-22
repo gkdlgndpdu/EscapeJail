@@ -217,7 +217,7 @@ public class Inventory
            inventoryUi.UpdateInventoryUi();
 
         //자동퀵슬롯
-        if(itemBase.itemType !=ItemType.Weapon)
+        if(itemBase.itemType !=ItemType.Weapon&& itemBase.itemType != ItemType.Bullet)
         inventoryUi.RegistNowGetItemToQuickSlot(itemBase);
 
     

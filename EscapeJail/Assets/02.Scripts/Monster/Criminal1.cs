@@ -11,6 +11,7 @@ public class Criminal1 : MonsterBase
         hasBullet = true;
         nearestAcessDistance = 5f;
         SetWeapon();
+        moveSpeed = 2;
     }
     public override void ResetMonster()
     {
@@ -45,7 +46,7 @@ public class Criminal1 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(2f, 2.5f));
+        yield return new WaitForSeconds(Random.Range(1f, 1.5f));
 
         while (true)
         {        
@@ -56,7 +57,7 @@ public class Criminal1 : MonsterBase
             }
        
 
-            yield return new WaitForSeconds(Random.Range(2.5f,3f));
+            yield return new WaitForSeconds(Random.Range(1.5f,2.5f));
         }
     }
 

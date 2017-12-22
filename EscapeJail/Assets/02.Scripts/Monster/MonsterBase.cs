@@ -506,7 +506,9 @@ public class MonsterBase : CharacterInfo
     {
         //임시
         if (spriteRenderer == null) return;
-        if (moveDir.x > 0)
+        if (target == null) return;
+
+        if (this.transform.position.x < target.position.x)
         {
             spriteRenderer.flipX = false;
         }
@@ -514,6 +516,16 @@ public class MonsterBase : CharacterInfo
         {
             spriteRenderer.flipX = true;
         }
+
+
+        //if (moveDir.x > 0)
+        //{
+        //    spriteRenderer.flipX = false;
+        //}
+        //else
+        //{
+        //    spriteRenderer.flipX = true;
+        //}
     }
 
     protected IEnumerator RandomMoveRoutine(Vector3 direction, int moveDistance)

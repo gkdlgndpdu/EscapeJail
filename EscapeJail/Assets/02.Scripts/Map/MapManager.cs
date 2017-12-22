@@ -6,46 +6,41 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+ 
     private List<MapModuleBase> moduleList;
-    private List<GameObject> objectList;
+    [SerializeField]
+    private List<GameObject> tableList;
+    [SerializeField]
+    private GameObject weaponBox;
+    public GameObject WeaponBoxPrefab
+    {
+        get
+        {
+            return weaponBox;
+        }
+    }
 
     private float mapMakeCount = 0;
 
     //맵 생성기
     private MapModuleGenerator mapModuleGenerator;
     
-
-    
-    void Awake()
-    {       
-        LoadObject();
-    }
-
-    private void LoadObject()
-    {
-        objectList = new List<GameObject>();
-
-        if (objectList == null) return;
-        GameObject[] objects = Resources.LoadAll<GameObject>("Prefabs/Articles/ItemTables/");
-
-        if (objects != null)
-        {
-            if (objects.Length != 0)
-
-            {
-                for (int i = 0; i < objects.Length; i++)
-                {
-                    objectList.Add(objects[i]);
-                }
-            }
-        }
-    }
+       
+   
+ 
 
     public GameObject GetRandomArticle()
     {
-        if (objectList == null) return null;
-        if (objectList.Count == 0) return null;
-        return objectList[(Random.Range(0, objectList.Count))];
+        if (tableList == null) return null;
+        if (tableList.Count == 0) return null;
+        if (weaponBox == null) return null;
+
+        if (MyUtils.GetPercentResult(Probability.weaponBoxProb) == true)
+        {
+            return weaponBox;
+        }
+        return tableList[(Random.Range(0, tableList.Count))];
+
     }
 
 

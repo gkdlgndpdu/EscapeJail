@@ -729,7 +729,7 @@ public class CharacterBase : CharacterInfo
             GamePlayerManager.Instance.scoreCounter.GetDamage();
 
             //회복템 자동사용
-            UseSpecificItem(ItemType.Medicine);
+           // UseSpecificItem(ItemType.Medicine);
 
             UIUpdate();
 
@@ -913,7 +913,12 @@ public class CharacterBase : CharacterInfo
 
     public bool CanHeal()
     {
-        return hp < hpMax;
+        bool returnValue = hp < hpMax;
+        if (returnValue == false)
+        {
+            MessageBar.Instance.ShowInfoBar("Life is full", Color.red);
+        }
+        return returnValue;
     }
 
     public void GetHp(int value)
@@ -933,8 +938,14 @@ public class CharacterBase : CharacterInfo
 
     public bool CanUseStimulant()
     {
+        bool returnValue = !nowUseStimulant;
+        if (returnValue == false)
+        {
+            MessageBar.Instance.ShowInfoBar("Already use stimulant.", Color.red);
+        }
+
         //이미 사용중이면 사용 불가
-        return !nowUseStimulant;
+        return returnValue;
     }
     public bool CanFillBullet()
     {
@@ -1035,6 +1046,13 @@ public class CharacterBase : CharacterInfo
     //부활시 능력관련 값 리셋
     protected virtual void ResetAbility()
     {
+
+    }
+    public void SetArmorFull()
+    {
+        if (armorSystem == null) return;
+        armorSystem.SetArmorFull();
+
 
     }
 }

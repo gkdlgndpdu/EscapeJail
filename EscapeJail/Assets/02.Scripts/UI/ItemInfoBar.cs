@@ -17,7 +17,7 @@ public class ItemInfoBar : MonoBehaviour
 
     private ItemBase nowItem = null;
 
-    float moveSpeed = 1f;
+    float moveSpeed = 0.8f;
 
     [SerializeField]
     private Transform showPosit;

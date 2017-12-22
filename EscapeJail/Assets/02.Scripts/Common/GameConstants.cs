@@ -63,6 +63,13 @@ public static class ScorePoint
     public static int ClearRoom = 100;
 }
 
+public static class Probability
+{
+    //무기상자 생성확률
+    public static int weaponBoxProb = 5;
+    public static int vampireicPassive = 1;
+}
+
 public static class CustomColor
 {
     public static Color Orange = new Color(255f / 255f, 187f / 255f, 0f);

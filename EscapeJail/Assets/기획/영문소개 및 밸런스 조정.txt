@@ -1,0 +1,60 @@
+
+
+
+캐릭터 스킬 문구:
+
+군인: 구를때 무적(invincible while rolling.)
+과학자:시간을 느리게한다.(slows down time.)
+공학자: 호신용 드론, 총알 파괴(self-protection drone, bullet remover)
+상인:아이템 생성, 인벤토리 무한(makes items,infinite inventory) 
+방어자:방패를 들면 무적(invincible while holding up shield)
+저격수:강력한 저격(strong snipe shoot)
+
+deployment condition(획득 조건):
+(오피스에 예전에 임시로 적어놓은것 자체적으로 용진씨가 바꾸셔도 돼요)
+
+
+
+엔딩문구:
+Molestan's devilish conspiracy was stopped and the laboratory was also destroyed by Alpha Agents.
+Molestan surrenders, and Alpha Agents keeps the peace of the world now and for ever.  
+(몰스탄의 무시무시한 음모는 중단됐고 연구소는 알파에이전트에 의해 파괴 되었다. 몰스탄은 항복하였으며 알파에이전트는 앞으로도 쭉 세계의 평화를 지킬것이다.) 
+
+
+
+스토어 소개문구:
+
+-Go through with tons of enemies to encounter boss? what a waste of time! you can always go straight boss room whenever you are ready to fight!
+(보스를 마주치기 위해 수십명의 적들을 거쳐야 하다니? 이 얼마나 시간낭비인가! 당신이 언제든 싸울 준비만 되어 있다면 바로 보스방으로 달려 갈 수 있다!)
++++ 만약에 파밍이 더 필요하면 파밍 하시던가요
+++당신이 보스룸이 어떻게 생겼는지 모른다면 실수로 들어갈수도 있다. 단 보스룸은 언제 나타날지 모른다
+
+-6 diffent heroes with indiviual skills.(개성있는 능력을 가진 6명의 서로 다른 영웅들)
+
+-Over 100 randomly generated interesting weapons for survival and destroying enemies.(생존과 적들을 파괴하기 위해 랜덤으로 생성되는 100가지 이상의 흥미로운 아이템들!)
+
+-5 separate stages with various enemies in randomly generated rooms. (랜덤으로 생성되는 방안에서 다양한 적들이 등장하는 5가지의 서로 다른 스테이지!)
+
+-There are Easy and hard game mode for both casual users and hardcore users(캐주얼 유저, 하드코어 유저 둘 다를 위해서 쉬움과 어려움 모드 플레이 가능!) 
+
+//제외
+-Compete with others on leaderboards.(리더보드를 통해 다른사람들과 경쟁해라!)
+
++어렵다
++만약에
+
+밸런스 수정 필요한 부분
+
+-모든 보스들 죽자마자 총알 사라지게 해야할듯
+-2,3탄 보스 체력을 100정도 높여야함(플레이어와 싸울때 숨는 패턴이 없어서 순삭당하니 맷집을 세게 해야할듯)
+-4탄 가운데  보라색 보스 맷집 1탄보스와 동일하게 해야함(아니면 맷집을 늘리거나 이 보스도 역시 숨는 패턴이 없기때문에)
+-5탄보스 체력조정 필요(마지막 보스니까 맷집세게?)
+-리볼버 기본권총 추가해야함
+-터렛 엔지니어 리스폰 확률 낮춰야할거같음(대규모 포탑 플레이시 어려움)
+-바주카병 리스폰확률 낮춰야함(혹은 총알 크기를 작게하던가 난이도 조정이 필요함 좁은방에서 2명만 나와도 피할 곳이 없음 특히 바주카+터렛 조합-무빙이 모바일이라 난이도 조정필요)
+-저격수 총알속도 늦춰야함(거의 무조건 맞음-무빙이 모바일인 점을 감안해서 난이도 조절 필요)
+-3탄 보스 총알수와 퍼지는 정도를 조정해야함.(아예 못피할만한 패턴이 있음)
+
+
+
+

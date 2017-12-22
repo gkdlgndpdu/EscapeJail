@@ -155,8 +155,12 @@ public class BossBase : CharacterInfo
         if (spriteRenderer != null)
             spriteRenderer.color = new Color(1f, 1f, 1f, 0.8f);
 
-
-
+        //아머채워줌
+        if (GamePlayerManager.Instance != null)
+        {
+            if (GamePlayerManager.Instance.player != null)
+                GamePlayerManager.Instance.player.SetArmorFull();
+        }
     }
 
 

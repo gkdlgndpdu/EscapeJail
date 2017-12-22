@@ -13,7 +13,7 @@ public class Criminal2 : MonsterBase
         monsterName = MonsterName.Criminal2;
         hasBullet = true;
         nearestAcessDistance = 5f;
-        moveSpeed = 1f;
+        moveSpeed = 1.5f;
   
     }
     protected override void SetWeapon()
@@ -47,11 +47,11 @@ public class Criminal2 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(2f, 2.5f));
+        yield return new WaitForSeconds(Random.Range(1f, 2.5f));
         while (true)
         {    
             FireWeapon();
-            yield return new WaitForSeconds(Random.Range(2.5f, 3f));
+            yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
         }
  
     }

@@ -44,6 +44,10 @@ public class BoomerangBullet : PlayerSpecialBullet
         if (chr != null)
         {
             chr.GetDamage(damage);
+            //이펙트 호출
+            ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+            if (effect != null)
+                effect.Initilaize(chr.transform.position, "revolver", 0.5f, 1f);
         }
     }
 

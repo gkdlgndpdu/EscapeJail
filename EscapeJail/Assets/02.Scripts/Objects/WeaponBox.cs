@@ -5,7 +5,7 @@ using weapon;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Animator))]
-public class WeaponBox : MonoBehaviour, iReactiveAction
+public class WeaponBox : Article, iReactiveAction
 {
 
     private Animator animator;
@@ -22,7 +22,7 @@ public class WeaponBox : MonoBehaviour, iReactiveAction
 
         if (animator != null)
             animator.speed = 0f;
-
+        articleType = ArticleType.WeaponBox;
         SetLayerOrder();
     }
 

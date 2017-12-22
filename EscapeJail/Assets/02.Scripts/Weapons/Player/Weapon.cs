@@ -387,7 +387,7 @@ namespace weapon
             switch (weaponKind)
             {
                 case WeaponKind.Pistol:
-                    SetAmmo(100);
+                    SetAmmo(1);
                     break;
                 case WeaponKind.AR:
                     SetAmmo(200);

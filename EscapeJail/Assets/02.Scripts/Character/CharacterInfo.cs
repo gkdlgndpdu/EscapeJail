@@ -223,8 +223,10 @@ public class CharacterInfo : MonoBehaviour
         //흡혈의낫
         if (NowSelectPassive.Instance.HasPassive(PassiveType.VampiricGun) == true)
         {
-            if (MyUtils.GetPercentResult(50) == true)
-                GamePlayerManager.Instance.player.GetHp(1);
+            if (MyUtils.GetPercentResult(Probability.vampireicPassive) == true)
+            {
+                GamePlayerManager.Instance.player.GetHp(1);              
+            }
 
         }
 

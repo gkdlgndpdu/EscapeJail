@@ -11,7 +11,7 @@ public class Criminal3 : MonsterBase
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
-        moveSpeed = 1.5f;
+        moveSpeed = 3f;
 
     }
 

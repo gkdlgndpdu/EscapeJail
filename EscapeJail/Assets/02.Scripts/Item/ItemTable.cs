@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
+
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class ItemTable : CharacterInfo
+public class ItemTable : Article
 {  
     private int tableAnimFrameNum = 6;
     private BoxCollider2D boxCollider;
@@ -28,8 +31,8 @@ public class ItemTable : CharacterInfo
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectShadow = GetComponentInChildren<ObjectShadow>();
 
-        SetLayerOrder();       
-
+        SetLayerOrder();
+        articleType = ArticleType.Table;
         if (animator != null)
             animator.speed = 0f;
 

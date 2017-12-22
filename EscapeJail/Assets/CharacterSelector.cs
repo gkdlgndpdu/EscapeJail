@@ -20,7 +20,9 @@ public class CharacterSelector : MonoBehaviour
     private RectTransform rectTr;
 
     [SerializeField]
-    private Text characterInfoText;
+    private Text characterName;
+    [SerializeField]
+    private Text characterDescription;
 
     [SerializeField]
     private GameObject selectButton;
@@ -47,18 +49,24 @@ public class CharacterSelector : MonoBehaviour
     private void UpdateCharacterInfoText()
     {
         if (nowSelectSlot == null) return;
-        if (characterInfoText == null) return;
+        if (characterName == null) return;
+        if (characterDescription == null) return;
         CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
         if (db == null) return;
-        characterInfoText.text = string.Format("{0} \nSkill : {1} \n {2}", nowSelectSlot.CharacterType.ToString(), db.skillName, db.description);
+        characterName.text = nowSelectSlot.CharacterType.ToString()+"\n"+ "Skill : "+db.skillName;
+        characterDescription.text = db.description;
+          //  string.Format("{1} \n{2}", db.skillName, db.description);
     }
 
     private void UpdataCharacterHowToGet()
     {
-        if (characterInfoText == null) return;
+        if (characterName == null) return;
+        if (characterDescription == null) return;
         CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
         if (db == null) return;
-        characterInfoText.text = string.Format("{0}\nHow to get \n{1}", nowSelectSlot.CharacterType.ToString(), db.howToGet);
+        characterName.text = nowSelectSlot.CharacterType.ToString();
+        characterDescription.text = db.howToGet;
+        //characterName.text = string.Format("{0}\nHow to get \n{1}", nowSelectSlot.CharacterType.ToString(), db.howToGet);
 
     }
 

@@ -24,6 +24,7 @@ public class Criminal5 : MonsterBase
         monsterName = MonsterName.Criminal5;
         hasBullet = true;
         nearestAcessDistance = 5f;
+        moveSpeed = 2f;
       
     }
     protected override void SetWeapon()
@@ -52,11 +53,11 @@ public class Criminal5 : MonsterBase
             for (int i = 0; i < 5; i++)
             {
                 FireWeapon();
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
 
 
-            yield return new WaitForSeconds(Random.Range(1f,3f));
+            yield return new WaitForSeconds(Random.Range(1f,2f));
         }
     }
 

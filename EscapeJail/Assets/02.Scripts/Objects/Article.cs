@@ -10,15 +10,9 @@ public enum ArticleType
 }
 
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
+
 public class Article : CharacterInfo
 {
     public ArticleType articleType;
-
-    protected void SetArticleType(ArticleType type)
-    {
-        this.articleType = type;
-    }
+  
 }

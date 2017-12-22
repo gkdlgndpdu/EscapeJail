@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInitialize: 0
-  weaponPosit: {fileID: 0}
+  weaponPosit: {fileID: 4289465920703158}
   attackObject: {fileID: 0}
 --- !u!114 &114660659611851156
 MonoBehaviour:
