@@ -66,7 +66,7 @@ public static class ScorePoint
 public static class Probability
 {
     //무기상자 생성확률
-    public static int weaponBoxProb = 5;
+    public static int weaponBoxProb = 10;
     public static int vampireicPassive = 1;
 }
 

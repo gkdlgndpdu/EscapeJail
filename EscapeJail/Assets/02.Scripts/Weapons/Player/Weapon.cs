@@ -224,6 +224,8 @@ namespace weapon
 
         protected void useBullet()
         {
+            if (weaponKind == WeaponKind.Pistol) return;
+
             nowAmmo -= needBulletToFire;
             if (nowAmmo <= 0)
             {
