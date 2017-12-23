@@ -76,7 +76,7 @@ namespace ScientistBoss
 
             for (int i = 0; i < childList.Count; i++)
             {
-                if (childList[i].isDead == false) return true;
+                if (childList[i].IsDead == false) return true;
             }
 
             return false;
@@ -176,7 +176,7 @@ namespace ScientistBoss
             //안죽은애들 넣어줌
             for (int i = 0; i < childList.Count; i++)
             {
-                if (childList[i].isDead == false)
+                if (childList[i].IsDead == false)
                     RandomMonster.Add(childList[i]);
             }
 
@@ -189,7 +189,7 @@ namespace ScientistBoss
                 //나머지는 숨기
                 for (int j = 0; j < childList.Count; j++)
                 {
-                    if (childList[j] == RandomMonster[i] || childList[j].isDead == true) continue;
+                    if (childList[j] == RandomMonster[i] || childList[j].IsDead == true) continue;
 
                     childList[j].HideOnOff(true);
 
@@ -204,7 +204,7 @@ namespace ScientistBoss
                 //숨은애들 올라옴
                 for (int j = 0; j < childList.Count; j++)
                 {
-                    if (childList[j] == RandomMonster[i] || childList[j].isDead == true) continue;
+                    if (childList[j] == RandomMonster[i] || childList[j].IsDead == true) continue;
 
                     childList[j].HideOnOff(false);
 

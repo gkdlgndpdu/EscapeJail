@@ -23,7 +23,13 @@ namespace ScientistBoss
         private Animator animator;
         private BoxCollider2D boxCollider;
         public ChildType childType;       
-        public new bool isDead = false;
+        public new bool IsDead
+        {
+            get
+            {
+                return isDead;
+            }
+        }
         private ScientistBoss parentComputer;
         private Image hudImage;
 

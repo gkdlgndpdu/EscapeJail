@@ -85,76 +85,56 @@ public class Scientist : CharacterBase
     {
         isBurstMoveOn = OnOff;
 
-        if (isSkillOn == false)
+        if (isSkillOn == true)
+            SkillOnOff();
+
+
+        if (OnOff == true)
         {
-            if (OnOff == true)            
-                moveSpeed = burstSpeed;
-            
-            else            
-                moveSpeed = originSpeed;
-            
+            moveSpeed = burstSpeed;
         }
-        else if (isSkillOn == true)
+        else
         {
-            if (OnOff == true)    
-                moveSpeed = burstSpeed / slowTimeRatio;                   
-            else
-                moveSpeed = originSpeed / slowTimeRatio;
-        }
+            moveSpeed = originSpeed;
+        }     
 
         
     }
 
     private void SkillOnOff()
     {
-
-        if (isBurstMoveOn == false)
+        //켜기
+        if (isSkillOn == false)
         {
-            //켜기
-            if (isSkillOn == false)
-            {
-                TimeManager.Instance.BulletTimeOn(slowTimeRatio);
+            TimeManager.Instance.BulletTimeOn(slowTimeRatio);
 
-                isSkillOn = true;
+            isSkillOn = true;
+
+            if (isBurstMoveOn == false)
                 moveSpeed = originSpeed / slowTimeRatio;
-                SoundManager.Instance.PlaySoundEffect("slowmotionon");
-
-            }
-            //끄기
-            else if (isSkillOn == true)
-            {
-                TimeManager.Instance.BulletTimeOff();
-
-
-                isSkillOn = false;
-                moveSpeed = originSpeed;
-                SoundManager.Instance.PlaySoundEffect("slowmotionoff");
-
-            }
-            
-        }
-        else if (isBurstMoveOn == true)
-        {
-            //켜기
-            if (isSkillOn == false)
-            {
-                TimeManager.Instance.BulletTimeOn(slowTimeRatio);
-                isSkillOn = true;
+            else if (isBurstMoveOn == true)
                 moveSpeed = burstSpeed / slowTimeRatio;
-                SoundManager.Instance.PlaySoundEffect("slowmotionon");
 
-            }
-            //끄기
-            else if (isSkillOn == true)
-            {
-                TimeManager.Instance.BulletTimeOff();
-                isSkillOn = false;
-                moveSpeed = burstSpeed;
-                SoundManager.Instance.PlaySoundEffect("slowmotionoff");
-            }
-           
+
+            SoundManager.Instance.PlaySoundEffect("slowmotionon");
+
         }
-       
+        //끄기
+        else if (isSkillOn == true)
+        {
+            TimeManager.Instance.BulletTimeOff();
+
+
+            isSkillOn = false;
+
+            if (isBurstMoveOn == false)
+                moveSpeed = originSpeed;
+            else if (isBurstMoveOn == true)
+                moveSpeed = burstSpeed;
+
+            SoundManager.Instance.PlaySoundEffect("slowmotionoff");
+
+        }      
 
     }
 

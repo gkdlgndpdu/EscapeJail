@@ -8,27 +8,14 @@ public class Defender : CharacterBase
 
     private float maxSaveTime = 5f;
     private float nowRemainTime = 0f;
+    private float decreaseValue = 1f;
 
     protected override void ResetAbility()
     {
         ShieldOff();
          moveSpeed = originSpeed;
         nowRemainTime = maxSaveTime;
-    }
-
-    public override void SetBurstSpeed(bool OnOff)
-    {
-        if (isShieldOn == true) return;
-
-        isBurstMoveOn = OnOff;
-
-        if (OnOff == true)
-            moveSpeed = burstSpeed;
-        else
-            moveSpeed = originSpeed;     
-
-
-    }
+    }  
 
 
     private void SetSkillTime(float t)
@@ -58,7 +45,7 @@ public class Defender : CharacterBase
     {
         base.Start();
         SetWeapon();
-        originSpeed = moveSpeed;
+
     }
     private new void Update()
     {
@@ -98,6 +85,26 @@ public class Defender : CharacterBase
         }
     }
 
+    public override void SetBurstSpeed(bool OnOff)
+    {
+        isBurstMoveOn = OnOff;
+
+        if (isShieldOn == true)
+            ShieldOff();
+
+
+        if (OnOff == true)
+        {
+            moveSpeed = burstSpeed;
+        }
+        else
+        {
+            moveSpeed = originSpeed;
+        }
+
+
+    }
+
     private void ShieldOn()
     {
         if (animator != null)
@@ -105,7 +112,11 @@ public class Defender : CharacterBase
 
         isShieldOn = true;
 
-        moveSpeed = originSpeed - 2f;
+        if (isBurstMoveOn == false)
+            moveSpeed = originSpeed - decreaseValue;
+        else if (isBurstMoveOn == true)
+            moveSpeed = burstSpeed - decreaseValue;
+
         SoundManager.Instance.PlaySoundEffect("shieldset");
 
     }
@@ -116,7 +127,11 @@ public class Defender : CharacterBase
 
         isShieldOn = false;
 
-        moveSpeed = originSpeed;
+        if (isBurstMoveOn == false)
+            moveSpeed = originSpeed;
+        else if (isBurstMoveOn == true)
+            moveSpeed = burstSpeed;
+ 
         SoundManager.Instance.PlaySoundEffect("shieldset");
     }
 

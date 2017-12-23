@@ -133,7 +133,7 @@ public class CharacterBase : CharacterInfo
     private void PassiveSetting()
     {
         //망토
-        if (NowSelectPassive.Instance.HasPassive(PassiveType.HolyCape)==true)
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.HolyCape) == true)
             immuneTime = 2f;
 
         //인삼
@@ -152,24 +152,29 @@ public class CharacterBase : CharacterInfo
             playerUi.ChangeFireStyle(FireStyle.Manual);
         }
 
-            //        //오토에임
-            //if (MyUtils.GetNowPassive() == PassiveType.AutoAim)
-            //{
-            //    GameOption.ChangeFireStype(FireStyle.Auto);
-            //    playerUi.ChangeFireStyle(FireStyle.Auto);
-            //}
-            //else
-            //{
-            //    GameOption.ChangeFireStype(FireStyle.Manual);
-            //    playerUi.ChangeFireStyle(FireStyle.Manual);
-            //}
+        //        //오토에임
+        //if (MyUtils.GetNowPassive() == PassiveType.AutoAim)
+        //{
+        //    GameOption.ChangeFireStype(FireStyle.Auto);
+        //    playerUi.ChangeFireStyle(FireStyle.Auto);
+        //}
+        //else
+        //{
+        //    GameOption.ChangeFireStype(FireStyle.Manual);
+        //    playerUi.ChangeFireStyle(FireStyle.Manual);
+        //}
 
 
 
-            //신발
-            if (NowSelectPassive.Instance.HasPassive(PassiveType.WingShoes) == true)
+        //신발
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.WingShoes) == true)
+        {
             moveSpeed = 5f;
-        originSpeed = moveSpeed;
+            burstSpeed = moveSpeed + 2;
+            originSpeed = moveSpeed;
+
+        }
+       
 
         ////조준기
         //if (MyUtils.GetNowPassive() == PassiveType.RedDotSight)
@@ -328,7 +333,7 @@ public class CharacterBase : CharacterInfo
     public WeaponType GetNowEquipWeapon()
     {
         if (weaponHandler == null) return WeaponType.PlayerWeaponStart;
-        if(weaponHandler.NowWeapon==null) return WeaponType.PlayerWeaponStart;
+        if (weaponHandler.NowWeapon == null) return WeaponType.PlayerWeaponStart;
         return weaponHandler.NowWeapon.weapontype;
     }
 
@@ -371,7 +376,7 @@ public class CharacterBase : CharacterInfo
             inventory = new Inventory(playerUi.inventoryUi);
 
         if (inventory != null)
-            inventory.SetInventorySize(0,0);
+            inventory.SetInventorySize(0, 0);
 
         if (armorSystem == null)
         {
@@ -383,11 +388,11 @@ public class CharacterBase : CharacterInfo
 
 
 
-    public void GetBag(int level,int value)
+    public void GetBag(int level, int value)
     {
         if (inventory != null)
         {
-            inventory.SetInventorySize(level,value);
+            inventory.SetInventorySize(level, value);
             hasBag = true;
         }
     }
@@ -401,7 +406,7 @@ public class CharacterBase : CharacterInfo
     public void SetArmor(int value)
     {
         if (armorSystem != null)
-            armorSystem.SetArmor( value);
+            armorSystem.SetArmor(value);
     }
 
     protected void SetupComponent()
@@ -416,9 +421,10 @@ public class CharacterBase : CharacterInfo
     // Use this for initialization
     protected void Start()
     {
-        SetBurstSpeed(true);
+      //  SetBurstSpeed(true);
         StartCoroutine(FindItemRoutine());
         UIUpdate();
+        originSpeed = moveSpeed;
     }
 
     protected IEnumerator FindItemRoutine()
@@ -463,13 +469,13 @@ public class CharacterBase : CharacterInfo
     public virtual void FireWeapon()
     {
         if (isDead == true) return;
-        
+
         if (weaponHandler.NowWeapon != null)
         {
             if (weaponHandler.NowWeapon.hasAmmo() == false)
             {
                 UseSpecificItem(ItemType.Bullet);
-              
+
             }
         }
 
@@ -552,7 +558,7 @@ public class CharacterBase : CharacterInfo
         if (weaponHandler == null) return;
 
         weaponHandler.ChangeWeapon(inventory.GetWeapon());
-       
+
     }
 
     public void CardCaseCardOnOff(bool OnOff)
@@ -737,7 +743,7 @@ public class CharacterBase : CharacterInfo
             GamePlayerManager.Instance.scoreCounter.GetDamage();
 
             //회복템 자동사용
-           // UseSpecificItem(ItemType.Medicine);
+            // UseSpecificItem(ItemType.Medicine);
 
             UIUpdate();
 
@@ -957,7 +963,7 @@ public class CharacterBase : CharacterInfo
     }
     public bool CanFillBullet()
     {
-        if(weaponHandler==null)return false;
+        if (weaponHandler == null) return false;
         return weaponHandler.CanFIllBullet();
     }
 
