@@ -44,6 +44,7 @@ public class GoogleService : MonoBehaviour
     }
 
 
+
     public void ShowLeaderBoardUi()
     {
         if (PlayGamesPlatform.Instance.IsAuthenticated())
@@ -55,9 +56,9 @@ public class GoogleService : MonoBehaviour
     {
         if (PlayGamesPlatform.Instance.IsAuthenticated())
             PlayGamesPlatform.Instance.ShowAchievementsUI();
-        else        
+        else
             SignIn();
-        
+
 
     }
 
@@ -70,8 +71,13 @@ public class GoogleService : MonoBehaviour
     public void SignIn()
     {
         PlayGamesPlatform.Instance.Authenticate((bool success) =>
-        {      
+        {
             canStart = true;
+            if (success == true)
+            {
+                ReadPrefAchivment();
+
+            }
         });
 
     }
@@ -79,12 +85,12 @@ public class GoogleService : MonoBehaviour
     public void SignOut()
     {
         PlayGamesPlatform.Instance.SignOut();
-    }   
+    }
 
 
     public void ReportScore(int score)
     {
-        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_scoretest, null);    
+        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_scoretest, null);
     }
     //실제용 함수
     public void SetCharacterAchivement(CharacterType characterType)
@@ -94,7 +100,7 @@ public class GoogleService : MonoBehaviour
 
     private void ReadPrefAchivment()
     {
-        for(int i = 0; i < (int)CharacterType.CharacterEnd; i++)
+        for (int i = 0; i < (int)CharacterType.CharacterEnd; i++)
         {
             string achivId = string.Empty;
 
@@ -124,9 +130,26 @@ public class GoogleService : MonoBehaviour
                     break;
                 case CharacterType.Trader:
                     {
+                        achivId = GPGSIds.achievement_get_a_trader;
+                    }
+                    break;
 
-                    }break;
+                    var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
+                    if (achivData != null)
+                    {
+                        if (achivData.IsUnlocked == true)
+                        {
+                            DatabaseLoader.Instance.BuyCharacter((CharacterType)i);
+
+                        }
+
+
+                    }
             }
+
+
+
+
         }
     }
 
@@ -140,9 +163,9 @@ public class GoogleService : MonoBehaviour
         {
             if (getData.hasCharacter == true)
                 return;
-        }    
+        }
 
-        string achivId =string.Empty;
+        string achivId = string.Empty;
 
         switch (characterType)
         {
@@ -167,12 +190,12 @@ public class GoogleService : MonoBehaviour
                 {
                     achivId = GPGSIds.achievement_get_a_engineer;
                 }
-                break;   
+                break;
         }
 
-        if(achivId == string.Empty)
+        if (achivId == string.Empty)
             return;
-        
+
 
         if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
@@ -181,7 +204,7 @@ public class GoogleService : MonoBehaviour
                 if (success == true)
                 {
                     //완료했는지 체크
-                   var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
+                    var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
                     if (achivData != null)
                     {
                         if (achivData.IsUnlocked == true)

@@ -49,7 +49,7 @@ public class Engineer : CharacterBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(10);
+
         SetDrone();
     }
 

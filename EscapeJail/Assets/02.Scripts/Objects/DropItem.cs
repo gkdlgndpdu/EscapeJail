@@ -21,6 +21,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     private CharacterBase player;
     private bool isSalesItem = false;
+    private bool isSoldOut = false;
     public bool IsSalesItem
     {
         get
@@ -82,7 +83,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
             WeaponDB weaponData = DatabaseLoader.Instance.GetWeaponDB(itemBase.weapontype);
             if (weaponData != null)
             {
-                price = weaponData.Probability * 100;
+                price = weaponData.level * 1000;
             }
         }
         else
@@ -210,8 +211,8 @@ public class DropItem : MonoBehaviour, iReactiveAction
             else
             {
                 if (player.isInventoryFull() == true) return;
-
                 player.UseCoin(price);
+                isSoldOut = true;
             }
         }
 
@@ -254,6 +255,16 @@ public class DropItem : MonoBehaviour, iReactiveAction
         }
         Destroy(this.gameObject);
 
+    }
+
+    private void OnDestroy()
+    {
+        if (isSoldOut == true&&itemBase.itemType==ItemType.Weapon)
+        {
+            WeaponDB weaponDB = DatabaseLoader.Instance.GetWeaponDB(itemBase.weapontype);
+            if (weaponDB != null)
+                DatabaseLoader.Instance.weaponRandomGenerator.AddToList(itemBase.weapontype, weaponDB.Probability); ;
+        }
     }
 
 

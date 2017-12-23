@@ -35,6 +35,8 @@ namespace ScientistBoss
 
         public override void StartBossPattern()
         {
+            MessageBar.Instance.ShowInfoBar("Destroy child first",Color.white);
+
             StartChild();
 
             if (bossEventQueue != null)

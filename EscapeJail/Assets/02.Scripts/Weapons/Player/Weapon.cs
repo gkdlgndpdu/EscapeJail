@@ -423,7 +423,7 @@ namespace weapon
         {
             int layerMask = (1 << LayerMask.NameToLayer("Enemy") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable") | (1 << LayerMask.NameToLayer("EnemyTurret"))));
             Ray2D ray = new Ray2D(firePos, fireDirection);
-            RaycastHit2D hit = Physics2D.Raycast(firePos, fireDirection, 50f, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(firePos, fireDirection, 100f, layerMask);
             if (hit == true)
             {
                 CharacterInfo characterInfo = hit.transform.gameObject.GetComponent<CharacterInfo>();

@@ -16,16 +16,42 @@ public class Defender : CharacterBase
         nowRemainTime = maxSaveTime;
     }
 
+    public override void SetBurstSpeed(bool OnOff)
+    {
+        if (isShieldOn == true) return;
+
+        isBurstMoveOn = OnOff;
+
+        if (OnOff == true)
+            moveSpeed = burstSpeed;
+        else
+            moveSpeed = originSpeed;     
+
+
+    }
+
+
     private void SetSkillTime(float t)
     {
         nowRemainTime = t;
         maxSaveTime = t;
     }
 
+    public override void SetFire()
+    {
+        if(isShieldOn==false)
+        base.SetFire();
+    }
+    public override void SetPoison()
+    {
+        if (isShieldOn == false)
+            base.SetPoison();
+    }
+
     private new void Awake()
     {
         base.Awake();
-        SetHp(10);
+      
         SetSkillTime(5f);
     }
     private new void Start()

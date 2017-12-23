@@ -103,7 +103,7 @@ public class Sniper : CharacterBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(10);
+      
         SetBullet(5);
 
         snipingLayerMask = MyUtils.GetLayerMaskByString("Enemy");

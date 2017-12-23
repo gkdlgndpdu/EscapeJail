@@ -121,7 +121,7 @@ public class MapModuleBase : MonoBehaviour
         if (isStartModule != true)
         {
             DropGoods medal = ObjectManager.Instance.coinPool.GetItem();
-            medal.Initiatlize(this.transform.position, 1, GoodsType.Medal);
+            medal.Initiatlize(this.transform.position, GoodsValue.MedalPoint, GoodsType.Medal);
         }
 
         //미니맵 켜줌

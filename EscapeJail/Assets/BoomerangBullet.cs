@@ -71,7 +71,7 @@ public class BoomerangBullet : PlayerSpecialBullet
         if (rb != null)
             rb.velocity = moveDir.normalized * moveSpeed;
 
-        moveSpeed += Time.deltaTime*1.3f;
+        moveSpeed += Time.deltaTime*1.5f;
 
         float dist = Vector3.Distance(this.transform.position, playerTr.transform.position);
         if (dist < 0.1f)

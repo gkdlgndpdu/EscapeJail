@@ -27,7 +27,7 @@ public class Scientist : CharacterBase
     {
         base.Awake();
 
-        SetHp(10);
+    
 
         SetSkillTime(5f);
 

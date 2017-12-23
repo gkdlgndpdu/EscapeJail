@@ -10,6 +10,7 @@ public class Guard1 : MonsterBase
         monsterName = MonsterName.Guard1;
         hasBullet = true;
         nearestAcessDistance = 5f;
+        moveSpeed = 1.5f;
        
     }
     public override void ResetMonster()
@@ -54,10 +55,11 @@ public class Guard1 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(Random.Range(0.7f, 1.5f));
         while (true)
         {           
             FireWeapon();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(0.7f,1.5f));
         }
     }
 

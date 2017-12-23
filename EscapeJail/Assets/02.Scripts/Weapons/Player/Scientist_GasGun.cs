@@ -5,16 +5,14 @@ namespace weapon
 {
     public class Scientist_GasGun : Weapon
     {
-        private float reBoundValue = 0f;
+        private float reBoundValue = 20f;
         private System.Action<Vector3> func;
 
         public Scientist_GasGun()
         {
             weapontype = WeaponType.Scientist_GasGun;
             bulletSpeed = 3f;
-            fireDelay = 0.3f;
-            maxAmmo = 100;
-            nowAmmo = 100;
+            fireDelay = 0.3f;     
             needBulletToFire = 1;
             weaponScale = Vector3.one * 4;
             relativePosition = new Vector3(-0.3f, 0f, 0f);
@@ -39,7 +37,7 @@ namespace weapon
         public void SetPosionZone(Vector3 posit)
         {
            PollutedArea area = ObjectManager.Instance.pollutedAreaPool.GetItem();
-            area.Initialize(posit, 5f, 4f, CharacterCondition.InFire, BulletType.EnemyBullet);
+            area.Initialize(posit, 5f, 3f, CharacterCondition.InFire, BulletType.EnemyBullet);
             SoundManager.Instance.PlaySoundEffect("glassbreak");
         }
 

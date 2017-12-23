@@ -6,8 +6,8 @@ public class Scientist1 : MonsterBase
 {
     private ScientistState scientistState = ScientistState.Normal;
     private int originHp = 5;
-    private float RushPower = 7f;
-    private float transformMoveSpeed = 2f;
+    private float RushPower =10f;
+    private float transformMoveSpeed = 3f;
     private float RushAfterDelay = 1f;
     private Vector3 orginSize = Vector3.one;
     private Vector3 transformSize = Vector3.one * 2f;
@@ -15,6 +15,7 @@ public class Scientist1 : MonsterBase
     private bool UseBullet = false;
     //변신중에 무적상태가됨
     private bool isImmune = false;
+
 
     //도망
     private float avoidTime = 3f;
@@ -48,6 +49,14 @@ public class Scientist1 : MonsterBase
         isImmune = false;
     }
 
+    protected override void StartMyCoroutine()
+    {
+        if (scientistState == ScientistState.Normal)
+            StartCoroutine("SlowAvoidRoutine");
+        else if(scientistState == ScientistState.Avoid)
+               StartCoroutine(AvoidRoutine());
+    }
+
 
 
     protected new void Start()
@@ -57,19 +66,16 @@ public class Scientist1 : MonsterBase
 
     }
 
-    private IEnumerator TransformRoutine()
-    {
+    
 
-        //랜덤이동
-
-        yield break;
-    }
 
    
 
     private void SetTransform()
     {
         if (scientistState == ScientistState.Transform) return;
+        if (isImmune == true) return;
+
 
         if (rb != null)
             rb.velocity = Vector3.zero;      
@@ -84,9 +90,9 @@ public class Scientist1 : MonsterBase
     
     }
     public void TransformEnd()
-    {
-        this.scientistState = ScientistState.Transform;
+    {        
         isImmune = false;
+        this.scientistState = ScientistState.Transform;
     }
 
     private void AbilityChange()
@@ -94,6 +100,7 @@ public class Scientist1 : MonsterBase
         SetHp(originHp * 3);
         moveSpeed = transformMoveSpeed;
         this.transform.localScale = Vector3.one * 2f;
+        UpdateHud();
     }
 
     private void SpeedUp()
@@ -103,6 +110,21 @@ public class Scientist1 : MonsterBase
         //
         //도망패턴 시작
         //
+    }
+    public override void SetStun(bool OnOff)
+    {
+        if (isImmune == false|| nowAttack==true)
+        {
+          base.SetStun(OnOff);
+
+        }
+    }
+    public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
+    {
+        if (isImmune == false|| nowAttack==true)
+        {
+            base.SetPush(pushPoint, pushPower, damage);
+        }
     }
 
     public override void GetDamage(int damage)
@@ -117,6 +139,7 @@ public class Scientist1 : MonsterBase
         if (scientistState == ScientistState.Normal)
         {
             scientistState = ScientistState.Avoid;
+            StopCoroutine("SlowAvoidRoutine");
             StartCoroutine(AvoidRoutine());
         }
         VampiricGunEffect();
@@ -134,7 +157,7 @@ public class Scientist1 : MonsterBase
                     {
                         Vector3 fireDIr = Quaternion.Euler(new Vector3(0f, 0f, i * 30)) * Vector3.right;
                         bullet.gameObject.SetActive(true);
-                        bullet.Initialize(this.transform.position, fireDIr.normalized, 8f, BulletType.EnemyBullet,0.7f);
+                        bullet.Initialize(this.transform.position, fireDIr.normalized, 5f, BulletType.EnemyBullet,0.7f);
                         bullet.InitializeImage("white", false);
                         bullet.SetEffectName("revolver");
                         bullet.SetBloom(true, Color.red);
@@ -145,6 +168,24 @@ public class Scientist1 : MonsterBase
             SetDie();
         }
 
+    }
+
+    private IEnumerator SlowAvoidRoutine()
+    {
+        
+        while (true)
+        {
+            Vector3 moveDir = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)) * Vector3.right;
+
+            this.moveDir = moveDir;
+
+            if (rb != null)
+                rb.velocity = moveDir.normalized * (moveSpeed-2f);
+
+            SetAnimation(MonsterState.Walk);
+            FlipCharacterByMoveDir();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private IEnumerator AvoidRoutine()
@@ -188,11 +229,11 @@ public class Scientist1 : MonsterBase
             MoveToTarget();
             NearAttackLogic();
         }
-        else if(scientistState==ScientistState.Normal)
-        {
-            if (rb != null)
-                rb.velocity = Vector3.zero; 
-        }
+        //else if(scientistState==ScientistState.Normal)
+        //{
+        //    if (rb != null)
+        //        rb.velocity = Vector3.zero; 
+        //}
 
     }
 
@@ -204,12 +245,12 @@ public class Scientist1 : MonsterBase
 
         SetAnimation(MonsterState.Attack);
         //선딜
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         AttackOn();
 
         Vector3 RushDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
         RushDir.Normalize();
-
+        yield return new WaitForSeconds(0.1f);
         if (rb != null)
             rb.velocity = RushDir * RushPower;
         yield return new WaitForSeconds(1.0f);

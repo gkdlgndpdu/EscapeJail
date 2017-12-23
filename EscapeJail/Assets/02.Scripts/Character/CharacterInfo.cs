@@ -21,11 +21,11 @@ public class CharacterInfo : MonoBehaviour
     protected bool isImmuneAnyState = false;
 
     //화상
-    protected float fireSustainmentTime = 5f;
+    protected float fireSustainmentTime = 2f;
     protected float fireCount = 0f;
 
     //중독
-    protected float poisonSustainmentTime = 5f;
+    protected float poisonSustainmentTime = 2f;
     protected float poisonCount = 0f;
 
     protected List<CharacterCondition> conditionList = new List<CharacterCondition>();
@@ -97,17 +97,20 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    public void SetHp(int hp)
+    public void SetHp(int hp,bool isPlayer =false)
     {
-        if (NowSelectPassive.Instance.HasPassive(PassiveType.Littlelove) == true)
+
+        if (NowSelectPassive.Instance.HasPassive(PassiveType.Littlelove) == true&&
+            isPlayer ==true)
         {
-            hp += 2;
+            hp += 3;
         }
+
         this.hp = hp;
         hpMax = hp;
     }
 
-    public void SetFire()
+    public virtual void SetFire()
     {
         if (isImmuneAnyState == true) return;
 
@@ -131,7 +134,7 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
-    public void SetPoison()
+    public virtual void SetPoison()
     {
         if (isImmuneAnyState == true) return;
 

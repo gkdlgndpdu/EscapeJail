@@ -13,7 +13,7 @@ public class StagerController : MonoBehaviour
 
     public StageData stageData;
  
-    private int nowStageLevel = 1;
+    private int nowStageLevel =1;
   
 
     public int NowStageLevel
@@ -27,6 +27,8 @@ public class StagerController : MonoBehaviour
 
     public void LoadstageData()
     {
+        nowStageLevel = 4;
+
         Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
         if (obj != null)
             stageData = (StageData)obj;
@@ -40,6 +42,10 @@ public class StagerController : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+    }
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     private void Start()
