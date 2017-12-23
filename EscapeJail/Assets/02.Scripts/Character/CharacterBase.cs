@@ -251,7 +251,14 @@ public class CharacterBase : CharacterInfo
 
         PassiveSetting();
         SetCardCaseCard();
-
+        if (NowSelectPassive.Instance.NowDifficulty == Difficulty.easy)
+        {
+            SetHp(10, true);
+        }
+        else if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
+        {
+            SetHp(5, true);
+        }
     }
 
     public bool CanReload()
@@ -315,6 +322,7 @@ public class CharacterBase : CharacterInfo
     {
         AddWeapon(new BasicSniper());
         AddWeapon(new Revolver());
+        AddWeapon(new H249());
     }
 
     public WeaponType GetNowEquipWeapon()
@@ -526,7 +534,7 @@ public class CharacterBase : CharacterInfo
 
 #if UNITY_EDITOR
         //발사
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             FireWeapon();
 

@@ -46,7 +46,7 @@ public class MenuScene : MonoBehaviour
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.easy);
         SoundManager.Instance.PlaySoundEffect("Button");
-        SetDifficultyDescription("Easy Mode \nAuto Aiming \nMore hp \nLess score \nEtc...",Color.green);
+        SetDifficultyDescription("Normal Mode \nAuto Aiming \nMore hp \nLess score \nEtc...",Color.green);
     }
     private void SetDifficultyDescription(string text,Color color)
     {

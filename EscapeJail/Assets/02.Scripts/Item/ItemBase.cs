@@ -47,6 +47,16 @@ public class ItemBase
                 return itemType.ToString();
         }
     }
+    public string showItemName
+    {
+        get
+        {
+            if (ItemLevel != 0)
+                return string.Format("{0} Lv{1}", itemType.ToString(), ItemLevel);
+            else
+                return itemType.ToString();
+        }
+    }
     public ItemBase()
     {
         player = GamePlayerManager.Instance.player;

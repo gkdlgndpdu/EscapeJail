@@ -10,7 +10,7 @@ public class Guard4 : MonsterBase
 
 
     //해당 거리보다 멀리 있으면 실드킴 무조건
-    private float shieldOffDistance = 3f;
+    private float shieldOffDistance = 4f;
 
 
     public override void ResetMonster()

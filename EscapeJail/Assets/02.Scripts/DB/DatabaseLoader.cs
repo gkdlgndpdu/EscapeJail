@@ -51,6 +51,13 @@ public class DatabaseLoader : MonoBehaviour
     public static DatabaseLoader Instance = null;
 
     private RandomGenerator<WeaponType> WeaponRandomGenerator;
+    public RandomGenerator<WeaponType> weaponRandomGenerator
+    {
+        get
+        {
+            return WeaponRandomGenerator;
+        }
+    }
 
     //캐릭터 db
     private Dictionary<CharacterType, CharacterDB> CharacterDB;
@@ -628,29 +635,29 @@ public class DatabaseLoader : MonoBehaviour
 
 #if UNITY_EDITOR
     //임시코드
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            BuyCharacter(CharacterType.Scientist);
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        BuyCharacter(CharacterType.Scientist);
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            BuyCharacter(CharacterType.Defender);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        BuyCharacter(CharacterType.Defender);
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            BuyCharacter(CharacterType.Sniper);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        BuyCharacter(CharacterType.Sniper);
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            BuyCharacter(CharacterType.Engineer);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        BuyCharacter(CharacterType.Engineer);
 
-        }
-    }
+    //    }
+    //}
 
 #endif
 

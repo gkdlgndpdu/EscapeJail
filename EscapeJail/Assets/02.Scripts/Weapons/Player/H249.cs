@@ -12,11 +12,11 @@ namespace weapon
             weapontype = WeaponType.H249;
             SetWeaponKind(WeaponKind.MG);
             bulletSpeed = 10f;
-            fireDelay = 0.1f;       
+            fireDelay = 0.06f;       
             needBulletToFire = 1;
             damage = 1;
 
-            SetReboundDuringFire(1f, 5f);
+            SetReboundDuringFire(2f, 5f);
         }
 
         public override void FireBullet(Vector3 firePos, Vector3 fireDirection)

@@ -153,7 +153,7 @@ public class UI_ItemSlot : MonoBehaviour
                 } break;
             default:
                 {
-                    SetSlotText(itemBase.itemName);
+                    SetSlotText(itemBase.showItemName);
                     string path = string.Format("Sprites/icon/{0}", itemBase.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     SetSlotSprite(sprite);

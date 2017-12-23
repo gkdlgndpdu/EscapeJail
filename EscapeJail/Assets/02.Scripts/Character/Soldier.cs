@@ -13,7 +13,7 @@ public class Soldier : CharacterBase
     {
         base.Awake();
 
-        SetHp(10);     
+    
     
     }
 

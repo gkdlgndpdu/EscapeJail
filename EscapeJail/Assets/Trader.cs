@@ -36,7 +36,7 @@ public class Trader : CharacterBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(10);
+     
 
     }
     private new void Start()

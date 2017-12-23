@@ -69,6 +69,11 @@ public static class Probability
     public static int weaponBoxProb = 10;
     public static int vampireicPassive = 1;
 }
+public static class GoodsValue
+{
+    public static int MedalPoint = 10;
+    
+}
 
 public static class CustomColor
 {

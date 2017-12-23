@@ -7,8 +7,8 @@ public class Guard3 : MonsterBase
 
     private bool isSheildOn = false;
 
-    private float originMoveSpeed = 1.0f;
-    private float dashMoveSpeed = 2.5f;
+    private float originMoveSpeed = 2.5f;
+    private float dashMoveSpeed = 3.5f;
 
     //해당 거리보다 멀리 있으면 실드킴 무조건
     private float shieldOffDistance = 3f;
@@ -28,7 +28,7 @@ public class Guard3 : MonsterBase
         nearestAcessDistance = 1f;
         weaponPosit.gameObject.SetActive(false);
         attackDelay = 1f;
-        moveSpeed = 1f;
+        moveSpeed = originMoveSpeed;
 
     }
 

@@ -12,7 +12,7 @@ namespace weapon
         public Scientist_PoisionGun()
         {
             weapontype = WeaponType.Scientist_PoisionGun;
-            bulletSpeed = 3f;
+            bulletSpeed = 6f;
             fireDelay = 0.3f;
             maxAmmo = 100;
             nowAmmo = 100;
@@ -30,7 +30,7 @@ namespace weapon
             {
                 Vector3 fireDir = fireDirection;
                 fireDir = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDir;
-                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,1.5f);
+                bullet.Initialize(firePos, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet,1.3f);
                 bullet.InitializeImage("White", false);
                 bullet.SetBloom(true, Color.green);
                 bullet.SetPollute(CharacterCondition.InPoison);

@@ -108,7 +108,7 @@ public class ItemInfoBar : MonoBehaviour
 
                     //아이템 텍스트 변경
                     if (itemText != null)
-                        itemText.text = nowItem.itemName;
+                        itemText.text = nowItem.showItemName;
 
                     if (ui_Stars != null)
                         ui_Stars.SetStar(item.ItemLevel);

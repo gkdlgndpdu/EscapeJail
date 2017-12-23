@@ -11,6 +11,7 @@ public class Scientist4 : MonsterBase
         monsterName = MonsterName.Scientist4;
         hasBullet = true;
         nearestAcessDistance = 5f;
+        moveSpeed = 2f;
         
     }
     public override void ResetMonster()
@@ -58,6 +59,7 @@ public class Scientist4 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(Random.Range(1f, 2.0f));
         while (true)
         {
             //
@@ -66,7 +68,7 @@ public class Scientist4 : MonsterBase
             if (rb != null)
                 rb.velocity = Vector3.zero;
             //
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(Random.Range(2f,3.5f));
         }
     }
 
