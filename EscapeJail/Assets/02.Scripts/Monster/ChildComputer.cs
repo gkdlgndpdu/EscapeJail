@@ -76,11 +76,11 @@ namespace ScientistBoss
 
         }
 
-        public void StartPattern(ScientistBoss parent,int hp =40)
+        public void StartPattern(ScientistBoss parent)
         {
             parentComputer = parent;
             AddToMonsterList();
-            SetHp(hp);
+         
         }
 
         private void AddToMonsterList()

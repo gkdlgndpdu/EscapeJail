@@ -110,7 +110,16 @@ public class MapModuleGenerator
 #if UNITY_EDITOR
         Debug.Log("width = " + width.ToString() + " height = " + height.ToString());
 #endif
-        float ratio = width / 40f * 0.01f;
+        float ratio = 0f;
+        if (width > height)
+        {
+            ratio = width / 40f * 0.01f;
+        }
+        else
+        {
+            ratio = height / 40f * 0.01f;
+        }
+      
         MiniMap.Instance.SetRealRatiofloat(0.09f - ratio);
 
 

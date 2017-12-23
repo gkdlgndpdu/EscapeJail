@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CircleBullet : ShapeBulletBase
 {
-    private int bulletNum = 36;
+    private int bulletNum = 24;
     private float rotationSpeed = 70f;
     private float zAngle = 0f;
     private bool nowAttack = false;
@@ -18,13 +18,19 @@ public class CircleBullet : ShapeBulletBase
 
     private void Start()
     {
-        MakeBulletPool(36);
+        MakeBulletPool(bulletNum);
     }
    
     public void StartAttack()
     {
         nowAttack = true;
         StartCoroutine(AttackRoutine());
+    }
+
+    public void StopAllAction()
+    {
+        StopAllCoroutines();
+        DestroyAllBullet();
     }
 
     private IEnumerator AttackRoutine()
@@ -37,7 +43,7 @@ public class CircleBullet : ShapeBulletBase
             Bullet bullet = bulletPool.GetItem();
             Vector3 dir = Vector3.up;
 
-            dir = Quaternion.Euler(0f, 0f, i * 10f) * dir;
+            dir = Quaternion.Euler(0f, 0f, i * 15f) * dir;
             bullet.transform.parent = this.transform;
             bullet.Initialize(this.transform.position, dir.normalized, bulletSpeed, BulletType.EnemyBullet, 1f, 1, 999f);
             bullet.SetMoveLifetime(1f);
@@ -76,8 +82,7 @@ public class CircleBullet : ShapeBulletBase
 
         //모든것을 끝낸다
         this.transform.rotation = Quaternion.identity;
-        DestroyAllBullet();
-        StopAllCoroutines();
+        StopAllAction();
         nowAttack = false;
     }
 

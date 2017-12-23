@@ -6,7 +6,7 @@ public class CrossBullet : ShapeBulletBase
 { 
 
     private int bulletLength = 30;
-    private float rotationSpeed = 50f;
+    private float rotationSpeed = 70f;
     private float zAngle = 0f;
     private bool nowRotateBullet = false;
 

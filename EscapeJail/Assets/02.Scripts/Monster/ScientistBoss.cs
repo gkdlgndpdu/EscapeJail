@@ -23,13 +23,13 @@ namespace ScientistBoss
         [SerializeField]
         private CircleBullet circleBullet;
 
-        private int childHp = 10;
+        private int childHp = 50;
 
 
         private new void Awake()
         {
             base.Awake();
-            SetHp(100);
+            SetHp(250);
             RegistPatternToQueue();
         }
 
@@ -87,6 +87,7 @@ namespace ScientistBoss
 
             if (isChildAlive() == true)
             {
+                MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
                 ShieldEffectOn();
                 return;
             }
@@ -105,6 +106,7 @@ namespace ScientistBoss
             iTween.ColorTo(target, iTween.Hash("loopType", "pingPong", "Time", 0.05f, "Color", Color.blue));
 
             Invoke("ShieldEffectOff", 1f);
+
 
         }
 
@@ -274,8 +276,16 @@ namespace ScientistBoss
 
 
 
+        protected override void BossDie()
+        {
+            base.BossDie();
+            if (circleBullet != null)
+                circleBullet.StopAllAction();
+        }
 
     }
+
+    
 
 
 }
