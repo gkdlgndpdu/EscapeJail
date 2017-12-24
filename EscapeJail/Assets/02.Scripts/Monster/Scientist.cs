@@ -138,4 +138,10 @@ public class Scientist : CharacterBase
 
     }
 
+    protected override void SkillOff()
+    {
+        if (isSkillOn == true)
+            SkillOnOff();
+    }
+
 }

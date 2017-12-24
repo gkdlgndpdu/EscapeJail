@@ -362,7 +362,7 @@ public class MonsterBase : CharacterInfo
     {
         if (weaponPosit != null)
             weaponPosit.gameObject.SetActive(true);
-
+ 
 
     }
 
@@ -728,6 +728,20 @@ public class MonsterBase : CharacterInfo
 
     }
 
+    private void StunEffectOn()
+    {
+    
+            CharacterStateEffect effect = ObjectManager.Instance.characterStatePool.GetItem();
+            if (effect != null)
+            {
+                effect.Initialize(GameConstants.FlashBangStunTime, 1f, this.transform,CharacterCondition.InStun,255f);
+                effect.transform.localPosition = Vector3.zero;
+                effectDic.Add(CharacterCondition.InStun, effect);
+
+            }
+        
+    }
+
     public override void SetStun(bool OnOff)
     {
         if (OnOff == true)
@@ -737,6 +751,9 @@ public class MonsterBase : CharacterInfo
             StartCoroutine(StunRoutine());
             if (rb != null)
                 rb.velocity = Vector3.zero;
+
+            //이펙트
+            StunEffectOn();
         }
         else if (OnOff == false)
         {

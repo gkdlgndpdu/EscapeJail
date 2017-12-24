@@ -143,5 +143,11 @@ public class Defender : CharacterBase
         
     }
 
+    protected override void SkillOff()
+    {
+        if(isShieldOn==true)
+        ShieldOff();
+    }
+
 
 }

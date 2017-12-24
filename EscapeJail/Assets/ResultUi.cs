@@ -24,6 +24,9 @@ public class ResultUi : MonoBehaviour
     [SerializeField]
     private Text totalScoreText;
 
+    [SerializeField]
+    private GameObject winningLotteryIcon;
+
     private ScoreCounter scoreCounter;
 
     private int totalScore  =0;
@@ -40,7 +43,10 @@ public class ResultUi : MonoBehaviour
         if (timeText != null)
         {
             int playTime = TimeManager.Instance.PlayTime;
-            timeText.text = string.Format("{0} seconds", playTime);
+
+            int second = playTime % 60;
+            int minute = playTime / 60;         
+            timeText.text = string.Format("{0}:{1}", minute, second);
         }
         if (bossKillText != null)
         {
@@ -74,10 +80,32 @@ public class ResultUi : MonoBehaviour
             earingMedalText.text = scoreCounter.EarningMedals.ToString();
 
         }
+
+        if (clearStageText != null)
+        {
+            int clearScore = StagerController.Instance.NowStageLevel * ScorePoint.StagePoint;
+            totalScore += clearScore;
+            clearStageText.text = clearScore.ToString();
+
+        }
+
+
         if (totalScoreText != null)
         {
             totalScore = Mathf.Clamp(totalScore, 0, int.MaxValue);
-            totalScoreText.text = totalScore.ToString();
+            if (NowSelectPassive.Instance.HasPassive(PassiveType.WinningLottery) == true)
+            {
+                if (winningLotteryIcon != null)
+                    winningLotteryIcon.gameObject.SetActive(true);
+
+                totalScore += (int)((float)totalScore * 1.3f);
+            }
+            else
+            {
+                if (winningLotteryIcon != null)
+                    winningLotteryIcon.gameObject.SetActive(false);
+            }
+            totalScoreText.text = string.Format("Total : {0}", totalScore.ToString()); 
         }
 
     
@@ -101,6 +129,7 @@ public class ResultUi : MonoBehaviour
     private void OnEnable()
     {
         TimeManager.Instance.StopTime();
+        totalScore = 0;
         UpdateUiTexts();
     }
 

@@ -62,6 +62,7 @@ public class BossEventQueue : MonoBehaviour
     {
         if (eventList == null) return;
         eventList.Clear();
+        Stop();
     }
     private void AddRandomEventToQueue()
     {

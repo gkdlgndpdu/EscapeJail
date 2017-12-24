@@ -54,10 +54,11 @@ namespace ScientistBoss
         //자식들 다죽었을때 들어옴
         private void StartRealBoss()
         {
-            base.StartBossPattern();
-            bossEventQueue.RemoveAllEvent();
+            base.StartBossPattern();            
+            bossEventQueue.RemoveAllEvent();        
             bossEventQueue.AddEvent("ParentPattern");
             bossEventQueue.AddEvent("CircleAttackPattern");
+            bossEventQueue.StartEventQueue();
         }
 
         private void StartChild()

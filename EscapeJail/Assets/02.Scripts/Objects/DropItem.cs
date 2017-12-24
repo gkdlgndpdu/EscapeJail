@@ -84,6 +84,12 @@ public class DropItem : MonoBehaviour, iReactiveAction
             if (weaponData != null)
             {
                 price = weaponData.level * 1000;
+
+                if (NowSelectPassive.Instance.HasPassive(PassiveType.DiscountCoupon) == true)
+                {
+                    price = (int)((float)price * 0.5f);
+                }
+
             }
         }
         else
