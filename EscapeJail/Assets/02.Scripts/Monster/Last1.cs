@@ -9,7 +9,8 @@ public class Last1 : MonsterBase
     {
         monsterName = MonsterName.Last1;
    
-        nearestAcessDistance = 5f;
+        nearestAcessDistance = 8f;
+        moveSpeed = 2f;
      
     } 
     public override void ResetMonster()
@@ -21,7 +22,7 @@ public class Last1 : MonsterBase
 
     protected override void StartMyCoroutine()
     {
-        StartCoroutine(RandomMovePattern());
+        StartCoroutine(RandomMovePattern(1f,1f));
         StartCoroutine(FireRoutine());
     }
 
@@ -46,6 +47,7 @@ public class Last1 : MonsterBase
 
     protected override IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
         while (true)
         {
             //

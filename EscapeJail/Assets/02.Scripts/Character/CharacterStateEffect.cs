@@ -20,12 +20,13 @@ public class CharacterStateEffect : MonoBehaviour
 
     }
 
-    public void Initialize(float lifeTime, float size, Transform target, CharacterCondition characterCondition)
+    public void Initialize(float lifeTime, float size, Transform target, CharacterCondition characterCondition,float alpha = 136f)
     {
         this.target = target;
         this.lifeTime = lifeTime;
         this.transform.localScale = Vector3.one * size;
-
+        if (spriteRenderer != null)
+            spriteRenderer.color = new Color(1f, 1f, 1f, alpha/255f);
         SetEffect(characterCondition);
     }
   

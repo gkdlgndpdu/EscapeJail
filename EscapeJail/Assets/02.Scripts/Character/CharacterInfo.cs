@@ -6,6 +6,7 @@ public enum CharacterCondition
 {
     InFire,
     InPoison,
+    InStun,
     ConditionEnd
 
 }

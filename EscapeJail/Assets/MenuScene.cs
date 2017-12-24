@@ -11,6 +11,8 @@ public class MenuScene : MonoBehaviour
     [SerializeField]
     private GameObject shopWindow;
     [SerializeField]
+    private GameObject tutorialWindow;
+    [SerializeField]
     private Text difficultyDescription;
 
   
@@ -40,6 +42,11 @@ public class MenuScene : MonoBehaviour
     {
         if (shopWindow == null) return;
         shopWindow.SetActive(!shopWindow.gameObject.activeSelf);
+    }
+    public void TutorialWindowOnOff()
+    {
+        if (tutorialWindow == null) return;
+        tutorialWindow.SetActive(!tutorialWindow.gameObject.activeSelf);
     }
 
     public void SelectEasy()

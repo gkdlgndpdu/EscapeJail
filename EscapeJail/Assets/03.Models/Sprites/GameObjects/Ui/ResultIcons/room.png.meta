@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: e9a48dd3bea39bc478fc41416b7f6985
-timeCreated: 1512978434
+guid: a1e6e681a8f6f8649bfe59b4072eb9bf
+timeCreated: 1514083198
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: stunned_0
-    21300002: stunned_1
-    21300004: stunned_2
-    21300006: stunned_3
-    21300008: stunned_4
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -44,7 +39,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -86,77 +81,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: stunned_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stunned_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stunned_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stunned_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stunned_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

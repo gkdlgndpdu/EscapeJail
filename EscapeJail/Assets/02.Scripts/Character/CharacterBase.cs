@@ -786,7 +786,7 @@ public class CharacterBase : CharacterInfo
                 playerUi.ResultUiOnOff(false);
             };
         }
-
+        SkillOff();
         UpdateMedal();
 
     }
@@ -1031,7 +1031,7 @@ public class CharacterBase : CharacterInfo
         }
     }
 
-    private void RevivePlayer()
+    public void RevivePlayer()
     {
         isDead = false;
         GetHp(hpMax);
@@ -1067,6 +1067,10 @@ public class CharacterBase : CharacterInfo
         if (armorSystem == null) return;
         armorSystem.SetArmorFull();
 
+
+    }
+    protected virtual void SkillOff()
+    {
 
     }
 }

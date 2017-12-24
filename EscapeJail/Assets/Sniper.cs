@@ -238,8 +238,9 @@ public class Sniper : CharacterBase
         StartCoroutine("SkillRoutine");
 
     }
-    private void SkillOff()
+    protected override void SkillOff()
     {
+        if (nowUsingSkill == false) return;
         nowUsingSkill = false;
         CameraController.Instance.SniperAimEffectOnOff(false);
 
@@ -278,4 +279,6 @@ public class Sniper : CharacterBase
         if (nowUsingSkill == true) return;
         base.MoveInPc();
     }
+
+    
 }

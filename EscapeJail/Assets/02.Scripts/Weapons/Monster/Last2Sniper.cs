@@ -10,7 +10,7 @@ namespace weapon
         public Last2Sniper()
         {
             weapontype = WeaponType.Last2Sniper;
-            bulletSpeed = 15f;
+            bulletSpeed = 14f;
             weaponScale = Vector3.one * 2f;
             relativePosition = new Vector3(0f, 0f, 0f);
         }
@@ -25,7 +25,7 @@ namespace weapon
 
                 firePos += fireDIr.normalized * 0.5f;
                 fireDIr = Quaternion.Euler(0f, 0f, Random.Range(-reBoundValue, reBoundValue)) * fireDIr;
-                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 0.5f);
+                bullet.Initialize(firePos, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet, 1f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
                 bullet.SetBloom(true, Color.red);

@@ -17,12 +17,25 @@ public class Last2 : MonsterBase
 
     private void UpdateLine()
     {
-        if (lineRenderer != null)
+        if (lineRenderer != null&&target!=null)
         {
             if (lineRenderer.enabled == true)
             {
                 lineRenderer.SetPosition(0, this.transform.position);
-                lineRenderer.SetPosition(1, target.position);
+                int layerMask = (1 << LayerMask.NameToLayer("Player") | (1 << LayerMask.NameToLayer("Tile")) | (1 << LayerMask.NameToLayer("ItemTable")));
+
+                Ray2D ray = new Ray2D(this.transform.position, target.position-this.transform.position);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f, layerMask);
+                if (hit.collider != null)
+                {
+                    lineRenderer.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    lineRenderer.SetPosition(1, this.transform.position);
+                }
+
+        
             }
 
         }
@@ -30,8 +43,8 @@ public class Last2 : MonsterBase
 
     protected override void SetDie()
     {
-        base.SetDie();
         AimOnOff(false);
+        base.SetDie();
     }
 
     private void AimOnOff(bool OnOff)
@@ -57,12 +70,13 @@ public class Last2 : MonsterBase
 
         //여기서는 여기 범위 내에 있으면 뒤로 도망감
         nearestAcessDistance = Random.Range(3f, 8f);
-        AimOnOff(false);
+     
 
     }
 
     protected override void StartMyCoroutine()
     {
+        AimOnOff(false);
         StartCoroutine(FireRoutine());
     }
 
@@ -88,17 +102,15 @@ public class Last2 : MonsterBase
     }
 
     protected override IEnumerator FireRoutine()
-    {
-        float delay = Random.Range(0f, 1f);
-        yield return new WaitForSeconds(delay);
-
-        AimOnOff(true);
+    { 
         while (true)
         {
+            AimOnOff(true);
+           float delay = Random.Range(1.5f, 2.5f);
+            yield return new WaitForSeconds(delay);
             SetAnimation(MonsterState.Attack);
             yield return new WaitForSeconds(2f);
-            AimOnOff(true);
-            yield return new WaitForSeconds(2f);
+            AimOnOff(false);
         }
     }
 

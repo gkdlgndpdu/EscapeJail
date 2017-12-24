@@ -7,19 +7,18 @@ public enum PassiveType
 
     ExtendedMag, //구현
     ExtendedPocket, //구현
-    ForeGrip,
+    ForeGrip,//구현
     Ginseng, //구현
     HolyCape, //구현
     Littlelove, //구현
-    PigStatue, // -> 아이템확률 올리는건 애앰함 ->돈 
-    RunAway, //아이템으로 빼는게 좋아보임
     Scouter, //구현
     VampiricGun, //구현
     WingShoes, //구현
-    CrossCounter,
-    FlyingBullet,
-    PickPocket,
-    PlayingWithFire,
-    WinningLottery
+    CrossCounter, //구현
+    FlyingBullet,//구현
+    PickPocket,//구현
+    PlayingWithFire,//구현
+    WinningLottery,//구현
+    DiscountCoupon//구현
 }
 

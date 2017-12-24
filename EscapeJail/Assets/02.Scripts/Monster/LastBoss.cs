@@ -89,10 +89,10 @@ public class LastBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(100);
+        SetHp(450);
         RegistPatternToQueue();
         SetWeapon();
-        moveSpeed = 2f;
+        moveSpeed = 1.5f;
         WeaponHideOnOff(true);
 
     }
@@ -299,7 +299,6 @@ public class LastBoss : BossBase
 
         bossEventQueue.AddEvent("SpreadBomb");
          bossEventQueue.AddEvent("TempFireRoutine1");
-         //bossEventQueue.AddEvent("SpawnNinjaRoutine");
          bossEventQueue.AddEvent("HideRoutine");
         bossEventQueue.AddEvent("BulletRainRoutine");
     }
@@ -333,29 +332,22 @@ public class LastBoss : BossBase
         canMove = true;
     }
 
-    IEnumerator SpawnNinjaRoutine()
-    {
 
-        MonsterSpawnEffect spawnEffect = ObjectManager.Instance.monsterSpawnEffectPool.GetItem();
-        spawnEffect.Initialize(GamePlayerManager.Instance.player.transform.position, SpawnNinja);
-
-        yield return new WaitForSeconds(5.0f);
-    }
 
     IEnumerator HideRoutine()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2f);
         HideOn();
         FirePositsFireOnOff(true);
         yield return new WaitForSeconds(5.0f);
         HideOff();
         FirePositsFireOnOff(false);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2f);
     }
 
     IEnumerator BulletRainRoutine()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2f);
         HideOn();
 
         for (int i = 0; i < 50; i++)
