@@ -60,16 +60,20 @@ public class PassiveDB
 {
   //  public PassiveType passiveType = PassiveType.None;
     public bool hasPassive = false;
-    public string description;
-    public string howToGet;
     public int price;
-    public PassiveDB(bool hasPassive, string description, string howToGet,int price)
+    public string koreanDescription;
+    public string englishDescription;
+    public string koreanName;
+    public string englishName;
+
+    public PassiveDB(bool hasPassive, int price,string koreanDescription, string englishDescription,string koreanName, string englishName)
     {
         this.hasPassive = hasPassive;
-      //  this.passiveType = passiveType;
-        this.description = description;
-        this.howToGet = howToGet;
         this.price = price;
+        this.koreanDescription = koreanDescription;
+        this.englishDescription = englishDescription;
+        this.koreanName = koreanName;
+        this.englishName = englishName;
 
     }
 
@@ -78,16 +82,22 @@ public class PassiveDB
 public class CharacterDB
 {
     public bool hasCharacter = false;
-    public string skillName;
-    public string description;
-    public string howToGet;
-    
-    public CharacterDB(bool hasCharacter,string skillName,string description,string howToGet)
+    public string skillNameEng;
+    public string skillNameKor;
+    public string descriptionEng;
+    public string descriptionKor;
+    public string howToGetEng;
+    public string howToGetKor;
+
+    public CharacterDB(bool hasCharacter,string skillNameEng,string skillNameKor,string descriptionEng,string descriptionKor,string howToGetEng,string howToGetKor)
     {
         this.hasCharacter = hasCharacter;
-        this.skillName = skillName;
-        this.description = description;
-        this.howToGet = howToGet;
+        this.skillNameEng = skillNameEng;
+        this.skillNameKor = skillNameKor;
+        this.descriptionEng = descriptionEng;
+        this.descriptionKor= descriptionKor;
+        this.howToGetEng = howToGetEng;
+        this.howToGetKor = howToGetKor;
     }
 }
 

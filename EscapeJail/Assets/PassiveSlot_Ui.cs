@@ -26,12 +26,17 @@ public class PassiveSlot_Ui : MonoBehaviour
     [SerializeField]
     private Text priceText;
 
+    private int originSize;
+
     private void Awake()
     {       
      
 
         if (selectIcon != null)
             selectIcon.gameObject.SetActive(false);
+
+        if(text!=null)
+        originSize = text.fontSize;
     }
 
     public void Initialize(PassiveType passiveType, PassiveDB data, PassiveSelectScreen parent)
@@ -45,13 +50,38 @@ public class PassiveSlot_Ui : MonoBehaviour
 
         SetCanUse(hasItem);
         SetIcon();
-        SetText(data.howToGet, data.description);
-        SetPrice(data.price);
+        if (Language.Instance.NowLanguage == LanguageType.Korean)
+        {
+            SetText(data.koreanDescription);
+            SetPrice(data.koreanName, data.price);
+
+
+            text.font = Language.Instance.KoreanFont;
+            //text.fontSize += 15;
+            priceText.font = Language.Instance.KoreanFont;
+            priceText.fontSize = originSize + 15;
+        }
+        else
+        {
+            SetText(data.englishDescription);
+            SetPrice(data.englishName, data.price);
+            priceText.fontSize = originSize+ 7;
+        }
+    
+   
     }
-    private void SetPrice(int price)
+    private void SetPrice(string name,int price)
     {
         if (priceText == null) return;
-        priceText.text = string.Format("{0} 훈장", price.ToString());
+
+        if (Language.Instance.NowLanguage == LanguageType.Korean)
+        {
+            priceText.text = string.Format("{0} {1} 메달", name, price.ToString());
+        }
+        else
+        {
+            priceText.text = string.Format("{0} Price : {1} Medals", name, price.ToString());
+        }
     }
 
     private void SetIcon()
@@ -63,10 +93,10 @@ public class PassiveSlot_Ui : MonoBehaviour
             iconImage.sprite = loadSprite;
     }
 
-    private void SetText(string howToGet,string description)
+    private void SetText(string description)
     {
         if (text == null) return;
-        text.text = string.Format("{0} \n {1}", description, howToGet);
+        text.text = string.Format("{0}", description);
     }
 
    

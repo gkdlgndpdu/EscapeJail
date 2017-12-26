@@ -455,8 +455,8 @@ public class DatabaseLoader : MonoBehaviour
         {
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
-            {                                                               //Probability       //Description
-               PassiveDB.Add((PassiveType)reader.GetInt32(0), new PassiveDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3),reader.GetInt32(4)));
+            {                                                             
+               PassiveDB.Add((PassiveType)reader.GetInt32(0), new PassiveDB(reader.GetBoolean(1), reader.GetInt32(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6)));
             }
         }
 
@@ -487,7 +487,7 @@ public class DatabaseLoader : MonoBehaviour
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
             {                                                               //Probability       //Description
-                CharacterDB.Add((CharacterType)reader.GetInt32(0), new CharacterDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                CharacterDB.Add((CharacterType)reader.GetInt32(0), new CharacterDB(reader.GetBoolean(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)));
             }
         }
 
@@ -508,7 +508,7 @@ public class DatabaseLoader : MonoBehaviour
         {
             //안에 데이터 전부를 읽어온다
             while (reader.Read())
-            {                                                               //Probability       //Description
+            {                                                               //Probability  //Description
                 LocalDB.Add(reader.GetString(0), new LocalizationDB(reader.GetString(1), reader.GetString(2)));
             }
         }
@@ -517,7 +517,7 @@ public class DatabaseLoader : MonoBehaviour
 
     }
 
-    /// <summary>
+    /// <summary>     
     /// //////////////////// //파일 저장 //파일 저장 //파일 저장 //파일 저장
     /// 
     /// </summary>

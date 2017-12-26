@@ -27,6 +27,10 @@ public class CharacterSelector : MonoBehaviour
     [SerializeField]
     private GameObject selectButton;
 
+    //폰트 사이즈
+    private int originSize;
+
+
     public void RegistSelectSlot(CharacterSlot_Ui slot)
     {
         this.nowSelectSlot = slot;
@@ -53,8 +57,18 @@ public class CharacterSelector : MonoBehaviour
         if (characterDescription == null) return;
         CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
         if (db == null) return;
-        characterName.text = nowSelectSlot.CharacterType.ToString()+"\n"+ "Skill : "+db.skillName;
-        characterDescription.text = db.description;
+        LanguageType nowLanguage = Language.Instance.NowLanguage;
+        if(nowLanguage == LanguageType.Korean)
+        {
+            characterName.text = nowSelectSlot.CharacterType.ToString() + "\n" + "Skill : " + db.skillNameKor;
+            characterDescription.text = db.descriptionKor;
+        }
+        else
+        {
+            characterName.text = nowSelectSlot.CharacterType.ToString() + "\n" + "Skill : " + db.skillNameEng;
+            characterDescription.text = db.descriptionEng;
+        }
+ 
           //  string.Format("{1} \n{2}", db.skillName, db.description);
     }
 
@@ -65,14 +79,25 @@ public class CharacterSelector : MonoBehaviour
         CharacterDB db = DatabaseLoader.Instance.GetCharacterDB(nowSelectSlot.CharacterType);
         if (db == null) return;
         characterName.text = nowSelectSlot.CharacterType.ToString();
-        characterDescription.text = db.howToGet;
+
+        LanguageType nowLanguage = Language.Instance.NowLanguage;
+        if (nowLanguage == LanguageType.Korean)
+        {
+            characterDescription.text = db.howToGetKor;
+        }
+        else
+        {
+            characterDescription.text = db.howToGetEng;
+        }
+
+       
         //characterName.text = string.Format("{0}\nHow to get \n{1}", nowSelectSlot.CharacterType.ToString(), db.howToGet);
 
     }
 
     private void Awake()
     {
-        rectTr = grid.GetComponent<RectTransform>();
+        rectTr = grid.GetComponent<RectTransform>();       
     }
 
     private void Start()

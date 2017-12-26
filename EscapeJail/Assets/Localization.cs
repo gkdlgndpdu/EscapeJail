@@ -14,6 +14,7 @@ public class Localization : MonoBehaviour
     private Vector3 originPosition;
     [SerializeField]
     private bool SetTextBigger = true;
+    private bool FixPosition = false;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class Localization : MonoBehaviour
             text.text = data.Korean;
             if(SetTextBigger == true)
             text.fontSize = originTextSize+15;
+            if(FixPosition==false)
             this.transform.localPosition = originPosition + Vector3.up * 10f;
         }
         //영어

@@ -11,13 +11,30 @@ public enum LanguageType
 public class Language : MonoBehaviour
 {
     public static Language Instance;
-
+    private LanguageType nowLanguage;
+    public LanguageType NowLanguage
+    {
+        get
+        {
+            return nowLanguage;
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+
+            int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+            if (languageKey == 0)
+            {
+                nowLanguage = LanguageType.Korean;
+            }
+            else if(languageKey == 1)
+            {
+                nowLanguage = LanguageType.English;
+            }
         }
     }
     public Font KoreanFont;
@@ -26,6 +43,8 @@ public class Language : MonoBehaviour
 
     public void ChangeAllTexts(LanguageType type)
     {
+        nowLanguage = type;
+
         Localization[] components = Resources.FindObjectsOfTypeAll<Localization>();
         if (components == null) return;
 

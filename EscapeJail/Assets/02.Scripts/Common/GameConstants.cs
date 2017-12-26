@@ -31,6 +31,7 @@ public static class GameConstants
     public static float PushTime = 0.5f;
 
     //DB
+
     public static string MonsterDBName = "MonsterDB.db";
     public static string ItemDBName = "ItemDB.db";
     public static string ItemProbabilityDBName = "ItemProbabilityDB.db";

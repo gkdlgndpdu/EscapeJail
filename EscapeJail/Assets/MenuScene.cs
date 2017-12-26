@@ -15,10 +15,12 @@ public class MenuScene : MonoBehaviour
     [SerializeField]
     private Text difficultyDescription;
 
+    private int originSize;
   
 
     private void Start()
     {
+        originSize = difficultyDescription.fontSize;
         //BGM
         SelectEasy();
     }
@@ -93,7 +95,7 @@ public class MenuScene : MonoBehaviour
         //한글
         if (languageKey == 0)
         {
-            SetDifficultyDescription("어려운 모드\n수동 조준 \n적은 체력 \n적은 점수 \n기타등등...", Color.red);
+            SetDifficultyDescription("어려운 모드\n수동 조준 \n적은 체력 \n많은 점수 \n기타등등...", Color.red);
         }
         //영어
         else
@@ -107,7 +109,19 @@ public class MenuScene : MonoBehaviour
     private void SetDifficultyDescription(string text, Color color)
     {
         if (difficultyDescription == null) return;
-        difficultyDescription.text = text;
+
+        if (Language.Instance.NowLanguage == LanguageType.Korean)
+        {
+            difficultyDescription.font = Language.Instance.KoreanFont;
+            difficultyDescription.fontSize = originSize+ 5;
+        }
+        else
+        {
+            difficultyDescription.font = Language.Instance.EnglishFont;
+            difficultyDescription.fontSize = originSize ;
+        }
+
+            difficultyDescription.text = text;
         difficultyDescription.color = color;
     }
   
