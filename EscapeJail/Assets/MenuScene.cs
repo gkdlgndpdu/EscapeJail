@@ -30,8 +30,21 @@ public class MenuScene : MonoBehaviour
     //난이도설정창
     public void DifficultySelectWindowOnOff()
     {
-        if (difficultyWindow == null) return;  
+        if (difficultyWindow == null) return;
+        if (difficultyWindow.activeSelf == false)
+        {
+            if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
+            {
+                SelectHard();
+            }
+            else
+            {
+                SelectEasy();
+            }
+        }
         difficultyWindow.SetActive(!difficultyWindow.activeSelf);
+
+  
     }
     public void OptionWindowOnOff()
     {
@@ -53,20 +66,51 @@ public class MenuScene : MonoBehaviour
     {
         NowSelectPassive.Instance.SetDifficulty(Difficulty.easy);
         SoundManager.Instance.PlaySoundEffect("Button");
-        SetDifficultyDescription("Normal Mode \nAuto Aiming \nMore hp \nLess score \nEtc...",Color.green);
+
+        int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+
+        //한글
+        if (languageKey == 0)
+        {
+            SetDifficultyDescription("일반 모드 \n자동 조준 \n많은 체력 \n적은 점수 \n기타등등...", Color.green);
+        }
+        //영어
+        else
+        {
+            SetDifficultyDescription("Normal Mode \nAuto Aiming \nMore hp \nLess score \nEtc...", Color.green);
+        }
+
+      
     }
-    private void SetDifficultyDescription(string text,Color color)
+ 
+    public void SelectHard()
+    {
+        NowSelectPassive.Instance.SetDifficulty(Difficulty.hard);
+        SoundManager.Instance.PlaySoundEffect("Button");
+
+        int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+
+        //한글
+        if (languageKey == 0)
+        {
+            SetDifficultyDescription("어려운 모드\n수동 조준 \n적은 체력 \n적은 점수 \n기타등등...", Color.red);
+        }
+        //영어
+        else
+        {
+            SetDifficultyDescription("Hard Mode \nManual Aiming \nLess hp \nMore score \nEtc...", Color.red);
+        }
+
+       
+    }
+
+    private void SetDifficultyDescription(string text, Color color)
     {
         if (difficultyDescription == null) return;
         difficultyDescription.text = text;
         difficultyDescription.color = color;
     }
-    public void SelectHard()
-    {
-        NowSelectPassive.Instance.SetDifficulty(Difficulty.hard);
-        SoundManager.Instance.PlaySoundEffect("Button");
-        SetDifficultyDescription("Hard Mode \nManual Aiming \nLess hp \nMore score \nEtc...",Color.red);
-    }
+  
 
     public void ShowRanking()
     {

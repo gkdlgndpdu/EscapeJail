@@ -37,6 +37,7 @@ public static class GameConstants
     public static string WeaponDBName = "WeaponDB.db";
     public static string PassiveDBName = "PassiveItemDB.db";
     public static string CharacterDBName = "CharacterDB.db";
+    public static string LocalizationDBName = "Localization.db";
     //재화
     public static int CoinGetValue = 100;
     public static int MedalGetValue = 50;
@@ -92,6 +93,7 @@ public static class PlayerPrefKeys
     public static string EffectMuteKey ="EffectMute"; //0 false 1 true
     public static string BgmVolumeKey = "BgmVolume";
     public static string EffectVolumeKey = "EffectVolume";
+    public static string LanguageKey = "Language"; //0한글 1영어
 
     public static string MoveStickTypeKey = "MoveStickType"; //0고정 1유동
 }

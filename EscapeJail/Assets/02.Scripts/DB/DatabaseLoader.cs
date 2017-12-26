@@ -67,12 +67,18 @@ public class DatabaseLoader : MonoBehaviour
         if (CharacterDB.ContainsKey(type) == false) return null;
         return CharacterDB[type];
     }
-    
-    
 
-    //디버그용
-    public Text debugText;
-    public StringBuilder sb = new StringBuilder();
+
+
+    //언어 db
+    private Dictionary<string, LocalizationDB> LocalDB;
+    public LocalizationDB GetLanguage(string key)
+    {
+        if (LocalDB == null) return null;
+        if (LocalDB.ContainsKey(key) == false) return null;
+
+        return LocalDB[key];
+    } 
 
     public int RandomItemLevelGenerator(string key)
     {
@@ -138,17 +144,10 @@ public class DatabaseLoader : MonoBehaviour
         LoadWeaponProbabilityDB();
         LoadPassiveItemDB();
         LoadCharacterDB();
-#if UNITY_EDITOR
-        DebugDB();
-#endif
-
+        LoadLocalizationDB();
     }
 
-    private void DebugDB()
-    {
-        if (debugText != null)
-            debugText.text = sb.ToString();
-    }
+
 
     private void LoadMonsterDB()
     {
@@ -244,6 +243,24 @@ public class DatabaseLoader : MonoBehaviour
 
         OpenDB(fileName, ref dbcon);
         ReadCharacterDB(ref dbcmd, ref dbcon, ref reader);
+        CloseDB(ref dbcmd, ref dbcon, ref reader);
+    }
+
+    private void LoadLocalizationDB()
+    {
+        if (LocalDB != null)
+        {
+            LocalDB.Clear();
+            LocalDB = null;
+        }
+        LocalDB = new Dictionary<string, LocalizationDB>();
+        string fileName = GameConstants.LocalizationDBName;
+        IDbCommand dbcmd = null;
+        IDbConnection dbcon = null;
+        IDataReader reader = null;
+
+        OpenDB(fileName, ref dbcon);
+        ReadLocalizationDB(ref dbcmd, ref dbcon, ref reader);
         CloseDB(ref dbcmd, ref dbcon, ref reader);
     }
 
@@ -475,6 +492,28 @@ public class DatabaseLoader : MonoBehaviour
         }
 
 
+
+    }
+
+    private void ReadLocalizationDB(ref IDbCommand dbcmd, ref IDbConnection dbcon, ref IDataReader reader)
+    {
+        string query;
+        /////////////////////////////////////////////////////////// 반드시 수정
+        query = "SELECT * FROM LocalizationDB";
+        ////////////////////////////////////////////////////////// 반드시 수정
+        dbcmd = dbcon.CreateCommand();
+        dbcmd.CommandText = query;
+
+        using (reader = dbcmd.ExecuteReader()) // 테이블에 있는 데이터들이 들어간다. 
+        {
+            //안에 데이터 전부를 읽어온다
+            while (reader.Read())
+            {                                                               //Probability       //Description
+                LocalDB.Add(reader.GetString(0), new LocalizationDB(reader.GetString(1), reader.GetString(2)));
+            }
+        }
+
+       
 
     }
 

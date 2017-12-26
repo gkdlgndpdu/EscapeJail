@@ -27,7 +27,8 @@ public class StoryViewer : MonoBehaviour
 
     private void Start()
     {
-        storyText = "The near future, A new country called Molestan appears in peaceful time.Molstan begins developing weapons secretly in order to wage war.In the World Union, which knows the situation, sends The Alpha agent team;for prevent this situation.Can they prevent war?";
+       // storyText = "The near future, A new country called Molestan appears in peaceful time.Molstan begins developing weapons secretly in order to wage war.In the World Union, which knows the situation, sends The Alpha agent team;for prevent this situation.Can they prevent war?";
+        storyText = text.text;
         stringBuilder = new StringBuilder();
         texts = storyText.ToCharArray();
         

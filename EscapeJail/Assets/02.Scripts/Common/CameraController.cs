@@ -42,14 +42,25 @@ public class CameraController : MonoBehaviour
 
     }   
 
-    public void  SniperAimEffectOnOff(bool OnOff)
+    public void  SniperAimEffectOnOff(bool OnOff,Color color = default(Color))
     {
         if (postProcessBehavior != null)
+        {
+            if(OnOff == true)
+            {
+                var settings = postProcessBehavior.vignette.settings;
+
+                if(color !=default(Color))
+                settings.color = color;
+
+                postProcessBehavior.vignette.settings = settings;
+            }
+       
             postProcessBehavior.vignette.enabled = OnOff;
-
-
+        }      
 
     }
+
 
     private void ChangeCameraMode(CameraState cameraState)
     {

@@ -91,3 +91,14 @@ public class CharacterDB
     }
 }
 
+public class LocalizationDB
+{
+    public string Korean;
+    public string English;
+
+    public LocalizationDB(string Korean,string English)
+    {
+        this.Korean = Korean;
+        this.English = English;
+    }
+}

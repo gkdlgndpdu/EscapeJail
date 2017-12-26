@@ -10,9 +10,48 @@ public class OptionUi : MonoBehaviour
     [SerializeField]
     private Slider effectSlider;
 
+    [SerializeField]
+    private Dropdown dropDown;
+
 
     [SerializeField]
     private JoyStick moveStick;
+
+    private void Awake()
+    {
+        if (dropDown != null)
+        {
+            int language = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+
+            if (language == 0)
+            {
+                dropDown.value = 0;
+
+            }
+            else if (language == 1)
+            {
+                dropDown.value = 1;
+            }
+        }
+    }
+
+    public void DropDownChangeValue(int level)
+    {
+        //한글
+        if (level == 0)
+        {
+            PlayerPrefs.SetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+            //한글처리
+            Language.Instance.ChangeAllTexts(LanguageType.Korean);
+        }
+        //영어
+        else if (level == 1)
+        {
+            PlayerPrefs.SetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.English);
+            //영어처리
+            Language.Instance.ChangeAllTexts(LanguageType.English);
+        }
+    }
 
     public void MuteBgm(bool OnOff)
     {

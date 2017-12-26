@@ -218,7 +218,7 @@ public class Sniper : CharacterBase
         if (CanFire() == false) return;
 
         nowUsingSkill = true;
-        CameraController.Instance.SniperAimEffectOnOff(true);
+        CameraController.Instance.SniperAimEffectOnOff(true,Color.red);
 
         if (weaponHandler != null)
             weaponHandler.gameObject.SetActive(false);

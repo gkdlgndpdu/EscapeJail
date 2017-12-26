@@ -106,6 +106,7 @@ public class Scientist : CharacterBase
         //켜기
         if (isSkillOn == false)
         {
+            CameraController.Instance.SniperAimEffectOnOff(true, Color.blue);
             TimeManager.Instance.BulletTimeOn(slowTimeRatio);
 
             isSkillOn = true;
@@ -124,7 +125,7 @@ public class Scientist : CharacterBase
         {
             TimeManager.Instance.BulletTimeOff();
 
-
+            CameraController.Instance.SniperAimEffectOnOff(false);
             isSkillOn = false;
 
             if (isBurstMoveOn == false)
