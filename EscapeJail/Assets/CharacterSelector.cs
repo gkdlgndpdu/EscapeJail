@@ -61,12 +61,16 @@ public class CharacterSelector : MonoBehaviour
         if(nowLanguage == LanguageType.Korean)
         {
             characterName.text = nowSelectSlot.CharacterType.ToString() + "\n" + "Skill : " + db.skillNameKor;
+
             characterDescription.text = db.descriptionKor;
+            characterDescription.font = Language.Instance.KoreanFont;
+            characterDescription.fontSize = originSize + 20;
         }
         else
         {
             characterName.text = nowSelectSlot.CharacterType.ToString() + "\n" + "Skill : " + db.skillNameEng;
             characterDescription.text = db.descriptionEng;
+            characterDescription.font = Language.Instance.EnglishFont;
         }
  
           //  string.Format("{1} \n{2}", db.skillName, db.description);
@@ -84,10 +88,14 @@ public class CharacterSelector : MonoBehaviour
         if (nowLanguage == LanguageType.Korean)
         {
             characterDescription.text = db.howToGetKor;
+            characterDescription.font = Language.Instance.KoreanFont;
+            characterDescription.fontSize = originSize+20;
         }
         else
         {
             characterDescription.text = db.howToGetEng;
+            characterDescription.font = Language.Instance.EnglishFont;
+            characterDescription.fontSize = originSize;
         }
 
        
@@ -97,7 +105,9 @@ public class CharacterSelector : MonoBehaviour
 
     private void Awake()
     {
-        rectTr = grid.GetComponent<RectTransform>();       
+        rectTr = grid.GetComponent<RectTransform>();
+        if(characterDescription!=null)
+        originSize = characterDescription.fontSize;
     }
 
     private void Start()

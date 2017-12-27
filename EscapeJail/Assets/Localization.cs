@@ -14,6 +14,8 @@ public class Localization : MonoBehaviour
     private Vector3 originPosition;
     [SerializeField]
     private bool SetTextBigger = true;
+    [SerializeField]
+    private bool SetTextSmaller = false;
     private bool FixPosition = false;
 
     private void Awake()
@@ -32,25 +34,34 @@ public class Localization : MonoBehaviour
 
 
         int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
-      
+
         //한글
         if (languageKey == 0)
         {
             text.font = Language.Instance.KoreanFont;
             text.text = data.Korean;
-            if(SetTextBigger == true)
-            text.fontSize = originTextSize+15;
-            if(FixPosition==false)
-            this.transform.localPosition = originPosition + Vector3.up * 10f;
+            if (SetTextBigger == true)
+                text.fontSize = originTextSize + 15;
+
+            if (FixPosition == false)
+                this.transform.localPosition = originPosition + Vector3.up * 10f;
         }
         //영어
         else
         {
+
             text.font = Language.Instance.EnglishFont;
             text.text = data.English;
-            text.fontSize = originTextSize;
+
+            if (SetTextSmaller == true)
+                text.fontSize = originTextSize-15;
+            else
+                text.fontSize = originTextSize;
+
+
+
             this.transform.localPosition = originPosition;
         }
     }
- 
+
 }

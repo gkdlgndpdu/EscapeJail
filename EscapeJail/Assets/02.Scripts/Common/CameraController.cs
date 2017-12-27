@@ -38,6 +38,7 @@ public class CameraController : MonoBehaviour
 
         postProcessBehavior = GetComponent<PostProcessingBehaviour>().profile;
         postProcessBehavior.vignette.enabled = false;
+        postProcessBehavior.chromaticAberration.enabled = false;
 
 
     }   
@@ -59,6 +60,30 @@ public class CameraController : MonoBehaviour
             postProcessBehavior.vignette.enabled = OnOff;
         }      
 
+    }
+
+    public void FlashBangEffectOn()
+    {
+        if (postProcessBehavior != null)
+        {
+            StopCoroutine("FlashBangEffectRoutine");
+            StartCoroutine("FlashBangEffectRoutine");
+        }
+    }
+
+    IEnumerator FlashBangEffectRoutine()
+    {
+        postProcessBehavior.chromaticAberration.enabled = true;
+        float value = 0f;
+        for(int i = 0; i < 10; i++)
+        {
+            value += 0.1f;
+            var settings = postProcessBehavior.chromaticAberration.settings;
+            settings.intensity = value;
+            postProcessBehavior.chromaticAberration.settings = settings;
+            yield return new WaitForSeconds(0.02f);
+        }
+        postProcessBehavior.chromaticAberration.enabled = false;
     }
 
 

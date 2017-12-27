@@ -26,6 +26,20 @@ public class Language : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
 
+            //맨처음 게임 접속시 언어세팅
+            if (PlayerPrefs.HasKey(PlayerPrefKeys.LanguageKey) == false)
+            {
+                if (Application.systemLanguage == SystemLanguage.Korean)
+                {
+                    PlayerPrefs.SetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);               
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.English);
+                }
+           
+            }
+
             int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
             if (languageKey == 0)
             {
