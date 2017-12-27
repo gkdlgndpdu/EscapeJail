@@ -32,7 +32,10 @@ public class MouseHand : MonoBehaviour
             boxCollider.enabled = true;
 
         if (animator != null)
+        {
+            SoundManager.Instance.PlaySoundEffect("earthquake2");
             animator.speed = originAnimSpeed;
+        }
     }
     private void HandOff()
     {
@@ -75,6 +78,7 @@ public class MouseHand : MonoBehaviour
             bullet.InitializeImage("StoneBullet", false);
             bullet.SetEffectName("stoneExplosion",2f);
             bullet.SetBloom(false);
+          
         }
     }
 
