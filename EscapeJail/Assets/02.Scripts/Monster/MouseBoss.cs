@@ -148,8 +148,9 @@ public class MouseBoss : BossBase
     {
         float patternCount = 0f;
         Action(Actions.Dig);
+        SoundManager.Instance.PlaySoundEffect("dig2");     
         yield return new WaitForSeconds(2f);
-
+        SoundManager.Instance.PlaySoundEffect("earthquake");
         while (true)
         {
             if (bossModule.NormalTileList != null)
@@ -175,6 +176,7 @@ public class MouseBoss : BossBase
             {
                 HideOff();
                 Action(Actions.DigOut);
+                SoundManager.Instance.PlaySoundEffect("earthquake");
                 break;
             }
 
@@ -189,6 +191,7 @@ public class MouseBoss : BossBase
 
         for (int i = 0; i < 10; i++)
         {
+            SoundManager.Instance.PlaySoundEffect("poisongun");
             for (int j = 0; j < 36; j++)
             {
                 Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
@@ -240,23 +243,27 @@ public class MouseBoss : BossBase
     public void FireLeftHand()
     {
         float bulletSpeed = 3f;
+        SoundManager.Instance.PlaySoundEffect("giantfootstep");
 
         for (int j = 0; j < 9; j++)
         {
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
+               
+
                 bullet.gameObject.SetActive(true);
                 Vector3 fireDIr;
 
 
                 fireDIr = Vector3.right;
-
+                
 
                 fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
                 bullet.Initialize(leftFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+             
             }
         }
     }
@@ -264,23 +271,27 @@ public class MouseBoss : BossBase
     public void FireRightHand()
     {
         float bulletSpeed = 3f;
-
+        SoundManager.Instance.PlaySoundEffect("giantfootstep");
         for (int j = 0; j < 9; j++)
         {
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
             if (bullet != null)
             {
+                
                 bullet.gameObject.SetActive(true);
                 Vector3 fireDIr;
 
 
                 fireDIr = Vector3.right;
-
+            
 
                 fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
                 bullet.Initialize(rightFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                
+
+
             }
         }
     }
