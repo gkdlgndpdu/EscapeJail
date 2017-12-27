@@ -12,9 +12,10 @@ namespace weapon
         public Bazooka()
         {
             weapontype = WeaponType.Bazooka;
+            SetWeaponKind(WeaponKind.Special);
             SetReBound(5f);
             bulletSpeed = 10f;
-            fireDelay = 1.5f;
+            fireDelay = 0.8f;
             SetAmmo(30);
             needBulletToFire = 1;
             damage = 5;

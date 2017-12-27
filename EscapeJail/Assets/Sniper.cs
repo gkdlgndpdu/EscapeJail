@@ -158,6 +158,8 @@ public class Sniper : CharacterBase
                             effect.SetAlpha(150f);
                         }
 
+                        SoundManager.Instance.PlaySoundEffect("sniper1");
+
                     }
 #else
                     Touch[] touches = Input.touches;
@@ -178,6 +180,9 @@ public class Sniper : CharacterBase
                                 monster.GetDamage(snipingPower);
                             }
                         }
+
+                    //사운드
+                          SoundManager.Instance.PlaySoundEffect("sniper1");
                             //이펙트 호출
                             ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
                             if (effect != null)

@@ -328,6 +328,7 @@ public class CharacterBase : CharacterInfo
         AddWeapon(new BasicSniper());
         AddWeapon(new Revolver());
         AddWeapon(new H249());
+        AddWeapon(new Bazooka());
     }
 
     public WeaponType GetNowEquipWeapon()
