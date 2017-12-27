@@ -299,8 +299,10 @@ public class MouseBoss : BossBase
     protected override void BossDie()
     {
         base.BossDie();
+        SoundManager.Instance.PlaySoundEffect("cry2");
         if (animator != null)
             animator.SetFloat("Speed",0f);
+
     }
 
 }

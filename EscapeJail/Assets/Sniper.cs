@@ -145,7 +145,8 @@ public class Sniper : CharacterBase
                             {
                                 UseBullet();
                                 monster.GetDamage(snipingPower);
-                               
+                                
+
                             }
                         }
 
@@ -259,13 +260,12 @@ public class Sniper : CharacterBase
 
     public override void FireWeapon()
     {
-        if (nowUsingSkill == true)
-        {
-            SoundManager.Instance.PlaySoundEffect("sniper1");
-            return;
-        }
+        if (nowUsingSkill == true) return;
+
+
         base.FireWeapon();
-       
+        
+
     }
 
     protected override void MoveInMobile()

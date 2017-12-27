@@ -79,8 +79,9 @@ public class CriminalBoss : BossBase
     protected override void BossDie()
     {
         base.BossDie();
+        SoundManager.Instance.PlaySoundEffect("stage2bosscrying");
         crossBullet.RotationOnOff(false);
-
+        
     }
 
 
@@ -115,13 +116,14 @@ public class CriminalBoss : BossBase
 
         for (int i = 0; i < fireBulletNum; i++)
         {
-
+            SoundManager.Instance.PlaySoundEffect("mg1");
             if (i % 2 == 0)
             {
 
                 for (int j = 0; j < 8; j++)
                 {
                     Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                    
                     if (bullet != null)
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, -22.5f + (float)j * 45f) * firstFireDir;
@@ -137,6 +139,7 @@ public class CriminalBoss : BossBase
                 for (int j = 0; j < 8; j++)
                 {
                     Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                 
                     if (bullet != null)
                     {
                         Vector3 fireDir = Quaternion.Euler(0f, 0f, (float)j * 45f) * firstFireDir;
@@ -174,6 +177,7 @@ public class CriminalBoss : BossBase
         for (int i = 0; i < fireBulletNum; i++)
         {
             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+            SoundManager.Instance.PlaySoundEffect("mg5");
             if (bullet != null)
             {
                 Vector3 fireDir = GamePlayerManager.Instance.player.transform.position - this.transform.position;
@@ -199,7 +203,9 @@ public class CriminalBoss : BossBase
 
         Action(Actions.FireStart);
         crossBullet.RotationOnOff(true);
+        SoundManager.Instance.PlaySoundEffect("criminalbossgun");
         //십자가 돌리기
+        
         yield return new WaitForSeconds(8f);
         crossBullet.RotationOnOff(false);
         Action(Actions.FireEnd);

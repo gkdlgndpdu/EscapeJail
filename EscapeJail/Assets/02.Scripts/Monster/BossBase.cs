@@ -103,6 +103,7 @@ public class BossBase : CharacterInfo
 
         VampiricGunEffect();
         hp -= damage;
+        SoundManager.Instance.PlaySoundEffect("monsterdamage");
 
         if (bosshpBar != null)
             bosshpBar.UpdateBar(hp, hpMax);
