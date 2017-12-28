@@ -52,6 +52,7 @@ namespace ScientistBoss
 
             VampiricGunEffect();
             hp -= damage;
+            SoundManager.Instance.PlaySoundEffect("monsterdamage");
             UpdateHud();
             if (hp <= 0)
             {
@@ -63,6 +64,7 @@ namespace ScientistBoss
         {
             isDead = true;
             Action(Actions.Dead);
+            SoundManager.Instance.PlaySoundEffect("explosion2");
             RemoveInMonsterList();
 
             if(parentComputer!=null)
@@ -155,12 +157,14 @@ namespace ScientistBoss
             if (OnOff == true)
             {
                 Action(Actions.HideStart);
+                SoundManager.Instance.PlaySoundEffect("machine1");
                 ColliderOnOff(false);
                 RemoveInMonsterList();
             }
             else
             {
                 Action(Actions.HideEnd);
+                SoundManager.Instance.PlaySoundEffect("machine2");
                 ColliderOnOff(true);
                 AddToMonsterList();
             }
@@ -179,7 +183,7 @@ namespace ScientistBoss
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;
                         float reboundValue = 30f;
-
+                        SoundManager.Instance.PlaySoundEffect("lightweapon");
                         for (int i=0;i< computer1FirePos.Count; i++)
                         {
                             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
@@ -190,6 +194,7 @@ namespace ScientistBoss
                                 bullet.Initialize(computer1FirePos[i].position, fireDirection.normalized, 5f, BulletType.EnemyBullet);
                                 bullet.InitializeImage("white", false);
                                 bullet.SetEffectName("revolver");
+                               
                             }
                         }
                       
@@ -199,9 +204,11 @@ namespace ScientistBoss
                     {
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;
+                        SoundManager.Instance.PlaySoundEffect("rocket4");
                         for (int i = 0; i < 2; i++)
                         {
                             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                           
                             if (bullet != null)
                             {
                                 bullet.gameObject.SetActive(true);
@@ -211,6 +218,7 @@ namespace ScientistBoss
                                 bullet.InitializeImage("white", false);
                                 bullet.SetEffectName("revolver");
                                 bullet.SetBulletDestroyAction(BulletDestroyAction.aroundFire);
+                               
                             }
                         }                   
 
@@ -221,6 +229,7 @@ namespace ScientistBoss
 
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
                         Vector3 fireDIr = PlayerPos - this.transform.position;
+                        SoundManager.Instance.PlaySoundEffect("shotgun2");
                         for (int k = 0; k < 2; k++)
                         {
                             for (int i = 0; i < 3; i++)
@@ -247,12 +256,13 @@ namespace ScientistBoss
                         float bulletSpeed = 8f;
 
                         Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
-                        Vector3 fireDIr = PlayerPos - this.transform.position;                   
-
-                        for(int i = 0; i < 18; i++)
+                        Vector3 fireDIr = PlayerPos - this.transform.position;
+                        SoundManager.Instance.PlaySoundEffect("lastbossminigun");
+                        for (int i = 0; i < 18; i++)
                         {
                             Vector3 fd = Quaternion.Euler(0f, 0f, i*20f)* fireDIr;              
                             Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
+                            
                             if (bullet != null)
                             {
                                 bullet.gameObject.SetActive(true);                        
