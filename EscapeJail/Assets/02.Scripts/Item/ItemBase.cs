@@ -279,6 +279,7 @@ public class Item_FlashBang : ItemBase
         MonsterManager.Instance.StunAllMonster();
 
         CameraController.Instance.FlashBangEffectOn();
+        SoundManager.Instance.PlaySoundEffect("flashbang2");
  
         player.RemoveItem(this);
     }

@@ -96,12 +96,13 @@ public class GuardBoss : BossBase
         float reboundValue = 10f;
         //애니메이션
         Action(Actions.FireMissile);
+        SoundManager.Instance.PlaySoundEffect("changewithsiren");
         yield return new WaitForSeconds(1.0f);
 
         for (int i = 0; i < 10; i++)
         {
             Vector3 firstDirection = GamePlayerManager.Instance.player.transform.position-this.transform.position;
-
+            SoundManager.Instance.PlaySoundEffect("rocket2");
 
             for (int j = 0; j < 5; j++)
             {
@@ -152,10 +153,11 @@ public class GuardBoss : BossBase
         //애니메이션
         Action(Actions.FireMg);
         yield return new WaitForSeconds(1.0f);
-
+        SoundManager.Instance.PlaySoundEffect("changewithsiren");
         for (int i = 0; i < 5; i++)
         {
-            Vector3 firstDirection = Vector3.up;
+            Vector3 firstDirection = Vector3.up;            
+            SoundManager.Instance.PlaySoundEffect("explosion3");
             if (i % 2 == 0)
                 firstDirection = Quaternion.Euler(0f, 0f, 15f) * firstDirection;
 
@@ -200,13 +202,13 @@ public class GuardBoss : BossBase
             rb.velocity = Vector3.zero;
 
         Action(Actions.Walk);
+        SoundManager.Instance.PlaySoundEffect("flyattack");
 
         Transform playerTr = GamePlayerManager.Instance.player.transform;
         float moveSpeed = 1f;
         float bulletSpeed = 8f;
         float reboundValue = 30f;
-
-         yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.0f);
      
         for(int i = 0; i < 50; i++)
         {
@@ -225,6 +227,7 @@ public class GuardBoss : BossBase
                 bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, 1f);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
+                SoundManager.Instance.PlaySoundEffect("smg5");
             }
 
             yield return new WaitForSeconds(0.1f);

@@ -90,6 +90,7 @@ namespace ScientistBoss
             {
                 MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
                 ShieldEffectOn();
+                SoundManager.Instance.PlaySoundEffect("vestshieldhit");
                 return;
             }
 
@@ -242,13 +243,15 @@ namespace ScientistBoss
             if (circleBullet == null) yield break;
 
             circleBullet.StartAttack();
-
+            SoundManager.Instance.PlaySoundEffect("monstershow");
             while (true)
             {
+                SoundManager.Instance.PlaySoundEffect("lightsaber");
                 if (circleBullet.NowAttack == false)
                     yield break;
 
                     yield return new WaitForSeconds(1.0f);
+                   
             }
         }
 
@@ -256,9 +259,10 @@ namespace ScientistBoss
         {
             Vector3 PlayerPos = GamePlayerManager.Instance.player.transform.position;
             Vector3 fireDIr = PlayerPos - this.transform.position;
-
+            SoundManager.Instance.PlaySoundEffect("WEAPON GUNSHOT Rifle Swish 02");
             for (int i = 0; i < 3; i++)
             {
+            
                 Vector3 fireDirection = Quaternion.Euler(0f, 0f, -7.5f + i * 7.5f) * fireDIr;
 
                 for (int j = 0; j < 3; j++)
@@ -280,6 +284,7 @@ namespace ScientistBoss
         protected override void BossDie()
         {
             base.BossDie();
+            SoundManager.Instance.PlaySoundEffect("explosion2");
             if (circleBullet != null)
                 circleBullet.StopAllAction();
         }
