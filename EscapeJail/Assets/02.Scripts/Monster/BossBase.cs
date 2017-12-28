@@ -162,6 +162,9 @@ public class BossBase : CharacterInfo
             if (GamePlayerManager.Instance.player != null)
                 GamePlayerManager.Instance.player.SetArmorFull();
         }
+
+        //총알삭제
+        ObjectManager.Instance.AllEnemyBulletDestroy();
     }
 
 

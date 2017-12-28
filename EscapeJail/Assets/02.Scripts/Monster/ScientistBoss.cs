@@ -29,7 +29,7 @@ namespace ScientistBoss
         private new void Awake()
         {
             base.Awake();
-            SetHp(250);
+            SetHp(300);
             RegistPatternToQueue();
         }
 

@@ -3,6 +3,7 @@ guid: 9db3f92fc672af44486f6b6e14394492
 timeCreated: 1512542138
 licenseType: Free
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0
