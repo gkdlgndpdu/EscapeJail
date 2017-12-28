@@ -121,11 +121,7 @@ public class ResultUi : MonoBehaviour
         }
     }
 
-
-    private void Start()
-    {
-
-    }
+   
     private void OnEnable()
     {
         TimeManager.Instance.StopTime();
@@ -142,7 +138,7 @@ public class ResultUi : MonoBehaviour
     {
         if (linkFunc != null)
         {
-            UnityAdsHelper.Instance.RevivalFunc = linkFunc;
+            UnityAdsHelper.Instance.LinkFunc = linkFunc;
 
         }
         UnityAdsHelper.Instance.ShowRewardedAd();

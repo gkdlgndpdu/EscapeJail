@@ -7,12 +7,12 @@ using System;
 public class UnityAdsHelper : MonoBehaviour
 {
     public static UnityAdsHelper Instance;
-    private Action revivalFunc;
-    public Action RevivalFunc
+    private Action linkFunc;
+    public Action LinkFunc
     {
         set
         {
-            revivalFunc = value;
+            linkFunc = value;
         }
     }
     private void Awake()
@@ -61,8 +61,8 @@ public class UnityAdsHelper : MonoBehaviour
             case ShowResult.Finished:
                 {
 
-                    if (revivalFunc != null)
-                        revivalFunc();
+                    if (linkFunc != null)
+                        linkFunc();
                     // 광고 시청이 완료되었을 때 처리
 
                     break;

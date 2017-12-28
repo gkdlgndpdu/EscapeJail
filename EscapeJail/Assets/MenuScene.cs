@@ -16,7 +16,11 @@ public class MenuScene : MonoBehaviour
     private Text difficultyDescription;
 
     private int originSize;
-  
+
+    private void Awake()
+    {
+        SoundManager.Instance.ChangeBgm("Menu");
+    }
 
     private void Start()
     {

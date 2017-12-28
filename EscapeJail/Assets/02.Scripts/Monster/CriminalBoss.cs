@@ -17,7 +17,7 @@ public class CriminalBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(400);
+        SetHp(350);
         RegistPatternToQueue();
     }
 
@@ -88,7 +88,7 @@ public class CriminalBoss : BossBase
     private void RegistPatternToQueue()
     {
 
-        bossEventQueue.Initialize(this, EventOrder.Random);
+        bossEventQueue.Initialize(this, EventOrder.InOrder);
 
         //  bossEventQueue.AddEvent("FirePattern1");
         bossEventQueue.AddEvent("FirePattern3");

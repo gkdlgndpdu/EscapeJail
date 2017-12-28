@@ -80,7 +80,6 @@ public class MouseBoss : BossBase
 
     private void RegistPatternToQueue()
     {
-
         bossEventQueue.Initialize(this, EventOrder.InOrder);
 
         bossEventQueue.AddEvent("MovePattern");
@@ -302,6 +301,9 @@ public class MouseBoss : BossBase
         SoundManager.Instance.PlaySoundEffect("cry2");
         if (animator != null)
             animator.SetFloat("Speed",0f);
+
+        if (mouseHandPool != null)
+            mouseHandPool.ReleasePool();
 
     }
 

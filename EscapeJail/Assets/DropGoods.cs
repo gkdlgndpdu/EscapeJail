@@ -42,7 +42,29 @@ public class DropGoods : MonoBehaviour
         this.value = value;
         this.goodsType = goodsType;
         SetSprite();
+
+        GetGoods();
+
+
         StartCoroutine(SleepRoutine());
+    }
+    private void GetGoods()
+    {
+        switch (goodsType)
+        {
+            case GoodsType.Coin:
+                {
+                    if (player != null)
+                        player.GetCoin(value);
+                }
+                break;
+            case GoodsType.Medal:
+                {
+                    if (player != null)
+                        player.GetMedal(value);
+                }
+                break;
+        }
     }
     private void SetSprite()
     {
@@ -85,27 +107,14 @@ public class DropGoods : MonoBehaviour
     {
         if (isSleep == true) return;
 
-        switch (goodsType)
-        {
-            case GoodsType.Coin:
-                {
-                    if (player != null)
-                        player.GetCoin(value);
-                }
-                break;
-            case GoodsType.Medal:
-                {
-                    if (player != null)
-                        player.GetMedal(value);
-                }
-                break;
-        }
+      
 
         OffCoin();
     }
 
     private void OffCoin()
     {
+        SoundManager.Instance.PlaySoundEffect("coinget");
         moveSpeed = originSpeed;
         isSleep = true;
         StopAllCoroutines();

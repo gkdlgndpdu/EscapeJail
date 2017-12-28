@@ -89,7 +89,7 @@ public class LastBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(450);
+        SetHp(400);
         RegistPatternToQueue();
         SetWeapon();
         moveSpeed = 1.5f;
@@ -121,7 +121,6 @@ public class LastBoss : BossBase
         weaponDic1.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
         weaponDic1.Add(WeaponType.LastBoss_MinuGun, new LastBoss_MinuGun());
         weaponDic1.Add(WeaponType.LastBoss_Bazooka, new LastBoss_Bazooka());
-
         weaponDic2.Add(WeaponType.LastBoss_Pistol, new LastBoss_Pistol());
         weaponDic2.Add(WeaponType.LastBoss_MinuGun, new LastBoss_MinuGun());
         weaponDic2.Add(WeaponType.LastBoss_Bazooka, new LastBoss_Bazooka());

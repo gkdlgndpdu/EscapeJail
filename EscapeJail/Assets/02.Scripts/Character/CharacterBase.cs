@@ -51,7 +51,7 @@ public class CharacterBase : CharacterInfo
 
     //UI
     [HideInInspector]
-    protected PlayerUI playerUi;
+    public PlayerUI playerUi;
 
     private CharacterSliders characterSliders;
     //인벤토리
@@ -325,10 +325,11 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
+        AddWeapon(new Sturgeon());
+        AddWeapon(new GiraffeSword());
+        AddWeapon(new CueGun());
+        AddWeapon(new BubbleGun());
         AddWeapon(new BasicSniper());
-        AddWeapon(new Revolver());
-        AddWeapon(new H249());
-        AddWeapon(new Bazooka());
     }
 
     public WeaponType GetNowEquipWeapon()

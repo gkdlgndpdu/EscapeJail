@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     public HpUi hpUi;
     public GoodsUi goodsUi;
     public ResultUi resultUi;
+    public ClawMachinePopup clawMachinePopup;
 
     [SerializeField]
     private GameObject autoStick;

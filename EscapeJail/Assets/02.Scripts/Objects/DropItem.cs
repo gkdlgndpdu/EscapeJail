@@ -218,6 +218,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
             {
                 if (player.isInventoryFull() == true) return;
                 player.UseCoin(price);
+                SoundManager.Instance.PlaySoundEffect("ItemBuy");
                 isSoldOut = true;
             }
         }
@@ -265,7 +266,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
 
     private void OnDestroy()
     {
-        if (isSoldOut == true&&itemBase.itemType==ItemType.Weapon)
+        if (isSoldOut == false&&itemBase.itemType==ItemType.Weapon&&isSalesItem==true)
         {
             WeaponDB weaponDB = DatabaseLoader.Instance.GetWeaponDB(itemBase.weapontype);
             if (weaponDB != null)

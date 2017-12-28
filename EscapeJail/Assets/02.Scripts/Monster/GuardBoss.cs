@@ -24,7 +24,7 @@ public class GuardBoss : BossBase
     {
         base.Awake();    
 
-        SetHp(150);
+        SetHp(350);
         RegistPatternToQueue();
     }
  

@@ -7,7 +7,7 @@ public class Sniper : CharacterBase
     private bool nowUsingSkill = false;
     private float slowTimeRatio = 0.2f;
     private int snipingLayerMask;
-    private int snipingPower = 30;
+    private int snipingPower = 20;
 
     private int maxBullet = 5;
     private int nowBullet = 5;
