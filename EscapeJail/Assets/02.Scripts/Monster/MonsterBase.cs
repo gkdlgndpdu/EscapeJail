@@ -123,6 +123,8 @@ public class MonsterBase : CharacterInfo
         AttackOff();
 
         StartMyCoroutine();
+
+        ColorReturn();
     }
 
 
@@ -600,8 +602,29 @@ public class MonsterBase : CharacterInfo
         }
     }
 
+    private bool canChangeColor = true;
+
+    protected void ColorReturn()
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.white;
+        canChangeColor = true;
+    }
+
     public override void GetDamage(int damage)
     {
+        if (canChangeColor == true)
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = Color.red;
+                canChangeColor = false;
+                Invoke("ColorReturn", 0.2f);
+
+            }
+
+        }
+    
 
         VampiricGunEffect();
 
