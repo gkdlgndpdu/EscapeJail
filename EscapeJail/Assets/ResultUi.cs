@@ -112,14 +112,6 @@ public class ResultUi : MonoBehaviour
        
     }
 
-    private Action linkFunc;
-    public Action LinkFunc
-    {
-        set
-        {
-            linkFunc = value;
-        }
-    }
 
    
     private void OnEnable()
@@ -133,28 +125,7 @@ public class ResultUi : MonoBehaviour
     {
         TimeManager.Instance.ResumeTime();
     }
-
-    public void LinkedFuncExecute()
-    {
-        if (linkFunc != null)
-        {
-            UnityAdsHelper.Instance.LinkFunc = linkFunc;
-
-        }
-        UnityAdsHelper.Instance.ShowRewardedAd();
-
-
-    }
-
-    //임시코드
-    public void ReviveInstantly()
-    {
-        if (linkFunc != null)
-        {
-            linkFunc();
-
-        }
-    }
+   
 
     public void EndGame()
     {

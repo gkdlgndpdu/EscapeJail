@@ -81,6 +81,8 @@ public class CircleBullet : ShapeBulletBase
         }
 
         //모든것을 끝낸다
+        if(allBulletList!=null)
+        allBulletList.Clear();
         this.transform.rotation = Quaternion.identity;
         StopAllAction();
         nowAttack = false;

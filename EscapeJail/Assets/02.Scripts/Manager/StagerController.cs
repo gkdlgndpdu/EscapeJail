@@ -29,6 +29,7 @@ public class StagerController : MonoBehaviour
     {
         if (nowStageLevel != 1)
             GamePlayerManager.Instance.player.RevivePlayer();
+              
 
         Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
         if (obj != null)

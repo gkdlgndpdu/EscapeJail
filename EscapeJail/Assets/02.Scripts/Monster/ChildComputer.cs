@@ -259,7 +259,7 @@ namespace ScientistBoss
                                 bullet.Initialize(this.transform.position+fd.normalized*1f, fireDIr.normalized, bulletSpeed, BulletType.EnemyBullet);
                                 bullet.InitializeImage("white", false);
                                 bullet.SetEffectName("revolver");
-                                bullet.SetDestroyByCollision(false,false);
+                              //  bullet.SetDestroyByCollision(false,false);
                             }
                         }
 

@@ -68,6 +68,9 @@ public class CharacterBase : CharacterInfo
     //버프효과
     protected BuffEffect buffEffect;
 
+    //부활
+    protected bool isUseRevive = false;
+
     //재화
     protected int coin = 0;
     public int Coin
@@ -716,8 +719,7 @@ public class CharacterBase : CharacterInfo
     }
 
     public override void GetDamage(int damage)
-    {
-
+    {        
         if (isImmune == true) return;
         if (isDead == true) return;
         if (NowSelectPassive.Instance.HasPassive(PassiveType.CrossCounter) == true)
@@ -774,23 +776,36 @@ public class CharacterBase : CharacterInfo
     protected virtual void DieAction()
     {
         isDead = true;
-
+       
         GamePlayerManager.Instance.scoreCounter.EarningMedals = medal;
         GamePlayerManager.Instance.scoreCounter.RemainCoin = coin;
 
-        //결과창 띄워줌
-        if (playerUi != null)
-        {
-            playerUi.ResultUiOnOff(true);
-            playerUi.resultUi.LinkFunc = () =>
+        //부활창 띄워줌
+        if (isUseRevive == false)
+        {        
+            if (playerUi != null)
             {
-                RevivePlayer();
-                playerUi.ResultUiOnOff(false);
-            };
+                playerUi.revivePopup.UiOnOff(true);
+                playerUi.revivePopup.ReviveFunc = () =>
+                {
+                    RevivePlayer();
+                    playerUi.revivePopup.UiOnOff(false);
+                    isUseRevive = true;
+                };
+
+            }
+
         }
+        else
+        {
+            //결과창 띄워줌
+            if (playerUi != null)
+                playerUi.ResultUiOnOff(true);
+        }
+      
         SkillOff();
         UpdateMedal();
-
+       
     }
 
     public void GetBulletItem(int value)
@@ -842,16 +857,9 @@ public class CharacterBase : CharacterInfo
 
     public bool isInventoryFull()
     {
-        if (inventory == null) return true;
+        if (inventory == null) return true;        
 
-        bool returnValue = inventory.isInventoryFull();
-
-        if (returnValue == true)
-        {
-            MessageBar.Instance.ShowInfoBar("Inventory Is Full", Color.red);
-        }
-
-        return returnValue;
+        return inventory.isInventoryFull();
     }
 
 

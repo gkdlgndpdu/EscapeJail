@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     public GoodsUi goodsUi;
     public ResultUi resultUi;
     public ClawMachinePopup clawMachinePopup;
+    public RevivePopup revivePopup;
 
     [SerializeField]
     private GameObject autoStick;
@@ -20,6 +21,8 @@ public class PlayerUI : MonoBehaviour
     private GameObject manualStick;
     [SerializeField]
     private SkillButtonProgress skillButtonProgress;
+
+  
 
     public void SetSkillButtonProgress(float min,float max)
     {

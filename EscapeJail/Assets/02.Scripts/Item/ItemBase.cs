@@ -278,7 +278,7 @@ public class Item_FlashBang : ItemBase
         //스턴효과
         MonsterManager.Instance.StunAllMonster();
 
-        CameraController.Instance.FlashBangEffectOn();
+
         SoundManager.Instance.PlaySoundEffect("flashbang2");
  
         player.RemoveItem(this);

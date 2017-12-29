@@ -14,6 +14,8 @@ public class MenuScene : MonoBehaviour
     private GameObject tutorialWindow;
     [SerializeField]
     private Text difficultyDescription;
+    [SerializeField]
+    private GameObject creditUi;
 
     private int originSize;
 
@@ -66,6 +68,11 @@ public class MenuScene : MonoBehaviour
     {
         if (tutorialWindow == null) return;
         tutorialWindow.SetActive(!tutorialWindow.gameObject.activeSelf);
+    }
+    public void CreditWindowOnOff()
+    {
+        if (creditUi == null) return;
+        creditUi.SetActive(!creditUi.activeSelf);
     }
 
     public void SelectEasy()

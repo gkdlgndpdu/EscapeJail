@@ -40,6 +40,12 @@ public class GuardBoss : BossBase
         Walk
     }
 
+    protected override void BossDie()
+    {
+        base.BossDie();
+        SoundManager.Instance.PlaySoundEffect("explosion2");
+    }
+
     public override void StartBossPattern()
     {
         base.StartBossPattern();

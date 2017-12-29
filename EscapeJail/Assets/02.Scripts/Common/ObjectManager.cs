@@ -129,6 +129,9 @@ public class ObjectManager : MonoBehaviour
             if (allBulletList[i].BulletType == BulletType.EnemyBullet)
                 allBulletList[i].BulletDestroy();
         }
+
+        //이펙트
+        CameraController.Instance.FlashBangEffectOn();
     }
 
     public void Update()

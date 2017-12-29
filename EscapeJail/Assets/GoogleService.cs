@@ -132,21 +132,18 @@ public class GoogleService : MonoBehaviour
                     {
                         achivId = GPGSIds.achievement_get_a_trader;
                     }
-                    break;
-
-                    var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
-                    if (achivData != null)
-                    {
-                        if (achivData.IsUnlocked == true)
-                        {
-                            DatabaseLoader.Instance.BuyCharacter((CharacterType)i);
-
-                        }
-
-
-                    }
+                    break;                  
             }
 
+            var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
+            if (achivData != null)
+            {
+                if (achivData.IsUnlocked == true)
+                {
+                    DatabaseLoader.Instance.BuyCharacter((CharacterType)i);
+
+                }
+            }
 
 
 

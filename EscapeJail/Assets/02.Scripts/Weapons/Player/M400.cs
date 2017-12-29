@@ -16,7 +16,7 @@ namespace weapon
             SetReBound(6f);
             damage = 2;
             bulletSpeed = 13f;
-            fireDelay = 0.15f;
+            fireDelay = 0.1f;
             needBulletToFire = 1;
             weaponScale = Vector3.one * 2.5f;
 
