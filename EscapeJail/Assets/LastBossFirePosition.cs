@@ -22,6 +22,7 @@ public class LastBossFirePosition : MonoBehaviour
         while (true)
         {
             FireBullet();
+          
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -31,12 +32,15 @@ public class LastBossFirePosition : MonoBehaviour
         SpecialBullet bullet = ObjectManager.Instance.specialBulletPool.GetItem();
         float rebound = 20f;
         float bulletSpeed =5f;
+        SoundManager.Instance.PlaySoundEffect("Laserpistol");
+
         if (bullet != null)
         {
             Vector3 fireDir = target.position - this.transform.position;
             fireDir = Quaternion.Euler(0f, 0f, Random.Range(-rebound, rebound)) * fireDir;
             bullet.Initialize(this.transform.position, fireDir.normalized, bulletSpeed, BulletType.EnemyBullet, SpecialBulletType.LaserBullet, 2f, 1,10f);
             bullet.SetBloom(true, Color.red);
+            
         }
     }
     

@@ -84,6 +84,8 @@ public class LastBoss : BossBase
         base.BossDie();
         canMove = false;
         WeaponHideOnOff(true);
+        SoundManager.Instance.PlaySoundEffect("Die Meows");
+
     }
 
     private new void Awake()
@@ -351,6 +353,7 @@ public class LastBoss : BossBase
 
         for (int i = 0; i < 50; i++)
         {
+            SoundManager.Instance.PlaySoundEffect("lightsaber");
             for (int j = 0; j < 3; j++)
             {
                 FireBulletRain();
@@ -369,7 +372,7 @@ public class LastBoss : BossBase
         float y = leftTop.transform.position.y;
         float x = Random.Range(leftTop.transform.position.x, rightTop.transform.position.x);
         Vector3 firePos = new Vector3(x, y);
-
+    
 
         for (int i = 0; i < 3; i++)
         {

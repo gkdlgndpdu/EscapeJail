@@ -193,6 +193,7 @@ namespace ScientistBoss
                 //나머지는 숨기
                 for (int j = 0; j < childList.Count; j++)
                 {
+                    
                     if (childList[j] == RandomMonster[i] || childList[j].IsDead == true) continue;
 
                     childList[j].HideOnOff(true);
