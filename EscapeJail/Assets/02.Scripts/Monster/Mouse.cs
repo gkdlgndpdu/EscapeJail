@@ -50,6 +50,7 @@ public class Mouse : MonsterBase
         nowAttack = true;
         yield return new WaitForSeconds(0.4f); //애니메이션 재생시간
         SetAnimation(MonsterState.Attack);
+        SoundManager.Instance.PlaySoundEffect("swing");
         AttackOn();
         yield return new WaitForSeconds(1.0f); //애니메이션 재생시간
         AttackOff();
