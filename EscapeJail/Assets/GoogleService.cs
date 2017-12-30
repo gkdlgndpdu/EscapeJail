@@ -90,7 +90,7 @@ public class GoogleService : MonoBehaviour
 
     public void ReportScore(int score)
     {
-        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_scoretest, null);
+        PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_score, null);
     }
     //실제용 함수
     public void SetCharacterAchivement(CharacterType characterType)
@@ -149,6 +149,37 @@ public class GoogleService : MonoBehaviour
 
         }
     }
+    public bool IsAchivementClear(string AchiveId)
+    {        
+        var achivData = PlayGamesPlatform.Instance.GetAchievement(AchiveId);
+        if (achivData != null)
+        {
+            if (achivData.IsUnlocked == true)
+            {
+                return true;
+            }
+            else if (achivData.IsUnlocked == false)
+            {
+                return false;
+            }
+        }
+        else if (achivData == null)
+        {
+            return false;
+        }
+        return false;
+    }
+    public void UnlockHardMode()
+    {
+        if (IsAchivementClear(GPGSIds.achievement_hard_mode) == true) return;
+        PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_hard_mode, (bool success) =>
+        {
+            if (success == true)
+            {
+                Debug.Log("hardmodeUnlick");
+            }
+        });
+    }
 
     //테스트용함수
     public void ReportSocial(int type)
@@ -188,6 +219,10 @@ public class GoogleService : MonoBehaviour
                     achivId = GPGSIds.achievement_get_a_engineer;
                 }
                 break;
+            case CharacterType.Trader:
+                {
+                    achivId = GPGSIds.achievement_get_a_trader;
+                } break;
         }
 
         if (achivId == string.Empty)
@@ -196,27 +231,42 @@ public class GoogleService : MonoBehaviour
 
         if (PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            PlayGamesPlatform.Instance.IncrementAchievement(achivId, 1, (bool success) =>
+            if (characterType != CharacterType.Trader)
             {
-                if (success == true)
+                PlayGamesPlatform.Instance.IncrementAchievement(achivId, 1, (bool success) =>
                 {
-                    //완료했는지 체크
-                    var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
-                    if (achivData != null)
+                    if (success == true)
                     {
-                        if (achivData.IsUnlocked == true)
+                        //완료했는지 체크
+                        var achivData = PlayGamesPlatform.Instance.GetAchievement(achivId);
+                        if (achivData != null)
                         {
-                            DatabaseLoader.Instance.BuyCharacter(characterType);
+                            if (achivData.IsUnlocked == true)
+                            {
+                                DatabaseLoader.Instance.BuyCharacter(characterType);
 
+                            }
+                            else if (achivData.IsUnlocked == false)
+                            {
+                                //아무것도안해
+                            }
                         }
-                        else if (achivData.IsUnlocked == false)
-                        {
-                            //아무것도안해
-                        }
+
                     }
+                });
+            }
+         else if(characterType==CharacterType.Trader)
+            {
+                PlayGamesPlatform.Instance.UnlockAchievement(achivId, (bool success) =>
+                 {
+                     if (success == true)
+                     {
 
-                }
-            });
+                         DatabaseLoader.Instance.BuyCharacter(characterType);
+
+                     }
+                 });
+            }
         }
 
 

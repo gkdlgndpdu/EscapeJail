@@ -9,7 +9,8 @@ public enum SceneName
     MenuScene,
     SelectScene,
     StoryScene,
-    GameScene
+    GameScene,
+    EndingScene
 }
 public class SceneManager : MonoBehaviour
 {
@@ -17,6 +18,14 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     private Image fadeMask;
     private SceneName nowSceneName;
+    public SceneName NowSceneName
+    {
+        get
+        {
+            return nowSceneName;
+        }
+
+    }
     private bool nowChangeScene =false;
 
     void Awake()

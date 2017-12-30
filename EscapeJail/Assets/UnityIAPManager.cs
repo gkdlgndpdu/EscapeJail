@@ -248,7 +248,10 @@ public class UnityIAPManager : MonoBehaviour, IStoreListener//(리스너는 결�
         {
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
             // TODO: The non-consumable item has been successfully purchased, grant this item to the player.
-            DatabaseLoader.Instance.BuyCharacter(CharacterType.Trader);
+
+      
+            //업적 해제
+            GoogleService.Instance.ReportSocial((int)CharacterType.Trader);
         }
 
 

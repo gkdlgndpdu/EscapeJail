@@ -29,7 +29,7 @@ public class ResultUi : MonoBehaviour
 
     private ScoreCounter scoreCounter;
 
-    private int totalScore  =0;
+    private int totalScore = 0;
 
 
     private void UpdateUiTexts()
@@ -45,14 +45,14 @@ public class ResultUi : MonoBehaviour
             int playTime = TimeManager.Instance.PlayTime;
 
             int second = playTime % 60;
-            int minute = playTime / 60;         
+            int minute = playTime / 60;
             timeText.text = string.Format("{0}:{1}", minute, second);
         }
         if (bossKillText != null)
         {
             int bossKillScore = scoreCounter.BossKillNum * ScorePoint.BossPoint;
             totalScore += bossKillScore;
-            bossKillText.text = bossKillScore.ToString() ;
+            bossKillText.text = bossKillScore.ToString();
         }
         if (monsterKillText != null)
         {
@@ -63,7 +63,7 @@ public class ResultUi : MonoBehaviour
         }
         if (usingHeartText != null)
         {
-            int heartMinus = scoreCounter.LostHeartNum * ScorePoint.HeartMinus *-1;
+            int heartMinus = scoreCounter.LostHeartNum * ScorePoint.HeartMinus * -1;
             totalScore += heartMinus;
             usingHeartText.text = heartMinus.ToString(); ;
 
@@ -105,15 +105,15 @@ public class ResultUi : MonoBehaviour
                 if (winningLotteryIcon != null)
                     winningLotteryIcon.gameObject.SetActive(false);
             }
-            totalScoreText.text = string.Format("Total : {0}", totalScore.ToString()); 
+            totalScoreText.text = string.Format("Total : {0}", totalScore.ToString());
         }
 
-    
-       
+
+
     }
 
 
-   
+
     private void OnEnable()
     {
         TimeManager.Instance.StopTime();
@@ -125,7 +125,7 @@ public class ResultUi : MonoBehaviour
     {
         TimeManager.Instance.ResumeTime();
     }
-   
+
 
     public void EndGame()
     {
@@ -136,7 +136,14 @@ public class ResultUi : MonoBehaviour
 
         GoogleService.Instance.SetCharacterAchivement(CharacterType.Scientist);
 
-        SceneManager.Instance.ChangeScene(SceneName.MenuScene);
+        if (StagerController.Instance.NowStageLevel < GameConstants.lastStageLevel)
+        {
+            SceneManager.Instance.ChangeScene(SceneName.MenuScene);
+        }
+        else if (StagerController.Instance.NowStageLevel >= GameConstants.lastStageLevel)
+        {
+            SceneManager.Instance.ChangeScene(SceneName.EndingScene);
+        }
     }
 
 }

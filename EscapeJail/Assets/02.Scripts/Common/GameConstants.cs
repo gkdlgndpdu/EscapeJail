@@ -50,6 +50,7 @@ public static class GameConstants
     public static int DefaultBagSize = 5;
     public static int ItemOverlapGold = 100;
 
+    public static int lastStageLevel = 5;
     
 }
 

@@ -13,8 +13,16 @@ public class ChangeScenePopUp : MonoBehaviour
     public void OkButtonClick()
     {
         TimeManager.Instance.ResumeTime();
-        this.gameObject.SetActive(false);    
-        GameManager.Instance.ChangeStage();
+        this.gameObject.SetActive(false);
+        if (StagerController.Instance.NowStageLevel < GameConstants.lastStageLevel)
+        {
+            GameManager.Instance.ChangeStage();
+        }
+        else if (StagerController.Instance.NowStageLevel >= GameConstants.lastStageLevel)
+        {
+            GamePlayerManager.Instance.player.playerUi.ResultUiOnOff(true);
+        }
+
         
 
     }

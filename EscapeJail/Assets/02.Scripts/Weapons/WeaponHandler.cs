@@ -263,7 +263,7 @@ public class WeaponHandler : MonoBehaviour
         {
             
 
-            if (nowWeapon.hasAmmo() == false && audioSource.isPlaying==false)
+            if (nowWeapon.hasAmmo() == false && audioSource.isPlaying==false&&SoundManager.Instance.IsEffectMute==true)
             {
                 audioSource.volume = SoundManager.Instance.EffectVolume;
                 audioSource.Play();

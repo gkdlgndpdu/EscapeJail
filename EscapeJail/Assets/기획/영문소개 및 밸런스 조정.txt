@@ -18,9 +18,13 @@ deployment condition(획득 조건):
 엔딩문구:
 Molestan's devilish conspiracy was stopped and the laboratory was also destroyed by Alpha Agents.
 Molestan surrenders, and Alpha Agents keeps the peace of the world now and for ever.  
+
+Molestan's devilish conspiracy was stopped and the laboratory was also destroyed by Alpha Agents.
+Molestan surrenders, and Alpha Agents keeps the peace of the world now and for ever.  
+
 (몰스탄의 무시무시한 음모는 중단됐고 연구소는 알파에이전트에 의해 파괴 되었다. 몰스탄은 항복하였으며 알파에이전트는 앞으로도 쭉 세계의 평화를 지킬것이다.) 
-
-
+Molestan's conspiracy was stopped by Alpha Agent. Molestan surrendered. Peace has come around the world.
+(몰스탄의 무시무시한 음모는 중단됐고 연구소는 알파에이전트에 의해 파괴 되었다. 몰스탄은 항복하였고 세계에는 평화가 찾아왔다.) 
 
 스토어 소개문구:
 

@@ -86,6 +86,12 @@ public class LastBoss : BossBase
         WeaponHideOnOff(true);
         SoundManager.Instance.PlaySoundEffect("Die Meows");
 
+        //업적 해제
+        GoogleService.Instance.UnlockHardMode();
+
+        //결과창 띄워줌
+        
+
     }
 
     private new void Awake()

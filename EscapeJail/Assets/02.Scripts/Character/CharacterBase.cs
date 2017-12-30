@@ -444,6 +444,11 @@ public class CharacterBase : CharacterInfo
     // Update is called once per frame
     protected void Update()
     {
+        if (IsDead == true)
+        {
+            if (rb != null)
+                rb.velocity = Vector3.zero;
+        }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {

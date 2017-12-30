@@ -11,7 +11,7 @@ namespace weapon
         {
             weapontype = WeaponType.Vectol;
             SetWeaponKind(WeaponKind.SMG);
-            SetReBound(5f);
+            SetReBound(10f);
             bulletSpeed = 10f;
             fireDelay = 0.05f;    
             needBulletToFire = 1;

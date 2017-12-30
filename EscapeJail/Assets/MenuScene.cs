@@ -17,6 +17,9 @@ public class MenuScene : MonoBehaviour
     [SerializeField]
     private GameObject creditUi;
 
+    [SerializeField]
+    private Button startButton;
+
     private int originSize;
 
     private void Awake()
@@ -41,14 +44,8 @@ public class MenuScene : MonoBehaviour
         if (difficultyWindow == null) return;
         if (difficultyWindow.activeSelf == false)
         {
-            if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
-            {
-                SelectHard();
-            }
-            else
-            {
-                SelectEasy();
-            }
+            SelectEasy();
+      
         }
         difficultyWindow.SetActive(!difficultyWindow.activeSelf);
 
@@ -82,6 +79,9 @@ public class MenuScene : MonoBehaviour
 
         int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
 
+        if (startButton != null)
+            startButton.gameObject.SetActive(true);
+
         //한글
         if (languageKey == 0)
         {
@@ -98,10 +98,33 @@ public class MenuScene : MonoBehaviour
  
     public void SelectHard()
     {
+        int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+
+        //하드모드 열렸는지체크
+        if (GoogleService.Instance.IsAchivementClear(GPGSIds.achievement_hard_mode) == false)
+        {
+            if (startButton != null)
+                startButton.gameObject.SetActive(false);
+
+            //한글
+            if (languageKey == 0)
+            {
+                SetDifficultyDescription("노말모드를 먼저 클리어 하세요", Color.red);
+            }
+            //영어
+            else
+            {
+                SetDifficultyDescription("Please clear the normal mode first.", Color.red);
+            }
+
+            return;
+        }
+
+
         NowSelectPassive.Instance.SetDifficulty(Difficulty.hard);
         SoundManager.Instance.PlaySoundEffect("Button");
 
-        int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
+      
 
         //한글
         if (languageKey == 0)

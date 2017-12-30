@@ -217,6 +217,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         {
             if (player.Coin < price)
             {
+                MessageBar.Instance.ShowInfoBar("Lack of money", Color.red);
                 return;
             }
             else
