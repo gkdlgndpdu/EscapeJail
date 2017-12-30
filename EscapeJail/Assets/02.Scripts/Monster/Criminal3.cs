@@ -37,7 +37,8 @@ public class Criminal3 : MonsterBase
     protected override IEnumerator AttackRoutine()
     {
         nowAttack = true;
-        SetAnimation(MonsterState.Attack);  
+        SetAnimation(MonsterState.Attack);
+        SoundManager.Instance.PlaySoundEffect("swing");
         yield return new WaitForSeconds(attackDelay);
         nowAttack = false;
     }

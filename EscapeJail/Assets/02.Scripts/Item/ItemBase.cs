@@ -169,6 +169,7 @@ public class Item_Medicine : ItemBase
             }
 
             player.GetHp(Value);
+            SoundManager.Instance.PlaySoundEffect("cure2");
             player.RemoveItem(this);
         }
     }
@@ -209,6 +210,7 @@ public class Item_Stimulant : ItemBase
             }
             Debug.Log("30초간 " + Value + " 회복");
             player.UseStimulant(Value);
+            SoundManager.Instance.PlaySoundEffect("cure1");
             player.RemoveItem(this);
         }
     }

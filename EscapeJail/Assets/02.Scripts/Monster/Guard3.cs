@@ -111,6 +111,7 @@ public class Guard3 : MonsterBase
     {
         nowAttack = true;
         SetAnimation(MonsterState.Attack);
+        SoundManager.Instance.PlaySoundEffect("swing");
         yield return new WaitForSeconds(attackDelay);
         nowAttack = false;
     }
