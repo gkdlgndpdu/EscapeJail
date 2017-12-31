@@ -138,7 +138,7 @@ public class ResultUi : MonoBehaviour
     {
         //점수 등록
         GoogleService.Instance.ReportScore(totalScore);
-        GoogleService.Instance.ReportTimeAttack(TimeManager.Instance.PlayTime);
+  
 
         TimeManager.Instance.ResumeTime();
 
@@ -151,6 +151,7 @@ public class ResultUi : MonoBehaviour
         else if (isLastBossClear == true)
         {
             SceneManager.Instance.ChangeScene(SceneName.EndingScene);
+            GoogleService.Instance.ReportTimeAttack(TimeManager.Instance.PlayTime);
         }
 
     

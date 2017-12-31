@@ -81,11 +81,19 @@ public class GoogleCloudSave : MonoBehaviour
         string[] split = data.Trim().Split(',');
         //
         // 
-        for (int i = 0; i < split.Length; i++)
+        if (split.Length != 0)
         {
-            PassiveType passiveType = (PassiveType)i;
-            PlayerPrefs.SetInt(passiveType.ToString(), int.Parse(split[i]));
+            for (int i = 0; i < split.Length; i++)
+            {
+                PassiveType passiveType = (PassiveType)i;
+                PlayerPrefs.SetInt(passiveType.ToString(), int.Parse(split[i]));
+            }
         }
+        else if (split.Length == 0)
+        {
+
+        }
+      
 
         DatabaseLoader.Instance.SetPrefPassiveData();
 

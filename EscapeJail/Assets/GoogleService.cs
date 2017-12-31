@@ -92,7 +92,7 @@ public class GoogleService : MonoBehaviour
     }
     public void ReportTimeAttack(int time)
     {
-        PlayGamesPlatform.Instance.ReportScore(time, GPGSIds.leaderboard_score, null);
+        PlayGamesPlatform.Instance.ReportScore(time, GPGSIds.leaderboard_time_attack, null);
     }
 
     public void ReportScore(int score)
