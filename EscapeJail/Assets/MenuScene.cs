@@ -16,6 +16,8 @@ public class MenuScene : MonoBehaviour
     private Text difficultyDescription;
     [SerializeField]
     private GameObject creditUi;
+    [SerializeField]
+    private GameObject askWindow;
 
     [SerializeField]
     private Button startButton;
@@ -24,7 +26,7 @@ public class MenuScene : MonoBehaviour
 
     private void Awake()
     {
-        SoundManager.Instance.ChangeBgm("Menu");
+        SoundManager.Instance.ChangeBgm("Menu");  
     }
 
     private void Start()
@@ -41,6 +43,12 @@ public class MenuScene : MonoBehaviour
     //난이도설정창
     public void DifficultySelectWindowOnOff()
     {
+        //게임이 처음이면 듀토리얼 볼건지 확인
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.FirstPlayKey, 1) == 1)
+        {
+            AskWindowOnOff();           
+        }
+
         if (difficultyWindow == null) return;
         if (difficultyWindow.activeSelf == false)
         {
@@ -70,6 +78,21 @@ public class MenuScene : MonoBehaviour
     {
         if (creditUi == null) return;
         creditUi.SetActive(!creditUi.activeSelf);
+    }
+
+    public void AskWindowOnOff()
+    {
+        if (askWindow == null) return;
+        if (askWindow.activeSelf == true)
+        {
+            PlayerPrefs.SetInt(PlayerPrefKeys.FirstPlayKey, 0);
+        }
+        askWindow.SetActive(!askWindow.activeSelf);
+    }
+    public void AskWindowOkButtonClick()
+    {
+        AskWindowOnOff();
+        TutorialWindowOnOff();
     }
 
     public void SelectEasy()

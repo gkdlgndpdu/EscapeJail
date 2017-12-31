@@ -23,6 +23,10 @@ public class TutorialUi : MonoBehaviour
 
     public void OnEnable()
     {
+        
+        PlayerPrefs.SetInt(PlayerPrefKeys.FirstPlayKey, 0);
+
+
         nowOrder = -1;
         NextButtonClick();
 
