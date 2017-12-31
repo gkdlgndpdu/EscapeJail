@@ -13,8 +13,7 @@ namespace weapon
             bulletSpeed = 10f;
             SetReBound(10f);
             SetWeaponKind(WeaponKind.SMG);
-            fireDelay = 0.03f;
-            SetAmmo(999);
+            fireDelay = 0.03f;          
             needBulletToFire = 1;
             weaponScale = Vector3.one * 1.7f;
 
