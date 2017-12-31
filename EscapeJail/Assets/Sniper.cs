@@ -131,8 +131,6 @@ public class Sniper : CharacterBase
             {
                 if (CanFire() == true)
                 {
-
-
 #if UNITY_EDITOR
                     Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     RaycastHit2D rayHit = Physics2D.Raycast(touchPos, Vector2.zero, 0.1f, snipingLayerMask);
@@ -145,7 +143,7 @@ public class Sniper : CharacterBase
                             {
                                 UseBullet();
                                 monster.GetDamage(snipingPower);
-                                
+
 
                             }
                         }
@@ -161,39 +159,41 @@ public class Sniper : CharacterBase
                         SoundManager.Instance.PlaySoundEffect("sniper1");
 
                     }
+                    //
+                    //
 #else
-                    Touch[] touches = Input.touches;
-                if (touches != null)
-                {
-                    for (int i = 0; i < touches.Length; i++)
+                      Touch[] touches = Input.touches;
+                    if (touches != null)
                     {
-                        Vector2 touchPos = Camera.main.ScreenToWorldPoint(touches[i].position);
-                        RaycastHit2D rayHit = Physics2D.Raycast(touchPos, Vector2.zero, 0.1f, snipingLayerMask);
-                        if (rayHit.collider != null)
+                        for (int i = 0; i < touches.Length; i++)
                         {
-                            CharacterInfo monster = rayHit.collider.gameObject.GetComponent<CharacterInfo>();
-                           if (monster != null)
-                        {
-                            if (monster.IsDead == false)
+                            Vector2 touchPos = Camera.main.ScreenToWorldPoint(touches[i].position);
+                            RaycastHit2D rayHit = Physics2D.Raycast(touchPos, Vector2.zero, 0.1f, snipingLayerMask);
+                            if (rayHit.collider != null)
                             {
-                                UseBullet();
-                                monster.GetDamage(snipingPower);
-                            }
-                        }
+                                CharacterInfo monster = rayHit.collider.gameObject.GetComponent<CharacterInfo>();
+                                if (monster != null)
+                                {
+                                    if (monster.IsDead == false)
+                                    {
+                                        UseBullet();
+                                        monster.GetDamage(snipingPower);
 
-                    //사운드
-                          SoundManager.Instance.PlaySoundEffect("sniper1");
-                            //이펙트 호출
-                            ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
-                            if (effect != null)
-                            {
-                                effect.Initilaize(rayHit.transform.position, "SniperAim", 0.5f, 2f);
-                                effect.SetAlpha(150f);
+                                        //사운드
+                                        SoundManager.Instance.PlaySoundEffect("sniper1");
+                                        //이펙트 호출
+                                        ExplosionEffect effect = ObjectManager.Instance.effectPool.GetItem();
+                                        if (effect != null)
+                                        {
+                                            effect.Initilaize(rayHit.transform.position, "SniperAim", 0.5f, 2f);
+                                            effect.SetAlpha(150f);
+                                        }
+                                        break;
+                                    }
+                                }                       
                             }
-                            break;
                         }
                     }
-                }
 #endif
                 }
 

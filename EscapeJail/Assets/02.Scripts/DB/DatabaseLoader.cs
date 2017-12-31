@@ -142,12 +142,8 @@ public class DatabaseLoader : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Start()
-    {
-        SetPrefPassiveData();        
-    }
 
-    private void SetPrefPassiveData()
+    public void SetPrefPassiveData()
     {
         for (int i = 0; i < (int)PassiveType.PassiveEnd; i++)
         {
@@ -555,7 +551,6 @@ public class DatabaseLoader : MonoBehaviour
     public void BuyPassiveItem(PassiveType passiveType)
     {
         ChangePassiveDB(passiveType);
-
     }
 
     // 코루틴 .

@@ -343,13 +343,14 @@ namespace weapon
             {
                 slider.gameObject.SetActive(true);
                 slider.value = fireCount / fireDelay;
-
+            
             }
-
+           
         }
 
         public void FireDelayOn()
         {
+           
             fireCount = 0f;
             isFireDelayFinish = false;
         }

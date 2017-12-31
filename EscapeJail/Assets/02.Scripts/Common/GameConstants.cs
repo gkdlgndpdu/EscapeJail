@@ -45,7 +45,7 @@ public static class GameConstants
 
  
 
-    public static float ReboundDecreaseValue = 10f;
+    public static float ReboundDecreaseValue = 5f;
 
     public static int DefaultBagSize = 5;
     public static int ItemOverlapGold = 100;

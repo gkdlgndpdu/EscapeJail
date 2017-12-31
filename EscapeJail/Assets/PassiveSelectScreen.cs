@@ -98,6 +98,9 @@ public class PassiveSelectScreen : MonoBehaviour
         PlayerPrefs.SetInt(nowBuyingPassive.ToString(), 1);
 
         ClosePassiveBuyScreen();
+
+        //클라우드에 저장
+        GoogleCloudSave.instance.SaveMyPassivies();
     }
 
     private void AddToSelect(PassiveSlot_Ui slot)
@@ -184,18 +187,24 @@ public class PassiveSelectScreen : MonoBehaviour
         medalText.text = medal.ToString();
     }
 
+#if UNITY_EDITOR
     //테스트용 코드
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-
-            int prefMedal = PlayerPrefs.GetInt(GoodsType.Medal.ToString(), 0);
-            prefMedal += 100;
-            PlayerPrefs.SetInt(GoodsType.Medal.ToString(), prefMedal);
-            UpdateMedalText();
+            UpMedalTest();
         }
     }
+#endif
+    public void UpMedalTest()
+    {
+        int prefMedal = PlayerPrefs.GetInt(GoodsType.Medal.ToString(), 0);
+        prefMedal += 100;
+        PlayerPrefs.SetInt(GoodsType.Medal.ToString(), prefMedal);
+        UpdateMedalText();
+    }
+
 
 
 

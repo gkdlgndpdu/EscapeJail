@@ -115,7 +115,7 @@ public class ItemTable : Article
 
     private void SpawnRamdomItem()
     {
-        if (MyUtils.GetPercentResult(30) == true) return;
+        if (MyUtils.GetPercentResult(20) == true) return;
 
         if (SpawnPosit != null)
         {

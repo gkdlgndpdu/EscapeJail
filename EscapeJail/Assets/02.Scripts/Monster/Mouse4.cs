@@ -5,13 +5,13 @@ using weapon;
 public class Mouse4 : MonsterBase
 {
 
-    float fireDelay = 3f;
+    float fireDelay = 2f;
     protected override void SetUpMonsterAttribute()
     {
         monsterName = MonsterName.Mouse4;
         hasBullet = true;
         nearestAcessDistance = 1f;
-    
+        moveSpeed = 1.2f;
     }
 
     protected override void SetWeapon()
@@ -57,7 +57,7 @@ public class Mouse4 : MonsterBase
                 yield return new WaitForSeconds(0.25f);
             }
             yield return new WaitForSeconds(fireDelay);
-            fireDelay = Random.Range(2f, 3.5f);
+            fireDelay = Random.Range(2f, 2.7f);
         }
     }
 

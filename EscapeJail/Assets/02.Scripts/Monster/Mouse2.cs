@@ -12,7 +12,7 @@ public class Mouse2 : MonsterBase
       
         nearestAcessDistance = 5f;
         hasBullet = true;
-        moveSpeed = 1f;
+        moveSpeed = 1.3f;
     }
 
     public override void ResetMonster()
@@ -51,7 +51,7 @@ public class Mouse2 : MonsterBase
             if (isDead == true) yield break;
             FireWeapon();
             yield return new WaitForSeconds(shotDelay);
-            shotDelay = Random.Range(1.0f, 2.0f);
+            shotDelay = Random.Range(1.0f, 1.5f);
         }
     }
 

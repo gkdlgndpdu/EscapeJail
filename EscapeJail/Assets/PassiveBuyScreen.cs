@@ -47,7 +47,7 @@ public class PassiveBuyScreen : MonoBehaviour
         {
             description.text = string.Format("{0} 메달 입니다 구매하시겠습니까?", passiveDb.price);
             description.font = Language.Instance.KoreanFont;
-            description.fontSize = originTextSize + 15;
+            description.fontSize = originTextSize + 8;
         }
         else
         {
