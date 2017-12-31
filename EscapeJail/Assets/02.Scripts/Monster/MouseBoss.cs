@@ -74,7 +74,7 @@ public class MouseBoss : BossBase
 
         LoadPrefab();
         SetHp(300);
-        moveSpeed = 2f;
+        moveSpeed = 2.2f;
         RegistPatternToQueue();
     }
 
@@ -205,7 +205,7 @@ public class MouseBoss : BossBase
                         fireDIr = Quaternion.Euler(0f, 0f, 5f) * Vector3.right;
 
                     fireDIr = Quaternion.Euler(0f, 0f, j * 10f) * fireDIr;
-                    bullet.Initialize(this.transform.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                    bullet.Initialize(this.transform.position, fireDIr.normalized,5f, BulletType.EnemyBullet);
                     bullet.InitializeImage("white", false);
                     bullet.SetEffectName("revolver");
                 }
@@ -240,8 +240,7 @@ public class MouseBoss : BossBase
     }
 
     public void FireLeftHand()
-    {
-        float bulletSpeed = 3f;
+    {    
         SoundManager.Instance.PlaySoundEffect("giantfootstep");
 
         for (int j = 0; j < 9; j++)
@@ -259,7 +258,7 @@ public class MouseBoss : BossBase
                 
 
                 fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
-                bullet.Initialize(leftFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                bullet.Initialize(leftFoot.position, fireDIr.normalized, 5f, BulletType.EnemyBullet);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
              
@@ -268,8 +267,7 @@ public class MouseBoss : BossBase
     }
 
     public void FireRightHand()
-    {
-        float bulletSpeed = 3f;
+    {      
         SoundManager.Instance.PlaySoundEffect("giantfootstep");
         for (int j = 0; j < 9; j++)
         {
@@ -285,7 +283,7 @@ public class MouseBoss : BossBase
             
 
                 fireDIr = Quaternion.Euler(0f, 0f, j * 40f) * fireDIr;
-                bullet.Initialize(rightFoot.position, fireDIr.normalized, 3f, BulletType.EnemyBullet);
+                bullet.Initialize(rightFoot.position, fireDIr.normalized, 5f, BulletType.EnemyBullet);
                 bullet.InitializeImage("white", false);
                 bullet.SetEffectName("revolver");
                 

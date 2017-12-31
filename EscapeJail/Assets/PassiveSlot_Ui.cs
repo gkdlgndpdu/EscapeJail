@@ -129,7 +129,7 @@ public class PassiveSlot_Ui : MonoBehaviour
     {
         if (passiveDB == null) return;
         if (passiveDB.hasPassive == false)
-        {
+        {    
             //구매창 보여줌
             if (parent != null)
                 parent.OpenPassiveBuyScreen(this.passiveType, passiveDB);
@@ -139,8 +139,5 @@ public class PassiveSlot_Ui : MonoBehaviour
             parent.RegistSelectSlot(this);
     }
 
-    private void BuyPassiveItem()
-    {
-
-    }
+   
 }

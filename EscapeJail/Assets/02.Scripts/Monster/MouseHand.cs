@@ -68,7 +68,7 @@ public class MouseHand : MonoBehaviour
  
     private void FireBullet()
     {
-        float bulletSpeed = 3f;
+        float bulletSpeed = 5f;
         Bullet bullet = ObjectManager.Instance.bulletPool.GetItem();
         if (bullet != null)
         {

@@ -52,7 +52,8 @@ public class MiniMap : MonoBehaviour
     private Transform allParent;
 
     public void MinimapOnOff(bool OnOff)
-    {
+    {    
+
         //켜질때
         if (OnOff == true)
         {
@@ -72,7 +73,11 @@ public class MiniMap : MonoBehaviour
 
     public void ChangeMiniMapMode()
     {
-        if (this.gameObject.activeSelf == false) return;
+        if (this.gameObject.activeSelf == false)
+        {
+            SoundManager.Instance.PlaySoundEffect("error");
+            return;
+        }
 
         count = 0f;
         //

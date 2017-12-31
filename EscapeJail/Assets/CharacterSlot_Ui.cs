@@ -78,6 +78,8 @@ public class CharacterSlot_Ui : MonoBehaviour
         {
             if (parent != null)
                 parent.ShowHowToGet(this);
+
+            SoundManager.Instance.PlaySoundEffect("error");
         }
 
 

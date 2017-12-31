@@ -43,7 +43,11 @@ public class StoryViewer : MonoBehaviour
 
         StartCoroutine(ShowText());
 
-        SoundManager.Instance.ChangeBgm("Story");
+        if (SceneManager.Instance.NowSceneName == SceneName.StoryScene)
+            SoundManager.Instance.ChangeBgm("Story");
+        else if (SceneManager.Instance.NowSceneName == SceneName.EndingScene)
+            SoundManager.Instance.ChangeBgm("Ending");
+
 
         if (thankyou1 != null)
             thankyou1.gameObject.SetActive(false);
@@ -108,7 +112,7 @@ public class StoryViewer : MonoBehaviour
 
     private IEnumerator ThankYouRoutine()
     {
-        if (thankyou1 == null || thankyou2 == null||thankyou3==null) yield break;
+        if (thankyou1 == null || thankyou2 == null || thankyou3 == null) yield break;
         thankyou1.gameObject.SetActive(true);
         iTween.FadeTo(thankyou1.gameObject, 1f, 3f);
         yield return new WaitForSeconds(3f);

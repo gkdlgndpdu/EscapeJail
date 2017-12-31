@@ -90,7 +90,7 @@ public class LastBoss : BossBase
         GoogleService.Instance.UnlockHardMode();
 
         //결과창 띄워줌
-        
+        GamePlayerManager.Instance.player.playerUi.resultUi.isLastBossClear = true;
 
     }
 

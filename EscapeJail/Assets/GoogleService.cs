@@ -22,7 +22,8 @@ public class GoogleService : MonoBehaviour
 {
     private bool canStart = false;
     public static GoogleService Instance;
-    private string LeaderBoardID = "CgkIm6Xsx9oYEAIQAQ";
+
+    private string TimeAttackID = "CgkIm6Xsx9oYEAIQDg";
     [SerializeField]
     private GameObject loginScreen;
     public bool CanStart
@@ -89,7 +90,10 @@ public class GoogleService : MonoBehaviour
     {
         PlayGamesPlatform.Instance.SignOut();
     }
-
+    public void ReportTimeAttack(int time)
+    {
+        PlayGamesPlatform.Instance.ReportScore(time, GPGSIds.leaderboard_score, null);
+    }
 
     public void ReportScore(int score)
     {

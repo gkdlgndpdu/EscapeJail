@@ -203,13 +203,14 @@ public class DropItem : MonoBehaviour, iReactiveAction
     public void ClickAction()
     {
         if (player == null) return;
-
+        if (itemBase == null) return;
 
         if (player.isInventoryFull() == true &&
             //가방 , 아머일때는 인벤토리 크기 상관 x
             (itemBase.itemType != ItemType.Bag && itemBase.itemType != ItemType.Armor))
         {
             MessageBar.Instance.ShowInfoBar("Inventory Is Full", Color.red);
+            SoundManager.Instance.PlaySoundEffect("error");
             return;
         }
 

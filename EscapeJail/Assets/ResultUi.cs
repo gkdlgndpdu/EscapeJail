@@ -31,6 +31,8 @@ public class ResultUi : MonoBehaviour
 
     private int totalScore = 0;
 
+    public bool isLastBossClear = false;
+
 
     private void UpdateUiTexts()
     {
@@ -136,19 +138,22 @@ public class ResultUi : MonoBehaviour
     {
         //점수 등록
         GoogleService.Instance.ReportScore(totalScore);
+        GoogleService.Instance.ReportTimeAttack(TimeManager.Instance.PlayTime);
 
         TimeManager.Instance.ResumeTime();
 
         GoogleService.Instance.SetCharacterAchivement(CharacterType.Scientist);
 
-        if (StagerController.Instance.NowStageLevel < GameConstants.lastStageLevel)
+        if (isLastBossClear == false)
         {
             SceneManager.Instance.ChangeScene(SceneName.MenuScene);
         }
-        else if (StagerController.Instance.NowStageLevel >= GameConstants.lastStageLevel)
+        else if (isLastBossClear == true)
         {
             SceneManager.Instance.ChangeScene(SceneName.EndingScene);
         }
+
+    
     }
 
 }
