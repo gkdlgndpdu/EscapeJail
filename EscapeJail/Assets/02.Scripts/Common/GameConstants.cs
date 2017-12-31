@@ -98,4 +98,6 @@ public static class PlayerPrefKeys
     public static string LanguageKey = "Language"; //0한글 1영어
 
     public static string MoveStickTypeKey = "MoveStickType"; //0고정 1유동
+    public static string VibrationKey = "VibrationKey"; //0 off 1 on
+    public static string PassiveKey = "Passive";
 }

@@ -68,10 +68,24 @@ public class UI_CustomToggle : MonoBehaviour
                 break;
             case ToggleType.JoyStick:
                 {
-                    if (JoyStick.Instance.NowStickType==StickType.UnFixed)
+                    if (JoyStick.Instance.NowStickType == StickType.UnFixed)
                         isOn = false;
                     else
                         isOn = true;
+                }
+                break;
+            case ToggleType.Vibration:
+                {
+                                                                                //0 off 1 on
+                    if (PlayerPrefs.GetInt(PlayerPrefKeys.VibrationKey, 1) == 1)
+                    {
+                        isOn = true;
+                    }
+                    else
+                    {
+                        isOn = false;
+                    }
+
                 }
                 break;
         }

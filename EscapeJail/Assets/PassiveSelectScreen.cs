@@ -86,14 +86,16 @@ public class PassiveSelectScreen : MonoBehaviour
     }
     public void BuyButtonClick()
     {
-        DatabaseLoader.Instance.BuyPassiveItem(this.nowBuyingPassive);
+        DatabaseLoader.Instance.BuyPassiveItem(nowBuyingPassive);
         if (playerGoods != null)
         {
             PassiveDB data = DatabaseLoader.Instance.passiveDB[nowBuyingPassive];
             playerGoods.UseMedals(data.price);
             UpdateMedalText();
-
         }
+        //로컬 데이터 저장                             //0없음 1있음
+        PlayerPrefs.SetInt(nowBuyingPassive.ToString(), 1);
+
         ClosePassiveBuyScreen();
     }
 

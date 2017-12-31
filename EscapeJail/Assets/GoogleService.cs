@@ -23,6 +23,8 @@ public class GoogleService : MonoBehaviour
     private bool canStart = false;
     public static GoogleService Instance;
     private string LeaderBoardID = "CgkIm6Xsx9oYEAIQAQ";
+    [SerializeField]
+    private GameObject loginScreen;
     public bool CanStart
     {
         get
@@ -73,6 +75,7 @@ public class GoogleService : MonoBehaviour
         PlayGamesPlatform.Instance.Authenticate((bool success) =>
         {
             canStart = true;
+            loginScreen.gameObject.SetActive(false);
             if (success == true)
             {
                 ReadPrefAchivment();

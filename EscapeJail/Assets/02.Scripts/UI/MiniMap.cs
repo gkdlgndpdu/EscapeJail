@@ -75,10 +75,12 @@ public class MiniMap : MonoBehaviour
         if (this.gameObject.activeSelf == false) return;
 
         count = 0f;
+        //
         if (miniMapState == MiniMapState.Origin)
         {
             iTween.ScaleTo(maskTr.gameObject, maskMaxSize, 0.5f);
             miniMapState = MiniMapState.Center;
+            MessageBar.Instance.ShowInfoBar("Touch portal icon for teleport",Color.white);
       
         }
         else if(miniMapState == MiniMapState.Center)

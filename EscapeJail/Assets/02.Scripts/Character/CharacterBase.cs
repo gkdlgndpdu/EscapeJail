@@ -328,10 +328,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Sturgeon());
-        AddWeapon(new GiraffeSword());
-        AddWeapon(new CueGun());
-        AddWeapon(new BubbleGun());
+        AddWeapon(new Revolver());      
         AddWeapon(new BasicSniper());
     }
 
@@ -735,8 +732,12 @@ public class CharacterBase : CharacterInfo
         //흔들리는 효과
         CameraController.Instance.ShakeCamera(3f, 0.4f);
 
-        //진동? 
-        Handheld.Vibrate();
+        //진동?                                                  //0진동꺼짐 1 진동켜짐
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.VibrationKey,1) == 1)
+        {
+            Handheld.Vibrate();
+        }
+       
 
         //갑옷 적용
         if (armorSystem.hasArmor() == true)

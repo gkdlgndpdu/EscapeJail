@@ -13,6 +13,17 @@ public class ClawMachinePopup : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        TimeManager.Instance.StopTime();
+      
+    }
+    private void OnDisable()
+    {
+        TimeManager.Instance.ResumeTime();
+    
+    }
+
     public void OkButtonClick()
     {
         if (this.linkFunc == null) return;

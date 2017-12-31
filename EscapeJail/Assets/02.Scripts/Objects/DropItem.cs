@@ -217,7 +217,7 @@ public class DropItem : MonoBehaviour, iReactiveAction
         {
             if (player.Coin < price)
             {
-                MessageBar.Instance.ShowInfoBar("Lack of money", Color.red);
+                MessageBar.Instance.ShowInfoBar("Not enough money", Color.red);
                 return;
             }
             else
@@ -271,7 +271,9 @@ public class DropItem : MonoBehaviour, iReactiveAction
     }
 
     private void OnDestroy()
-    {
+    { 
+        if(itemBase==null)return;
+
         if (isSoldOut == false&&itemBase.itemType==ItemType.Weapon&&isSalesItem==true)
         {
             WeaponDB weaponDB = DatabaseLoader.Instance.GetWeaponDB(itemBase.weapontype);

@@ -32,9 +32,10 @@ public class RevivePopup : MonoBehaviour
         this.gameObject.SetActive(OnOff);
 
         if (OnOff == true)
-            Time.timeScale = 0.5f;
+            TimeManager.Instance.StopTime();
+           
         else if (OnOff == false)
-            Time.timeScale = 1f;
+            TimeManager.Instance.ResumeTime();
     }
 
 }

@@ -219,7 +219,12 @@ namespace weapon
 
         public bool hasAmmo()
         {
-            return nowAmmo > 0;
+            bool returnValue = nowAmmo > 0;
+
+            if(returnValue==false)
+            MessageBar.Instance.ShowInfoBar("Out of ammo", Color.red);
+
+            return returnValue;
         }
 
         protected void useBullet()

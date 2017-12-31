@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum PassiveType
 {
-
     ExtendedMag, //구현
     ExtendedPocket, //구현
     ForeGrip,//구현
@@ -19,6 +18,7 @@ public enum PassiveType
     PickPocket,//구현
     PlayingWithFire,//구현
     WinningLottery,//구현
-    DiscountCoupon//구현
+    DiscountCoupon,//구현
+    PassiveEnd
 }
 

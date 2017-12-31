@@ -43,6 +43,12 @@ public class DatabaseLoader : MonoBehaviour
             return PassiveDB;
         }
     }
+    public bool HasPassive(PassiveType passiveType)
+    {
+        if (PassiveDB == null) return false;
+        if (PassiveDB.ContainsKey(passiveType) == false) return false;
+        return PassiveDB[passiveType].hasPassive;
+    }
     /// <summary>
     /// key값에 해당 아이템을 넣으면 확률에 맞게 lv을 뱉음
     /// </summary>
@@ -135,6 +141,27 @@ public class DatabaseLoader : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
+
+    private void Start()
+    {
+        SetPrefPassiveData();        
+    }
+
+    private void SetPrefPassiveData()
+    {
+        for (int i = 0; i < (int)PassiveType.PassiveEnd; i++)
+        {
+            PassiveType passiveType = (PassiveType)i;
+
+            if (HasPassive(passiveType) == true) continue;
+
+            if (PlayerPrefs.GetInt(passiveType.ToString(), 0) == 1)
+            {
+                BuyPassiveItem(passiveType);
+            }
+        }
+    }
+
 
     private void LoadAllDB()
     {

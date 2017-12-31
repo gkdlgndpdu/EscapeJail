@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 public class ClawMachine : MonoBehaviour
 {
     private bool usedMachine = false;
     private Animator animator;
+    [SerializeField]
+    private Text text;
 
     private void Awake()
     {
@@ -27,6 +29,9 @@ public class ClawMachine : MonoBehaviour
                     animator.SetTrigger("Complete");
 
                 SoundManager.Instance.PlaySoundEffect("vendingMachine");
+
+                if (text != null)
+                    text.text = "Thank you";
             });
 
             

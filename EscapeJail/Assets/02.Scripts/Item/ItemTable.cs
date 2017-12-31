@@ -115,6 +115,8 @@ public class ItemTable : Article
 
     private void SpawnRamdomItem()
     {
+        if (MyUtils.GetPercentResult(30) == true) return;
+
         if (SpawnPosit != null)
         {
             DropItem dropItem = ItemSpawner.Instance.SpawnRandomItem(SpawnPosit[Random.Range(0, SpawnPosit.Count)].position, this.transform);

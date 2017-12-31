@@ -105,6 +105,11 @@ public class ResultUi : MonoBehaviour
                 if (winningLotteryIcon != null)
                     winningLotteryIcon.gameObject.SetActive(false);
             }
+
+            if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
+            {
+                totalScore += (int)((float)totalScore * 1.5f);
+            }
             totalScoreText.text = string.Format("Total : {0}", totalScore.ToString());
         }
 

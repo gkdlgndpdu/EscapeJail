@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     private int playTime = 0;
     public bool nowUsingScientistSkill = false;
     public float slowRatio = 0f;
+    
     public int PlayTime
     {
         get { return playTime; }
@@ -54,7 +55,15 @@ public class TimeManager : MonoBehaviour
 
     public void ResumeTime()
     {
-        Time.timeScale = 1f;
+        if (nowUsingScientistSkill == true)
+        {
+            BulletTimeOn(slowRatio);
+        }
+        else if (nowUsingScientistSkill == false)
+        {
+            Time.timeScale = 1f;
+        }
+  
     }
 
 

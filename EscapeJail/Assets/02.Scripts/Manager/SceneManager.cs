@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 public enum SceneName
 {
     LobbyScene,
@@ -53,6 +54,8 @@ public class SceneManager : MonoBehaviour
         if(sceneName !=SceneName.StoryScene&& sceneName != SceneName.GameScene)
         NowSelectPassive.Instance.ClearPassives();
 
+
+        System.GC.Collect();
     }
 
     public IEnumerator FadeRoutine()

@@ -75,6 +75,14 @@ public class OptionUi : MonoBehaviour
             PlayerPrefs.SetInt(PlayerPrefKeys.EffectMuteKey, 1);
     }
 
+    public void VibrationOnOff(bool OnOff)
+    {
+        if (OnOff == false)
+            PlayerPrefs.SetInt(PlayerPrefKeys.VibrationKey, 0);
+        else if (OnOff == true)
+            PlayerPrefs.SetInt(PlayerPrefKeys.VibrationKey, 1);
+    }
+
     public void ChangeMoveStickType(bool OnOff)
     {
         if (moveStick == null) return;

@@ -10,14 +10,29 @@ public class TutorialUi : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> descriptionList;
-
+    [SerializeField]
+    private GameObject itemInfoWindow;
     [SerializeField]
     private Text text; 
+
+    public void ItemInfoOnOff()
+    {
+        if (itemInfoWindow == null) return;
+        itemInfoWindow.SetActive(!itemInfoWindow.activeSelf);
+    }
 
     public void OnEnable()
     {
         nowOrder = -1;
         NextButtonClick();
+
+        if (itemInfoWindow != null)
+        {
+            if (itemInfoWindow.activeSelf == true)
+            {
+                ItemInfoOnOff();
+            }
+        }
     }
 
     public void NextButtonClick()

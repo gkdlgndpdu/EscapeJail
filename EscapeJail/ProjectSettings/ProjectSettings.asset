@@ -121,7 +121,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 24
+  bundleVersion: 100
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -145,7 +145,7 @@ PlayerSettings:
     Standalone: com.zeroeight.AlphaAgent
   buildNumber:
     Standalone: 10
-  AndroidBundleVersionCode: 24
+  AndroidBundleVersionCode: 100
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
