@@ -104,7 +104,7 @@ public class CharacterInfo : MonoBehaviour
         if (NowSelectPassive.Instance.HasPassive(PassiveType.Littlelove) == true&&
             isPlayer ==true)
         {
-            hp += 3;
+            hp += 2;
         }
 
         this.hp = hp;

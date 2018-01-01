@@ -14,7 +14,7 @@ namespace weapon
             SetReBound(5f);
 
             bulletSpeed = 13f;
-            fireDelay = 0.6f; 
+            fireDelay = 0.4f; 
             needBulletToFire = 1;
             damage = 4;
           

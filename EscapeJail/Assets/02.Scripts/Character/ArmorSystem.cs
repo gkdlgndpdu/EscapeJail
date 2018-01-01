@@ -17,7 +17,10 @@ public class ArmorSystem
         if (maxArmor == 0) return;
         remainArmor = maxArmor;
         UpdateArmorUi();
-        MessageBar.Instance.ShowInfoBar("Armor repaired", Color.white);
+        if (Language.Instance.NowLanguage == LanguageType.English)
+            MessageBar.Instance.ShowInfoBar("Armor repaired", Color.white);
+        else
+            MessageBar.Instance.ShowInfoBar("조끼가 회복됐습니다.", Color.white);
 
     }
 
@@ -37,8 +40,12 @@ public class ArmorSystem
     {
         //같은레벨 아이템 들어오면
         if (maxArmor >= value)
-        {     
-            MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold",Color.white);
+        {
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold", Color.white);
+            else
+                MessageBar.Instance.ShowInfoBar("중복(하위)아이템 획득 +100 gold", Color.white);
+
             GamePlayerManager.Instance.player.GetCoin(GameConstants.ItemOverlapGold);
             return;
         }

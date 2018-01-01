@@ -114,9 +114,7 @@ public class MonsterBase : CharacterInfo
 
         if (NowSelectPassive.Instance.HasPassive(PassiveType.Scouter) == true)
             HudOnOff(true);
-#if UNITY_EDITOR
-        HudOnOff(true);
-#endif
+
 
         UpdateHud();
 
@@ -341,10 +339,13 @@ public class MonsterBase : CharacterInfo
             if (hasBullet == true)
             {
                 //확률
-                if (MyUtils.GetPercentResult(10) == true)
+                if (MyUtils.GetPercentResult(5) == true)
                 {
                     GamePlayerManager.Instance.player.GetBulletItem(10);
-                    MessageBar.Instance.ShowInfoBar("Get 10 Bullets", Color.white);
+                    if (Language.Instance.NowLanguage == LanguageType.English)
+                        MessageBar.Instance.ShowInfoBar("Get 10 Bullets", Color.white);
+                    else
+                        MessageBar.Instance.ShowInfoBar("총알 10개 훔침", Color.white);
                 }
             }
         }

@@ -114,8 +114,9 @@ public class UI_ItemSlot : MonoBehaviour
     }
    
     public void UseItem()
-    {
-        if(itemBase!=null)
+    {    
+
+        if (itemBase!=null)
         itemBase.ItemAction();
 
    
@@ -126,6 +127,11 @@ public class UI_ItemSlot : MonoBehaviour
 
     public void DiscardItem()
     {
+        if (inventoryUi != null&& ItemBase!=null)
+        {
+            inventoryUi.QuickSlot.UpdateQuickSlot(ItemBase);
+        }
+
         if (itemBase != null)
             itemBase.RemoveItem();
     }

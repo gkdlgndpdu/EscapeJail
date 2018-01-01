@@ -35,8 +35,10 @@ namespace ScientistBoss
 
         public override void StartBossPattern()
         {
-            MessageBar.Instance.ShowInfoBar("Destroy child first",Color.white);
-
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Destroy child first",Color.white);
+            else
+                MessageBar.Instance.ShowInfoBar("자식을 먼저 처리하세요", Color.white);
             StartChild();
 
             if (bossEventQueue != null)
@@ -88,7 +90,10 @@ namespace ScientistBoss
 
             if (isChildAlive() == true)
             {
-                MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
+                if (Language.Instance.NowLanguage == LanguageType.English)
+                    MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
+                else
+                    MessageBar.Instance.ShowInfoBar("자식을 먼저 처리하세요.", Color.white);
                 ShieldEffectOn();
                 SoundManager.Instance.PlaySoundEffect("vestshieldhit");
                 return;

@@ -222,7 +222,10 @@ namespace weapon
             bool returnValue = nowAmmo > 0;
 
             if(returnValue==false)
-            MessageBar.Instance.ShowInfoBar("Out of ammo", Color.red);
+                if (Language.Instance.NowLanguage == LanguageType.English)
+                    MessageBar.Instance.ShowInfoBar("Out of ammo", Color.red);
+            else
+                    MessageBar.Instance.ShowInfoBar("총알이 다 떨어졌습니다.", Color.red);
 
             return returnValue;
         }
@@ -258,6 +261,7 @@ namespace weapon
         {
             Debug.Log("무기변경" + weapontype.ToString());
             GamePlayerManager.Instance.player.ChangeSpeceficWeapon(weapontype);
+            player.playerUi.inventoryUi.QuickSlot.UpdateQuickSlot(this);
         }
 
 
@@ -381,7 +385,11 @@ namespace weapon
 
             if (NowSelectPassive.Instance.HasPassive(PassiveType.ExtendedMag) == true)
             {
-                MessageBar.Instance.ShowInfoBar("Gain +30% bullets",Color.white);
+                if (Language.Instance.NowLanguage == LanguageType.English)
+                    MessageBar.Instance.ShowInfoBar("Gain +30% bullets",Color.white);
+                else
+                    MessageBar.Instance.ShowInfoBar("탄창 30% 증가", Color.white);
+
                 num += (int)((float)num * 0.3f);
             }
 

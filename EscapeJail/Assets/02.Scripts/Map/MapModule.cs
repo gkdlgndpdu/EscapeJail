@@ -364,7 +364,7 @@ public class MapModule : MapModuleBase
             return;
         }
         //계수가 생성확률
-        float makeNum = (float)(widthNum * heightNum) * 0.012f;
+        float makeNum = (float)(widthNum * heightNum) * 0.014f;
 
         for (int i = 0; i < (int)makeNum; i++)
         {

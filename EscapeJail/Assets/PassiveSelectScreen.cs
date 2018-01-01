@@ -40,7 +40,6 @@ public class PassiveSelectScreen : MonoBehaviour
         rectTr = slotsParent.GetComponent<RectTransform>();
         MakeSlots();
         UpdateMedalText();
-
         UpdateNowSelectPassiveUi();
     }
 
@@ -97,10 +96,12 @@ public class PassiveSelectScreen : MonoBehaviour
         //로컬 데이터 저장                             //0없음 1있음
         PlayerPrefs.SetInt(nowBuyingPassive.ToString(), 1);
 
+        //클라우드에 저장
+       // GoogleCloudSave.instance.SaveMyPassivies();
+
         ClosePassiveBuyScreen();
 
-        //클라우드에 저장
-        GoogleCloudSave.instance.SaveMyPassivies();
+ 
     }
 
     private void AddToSelect(PassiveSlot_Ui slot)

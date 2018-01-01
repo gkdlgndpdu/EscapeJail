@@ -64,7 +64,8 @@ public class CharacterSelector : MonoBehaviour
 
             characterDescription.text = db.descriptionKor;
             characterDescription.font = Language.Instance.KoreanFont;
-            characterDescription.fontSize = originSize + 20;
+            characterDescription.fontSize = originSize + 40;
+            characterName.fontSize = 47;
         }
         else
         {
@@ -89,7 +90,7 @@ public class CharacterSelector : MonoBehaviour
         {
             characterDescription.text = db.howToGetKor;
             characterDescription.font = Language.Instance.KoreanFont;
-            characterDescription.fontSize = originSize+20;
+            characterDescription.fontSize = originSize+40;
         }
         else
         {

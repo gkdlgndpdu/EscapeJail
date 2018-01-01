@@ -7,7 +7,7 @@ using System;
 public class UI_QuickSlot : MonoBehaviour
 {
 
-    private UI_ItemSlot targetSlot;
+    private ItemBase quickItem;
     [SerializeField]
     private Image iconImage;
     private bool isEmpty = true;
@@ -18,12 +18,10 @@ public class UI_QuickSlot : MonoBehaviour
             return isEmpty;
         }
     }
-
-    private ItemBase prefItem;
-    public void SetQuickSlot(UI_ItemSlot slot)
+  
+    public void SetQuickSlot(ItemBase item)
     {
-        targetSlot = slot;
-        prefItem = targetSlot.ItemBase;
+        quickItem = item; 
         isEmpty = false;
         SetIcon();
     }
@@ -33,15 +31,16 @@ public class UI_QuickSlot : MonoBehaviour
         iconImage.color = new Color(0f, 0f, 0f, 0f);
     }
 
-    public void UpdateQuickSlot()
+    public void UpdateQuickSlot(ItemBase UsingItem)
     {
-        if (targetSlot == null) return;
+        if (quickItem == null) return;
+        if (UsingItem == null) return;
+        if (quickItem != UsingItem) return;   
 
         //리셋
         iconImage.sprite = null;
         iconImage.color = new Color(0f, 0f, 0f, 0f);
-        prefItem = null;
-        targetSlot = null;
+        quickItem = null;
         isEmpty = true;
 
     }   
@@ -49,16 +48,15 @@ public class UI_QuickSlot : MonoBehaviour
     public void SetIcon()
     {
         if (iconImage == null) return;
-
-        ItemBase nowItem = targetSlot.ItemBase;
+        if (quickItem == null) return;    
 
         iconImage.color = new Color(1f, 1f, 1f, 1f);
 
-        switch (nowItem.itemType)
+        switch (quickItem.itemType)
         {
             case ItemType.Weapon:
                 {
-                    string path = string.Format("Sprites/icon/{0}", nowItem.weapontype.ToString());
+                    string path = string.Format("Sprites/icon/{0}", quickItem.weapontype.ToString());
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
                     iconImage.color = Color.white;
@@ -66,7 +64,7 @@ public class UI_QuickSlot : MonoBehaviour
                 break;
             default:
                 {
-                    string path = string.Format("Sprites/icon/{0}", nowItem.itemName);
+                    string path = string.Format("Sprites/icon/{0}", quickItem.itemName);
                     Sprite sprite = Resources.Load<Sprite>(path);
                     iconImage.sprite = sprite;
                     iconImage.color = Color.white;
@@ -80,9 +78,9 @@ public class UI_QuickSlot : MonoBehaviour
 
     public void ClickButton()
     {
-        if (targetSlot == null) return;
+        if (quickItem == null) return;
 
-        switch (targetSlot.ItemBase.itemType)
+        switch (quickItem.itemType)
         {
       
             case ItemType.Bullet:
@@ -106,9 +104,9 @@ public class UI_QuickSlot : MonoBehaviour
                 break;
            
         }
-        targetSlot.UseItem();
+        quickItem.ItemAction();
 
-        UpdateQuickSlot();
+        UpdateQuickSlot(quickItem);
 
     }
 

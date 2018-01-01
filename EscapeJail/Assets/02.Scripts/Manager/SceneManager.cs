@@ -27,7 +27,7 @@ public class SceneManager : MonoBehaviour
         }
 
     }
-    private bool nowChangeScene =false;
+    private bool nowChangeScene = false;
 
     void Awake()
     {
@@ -48,11 +48,17 @@ public class SceneManager : MonoBehaviour
         if (nowChangeScene == true)
             StopAllCoroutines();
 
+        //바뀌는 씬이 선택씬일때만 초기화
+        if (sceneName == SceneName.SelectScene)
+        {
+            if (NowSelectPassive.Instance != null)
+                NowSelectPassive.Instance.ClearPassives();
+        }
+
         nowSceneName = sceneName;
         StartCoroutine(FadeRoutine());
-        
-        if(sceneName !=SceneName.StoryScene&& sceneName != SceneName.GameScene)
-        NowSelectPassive.Instance.ClearPassives();
+
+
 
 
         System.GC.Collect();
@@ -64,7 +70,7 @@ public class SceneManager : MonoBehaviour
         MaskOnOff(true);
         iTween.FadeTo(fadeMask.gameObject, 1f, 1f);
         yield return new WaitForSeconds(1.0f);
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)nowSceneName);       
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)nowSceneName);
         yield return new WaitForSeconds(1.0f);
         iTween.FadeTo(fadeMask.gameObject, 0f, 1f);
         yield return new WaitForSeconds(1.0f);
