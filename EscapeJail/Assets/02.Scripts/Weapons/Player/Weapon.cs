@@ -17,6 +17,7 @@ namespace weapon
         ShotGun,
         Sniper,
         MG,
+        ETC
     }
 
     //WeaponTable과 연동
@@ -130,7 +131,7 @@ namespace weapon
     public class Weapon : ItemBase
     {
         protected Animator animator;
-        private WeaponKind weaponKind;
+        private WeaponKind weaponKind=WeaponKind.ETC;
 
         protected BulletType bulletType;
         protected AttackType attackType = AttackType.gun;
@@ -361,7 +362,7 @@ namespace weapon
 
         protected void PlayFireAnim()
         {
-            if (animator != null)
+            if (animator != null&&weapontype!=WeaponType.MindArrow)
                 animator.SetTrigger("FireTrigger");
         }
 

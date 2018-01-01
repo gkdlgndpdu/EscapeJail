@@ -13,7 +13,7 @@ public class MindArrow_Arrow : MonoBehaviour
     private float freeTime = 0.5f;
     private float moveSpeed = 5f;
     private float rotateSpeed = 20f;
-    private float lifeTime = 15f;
+    private float lifeTime = 10f;
     private bool firstFind = true;
     private void Awake()
     {

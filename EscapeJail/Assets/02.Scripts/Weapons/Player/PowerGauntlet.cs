@@ -45,7 +45,9 @@ namespace weapon
             {
                 CharacterInfo characterInfo = colls[i].gameObject.GetComponent<CharacterInfo>();
                 if (characterInfo != null)
-                    characterInfo.SetPush(firePos,10f, multiDamage);
+                {
+                    characterInfo.SetPush(firePos,10f, multiDamage);                  
+                }
             }
 
             //이펙트

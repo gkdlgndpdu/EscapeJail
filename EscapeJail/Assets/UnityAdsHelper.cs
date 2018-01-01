@@ -28,7 +28,7 @@ public class UnityAdsHelper : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     //고유 아이디
-    private const string android_game_id = "1613609";
+    private const string android_game_id = "1655685";
 
     private const string rewarded_video_id = "rewardedVideo";
 

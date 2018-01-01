@@ -151,7 +151,7 @@ public class Bullet : MonoBehaviour
                 }
                 break;
         }
-
+        StopAllCoroutines();
         StartCoroutine(bulletDestroyRoutine(lifeTime));
 
         bulletDestroyAction = BulletDestroyAction.none;

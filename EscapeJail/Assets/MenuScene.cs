@@ -18,7 +18,8 @@ public class MenuScene : MonoBehaviour
     private GameObject creditUi;
     [SerializeField]
     private GameObject askWindow;
-
+    [SerializeField]
+    private GameObject endWindow;
     [SerializeField]
     private Button startButton;
 
@@ -93,6 +94,12 @@ public class MenuScene : MonoBehaviour
     {
         AskWindowOnOff();
         TutorialWindowOnOff();
+    }
+
+    public void EndWindowOnOff(bool OnOff)
+    {
+        if (endWindow == null) return;
+        endWindow.gameObject.SetActive(!endWindow.gameObject.activeSelf);
     }
 
     public void SelectEasy()
@@ -191,6 +198,10 @@ public class MenuScene : MonoBehaviour
     {
         GoogleService.Instance.ShowAchivement();
 
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
 }

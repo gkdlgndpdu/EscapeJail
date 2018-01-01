@@ -76,7 +76,7 @@ public class CircleBullet : ShapeBulletBase
             Vector3 fireDir = playerTr.position - allBulletList[i].transform.position;
             fireDir.Normalize();
             allBulletList[i].transform.parent = null;
-            allBulletList[i].Initialize(allBulletList[i].transform.position, fireDir, 10f, BulletType.EnemyBullet,1.5f);
+            allBulletList[i].Initialize(allBulletList[i].transform.position, fireDir, 10, BulletType.EnemyBullet,1.5f);
             yield return new WaitForSeconds(0.3f);
         }
 

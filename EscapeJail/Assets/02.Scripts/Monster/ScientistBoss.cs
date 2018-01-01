@@ -25,6 +25,7 @@ namespace ScientistBoss
 
         private int childHp = 50;
 
+        private BossEventQueue myBossEventQueue;
 
         private new void Awake()
         {
@@ -56,10 +57,20 @@ namespace ScientistBoss
         //자식들 다죽었을때 들어옴
         private void StartRealBoss()
         {
-            base.StartBossPattern();            
+            base.StartBossPattern();
+            if (bossEventQueue == null) return;
+
             bossEventQueue.RemoveAllEvent();        
             bossEventQueue.AddEvent("ParentPattern");
             bossEventQueue.AddEvent("CircleAttackPattern");
+
+            Invoke("RealPattern", 1.0f);
+           
+        }
+
+        private void RealPattern()
+        {
+            if(bossEventQueue!=null)
             bossEventQueue.StartEventQueue();
         }
 
