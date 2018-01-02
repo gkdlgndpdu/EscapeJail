@@ -327,7 +327,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new Revolver());      
+        AddWeapon(new BasicSniper());      
     }
 
     public WeaponType GetNowEquipWeapon()
@@ -861,8 +861,7 @@ public class CharacterBase : CharacterInfo
 
     public bool isInventoryFull()
     {
-        if (inventory == null) return true;        
-
+        if (inventory == null) return true;
         return inventory.isInventoryFull();
     }
 

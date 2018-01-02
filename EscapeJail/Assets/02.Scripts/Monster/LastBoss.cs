@@ -293,6 +293,8 @@ public class LastBoss : BossBase
                 {
                     if (animator != null)
                         animator.SetFloat("Speed", 0f);
+
+             
                 }
                 break;
         }

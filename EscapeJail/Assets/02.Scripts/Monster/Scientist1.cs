@@ -111,14 +111,15 @@ public class Scientist1 : MonsterBase
         //도망패턴 시작
         //
     }
+
     public override void SetStun(bool OnOff)
     {
-        if (isImmune == false|| nowAttack==true)
+        if (isImmune == false||nowAttack==true)
         {
           base.SetStun(OnOff);
-
         }
     }
+
     public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
     {
         if (isImmune == false|| nowAttack==true)

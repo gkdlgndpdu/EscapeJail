@@ -760,7 +760,7 @@ public class MonsterBase : CharacterInfo
             {
                 effect.Initialize(GameConstants.FlashBangStunTime, 1f, this.transform,CharacterCondition.InStun,255f);
                 effect.transform.localPosition = Vector3.zero;
-                effectDic.Add(CharacterCondition.InStun, effect);
+                AddEffect(CharacterCondition.InStun, effect);               
 
             }
         

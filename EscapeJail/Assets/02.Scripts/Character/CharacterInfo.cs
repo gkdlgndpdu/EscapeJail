@@ -49,6 +49,19 @@ public class CharacterInfo : MonoBehaviour
 
     }
 
+    public void AddEffect(CharacterCondition condition, CharacterStateEffect effect)
+    {
+        if (effectDic == null) return;
+        if (effectDic.ContainsKey(condition) == true) return;
+        effectDic.Add(condition, effect);
+    }
+    public void RemoveEffect(CharacterCondition condition)
+    {
+        if (effectDic == null) return;
+        if (effectDic.ContainsKey(condition) == false) return;
+        effectDic.Remove(condition);
+    }
+
     /// <summary>
     /// 스턴 설정
     /// </summary>
