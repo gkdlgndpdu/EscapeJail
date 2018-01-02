@@ -89,8 +89,11 @@ public class BossBase : CharacterInfo
         SetUiOnOff(false);
     }
 
-    
 
+    public override void SetPush(Vector3 pushPoint, float pushPower, int damage)
+    {
+        GetDamage(damage);
+    }
 
     public override void GetDamage(int damage)
     {

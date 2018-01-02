@@ -13,7 +13,7 @@ namespace weapon
             SetWeaponKind(WeaponKind.Pistol);
 
             bulletSpeed = 15f;
-            fireDelay = 1f;
+            fireDelay = 0.7f;
             
             needBulletToFire = 1;
             damage = 3;

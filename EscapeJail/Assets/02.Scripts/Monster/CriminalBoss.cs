@@ -17,7 +17,7 @@ public class CriminalBoss : BossBase
     private new void Awake()
     {
         base.Awake();
-        SetHp(350);
+        SetHp(330);
         RegistPatternToQueue();
     }
 
@@ -104,9 +104,9 @@ public class CriminalBoss : BossBase
     {
         Action(Actions.FireStart);
 
-        float eachFireDelay = 0.2f;
+        float eachFireDelay = 0.15f;
         float endDelay = 1f;
-        float bulletSpeed = 3f;
+        float bulletSpeed = 8f;
         int fireBulletNum = 30;
         float bulletSize = 0.6f;
 
@@ -166,10 +166,10 @@ public class CriminalBoss : BossBase
     {
         Action(Actions.FireStart);
 
-        float fireDelay = 0.15f;
-        float bulletSpeed = 7f;
+        float fireDelay = 0.12f;
+        float bulletSpeed = 11f;
         float endDelay = 1f;
-        int fireBulletNum = 25;
+        int fireBulletNum = 30;
         float reBoundValue = 30f;
 
         yield return new WaitForSeconds(1f);

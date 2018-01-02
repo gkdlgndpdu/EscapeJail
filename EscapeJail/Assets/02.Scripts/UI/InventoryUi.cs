@@ -23,6 +23,10 @@ public class InventoryUi : MonoBehaviour
 
     [SerializeField]
     private UI_QuickSlot quickSlot;
+    public UI_QuickSlot QuickSlot
+    {
+        get { return quickSlot; }
+    }
 
     //스크롤
     [SerializeField]
@@ -61,16 +65,16 @@ public class InventoryUi : MonoBehaviour
     public void UseSelectedItem()
     {
         if (nowSelectedSlot == null) return;
+        quickSlot.UpdateQuickSlot(nowSelectedSlot.ItemBase);
         nowSelectedSlot.UseItem();
-        UpdateQuickSlot();
 
         UpdateInventoryUi();
     }
     public void DiscardSelectedItem()
     {
         if (nowSelectedSlot == null) return;
-        nowSelectedSlot.DiscardItem();
-        UpdateQuickSlot();
+        quickSlot.UpdateQuickSlot(nowSelectedSlot.ItemBase);
+        nowSelectedSlot.DiscardItem();   
 
         UpdateInventoryUi();
     }
@@ -78,9 +82,10 @@ public class InventoryUi : MonoBehaviour
     public void RegistQuickSlotSelectedItem()
     {
         if (quickSlot == null) return;
-        if (nowSelectedSlot == null) return;        
+        if (nowSelectedSlot == null) return;
+        if (nowSelectedSlot.ItemBase == null) return;
 
-        quickSlot.SetQuickSlot(nowSelectedSlot);
+        quickSlot.SetQuickSlot(nowSelectedSlot.ItemBase);
     }   
 
     public void RegistNowGetItemToQuickSlot(ItemBase itembase)
@@ -96,7 +101,7 @@ public class InventoryUi : MonoBehaviour
             if (itemSlots[i].IsEmpty == true) continue;
             if(itemSlots[i].ItemBase == itembase)
             {
-                quickSlot.SetQuickSlot(itemSlots[i]);
+                quickSlot.SetQuickSlot(itemSlots[i].ItemBase);
                 return;
             }
 
@@ -106,11 +111,11 @@ public class InventoryUi : MonoBehaviour
     
 
 
-    public void UpdateQuickSlot()
-    {
-        if (quickSlot == null) return;
-        quickSlot.UpdateQuickSlot();
-    }
+    //public void UpdateQuickSlot()
+    //{
+    //    if (quickSlot == null) return;
+    //    quickSlot.UpdateQuickSlot();
+    //}
 
 
     private void ChangeBackGroundColor(Color color)

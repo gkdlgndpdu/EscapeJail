@@ -141,7 +141,10 @@ public class DatabaseLoader : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
-
+    public void Start()
+    {
+        SetPrefPassiveData();
+    }
 
     public void SetPrefPassiveData()
     {

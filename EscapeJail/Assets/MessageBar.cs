@@ -36,6 +36,20 @@ public class MessageBar : MonoBehaviour
     private void Start()
     {
         ResetInfoBar();
+        if (Language.Instance.NowLanguage == LanguageType.English)
+        {
+
+        }
+        else
+        {
+            if (messageText != null)
+            {
+                messageText.font = Language.Instance.KoreanFont;
+                messageText.transform.position += Vector3.up * 5f;
+            }
+
+        }
+         
     }
 
     public void ShowInfoBar(string text,Color color)

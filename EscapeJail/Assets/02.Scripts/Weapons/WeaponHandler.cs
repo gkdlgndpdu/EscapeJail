@@ -210,6 +210,19 @@ public class WeaponHandler : MonoBehaviour
                 GamePlayerManager.Instance.player.CardCaseCardOnOff(false);
             }
 
+            //마인드애로우
+            if (nowWeapon != null)
+            {
+                if (nowWeapon.weapontype == WeaponType.MindArrow)
+                {
+
+                    //이미지 제거
+                    if (animator != null)
+                        animator.runtimeAnimatorController = null;
+                }
+              
+            }
+          
             UpdateWeaponUI();
         }
 

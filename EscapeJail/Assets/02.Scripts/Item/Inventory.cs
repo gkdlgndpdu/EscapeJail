@@ -35,12 +35,15 @@ public class Inventory
         {
             if (allItemList[i].itemType == itemType)
             {
-                MessageBar.Instance.ShowInfoBar(string.Format("Use {0}", allItemList[i].itemName), Color.white);
+                if(Language.Instance.NowLanguage==LanguageType.English)
+                MessageBar.Instance.ShowInfoBar(string.Format("Use {0}", allItemList[i].showItemName), Color.white);
+                else
+                    MessageBar.Instance.ShowInfoBar(string.Format("{0} 사용", allItemList[i].showItemName), Color.white);
                 allItemList[i].ItemAction();
                 if (inventoryUi != null)
                 {
+                 //   inventoryUi.QuickSlot.UpdateQuickSlot(allItemList[i]);
                     inventoryUi.UpdateInventoryUi();
-                    inventoryUi.UpdateQuickSlot();
                 }
                 return;
             }
@@ -58,8 +61,13 @@ public class Inventory
     {
         if (bagLevel >= level)
         {
-            MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold", Color.white);
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Item Overlap +100 gold", Color.white);
+            else
+                MessageBar.Instance.ShowInfoBar("중복(하위)아이템 획득 +100 gold", Color.white);
+
             GamePlayerManager.Instance.player.GetCoin(GameConstants.ItemOverlapGold);
+
             return;
         }
         bagLevel = level;

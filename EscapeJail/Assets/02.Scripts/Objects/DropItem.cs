@@ -209,7 +209,11 @@ public class DropItem : MonoBehaviour, iReactiveAction
             //가방 , 아머일때는 인벤토리 크기 상관 x
             (itemBase.itemType != ItemType.Bag && itemBase.itemType != ItemType.Armor))
         {
-            MessageBar.Instance.ShowInfoBar("Inventory Is Full", Color.red);
+
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Inventory Is Full", Color.red);
+            else
+                MessageBar.Instance.ShowInfoBar("가방이 가득 찼어요", Color.red);
             SoundManager.Instance.PlaySoundEffect("error");
             return;
         }
@@ -218,7 +222,10 @@ public class DropItem : MonoBehaviour, iReactiveAction
         {
             if (player.Coin < price)
             {
-                MessageBar.Instance.ShowInfoBar("Not enough money", Color.red);
+                if (Language.Instance.NowLanguage == LanguageType.English)
+                    MessageBar.Instance.ShowInfoBar("Not enough money", Color.red);
+                else
+                    MessageBar.Instance.ShowInfoBar("돈이 부족합니다.", Color.red);
                 return;
             }
             else

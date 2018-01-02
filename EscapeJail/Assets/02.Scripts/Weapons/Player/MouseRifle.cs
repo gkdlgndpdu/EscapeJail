@@ -13,7 +13,7 @@ namespace weapon
         public MouseRifle()
         {
             weapontype = WeaponType.MouseRifle;
-            bulletSpeed = 3.5f;
+            bulletSpeed = 4.5f;
             weaponScale = Vector3.one * 2;
         }
 

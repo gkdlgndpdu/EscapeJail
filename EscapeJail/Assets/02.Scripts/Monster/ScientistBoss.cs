@@ -25,6 +25,7 @@ namespace ScientistBoss
 
         private int childHp = 50;
 
+        private BossEventQueue myBossEventQueue;
 
         private new void Awake()
         {
@@ -35,8 +36,10 @@ namespace ScientistBoss
 
         public override void StartBossPattern()
         {
-            MessageBar.Instance.ShowInfoBar("Destroy child first",Color.white);
-
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Destroy child first",Color.white);
+            else
+                MessageBar.Instance.ShowInfoBar("자식을 먼저 처리하세요", Color.white);
             StartChild();
 
             if (bossEventQueue != null)
@@ -54,10 +57,20 @@ namespace ScientistBoss
         //자식들 다죽었을때 들어옴
         private void StartRealBoss()
         {
-            base.StartBossPattern();            
+            base.StartBossPattern();
+            if (bossEventQueue == null) return;
+
             bossEventQueue.RemoveAllEvent();        
             bossEventQueue.AddEvent("ParentPattern");
             bossEventQueue.AddEvent("CircleAttackPattern");
+
+            Invoke("RealPattern", 1.0f);
+           
+        }
+
+        private void RealPattern()
+        {
+            if(bossEventQueue!=null)
             bossEventQueue.StartEventQueue();
         }
 
@@ -88,7 +101,10 @@ namespace ScientistBoss
 
             if (isChildAlive() == true)
             {
-                MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
+                if (Language.Instance.NowLanguage == LanguageType.English)
+                    MessageBar.Instance.ShowInfoBar("Destroy child first", Color.white);
+                else
+                    MessageBar.Instance.ShowInfoBar("자식을 먼저 처리하세요.", Color.white);
                 ShieldEffectOn();
                 SoundManager.Instance.PlaySoundEffect("vestshieldhit");
                 return;

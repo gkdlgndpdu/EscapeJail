@@ -125,6 +125,7 @@ public class Item_Bullet : ItemBase
             if (player.CanReload() == false) return;
 
             player.GetBulletItem(this.Value);
+            player.playerUi.inventoryUi.QuickSlot.UpdateQuickSlot(this);
             player.RemoveItem(this);
         }
 
@@ -170,6 +171,7 @@ public class Item_Medicine : ItemBase
 
             player.GetHp(Value);
             SoundManager.Instance.PlaySoundEffect("cure2");
+            player.playerUi.inventoryUi.QuickSlot.UpdateQuickSlot(this);
             player.RemoveItem(this);
         }
     }
@@ -211,6 +213,7 @@ public class Item_Stimulant : ItemBase
             Debug.Log("30초간 " + Value + " 회복");
             player.UseStimulant(Value);
             SoundManager.Instance.PlaySoundEffect("cure1");
+            player.playerUi.inventoryUi.QuickSlot.UpdateQuickSlot(this);
             player.RemoveItem(this);
         }
     }
@@ -282,7 +285,7 @@ public class Item_FlashBang : ItemBase
 
 
         SoundManager.Instance.PlaySoundEffect("flashbang2");
- 
+        player.playerUi.inventoryUi.QuickSlot.UpdateQuickSlot(this);
         player.RemoveItem(this);
     }
 }

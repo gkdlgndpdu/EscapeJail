@@ -22,12 +22,16 @@ public class GoogleCloudSave : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
+    /// <summary>
+    /// ///////////////////////////////////////////
+    /// </summary>
     private void Start()
     {
-        Init();
+        //Init();
     }
-
+    /// <summary>
+    /// //////////////////////////////////////////
+    /// </summary>
     public void Init()
     {
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();

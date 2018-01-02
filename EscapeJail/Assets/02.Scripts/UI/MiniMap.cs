@@ -85,8 +85,10 @@ public class MiniMap : MonoBehaviour
         {
             iTween.ScaleTo(maskTr.gameObject, maskMaxSize, 0.5f);
             miniMapState = MiniMapState.Center;
-            MessageBar.Instance.ShowInfoBar("Touch portal icon for teleport",Color.white);
-      
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Touch portal icon for teleport",Color.white);
+            else
+                MessageBar.Instance.ShowInfoBar("순간이동 하려면 포탈을 클릭하세요", Color.white);
         }
         else if(miniMapState == MiniMapState.Center)
         {

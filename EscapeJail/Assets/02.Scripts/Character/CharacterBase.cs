@@ -172,10 +172,9 @@ public class CharacterBase : CharacterInfo
         //신발
         if (NowSelectPassive.Instance.HasPassive(PassiveType.WingShoes) == true)
         {
-            moveSpeed = 5f;
+            moveSpeed = 4f;
             burstSpeed = moveSpeed + 2;
             originSpeed = moveSpeed;
-
         }
        
 
@@ -862,8 +861,7 @@ public class CharacterBase : CharacterInfo
 
     public bool isInventoryFull()
     {
-        if (inventory == null) return true;        
-
+        if (inventory == null) return true;
         return inventory.isInventoryFull();
     }
 
@@ -945,7 +943,10 @@ public class CharacterBase : CharacterInfo
         bool returnValue = hp < hpMax;
         if (returnValue == false)
         {
-            MessageBar.Instance.ShowInfoBar("Life is full", Color.red);
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Life is full", Color.red);
+            else
+                MessageBar.Instance.ShowInfoBar("생명력이 최대치 입니다.", Color.red);
         }
         return returnValue;
     }
@@ -953,8 +954,10 @@ public class CharacterBase : CharacterInfo
     public void GetHp(int value)
     {
         Debug.Log("Heal" + value.ToString());
-
-        MessageBar.Instance.ShowInfoBar(string.Format("Heal {0}", value), Color.white);
+        if (Language.Instance.NowLanguage == LanguageType.English)
+            MessageBar.Instance.ShowInfoBar(string.Format("Heal {0}", value), Color.white);
+        else
+            MessageBar.Instance.ShowInfoBar(string.Format("{0} 회복됨", value), Color.white);
 
         hp += value;
         if (hp > hpMax)
@@ -970,7 +973,10 @@ public class CharacterBase : CharacterInfo
         bool returnValue = !nowUseStimulant;
         if (returnValue == false)
         {
-            MessageBar.Instance.ShowInfoBar("Already use stimulant.", Color.red);
+            if (Language.Instance.NowLanguage == LanguageType.English)
+                MessageBar.Instance.ShowInfoBar("Already use stimulant.", Color.red);
+            else
+                MessageBar.Instance.ShowInfoBar("이미 진통제를 사용중입니다.", Color.red);
         }
 
         //이미 사용중이면 사용 불가
