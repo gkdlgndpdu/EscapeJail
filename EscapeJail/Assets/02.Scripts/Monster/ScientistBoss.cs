@@ -23,7 +23,7 @@ namespace ScientistBoss
         [SerializeField]
         private CircleBullet circleBullet;
 
-        private int childHp = 50;
+        private int childHp = 60;
 
         private BossEventQueue myBossEventQueue;
 

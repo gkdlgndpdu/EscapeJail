@@ -15,10 +15,11 @@ public class TimeManager : MonoBehaviour
     }
     private IEnumerator CalculatePlayTime()
     {
-        while(true)
+        WaitForSeconds ws = new WaitForSeconds(1.0f);
+        while (true)
         {
             playTime++;
-            yield return new WaitForSeconds(1.0f);
+            yield return ws;
         }
         
     }

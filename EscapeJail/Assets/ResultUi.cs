@@ -100,7 +100,7 @@ public class ResultUi : MonoBehaviour
                 if (winningLotteryIcon != null)
                     winningLotteryIcon.gameObject.SetActive(true);
 
-                totalScore += (int)((float)totalScore * 1.3f);
+                totalScore = (int)((float)totalScore * 1.3f);
             }
             else
             {
@@ -110,7 +110,7 @@ public class ResultUi : MonoBehaviour
 
             if (NowSelectPassive.Instance.NowDifficulty == Difficulty.hard)
             {
-                totalScore += (int)((float)totalScore * 1.5f);
+                totalScore = (int)((float)totalScore * 2f);
             }
             totalScoreText.text = string.Format("Total : {0}", totalScore.ToString());
         }

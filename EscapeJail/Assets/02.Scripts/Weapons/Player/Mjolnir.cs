@@ -15,7 +15,7 @@ namespace weapon
             weapontype = WeaponType.Mjolnir;
             SetWeaponKind(WeaponKind.Special);
             fireDelay = 0.5f;
-            SetAmmo(30);
+            SetAmmo(20);
             needBulletToFire = 1;
             damage = 1;
 

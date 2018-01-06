@@ -131,7 +131,7 @@ public class MenuScene : MonoBehaviour
         int languageKey = PlayerPrefs.GetInt(PlayerPrefKeys.LanguageKey, (int)LanguageType.Korean);
 
         //하드모드 열렸는지체크
-        if (GoogleService.Instance.IsAchivementClear(GPGSIds.achievement_hard_mode) == false)
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.HardUnlockKey,0)==0)
         {
             if (startButton != null)
                 startButton.gameObject.SetActive(false);

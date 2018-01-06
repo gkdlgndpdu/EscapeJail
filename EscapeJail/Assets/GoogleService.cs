@@ -46,21 +46,28 @@ public class GoogleService : MonoBehaviour
         }
     }
 
+    public bool isLogIn()
+    {
+        return PlayGamesPlatform.Instance.IsAuthenticated();
+    }
+
 
 
     public void ShowLeaderBoardUi()
     {
-        if (PlayGamesPlatform.Instance.IsAuthenticated())
+        if (isLogIn())
             PlayGamesPlatform.Instance.ShowLeaderboardUI();
+        else
+            LogIn();
 
 
     }
     public void ShowAchivement()
     {
-        if (PlayGamesPlatform.Instance.IsAuthenticated())
+        if (isLogIn())
             PlayGamesPlatform.Instance.ShowAchievementsUI();
         else
-            SignIn();
+            LogIn();
 
 
     }
@@ -71,6 +78,11 @@ public class GoogleService : MonoBehaviour
         SignIn();
     }
 
+    public void LogIn()
+    {
+        PlayGamesPlatform.Instance.Authenticate((bool success)=> { });
+
+    }
     public void SignIn()
     {
         PlayGamesPlatform.Instance.Authenticate((bool success) =>
@@ -89,6 +101,7 @@ public class GoogleService : MonoBehaviour
     public void SignOut()
     {
         PlayGamesPlatform.Instance.SignOut();
+        
     }
     public void ReportTimeAttack(int time)
     {
@@ -96,7 +109,7 @@ public class GoogleService : MonoBehaviour
     }
 
     public void ReportScore(int score)
-    {
+    {        
         PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_score, null);
     }
     //실제용 함수
@@ -178,6 +191,7 @@ public class GoogleService : MonoBehaviour
     }
     public void UnlockHardMode()
     {
+        PlayerPrefs.SetInt(PlayerPrefKeys.HardUnlockKey, 1);
         if (IsAchivementClear(GPGSIds.achievement_hard_mode) == true) return;
         PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_hard_mode, (bool success) =>
         {

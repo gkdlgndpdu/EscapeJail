@@ -12,9 +12,9 @@ public class StagerController : MonoBehaviour
     private ItemSpawner itemSpawner;
 
     public StageData stageData;
- 
-    private int nowStageLevel =1;
-  
+
+    private int nowStageLevel = 1;
+
 
     public int NowStageLevel
     {
@@ -27,10 +27,13 @@ public class StagerController : MonoBehaviour
 
     public void LoadstageData()
     {
-        if (nowStageLevel != 1)
-            GamePlayerManager.Instance.player.RevivePlayer(); 
+        if (nowStageLevel != 1 && NowSelectPassive.Instance.NowDifficulty != Difficulty.hard)
+        {
+            GamePlayerManager.Instance.player.RevivePlayer();
 
-           Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
+        }
+
+        Object obj = Resources.Load("StageData/Stage" + nowStageLevel.ToString());
         if (obj != null)
             stageData = (StageData)obj;
 
@@ -63,7 +66,7 @@ public class StagerController : MonoBehaviour
         if (itemSpawner != null)
             itemSpawner.DestroyAllItems();
 
-       
+
     }
 
     public void CreateNextStage()
@@ -71,7 +74,7 @@ public class StagerController : MonoBehaviour
         //stage data 갱신
         LoadstageData();
         //monsterPool갱신
-        ObjectManager.Instance.MakeMonsterPool();      
+        ObjectManager.Instance.MakeMonsterPool();
         mapManager.MakeMap(stageData);
     }
 

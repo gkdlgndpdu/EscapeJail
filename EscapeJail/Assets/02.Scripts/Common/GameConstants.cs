@@ -101,4 +101,5 @@ public static class PlayerPrefKeys
     public static string VibrationKey = "VibrationKey"; //0 off 1 on
     public static string PassiveKey = "Passive";
     public static string FirstPlayKey = "FirstPlay"; //0 false 1 true
+    public static string HardUnlockKey = "HardModeKey"; //0 lock 1 unlock
 }
