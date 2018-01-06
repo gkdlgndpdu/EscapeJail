@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 122
+  bundleVersion: 123
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -162,7 +162,7 @@ PlayerSettings:
     Standalone: com.zeroeight.AlphaAgent
   buildNumber:
     Standalone: 10
-  AndroidBundleVersionCode: 122
+  AndroidBundleVersionCode: 123
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

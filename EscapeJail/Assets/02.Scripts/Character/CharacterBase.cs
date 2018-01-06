@@ -328,7 +328,7 @@ public class CharacterBase : CharacterInfo
 
     protected void SetWeapon()
     {
-        AddWeapon(new BasicSniper());      
+        AddWeapon(new Revolver());      
     }
 
     public WeaponType GetNowEquipWeapon()
