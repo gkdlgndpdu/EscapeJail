@@ -88,7 +88,7 @@ public class LastBoss : BossBase
 
         //업적 해제
         GoogleService.Instance.UnlockHardMode();
-
+      
         //결과창 띄워줌
         GamePlayerManager.Instance.player.playerUi.resultUi.isLastBossClear = true;
 

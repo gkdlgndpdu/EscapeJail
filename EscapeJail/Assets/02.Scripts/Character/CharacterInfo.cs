@@ -186,6 +186,7 @@ public class CharacterInfo : MonoBehaviour
 
     protected virtual IEnumerator FireDamage()
     {
+        WaitForSeconds ws = new WaitForSeconds(1.0f);
         while (true)
         {
             fireCount += 1f;
@@ -197,13 +198,14 @@ public class CharacterInfo : MonoBehaviour
                 yield break;
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return ws;
         }
 
     }
 
     protected virtual IEnumerator PoisonDamage()
     {
+        WaitForSeconds ws = new WaitForSeconds(1.0f);
         while (true)
         {
             poisonCount += 1f;
@@ -215,7 +217,7 @@ public class CharacterInfo : MonoBehaviour
                 yield break;
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return ws;
         }
     }
     protected void AllStateClear()

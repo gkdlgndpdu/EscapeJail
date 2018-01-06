@@ -200,6 +200,7 @@ public class CharacterBase : CharacterInfo
 
     private IEnumerator RedDotLineRenderRoutine()
     {
+        WaitForSeconds ws = new WaitForSeconds(0.01f);
         while (true)
         {
             int layerMask = (1 << LayerMask.NameToLayer("Enemy")) |
@@ -223,7 +224,7 @@ public class CharacterBase : CharacterInfo
                 redDotLine.SetPosition(1, castHit.point);
             }
 
-            yield return new WaitForSeconds(0.01f);
+            yield return ws;
         }
     }
 
@@ -429,10 +430,11 @@ public class CharacterBase : CharacterInfo
 
     protected IEnumerator FindItemRoutine()
     {
+        WaitForSeconds ws = new WaitForSeconds(0.1f);
         while (true)
         {
             ReactiveItem();
-            yield return new WaitForSeconds(0.1f);
+            yield return ws;
         }
     }
 
@@ -1011,7 +1013,7 @@ public class CharacterBase : CharacterInfo
         float addValue = (float)value / durationTime;
         float countValue = 0f;
         float elapsedTime = 0f;
-
+        WaitForSeconds ws = new WaitForSeconds(1.0f);
         while (true)
         {
             countValue += addValue;
@@ -1030,7 +1032,7 @@ public class CharacterBase : CharacterInfo
                 yield break;
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return ws;
         }
 
 

@@ -73,6 +73,7 @@ public class CameraController : MonoBehaviour
 
     IEnumerator FlashBangEffectRoutine()
     {
+        WaitForSeconds ws = new WaitForSeconds(0.02f);
         postProcessBehavior.chromaticAberration.enabled = true;
         float value = 0f;
         for(int i = 0; i < 10; i++)
@@ -81,7 +82,7 @@ public class CameraController : MonoBehaviour
             var settings = postProcessBehavior.chromaticAberration.settings;
             settings.intensity = value;
             postProcessBehavior.chromaticAberration.settings = settings;
-            yield return new WaitForSeconds(0.02f);
+            yield return ws;
         }
         postProcessBehavior.chromaticAberration.enabled = false;
     }

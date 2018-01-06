@@ -10,10 +10,10 @@ public class MindArrow_Arrow : MonoBehaviour
     private List<GameObject> monsterList;
     private int power = 1;
     private bool nowFreeMove = false;
-    private float freeTime = 0.5f;
+    private float freeTime = 1f;
     private float moveSpeed = 5f;
     private float rotateSpeed = 20f;
-    private float lifeTime = 10f;
+    private float lifeTime = 9f;
     private bool firstFind = true;
     private void Awake()
     {

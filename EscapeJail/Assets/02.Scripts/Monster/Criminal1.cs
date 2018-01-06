@@ -47,13 +47,14 @@ public class Criminal1 : MonsterBase
     protected override IEnumerator FireRoutine()
     {
         yield return new WaitForSeconds(Random.Range(1f, 1.5f));
-
+        WaitForSeconds ws = new WaitForSeconds(0.3f);
+        
         while (true)
         {        
             for (int i = 0; i < 3; i++)
             {
                  FireWeapon();
-                yield return new WaitForSeconds(0.3f);
+                yield return ws;
             }
        
 

@@ -36,6 +36,7 @@ public class CircleBullet : ShapeBulletBase
     private IEnumerator AttackRoutine()
     {
         float bulletSpeed =10f;
+        WaitForSeconds ws = new WaitForSeconds(0.05f);
 
         //총알 생성
         for (int i = 0; i < bulletNum; i++)
@@ -45,12 +46,12 @@ public class CircleBullet : ShapeBulletBase
 
             dir = Quaternion.Euler(0f, 0f, i * 15f) * dir;
             bullet.transform.parent = this.transform;
-            bullet.Initialize(this.transform.position, dir.normalized, bulletSpeed, BulletType.EnemyBullet, 1f, 1, 999f);
+            bullet.Initialize(this.transform.position, dir.normalized, bulletSpeed, BulletType.EnemyBullet, 1f, 1, 100f);
             bullet.SetMoveLifetime(1f);
             bullet.SetDestroyByCollision(false, false);
             allBulletList.Add(bullet);
 
-            yield return new WaitForSeconds(0.05f);
+            yield return ws;
         }
 
         //총알 회전
@@ -71,13 +72,14 @@ public class CircleBullet : ShapeBulletBase
     {
         Transform playerTr = GamePlayerManager.Instance.player.transform;
         allBulletList.ListShuffle(50);
+        WaitForSeconds ws = new WaitForSeconds(0.3f);
         for (int i = 0; i < allBulletList.Count; i++)
         {
             Vector3 fireDir = playerTr.position - allBulletList[i].transform.position;
             fireDir.Normalize();
             allBulletList[i].transform.parent = null;
             allBulletList[i].Initialize(allBulletList[i].transform.position, fireDir, 10, BulletType.EnemyBullet,1.5f);
-            yield return new WaitForSeconds(0.3f);
+            yield return ws;
         }
 
         //모든것을 끝낸다

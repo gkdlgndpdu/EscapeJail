@@ -17,7 +17,7 @@ namespace weapon
             weapontype = WeaponType.PowerGauntlet;
             SetWeaponKind(WeaponKind.Special);
             fireDelay = 1f;
-            SetAmmo(30);
+            SetAmmo(20);
             needBulletToFire = 1;
 
         }
